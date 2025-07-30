@@ -1,0 +1,24 @@
+{
+  "title": "IBM Cloud Backup and Recovery",
+  "version": 2,
+  "introduction": "IBM Cloud Backup and Recovery is a fully managed service(s) that provides backup solutions for various IBM Cloud services and customer workloads running on IBM Cloud.",
+  "section_topics": {
+    "links": [
+      {
+        "title": "Getting started with Backup and Recovery",
+        "href": "/docs/backup-recovery?topic=backup-recovery-getting-started-backup-recovery"
+      },
+      {
+        "title": "What is IBM Cloud Backup and Recovery",
+        "href": "/docs/backup-recovery?topic=backup-recovery-about-baas"
+      },
+      {
+        "title": "Deploy Data Source Connector",
+        "href": "/docs/backup-recovery?topic=backup-recovery-deploy_data_source_connector"
+      }
+    ]
+  },
+  "section_updates": {
+    "view_more": "/docs/backup-recovery?topic=backup-recovery-updates"
+  }
+}
