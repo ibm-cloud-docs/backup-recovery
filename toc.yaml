@@ -1,7 +1,6 @@
 toc:
   properties:
     subcollection: backup-recovery
-    allowlist-id: 6cde723c-9e49-74ac-4266-3f7a9bb74216
     service-name: backup-recovery
     category: storage
     audience: service
