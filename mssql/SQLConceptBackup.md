@@ -29,7 +29,7 @@ A {{site.data.keyword.baas_full_notm}} MS SQL VDI-based backup captures the nati
 
 The Virtual Device Interface (VDI) is a Microsoft interface that allows the Backup agent to execute SQL Server Native backup and restore commands. This backup type produces a standard SQL Server Native backup of type (.BAK), transaction logs, (.TRN), and differentials, (.DIFF). These backup files are stored on a {{site.data.keyword.baas_full_notm}} View and take advantage of View compression, deduplication, encryption, replication, and archiving features.
 
-For information on performing MS SQL VDI-based back up, see, see [Backup Microsoft SQL Server (VDI-based)](/docs/allowlist/backup-recovery?topic=backup-recovery-backup_microsoft_sql_server_vdi-based).
+For information on performing MS SQL VDI-based back up, see, see [Backup Microsoft SQL Server (VDI-based)](/docs/backup-recovery?topic=backup-recovery-backup_microsoft_sql_server_vdi-based).
 
 All configurations are for illustrative purposes only. {{site.data.keyword.baas_full_notm}} recommends following MS SQL best practices.
 

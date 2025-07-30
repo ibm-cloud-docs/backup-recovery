@@ -94,7 +94,7 @@ Review and understand the following before you protect your SAP HANA database:
     The Pacemaker version 0.9.167 is supported.
     {: note}
 
-- For a secure connection between the {{site.data.keyword.cloud_notm}} Backup and Recovery cluster and the SAP HANA database, you need to [generate an SAP HANA certificate](/docs/allowlist/backup-recovery?topic=backup-recovery-sap_hana_certificate_authentication) for authentication.
+- For a secure connection between the {{site.data.keyword.cloud_notm}} Backup and Recovery cluster and the SAP HANA database, you need to [generate an SAP HANA certificate](/docs/backup-recovery?topic=backup-recovery-sap_hana_certificate_authentication) for authentication.
 - {{site.data.keyword.cloud_notm}} Backup and Recovery supports data protection for SAP HANA deployments with SSL-encrypted communication between the SAP HANA client and server.
 
 
@@ -135,7 +135,7 @@ tecadm@test-FI:/usr/sap/TEC/home>
 ## Download and install the {{site.data.keyword.cloud_notm}} Backup and Recovery linux agent
 {: #download_and_install_the_cohesity_linux_agent}
 
-The {{site.data.keyword.cloud_notm}} Backup and Recovery Linux Agent is available as script-based and RPM-based installers, based on your requirements download the installer and install it accordingly on the SAP HANA node(s). For detailed instructions, see [Download and Install the Linux Agent](/docs/allowlist/backup-recovery?topic=backup-recovery-install-and-manage-the-agent-on-linux-servers).
+The {{site.data.keyword.cloud_notm}} Backup and Recovery Linux Agent is available as script-based and RPM-based installers, based on your requirements download the installer and install it accordingly on the SAP HANA node(s). For detailed instructions, see [Download and Install the Linux Agent](/docs/backup-recovery?topic=backup-recovery-install-and-manage-the-agent-on-linux-servers).
 
 For multi-node SAP HANA deployments, ensure that you install the {{site.data.keyword.cloud_notm}} Backup and Recovery Linux Agent on the master node in the deployment.
 

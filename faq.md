@@ -54,4 +54,4 @@ BCO (Backup completion objective)
 ## What factors effect the performance of {{site.data.keyword.baas_full}} service ?
 {: #baas-terminology-performance-factors}
 
-See [Factors effecting Performance of {{site.data.keyword.baas_short}}](/docs/allowlist/backup-recovery?topic=backup-recovery-performance-factors).
+See [Factors effecting Performance of {{site.data.keyword.baas_short}}](/docs/backup-recovery?topic=backup-recovery-performance-factors).

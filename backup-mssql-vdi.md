@@ -39,18 +39,18 @@ The scenario for this tutorial simplifies how to backup Microsoft SQL Server (VD
 Ensure that you have what you need to start:
 
 - An account for the [{{site.data.keyword.cloud}} Platform](https://cloud.ibm.com).
-- An [instance](/docs/allowlist/backup-recovery?topic=backup-recovery-getting-started-backup-recovery#baas-provision-instance) of {{site.data.keyword.baas_full_notm}} service is deployed.
+- An [instance](/docs/backup-recovery?topic=backup-recovery-getting-started-backup-recovery#baas-provision-instance) of {{site.data.keyword.baas_full_notm}} service is deployed.
 - A Data Source Connection that has been created on your instance.
-- A [Data Source Connector](/docs/allowlist/backup-recovery?topic=backup-recovery-deploy_data_source_connector) (VM or VSI) that is registered with your instance.
+- A [Data Source Connector](/docs/backup-recovery?topic=backup-recovery-deploy_data_source_connector) (VM or VSI) that is registered with your instance.
   - VM-based sources must use a VM-based data source connector.
   - VSI-based sources must use a VSI-based data source connector.
-- A [Source](/docs/allowlist/backup-recovery?topic=backup-recovery-source-registration-tutorial) (MS SQL physical host, VM or VSI) that is registered with your instance.
-- A [Protection Policy](/docs/allowlist/backup-recovery?topic=backup-recovery-baas-policy-creation) that defines when and how your MS SQL Server data is backed up.
+- A [Source](/docs/backup-recovery?topic=backup-recovery-source-registration-tutorial) (MS SQL physical host, VM or VSI) that is registered with your instance.
+- A [Protection Policy](/docs/backup-recovery?topic=backup-recovery-baas-policy-creation) that defines when and how your MS SQL Server data is backed up.
   - Policies can be created when configuring your Protection Group or beforehand on the Data Protection > Policies page.
-- A [Windows Agent](/docs/allowlist/backup-recovery?topic=backup-recovery-agent-download-install) deployed to the source (installed using the Windows .exe installer).
+- A [Windows Agent](/docs/backup-recovery?topic=backup-recovery-agent-download-install) deployed to the source (installed using the Windows .exe installer).
   - Agents can be downloaded from your {{site.data.keyword.baas_full_notm}} instance UI on the Data Protection > Sources page.
 - Verify that you have proper access to your {{site.data.keyword.baas_full_notm}} instance.
-  - Writer (backup-recovery.dashboard.edit) or Manager (backup-recovery.dashboard.edit) privileges to the {{site.data.keyword.baas_full_notm}} Service are needed to create and manage Protection Jobs (i.e. Backup Jobs) in your instance. These privileges can be assigned by your {{site.data.keyword.cloud_notm}} Platform account owner using an Access Group (multiple users) or Access Policy (specific user) tied to your IAM profile. Details on this are included [here](/docs/allowlist/backup-recovery?topic=backup-recovery-iam&interface=ui).
+  - Writer (backup-recovery.dashboard.edit) or Manager (backup-recovery.dashboard.edit) privileges to the {{site.data.keyword.baas_full_notm}} Service are needed to create and manage Protection Jobs (i.e. Backup Jobs) in your instance. These privileges can be assigned by your {{site.data.keyword.cloud_notm}} Platform account owner using an Access Group (multiple users) or Access Policy (specific user) tied to your IAM profile. Details on this are included [here](/docs/backup-recovery?topic=backup-recovery-iam&interface=ui).
 - Ensure you have the proper `sysadmin` SQL privileges for the Windows account running your agent so it can access your MS SQL Server instance. Please see the section below titled, “Requirements for Microsoft SQL Server protection”.
 
 For VPC (VSIs), additional configurations are needed:
@@ -110,16 +110,16 @@ The MS SQL TDE feature configuration is done within your MS SQL deployment outsi
 TDE-enabled databases can also be contained within an Always On Availability Group, and in that scenario, you would follow the AAG protection group configuration steps to protect them.
 {: note}
 
-1. [Requirements for Microsoft SQL Server protection](/docs/allowlist/backup-recovery?topic=backup-recovery-requirements_for_microsoft_sql_server_protection).
-2. [Supported database types for Microsoft SQL Server](/docs/allowlist/backup-recovery?topic=backup-recovery-supported_database_types_for_microsoft_sql_server).
-3. [General recommendations for Microsoft SQL Server backup methods](/docs/allowlist/backup-recovery?topic=backup-recovery-general_recommendations_for_microsoft_sql_server_backup_methods&interface=ui).
-4. [Considerations for Microsoft SQL Server](/docs/allowlist/backup-recovery?topic=backup-recovery-considerations_for_microsoft_sql_server).
-5. [Manage firewall ports](/docs/allowlist/backup-recovery?topic=backup-recovery-manage_firewall_ports)
-6. [Port Requirements - MS SQL Server and Data Source Connector](/docs/allowlist/backup-recovery?topic=backup-recovery-deploy_data_source_connector).
-7. [Set up standalone Microsoft SQL Server or Microsoft SQL Server AGs](/docs/allowlist/backup-recovery?topic=backup-recovery-set_up_standalone_microsoft_sql_server_or_microsoft_sql_server_ags).
-8. [Backup Microsoft SQL Server (vdi-based)](/docs/allowlist/backup-recovery?topic=backup-recovery-backup_microsoft_sql_server_vdi-based).
+1. [Requirements for Microsoft SQL Server protection](/docs/backup-recovery?topic=backup-recovery-requirements_for_microsoft_sql_server_protection).
+2. [Supported database types for Microsoft SQL Server](/docs/backup-recovery?topic=backup-recovery-supported_database_types_for_microsoft_sql_server).
+3. [General recommendations for Microsoft SQL Server backup methods](/docs/backup-recovery?topic=backup-recovery-general_recommendations_for_microsoft_sql_server_backup_methods&interface=ui).
+4. [Considerations for Microsoft SQL Server](/docs/backup-recovery?topic=backup-recovery-considerations_for_microsoft_sql_server).
+5. [Manage firewall ports](/docs/backup-recovery?topic=backup-recovery-manage_firewall_ports)
+6. [Port Requirements - MS SQL Server and Data Source Connector](/docs/backup-recovery?topic=backup-recovery-deploy_data_source_connector).
+7. [Set up standalone Microsoft SQL Server or Microsoft SQL Server AGs](/docs/backup-recovery?topic=backup-recovery-set_up_standalone_microsoft_sql_server_or_microsoft_sql_server_ags).
+8. [Backup Microsoft SQL Server (vdi-based)](/docs/backup-recovery?topic=backup-recovery-backup_microsoft_sql_server_vdi-based).
 
 ## Next steps
 {: #bass-mssql-vdi-backup-next-steps}
 
-Learn how to configure a [Recovery Job](/docs/allowlist/backup-recovery?topic=backup-recovery-recover-windows-tutorial&interface=ui) to restore the MS SQL data that you’ve backed up to your {{site.data.keyword.baas_full_notm}} instance.
+Learn how to configure a [Recovery Job](/docs/backup-recovery?topic=backup-recovery-recover-windows-tutorial&interface=ui) to restore the MS SQL data that you’ve backed up to your {{site.data.keyword.baas_full_notm}} instance.

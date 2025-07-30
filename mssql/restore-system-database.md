@@ -33,7 +33,7 @@ The SQL Server system databases are recovered in the following order:
 
 You can recover the system databases to the original SQL Server instance. For the detailed steps on recovering system databases, see:
 
-*   [Recover Microsoft SQL Server Database Over the Original Database](/docs/allowlist/backup-recovery?topic=backup-recovery-recover_microsoft_sql_server_database_over_the_original_databasem)
+*   [Recover Microsoft SQL Server Database Over the Original Database](/docs/backup-recovery?topic=backup-recovery-recover_microsoft_sql_server_database_over_the_original_databasem)
 
 
 ## Consideration

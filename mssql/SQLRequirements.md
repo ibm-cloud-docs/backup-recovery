@@ -18,7 +18,7 @@ subcollection: backup-recovery
 ## Supported software for microsoft sql server protection
 {: #supported_software_for_microsoft_sql_server_protection}
 
-For more information, see [Databases](/docs/allowlist/backup-recovery?topic=backup-recovery-supported_database_types_for_microsoft_sql_server).
+For more information, see [Databases](/docs/backup-recovery?topic=backup-recovery-supported_database_types_for_microsoft_sql_server).
 
 ## Agent minimum permissions for microsoft sql server protection
 {: #agent_minimum_permissions_for_microsoft_sql_server_protection}
@@ -37,7 +37,7 @@ If you do not use the LOCAL SYSTEM account, ensure the following for the chosen 
 ## Ports used for communication
 {: #ports_used_for_communication}
 
-*   On physical servers or VMs with an ephemeral or installed agent, open the ports 445, 11113, 11117, and 50051. For more information, see [Manage Firewall Ports](/docs/allowlist/backup-recovery?topic=backup-recovery-manage_firewall_ports).
+*   On physical servers or VMs with an ephemeral or installed agent, open the ports 445, 11113, 11117, and 50051. For more information, see [Manage Firewall Ports](/docs/backup-recovery?topic=backup-recovery-manage_firewall_ports).
 
 *   If the Windows Firewall is used:
 

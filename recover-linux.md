@@ -39,18 +39,18 @@ The scenario for this tutorial simplifies how to backup files and folders stored
 Ensure that you have what you need to start:
 
 - An account for the [{{site.data.keyword.cloud}} Platform](https://cloud.ibm.com).
-- An [instance](/docs/allowlist/backup-recovery?topic=backup-recovery-getting-started-backup-recovery#baas-provision-instance) of {{site.data.keyword.baas_full_notm}} service is deployed.
+- An [instance](/docs/backup-recovery?topic=backup-recovery-getting-started-backup-recovery#baas-provision-instance) of {{site.data.keyword.baas_full_notm}} service is deployed.
 - A Data Source Connection that has been created on your instance.
-- A [Data Source Connector](/docs/allowlist/backup-recovery?topic=backup-recovery-deploy_data_source_connector) (VM or VSI) that is registered with your instance.
+- A [Data Source Connector](/docs/backup-recovery?topic=backup-recovery-deploy_data_source_connector) (VM or VSI) that is registered with your instance.
   - VM-based sources must use a VM-based data source connector.
   - VSI-based sources must use a VSI-based data source connector.
-- A [Source](/docs/allowlist/backup-recovery?topic=backup-recovery-source-registration-tutorial) (Linux physical host, VM or VSI) that is registered with your instance.
-- A [Protection Policy](/docs/allowlist/backup-recovery?topic=backup-recovery-baas-policy-creation) that defines when and how your Linux data is backed up.
+- A [Source](/docs/backup-recovery?topic=backup-recovery-source-registration-tutorial) (Linux physical host, VM or VSI) that is registered with your instance.
+- A [Protection Policy](/docs/backup-recovery?topic=backup-recovery-baas-policy-creation) that defines when and how your Linux data is backed up.
   - Policies can be created when configuring your Protection Group or beforehand on the Data Protection > Policies page.
-- A [Linux Agent](/docs/allowlist/backup-recovery?topic=backup-recovery-install-and-manage-the-agent-on-linux-servers) deployed to the source (installed using the Linux script installer)
+- A [Linux Agent](/docs/backup-recovery?topic=backup-recovery-install-and-manage-the-agent-on-linux-servers) deployed to the source (installed using the Linux script installer)
   - Agents can be downloaded from your {{site.data.keyword.baas_full_notm}} instance UI on the Data Protection > Sources page.
 - Verify that you have proper access to your {{site.data.keyword.baas_full_notm}} instance.
-  - Writer (backup-recovery.dashboard.edit) or Manager (backup-recovery.dashboard.edit) privileges to the {{site.data.keyword.baas_full_notm}} Service are needed to create and manage Protection Jobs (i.e. Backup Jobs) in your instance. These privileges can be assigned by your {{site.data.keyword.cloud_notm}} Platform account owner using an Access Group (multiple users) or Access Policy (specific user) tied to your IAM profile. Details on this are included [here](/docs/allowlist/backup-recovery?topic=backup-recovery-iam&interface=ui).
+  - Writer (backup-recovery.dashboard.edit) or Manager (backup-recovery.dashboard.edit) privileges to the {{site.data.keyword.baas_full_notm}} Service are needed to create and manage Protection Jobs (i.e. Backup Jobs) in your instance. These privileges can be assigned by your {{site.data.keyword.cloud_notm}} Platform account owner using an Access Group (multiple users) or Access Policy (specific user) tied to your IAM profile. Details on this are included [here](/docs/backup-recovery?topic=backup-recovery-iam&interface=ui).
 - A Protection Job run (i.e. backup) has already been successfully run that created a snapshot you can restore from.
 
 For VPC (VSIs), additional configurations are needed:
@@ -91,10 +91,10 @@ You will now be presented with the UI of your {{site.data.keyword.baas_full_notm
 {: #baas-config-protect-job}
 
 Please refer to the steps in the following link(s) to accomplish this:
-1. [Manage firewall ports](/docs/allowlist/backup-recovery?topic=backup-recovery-manage_firewall_ports)
-2. [Recover Physical Server Files or Folders](/docs/allowlist/backup-recovery?topic=backup-recovery-Recover)
-3. [Recover physical server files or folders to the original location](/docs/allowlist/backup-recovery?topic=backup-recovery-recover_physical_server_files_or_folders_to_the_original_location)
-4. [Recover physical server files or folders to a new location](/docs/allowlist/backup-recovery?topic=backup-recovery-recover_physical_server_files_or_folders_to_a_new_location)
+1. [Manage firewall ports](/docs/backup-recovery?topic=backup-recovery-manage_firewall_ports)
+2. [Recover Physical Server Files or Folders](/docs/backup-recovery?topic=backup-recovery-Recover)
+3. [Recover physical server files or folders to the original location](/docs/backup-recovery?topic=backup-recovery-recover_physical_server_files_or_folders_to_the_original_location)
+4. [Recover physical server files or folders to a new location](/docs/backup-recovery?topic=backup-recovery-recover_physical_server_files_or_folders_to_a_new_location)
 
 This info is relevant to recovering filesystem data within the OS of both physical hosts and Guest VMs or VSIs.
 {: note}

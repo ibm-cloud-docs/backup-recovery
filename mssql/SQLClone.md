@@ -23,7 +23,7 @@ Cloning an MS SQL database is supported with Volume-based and file base backup m
 {: #clone_an_ms_sql_database}
 
 1. Navigate to **Test & Dev** > **Clone** > **Databases**.
-2. Search and select the MS SQL database. You can optionally perform search by [specifying the wildcard character \*](/docs/allowlist/backup-recovery?topic=backup-recovery-use_wildcard_*_in_search_for_recovery&interface=ui). You can also optionally narrow the search results by specifying filter criteria.
+2. Search and select the MS SQL database. You can optionally perform search by [specifying the wildcard character \*](/docs/backup-recovery?topic=backup-recovery-use_wildcard_*_in_search_for_recovery&interface=ui). You can also optionally narrow the search results by specifying filter criteria.
 3. Provide the following information listed in the table, and then click **Clone**.
 
 

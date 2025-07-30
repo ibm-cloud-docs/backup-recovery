@@ -29,7 +29,7 @@ You can also view policy settings, copy, edit and delete policies using the acti
 | **Organization** | The name of the organization to which the policy belongs. |
 | **Backup** | Snapshots are stored in the current (local) {{site.data.keyword.baas_full_notm}} and there are one or more extended retention rules. |
 | **Archive** | Snapshots are stored in the current (local) {{site.data.keyword.baas_full_notm}} and are archived in the cloud. |
-| **Actions** | To manage an existing policy, click the actions menu and select one of the following options:<br><br>*   **Copy** —Create a new policy from an existing policy.<br>*   **Edit** —Configure the settings of an existing policy. Follow the instructions provided in [Create or Edit a Standard Policy](/docs/allowlist/backup-recovery?topic=backup-recovery-create_or_edit_a_standard_policy).<br>*   **Delete** —Delete this policy. If a Protection Group is based on a policy and the policy is deleted, the Protection Group keeps the original settings and is not deleted. |
+| **Actions** | To manage an existing policy, click the actions menu and select one of the following options:<br><br>*   **Copy** —Create a new policy from an existing policy.<br>*   **Edit** —Configure the settings of an existing policy. Follow the instructions provided in [Create or Edit a Standard Policy](/docs/backup-recovery?topic=backup-recovery-create_or_edit_a_standard_policy).<br>*   **Delete** —Delete this policy. If a Protection Group is based on a policy and the policy is deleted, the Protection Group keeps the original settings and is not deleted. |
 {: caption="" caption-side="bottom"}
 
 For jobs protecting servers, indexing is set at the Protection Group level.

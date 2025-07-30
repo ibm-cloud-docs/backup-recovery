@@ -37,7 +37,7 @@ In the Protection Group, you can define the following arguments for your SAP HAN
 | --- | --- | --- |
 | `--user-store-key` | No  | The hdbuserstore key to connect to the SAP HANA SYSTEMDB.<br><br>For example: `--user-store-key=H00_KEY` |
 | `--backup-delta` | No  | The argument is only applicable for Incremental or Differential backups. The supported values are INCREMENTAL or DIFFERENTIAL. If you do not explicitly specify a value, by default, incremental backup is considered.<br><br>For example: `--backup-delta=DIFFERENTIAL` |
-| `-r, --retention-days` | Yes | Specify the number of days to retain full or incremental backups. This argument helps manage storage by automatically removing backups older than the defined retention period.<br><br>Ensure that the number of days specified in the argument matches the days defined in the [backup policy](/docs/allowlist/backup-recovery?topic=backup-recovery-protect_sap_hana_deployments). |
+| `-r, --retention-days` | Yes | Specify the number of days to retain full or incremental backups. This argument helps manage storage by automatically removing backups older than the defined retention period.<br><br>Ensure that the number of days specified in the argument matches the days defined in the [backup policy](/docs/backup-recovery?topic=backup-recovery-protect_sap_hana_deployments). |
 {: caption="Backup arguments " caption-side="bottom"}
 
 ## Log backups
@@ -51,8 +51,8 @@ SAP HANA automatically triggers log backups, you can view these log backups on t
 
 To view SAP HANA log backups on the {{site.data.keyword.cloud_notm}} Backup and Recovery cluster, perform the following:
 
-1. After you have installed or upgraded the SAP HANA Connector, enable SAP HANA log backup replication. For more information, see [Enable Log Backups Replication](/docs/allowlist/backup-recovery?topic=backup-recovery-plan_and_prepare_for_sap_hana_protection).
-2. While registering or updating the SAP HANA source to the {{site.data.keyword.cloud_notm}} Backup and Recovery cluster, set the `–et-log-backup source` registration parameter to `true`. For more information, see [Register SAP HANA as a Source](/docs/allowlist/backup-recovery?topic=backup-recovery-register_and_manage_the_sap_hana_source#register_sap_hana_as_a_source).
+1. After you have installed or upgraded the SAP HANA Connector, enable SAP HANA log backup replication. For more information, see [Enable Log Backups Replication](/docs/backup-recovery?topic=backup-recovery-plan_and_prepare_for_sap_hana_protection).
+2. While registering or updating the SAP HANA source to the {{site.data.keyword.cloud_notm}} Backup and Recovery cluster, set the `–et-log-backup source` registration parameter to `true`. For more information, see [Register SAP HANA as a Source](/docs/backup-recovery?topic=backup-recovery-register_and_manage_the_sap_hana_source#register_sap_hana_as_a_source).
 3. Create a new Protection Group and select a Protection Policy with log backups job in the Protection Group for SAP HANA backups. For more information, see Protect SAP HANA Deployments.
 
     *   To replicate jobs, select the replication option, while creating the Protection Group.
@@ -63,4 +63,3 @@ To view SAP HANA log backups on the {{site.data.keyword.cloud_notm}} Backup and 
 Replication to the secondary {{site.data.keyword.cloud_notm}} Backup and Recovery cluster will be enabled after the first successful full backup, and log backups will be displayed on the {{site.data.keyword.cloud_notm}} Backup and Recovery UI.
 
 Catalog backups are not displayed on the {{site.data.keyword.cloud_notm}} Backup and Recovery UI.
-

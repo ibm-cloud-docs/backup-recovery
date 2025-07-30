@@ -27,7 +27,7 @@ This section lists the steps to migrate an MS SQL database.
 
     You can also start a restore task by navigating to **Data Protection > Recoveries > Recover > Migrate Database (MS SQL only)**.
 
-3. Search for an MS SQL server or database. Enter characters of the name and a list of items displays. You can optionally [specify the wildcard character \*](/docs/allowlist/backup-recovery?topic=backup-recovery-use_wildcard_*_in_search_for_recovery&interface=ui). You can also optionally narrow the search results by specifying filter criteria, for example, you can filter the search results by a specific Protection Group. Click the **Add Filters** icon, specify the filter and click **Add**.
+3. Search for an MS SQL server or database. Enter characters of the name and a list of items displays. You can optionally [specify the wildcard character \*](/docs/backup-recovery?topic=backup-recovery-use_wildcard_*_in_search_for_recovery&interface=ui). You can also optionally narrow the search results by specifying filter criteria, for example, you can filter the search results by a specific Protection Group. Click the **Add Filters** icon, specify the filter and click **Add**.
 4. Select a database and set the migration options for the MS SQL database you want to migrate.
 
     1. **Task Name:** Optionally change the default name for the task.

@@ -152,7 +152,7 @@ IBM Cloud Supports CloudSpin on both on-premises {{site.data.keyword.baas_full_n
     5. Enter the required settings and click **Review and Launch**.
     
 
-To prevent a tear down of a cloned CloudSpin VM, see the [How to prevent a tear down of a cloned CloudSpin VM](/docs/allowlist/backup-recovery?topic=How-to-prevent-tear-down-of-cloudspin-VM){: external} KB article.
+To prevent a tear down of a cloned CloudSpin VM, see the [How to prevent a tear down of a cloned CloudSpin VM](/docs/backup-recovery?topic=How-to-prevent-tear-down-of-cloudspin-VM){: external} KB article.
 
 Tear Down a Launched VM from {{site.data.keyword.baas_full_notm}} Console
 

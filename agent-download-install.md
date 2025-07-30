@@ -24,10 +24,10 @@ An agent is {{site.data.keyword.baas_full}} software installed on physical appli
 Ensure that you have what you need to start:
 
 - An account for the [{{site.data.keyword.cloud}} Platform](https://cloud.ibm.com).
-- An [instance](/docs/allowlist/backup-recovery?topic=backup-recovery-getting-started-backup-recovery#baas-provision-instance) of {{site.data.keyword.baas_full_notm}} service is deployed.
+- An [instance](/docs/backup-recovery?topic=backup-recovery-getting-started-backup-recovery#baas-provision-instance) of {{site.data.keyword.baas_full_notm}} service is deployed.
 - A physical host or VM or VSI that agent will be installed on
 - Verify that you have proper access to your {{site.data.keyword.baas_full_notm}} instance.
-  - Writer (backup-recovery.dashboard.edit) or Manager (backup-recovery.dashboard.edit) privileges to the {{site.data.keyword.baas_full_notm}} Service are needed to create and manage Protection Jobs (i.e. Backup Jobs) in your instance. These privileges can be assigned by your {{site.data.keyword.cloud_notm}} Platform account owner using an Access Group (multiple users) or Access Policy (specific user) tied to your IAM profile. Details on this are included [here](/docs/allowlist/backup-recovery?topic=backup-recovery-iam&interface=ui).
+  - Writer (backup-recovery.dashboard.edit) or Manager (backup-recovery.dashboard.edit) privileges to the {{site.data.keyword.baas_full_notm}} Service are needed to create and manage Protection Jobs (i.e. Backup Jobs) in your instance. These privileges can be assigned by your {{site.data.keyword.cloud_notm}} Platform account owner using an Access Group (multiple users) or Access Policy (specific user) tied to your IAM profile. Details on this are included [here](/docs/backup-recovery?topic=backup-recovery-iam&interface=ui).
 - Verify the correct ports are opened from an OS (on the source), VMware and/or VPC (Security Group inbound/outbound rules) standpoint. The required ports are included in the “Manage firewall ports” links below as well as found in the other tutorials covering backup and recovery of your sources (e.g. Linux, Windows and MS SQL, etc.).
 
 ## Launch your {{site.data.keyword.baas_full_notm}} Instance UI
@@ -45,14 +45,14 @@ You will now be presented with the UI of your {{site.data.keyword.baas_full_notm
 
 Please refer to the steps in the following link(s) to accomplish this:
 
-1. [Manage firewall ports – Linux](/docs/allowlist/backup-recovery?topic=backup-recovery-manage_firewall_ports)
-2. [Install and Manage the Agent on Linux Servers](/docs/allowlist/backup-recovery?topic=backup-recovery-install-and-manage-the-agent-on-linux-servers)
+1. [Manage firewall ports – Linux](/docs/backup-recovery?topic=backup-recovery-manage_firewall_ports)
+2. [Install and Manage the Agent on Linux Servers](/docs/backup-recovery?topic=backup-recovery-install-and-manage-the-agent-on-linux-servers)
 
     The Linux "Script Installer" must be used when installing an agent on a physical or virtual Linux host (e.g. RHEL, etc.).
     {: note}
 
-3. [Manage firewall ports – Windows and MS SQL](/docs/allowlist/backup-recovery?topic=backup-recovery-manage_firewall_ports)
-4. [Install and Manage the Agent on Windows Servers](/docs/allowlist/backup-recovery?topic=backup-recovery-install_and_manage_the_agent_on_windows_servers)
+3. [Manage firewall ports – Windows and MS SQL](/docs/backup-recovery?topic=backup-recovery-manage_firewall_ports)
+4. [Install and Manage the Agent on Windows Servers](/docs/backup-recovery?topic=backup-recovery-install_and_manage_the_agent_on_windows_servers)
 
     The Windows Filesystem (Physical Server for File and Folder) and Microsoft SQL Server both use the same agent (.exe) for installation.
     {: note}

@@ -42,9 +42,9 @@ From the Databases tab, mouse over the actions menu for the following actions (s
     *   Select **Resume Future Runs** to restore the Protection Group to a running state. The runs resume as specified in the schedule defined in the policy associated with this job.
 *   **Cancel this Protection Group Run** — Cancel the current run of this Protection Group. (This option is only available when a Protection Group run is executing.) This cancel only affects the current run of the Protection Group and not future runs.
 *   **Clone** — Make a copy of the database. The clone database is a unique copy of the original database taken from the backup.
-*   Follow the instructions provided in [Clone Microsoft SQL Server Databases](/docs/allowlist/backup-recovery?topic=backup-recovery-clone_microsoft_sql_server_databases).
-*   **Recover** — Restore a database. Follow the instructions provided in [Recover Microsoft SQL Server](/docs/allowlist/backup-recovery?topic=backup-recovery-recover_microsoft_sql_server).
-*   **Migrate** — Migrate a database. Follow the instructions provided in [Migrate Microsoft SQL Server Databases](/docs/allowlist/backup-recovery?topic=backup-recovery-migrate_microsoft_sql_server_databases).
+*   Follow the instructions provided in [Clone Microsoft SQL Server Databases](/docs/backup-recovery?topic=backup-recovery-clone_microsoft_sql_server_databases).
+*   **Recover** — Restore a database. Follow the instructions provided in [Recover Microsoft SQL Server](/docs/backup-recovery?topic=backup-recovery-recover_microsoft_sql_server).
+*   **Migrate** — Migrate a database. Follow the instructions provided in [Migrate Microsoft SQL Server Databases](/docs/backup-recovery?topic=backup-recovery-migrate_microsoft_sql_server_databases).
 
 ## Database recover and clone actions
 {: #database_recover_and_clone_actions}

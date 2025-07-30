@@ -21,9 +21,9 @@ The document describes the regions where services and the different kinds of ava
 
 For more information about the following services, be sure to check out the respective links:
 
-* [File systems](/docs/allowlist/backup-recovery?group=protect-a-physical-server-file-based)
-* [MS SQL](/docs/allowlist/backup-recovery?group=ms-sql)
-* [SAP HANA](/docs/allowlist/backup-recovery?group=sap-hana)
+* [File systems](/docs/backup-recovery?group=protect-a-physical-server-file-based)
+* [MS SQL](/docs/backup-recovery?group=ms-sql)
+* [SAP HANA](/docs/backup-recovery?group=sap-hana)
 
 
 
@@ -42,4 +42,4 @@ For more information about the following services, be sure to check out the resp
 ## More information
 {: #service-availability-more-info}
 
-Learn more about how locations are represented by [endpoints](/docs/allowlist/backup-recovery?topic=backup-recovery-endpoints&interface=cli) for users of {{site.data.keyword.cos_full_notm}}.
+Learn more about how locations are represented by [endpoints](/docs/backup-recovery?topic=backup-recovery-endpoints&interface=cli) for users of {{site.data.keyword.cos_full_notm}}.

@@ -39,16 +39,16 @@ The scenario for this tutorial simplifies how to recover Microsoft SQL Server da
 Ensure that you have what you need to start:
 
 - An account for the [{{site.data.keyword.cloud}} Platform](https://cloud.ibm.com).
-- An [instance](/docs/allowlist/backup-recovery?topic=backup-recovery-getting-started-backup-recovery#baas-provision-instance) of {{site.data.keyword.baas_full_notm}} service is deployed.
+- An [instance](/docs/backup-recovery?topic=backup-recovery-getting-started-backup-recovery#baas-provision-instance) of {{site.data.keyword.baas_full_notm}} service is deployed.
 - A Data Source Connection that has been created on your instance.
-- A [Data Source Connector](/docs/allowlist/backup-recovery?topic=backup-recovery-deploy_data_source_connector) (VM or VSI) that is registered with your instance.
+- A [Data Source Connector](/docs/backup-recovery?topic=backup-recovery-deploy_data_source_connector) (VM or VSI) that is registered with your instance.
   - VM-based sources must use a VM-based data source connector.
   - VSI-based sources must use a VSI-based data source connector.
-- A [Source](/docs/allowlist/backup-recovery?topic=backup-recovery-source-registration-tutorial) (MS SQL physical host, VM or VSI) that is registered with your instance.
-- A [Windows Agent](/docs/allowlist/backup-recovery?topic=backup-recovery-agent-download-install) deployed to the source (installed using the Windows .exe installer).
+- A [Source](/docs/backup-recovery?topic=backup-recovery-source-registration-tutorial) (MS SQL physical host, VM or VSI) that is registered with your instance.
+- A [Windows Agent](/docs/backup-recovery?topic=backup-recovery-agent-download-install) deployed to the source (installed using the Windows .exe installer).
   - Agents can be downloaded from your {{site.data.keyword.baas_full_notm}} instance UI on the Data Protection > Sources page.
 - Verify that you have proper access to your {{site.data.keyword.baas_full_notm}} instance.
-  - Writer (backup-recovery.dashboard.edit) or Manager (backup-recovery.dashboard.edit) privileges to the {{site.data.keyword.baas_full_notm}} Service are needed to create and manage Protection Jobs (i.e. Backup Jobs) in your instance. These privileges can be assigned by your {{site.data.keyword.cloud_notm}} Platform account owner using an Access Group (multiple users) or Access Policy (specific user) tied to your IAM profile. Details on this are included [here](/docs/allowlist/backup-recovery?topic=backup-recovery-iam&interface=ui).
+  - Writer (backup-recovery.dashboard.edit) or Manager (backup-recovery.dashboard.edit) privileges to the {{site.data.keyword.baas_full_notm}} Service are needed to create and manage Protection Jobs (i.e. Backup Jobs) in your instance. These privileges can be assigned by your {{site.data.keyword.cloud_notm}} Platform account owner using an Access Group (multiple users) or Access Policy (specific user) tied to your IAM profile. Details on this are included [here](/docs/backup-recovery?topic=backup-recovery-iam&interface=ui).
 - Ensure you have the proper `sysadmin` SQL privileges for the Windows account running your agent so it can access your MS SQL Server instance. Please see the section below titled, “Requirements for Microsoft SQL Server protection”.
 - A Protection Job run (i.e. backup) has already been successfully run that created a snapshot you can restore from.
 
@@ -101,10 +101,10 @@ For **MSQL TDE-enabled database**, you can restore to the original SQL Server in
 
 Additional considerations and recommendations can be found in the linked sections listed below, along with detailed steps on performing database restores.
 
-1. [Recover Microsoft SQL Server](/docs/allowlist/backup-recovery?topic=backup-recovery-recover_microsoft_sql_server)
-2. [Considerations for Microsoft SQL Server](/docs/allowlist/backup-recovery?topic=backup-recovery-considerations_for_microsoft_sql_server)
-3. [Microsoft SQL Server vdi-based recovery recommendations](/docs/allowlist/backup-recovery?topic=backup-recovery-microsoft_sql_server_vdi-based_recovery_recommendations)
-4. [Manage firewall ports](/docs/allowlist/backup-recovery?topic=backup-recovery-manage_firewall_ports)
-5. [Port Requirements - MS SQL Server and Data Source Connector](/docs/allowlist/backup-recovery?topic=backup-recovery-deploy_data_source_connector)
-6. [Recover Microsoft SQL Server database as a new database in the original Microsoft SQL Server instance](/docs/allowlist/backup-recovery?topic=backup-recovery-recover_microsoft_sql_server_database_as_a_new_database_in_the_original_microsoft_sql_server_instance)
-7. [Recover Microsoft SQL Server database as a new database in an alternate Microsoft SQL Server instance](/docs/allowlist/backup-recovery?topic=backup-recovery-recover_microsoft_sql_server_database_as_a_new_database_in_an_alternate_microsoft_sql_server_instance)
+1. [Recover Microsoft SQL Server](/docs/backup-recovery?topic=backup-recovery-recover_microsoft_sql_server)
+2. [Considerations for Microsoft SQL Server](/docs/backup-recovery?topic=backup-recovery-considerations_for_microsoft_sql_server)
+3. [Microsoft SQL Server vdi-based recovery recommendations](/docs/backup-recovery?topic=backup-recovery-microsoft_sql_server_vdi-based_recovery_recommendations)
+4. [Manage firewall ports](/docs/backup-recovery?topic=backup-recovery-manage_firewall_ports)
+5. [Port Requirements - MS SQL Server and Data Source Connector](/docs/backup-recovery?topic=backup-recovery-deploy_data_source_connector)
+6. [Recover Microsoft SQL Server database as a new database in the original Microsoft SQL Server instance](/docs/backup-recovery?topic=backup-recovery-recover_microsoft_sql_server_database_as_a_new_database_in_the_original_microsoft_sql_server_instance)
+7. [Recover Microsoft SQL Server database as a new database in an alternate Microsoft SQL Server instance](/docs/backup-recovery?topic=backup-recovery-recover_microsoft_sql_server_database_as_a_new_database_in_an_alternate_microsoft_sql_server_instance)

@@ -17,7 +17,7 @@ subcollection: backup-recovery
 
 A protection policy is a reusable set of settings that define how and when objects are protected, replicated and archived. You can select a standard policy to use when configuring a Protection Group. A Protection Group uses the schedules and settings defined in the policy to determine when and how backups are captured, archived or replicated.
 
-For instructions on creating and managing policies, see [Create or Edit a Standard Policy](/docs/allowlist/backup-recovery?topic=backup-recovery-create_or_edit_a_standard_policy).
+For instructions on creating and managing policies, see [Create or Edit a Standard Policy](/docs/backup-recovery?topic=backup-recovery-create_or_edit_a_standard_policy).
 
 Some settings are defined in the Protection Group and some settings are defined in the policy. For example, for a Protection Group that protects servers, the schedule is defined at the policy level but indexing is defined at the Protection Group level as shown in the following figure.
 

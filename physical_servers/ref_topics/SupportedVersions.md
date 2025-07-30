@@ -25,7 +25,7 @@ subcollection: backup-recovery
 
 Applicable to both file-based and volume-based backups.
 
-For information on prerequisites and considerations, see [Prerequisites and Considerations](/docs/allowlist/backup-recovery?topic=backup-recovery-plan_and_prepare_for_physical_server_protection).
+For information on prerequisites and considerations, see [Prerequisites and Considerations](/docs/backup-recovery?topic=backup-recovery-plan_and_prepare_for_physical_server_protection).
 
 
 | Operating System | File System | CPU Architecture | Notes |
@@ -50,7 +50,3 @@ For information on prerequisites and considerations, see [Prerequisites and Cons
 | Microsoft SQL Server 2019 | *   Supported on Linux OS RHEL7.6 and higher versions.<br>    <br>*   Only VDI-based backups are currently supported on Linux OS. |
 
 {: caption="Databases" caption-side="bottom"}
-
-
-
-

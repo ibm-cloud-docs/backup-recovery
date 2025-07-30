@@ -6,19 +6,19 @@
     "links": [
       {
         "title": "Getting started with Backup and Recovery",
-        "href": "/docs/allowlist/backup-recovery?topic=backup-recovery-getting-started-backup-recovery"
+        "href": "/docs/backup-recovery?topic=backup-recovery-getting-started-backup-recovery"
       },
       {
         "title": "What is IBM Cloud Backup and Recovery",
-        "href": "/docs/allowlist/backup-recovery?topic=backup-recovery-about-baas"
+        "href": "/docs/backup-recovery?topic=backup-recovery-about-baas"
       },
       {
         "title": "Deploy Data Source Connector",
-        "href": "/docs/allowlist/backup-recovery?topic=backup-recovery-deploy_data_source_connector"
+        "href": "/docs/backup-recovery?topic=backup-recovery-deploy_data_source_connector"
       }
     ]
   },
   "section_updates": {
-    "view_more": "/docs/allowlist/backup-recovery?topic=backup-recovery-updates"
+    "view_more": "/docs/backup-recovery?topic=backup-recovery-updates"
   }
 }

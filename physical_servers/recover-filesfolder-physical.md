@@ -16,15 +16,15 @@ subcollection: backup-recovery
 {: #Recover Physical Server Files or Folders}
 
 
-{{site.data.keyword.baas_full}} provides the ability to recover files and folders from a Snapshot created earlier by a Protection Group. Files and folders can be recovered to their original location (limitations apply to physical Servers and specific operating systems) or to a newly specified location, which can be within the original Source or a different one. You can choose to retain the recovered files' and folders' original (at the time of the backup) permissions and attributes. You can also download files and folders from selected Snapshots that were created by a {{site.data.keyword.baas_full_notm}} Protection Group. However, only items that were indexed when the Snapshot was created can be downloaded. Recovering and searching for files and folders in Snapshots created by other backup software is not supported. To learn more, [Add or Edit a Protection Group for Physical Servers](/docs/allowlist/backup-recovery?topic=backup-recovery-add_or_edit_a_protection_group_for_physical_servers).
+{{site.data.keyword.baas_full}} provides the ability to recover files and folders from a Snapshot created earlier by a Protection Group. Files and folders can be recovered to their original location (limitations apply to physical Servers and specific operating systems) or to a newly specified location, which can be within the original Source or a different one. You can choose to retain the recovered files' and folders' original (at the time of the backup) permissions and attributes. You can also download files and folders from selected Snapshots that were created by a {{site.data.keyword.baas_full_notm}} Protection Group. However, only items that were indexed when the Snapshot was created can be downloaded. Recovering and searching for files and folders in Snapshots created by other backup software is not supported. To learn more, [Add or Edit a Protection Group for Physical Servers](/docs/backup-recovery?topic=backup-recovery-add_or_edit_a_protection_group_for_physical_servers).
 
 To learn more, see [About File Recovery](../../Concepts/RecoverFileConcept.htm).
 
 For more information about the recovery options:
 
-*   [Recover Files or Folders to the Original Location](/docs/allowlist/backup-recovery?topic=backup-recovery-recover_physical_server_files_or_folders_to_the_original_location)
+*   [Recover Files or Folders to the Original Location](/docs/backup-recovery?topic=backup-recovery-recover_physical_server_files_or_folders_to_the_original_location)
 
-*   [Recover Physical Server Files or Folders to a New Location](/docs/allowlist/backup-recovery?topic=backup-recovery-recover_physical_server_files_or_folders_to_a_new_location)
+*   [Recover Physical Server Files or Folders to a New Location](/docs/backup-recovery?topic=backup-recovery-recover_physical_server_files_or_folders_to_a_new_location)
 
 
 Note the following about indexing and recovering files:
@@ -101,7 +101,7 @@ Note the following about indexing and recovering files:
 
 *   The downloadable zip file can contain regular files and folders only; symlinks are not supported. When unzipping the downloaded files/folders, use a zip utility that supports the ZIP64 format.
 
-*   For RHEL5, if LVM is not configured, running a protection job fails with the “No LVM volume found in idbmantasdev” error. For more information, see the [Registering or running a Linux protection job fails when no LVM volumes are detected](/docs/allowlist/backup-recovery?topic=Registering-or-running-a-Linux-protection-job-fails-when-no-LVM-volumes-are-detected-with-kFsError-Failed-to-find-LVM-version-installed-on-system) Knowledge Base article.
+*   For RHEL5, if LVM is not configured, running a protection job fails with the “No LVM volume found in idbmantasdev” error. For more information, see the [Registering or running a Linux protection job fails when no LVM volumes are detected](/docs/backup-recovery?topic=Registering-or-running-a-Linux-protection-job-fails-when-no-LVM-volumes-are-detected-with-kFsError-Failed-to-find-LVM-version-installed-on-system) Knowledge Base article.
 
 
-Before you can recover a file from a Snapshot, the Snapshot must exist. To recover files from a Snapshot, the files must be indexed during the backup process. To learn more, [Add or Edit a Protection Group for Physical Servers](/docs/allowlist/backup-recovery?topic=backup-recovery-add_or_edit_a_protection_group_for_physical_servers).
+Before you can recover a file from a Snapshot, the Snapshot must exist. To recover files from a Snapshot, the files must be indexed during the backup process. To learn more, [Add or Edit a Protection Group for Physical Servers](/docs/backup-recovery?topic=backup-recovery-add_or_edit_a_protection_group_for_physical_servers).

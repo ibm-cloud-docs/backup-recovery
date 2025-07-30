@@ -16,7 +16,7 @@ subcollection: backup-recovery
 {: #add_or_edit_a_protection_group_for_physical_servers}
 
 
-In {{site.data.keyword.baas_full_notm}}, [Protection Groups](/docs/allowlist/backup-recovery?topic=backup-recovery-protection-groups) use [Protection Policies](/docs/allowlist/backup-recovery?topic=backup-recovery-baas-policy-creation). Protection Policies reflect the backup and archival frequency, and retention requirements for each Protection Run. A Protection Group defines operational requirements, such as which source objects to protect, the Protection Policy to use, and operational considerations like indexing, exclusions and inclusions, and more.
+In {{site.data.keyword.baas_full_notm}}, [Protection Groups](/docs/backup-recovery?topic=backup-recovery-protection-groups) use [Protection Policies](/docs/backup-recovery?topic=backup-recovery-baas-policy-creation). Protection Policies reflect the backup and archival frequency, and retention requirements for each Protection Run. A Protection Group defines operational requirements, such as which source objects to protect, the Protection Policy to use, and operational considerations like indexing, exclusions and inclusions, and more.
 
 A Protection Group that protects physical servers captures snapshots which are required for the following tasks:
 
@@ -28,16 +28,16 @@ A Protection Group that protects physical servers captures snapshots which are r
 ### Supported workflows
 {: #supported_workflows}
 
-For more information about the supported workflows on protection groups for physical servers (either Block-based or File-based), refer to [Physical Server Workflows](/docs/allowlist/backup-recovery?topic=backup-recovery-supported_workflows_and_external_targets#physical_server_workflows).
+For more information about the supported workflows on protection groups for physical servers (either Block-based or File-based), refer to [Physical Server Workflows](/docs/backup-recovery?topic=backup-recovery-supported_workflows_and_external_targets#physical_server_workflows).
 
 ### Before you begin
 {: #before_you_begin}
 
 When you create a Protection Group, you can select an existing source, policy, or storage domain. You can also create them while creating the Protection Group. However, you might find it easier to create them prior to creating the Protection Group, as described in the following topics.
 
-*   [Register or Edit a Physical Server](/docs/allowlist/backup-recovery?topic=backup-recovery-register-or-edit-a-physical-server)
-*   [Create or Edit a Standard Policy](/docs/allowlist/backup-recovery?topic=backup-recovery-create_or_edit_a_standard_policy)
-*   [Create or Edit Storage Domains](/docs/allowlist/backup-recovery?topic=backup-recovery-create_or_edit_storage_domains)
+*   [Register or Edit a Physical Server](/docs/backup-recovery?topic=backup-recovery-register-or-edit-a-physical-server)
+*   [Create or Edit a Standard Policy](/docs/backup-recovery?topic=backup-recovery-create_or_edit_a_standard_policy)
+*   [Create or Edit Storage Domains](/docs/backup-recovery?topic=backup-recovery-create_or_edit_storage_domains)
 
 ### Compare block-based and file-based backup methods
 {: #compare_block-based_and_file-based_backup_methods}
@@ -67,13 +67,13 @@ By understanding the differences between the two backup approaches, organization
 ### To add or edit a protection group for physical server
 {: #to_add_or_edit_a_protection_group_for_physical_server}
 
-Once you have [registered your physical server](/docs/allowlist/backup-recovery?topic=backup-recovery-register-or-edit-a-physical-server) as a source, you're ready to use {{site.data.keyword.baas_full_notm}} Data Cloud to protect it.
+Once you have [registered your physical server](/docs/backup-recovery?topic=backup-recovery-register-or-edit-a-physical-server) as a source, you're ready to use {{site.data.keyword.baas_full_notm}} Data Cloud to protect it.
 
 You can either perform Block-based or File-based backups for the physical servers.
 
 *   Performing a Block-based Backup <!--(JobServerPhysical_Blockbased.htm)
 
-*   [Performing a File-based Backup](/docs/allowlist/backup-recovery?topic=backup-recovery-protect_a_physical_server_file-based)
+*   [Performing a File-based Backup](/docs/backup-recovery?topic=backup-recovery-protect_a_physical_server_file-based)
 
 
 {{site.data.keyword.baas_full_notm}} recommends not to run backup and restore protection groups in parallel on the same physical server path.

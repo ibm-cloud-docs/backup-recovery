@@ -632,6 +632,6 @@ Active: active (running) since Mon 2018-01-29 23:22:01 PST; 5ms ago
 
 ## Troubleshoot
 
-For troubleshooting information, see [Troubleshooting Backup agent issues on Linux physical servers](/docs/allowlist/backup-recovery?topic=Troubleshooting-Cohesity-Agent-issues-on-Linux-physical-servers).
+For troubleshooting information, see [Troubleshooting Backup agent issues on Linux physical servers](/docs/backup-recovery?topic=Troubleshooting-Cohesity-Agent-issues-on-Linux-physical-servers).
 
 Log in to the IBM Cloud Support site to see more knowledge base articles.

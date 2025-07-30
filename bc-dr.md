@@ -28,7 +28,7 @@ subcollection: backup-recovery
 {: #bc-dr-responsibilities}
 
 
-To find out more about responsibility ownership for using {{site.data.keyword.cloud}} products between {{site.data.keyword.baas_full_notm}} and customer see [Shared responsibilities for {{site.data.keyword.cloud_notm}} products](/docs/allowlist/backup-recovery?topic=backup-recovery-responsibilities-backup-recovery).
+To find out more about responsibility ownership for using {{site.data.keyword.cloud}} products between {{site.data.keyword.baas_full_notm}} and customer see [Shared responsibilities for {{site.data.keyword.cloud_notm}} products](/docs/backup-recovery?topic=backup-recovery-responsibilities-backup-recovery).
 
 
 

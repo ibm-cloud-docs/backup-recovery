@@ -1128,7 +1128,7 @@ If the {{site.data.keyword.baas_full_notm}} uses an interface with the node IP a
 ## {{site.data.keyword.baas_full}} cli commands used to manage firewall ports
 {: #cohesity_cli_commands_used_to_manage_firewall_ports}
 
-For on-premises clusters, you can use the following {{site.data.keyword.baas_full_notm}} CLI commands to manage the cluster firewall configuration. For more information, see [Using the {{site.data.keyword.baas_full}} CLI](/docs/allowlist/backup-recovery?topic=backup-recovery-backup-recovery-cli-intro){: external} and [List of {{site.data.keyword.baas_full}} CLI Commands](/docs/allowlist/backup-recovery?topic=backup-recovery-backup-recovery-cli-intro).
+For on-premises clusters, you can use the following {{site.data.keyword.baas_full_notm}} CLI commands to manage the cluster firewall configuration. For more information, see [Using the {{site.data.keyword.baas_full}} CLI](/docs/backup-recovery?topic=backup-recovery-backup-recovery-cli-intro){: external} and [List of {{site.data.keyword.baas_full}} CLI Commands](/docs/backup-recovery?topic=backup-recovery-backup-recovery-cli-intro).
 
 The firewall commands use the following terminology: Active {{site.data.keyword.baas_full_notm}} rules are called an _attachment_. An attachment includes a _profile_ and multiple _ipsets_. A profile is a group of TCP or UDP ports. An ipset is subnet with the format of <IP/prefix>. An attachment can be on one or more specific network interfaces or it can apply to all interfaces when no interface is specified.
 

@@ -18,11 +18,11 @@ subcollection: backup-recovery
 SAP HANA deployments are protected using a Protection Group and a Protection Policy. A Protection Group enables you to:
 
 - Specify the objects such as databases and tables that you want to backup.
-- Based on your requirement, define the script arguments for the [backup](https://help.sap.com/docs/PRODUCT_ID/6b94445c94ae495c83a19646e7c3fd56/c3a57273bb571014a747a289a3198e15.html?state=PRODUCTION&version=2.0.04&locale=en-US){: external} statements provided by SAP HANA. For more information, see [Backup Arguments](/docs/allowlist/backup-recovery?topic=backup-recovery-backup_sap_hana_database#backup_process).
+- Based on your requirement, define the script arguments for the [backup](https://help.sap.com/docs/PRODUCT_ID/6b94445c94ae495c83a19646e7c3fd56/c3a57273bb571014a747a289a3198e15.html?state=PRODUCTION&version=2.0.04&locale=en-US){: external} statements provided by SAP HANA. For more information, see [Backup Arguments](/docs/backup-recovery?topic=backup-recovery-backup_sap_hana_database#backup_process).
 
 The Protection Group uses the schedules and settings defined in the Protection Policy to determine when and how backups are captured.
 
-A Protection Policy is a group of settings that define the type of backup, backup schedule, and backup snapshot retention. You can select which standard or custom policy to use when creating a Protection Group. For more information, see [About Policies and Protection Groups](/docs/allowlist/backup-recovery?group=policies-and-protection-groups).
+A Protection Policy is a group of settings that define the type of backup, backup schedule, and backup snapshot retention. You can select which standard or custom policy to use when creating a Protection Group. For more information, see [About Policies and Protection Groups](/docs/backup-recovery?group=policies-and-protection-groups).
 
 To protect SAP HANA deployments:
 
@@ -31,7 +31,7 @@ To protect SAP HANA deployments:
    - Select **Data Protection > Protection**. Click **Protect** on the top-right of the page and then select **Universal Data Adapter**
    - Select **Data Protection > Sources**. Click the actions menu next to the SAP HANA source and then select **Protect**.
 
-1. From the **Source** drop-down list, select the registered SAP HANA source or click **Register Source** to register a SAP HANA source. For more information, see [Register SAP HANA as a Source](/docs/allowlist/backup-recovery?topic=backup-recovery-register_and_manage_the_sap_hana_source#register_sap_hana_as_a_source).
+1. From the **Source** drop-down list, select the registered SAP HANA source or click **Register Source** to register a SAP HANA source. For more information, see [Register SAP HANA as a Source](/docs/backup-recovery?topic=backup-recovery-register_and_manage_the_sap_hana_source#register_sap_hana_as_a_source).
 2. In the **Objects** section, add the object that you plan to protect. The object should be a database name. To back up a database, enter the name of the database. For example, `H00`. Click the plus icon (+) to enter multiple objects that you plan to backup. Then, click **Save Selection**.
 
 3. In the **Protection Group** section, do one of the following:
@@ -52,7 +52,7 @@ To protect SAP HANA deployments:
     3. In the **Custom Options** section, perform any one of the following:
 
        - Do not enter any backup script arguments in the **Full Backup** and **Incremental Backup** fields if you plan to perform full backup or incremental backup respectively.
-       - Enter the [Backup Arguments](/docs/allowlist/backup-recovery?topic=backup-recovery-backup_sap_hana_database#backup_arguments) in the **Full Backup** and **Incremental Backup** fields based on your requirements.
+       - Enter the [Backup Arguments](/docs/backup-recovery?topic=backup-recovery-backup_sap_hana_database#backup_arguments) in the **Full Backup** and **Incremental Backup** fields based on your requirements.
 
             For example:
 
@@ -86,4 +86,3 @@ To protect SAP HANA deployments:
 | **SLA** | The service-level agreement (SLA) defines how long the administrator expects a Protection Group run to take.<br><br>*   **Incremental**: Enter the number of minutes you expect an incremental backup Protection Group run takes to complete. An incremental backup captures only the differences (changed blocks) since the last run.<br>*   **Full**: Enter the number of minutes you expect a full backup Protection Group run takes to complete. A full backup captures the entire object (all blocks). |
 | **Description** | **Optional**.<br><br>Enter a brief description about the Protection Group. |
 {: caption="Additional Settings" caption-side="bottom"}
-

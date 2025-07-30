@@ -16,7 +16,7 @@ subcollection: backup-recovery
 {: #source-side_deduplication_and_cache_optimization_for_physical_server}
 
 
-The {{site.data.keyword.baas_full}} source-side deduplication provides storage efficient deduplication by eliminating redundant data at the server level before transferring the data to the {{site.data.keyword.baas_full_notm}}. You can enable source-side deduplication for a physical server while [creating a Protection Group](/docs/allowlist/backup-recovery?topic=backup-recovery-add_or_edit_a_protection_group_for_physical_servers). By enabling source-side deduplication, the data that has been partially transferred, or entirely transferred, is not transferred over the network again. This reduces the utilization of network bandwidth.
+The {{site.data.keyword.baas_full}} source-side deduplication provides storage efficient deduplication by eliminating redundant data at the server level before transferring the data to the {{site.data.keyword.baas_full_notm}}. You can enable source-side deduplication for a physical server while [creating a Protection Group](/docs/backup-recovery?topic=backup-recovery-add_or_edit_a_protection_group_for_physical_servers). By enabling source-side deduplication, the data that has been partially transferred, or entirely transferred, is not transferred over the network again. This reduces the utilization of network bandwidth.
 
 Additionally, the source-side deduplication plugin integrates with the {{site.data.keyword.baas_full_notm}}’s built-in deduplication and minimizes data traffic by moving only the new data blocks.
 

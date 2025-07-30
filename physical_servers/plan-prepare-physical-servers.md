@@ -36,12 +36,12 @@ Ensure you have the required minimum permissions to register physical servers as
 ## Support matrix
 {: #support_matrix}
 
-Before you register your physical servers with {{site.data.keyword.baas_full_notm}}, ensure that IBM Cloud Supports the physical server versions. For more information, see [Supported Software](/docs/allowlist/backup-recovery?topic=backup-recovery-supported_software)
+Before you register your physical servers with {{site.data.keyword.baas_full_notm}}, ensure that IBM Cloud Supports the physical server versions. For more information, see [Supported Software](/docs/backup-recovery?topic=backup-recovery-supported_software)
 
 ## Ports used for communication
 {: #ports_used_for_communication}
 
-Ensure all necessary ports are open in the firewall between {{site.data.keyword.baas_full_notm}} and physical servers. For more information, see [Manage Firewall Ports](/docs/allowlist/backup-recovery?topic=backup-recovery-manage_firewall_ports).
+Ensure all necessary ports are open in the firewall between {{site.data.keyword.baas_full_notm}} and physical servers. For more information, see [Manage Firewall Ports](/docs/backup-recovery?topic=backup-recovery-manage_firewall_ports).
 
 ## Prerequisites and considerations
 {: #prerequisites_and_considerations}

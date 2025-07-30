@@ -55,4 +55,4 @@ For additional backup services like {{site.data.keyword.cloud}}  databases, see 
 ## Next steps
 {: #baas-next-steps}
 
-Now that you are familiar with your {{site.data.keyword.baas_full_notm}} instance from the web-based console, you might be interested in doing a similar workflow from the command line. Check out using the `ibmcloud backup-recovery` command-line utility to create a service instance and interacting with IAM. And you can further use `curl` for accessing COS directly. [Check out the API overview](/docs/allowlist/backup-recovery?topic=backup-recovery-compatibility-api) to get started.
+Now that you are familiar with your {{site.data.keyword.baas_full_notm}} instance from the web-based console, you might be interested in doing a similar workflow from the command line. Check out using the `ibmcloud backup-recovery` command-line utility to create a service instance and interacting with IAM. And you can further use `curl` for accessing COS directly. [Check out the API overview](/docs/backup-recovery?topic=backup-recovery-compatibility-api) to get started.

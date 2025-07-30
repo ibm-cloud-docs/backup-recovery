@@ -37,8 +37,8 @@ Before you register your SAP HANA deployment as a source with {{site.data.keywor
 
 - Use "bash" shell to install the SAP HANA Connector and to run backups and restore workflows of SAP HANA databases.
 - A database user with database admin user privileges.
-- [Download and install the {{site.data.keyword.cloud_notm}} Backup and Recovery Linux Agent on the SAP HANA node](/docs/allowlist/backup-recovery?topic=backup-recovery-plan_and_prepare_for_sap_hana_protection#download_and_install_the_cohesity_linux_agent).
-- [Download the SAP HANA connector](/docs/allowlist/backup-recovery?topic=backup-recovery-plan_and_prepare_for_sap_hana_protection#download_the_sap_hana_connector_installer) for x86-64 platform.
+- [Download and install the {{site.data.keyword.cloud_notm}} Backup and Recovery Linux Agent on the SAP HANA node](/docs/backup-recovery?topic=backup-recovery-plan_and_prepare_for_sap_hana_protection#download_and_install_the_cohesity_linux_agent).
+- [Download the SAP HANA connector](/docs/backup-recovery?topic=backup-recovery-plan_and_prepare_for_sap_hana_protection#download_the_sap_hana_connector_installer) for x86-64 platform.
 
 
 ## Install the SAP HANA connector
@@ -75,7 +75,7 @@ java -jar /opt/cohesity/cohesity\_backint\_plugin/bin/et\_log\_backup\_tool.jar 
 ```
 
 - When prompted, authenticate using the **{{site.data.keyword.cloud_notm}} Backup and Recovery cluster's local admin user credentials**. If the password has been changed, make sure to reauthenticate using the updated password.
-- After you authenticate to the {{site.data.keyword.cloud_notm}} Backup and Recovery cluster using the `et_log_backup_tool.jar` java binary, ensure that you set the `–et-log-backup` source registration parameter to `true` while registering the SAP HANA source. For more information, see [Register and Manage the SAP HANA Source](/docs/allowlist/backup-recovery?topic=backup-recovery-register_and_manage_the_sap_hana_source).
+- After you authenticate to the {{site.data.keyword.cloud_notm}} Backup and Recovery cluster using the `et_log_backup_tool.jar` java binary, ensure that you set the `–et-log-backup` source registration parameter to `true` while registering the SAP HANA source. For more information, see [Register and Manage the SAP HANA Source](/docs/backup-recovery?topic=backup-recovery-register_and_manage_the_sap_hana_source).
 - After registering the source with {{site.data.keyword.cloud_notm}} Backup and Recovery (with`–et-log-backup=true`), a full backup is mandatory. The initial full backup must be completed before any log backups appear on the {{site.data.keyword.cloud_notm}} Backup and Recovery user interface.
 - If you upgrade to version 7.1.2, you need to modify the existing registered source and set the `et-log-backup` source registration parameter to `true` in order to enable the display of log backups in the {{site.data.keyword.cloud_notm}} Backup and Recovery cluster. Only the log backups triggered after enabling `et-log-backup` will be shown on the {{site.data.keyword.cloud_notm}} Backup and Recovery cluster.
 

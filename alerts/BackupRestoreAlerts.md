@@ -59,7 +59,7 @@ This alert is triggered if a Protection Group Run fails. A protection run can fa
 *   The Backup agent is unreachable while attempting to back up physical servers.
 *   The storage on the {{site.data.keyword.baas_full_notm}} is full.
 
-In the {{site.data.keyword.baas_full_notm}} Console, drill-down on a protection run to get details about the failure including the objects (such as VMs, databases, physical servers etc) that were not backed up. Read the Cohesity and VMware documentation for a resolution. If the resolution is not found, see the [Alert: CE00610002 BackupJobFailed](/docs/allowlist/backup-recovery?topic=Alert-CE00610002-BackupJobFailed) Knowledge Base article.
+In the {{site.data.keyword.baas_full_notm}} Console, drill-down on a protection run to get details about the failure including the objects (such as VMs, databases, physical servers etc) that were not backed up. Read the Cohesity and VMware documentation for a resolution. If the resolution is not found, see the [Alert: CE00610002 BackupJobFailed](/docs/backup-recovery?topic=Alert-CE00610002-BackupJobFailed) Knowledge Base article.
 
  
 
@@ -92,7 +92,7 @@ This alert is triggered if the amount of time that a protection run takes to com
 *   The {{site.data.keyword.baas_full_notm}} is overloaded.
 *   You specified SLA that is too short.
 
-Investigate why the protection run took longer than the specified SLA. If appropriate, adjust the time period specified in the SLA. If the alert is triggered due to a failed protection run, you can override the default behavior and disable the alert when there is a protection run failure. For more information, see the [ProtectionGroupSlaViolated alert triggered for backup jobs which has failed runs](/docs/allowlist/backup-recovery?topic=COH-891920697) Knowledge Base article.
+Investigate why the protection run took longer than the specified SLA. If appropriate, adjust the time period specified in the SLA. If the alert is triggered due to a failed protection run, you can override the default behavior and disable the alert when there is a protection run failure. For more information, see the [ProtectionGroupSlaViolated alert triggered for backup jobs which has failed runs](/docs/backup-recovery?topic=COH-891920697) Knowledge Base article.
 
 Not Applicable
 
@@ -131,7 +131,7 @@ This alert is raised when the {{site.data.keyword.baas_full_notm}} detects that 
 *   The Backup agent is unreachable while attempting to back up physical servers.
 *   The storage on the {{site.data.keyword.baas_full_notm}} is full.
 
-See the [CE00610005 | BackupRestore - BackupObjectFailed](/docs/allowlist/backup-recovery?topic=Alert-CE00610005-BackupObjectFailed) Knowledge Base article for a resolution.
+See the [CE00610005 | BackupRestore - BackupObjectFailed](/docs/backup-recovery?topic=Alert-CE00610005-BackupObjectFailed) Knowledge Base article for a resolution.
 
  
 
@@ -164,7 +164,7 @@ Policy settings have been deprecated.
 
 This alert is raised after the {{site.data.keyword.baas_full_notm}}is upgraded from a 4.x release to a 5.x release and the cluster detects that some policy settings used in the current policies on the cluster have been deprecated.
 
-Open the listed policy in the {{site.data.keyword.baas_full_notm}} Console, verify the current settings and make any necessary adjustments. See the [ALERT: CE00610006 POLICYFIELDSDEPRECATED](/docs/allowlist/backup-recovery?topic=CE00610006) Knowledge Base article.
+Open the listed policy in the {{site.data.keyword.baas_full_notm}} Console, verify the current settings and make any necessary adjustments. See the [ALERT: CE00610006 POLICYFIELDSDEPRECATED](/docs/backup-recovery?topic=CE00610006) Knowledge Base article.
 
 Not Applicable
 
@@ -900,4 +900,3 @@ Critical
 1.3.6.1.4.1.47421.0.403
 
 All
-

@@ -26,7 +26,7 @@ Ensure that you have what you need to start:
 
 - An account for the {{site.data.keyword.cloud_notm}} Platform
 - An instance of {{site.data.keyword.baas_full_notm}} service is deployed
-- Verify that you have proper access to your {{site.data.keyword.baas_full_notm}} instance. Writer (backup-recovery.dashboard.edit) or Manager (backup-recovery.dashboard.edit) privileges to the {{site.data.keyword.baas_full_notm}} Service are needed to create and manage Protection Jobs (i.e. Backup Jobs) in your instance. These privileges can be assigned by your {{site.data.keyword.cloud_notm}} Platform account owner using an Access Group (multiple users) or Access Policy (specific user) tied to your IAM profile. Details on this are included [here](/docs/allowlist/backup-recovery?topic=backup-recovery-iam-docs-template&interface=ui).
+- Verify that you have proper access to your {{site.data.keyword.baas_full_notm}} instance. Writer (backup-recovery.dashboard.edit) or Manager (backup-recovery.dashboard.edit) privileges to the {{site.data.keyword.baas_full_notm}} Service are needed to create and manage Protection Jobs (i.e. Backup Jobs) in your instance. These privileges can be assigned by your {{site.data.keyword.cloud_notm}} Platform account owner using an Access Group (multiple users) or Access Policy (specific user) tied to your IAM profile. Details on this are included [here](/docs/backup-recovery?topic=backup-recovery-iam-docs-template&interface=ui).
 
 ## {{site.data.keyword.baas_full_notm}} Instance UI
 {: #baas-policy-creation-instance}
@@ -41,15 +41,15 @@ You will now be presented with the UI of your {{site.data.keyword.baas_full_notm
 ## Create your own Protection Policy
 {: #baas-policy-creation-config-protect-job}
 
-1. [Indexing](/docs/allowlist/backup-recovery?topic=backup-recovery-customize_indexing)
-2. [Create or edit a standard policy](/docs/allowlist/backup-recovery?topic=backup-recovery-create_or_edit_a_standard_policy)
-3. [Manage policies](/docs/allowlist/backup-recovery?topic=backup-recovery-manage_policies)
-4. [Manage protection policy](/docs/allowlist/backup-recovery?topic=backup-recovery-manage_protection_policy)
-5. [Configure Pre & Post Scripts](/docs/allowlist/backup-recovery?topic=backup-recovery-configure-pre-post-scripts)
-6. [Datalock](/docs/allowlist/backup-recovery?topic=backup-recovery-datalock)
-7. [Extended retention](/docs/allowlist/backup-recovery?topic=backup-recovery-extended_retention)
+1. [Indexing](/docs/backup-recovery?topic=backup-recovery-customize_indexing)
+2. [Create or edit a standard policy](/docs/backup-recovery?topic=backup-recovery-create_or_edit_a_standard_policy)
+3. [Manage policies](/docs/backup-recovery?topic=backup-recovery-manage_policies)
+4. [Manage protection policy](/docs/backup-recovery?topic=backup-recovery-manage_protection_policy)
+5. [Configure Pre & Post Scripts](/docs/backup-recovery?topic=backup-recovery-configure-pre-post-scripts)
+6. [Datalock](/docs/backup-recovery?topic=backup-recovery-datalock)
+7. [Extended retention](/docs/backup-recovery?topic=backup-recovery-extended_retention)
 
 ## Next steps
 {: #bass-policy-creation-next-steps}
 
-In the next section, learn about [Protection Groups](/docs/allowlist/backup-recovery?topic=backup-recovery-protection-groups) that will use the schedules and settings of your newly created Protection Policy to determine when and how your backups are captured.
+In the next section, learn about [Protection Groups](/docs/backup-recovery?topic=backup-recovery-protection-groups) that will use the schedules and settings of your newly created Protection Policy to determine when and how your backups are captured.

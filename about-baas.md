@@ -46,6 +46,4 @@ Achieve higher data resiliency through the consistency and integrity of your pro
 ## Next Steps
 {: #about-baas-next-steps}
 
-Documentation on the best way to [get started](/docs/allowlist/backup-recovery?topic=backup-recovery-getting-started-backup-recovery) with the service.
-
-
+Documentation on the best way to [get started](/docs/backup-recovery?topic=backup-recovery-getting-started-backup-recovery) with the service.

@@ -65,4 +65,4 @@ You can also use the IBM Cloud CLI to create a new service credential (which is 
 ic resource service-key-create config-example --instance-name backup-dev-enablement
 ```
 
-For more information about IAM visit - [Getting started with IAM](/docs/allowlist/backup-recovery?topic=backup-recovery-iam&interface=ui)
+For more information about IAM visit - [Getting started with IAM](/docs/backup-recovery?topic=backup-recovery-iam&interface=ui)

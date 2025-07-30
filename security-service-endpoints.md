@@ -59,7 +59,7 @@ You can connect to {{site.data.keyword.baas_full_notm}} management API by using 
 
 The ingestion API supports only private endpoints and is therefore not accessible from the public internet.
 
-By default, private and public endpoints are enabled. For more information about supported endpoints, see [Endpoints](/docs/allowlist/backup-recovery?topic=backup-recovery-endpoints).
+By default, private and public endpoints are enabled. For more information about supported endpoints, see [Endpoints](/docs/backup-recovery?topic=backup-recovery-endpoints).
 
 ## Disabling public service endpoints for {{site.data.keyword.baas_full_notm}}
 {: #service-endpoints-disable}

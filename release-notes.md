@@ -27,7 +27,7 @@ News on the latest releases from IBM's Backup and Recovery provide the updates y
 {: release-note}
 
 Support availability update
-:  {{site.data.keyword.cloud_notm}} Backup and Recovery is now available in Washington DC (us-east), Dallas (us-south), Frankfurt (eu-de), London (eu-gb), and Tokyo (jp-tok) regions for allow-listed customers. For more information, see [Regions](/docs/allowlist/backup-recovery?topic=backup-recovery-service-availability&interface=cli#service-availability-region)
+:  {{site.data.keyword.cloud_notm}} Backup and Recovery is now available in Washington DC (us-east), Dallas (us-south), Frankfurt (eu-de), London (eu-gb), and Tokyo (jp-tok) regions for allow-listed customers. For more information, see [Regions](/docs/backup-recovery?topic=backup-recovery-service-availability&interface=cli#service-availability-region)
 
 ## 24 June 2025
 {: #baas-Jun2425}

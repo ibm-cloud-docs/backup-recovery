@@ -49,7 +49,7 @@ On the **Create Policy** page you can change underlined numeric fields by over t
 
     1. **Keep On**: Select **Local** from the drop-down to keep the primary copy data on the {{site.data.keyword.baas_full_notm}}.
 
-        If you are selecting any external targets, then this policy can be only used for performing CloudArchive Direct wherein the primary copy of the data is stored on the external targets. For more information, see [Cloudarchive direct](/docs/allowlist/backup-recovery?topic=backup-recovery-cloudarchive_direct).
+        If you are selecting any external targets, then this policy can be only used for performing CloudArchive Direct wherein the primary copy of the data is stored on the external targets. For more information, see [Cloudarchive direct](/docs/backup-recovery?topic=backup-recovery-cloudarchive_direct).
 
     2. **Retain for xx days**: Specify how many days, weeks, months, or years backups are retained on the {{site.data.keyword.baas_full_notm}} before they are deleted.
 
@@ -60,7 +60,7 @@ On the **Create Policy** page you can change underlined numeric fields by over t
 
 7. Click **More Options** to configure the additional policy settings.
 
-8. **DataLock:** Toggle on to lock the policy and any snapshots that belong to Protection Groups associated with the policy. DataLock is typically used for compliance and regulatory purposes. For more information, see [DataLock](/docs/allowlist/backup-recovery?topic=backup-recovery-datalock).
+8. **DataLock:** Toggle on to lock the policy and any snapshots that belong to Protection Groups associated with the policy. DataLock is typically used for compliance and regulatory purposes. For more information, see [DataLock](/docs/backup-recovery?topic=backup-recovery-datalock).
 
     If you have enabled the **DataLock** option at the policy level, then you have the option to lock the backup retained on the {{site.data.keyword.baas_full_notm}}. In the **Lock** option field available in the **Primary Copy** pane, specify how many days, weeks, months, or years the retained backups must be locked. You cannot delete the snapshots during the specified lock period.
 
@@ -122,7 +122,7 @@ On the **Create Policy** page you can change underlined numeric fields by over t
 
 15. **Extended Retention**: Click the **Primary Copy** tile and select this option from the **Backup Options** floating menu to retain a subset of snapshots (backups) for longer than defined by the protection schedule.
 
-    1. Specify when to take the first snapshot and how long to retain it. For more information, see [Extended Retention](/docs/allowlist/backup-recovery?topic=backup-recovery-extended_retention).
+    1. Specify when to take the first snapshot and how long to retain it. For more information, see [Extended Retention](/docs/backup-recovery?topic=backup-recovery-extended_retention).
 
     2. **Lock**: Specify how many days, weeks, months, or years the retained backups should be locked. You cannot delete the snapshots during the specified period.
 
@@ -133,7 +133,7 @@ On the **Create Policy** page you can change underlined numeric fields by over t
 
 16. **Add Archival:** Select this option to add an archive schedule.
 
-    1. **Archive to:** Select an existing external target. You can also register a new external target. For detailed instructions, see [Register an External Target](/docs/allowlist/backup-recovery?topic=backup-recovery-register_an_external_target).
+    1. **Archive to:** Select an existing external target. You can also register a new external target. For detailed instructions, see [Register an External Target](/docs/backup-recovery?topic=backup-recovery-register_an_external_target).
 
     2. **Archive only fully successful Runs:** Check this box if you want archive to occur only if the snapshots of all the objects protected by the Protection Group were created. If the creation of any snapshots fails, no snapshots are archived.
 
@@ -194,7 +194,7 @@ During the external target registration, {{site.data.keyword.baas_full_notm}} ch
 
 The following are the prerequisites to be set in:
 
-*   Confirm whether the target you select supports WORM. For the list of targets that support WORM, see [Supported Workflows and External Targets](/docs/allowlist/backup-recovery?topic=backup-recovery-supported_workflows_and_external_targets).
+*   Confirm whether the target you select supports WORM. For the list of targets that support WORM, see [Supported Workflows and External Targets](/docs/backup-recovery?topic=backup-recovery-supported_workflows_and_external_targets).
 
 
 *   The WORM-supported AWS external target must have versioning and object lock enabled. For more information, see [Using S3 Object Lock](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html){: external}.
@@ -243,7 +243,7 @@ The following are the prerequisites to be set in:
 
 *   **For archival with incremental forever format**:
 
-    *   Supports AWS WORM-capable targets. For the list of targets that support WORM for archival with incremental full, see [Supported Workflows and External Targets](/docs/allowlist/backup-recovery?topic=backup-recovery-supported_workflows_and_external_targets).
+    *   Supports AWS WORM-capable targets. For the list of targets that support WORM for archival with incremental full, see [Supported Workflows and External Targets](/docs/backup-recovery?topic=backup-recovery-supported_workflows_and_external_targets).
 
     *   If WORM compliance is not met for an archive, then the archival will fail.
 

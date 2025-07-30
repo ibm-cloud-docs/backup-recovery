@@ -34,7 +34,7 @@ The following table describes supported job types for MS SQL running on physical
 
 Perform the following steps in the {{site.data.keyword.baas_full}} to protect SQL Server:
 
-1. Register the SQL Server you want to protect as a source with the {{site.data.keyword.baas_full_notm}}. See [Set Up Standalone Microsoft SQL Server or Microsoft SQL Server AGs](/docs/allowlist/backup-recovery?topic=backup-recovery-set_up_standalone_microsoft_sql_server_or_microsoft_sql_server_ags).
+1. Register the SQL Server you want to protect as a source with the {{site.data.keyword.baas_full_notm}}. See [Set Up Standalone Microsoft SQL Server or Microsoft SQL Server AGs](/docs/backup-recovery?topic=backup-recovery-set_up_standalone_microsoft_sql_server_or_microsoft_sql_server_ags).
 2. Select **Dashboard** and from the drop-down, select **MS SQL**.
 3. From the **Hosts** tab, you can protect all databases on a host. Select **Protect Databases** from the host's actions menu.
 
@@ -155,7 +155,7 @@ Click **Add**.
 
 This page displays registered MS SQL objects only, so only MS SQL servers are selected regardless of the other servers within the source object hierarchy.
 
-11. **Policy:** Select an existing protection policy or create a new one by selecting **New Policy**. {{site.data.keyword.baas_full_notm}} recommends you schedule periodic full backup for MS SQL VDI-based protection. For more information, see [Create or Edit a Standard Policy](/docs/allowlist/backup-recovery?topic=backup-recovery-create_or_edit_a_standard_policy).
+11. **Policy:** Select an existing protection policy or create a new one by selecting **New Policy**. {{site.data.keyword.baas_full_notm}} recommends you schedule periodic full backup for MS SQL VDI-based protection. For more information, see [Create or Edit a Standard Policy](/docs/backup-recovery?topic=backup-recovery-create_or_edit_a_standard_policy).
 
 
 **Storage Domain:** Select an existing storage domain or create a new one by selecting **New Storage Domain**.
@@ -220,11 +220,11 @@ The selected storage domain stores the snapshots and logs created by this Protec
 
 26. **Pre & Post Scripts:** Edit this option to run scripts on the protected server before and/or after a Protection Group runs. If configured, the scripts are run every time an object is backed up by a Protection Group run.
 
-    For configuration details, see [Configure Pre & Post Scripts](/docs/allowlist/backup-recovery?topic=backup-recovery-configure-pre-post-scripts).
+    For configuration details, see [Configure Pre & Post Scripts](/docs/backup-recovery?topic=backup-recovery-configure-pre-post-scripts).
 
 27. **Indexing:** Indexing is enabled by default and required for file recovery. The {{site.data.keyword.baas_full_notm}} will scan all the files in the Protection Group and create an internal index that can be used later by a recover task to locate files by name.
 
-    For information about customizing indexing, see [Customize Indexing](/docs/allowlist/backup-recovery?topic=backup-recovery-customize_indexing).
+    For information about customizing indexing, see [Customize Indexing](/docs/backup-recovery?topic=backup-recovery-customize_indexing).
 
 
 Indexing is not supported for VDI-based Protection Groups. Without indexing, file/folder-level recovery and searching are not supported.

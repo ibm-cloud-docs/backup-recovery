@@ -23,7 +23,7 @@ To recover the database as a new database in the original MS SQL server instance
 
     The Restore SQL page appears.
 
-3. Search for the databases you want to recover from by entering characters of the database name, Protection Group name, or by [specifying the wildcard character \*](/docs/allowlist/backup-recovery?topic=backup-recovery-use_wildcard_*_in_search_for_recovery&interface=ui). A list of databases is displayed with details like {{site.data.keyword.baas_full_notm}}, Protection Group, Physical Server, and Create Date. The Create Date option indicates the date and timestamp when the database was created.
+3. Search for the databases you want to recover from by entering characters of the database name, Protection Group name, or by [specifying the wildcard character \*](/docs/backup-recovery?topic=backup-recovery-use_wildcard_*_in_search_for_recovery&interface=ui). A list of databases is displayed with details like {{site.data.keyword.baas_full_notm}}, Protection Group, Physical Server, and Create Date. The Create Date option indicates the date and timestamp when the database was created.
 
     Operations like rename may update the creation date at the SQL Server.
 
@@ -106,7 +106,7 @@ To recover the database as a new database in the original MS SQL server instance
     | --- | --- |
     | **Rename** | Select one of the following options:<br><br>*   **Bulk Rename**: Select this option if you want to rename the restored databases in bulk. You can specify a string in the **Suffix** field. The restored databases will be renamed by adding this suffix string with the original database names.<br>*   **Rename Individual Objects**: Select this option if you want to individually rename the restored databases. You can specify the new name of the databases in the **New Name** field. |
     | **WITH RECOVERY** | Disable the option to perform a restore WITH NO RECOVERY (the database will be offline when restored). By default, this option is enabled and the database is restored with recovery (the database will be online when restored). |
-    | VDI Restore Settings | Enable this option to specify the WITH clause that you want to use for the restore.<br><br>This option is available only for restoring the databases that are protected using [Backup Microsoft SQL Server (VDI-based)](/docs/allowlist/backup-recovery?topic=backup-recovery-backup_microsoft_sql_server_vdi-based). |
+    | VDI Restore Settings | Enable this option to specify the WITH clause that you want to use for the restore.<br><br>This option is available only for restoring the databases that are protected using [Backup Microsoft SQL Server (VDI-based)](/docs/backup-recovery?topic=backup-recovery-backup_microsoft_sql_server_vdi-based). |
     | Keep CDC | Enable this option to restore a protected database that has the change data capture (CDC) enabled. If the protected database is not CDC enabled and the user tries to restore it with Keep CDC then, the database will be restored without CDC.<br><br>This option is available only if the database is restored with recovery. |
     | Overwrite Alternate Database | Enable this option to recover the database by overwriting the existing database. |
     | Cluster Interface | By default, the **Auto Select** option is enabled and the recovery task automatically selects the correct VLAN. If you disable this option, then select a configured interface group from the **Interface Grou**p drop-down. |

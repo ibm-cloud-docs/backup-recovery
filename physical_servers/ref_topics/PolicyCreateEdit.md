@@ -34,7 +34,7 @@ On the **Create Policy** page you can change underlined numeric fields by over t
 
     To edit an existing policy in the list, click the actions menu (![](../../Resources/Images/i/icn/more-h.svg)) and select **Edit** (![](../../Resources/Images/i/icn/edit-h.svg "Edit")).
 
-    For {{site.data.keyword.baas_full_notm}} 6.6 and higher versions, the policy **Description** cannot be set or edited. For more details on how to edit the field, see the [Unable to update the Description field in a Protection Policy](/docs/allowlist/backup-recovery?topic=COH-873338077){: external} Knowledge Base article.
+    For {{site.data.keyword.baas_full_notm}} 6.6 and higher versions, the policy **Description** cannot be set or edited. For more details on how to edit the field, see the [Unable to update the Description field in a Protection Policy](/docs/backup-recovery?topic=COH-873338077){: external} Knowledge Base article.
 
 3. **Policy Name:** Specify a protection policy name. The name can contain the alphanumerics, underscores, hyphens, periods, and spaces. This field is required and can be changed later.
 
@@ -132,7 +132,7 @@ On the **Create Policy** page you can change underlined numeric fields by over t
         This option is available only if you have enabled the **DataLock** option at the policy level.
 
 
-    For SQL Protection Groups, if the log backups are configured in the Protection Group, all protection runs are replicated ignoring the set policy. For more information, see the [Each SQL log backup run is replicated irrespective of policy](/docs/allowlist/backup-recovery?topic=COH-898142405){: external} Knowledge Base article.
+    For SQL Protection Groups, if the log backups are configured in the Protection Group, all protection runs are replicated ignoring the set policy. For more information, see the [Each SQL log backup run is replicated irrespective of policy](/docs/backup-recovery?topic=COH-898142405){: external} Knowledge Base article.
 
 15. **Storage Array Snapshot**: Select **Storage Array Snapshot** from the **Backup Options** floating menu to provide a backup schedule and retention period for the Safeguarded snapshots for IBM Storage FlashSystem volume and volume groups. These are point-in-time cyber-resilient copies of IBM Storage FlashSystem volume groups.
 

@@ -18,9 +18,9 @@ subcollection: backup-recovery
 
 {{site.data.keyword.baas_full}} provides the ability to recover the MS SQL databases protected by a Protection Group.
 
-*   [Recover Microsoft SQL Server Database Over the Original Database](/docs/allowlist/backup-recovery?topic=backup-recovery-recover_microsoft_sql_server_database_over_the_original_database).
-*   [Recover Microsoft SQL Server Database as a New Database in the Original Microsoft SQL Server Instance](/docs/allowlist/backup-recovery?topic=backup-recovery-recover_microsoft_sql_server_database_as_a_new_database_in_the_original_microsoft_sql_server_instance).
-*   [Recover Microsoft SQL Server Database as a New Database in an Alternate Microsoft SQL Server Instance](/docs/allowlist/backup-recovery?topic=backup-recovery-recover_microsoft_sql_server_database_as_a_new_database_in_an_alternate_microsoft_sql_server_instance).
+*   [Recover Microsoft SQL Server Database Over the Original Database](/docs/backup-recovery?topic=backup-recovery-recover_microsoft_sql_server_database_over_the_original_database).
+*   [Recover Microsoft SQL Server Database as a New Database in the Original Microsoft SQL Server Instance](/docs/backup-recovery?topic=backup-recovery-recover_microsoft_sql_server_database_as_a_new_database_in_the_original_microsoft_sql_server_instance).
+*   [Recover Microsoft SQL Server Database as a New Database in an Alternate Microsoft SQL Server Instance](/docs/backup-recovery?topic=backup-recovery-recover_microsoft_sql_server_database_as_a_new_database_in_an_alternate_microsoft_sql_server_instance).
 
 ## Prerequisites
 {: #prerequisites}

@@ -28,9 +28,9 @@ subcollection: backup-recovery
 
 You can run the Pre Script and Post Script for the following sources:
 
-*   [Physical Servers](/docs/allowlist/backup-recovery?topic=backup-recovery-protect_a_physical_server_file-based)
+*   [Physical Servers](/docs/backup-recovery?topic=backup-recovery-protect_a_physical_server_file-based)
 
-*   Databases - [MS SQL Server](/docs/allowlist/backup-recovery?topic=backup-recovery-backup_microsoft_sql_server_volume-based) and [Oracle](/docs/allowlist/backup-recovery?topic=backup-recovery-protect-oracle-database) Database
+*   Databases - [MS SQL Server](/docs/backup-recovery?topic=backup-recovery-backup_microsoft_sql_server_volume-based) and [Oracle](/docs/backup-recovery?topic=backup-recovery-protect-oracle-database) Database
 
 
 Depending on whether the Backup agent is installed on the source, the settings required to configure the pre and post scripts in the Protection Group vary.

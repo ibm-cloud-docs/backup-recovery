@@ -24,7 +24,7 @@ To register an MS SQL Server, MS SQL FCI, or an MS SQL AG of a Windows cluster, 
 
 Before you register the MS SQL, ensure to meet the following:
 
-*   MS SQL prerequisites. For more information, see [Requirements for Microsoft SQL Server Protection](/docs/allowlist/backup-recovery?topic=backup-recovery-requirements_for_microsoft_sql_server_protection).
+*   MS SQL prerequisites. For more information, see [Requirements for Microsoft SQL Server Protection](/docs/backup-recovery?topic=backup-recovery-requirements_for_microsoft_sql_server_protection).
 *   [Download and Install the Agent](#download_and_install_the_agent).
 
 ## Download and install the agent

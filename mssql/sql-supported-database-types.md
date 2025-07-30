@@ -18,7 +18,7 @@ subcollection: backup-recovery
 
 Before proceeding to deploy the Backup agent for SQL data protection, we recommend you correctly identify the type of SQL database you want to protect. Below is a table of SQL database types that are supported by the {{site.data.keyword.baas_full}} SQL agent, and the recommended protection methods.
 
-To understand the concept of each method, see [About Microsoft SQL Server Backup](/docs/allowlist/backup-recovery?topic=backup-recovery-about_microsoft_sql_server_backup).
+To understand the concept of each method, see [About Microsoft SQL Server Backup](/docs/backup-recovery?topic=backup-recovery-about_microsoft_sql_server_backup).
 
 
 | Database Types | Definition | Adapter-based Protection Method |     |     |
@@ -30,6 +30,6 @@ To understand the concept of each method, see [About Microsoft SQL Server Backup
 {: caption="SQL database types" caption-side="bottom"}
 
 
-For details on the supported workflows for each protection method, see [Protection Workflows for MS SQL](/docs/allowlist/backup-recovery?topic=backup-recovery-supported_workflows_and_external_targets).
+For details on the supported workflows for each protection method, see [Protection Workflows for MS SQL](/docs/backup-recovery?topic=backup-recovery-supported_workflows_and_external_targets).
 
 Now that you can identify the type of SQL database you want to protect, you can register it as a {{site.data.keyword.baas_full_notm}} source.

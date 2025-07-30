@@ -37,14 +37,14 @@ The following are the different methods to register your physical or virtual MS 
 ## Ensure prerequisites are met
 {: #ensure_prerequisites_are_met}
 
-Ensure the prerequisites listed in [Prerequisites for Microsoft SQL Server Protection](/docs/allowlist/backup-recovery?topic=backup-recovery-requirements_for_microsoft_sql_server_protection) are met.
+Ensure the prerequisites listed in [Prerequisites for Microsoft SQL Server Protection](/docs/backup-recovery?topic=backup-recovery-requirements_for_microsoft_sql_server_protection) are met.
 
 ## Set up ms sql on virtual or physical servers using the agent
 {: #set_up_ms_sql_on_virtual_or_physical_servers_using_the_agent}
 
-This option can be used for both physical or virtual servers that are in standalone or AG configurations. {{site.data.keyword.baas_full_notm}} recommends you use this method to protect the MS SQL Servers with the {{site.data.keyword.baas_full_notm}}. For more information, see [Set Up MS SQL on Virtual or Physical Servers using the Agent](/docs/allowlist/backup-recovery?topic=backup-recovery-install-and-manage-the-agent-on-windows-servers).
+This option can be used for both physical or virtual servers that are in standalone or AG configurations. {{site.data.keyword.baas_full_notm}} recommends you use this method to protect the MS SQL Servers with the {{site.data.keyword.baas_full_notm}}. For more information, see [Set Up MS SQL on Virtual or Physical Servers using the Agent](/docs/backup-recovery?topic=backup-recovery-install-and-manage-the-agent-on-windows-servers).
 
-For IBM Cloud Support information, see [Physical Servers](/docs/allowlist/backup-recovery?topic=backup-recovery-physical_servers).
+For IBM Cloud Support information, see [Physical Servers](/docs/backup-recovery?topic=backup-recovery-physical_servers).
 
 ### Download and install the agent
 {: #download_and_install_the_agent}
@@ -100,7 +100,7 @@ If the server contains one or more databases that belong to an Always On Availab
     When registration finishes successfully, the MS SQL Server information displays when you click the **View** icon.
 
 
-You can throttle the CPU capacity on the MS SQL physical servers (running on Windows 2012R2 and later) you registered with the {{site.data.keyword.baas_full_notm}}. Throttling optimizes the CPU capacity utilized when a Protection Group with source-side deduplication is run on the server. However, for MS SQL Protection Group, source-side deduplication is not enabled by default. You must contact [IBM Cloud Support](https://cloud.ibm.com/unifiedsupport/supportcenter) for enabling the source-side deduplication for a Protection Group. CPU throttling does not affect the MS SQL Server if source-side deduplication in a SQL Protection Group is not enabled. For more information on enabling CPU throttling, see [Network Bandwidth and CPU Throttling for Physical Server](/docs/allowlist/backup-recovery?topic=backup-recovery-network_bandwidth_and_cpu_throttling_for_physical_server).
+You can throttle the CPU capacity on the MS SQL physical servers (running on Windows 2012R2 and later) you registered with the {{site.data.keyword.baas_full_notm}}. Throttling optimizes the CPU capacity utilized when a Protection Group with source-side deduplication is run on the server. However, for MS SQL Protection Group, source-side deduplication is not enabled by default. You must contact [IBM Cloud Support](https://cloud.ibm.com/unifiedsupport/supportcenter) for enabling the source-side deduplication for a Protection Group. CPU throttling does not affect the MS SQL Server if source-side deduplication in a SQL Protection Group is not enabled. For more information on enabling CPU throttling, see [Network Bandwidth and CPU Throttling for Physical Server](/docs/backup-recovery?topic=backup-recovery-network_bandwidth_and_cpu_throttling_for_physical_server).
 
 ## Set up ms sql on vms as a vmware vcenter application with the installed agent
 {: #set_up_ms_sql_on_vms_as_a_vmware_vcenter_application_with_the_installed_agent}
@@ -215,6 +215,6 @@ If the server contains one or more databases that belong to an Always On Availab
 
 For more troubleshooting information, see the following Knowledge Base article:
 
-*   [Collecting troubleshooting information for MS SQL issues](/docs/allowlist/backup-recovery?topic=Collecting-troubleshooting-information-for-MS-SQL-issues){: external}
+*   [Collecting troubleshooting information for MS SQL issues](/docs/backup-recovery?topic=Collecting-troubleshooting-information-for-MS-SQL-issues){: external}
 
 Log in to the [IBM Cloud Support](https://cloud.ibm.com/unifiedsupport/supportcenter) to see more Knowledge Base articles.

@@ -45,7 +45,7 @@ By default, the **VMware Consolidated Backup user (sample)** role does not have 
 4.  Assign this role to the vCenter users that will access the {{site.data.keyword.baas_full_notm}}. Assign this role to users at the top vCenter object level and enable **Propagate to children** check box.
 5.  When registering a source on the {{site.data.keyword.baas_full_notm}}, specify a VirtualCenter user assigned to a role with the required {{site.data.keyword.baas_full_notm}} privileges (defined below).
 
-For more information on VMware vCenter permissions, refer the knowledge base article, [Required {{site.data.keyword.baas_full_notm}} Permissions for VMware vCenter Environments](/docs/allowlist/backup-recovery?topic=Required-Cohesity-permissions-for-VMware-vCenter-environments).
+For more information on VMware vCenter permissions, refer the knowledge base article, [Required {{site.data.keyword.baas_full_notm}} Permissions for VMware vCenter Environments](/docs/backup-recovery?topic=Required-Cohesity-permissions-for-VMware-vCenter-environments).
 
 ### Role Privileges for vCenter Server
 {: #ensure-adequate-privileges-role-vcenter}
@@ -281,9 +281,9 @@ For more information, see [Active Directory Protection Requirements](https://doc
 ## Linux Servers
 {: #ensure-adequate-privileges-linux-servers}
 
-For more information, see [Install and Manage the Agent on Linux Servers](/docs/allowlist/backup-recovery?topic=backup-recovery-install-and-manage-the-agent-on-linux-servers).
+For more information, see [Install and Manage the Agent on Linux Servers](/docs/backup-recovery?topic=backup-recovery-install-and-manage-the-agent-on-linux-servers).
 
 ## Windows Servers
 {: #ensure-adequate-privileges-windows-servers}
 
-Specify the local or AD user with administrative privileges on the server. For more information, see [Install and Manage the Agent on Windows Servers](/docs/allowlist/backup-recovery?topic=backup-recovery-install-and-manage-the-agent-on-windows-servers).
+Specify the local or AD user with administrative privileges on the server. For more information, see [Install and Manage the Agent on Windows Servers](/docs/backup-recovery?topic=backup-recovery-install-and-manage-the-agent-on-windows-servers).

@@ -15,7 +15,7 @@ subcollection: backup-recovery
 # Install and Manage the Agent on Windows Servers
 {: #install_and_manage_the_agent_on_windows_servers}
 
-If the Windows firewall is active upon installing the Backup agent, you need to add a rule in the firewall to open the port 50051 for communication with the {{site.data.keyword.baas_full}} nodes. For more information, see [Manage Firewall Ports](/docs/allowlist/backup-recovery?topic=backup-recovery-manage_firewall_ports).
+If the Windows firewall is active upon installing the Backup agent, you need to add a rule in the firewall to open the port 50051 for communication with the {{site.data.keyword.baas_full}} nodes. For more information, see [Manage Firewall Ports](/docs/backup-recovery?topic=backup-recovery-manage_firewall_ports).
 
 ## Backup agent Component Requirements
 {: #backup_agent_component_requirements}
@@ -40,7 +40,7 @@ To avoid the warning, install sha2 code signing support on the system where you 
 
 This is only a warning, and you can click **Run** to continue with the installation.
 
-For IBM Cloud Support information, see [Physical Servers](/docs/allowlist/backup-recovery?topic=backup-recovery-physical_servers).
+For IBM Cloud Support information, see [Physical Servers](/docs/backup-recovery?topic=backup-recovery-physical_servers).
 
 To download and install the {{site.data.keyword.baas_full_notm}} Windows Agent:
 
