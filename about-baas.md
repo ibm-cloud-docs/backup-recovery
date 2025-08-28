@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024
-lastupdated: "2025-08-27"
+lastupdated: "2025-08-28"
 
 keywords: about, backup and recovery
 
@@ -16,7 +16,7 @@ subcollection: backup-recovery
 # What is {{site.data.keyword.cloud_notm}} Backup and Recovery?
 {: #about-baas}
 
-{{site.data.keyword.cloud_notm}} Backup and Recovery is a fully managed service(s) that provides backup solutions for various IBM Cloud services and customer workloads running on IBM Cloud.
+{{site.data.keyword.cloud_notm}} Backup and Recovery is a fully managed service that provides backup solutions for various IBM Cloud services and customer workloads running on IBM Cloud.
 This service lets you define backup schedules to routinely protect data sources using a secure, agent-based, application-consistent backup service. Backup infrastructure is managed by IBM.
 {: shortdesc}
 
@@ -47,5 +47,3 @@ Achieve higher data resiliency through the consistency and integrity of your pro
 {: #about-baas-next-steps}
 
 Documentation on the best way to [get started](/docs/backup-recovery?topic=backup-recovery-getting-started-backup-recovery) with the service.
-
-
