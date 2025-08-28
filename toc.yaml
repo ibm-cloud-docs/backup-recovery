@@ -12,6 +12,6 @@ toc:
   - navgroup:
       id: learn
       links:
-          - link:
-              label: My V2 API docs
-              href: https://{DomainName}/apidocs/my-api/my-api-v2
+      - link:
+        label: My V2 API docs
+        href: https://{DomainName}/apidocs/my-api/my-api-v2
