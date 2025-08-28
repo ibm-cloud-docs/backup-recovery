@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2025
-lastupdated: "2025-08-27"
+lastupdated: "2025-08-28"
 
 keywords: <KEYWORDS>
 
@@ -15,7 +15,6 @@ subcollection: backup-recovery
 # Manage protection groups
 {: #manage_protection_groups}
 
-28 May 2024
 
 From the Protection page, you can start the backup process by clicking **Protect** in the upper right corner. You can also view protection group settings, run a protection group, edit protection group settings, delete a protection group, deactivate a protection group or failover a protection group using the icons listed in the actions column of the table. (See below for details.) 
 

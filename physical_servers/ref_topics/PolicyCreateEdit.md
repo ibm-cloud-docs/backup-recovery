@@ -1,10 +1,10 @@
 ---
 
 copyright:
-  years: 2024
-lastupdated: "2024-10-3"
+  years: 2025
+lastupdated: "2025-08-28"
 
-keywords: <KEYWORDS>
+keywords: policy, standard
 
 subcollection: backup-recovery
 
@@ -15,7 +15,6 @@ subcollection: backup-recovery
 # Create or edit a standard policy
 {: #create_or_edit_a_standard_policy}
 
-17 September 2024
 
 A protection policy is a reusable set of settings that define how and when objects are protected, replicated and archived. You can select a standard policy to use when configuring a Protection Group. A Protection Group uses the schedules and settings defined in the policy to determine when and how backups are captured, archived or replicated.
 

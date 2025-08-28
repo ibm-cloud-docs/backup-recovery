@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2024
-lastupdated: "2024-10-7"
+  years: 2025
+lastupdated: "2025-08-28"
 
 keywords: <KEYWORDS>
 
@@ -15,7 +15,6 @@ subcollection: backup-recovery
 # Backup microsoft sql server (volume-based)
 {: #backup_microsoft_sql_server_volume-based}
 
-12 September 2024
 
 This topic describes how to protect MS SQL with a volume-based job. Volume-based jobs protect MS SQL at the server level, meaning all databases on a server. File-based jobs protect only the specific MS SQL databases that you select. To use a file-based job, follow the steps described in [Microsoft SQL Server (File-based)](SQLProtectFileBased.htm).
 

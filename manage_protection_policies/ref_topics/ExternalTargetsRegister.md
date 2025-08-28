@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2024
-lastupdated: "2024-10-7"
+  years: 2025
+lastupdated: "2025-08-28"
 
 keywords: <KEYWORDS>
 
@@ -15,7 +15,6 @@ subcollection: backup-recovery
 # Register an external target
 {: #register_an_external_target}
 
-12 September 2024
 
 You can register an external target with the {{site.data.keyword.baas_full_notm}} for Cloud Archive, CloudArchive Direct, or for Cloud Tiering.
 

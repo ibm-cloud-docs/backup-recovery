@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2024
-lastupdated: "2024-10-3"
+  years: 2025
+lastupdated: "2025-08-28"
 
 keywords: <KEYWORDS>
 
@@ -14,8 +14,6 @@ subcollection: backup-recovery
 
 # Create or edit storage domains
 {: #create_or_edit_storage_domains}
-
-12 September 2024
 
 A Storage Domain, formerly known as a View Box, is a named storage location on a Cluster. A Storage Domain defines the policy and frequency for deduplication among other configurations such as Compression, Erasure Coding, and Replication Factor. A Storage Domain contains Views. When you configure a Protection Group, you specify a Storage Domain and during a Protection Group Run, the {{site.data.keyword.baas_full_notm}} stores the Snapshots in that Storage Domain.
 

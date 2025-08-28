@@ -1,10 +1,10 @@
 ---
 
 copyright:
-  years: 2024
-lastupdated: "2024-10-7"
+  years: 2025
+lastupdated: "2025-08-28"
 
-keywords: <KEYWORDS>
+keywords: extended, retention
 
 subcollection: backup-recovery
 
@@ -15,7 +15,6 @@ subcollection: backup-recovery
 # Extended retention
 {: #extended_retention}
 
-10 July 2024
 
 Snapshots selected for extended retention are retained for a longer time than defined in the protection schedule. You can retain the first snapshot of the backup run taken on the specified hours, every run, days, weeks, months, or years for a longer period of time.
 

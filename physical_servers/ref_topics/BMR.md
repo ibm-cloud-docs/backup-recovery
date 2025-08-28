@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2025
-lastupdated: "2025-08-27"
+lastupdated: "2025-08-28"
 
 keywords: <KEYWORDS>
 
@@ -14,7 +14,6 @@ subcollection: backup-recovery
 
 # About Bare Machine Recovery
 
-9 September 2024
 
 A Bare Machine Recovery (BMR) is the ability to recover a system, including the operating system, its configuration, applications running on the operating system, and its data back to a state it was at a given point.
 

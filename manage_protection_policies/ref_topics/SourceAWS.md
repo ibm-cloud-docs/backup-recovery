@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2024
-lastupdated: "2024-10-7"
+  years: 2025
+lastupdated: "2025-08-28"
 
 keywords: <KEYWORDS>
 
@@ -15,7 +15,6 @@ subcollection: backup-recovery
 # Register an aws cloud source
 {: #register_an_aws_cloud_source}
 
-12 September 2024
 
 Register an AWS Cloud Source to support the following functionality:
 

@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2024
-lastupdated: "2024-10-7"
+  years: 2025
+lastupdated: "2025-08-28"
 
 keywords: <KEYWORDS>
 
@@ -15,7 +15,6 @@ subcollection: backup-recovery
 # Protect a physical server (file-based)
 {: #protect_a_physical_server_file-based}
 
-12 September 2024
 
 **To add or edit a Protection Group for Physical Server:**
 

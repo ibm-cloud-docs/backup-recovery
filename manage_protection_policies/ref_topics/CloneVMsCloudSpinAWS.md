@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2024
-lastupdated: "2024-10-7"
+  years: 2025
+lastupdated: "2025-08-28"
 
 keywords: <KEYWORDS>
 
@@ -15,7 +15,6 @@ subcollection: backup-recovery
 # Clone vms to aws cloud using cloudspin
 {: #clone_vms_to_aws_cloud_using_cloudspin}
 
-12 September 2024
 
 On a {{site.data.keyword.baas_full_notm}} with a Protection Group that captures Snapshots of VMs with a CloudSpin schedule, the cluster clones VMs to an AWS cloud service. You can then launch the VMs to a running state.
 

@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2024
-lastupdated: "2024-10-7"
+  years: 2025
+lastupdated: "2025-08-28"
 
 keywords: <KEYWORDS>
 
@@ -15,7 +15,6 @@ subcollection: backup-recovery
 # Protect a pure volume or a protection group
 {: #protect_a_pure_volume_or_a_protection_group}
 
-12 September 2024
 
 A Protection Group that protects Pure Storage volumes captures Snapshots and these Snapshots are required for the following tasks:
 

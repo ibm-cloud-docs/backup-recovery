@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2024
-lastupdated: "2024-10-7"
+  years: 2025
+lastupdated: "2025-08-28"
 
 keywords: <KEYWORDS>
 
@@ -15,7 +15,6 @@ subcollection: backup-recovery
 # Create a connection to the remote {{site.data.keyword.baas_full_notm}}
 {: #create_a_connection_to_the_remote_cohesity_cluster}
 
-9 September 2024
 
 If you are setting up replication on the {{site.data.keyword.baas_full_notm}} that contains the original snapshots to replicate, you must register the connection to the remote {{site.data.keyword.baas_full_notm}} that will store the replicated snapshots. The capturing (local) {{site.data.keyword.baas_full_notm}} captures the snapshots and replicates them to the remote {{site.data.keyword.baas_full_notm}}.
 

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2025
-lastupdated: "2025-08-27"
+lastupdated: "2025-08-28"
 
 keywords: <KEYWORDS>
 
@@ -14,8 +14,6 @@ subcollection: backup-recovery
 
 # Manage firewall ports
 {: #manage_firewall_ports}
-
-17 September 2024
 
 You must open certain ports in the firewall to allow the {{site.data.keyword.baas_full_notm}} to transmit and receive data. The cluster sends the following types of traffic over the network. You can isolate traffic on physical or logical networks to improve performance and security.
 

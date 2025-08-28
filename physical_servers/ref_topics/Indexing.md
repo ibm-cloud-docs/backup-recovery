@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2025
-lastupdated: "2025-08-27"
+lastupdated: "2025-08-28"
 
 keywords: <KEYWORDS>
 
@@ -14,8 +14,6 @@ subcollection: backup-recovery
 
 # Customize indexing
 {: #customize_indexing}
-
-28 January 2024
 
 Toggle on **Indexing**, click **Add Inclusion** or **Add Exclusion** and enter a directory. Click the **X** to delete a directory from the list.
 

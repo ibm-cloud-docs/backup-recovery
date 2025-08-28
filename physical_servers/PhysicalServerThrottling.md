@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024
-lastupdated: "2025-08-27"
+lastupdated: "2025-08-28"
 
 keywords: <KEYWORDS>
 
@@ -15,7 +15,6 @@ subcollection: backup-recovery
 # Network bandwidth and cpu throttling for physical server
 {: #network_bandwidth_and_cpu_throttling_for_physical_server}
 
-28 May 2024
 
 You can throttle the network bandwidth and CPU on the Windows and Linux physical server registered with the {{site.data.keyword.baas_full_notm}}. Network throttling optimizes the data transfer rate from the server to the {{site.data.keyword.baas_full_notm}} when a Protection Group is run. CPU throttling optimizes the CPU capacity utilized when a Protection Group with source-side deduplication is run on the server.
 

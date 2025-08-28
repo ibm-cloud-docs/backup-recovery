@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2024
-lastupdated: "2024-10-7"
+  years: 2025
+lastupdated: "2025-08-28"
 
 keywords: <KEYWORDS>
 
@@ -15,7 +15,6 @@ subcollection: backup-recovery
 # Register or edit an azure cloud source
 {: #register_or_edit_an_azure_cloud_source}
 
-12 September 2024
 
 A {{site.data.keyword.baas_full_notm}} supports registering an Azure Cloud Source for the following functionality:
 

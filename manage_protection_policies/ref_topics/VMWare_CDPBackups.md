@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-8-4"
+lastupdated: "2025-08-28"
 
 keywords: <KEYWORDS>
 
@@ -15,7 +15,6 @@ subcollection: backup-recovery
 # {{site.data.keyword.baas_full_notm}} cdp for vmware
 {: #cohesity_cdp_for_vmware}
 
-17 September 2024
 
 To protect your VMware VMs, you can optionally choose to leverage the Continuous Data Protection (CDP) option available on the {{site.data.keyword.baas_full_notm}} Data Cloud. {{site.data.keyword.baas_full_notm}} CDP provides near-zero RPOs for your applications.
 

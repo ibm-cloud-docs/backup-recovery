@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2025
-lastupdated: "2025-08-27"
+lastupdated: "2025-08-28"
 
 keywords: <KEYWORDS>
 
@@ -15,7 +15,6 @@ subcollection: backup-recovery
 # Add exclusions
 {: #add_exclusions}
 
-12 September 2024
 
 During File-based Physical Server Backups, by default, all files and directories under the parent directory specified in the Include path of a Protection Group are protected by the {{site.data.keyword.baas_full_notm}}. However, to exclude specific sub-directories and files in the Include path, the Exclude path can be specified in the Protection Group.
 
