@@ -7,3 +7,11 @@ toc:
     audience: audience-value # Replace
     category: category-value # Replace
     label: Docs subcollection title # Replace
+
+  entries:
+  - navgroup:
+      id: learn
+      links:
+          - link:
+              label: My V2 API docs
+              href: https://{DomainName}/apidocs/my-api/my-api-v2
