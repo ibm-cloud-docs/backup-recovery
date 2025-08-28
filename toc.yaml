@@ -1,1 +1,9 @@
-
+toc:
+  properties:
+    subcollection: repo-name
+    path: repo-name
+    href: /docs/repo-name
+    service-name: service-name # Replace
+    audience: audience-value # Replace
+    category: category-value # Replace
+    label: Docs subcollection title # Replace
