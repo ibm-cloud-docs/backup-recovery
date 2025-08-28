@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2025-08-27"
+lastupdated: "2025-08-28"
 
 keywords: object storage, sdk, overview
 
@@ -28,7 +28,7 @@ subcollection: cloud-object-storage
 {:faq: data-hd-content-type='faq'}
 {:support: data-reuse='support'}
 
-# About {{site.data.keyword.baas_full}} SDKs
+# About {{site.data.keyword.baas_short}} SDKs
 {: #sdk-about}
 
 {{site.data.keyword.baas_full}} provides SDKs for Go featuring capabilities to make the most of {{site.data.keyword.baas_full_notm}}.

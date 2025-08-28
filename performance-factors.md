@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-08-27"
+lastupdated: "2025-08-28"
 
 keywords: performance, backup and recovery, saas connectors, source load, source drive configuration, structure of data, size of files
 
@@ -13,7 +13,7 @@ subcollection: backup-recovery
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Factors affecting the Performance of {{site.data.keyword.baas_full}} service
+# Factors affecting the Performance of {{site.data.keyword.baas_short}} service
 {: #performance-factors}
 
 Many factors will impact the performance an end user sees with the {{site.data.keyword.baas_full_notm}} service. The following lists the major factors for both backups and recoveries, roughly in order of importance to each.
@@ -69,7 +69,3 @@ The load on a SaaS connector can be found in the following manner:
 If the SaaS connectors in a connection are operating at 100% CPU for most of or the whole of a backup window, it indicates that the SaaS connectors are operating at maximum capacity. In this case, it probably would be valuable to add one or more additional SaaS connector to the connection. In general, it would be best to add a single SaaS connector and again review the CPU utilization and continue to add additional SaaS connectors one at a time until the CPU utilization falls below 100%. In general, it is best if all SaaS connectors in a connection operate at less than or equal to 75% CPU utilization.
 
 If adding an additional SaaS connector does not improve performance, it indicates that some other bottleneck has been reached, and it is not useful to any more to the connection.  (Add SaaS Connectors 1 at a time until performance doesn’t improve).
-
-
-
-
