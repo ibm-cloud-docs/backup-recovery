@@ -97,11 +97,11 @@ This section lists the workflows that are supported for different servers, datab
     *   [External Targets for CloudArchive (Incremental Forever) and CloudArchive Direct (with Dedup) - Gov](#ExternalTargetCADDGov)
     *   [External Targets for CloudArchive (Incremental Forever) and CloudArchive Direct (with Dedup) - C2S](#ExternalTargetCADDC2S)
     *   [External Targets for CloudArchive Direct without Dedup- Standard](#ExternalTargetCADStandard)
-        
+
     *   [External Targets for CloudArchive Direct without Dedup - Gov](#ExternalTargetCADGov)
-        
+
     *   [External Targets for CloudArchive Direct without Dedup - C2S](#ExternalTargetCADC2S)
-        
+
     *   [External Targets for CloudTier - Standard](#ExternalTargetCTStandard)
     *   [External Targets for CloudTier - Gov](#ExternalTargetCTGov)
     *   [External Targets for CloudTier - C2S](#ExternalTargetCTC2S)
@@ -109,26 +109,26 @@ This section lists the workflows that are supported for different servers, datab
     *   [External Targets for CloudArchive (with Periodic Full)](#ExternalTargetAzureCA)
     *   [External Targets for CloudArchive (Incremental Forever) and CloudArchive Direct (with Dedup)](#ExternalTargetAzureCADD)
     *   [External Targets for CloudArchive Direct without Dedup](#ExternalTargetAzureCAD)
-        
+
     *   [External Targets for CloudTier - Standard](#ExternalTargetAzureCTStandard)
     *   [External Targets for CloudTier - Gov](#ExternalTargetAzureCTGov)
 *   [GCP External Targets](#GCPExternalTargets)
     *   [External Targets for CloudArchive (with Periodic Full)](#ExternalTargetGCPCA)
     *   [External Targets for CloudArchive (Incremental Forever) and CloudArchive Direct (with Dedup)](#ExternalTargetGCPCADD)
     *   [External Targets for CloudArchive Direct without Dedup](#ExternalTargetGCPCAD)
-        
+
     *   [External Targets for CloudTier](#ExternalTargetGCPCT)
 *   [Oracle Cloud External Targets](#OracleExternalTargets)
     *   [External Targets for CloudArchive (with Periodic Full)](#ExternalTargetOracleCA)
     *   [External Targets for CloudArchive (Incremental Forever) and CloudArchive Direct (with Dedup)](#ExternalTargetOracleCADD)
     *   [External Targets for CloudArchive Direct without Dedup](#ExternalTargetOracleCAD)
-        
+
     *   [External Targets for CloudTier](#ExternalTargetOracleCT)
 *   [S3 - Compatible, NAS, Tape External Targets](#S3-Compatible,NAS,TapeExternalTargets)
     *   [External Targets for CloudArchive (with Periodic Full) - S3-Compatible, NAS, Tape](#ExternalTargetMiscCA)
     *   [External Targets for CloudArchive (Incremental Forever) and CloudArchive Direct (with Dedup) - S3-Compatible, NAS](#ExternalTargetMiscCADD)
     *   [External Targets for CloudArchive Direct without Dedup - S3 - Compatible, NAS, Tape](#ExternalTargetMiscCAD)
-        
+
     *   [External Targets for CloudTier - S3-Compatible, NAS, Tape](#ExternalTargetMiscCT)
 *   [NAS Tiering Workflows](#NASTieringWorkflows)
     *   [Tiering Workflows for NFS](#TierNFS)
@@ -140,7 +140,7 @@ This section lists the workflows that are supported for different servers, datab
 ### Protection workflows for vmware vms
 {: #protection_workflows_for_vmware_vms}
 
-        
+
 | Categories | Workflows | Sources |     |     |     |     |     |     |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | ESXi VM Servers | vCloud Director | Cisco HyperFlex Storage Integration | HPE Nimble Storage Snapshot Integration | Pure FlashArray Storage Snapshot Integration | Netapp Storage Snapshot Integration | NetApp Snapshot Management |
@@ -178,7 +178,7 @@ This section lists the workflows that are supported for different servers, datab
 ### Archival workflows for vmware vms
 {: #archival_workflows_for_vmware_vms}
 
-        
+
 | Categories | Workflows | Sources |     |     |     |     |     |     |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | ESXi VM Servers | vCloud Director | Cisco HyperFlex Storage Snapshot Integration | HPE Nimble Storage Snapshot Integration | Pure FlashArray Storage Snapshot Integration | Netapp Storage Snapshot Integration | NetApp Snapshot Management |
@@ -222,7 +222,7 @@ This section lists the workflows that are supported for different servers, datab
 ### Replication workflows for vmware vms
 {: #replication_workflows_for_vmware_vms}
 
-        
+
 | Categories | Workflows | Sources |     |     |     |     |     |     |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | ESXi VM Servers | vCloud Director | Cisco HyperFlex Storage Snapshot Integration | HPE Nimble Storage Snapshot Integration | Pure FlashArray Storage Snapshot Integration | Netapp Storage Snapshot Integration | NetApp Snapshot Management |
@@ -255,7 +255,7 @@ This section lists the workflows that are supported for different servers, datab
 ### Protection workflows for non-vmware-based vms
 {: #protection_workflows_for_non-vmware-based_vms}
 
-     
+
 | Categories | Workflows | Sources |     |     |     |
 | --- | --- | --- | --- | --- | --- |
 | HyperV 2016 / 2019 / 2022 VM Servers | HyperV 2012R2 VM Servers | AHV VM Servers | RHV (KVM) |
@@ -282,7 +282,7 @@ This section lists the workflows that are supported for different servers, datab
 | CANCEL | Cancel a running job run | Yes | Yes | Yes | Yes |
 | Cancel a running clone or recover tasks | Yes | Yes | Yes | Yes |
 | DELETE SNAPSHOT | Delete a local snapshot of a job run | Yes | Yes | Yes | Yes |
-| FILE RECOVERY<br><br>Cohesity does not support Windows Deduplication Enabled volumes for AHV file recovery. | Search for files or folders | Yes | Yes | Yes | Yes |
+| FILE RECOVERY<br><br>{{site.data.keyword.baas_full_notm}} does not support Windows Deduplication Enabled volumes for AHV file recovery. | Search for files or folders | Yes | Yes | Yes | Yes |
 | Browse for a backed-up object | Yes | Yes | Yes | Yes |
 | Download files/folders | Yes | Yes | Yes | Yes |
 | Recover files | Yes | Yes | Yes | No  |
@@ -294,7 +294,7 @@ This section lists the workflows that are supported for different servers, datab
 ### Archival workflows for non-vmware-based vms
 {: #archival_workflows_for_non-vmware-based_vms}
 
-     
+
 | Categories | Workflows | Sources |     |     |     |
 | --- | --- | --- | --- | --- | --- |
 | HyperV 2016 / 2019 / 2022 VM Servers | HyperV 2012R2 VM Servers | AHV VM Servers | RHV (KVM) |
@@ -338,7 +338,7 @@ This section lists the workflows that are supported for different servers, datab
 ### Replication workflows for non-vmware-based vms
 {: #replication_workflows_for_non-vmware-based_vms}
 
-     
+
 | Categories | Workflows | Sources |     |     |     |
 | --- | --- | --- | --- | --- | --- |
 | HyperV 2016 / 2019 / 2022 VM Servers | HyperV 2012R2 VM Servers | AHV VM Servers | RHV (KVM) |
@@ -374,7 +374,7 @@ This section lists the workflows that are supported for different servers, datab
 ### Protection workflows for physical server (block based)
 {: #protection_workflows_for_physical_server_block_based}
 
-   
+
 | Categories | Workflows | Sources |     |
 | --- | --- | --- | --- |
 | Physical Servers (Windows - Block Based) | Physical Servers (Linux - Block Based) |
@@ -407,7 +407,7 @@ This section lists the workflows that are supported for different servers, datab
 ### Archival workflows for physical server (block based)
 {: #archival_workflows_for_physical_server_block_based}
 
-   
+
 | Categories | Workflows | Sources |     |
 | --- | --- | --- | --- |
 | Physical Servers (Windows - Block Based) | Physical Servers (Linux - Block Based) |
@@ -447,7 +447,7 @@ This section lists the workflows that are supported for different servers, datab
 ### Replication workflows for physical server (block based)
 {: #replication_workflows_for_physical_server_block_based}
 
-   
+
 | Categories | Workflows | Sources |     |
 | --- | --- | --- | --- |
 | Physical Servers (Windows - Block Based) | Physical Servers (Linux - Block Based) |
@@ -477,7 +477,7 @@ This section lists the workflows that are supported for different servers, datab
 ### Protection workflows for physical server (file based)
 {: #protection_workflows_for_physical_server_file_based}
 
-      
+
 | Categories | Workflows | Sources |     |     |     |     |
 | --- | --- | --- | --- | --- | --- | --- |
 | Physical Servers (Windows - File Based) | Physical Servers (Linux - File Based) | AIX | Solaris | HPUX |
@@ -511,7 +511,7 @@ This section lists the workflows that are supported for different servers, datab
 ### Archival workflows for physical server (file based)
 {: #archival_workflows_for_physical_server_file_based}
 
-      
+
 | Categories | Workflows | Sources |     |     |     |     |
 | --- | --- | --- | --- | --- | --- | --- |
 | Physical Servers (Windows - File Based) | Physical Servers (Linux - File Based) | AIX | Solaris | HPUX |
@@ -553,7 +553,7 @@ This section lists the workflows that are supported for different servers, datab
 ### Replication workflows for physical server (file based)
 {: #replication_workflows_for_physical_server_file_based}
 
-      
+
 | Categories | Workflows | Sources |     |     |     |     |
 | --- | --- | --- | --- | --- | --- | --- |
 | Physical Servers (Windows - File Based) | Physical Servers (Linux - File Based) | AIX | Solaris | HPUX |
@@ -588,7 +588,7 @@ This section lists the workflows that are supported for different servers, datab
 ### Protection workflows for ms sql
 {: #protection_workflows_for_ms_sql}
 
-        
+
 | Categories | Workflows | Sources |     |     |     |     |     |     |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | MS SQL VM | MS SQL Volume Based | MS SQL FileStream (Volume Based) Database | MS SQL FCI | MS SQL AAG | MS SQL File Based | MS SQL Native |
@@ -633,7 +633,7 @@ This section lists the workflows that are supported for different servers, datab
 ### Archival workflows for ms sql
 {: #archival_workflows_for_ms_sql}
 
-        
+
 | Categories | Workflows | Sources |     |     |     |     |     |     |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | MS SQL VM | MS SQL Volume Based | MS SQL FileStream (Volume Based) Database | MS SQL FCI | MS SQL AAG | MS SQL File Based | MS SQL Native (VDI) |
@@ -676,7 +676,7 @@ This section lists the workflows that are supported for different servers, datab
 ### Replication workflows for ms sql
 {: #replication_workflows_for_ms_sql}
 
-        
+
 | Categories | Workflows | Sources |     |     |     |     |     |     |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | MS SQL VM | MS SQL Volume Based | MS SQL FileStream (Volume Based) Database | MS SQL FCI | MS SQL AAG | MS SQL File Based | MS SQL Native |
@@ -711,7 +711,7 @@ This section lists the workflows that are supported for different servers, datab
 ### Protection workflows for oracle
 {: #protection_workflows_for_oracle}
 
-      
+
 | Categories | Workflows | Sources |     |     |     |     |
 | --- | --- | --- | --- | --- | --- | --- |
 | Oracle Standalone | Oracle RAC | Oracle on Windows | Oracle on AIX | Oracle on Solaris |
@@ -744,7 +744,7 @@ This section lists the workflows that are supported for different servers, datab
 ### Archival workflows for oracle
 {: #archival_workflows_for_oracle}
 
-      
+
 | Categories | Workflows | Sources |     |     |     |     |
 | --- | --- | --- | --- | --- | --- | --- |
 | Oracle Standalone | Oracle RAC | Oracle on Windows | Oracle on AIX | Oracle on Solaris |
@@ -770,7 +770,7 @@ This section lists the workflows that are supported for different servers, datab
 ### Replication workflows for oracle
 {: #replication_workflows_for_oracle}
 
-      
+
 | Categories | Workflows | Sources |     |     |     |     |
 | --- | --- | --- | --- | --- | --- | --- |
 | Oracle Standalone | Oracle RAC | Oracle on Windows | Oracle on AIX | Oracle on Solaris |
@@ -796,7 +796,7 @@ This section lists the workflows that are supported for different servers, datab
 ### Protection workflows for cassandra, mongodb, couchbase, and hadoop
 {: #protection_workflows_for_cassandra_mongodb_couchbase_and_hadoop}
 
-       
+
 | Categories | Workflows | Sources |     |     |     |     |     |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | Cassandra | MongoDB | Couchbase-UDA Connector | Hadoop-HDFS | Hadoop-Hive | Hadoop-HBase |
@@ -821,7 +821,7 @@ This section lists the workflows that are supported for different servers, datab
 ### Archival workflows for cassandra, mongodb, couchbase, and hadoop
 {: #archival_workflows_for_cassandra_mongodb_couchbase_and_hadoop}
 
-       
+
 | Categories | Workflows | Sources |     |     |     |     |     |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | Cassandra | MongoDB | Couchbase-UDA Connector | Hadoop-HDFS | Hadoop-Hive | Hadoop-HBase |
@@ -853,7 +853,7 @@ This section lists the workflows that are supported for different servers, datab
 ### Replication workflows for cassandra, mongodb, couchbase, and hadoop
 {: #replication_workflows_for_cassandra_mongodb_couchbase_and_hadoop}
 
-       
+
 | Categories | Workflows | Sources |     |     |     |     |     |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | Cassandra | MongoDB | Couchbase-UDA Connector | Hadoop-HDFS | Hadoop-Hive | Hadoop-HBase |
@@ -880,7 +880,7 @@ This section lists the workflows that are supported for different servers, datab
 ### Protection workflows for uda
 {: #protection_workflows_for_uda}
 
-         
+
 | Categories | Workflows | Sources |     |     |     |     |     |     |     |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | Universal Data Adapter | UDA: CockroachDB on Linux | UDA: DB2 on Linux | UDA: SAP IQ on Linux | UDA: SAP ASE on Linux | UDA: SAP ASE on Windows | UDA: SAP on Oracle | UDA: PostgreSQL |
@@ -903,7 +903,7 @@ This section lists the workflows that are supported for different servers, datab
 ### Archival workflows for uda
 {: #archival_workflows_for_uda}
 
-         
+
 | Categories | Workflows | Sources |     |     |     |     |     |     |     |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | Universal Data Adapter | UDA: CockroachDB on Linux | UDA: DB2 on Linux | UDA: SAP IQ on Linux | UDA: SAP ASE on Linux | UDA: SAP ASE on Windows | UDA: SAP on Oracle | UDA: PostgreSQL |
@@ -925,7 +925,7 @@ This section lists the workflows that are supported for different servers, datab
 ### Replication workflows for uda
 {: #replication_workflows_for_uda}
 
-         
+
 | Categories | Workflows | Sources |     |     |     |     |     |     |     |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | Universal Data Adapter | UDA: CockroachDB on Linux | UDA: DB2 on Linux | UDA: SAP IQ on Linux | UDA: SAP ASE on Linux | UDA: SAP ASE on Windows | UDA: SAP on Oracle | UDA: PostgreSQL |
@@ -953,7 +953,7 @@ This section lists the workflows that are supported for different servers, datab
 ### Registration workflows for microsoft 365 applications
 {: #registration_workflows_for_microsoft_365_applications}
 
-      
+
 | Workflows | Sources |     |     |     |     |     |
 | --- | --- | --- | --- | --- | --- | --- |
 | Microsoft 365 Mailbox | Microsoft 365 OneDrive | Microsoft 365 SharePoint | Microsoft 365 PublicFolders | Microsoft 365 Groups | Microsoft 365 Teams |
@@ -978,7 +978,7 @@ This section lists the workflows that are supported for different servers, datab
 ### Backup and recovery workflows for microsoft 365 mailboxes
 {: #backup_and_recovery_workflows_for_microsoft_365_mailboxes}
 
-  
+
 | Categories | Workflows | Supported |
 | --- | --- | --- |
 | Backup | Incremental Indexing | Yes |
@@ -1010,7 +1010,7 @@ This section lists the workflows that are supported for different servers, datab
 ### Backup and recovery workflows for microsoft 365 public folders
 {: #backup_and_recovery_workflows_for_microsoft_365_public_folders}
 
-  
+
 | Categories | Workflows | Supported |
 | --- | --- | --- |
 | Backup | Incremental Indexing | Yes |
@@ -1036,7 +1036,7 @@ This section lists the workflows that are supported for different servers, datab
 ### Backup and recovery workflows for microsoft 365 onedrive
 {: #backup_and_recovery_workflows_for_microsoft_365_onedrive}
 
-  
+
 | Categories | Workflows | Supported |
 | --- | --- | --- |
 | Backup | User OneDrive (licensed) | Yes |
@@ -1064,7 +1064,7 @@ This section lists the workflows that are supported for different servers, datab
 ### Backup and recovery workflows for microsoft 365 sharepoint online sites
 {: #backup_and_recovery_workflows_for_microsoft_365_sharepoint_online_sites}
 
-  
+
 | Categories | Workflows | Supported |
 | --- | --- | --- |
 | Backup | Hub Site / Site / Site Collection / Subsite / Team Site | Yes |
@@ -1109,7 +1109,7 @@ This section lists the workflows that are supported for different servers, datab
 ### Backup and recovery workflows for microsoft 365 teams
 {: #backup_and_recovery_workflows_for_microsoft_365_teams}
 
-  
+
 | Categories | Workflows | Supported |
 | --- | --- | --- |
 | Backup | Channel Files | Yes |
@@ -1188,7 +1188,7 @@ This section lists the workflows that are supported for different servers, datab
 ### Backup and recovery workflows for microsoft 365 groups
 {: #backup_and_recovery_workflows_for_microsoft_365_groups}
 
-  
+
 | Categories | Workflows | Supported |
 | --- | --- | --- |
 | Backup | Group Mailbox | Yes |
@@ -1201,7 +1201,7 @@ This section lists the workflows that are supported for different servers, datab
 ### Cloud archive workflows for microsoft 365 applications
 {: #cloud_archive_workflows_for_microsoft_365_applications}
 
-      
+
 | Workflows | Sources |     |     |     |     |     |
 | --- | --- | --- | --- | --- | --- | --- |
 | Microsoft 365 Mailbox | Microsoft 365 OneDrive | Microsoft 365 SharePoint | Microsoft 365 PublicFolders | Microsoft 365 Groups | Microsoft 365 Teams |
@@ -1212,7 +1212,7 @@ This section lists the workflows that are supported for different servers, datab
 ### Protection workflows for on-prem applications
 {: #protection_workflows_for_on-prem_applications}
 
-    
+
 | Categories | Workflows | Sources |     |     |
 | --- | --- | --- | --- | --- |
 | SAP HANA | Microsoft Exchange OnPrem | Microsoft Active Directory |
@@ -1243,7 +1243,7 @@ This section lists the workflows that are supported for different servers, datab
 ### Archival workflows for on-prem applications
 {: #archival_workflows_for_on-prem_applications}
 
-    
+
 | Categories | Workflows | Sources |     |     |
 | --- | --- | --- | --- | --- |
 | SAP HANA | Microsoft Exchange OnPrem | Microsoft Active Directory |
@@ -1280,7 +1280,7 @@ This section lists the workflows that are supported for different servers, datab
 ### Replication workflows for on-prem applications
 {: #replication_workflows_for_on-prem_applications}
 
-    
+
 | Categories | Workflows | Sources |     |     |
 | --- | --- | --- | --- | --- |
 | SAP HANA | Microsoft Exchange OnPrem | Microsoft Active Directory |
@@ -1309,7 +1309,7 @@ This section lists the workflows that are supported for different servers, datab
 ### Protection workflows for nas nfs
 {: #protection_workflows_for_nas_nfs}
 
-       
+
 | Categories | Workflows | Sources |     |     |     |     |     |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | NetApp - NFS | Generic NAS - NFS | Isilon - NFS | Pure FlashBlade - NFS | GPFS - NFS | Elastifile - NFS |
@@ -1338,7 +1338,7 @@ This section lists the workflows that are supported for different servers, datab
 ### Archival workflows for nas nfs
 {: #archival_workflows_for_nas_nfs}
 
-       
+
 | Categories | Workflows | Sources |     |     |     |     |     |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | NetApp - NFS | Generic NAS - NFS | Isilon - NFS | Pure FlashBlade - NFS | GPFS - NFS | Elastifile - NFS |
@@ -1374,7 +1374,7 @@ This section lists the workflows that are supported for different servers, datab
 ### Replication workflows for nas nfs
 {: #replication_workflows_for_nas_nfs}
 
-       
+
 | Categories | Workflows | Sources |     |     |     |     |     |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | NetApp - NFS | Generic NAS - NFS | Isilon - NFS | Pure FlashBlade - NFS | GPFS - NFS | Elastifile - NFS |
@@ -1398,7 +1398,7 @@ This section lists the workflows that are supported for different servers, datab
 ### Protection workflows for nas smb/cifs
 {: #protection_workflows_for_nas_smbcifs}
 
-     
+
 | Categories | Workflows | Sources |     |     |     |
 | --- | --- | --- | --- | --- | --- |
 | NetApp - SMB | Generic NAS - SMB | Isilon - SMB | Pure FlashBlade - SMB |
@@ -1427,7 +1427,7 @@ This section lists the workflows that are supported for different servers, datab
 ### Archival workflows for nas smb/cifs
 {: #archival_workflows_for_nas_smbcifs}
 
-     
+
 | Categories | Workflows | Sources |     |     |     |
 | --- | --- | --- | --- | --- | --- |
 | NetApp - SMB | Generic NAS - SMB | Isilon - SMB | Pure FlashBlade - SMB |
@@ -1463,7 +1463,7 @@ This section lists the workflows that are supported for different servers, datab
 ### Replication workflows for nas smb/cifs
 {: #replication_workflows_for_nas_smbcifs}
 
-     
+
 | Categories | Workflows | Sources |     |     |     |
 | --- | --- | --- | --- | --- | --- |
 | NetApp - SMB | Generic NAS - SMB | Isilon - SMB | Pure FlashBlade - SMB |
@@ -1490,7 +1490,7 @@ This section lists the workflows that are supported for different servers, datab
 ### Protection workflows for aws cloud vm (ec2 instance) - cohesity snapshot
 {: #protection_workflows_for_aws_cloud_vm_ec2_instance_-_cohesity_snapshot}
 
-    
+
 | Categories | Workflows | Sources |     |     |
 | --- | --- | --- | --- | --- |
 | AWS Instances (Native Backup) | AWS-Gov Instances (Native Backup) | AWS-C2S Instances (Native Backup) |
@@ -1522,7 +1522,7 @@ This section lists the workflows that are supported for different servers, datab
 ### Archival workflows for aws cloud vm (ec2 instance) - cohesity snapshot
 {: #archival_workflows_for_aws_cloud_vm_ec2_instance_-_cohesity_snapshot}
 
-    
+
 | Categories | Workflows | Sources |     |     |
 | --- | --- | --- | --- | --- |
 | AWS Instances (Native Backup) | AWS-Gov Instances (Native Backup) | AWS-C2S Instances (Native Backup) |
@@ -1562,7 +1562,7 @@ This section lists the workflows that are supported for different servers, datab
 ### Replication workflows for aws cloud vm (ec2 instance) - cohesity snapshot
 {: #replication_workflows_for_aws_cloud_vm_ec2_instance_-_cohesity_snapshot}
 
-    
+
 | Categories | Workflows | Sources |     |     |
 | --- | --- | --- | --- | --- |
 | AWS Instances (Native Backup) | AWS-Gov Instances (Native Backup) | AWS-C2S Instances (Native Backup) |
@@ -1589,7 +1589,7 @@ This section lists the workflows that are supported for different servers, datab
 ### Protection workflows for aws cloud - ebs snapshot
 {: #protection_workflows_for_aws_cloud_-_ebs_snapshot}
 
-    
+
 | Categories | Workflows | Sources |     |     |
 | --- | --- | --- | --- | --- |
 | AWS Instances (CSM) | AWS-Gov Instances (CSM) | AWS-C2S Instances (CSM) |
@@ -1612,7 +1612,7 @@ This section lists the workflows that are supported for different servers, datab
 ### Archival workflows for aws cloud - ebs snapshot
 {: #archival_workflows_for_aws_cloud_-_ebs_snapshot}
 
-    
+
 | Categories | Workflows | Sources |     |     |
 | --- | --- | --- | --- | --- |
 | AWS Instances (CSM) | AWS-Gov Instances (CSM) | AWS-C2S Instances (CSM) |
@@ -1656,7 +1656,7 @@ This section lists the workflows that are supported for different servers, datab
 ### Replication workflows for aws cloud - ebs snapshot
 {: #replication_workflows_for_aws_cloud_-_ebs_snapshot}
 
-    
+
 | Categories | Workflows | Sources |     |     |
 | --- | --- | --- | --- | --- |
 | AWS Instances (CSM) | AWS-Gov Instances (CSM) | AWS-C2S Instances (CSM) |
@@ -1667,7 +1667,7 @@ This section lists the workflows that are supported for different servers, datab
 ### Protection workflows for aws cloud - rds/aurora snapshot
 {: #protection_workflows_for_aws_cloud_-_rdsaurora_snapshot}
 
-     
+
 | Categories | Workflows | Sources |     |     |     |
 | --- | --- | --- | --- | --- | --- |
 | AWS RDS | AWS-Gov RDS | AWS Aurora | AWS-Gov Aurora |
@@ -1689,7 +1689,7 @@ This section lists the workflows that are supported for different servers, datab
 ### Archival workflows for aws cloud - rds/aurora snapshot
 {: #archival_workflows_for_aws_cloud_-_rdsaurora_snapshot}
 
-     
+
 | Categories | Workflows | Sources |     |     |     |
 | --- | --- | --- | --- | --- | --- |
 | AWS RDS | AWS-Gov RDS | AWS Aurora | AWS-Gov Aurora |
@@ -1736,7 +1736,7 @@ This section lists the workflows that are supported for different servers, datab
 ### Replication workflows for aws cloud - rds/aurora snapshot
 {: #replication_workflows_for_aws_cloud_-_rdsaurora_snapshot}
 
-     
+
 | Categories | Workflows | Sources |     |     |     |
 | --- | --- | --- | --- | --- | --- |
 | AWS RDS | AWS-Gov RDS | AWS Aurora | AWS-Gov Aurora |
@@ -1747,7 +1747,7 @@ This section lists the workflows that are supported for different servers, datab
 ### Protection workflows for aws s3
 {: #protection_workflows_for_aws_s3}
 
-  
+
 | Categories | Workflows | Sources |
 | --- | --- | --- |
 | AWS S3 |
@@ -1771,7 +1771,7 @@ This section lists the workflows that are supported for different servers, datab
 ### Archival workflows for aws s3
 {: #archival_workflows_for_aws_s3}
 
-  
+
 | Categories | Workflows | Sources |
 | --- | --- | --- |
 | AWS S3 |
@@ -1808,7 +1808,7 @@ This section lists the workflows that are supported for different servers, datab
 ### Replication workflows for aws s3
 {: #replication_workflows_for_aws_s3}
 
-  
+
 | Categories | Workflows | Sources |
 | --- | --- | --- |
 | AWS S3 |
@@ -1833,7 +1833,7 @@ This section lists the workflows that are supported for different servers, datab
 ### Protection workflows for azure cloud vm - cohesity snapshot
 {: #protection_workflows_for_azure_cloud_vm_-_cohesity_snapshot}
 
-    
+
 | Categories | Workflows | Sources |     |     |
 | --- | --- | --- | --- | --- |
 | Azure VMs (Native Backup) | Azure-Gov VMs (Native Backup) | Azure stack VMs (Native Backup) |
@@ -1866,7 +1866,7 @@ This section lists the workflows that are supported for different servers, datab
 ### Archival workflows for azure cloud vm - cohesity snapshot
 {: #archival_workflows_for_azure_cloud_vm_-_cohesity_snapshot}
 
-    
+
 | Categories | Workflows | Sources |     |     |
 | --- | --- | --- | --- | --- |
 | Azure VMs (Native Backup) | Azure-Gov VMs (Native Backup) | Azure stack VMs (Native Backup) |
@@ -1906,7 +1906,7 @@ This section lists the workflows that are supported for different servers, datab
 ### Replication workflows for azure cloud vm - cohesity snapshot
 {: #replication_workflows_for_azure_cloud_vm_-_cohesity_snapshot}
 
-    
+
 | Categories | Workflows | Sources |     |     |
 | --- | --- | --- | --- | --- |
 | Azure VMs (Native Backup) | Azure-Gov VMs (Native Backup) | Azure stack VMs (Native Backup) |
@@ -1934,7 +1934,7 @@ This section lists the workflows that are supported for different servers, datab
 ### Protection workflows for azure cloud vms - csm
 {: #protection_workflows_for_azure_cloud_vms_-_csm}
 
-   
+
 | Categories | Workflows | Sources |     |
 | --- | --- | --- | --- |
 | Azure VMs(CSM) | Azure-Gov VMs (CSM) |
@@ -1959,7 +1959,7 @@ This section lists the workflows that are supported for different servers, datab
 ### Archival workflows for azure cloud vms - csm
 {: #archival_workflows_for_azure_cloud_vms_-_csm}
 
-   
+
 | Categories | Workflows | Sources |     |
 | --- | --- | --- | --- |
 | Azure VMs(CSM) | Azure-Gov VMs (CSM) |
@@ -2006,7 +2006,7 @@ This section lists the workflows that are supported for different servers, datab
 ### Replication workflows for azure cloud vms - csm
 {: #replication_workflows_for_azure_cloud_vms_-_csm}
 
-   
+
 | Categories | Workflows | Sources |     |
 | --- | --- | --- | --- |
 | Azure VMs(CSM) | Azure-Gov VMs (CSM) |
@@ -2049,7 +2049,7 @@ This section lists the workflows that are supported for different servers, datab
 ### Protection workflows for gcp cloud vm - cohesity snapshot
 {: #protection_workflows_for_gcp_cloud_vm_-_cohesity_snapshot}
 
-  
+
 | Categories | Workflows | Sources |
 | --- | --- | --- |
 | GCP VM Instances (Native Backup) |
@@ -2083,7 +2083,7 @@ This section lists the workflows that are supported for different servers, datab
 ### Archival workflows for gcp cloud vm - cohesity snapshot
 {: #archival_workflows_for_gcp_cloud_vm_-_cohesity_snapshot}
 
-  
+
 | Categories | Workflows | Sources |
 | --- | --- | --- |
 | GCP VM Instances (Native Backup) |
@@ -2123,7 +2123,7 @@ This section lists the workflows that are supported for different servers, datab
 ### Replication workflows for gcp cloud vm - cohesity snapshot
 {: #replication_workflows_for_gcp_cloud_vm_-_cohesity_snapshot}
 
-  
+
 | Categories | Workflows | Sources |
 | --- | --- | --- |
 | GCP VM Instances (Native Backup) |
@@ -2154,7 +2154,7 @@ This section lists the workflows that are supported for different servers, datab
 ### Protection workflows for views, remote adapters, and pure volumes
 {: #protection_workflows_for_views_remote_adapters_and_pure_volumes}
 
-    
+
 | Categories | Workflows | Sources |     |     |
 | --- | --- | --- | --- | --- |
 | Views | Remote Adapters | Pure Volumes |
@@ -2182,7 +2182,7 @@ This section lists the workflows that are supported for different servers, datab
 
 If the **Object Key Pattern** of the S3 View you want to archive is **Object ID**, then you must use the **Incremental Forever** archival format while archiving the S3 View. You cannot archive the S3 View using the **Incremental with Periodic Full** format.
 
-    
+
 | Categories | Workflows | Sources |     |     |
 | --- | --- | --- | --- | --- |
 | Views | Remote Adapters | Pure Volumes |
@@ -2215,7 +2215,7 @@ If the **Object Key Pattern** of the S3 View you want to archive is **Object ID*
 ### Replication workflows for views, remote adapters, and pure volumes
 {: #replication_workflows_for_views_remote_adapters_and_pure_volumes}
 
-    
+
 | Categories | Workflows | Sources |     |     |
 | --- | --- | --- | --- | --- |
 | Views | Remote Adapters | Pure Volumes |
@@ -2242,7 +2242,7 @@ If the **Object Key Pattern** of the S3 View you want to archive is **Object ID*
 ### External targets for cloudarchive (with periodic full) - standard
 {: #external_targets_for_cloudarchive_with_periodic_full_-_standard}
 
-         
+
 | Workflows | External Targets |     |     |     |     |     |     |     |     |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | AWS - S3 | AWS - S3-IA | AWS - S3-Intelligent | AWS - S3-One-Zone | AWS Snowball Edge | AWS - Glacier(Legacy) | AWS - S3 Glacier IR | AWS - S3-Glacier | AWS - S3 Glacier Deep Archive |
@@ -2267,7 +2267,7 @@ If the **Object Key Pattern** of the S3 View you want to archive is **Object ID*
 ### External targets for cloudarchive (with periodic full) - gov
 {: #external_targets_for_cloudarchive_with_periodic_full_-_gov}
 
-   
+
 | Workflows | External Targets |     |     |
 | --- | --- | --- | --- |
 | AWS Gov - S3 | AWS Gov - S3-Glacier | AWS Gov - S3 Glacier Deep Archive |
@@ -2292,7 +2292,7 @@ If the **Object Key Pattern** of the S3 View you want to archive is **Object ID*
 ### External targets for cloudarchive (with periodic full) - c2s
 {: #external_targets_for_cloudarchive_with_periodic_full_-_c2s}
 
-  
+
 | Workflows | External Targets |     |
 | --- | --- | --- |
 | AWS C2S - S3 | AWS C2S - Glacier |
@@ -2318,17 +2318,17 @@ If the **Object Key Pattern** of the S3 View you want to archive is **Object ID*
 {: #external_targets_for_cloudarchive_incremental_forever_and_cloudarchive_direct_with_dedup_-_standard}
 
 *   Supported sources for CloudArchive (Incremental Forever) are VMWare, NAS, Views, Physical, O365, Oracle, SQL, Amazon EC2.
-    
-*   Supported sources for CloudArchive Direct (with Dedup) are VMware, and NAS.
-    
-*   WORM is not supported for CloudArchive Direct .
-    
-*   CloudArchive Direct (with Dedup) for AWS S3 Glacier FLR is supported in NAS, but not supported in VMware.
-    
-*   Recover files/folders to source from archived snapshots is only supported for VMWare, HyperV, NAS, Cohesity Views, and Physical (Linux, Windows, Solaris, HPUX and AIX) sources.
-    
 
-         
+*   Supported sources for CloudArchive Direct (with Dedup) are VMware, and NAS.
+
+*   WORM is not supported for CloudArchive Direct .
+
+*   CloudArchive Direct (with Dedup) for AWS S3 Glacier FLR is supported in NAS, but not supported in VMware.
+
+*   Recover files/folders to source from archived snapshots is only supported for VMWare, HyperV, NAS, Cohesity Views, and Physical (Linux, Windows, Solaris, HPUX and AIX) sources.
+
+
+
 | Workflows | External Targets |     |     |     |     |     |     |     |     |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | AWS - S3 | AWS - S3-Intelligent | AWS - S3-One-Zone | AWS - S3-IA | AWS - S3 Glacier IR | AWS - S3 Glacier | AWS - S3 Glacier Deep Archive | AWS - Glacier(Legacy) | AWS Snowball Edge |
@@ -2354,13 +2354,13 @@ If the **Object Key Pattern** of the S3 View you want to archive is **Object ID*
 {: #external_targets_for_cloudarchive_incremental_forever_and_cloudarchive_direct_with_dedup_-_gov}
 
 *   Supported sources for CloudArchive (Incremental Forever) are VMWare, NAS, Views, Physical, O365, Oracle, SQL, Amazon EC2.
-    
-*   Supported sources for CloudArchive Direct (with Dedup) are VMware, and NAS.
-    
-*   CloudArchive Direct (with Dedup) for AWS Gov S3 Glacier FLR is supported in NAS, but not supported in VMware.
-    
 
-   
+*   Supported sources for CloudArchive Direct (with Dedup) are VMware, and NAS.
+
+*   CloudArchive Direct (with Dedup) for AWS Gov S3 Glacier FLR is supported in NAS, but not supported in VMware.
+
+
+
 | Workflows | External Targets |     |     |
 | --- | --- | --- | --- |
 | AWS Gov - S3 | AWS Gov - S3 Glacier | AWS Gov - S3 Glacier Deep Archive |
@@ -2386,11 +2386,11 @@ If the **Object Key Pattern** of the S3 View you want to archive is **Object ID*
 {: #external_targets_for_cloudarchive_incremental_forever_and_cloudarchive_direct_with_dedup_-_c2s}
 
 *   Supported sources for CloudArchive (Incremental Forever) are VMWare, NAS, Views, Physical, O365, Oracle, SQL, Amazon EC2.
-    
-*   Supported sources for CloudArchive Direct (with Dedup) are VMware, and NAS.
-    
 
-  
+*   Supported sources for CloudArchive Direct (with Dedup) are VMware, and NAS.
+
+
+
 | Workflows | External Targets |     |
 | --- | --- | --- |
 | AWS C2S - S3 | AWS C2S - Glacier |
@@ -2419,7 +2419,7 @@ Supported sources for CloudArchive Direct (without Dedup) is NAS.
 
 The option to enable CloudArchive Direct (native mode - no dedupe, no compression) from the NAS Protection Group page is deprecated in the 6.8 and above versions. If you want to enable the CloudArchive Direct native mode, then you must contact[IBM Cloud Support](../Support/ContactSupport.htm).
 
-       
+
 | Workflows | External Targets |     |     |     |     |     |     |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | AWS - S3 | AWS - S3-IA | AWS - S3-Intelligent | AWS - S3-One-Zone | AWS Snowball Edge | AWS - Glacier | AWS - S3 Glacier Deep Archive |
@@ -2446,7 +2446,7 @@ Supported sources for CloudArchive Direct (without Dedup) is NAS.
 
 The option to enable CloudArchive Direct (native mode - no dedupe, no compression) from the NAS Protection Group page is deprecated in the 6.8 and above versions. If you want to enable the CloudArchive Direct native mode, then you must contact[IBM Cloud Support](../Support/ContactSupport.htm).
 
-  
+
 | Workflows | External Targets |     |
 | --- | --- | --- |
 | AWS Gov - S3 | AWS Gov - S3 Glacier Deep Archive |
@@ -2475,7 +2475,7 @@ Supported sources for CloudArchive Direct (without Dedup) is NAS.
 
 The option to enable CloudArchive Direct (native mode - no dedupe, no compression) from the NAS Protection Group page is deprecated in the 6.8 and above versions. If you want to enable the CloudArchive Direct native mode, then you must contact[IBM Cloud Support](../Support/ContactSupport.htm).
 
-  
+
 | Workflows | External Targets |     |
 | --- | --- | --- |
 | AWS C2S - S3 | AWS C2S - Glacier |
@@ -2500,7 +2500,7 @@ The option to enable CloudArchive Direct (native mode - no dedupe, no compressio
 ### External targets for cloudtier - standard
 {: #external_targets_for_cloudtier_-_standard}
 
-    
+
 | Workflows | External Targets |     |     |     |
 | --- | --- | --- | --- | --- |
 | AWS - S3 Standard | AWS - S3-Intelligent Standard | AWS S3-STS Standard | AWS Snowball Edge Standard |
@@ -2515,7 +2515,7 @@ The option to enable CloudArchive Direct (native mode - no dedupe, no compressio
 ### External targets for cloudtier - gov
 {: #external_targets_for_cloudtier_-_gov}
 
-   
+
 | Workflows | External Targets |     |     |
 | --- | --- | --- | --- |
 | AWS Gov - S3 | AWS - S3-Intelligent Gov | AWS S3-STS Gov |
@@ -2530,7 +2530,7 @@ The option to enable CloudArchive Direct (native mode - no dedupe, no compressio
 ### External targets for cloudtier - c2s
 {: #external_targets_for_cloudtier_-_c2s}
 
-  
+
 | Workflows | External Targets |     |
 | --- | --- | --- |
 | AWS C2S - S3 | AWS S3-STS C2S |
@@ -2548,7 +2548,7 @@ The option to enable CloudArchive Direct (native mode - no dedupe, no compressio
 ### External targets for cloudarchive (with periodic full)
 {: #external_targets_for_cloudarchive_with_periodic_full}
 
-      
+
 | Workflows | External Targets |     |     |     |     |     |
 | --- | --- | --- | --- | --- | --- | --- |
 | Azure Hot Blob | Azure Cool Blob | Azure Archive | Azure Gov Hot Blob | Azure Gov Cool Blob | Azure Gov Archive Blob |
@@ -2574,11 +2574,11 @@ The option to enable CloudArchive Direct (native mode - no dedupe, no compressio
 {: #external_targets_for_cloudarchive_incremental_forever_and_cloudarchive_direct_with_dedup}
 
 *   Supported sources for CloudArchive (Incremental Forever) are VMWare, NAS, Views, Physical, O365, Oracle, SQL, Amazon EC2.
-    
-*   Supported sources for CloudArchive Direct (with Dedup) are VMware, and NAS.
-    
 
-    
+*   Supported sources for CloudArchive Direct (with Dedup) are VMware, and NAS.
+
+
+
 | Workflows | External Targets |     |     |     |
 | --- | --- | --- | --- | --- |
 | Azure Hot Blob | Azure Cool Blob | Azure Archive | Azure Gov |
@@ -2607,7 +2607,7 @@ Supported sources for CloudArchive Direct (without Dedup) is NAS.
 
 The option to enable CloudArchive Direct (native mode - no dedupe, no compression) from the NAS Protection Group page is deprecated in the 6.8 and above versions. If you want to enable the CloudArchive Direct native mode, then you must contact[IBM Cloud Support](../Support/ContactSupport.htm).
 
-    
+
 | Workflows | External Targets |     |     |     |
 | --- | --- | --- | --- | --- |
 | Azure Hot Blob | Azure Cool Blob | Azure Archive | Azure Gov |
@@ -2630,7 +2630,7 @@ The option to enable CloudArchive Direct (native mode - no dedupe, no compressio
 ### External targets for cloudtier - standard
 {: #external_targets_for_cloudtier_-_standard}
 
- 
+
 | Workflows | External Targets |
 | --- | --- |
 | Azure Hot Blob - Standard |
@@ -2645,7 +2645,7 @@ The option to enable CloudArchive Direct (native mode - no dedupe, no compressio
 ### External targets for cloudtier - gov
 {: #external_targets_for_cloudtier_-_gov}
 
- 
+
 | Workflows | External Targets |
 | --- | --- |
 | Azure Hot Blob - Gov |
@@ -2663,7 +2663,7 @@ The option to enable CloudArchive Direct (native mode - no dedupe, no compressio
 ### External targets for cloudarchive (with periodic full)
 {: #external_targets_for_cloudarchive_with_periodic_full}
 
-   
+
 | Workflows | External Targets |     |     |
 | --- | --- | --- | --- |
 | Google - Standard | Google - Nearline | Google - Coldline |
@@ -2689,11 +2689,11 @@ The option to enable CloudArchive Direct (native mode - no dedupe, no compressio
 {: #external_targets_for_cloudarchive_incremental_forever_and_cloudarchive_direct_with_dedup}
 
 *   Supported sources for CloudArchive (Incremental Forever) are VMWare, NAS, Views, Physical, O365, Oracle, SQL, Amazon EC2.
-    
-*   Supported sources for CloudArchive Direct (with Dedup) are VMware, and NAS.
-    
 
-   
+*   Supported sources for CloudArchive Direct (with Dedup) are VMware, and NAS.
+
+
+
 | Workflows | External Targets |     |     |
 | --- | --- | --- | --- |
 | Google - Nearline | Google-Standard | Google - Coldline |
@@ -2722,7 +2722,7 @@ Supported sources for CloudArchive Direct (without Dedup) is NAS.
 
 The option to enable CloudArchive Direct (native mode - no dedupe, no compression) from the NAS Protection Group page is deprecated in the 6.8 and above versions. If you want to enable the CloudArchive Direct native mode, then you must contact[IBM Cloud Support](../Support/ContactSupport.htm).
 
-   
+
 | Workflows | External Targets |     |     |
 | --- | --- | --- | --- |
 | Google - Nearline | Google-Standard | Google - Coldline |
@@ -2745,7 +2745,7 @@ The option to enable CloudArchive Direct (native mode - no dedupe, no compressio
 ### External targets for cloudtier
 {: #external_targets_for_cloudtier}
 
- 
+
 | Workflows | External Targets |
 | --- | --- |
 | Google Standard |
@@ -2763,7 +2763,7 @@ The option to enable CloudArchive Direct (native mode - no dedupe, no compressio
 ### External targets for cloudarchive (with periodic full)
 {: #external_targets_for_cloudarchive_with_periodic_full}
 
-  
+
 | Workflows | External Targets |     |
 | --- | --- | --- |
 | Oracle Standard | Oracle Archive |
@@ -2789,11 +2789,11 @@ The option to enable CloudArchive Direct (native mode - no dedupe, no compressio
 {: #external_targets_for_cloudarchive_incremental_forever_and_cloudarchive_direct_with_dedup}
 
 *   Supported sources for CloudArchive (Incremental Forever) are VMWare, NAS, Views, Physical, O365, Oracle, SQL, Amazon EC2.
-    
-*   Supported sources for CloudArchive Direct (with Dedup) are VMware, and NAS.
-    
 
-  
+*   Supported sources for CloudArchive Direct (with Dedup) are VMware, and NAS.
+
+
+
 | Workflows | External Targets |     |
 | --- | --- | --- |
 | Oracle Standard | Oracle Archive |
@@ -2822,7 +2822,7 @@ Supported sources for CloudArchive Direct (without Dedup) is NAS.
 
 The option to enable CloudArchive Direct (native mode - no dedupe, no compression) from the NAS Protection Group page is deprecated in the 6.8 and above versions. If you want to enable the CloudArchive Direct native mode, then you must contact[IBM Cloud Support](../Support/ContactSupport.htm).
 
-  
+
 | Workflows | External Targets |     |
 | --- | --- | --- |
 | Oracle Standard | Oracle Archive |
@@ -2845,7 +2845,7 @@ The option to enable CloudArchive Direct (native mode - no dedupe, no compressio
 ### External targets for cloudtier
 {: #external_targets_for_cloudtier}
 
- 
+
 | Workflows | External Targets |
 | --- | --- |
 | Oracle - Object Storage |
@@ -2865,7 +2865,7 @@ The option to enable CloudArchive Direct (native mode - no dedupe, no compressio
 
 File-level recovery of objects archived to QStar tape is an Early Access feature.
 
-    
+
 | Workflows | External Targets |     |     |     |
 | --- | --- | --- | --- | --- |
 | NAS | QStar Tape | S3 - Compatible (E.g., Cohesity) | Tape-Based S3 - Compatible (E.g., IBM Storage Protect) \* |
@@ -2884,7 +2884,7 @@ File-level recovery of objects archived to QStar tape is an Early Access feature
 | Recover files/folders to source from archive for downloaded CloudRetrieve jobs | Yes | No  | Yes | No  |
 | WORM Support | No  | No  | Yes | No  |
 | Cloud Vendor Provided Life Cycle Management (LCM) | No  | No  | No  | No  |
-| Cohesity Data Movement (LCM) | No  | No  | No  | No  |
+| {{site.data.keyword.baas_full_notm}} Data Movement (LCM) | No  | No  | No  | No  |
 {: caption="" caption-side="bottom"}
 
 \*The archival format is _Always Full_ with compression enabled by default.
@@ -2894,7 +2894,7 @@ File-level recovery of objects archived to QStar tape is an Early Access feature
 
 Supported sources for CloudArchive Direct with Dedup are VMware, and NAS.
 
-  
+
 | Workflows | External Targets |     |
 | --- | --- | --- |
 | NAS | S3 - Compatible (E.g., Cohesity) \* |
@@ -2913,7 +2913,7 @@ Supported sources for CloudArchive Direct with Dedup are VMware, and NAS.
 | Recover files/folders to source from archive for downloaded CloudRetrieve jobs | Yes | Yes |
 | WORM Support | No  | Yes |
 | Cloud Vendor Provided Life Cycle Management (LCM) | No  | No  |
-| Cohesity Data Movement (LCM) | No  | No  |
+| {{site.data.keyword.baas_full_notm}} Data Movement (LCM) | No  | No  |
 {: caption="" caption-side="bottom"}
 
 \* - Tape Based S3-Compatible targets are not supported for CloudArchive (Incremental Forever) and CloudArchive Direct (with Dedup).
@@ -2925,7 +2925,7 @@ Supported sources for CloudArchive Direct (without Dedup) is NAS.
 
 The option to enable CloudArchive Direct (native mode - no dedupe, no compression) from the NAS Protection Group page is deprecated in the 6.8 and above versions. If you want to enable the CloudArchive Direct native mode, then you must contact[IBM Cloud Support](../Support/ContactSupport.htm).
 
-  
+
 | Workflows | External Targets |     |
 | --- | --- | --- |
 | NAS | QStar Tape |
@@ -2948,7 +2948,7 @@ The option to enable CloudArchive Direct (native mode - no dedupe, no compressio
 ### External targets for cloudtier - s3-compatible, nas, tape
 {: #external_targets_for_cloudtier_-_s3-compatible_nas_tape}
 
-  
+
 | Workflows | External Targets |     |
 | --- | --- | --- |
 | S3 - Compatible (E.g., Cohesity) \* | Netapp - StorageGrid |
@@ -2968,7 +2968,7 @@ The option to enable CloudArchive Direct (native mode - no dedupe, no compressio
 ### Tiering workflows for nfs
 {: #tiering_workflows_for_nfs}
 
-       
+
 | Categories | Workflows | External Targets |     |     |     |     |     |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | NetApp - NFS | Generic NAS - NFS | Isilon - NFS | Pure FlashBlade - NFS | GPFS - NFS | Elastifile - NFS |
@@ -2984,7 +2984,7 @@ The option to enable CloudArchive Direct (native mode - no dedupe, no compressio
 ### Tiering workflows for smb
 {: #tiering_workflows_for_smb}
 
-     
+
 | Categories | Workflows | External Targets |     |     |     |
 | --- | --- | --- | --- | --- | --- |
 | NetApp - SMB | Generic NAS - SMB | Isilon - SMB | Pure FlashBlade - SMB |
@@ -2996,4 +2996,3 @@ The option to enable CloudArchive Direct (native mode - no dedupe, no compressio
 | Tiering Audit Log | Supported (Only as generic NAS) | Yes | Yes | No  |
 | Bucket Customization | Supported (Only as generic NAS) | Yes | Yes | No  |
 {: caption="" caption-side="bottom"}
-

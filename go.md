@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024
-lastupdated: "2025-08-27"
+lastupdated: "2025-09-05"
 
 keywords: backup recovery, go, sdk
 
@@ -81,50 +81,61 @@ Here's an example of how to define environment variables in an application runti
 
 // Constants for IBM COS values
 const (
-    apiKey            = "<api-key>" // example: xxxd12V2QHXbjaM99G9tWyYDgF_0gYdlQ8aWALIQxXx4
-    authEndpoint      = "https://iam.cloud.ibm.com/identity/token"
-    baasEndpointUrl   = "<endpoint>" // example: https://brs-stage-us-south-01.backup-recovery.cloud.ibm.com/
-    tenantID          = "iqhch7lbr4/"
-    connectionId      = "4980716806983529472"
+	apiKey                 = "<api-key>" // example: xxxd12V2QHXbjaM99G9tWyYDgF_0gYdlQ8aWALIQxXx4
+	authEndpoint           = "https://iam.cloud.ibm.com/identity/token"
+	baasEndpointUrl        = "<endpoint>" // example: https://brs-stage-us-south-01.backup-recovery.cloud.ibm.com/
+	managementReportingUrl = "<endpoint>" // example: https://manager.backup-recovery.cloud.ibm.com/heliosreporting/api/v1
+	tenantID               = "iqhch7lbr4/"
+	connectionId           = "4980716806983529472"
 
-    // Connection constants
-    connectionName       = "sdk-test-connection-name-2"
-    updateConnectionName = "sdk-test-update-connection-name-1"
+	// Connection constants
+	connectionName       = "sdk-test-connection-name-2"
+	updateConnectionName = "sdk-test-update-connection-name-1"
 
-    // Physical Source constants
-    physicalSourceEndpoint     = "172.26.1.14"
-    physicalSourceHostType     = "kLinux"
-    physicalSourcePhysicalType = "kHost"
-    physicalSourceEnvironment  = "kPhysical"
-    physicalSourceName         = "sdk-test-register-protection-source-1"
+	// Physical Source constants
+	physicalSourceEndpoint     = "172.26.1.14"
+	physicalSourceHostType     = "kLinux"
+	physicalSourcePhysicalType = "kHost"
+	physicalSourceEnvironment  = "kPhysical"
+	physicalSourceName         = "sdk-test-register-protection-source-1"
 
-    // Protection Policy constants
-    createProtectionPolicyName = "sdk-test-create-protection-policy-3"
-    updateProtectionPolicyName = "sdk-test-update-protection-policy-3"
+	// Protection Policy constants
+	createProtectionPolicyName = "sdk-test-create-protection-policy-3"
+	updateProtectionPolicyName = "sdk-test-update-protection-policy-3"
 
-    // Protection Group constants
-    createProtectionGroupName           = "sdk-test-create-protection-group-1"
-    updateProtectionGroupName           = "sdk-test-update-protection-group-1"
+	// Protection Group constants
+	createProtectionGroupName = "sdk-test-create-protection-group-1"
+	updateProtectionGroupName = "sdk-test-update-protection-group-1"
 
-    // Recovery constants
-    createRecoveryName                        = "sdk-test-create-recovery-1"
-    sourceVoulmeGuid                          = "sdk-test-source-volume-guid"
-    destinationVoulmeGuid                     = "sdk-test-destination-volume-guid"
-    createDownloadFilesAndFoldersRecoveryName = "create-download-files-and-folders-recovery-1"
+	// Recovery constants
+	createRecoveryName                        = "sdk-test-create-recovery-1"
+	sourceVoulmeGuid                          = "sdk-test-source-volume-guid"
+	destinationVoulmeGuid                     = "sdk-test-destination-volume-guid"
+	createDownloadFilesAndFoldersRecoveryName = "create-download-files-and-folders-recovery-1"
 )
 
 // Variables
 var physicalSourceApplications = []string{"kSQL"}
 
-// Create Client
+// Create Authenticator
 
 authenticator := new(core.IamAuthenticator)
 authenticator.ApiKey = apiKey
 authenticator.URL = ibmAuthEndpoint
+
+// Create Client
+
 optionsBaas := new(baas.BackupRecoveryV1Options)
 optionsBaas.Authenticator = authenticator
 optionsBaas.URL = baasEndpointUrl
 client, _ = baas.NewBackupRecoveryV1(optionsBaas)
+
+// Create Management Reporting Client
+
+optionsManagementReportingServiceApIsV1 := new(baas.BackupRecoveryManagementReportingApiV1Options)
+optionsManagementReportingServiceApIsV1.URL = managementReportingUrl
+optionsManagementReportingServiceApIsV1.Authenticator = authenticator
+managementReportingClient, _ = baas.NewBackupRecoveryManagementReportingApiV1(optionsManagementReportingServiceApIsV1)
 
 ```
 {: codeblock}

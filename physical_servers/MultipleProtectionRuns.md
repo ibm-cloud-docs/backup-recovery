@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2025
-lastupdated: "2025-08-27"
+lastupdated: "2025-09-05"
 
 keywords: <KEYWORDS>
 
@@ -15,7 +15,7 @@ subcollection: backup-recovery
 # Start on-demand multiple protection runs for physical server
 {: #start_on-demand_multiple_protection_runs_for_physical_server}
 
-After creating a directive file-based Protection Group for a physical server, IBM Cloud Supports to simultaneously trigger more than one protection runs of the Protection Group to backup only a specific set of files and folders in each run. This functionality can be achieved using the Cohesity REST API, `/public/protectionJobs/run/{id}`.
+After creating a directive file-based Protection Group for a physical server, IBM Cloud Supports to simultaneously trigger more than one protection runs of the Protection Group to backup only a specific set of files and folders in each run. This functionality can be achieved using the {{site.data.keyword.baas_full_notm}} REST API, `/public/protectionJobs/run/{id}`.
 
 To trigger a protection run, add the `metadata file path` parameter in the JSON body of the API and provide the directive file path having the file or folder you plan to backup as the value.
 

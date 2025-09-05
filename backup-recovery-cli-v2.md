@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024
-lastupdated: "2025-08-27"
+lastupdated: "2025-09-05"
 
 keywords: backup recovery, cli, guide
 
@@ -82,6 +82,8 @@ ibmcloud backup-recovery config set <option> <value>
 
 ```sh
 ibmcloud backup-recovery config set service-url 'https://my.recovery.cloud.ibm.com/v2'
+
+ibmcloud backup-recovery config set management-reporting-service-url 'https://manager.backup-recovery.cloud.ibm.com/heliosreporting/api/v1'
 ```
 {: pre}
 
@@ -99,6 +101,8 @@ ibmcloud backup-recovery config get <option>
 
 ```sh
 ibmcloud backup-recovery config get service-url
+
+ibmcloud backup-recovery config get management-reporting-service-url
 ```
 {: pre}
 
@@ -118,6 +122,8 @@ ibmcloud backup-recovery config unset <option>
 
 ```sh
 ibmcloud backup-recovery config unset service-url
+
+ibmcloud backup-recovery config unset management-reporting-service-url
 ```
 {: pre}
 
@@ -4109,3 +4115,4 @@ ibmcloud backup-recovery protected-objects-search \
     --cdp-protected-only=true \
     --use-cached-data=true
 ```
+{: pre} 

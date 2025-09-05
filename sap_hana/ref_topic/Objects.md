@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-08-27"
+lastupdated: "2025-09-05"
 
 keywords: <KEYWORDS>
 
@@ -12,10 +12,10 @@ subcollection: backup-recovery
 
 {{site.data.keyword.attribute-definition-list}}
 
-# List of cohesity cli commands
+# List of {{site.data.keyword.baas_full_notm}} cli commands
 {: #list_of_cohesity_cli_commands}
 
-  
+
 | Command Name | Short Name | Description |
 | --- | --- | --- |
 | [active-directory](Operations/active-directory.htm) | ad  | To run any Active Directory related operations. |
@@ -76,4 +76,3 @@ subcollection: backup-recovery
 | [support-bundle](Operations/support-bundle.htm) | bundle | To generate support bundle. |
 | [support-server](Operations/support-server.htm) | support | To run Support server and Support channel related operations. |
 {: caption="Table 1. " caption-side="bottom"}
-

@@ -26,7 +26,7 @@ If the **ProgramData** folder is hidden or not visible, then from the top-menu o
 
 The hidden folders and files will be displayed.
 
-## Find the Backup agent version
+## Find the {{site.data.keyword.baas_full_notm}} agent version
 {: #find_the_cohesity_agent_version}
 
 To find the version of the Backup agent installed on Windows, Linux, and AIX servers, perform the following steps:
@@ -71,7 +71,7 @@ The upgrade issue can occur if all of the following are true:
 To get the agent out of this state:
 
 1. Open Windows Task Manager and click the Details tab.
-2. Locate the "installer.exe" and "installer.tmp" processes (with the Cohesity icon).
+2. Locate the "installer.exe" and "installer.tmp" processes (with the {{site.data.keyword.baas_full_notm}} icon).
 3. Right-click "installer.tmp" and select "End Task". This stops both processes ("installer.exe" and "installer.tmp").
 
 To avoid future occurrences:
