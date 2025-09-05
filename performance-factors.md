@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-08-28"
+lastupdated: "2025-09-05"
 
 keywords: performance, backup and recovery, saas connectors, source load, source drive configuration, structure of data, size of files
 
@@ -13,7 +13,7 @@ subcollection: backup-recovery
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Factors affecting the Performance of {{site.data.keyword.baas_short}} service
+# Factors affecting the Performance of Backup and Recovery service
 {: #performance-factors}
 
 Many factors will impact the performance an end user sees with the {{site.data.keyword.baas_full_notm}} service. The following lists the major factors for both backups and recoveries, roughly in order of importance to each.

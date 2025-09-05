@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2025
-lastupdated: "2025-08-28"
+lastupdated: "2025-09-05"
 
 keywords: <KEYWORDS>
 
@@ -12,7 +12,7 @@ subcollection: backup-recovery
 
 {{site.data.keyword.attribute-definition-list}}
 
-# {{site.data.keyword.baas_short}} reports
+# Backup and Recovery reports
 {: #{{site.data.keyword.baas_full}}_reports}
 
 

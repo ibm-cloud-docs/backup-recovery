@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2025
-lastupdated: "2025-08-27"
+lastupdated: "2025-09-05"
 
 keywords: <KEYWORDS>
 
@@ -73,6 +73,9 @@ This installation does not require a restart. You can wait until a normal mainte
 
 You can install the Windows Backup agent on multiple Windows servers by running the following command in an Administrator CMD shell or Administrator PowerShell. (The servers must have access to the agent file.)
 
+This is the principle method for completing the install with this release of Backup and Recovery.  {{site.data.keyword.cloud}} is planning a graphical installer in a future release.
+{: note}
+
 `<InstallerExeFile> [/type=<onlyagent|volcbt|fscbt|allcbt>] [/log=”<absolute-path-to-log-file>”] [/dir=”<absolute-path-to-install-location>”] [/username=<value> [/password=<value>]] [/verysilent] [/suppressmsgboxes] [/norestart] [/firewallrule=<value>] [/configfile <value>] /deleteconfigfile <value>] [/enforceusecustomcert=<value>] [/customcertstype=<Value>] [/{{site.data.keyword.baas_full_notm}}customcertpath=<Value>] [/userrootcapath=<path-to-root-ca-cert>] [/usercertchainpath=<path-to-agent-cert>] [/userprivatekeypath=<path-to-private-key-generated-for-agent>]`
 
 The default name for `<InstallerExeFile>` is `{{site.data.keyword.baas_full_notm}}_Agent_<Version>_Win_x64_Installer.exe`.
@@ -80,7 +83,7 @@ The default name for `<InstallerExeFile>` is `{{site.data.keyword.baas_full_notm
 A sample command is shown below:
 
 ```
-{{site.data.keyword.baas_full_notm}}_Agent_5.0.0.0_Win_x64_Installer.exe /log=”C:\logs\install logs.txt” /verysilent /suppressmsgboxes /norestart /dir=”F:\{{site.data.keyword.baas_full_notm}}Agent”
+Backup_Recovery_Agent_5.0.0.0_Win_x64_Installer.exe /log=”C:\logs\install logs.txt” /verysilent /suppressmsgboxes /norestart /dir=”F:\Backup and Recovery Agent”
 ```
 
 The command parameters are described below.
