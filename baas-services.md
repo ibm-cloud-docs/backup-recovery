@@ -2,7 +2,7 @@
 
 copyright:
   years:  2025
-lastupdated: "2025-08-27"
+lastupdated: "2025-09-18"
 
 keywords: aspera, key protect, archive, worm
 
@@ -32,10 +32,14 @@ For more information about the following services, be sure to check out the resp
 
 | Region     | File systems | MS SQL  | SAP HANA |
 |------------|--------------|---------|----------|
-| `jp-tok`   | Yes          | Yes     | Yes      |
+| `au-syd`   | Yes          | Yes     | Yes      |
+| `br-sao`   | Yes          | Yes     | Yes      |
+| `ca-tor`   | Yes          | Yes     | Yes      |
 | `eu-gb`    | Yes          | Yes     | Yes      |
 | `eu-de`    | Yes          | Yes     | Yes      |
 | `eu-es`    | Yes          | Yes     | Yes      |
+| `jp-tok`   | Yes          | Yes     | Yes      |
+| `jp-osa`   | Yes          | Yes     | Yes      |
 | `us-south` | Yes          | Yes     | Yes      |
 | `us-east`  | Yes          | Yes     | Yes      |
 
