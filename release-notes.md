@@ -3,7 +3,7 @@
 copyright:
   years: 2024, 2025
 
-lastupdated: "2025-08-27"
+lastupdated: "2025-09-18"
 
 
 keywords: updates, releases, news, backup and recovery
@@ -21,6 +21,14 @@ content-type: release-note
 
 News on the latest releases from IBM's Backup and Recovery provide the updates you need on all things related to Backup and Recovery.
 {: shortdesc}
+
+## XX September 2025
+{: #baas-Sep2025}
+{: release-note}
+
+Support availability update
+:  {{site.data.keyword.cloud_notm}} Backup and Recovery is now available in Toronto (ca-tor), São Paulo (br-sao), Osako (jp-osa) and Sydney (au-syd) regions for customers. For more information, see [Regions](/docs/backup-recovery?topic=backup-recovery-service-availability&interface=cli#service-availability-region).
+
 ## 20 August 2025
 {: #baas-Aug2025}
 {: release-note}
