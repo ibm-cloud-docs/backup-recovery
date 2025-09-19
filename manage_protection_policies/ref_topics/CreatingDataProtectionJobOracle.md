@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-08-28"
+lastupdated: "2025-09-19"
 
 keywords: <KEYWORDS>
 
@@ -17,8 +17,8 @@ subcollection: backup-recovery
 When you create a protection group, you can select an existing source, policy and storage domain or you can also register a new oracle source, or create a new policy or create a new storage domain while creating a new oracle protection group. However, you might find it easier to create them before creating the protection group, as described in the following topics.
 
 *   [Register Oracle Server](RegisterOracleDatabaseStandaloneRACVCS.htm)
-*   [Create or Edit a Standard Policy](../Dashboard/Protection/PolicyCreateEdit.htm)
-*   [Create or Edit Storage Domains](../Dashboard/Platform/ViewBoxesCreateEdit.htm)
+*   [Create or Edit a Standard Policy](/docs/backup-recovery?topic=backup-recovery-create_or_edit_a_standard_policy)
+*   [Create or Edit Storage Domains](/docs/backup-recovery?topic=backup-recovery-create_or_edit_storage_domains)
 
 You can now protect Oracle databases through an Oracle adapter and SBT plugin on Linux Oracle servers running in dual-stack mode(IPV4 and IPV6). This applies to both RAC and standalone Oracle servers.
 
@@ -29,7 +29,7 @@ Follow the steps listed below to create a Protection Group for the {{site.data.k
 1.  Navigate to **Data Protection > Protection** and do one of the following:
     *   To create a job, click **Protect** > **Databases** > **Oracle Database**, where _Job Type_ is the type of the Protection Group.
 
-    *   Alternatively, click the action icon (![](../Resources/Images/i/icn/more-h.svg) ) next to the job and select the appropriate options.
+    *   Alternatively, click the action icon next to the job and select the appropriate options.
         *   **Run Now**: Start a run of this Protection Group. You have the option to back up one or more objects.
 
             *   **Backup**: Select the objects you want to backup during the protection group run.
@@ -50,7 +50,7 @@ Follow the steps listed below to create a Protection Group for the {{site.data.k
 
 2.  In the **New Protection** pop-up, do one of the following:
 
-    *   Protect the Oracle database by specifying a subset of options such as objects, protection group and policy by clicking the edit ![](../Resources/Images/i/icn/edit-d.svg) icon corresponding to the following options:
+    *   Protect the Oracle database by specifying a subset of options such as objects, protection group and policy by clicking the edit icon corresponding to the following options:
 
         1.  **Add Objects**: Select the registered Oracle source or click **Register Source** to register an Oracle source. Select the database instances to protect.
 
@@ -72,9 +72,9 @@ Follow the steps listed below to create a Protection Group for the {{site.data.k
 
 4.  On the Oracle Servers page, select the database instances to protect, and then click **Add**.
 
-    When creating a new Protection Group, a shield ![](../Resources/Images/i/icn/protected-source.svg) next to the Object name indicates the Object is already been protected by another Protection Group.
+    When creating a new Protection Group, a shield next to the Object name indicates the Object is already been protected by another Protection Group.
 
-    Click the ![](../Resources/Images/i/icn/view.svg) icon to see details about the object.
+    Click the view icon to see details about the object.
 
     If the object name is in red, it is inaccessible, invalid, or orphaned. If the object is in one of the specified states when the Protection Group runs, no snapshot is created. If the object becomes accessible, a snapshot is created the next time the Protection Group runs.
 
@@ -103,17 +103,7 @@ Follow the steps listed below to create a Protection Group for the {{site.data.k
 
 7.  Specify the number of channels to use for each node and a single instance DB.
 
-8.  Select the appropriate **Storage Domain**.
 
-    A Storage Domain defines the level of storage efficiency, security, and resilience for the data being protected in {{site.data.keyword.baas_full_notm}} Data Cloud. In a Storage Domain, you can enable or disable deduplication, compression, and/or encryption for the domain, and select the necessary level of resilience (that is, the number of faults tolerated).
-
-    If a Storage Domain with the right settings exists, select that one. Otherwise, create a new one with Add Storage Domain. See [Create or Edit Storage Domains](../Dashboard/Platform/ViewBoxesCreateEdit.htm).
-
-    If you need to create a new Storage Domain:
-
-    *   You can enable or disable deduplication and compression at any time.
-    *   You can enable or disable encryption only when you create the Storage Domain for the first time.
-    *   There are no benefits if you perform deduplication and compression on the encrypted data.
 9.  After selecting a Storage Domain, if you need to change any of the Advanced settings on the New Oracle Job page, scroll down and click **Edit** on the right.
 
 
@@ -122,7 +112,7 @@ Follow the steps listed below to create a Protection Group for the {{site.data.k
     | Start Time | Available only if the selected policy is set to Backup Daily. Indicates when the job should run. The current time is displayed by default but you can change it. Enter the hour and minutes or use the up and down arrows on your keyboard. Verify the AM or PM setting.<br><br>The default time zone is the browser's time zone. You can change the time zone of the job by selecting a different time zone. |
     | End Time | Optional. Click and select the date when the Protection Group stops capturing snapshots. A Protection Group run that starts prior to this date runs until completion even if it completes after this date. |
     | QoS Policy | Select an appropriate quality of service (QoS) policy.<br><br>*   **Backup HDD**: The {{site.data.keyword.baas_full_notm}} writes the data directly to an HDD drive for this Protection Group.<br>*   **Backup SSD**: The {{site.data.keyword.baas_full_notm}} writes the data directly to an SSD drive for this Protection Group. Only specify this policy if you need fast ingest speed for a small number of Protection Groups.<br>*   **Backup Auto**: The {{site.data.keyword.baas_full_notm}} writes the data to both SSDs and HDDs. The distribution of data will be based on the current usage of SSD and HDD. This policy tries to achieve similar backup performance as the **Backup SSD** policy and reduces the SSD wear-out compared to the Backup SSD policy. This option is selected by default.<br>    <br>    In the 6.6.0a release, The Backup Auto option is avaiable only on the C6000 Series.<br>    <br><br>For best performance, {{site.data.keyword.baas_full_notm}} recommends the Backup Target SSD policy. If necessary, you can change the policy at any time later. But it doesn’t change or take effect on the currently running task. |
-    | Pre & Post Scripts | Edit this option to run scripts on the protected server before and/or after a Protection Group runs. If the Protection Group is protecting oracle databases from different hosts, then the pre and post scripts are executed for each oracle server. For more details, see [Configure Pre & Post Scripts](../Dashboard/Protection/PrePostScripts.htm). |
+    | Pre & Post Scripts | Edit this option to run scripts on the protected server before and/or after a Protection Group runs. If the Protection Group is protecting oracle databases from different hosts, then the pre and post scripts are executed for each oracle server. For more details, see [Configure Pre & Post Scripts](/docs/backup-recovery?topic=backup-recovery-configure-pre-post-scripts). |
     | Persist Mountpoints | If you enable this option, NFS mounts created during the Oracle database backup job are retained after the job is completed. Disabling this would remove the NFS mounts after the backup job is completed. By default, this option is enabled. You can disable this if needed. |
     | Alerts and Priority | Optional. Select one or more of the following settings if you want alerts to be created for the following triggers:<br><br>*   **Success**: Create an informational alert when a Protection Group completes successfully. Emails are not sent when informational alerts are created.<br>*   **Failure**: Create a critical alert if the Protection Group fails to complete. Emails are sent when critical alerts are created.<br>*   **SLA Violation**: Create a warning alert if the Protection Group takes longer than the time period specified in the SLA field. Emails are sent when warning alerts are created. For more information, see [Alerts](../Dashboard/Monitoring/Alerts.htm). |
     | Priority | Select a priority for the Protection Group execution. IBM Cloud Supports concurrent backups.<br><br>However, if the number of jobs exceeds the ability to process jobs, this will be the priority of implementation of the jobs:<br><br>1.  High-priority jobs<br>2.  Medium-priority jobs<br>3.  Low-priority jobs. |
@@ -148,10 +138,10 @@ You can now download the debug logs (`rman_shell.INFO, precheck_logs.INFO, alert
 
 To download the debug logs:
 
-*   **For a job run**: To download the debug logs for a job run, click the **Options** (![](../Resources/Images/more_options.jpg)) icon next to a completed or a failed job run and select **Download Debug Logs** to download debug logs for all the databases in the job.
+*   **For a job run**: To download the debug logs for a job run, click the **Options** icon next to a completed or a failed job run and select **Download Debug Logs** to download debug logs for all the databases in the job.
 
 
-*   **For a Specific database within the job run**: Optionally, you can download logs for a specific database within the job run. Click the **Options** (![](../Resources/Images/more_options.jpg)) icon next to a database and select **Download Debug Logs**.
+*   **For a Specific database within the job run**: Optionally, you can download logs for a specific database within the job run. Click the **Options** icon next to a database and select **Download Debug Logs**.
 
 
 You can download the debug logs only if the local snapshot is available on the {{site.data.keyword.baas_full_notm}}.

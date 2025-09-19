@@ -19,7 +19,7 @@ A standard policy must be associated with a Protection Group to protect objects.
 
 Use the default standard policies or create your own custom policies. Policies save time because you do not need to repetitively enter settings. For more information, see [Default Policies](#Default).
 
-From the policy manager, you can create a new protection policy. For more information, see [Create or Edit a Standard Policy](PolicyCreateEdit.htm).
+From the policy manager, you can create a new protection policy. For more information, see [Create or Edit a Standard Policy](/docs/backup-recovery?topic=backup-recovery-create_or_edit_a_standard_policy).
 
 You can also view policy settings, copy, edit and delete policies using the actions for each policy.
 

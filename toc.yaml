@@ -129,6 +129,13 @@ toc:
                     - sap_hana/RestoreSAPHANADB.md
                     - sap_hana/SAPHANACertification.md
 #                    - sap_hana/ref_topic/Objects.md
+              - topicgroup:
+                   label: Oracle
+                   topics:
+                    - data-protect/oracle-requirements.md
+                    - data-protect/register-oracle-sources.md
+                    - data-protect/ref_topics/saas-connection.md
+                    - data-protect/ref_topics/dataprotect-firewall-ports.md
           - topicgroup:
               label: Physical servers
               topics:
