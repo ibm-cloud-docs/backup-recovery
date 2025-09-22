@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024
-lastupdated: "2025-09-05"
+lastupdated: "2025-09-22"
 
 keywords: backup recovery, go, sdk
 
@@ -33,7 +33,7 @@ subcollection: backup-recovery
 The {{site.data.keyword.baas_full}} SDK for Go provides features to make the most of {{site.data.keyword.baas_full_notm}}.
 {: shortdesc}
 
-The {{site.data.keyword.baas_full_notm}} SDK for Go is comprehensive, with many features and capabilities that exceed the scope and space of this guide. For detailed class and method documentation [see the Go API documentation](https://ibm.github.io/ibm-cos-sdk-go/){: external}. Source code can be found in the [GitHub repository](https://github.com/IBM/ibm-backup-recovery-sdk-go){: external}.
+The {{site.data.keyword.baas_full_notm}} SDK for Go is comprehensive, with many features and capabilities that exceed the scope and space of this guide. For detailed class and method documentation [see the Go API documentation](https://pkg.go.dev/github.com/IBM/ibm-backup-recovery-sdk-go){: external}. Source code can be found in the [GitHub repository](https://github.com/IBM/ibm-backup-recovery-sdk-go){: external}.
 
 ## Getting the SDK
 {: #go-get-sdk}

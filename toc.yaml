@@ -130,8 +130,8 @@ toc:
                     - sap_hana/SAPHANACertification.md
 #                    - sap_hana/ref_topic/Objects.md
               - topicgroup:
-                   label: Oracle
-                   topics:
+                  label: Oracle
+                  topics:
                     - data-protect/oracle-requirements.md
                     - data-protect/register-oracle-sources.md
                     - data-protect/ref_topics/saas-connection.md
