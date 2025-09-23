@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2025
-lastupdated: "2025-08-27"
+lastupdated: "2025-09-23"
 
 keywords: <KEYWORDS>
 
@@ -48,9 +48,6 @@ For information on prerequisites and considerations, see [Prerequisites and Cons
 | --- | --- |
 | Microsoft SQL Server 2022<br><br>Microsoft SQL Server 2019<br><br>Microsoft SQL Server 2017<br><br>Microsoft SQL Server 2016<br><br>Microsoft SQL Server Express 2019<br><br>Microsoft SQL Server Express 2017<br><br>Microsoft SQL Server Express 2016 | *   MS SQL Server 32-bit deployment is not supported with the agent-based approach. It is recommended to use the Native SQL dump to {{site.data.keyword.baas_full}} SMB for backups.<br>    <br>*   MS SQL Server 64-bit running on Windows 64-bit is supported.<br>    <br>*   SQL databases and logs residing on Clustered Shared Volumes (CSV) can be protected using {{site.data.keyword.baas_full}}’s VDI based backup method.<br>    <br>*   FILESTREAM databases can be protected using {{site.data.keyword.baas_full_notm}}'s VDI and Volume based backup method.<br>    <br>*   Memory-optimized databases can be protected using {{site.data.keyword.baas_full_notm}}'s VDI based backup method.<br>    <br><br>Supported on the following Operating Systems:<br><br>*   Windows 2022 64-bit<br>    <br>*   Windows 2019 64-bit<br>    <br>*   Windows 2016 64-bit |
 | Microsoft SQL Server 2019 | *   Supported on Linux OS RHEL7.6 and higher versions.<br>    <br>*   Only VDI-based backups are currently supported on Linux OS. |
+| Oracle Database | IBM Cloud Supports both physical and virtual servers for Oracle databases.<br><br>The following lists the different operating systems and supported {{site.data.keyword.baas_full_notm}} versions.<br><br>*Oracle versions 19c, 21c, 23ai on Rhel 8 and 9|
 
 {: caption="Databases" caption-side="bottom"}
-
-
-
-

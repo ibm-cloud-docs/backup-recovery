@@ -15,9 +15,9 @@ subcollection: backup-recovery
 # Oracle requirements
 {: #oracle_requirements}
 
-To register your Oracle servers and protect your databases, be sure you meet the requirements and install the Cohesity Agent on each server.
+To register your Oracle servers and protect your databases, be sure you meet the requirements and install the {{site.data.keyword.baas_full}} Agent on each server.
 
-Before you register your Oracle servers to protect your Oracle Databases, confirm that you meet the software version, [prerequisites](#Oracle_Prerequisites), [credentials](#Oracle_Credentials_and_Privileges), [choose an authentication method](#Oracle_Authentication_Method_Requirement), and set [sudoers permissions](#Oracle_Sudoers_Permissions_for_Linux_Databases) below, then [download and install the Cohesity Linux Agent for Oracle](#Download_and_Install_the_Cohesity_Agent) on the servers you wish to protect.
+Before you register your Oracle servers to protect your Oracle Databases, confirm that you meet the software version, [prerequisites](#prerequisites), [credentials](#credentials_and_privileges), [choose an authentication method](#oracle_authentication_method_requirement), and set [sudoers permissions](#oracle_sudoers_permissions_for_linux_databases) below, then [download and install the Cohesity Linux Agent for Oracle](#Download_and_Install_the_Cohesity_Agent) on the servers you wish to protect.
 
 Also, be sure to review the [limitations](#Oracle_Limitations) at the end.
 
@@ -26,32 +26,26 @@ For information on the supported cloud regions where you can back up this source
 ## Support matrix
 {: #support_matrix}
 
-Cohesity DataProtect as a Service supports Oracle Database protection. For information on the supported Oracle versions, see [Supported Software for Cohesity DataProtect as a Service](supported-software-dataprotect.htm#Supported_Software_for_DataProtect_as_a_Service).
+Cohesity DataProtect as a Service supports Oracle Database protection. For information on the supported Oracle versions, see [Supported Software for Cohesity DataProtect as a service](/docs/backup-recovery?topic=backup-recovery-supported_software#databases).
 
 ## Check firewall ports
 {: #check_firewall_ports}
 
-Ensure that the ports listed in the Oracle Servers section in the [Firewall Ports for User-Deployed SaaS Connectors](dataprotect-firewall-ports.htm) topic are open to allow communication between the Cohesity SaaS Connector(s) and Oracle Server.
+Ensure that the ports listed in the Oracle Servers section in the [Firewall Ports for User-Deployed Data Source Connectors](/docs/backup-recovery?topic=backup-recovery-deploy_data_source_connector#port_requirements) topic are open to allow communication between the Cohesity SaaS Connector(s) and Oracle Server.
 
 ## Prerequisites
 {: #prerequisites}
 
 Make sure the following prerequisites are met before you proceed with Oracle source registration:
 
-*   **UUIDs**. All the Oracle Databases that are protected using Cohesity DataProtect as a Service should have a unique UUID on the Oracle source where the databases reside.
-    
-*   **Archive Log Mode**. Archive Log mode must be enabled for databases to be opened in Read-Write mode.
-    
-*   **Read Only Mode**: The Oracle Databases should be opened in Read-Write mode.
-    
-*   **Version**. The recovery source and target database must be the same Oracle database version. For example, snapshots of an 11g Oracle Database cannot be recovered to a 12c Oracle Database.
-    
-*   **Oracle Single Instance Deployment**. For an Oracle single-instance database, the database must be entered into the `/etc/oratab` file. Otherwise, Cohesity DataProtect as a Service will not be able to discover this database.
-    
-*   **Authentication**. If you choose DB authentication, all the databases on the system should have the same username and password or OS Authentication. At the backup level, they can have individual passwords for the databases.
-    
+* **UUIDs**. All the Oracle Databases that are protected using Cohesity DataProtect as a Service should have a unique UUID on the Oracle source where the databases reside.
+* **Archive Log Mode**. Archive Log mode must be enabled for databases to be opened in Read-Write mode.
+* **Read Only Mode**: The Oracle Databases should be opened in Read-Write mode.
+* **Version**. The recovery source and target database must be the same Oracle database version. For example, snapshots of an 11g Oracle Database cannot be recovered to a 12c Oracle Database.
+* **Oracle Single Instance Deployment**. For an Oracle single-instance database, the database must be entered into the `/etc/oratab` file. Otherwise, Cohesity DataProtect as a Service will not be able to discover this database.
+* **Authentication**. If you choose DB authentication, all the databases on the system should have the same username and password or OS Authentication. At the backup level, they can have individual passwords for the databases.
 *   **Ports**. On the Oracle Server where you [install the Cohesity Linux Agent](#Download_and_Install_the_Cohesity_Agent) (below), open the 50051 port for backup operations (incoming) and 59999 port for self-monitoring and debug pages.
-    
+
 
 ## Credentials and privileges
 {: #credentials_and_privileges}
@@ -81,9 +75,9 @@ To start the service as a ROOT user, add the following permission to the sudoers
 You can install Cohesity’s Linux Agent to run with a specific OS Service Account user account, as long as it meets the following requirements:
 
 *   The OS user is automatically granted the required sudo privileges. This allows the Cohesity Agent to execute specific privileged commands. For details, see [Oracle Sudoers Permissions for Linux Databases](#Oracle_Sudoers_Permissions_for_Linux_Databases) below.
-    
+
 *   The OS user should be part of the OS group with SYSDBA or SYSBACKUP privileges (for example, dba).
-    
+
 
 You can run the Cohesity Agent as a different service user, the _cohesityagent_ user, if this user is part of the OSDBA group in Oracle.
 
@@ -98,7 +92,6 @@ You can either use either OS user or DB user authentication to connect to your O
 
 Table: Available Oracle Operations by Authentication Method.
 
-  
 | Oracle Operation | Authentication Method | Notes |
 | --- | --- | --- |
 | Backup | OS Authentication or DB Authentication | None |
@@ -113,7 +106,6 @@ The following tables list the sudoers permissions required for the Cohesity Linu
 
 When you install the Cohesity Agent to run with the ROOT user, there is no need to configure additional SUDOERS privileges.
 
-  
 | Operating System | Sudoers Permissions | Sudoers Permissions |
 | --- | --- | --- |
 |     | Cohesity Linux Agent Commands for both Oracle sources & Linux servers | Additional commands only for Linux servers |
@@ -130,20 +122,13 @@ The Cohesity Linux Agent can be installed to [run as a ROOT user](#Install_the_C
 
 We recommend you follow these best practices when you plan to deploy the Cohesity Linux Agent on Oracle servers and hosts:
 
-*   If you choose DB authentication, then all the databases on the system should have the same username and password.
-    
-*   Create a database user for your Cohesity Oracle backup and restore workflows. (_Optional_)
-    
-*   Both the Oracle host and the Cohesity Linux Agent should have permission to write to the `adump` and `diag` directories, control file, and the database restores locations.
-    
-*   Enable Block Change Tracking (BCT) to improve the incremental backup performance of the Oracle server. (_Optional_)
-    
-*   Assign sudoers to the user running the Cohesity Linux Agent.
-    
-*   Make the Cohesity Linux Agent user part of the Oracle dba group.
-    
-*   Given that Oracle Secure Backup (SBT)-based incremental backups are not fully hydrated (unlike imagecopy-based backups), we recommend you take a full database backup regularly.
-    
+* If you choose DB authentication, then all the databases on the system should have the same username and password.
+* Create a database user for your Cohesity Oracle backup and restore workflows. (_Optional_)
+* Both the Oracle host and the Cohesity Linux Agent should have permission to write to the `adump` and `diag` directories, control file, and the database restores locations.
+* Enable Block Change Tracking (BCT) to improve the incremental backup performance of the Oracle server. (_Optional_)
+* Assign sudoers to the user running the Cohesity Linux Agent.
+* Make the Cohesity Linux Agent user part of the Oracle dba group.
+* Given that Oracle Secure Backup (SBT)-based incremental backups are not fully hydrated (unlike imagecopy-based backups), we recommend you take a full database backup regularly.
 
 ### Install the cohesity linux agent to run with root user
 {: #install_the_cohesity_linux_agent_to_run_with_root_user}
@@ -151,16 +136,10 @@ We recommend you follow these best practices when you plan to deploy the Cohesit
 To install the Cohesity Linux Agent to run as the ROOT user on your Oracle server:
 
 1. In **DataProtect as a Service**, navigate to the **Sources** page and click **\+ Register Source** in the upper-right corner of the page and then click **Oracle**.
-    
 2. Click **Start Registration**.
-    
 3. In the Register Physical dialog box, select an existing SaaS connection marked Unused or click Create SaaS Connection and follow the instructions in [Deploy SaaS Connector](saas-connection.htm), and then click **Continue**.
-    
 4. Click **Download Cohesity Agent**. Ensure the agent has been downloaded to the appropriate server.
-    
-    ![](../Resources/Images/data-protect/Oracle/DP_Oracle_Registration_773x693.png)
-    
-5. Run the executable file with sudo using the following command syntax:  
+5. Run the executable file with sudo using the following command syntax: 
     `sudo /<``path_to_installer_file``> -- --install -c 0 -S root -G root`
     
     The command options are:
@@ -215,11 +194,8 @@ The Agent starts automatically after the installation or on reboot.
 ## Considerations
 {: #considerations}
 
-*   **Oratab**. Only standalone databases listed in the `oratab` file on the Oracle server can be registered and protected. Cohesity DataProtect as a Service cannot discover databases that are not in `oratab`.
-    
-*   **Auto Protect**. Auto Protect is not supported for Oracle databases.
-    
-*   **Point-in-Time Restore**. During a point-in-time restore to a time near the end of a full backup, the restore might fail due to a known issue from Oracle.
-    
+* **Oratab**. Only standalone databases listed in the `oratab` file on the Oracle server can be registered and protected. Cohesity DataProtect as a Service cannot discover databases that are not in `oratab`.
+* **Auto Protect**. Auto Protect is not supported for Oracle databases.
+* **Point-in-Time Restore**. During a point-in-time restore to a time near the end of a full backup, the restore might fail due to a known issue from Oracle.
 
-**Next** > [Register your Oracle servers](register-oracle-sources.htm#Register_Oracle_Sources)!
+**Next** > [Register your Oracle servers](/docs/backup-recovery?topic=backup-recovery-register_oracle_sources)!

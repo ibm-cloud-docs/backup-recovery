@@ -31,6 +31,7 @@ You can deploy Data Source Connectors for the following sources:
 
 - Physical Server
 - Microsoft SQL Server
+- Oracle Server
 
 
 ### Data Source Connector System Prerequisites

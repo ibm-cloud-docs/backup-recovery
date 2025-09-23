@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-09-19"
+lastupdated: "2025-09-23"
 
 keywords: <KEYWORDS>
 
@@ -16,7 +16,7 @@ subcollection: backup-recovery
 
 When you create a protection group, you can select an existing source, policy and storage domain or you can also register a new oracle source, or create a new policy or create a new storage domain while creating a new oracle protection group. However, you might find it easier to create them before creating the protection group, as described in the following topics.
 
-*   [Register Oracle Server](RegisterOracleDatabaseStandaloneRACVCS.htm)
+*   [Register Oracle Server](/docs/backup-recovery?topic=backup-recovery-register_oracle_sources)
 *   [Create or Edit a Standard Policy](/docs/backup-recovery?topic=backup-recovery-create_or_edit_a_standard_policy)
 *   [Create or Edit Storage Domains](/docs/backup-recovery?topic=backup-recovery-create_or_edit_storage_domains)
 
