@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2025
-lastupdated: "2025-08-27"
+lastupdated: "2025-09-23"
 
 keywords: backup and recovery, data source connectors,
 
@@ -65,6 +65,18 @@ Microsoft SQL Servers
 | MS SQL Host | Data Source Connector | 11113,11117 | TCP | Required for Backup and Recovery operations. |
 | MS SQL Host | Agent running on the MS SQL Host | 1433 | TCP | Default TCP port for MS SQL instances. Ensure the port is open to allow communication between the MS SQL instance and the Agent. |
 {: caption="Microsoft SQL Servers" caption-side="bottom"}
+
+Oracle Servers
+
+Ensure that the following ports are open to allow communication between the Cohesity SaaS Connector(s) and Oracle Server:
+
+| Source | Destination | Port | Protocol | Purpose |
+| --- | --- | --- | --- | --- |
+| Data Source Connector | Oracle Server | 50051 | TCP | Required for Backup and Recovery operations. |
+| Oracle Server | Data Source Connector | 111, 2049 | TCP | Required for Backup and Recovery operations in Linux servers. |
+| Oracle Server | Data Source Connector | 11113, 11117 | TCP | Required for Backup and Recovery operations in Windows servers. |
+| Local Host (Physical Windows or Linux Server) | Local Host (Physical Windows or Linux Server) | 59999 | TCP | Required for local-to-local communication for self-monitoring and debugging purposes. |
+{: caption="Oracle Servers" caption-side="bottom"}
 
 IBM Backup Service
 

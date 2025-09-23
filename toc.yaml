@@ -134,8 +134,8 @@ toc:
                   topics:
                     - data-protect/oracle-requirements.md
                     - data-protect/register-oracle-sources.md
-                    - data-protect/ref_topics/saas-connection.md
-                    - data-protect/ref_topics/dataprotect-firewall-ports.md
+ #                   - data-protect/ref_topics/saas-connection.md  Per Tim S hide because we already have a section on the datasource connector
+ #                   - data-protect/ref_topics/dataprotect-firewall-ports.md Per Tim S hide but move Oracle DB to Data Source Connections
           - topicgroup:
               label: Physical servers
               topics:
