@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-9-19"
+lastupdated: "2025-09-24"
 
 keywords: <KEYWORDS>
 
@@ -17,7 +17,7 @@ subcollection: backup-recovery
 
 To start protecting your Oracle Databases, you need to register your Oracle servers and hosts as {{site.data.keyword.baas_full}} as a service source. Confirm you've met the Oracle requirements and then register your Oracle sources.
 
-You'll need to use a Data Source Connection or [create one](/docs/backup-recovery?topic=backup-recovery-deploy_data_source_connectorr) to connect with sources in your data center to establish connectivity between the sources and the {{site.data.keyword.baas_full}} as a service.
+You'll need to use a Data Source Connection or [create one](/docs/backup-recovery?topic=backup-recovery-deploy_data_source_connectorr) to connect with sources in your data center to establish connectivity between the sources and the {{site.data.keyword._baas_full_notm}} as a service.
 
 To register an Oracle server as {{site.data.keyword.baas_full_notm}} as a service source:
 
@@ -29,6 +29,6 @@ To register an Oracle server as {{site.data.keyword.baas_full_notm}} as a servic
 6. Choose your [Oracle authentication method](/docs/backup-recovery?topic=backup-recovery-oracle_requirements#oracle_authentication_method_requirement): **OS Authentication** (the default) or **DB Authentication**.
    If you choose DB authentication, then all the databases on the system should have the same username and password.
 7. Click **Complete**.
-   Your Oracle server appears under **Sources** in Cohesity DataProtect as a Service.
+   Your Oracle server appears under **Sources** in {{site.data.keyword._baas_full_notm}} as a service.
 
 **Next** > You're ready to [protect your Oracle Databases](/docs/backup-recovery?topic=backup-recovery-protect-oracle-database)!

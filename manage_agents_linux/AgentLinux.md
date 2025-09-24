@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2024
-lastupdated: "2024-10-12"
+  years: 2024, 2025
+lastupdated: "2025-09-24"
 
 keywords: <KEYWORDS>
 
@@ -73,7 +73,7 @@ Installing the agent on a server allows actions such as registering the agent as
     The Download Agents window appears.
 
 3.  Follow the installation instructions for the corresponding installer package.
-4.  Configure the firewall and ports as necessary. For more information, see [Manage Firewall Ports](../../Setup/OpenPorts.htm).
+4.  Configure the firewall and ports as necessary. For more information, see [Manage Firewall Ports](/docs/backup-recovery?topic=backup-recovery-manage_firewall_ports).
 
 ### Install RPM, Debian or SUSE RPM Installer Package
 

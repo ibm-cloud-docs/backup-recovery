@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2025
-lastupdated: "2025-08-27"
+lastupdated: "2025-09-24"
 
 keywords: <KEYWORDS>
 
@@ -50,10 +50,7 @@ INTERFACE GROUP NAME          : intf\_group1.100
 ## Cluster management
 {: #cluster_management}
 
-### Cluster upgrade
-{: #cluster_upgrade}
 
-If the {{site.data.keyword.baas_full_notm}} uses an interface with the node IP address to reach the external server or client, configure the firewall settings to allow the node IP addresses. If the {{site.data.keyword.baas_full_notm}} uses an interface with only virtual IP addresses, configure the firewall settings to allow the virtual IP addresses. To identify whether the source IP is Static IP or Virtual IP for outgoing traffic, see [Identify Source IP of Outgoing Traffic](#Identify).
 
 #### Outgoing traffic
 {: #outgoing_traffic}
