@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2025
-lastupdated: "2025-09-19"
+lastupdated: "2025-09-24"
 
 keywords: IBM cloud backup and recovery
 
@@ -37,7 +37,7 @@ You need the following to get started with {{site.data.keyword.baas_full_notm}}:
 | File systems | Yes  | Yes | - North America:  United States - Washington DC `us-east`, Dallas `us-south`, Canada - Toronto `ca-tor`<br> - South America:  Brazil - São Paulo `br-sao`<br> - Europe:  Europe - Frankfurt `eu-de`, Europe - London `eu-gb`, Europe - Madrid `eu-es`<br> - Asia: Japan - Tokyo`jp-tok`, Osako`jp-osa`<br> - Austalia - Sydney`au-syd`|
 | MS SQL | Yes  | Yes | - North America:  United States - Washington DC `us-east`, Dallas `us-south`, Canada - Toronto `ca-tor`<br> - South America:  Brazil - São Paulo `br-sao`<br> - Europe:  Europe - Frankfurt `eu-de`, Europe - London `eu-gb`, Europe - Madrid `eu-es`<br> - Asia: Japan - Tokyo`jp-tok`, Osako`jp-osa`<br> - Austalia - Sydney`au-syd` |
 | SAP HANA | Yes  | Yes |  - North America:  United States - Washington DC `us-east`, Dallas `us-south`, Canada - Toronto `ca-tor`<br> - South America:  Brazil - São Paulo `br-sao`<br> - Europe:  Europe - Frankfurt `eu-de`, Europe - London `eu-gb`, Europe - Madrid `eu-es`<br> - Asia: Japan - Tokyo`jp-tok`, Osako`jp-osa`<br> - Austalia - Sydney`au-syd` |
-| Oracle | Yes  | Yes |  - North America:  United States - Washington DC `us-east`, Dallas `us-south`, Canada - Toronto `ca-tor`<br> - South America:  Brazil - São Paulo `br-sao`<br> - Europe:  Europe - Frankfurt `eu-de`, Europe - London `eu-gb`, Europe - Madrid `eu-es`<br> - Asia: Japan - Tokyo`jp-tok`, Osako`jp-osa`<br> - Austalia - Sydney`au-syd` |
+| Oracle | No  | Yes |  - North America:  United States - Washington DC `us-east`, Dallas `us-south`, Canada - Toronto `ca-tor`<br> - South America:  Brazil - São Paulo `br-sao`<br> - Europe:  Europe - Frankfurt `eu-de`, Europe - London `eu-gb`, Europe - Madrid `eu-es`<br> - Asia: Japan - Tokyo`jp-tok`, Osako`jp-osa`<br> - Austalia - Sydney`au-syd` |
 {: caption="Workload availability " caption-side="bottom"}
 
 ## Selecting an instance and opening the main menu
