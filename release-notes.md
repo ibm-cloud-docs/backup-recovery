@@ -3,7 +3,7 @@
 copyright:
   years: 2024, 2025
 
-lastupdated: "2025-09-18"
+lastupdated: "2025-09-24"
 
 
 keywords: updates, releases, news, backup and recovery
@@ -23,7 +23,14 @@ News on the latest releases from IBM's Backup and Recovery provide the updates y
 {: shortdesc}
 
 ## XX September 2025
-{: #baas-Sep2025}
+{: #baas-SepXX25}
+{: release-note}
+
+Release update
+:  {{site.data.keyword.cloud_notm}} Backup and Recovery allows you to register your Oracle servers and protect your databases.
+
+## 15 September 2025
+{: #baas-Sep1525}
 {: release-note}
 
 Support availability update
