@@ -13,7 +13,7 @@ subcollection: backup-recovery
 {{site.data.keyword.attribute-definition-list}}
 
 # Install and Manage the Agent on Linux Servers
-
+{: #linux_agent_install_manage}
 
 The Backup agent is now available with different installer packages, providing support on multiple Linux distributions. The following table lists the installer packages and Linux distributions on which the installer package is supported.
 
@@ -62,10 +62,12 @@ Linux agent has dependencies on the following packages, which must be installed 
 Installing the Linux agent as an LDAP user is supported.
 
 ## Download and Install the Linux Agent
+{: #linux_agent_download_install}
 
 Installing the agent on a server allows actions such as registering the agent as a source with the {{site.data.keyword.baas_full_notm}} or performing file-level recovery.
 
 ### Install the Agent
+{: #linux_agent_install}
 
 1.  Navigate to **Data Protection > Sources**.
 2.  Click **Download Backup agent**.
@@ -76,6 +78,7 @@ Installing the agent on a server allows actions such as registering the agent as
 4.  Configure the firewall and ports as necessary. For more information, see [Manage Firewall Ports](/docs/backup-recovery?topic=backup-recovery-manage_firewall_ports).
 
 ### Install RPM, Debian or SUSE RPM Installer Package
+{: #linux_agent_install_rpm_debian_suse}
 
 The following table explains the action to be performed for installing the RPM, Debian or SUSE installer package:
 
@@ -93,6 +96,7 @@ In the following commands, replace the Backup agent version with the desired age
 | **Location** | *   Installation directory: `/opt/cohesity`<br>*   Log file: `/var/log/cohesity` |
 
 ### Install script installer package
+{: #linux_agent_install_script}
 
 The following table explains the action to be performed for installing the script installer package:
 
@@ -121,6 +125,7 @@ If a Linux server's `/etc/sudoers` file is managed by a deployment engine such a
 | As root user | No changes required |
 
 ### cohesity\_linux\_agent.sh
+{: #linux_agent_sh}
 
 The table lists how `cohesity_linux_agent.sh` interacts with various `init` systems to issue `start/stop/status` commands.
 
@@ -135,6 +140,7 @@ If {{site.data.keyword.baas_full_notm}} does not detect any of the `init` system
 | undetected | sudo /etc/init.d/cohesity-agent start<br><br>sudo /etc/init.d/cohesity-agent stop<br><br>sudo /etc/init.d/cohesity-agent status |
 
 ## Download and Install the Backup agent on RHV Hosts
+{: #linux_agent_download_install_backup_rhv_hosts}
 
 IBM Cloud Supports RHV only until version 6.8.1. While you can still protect your RHV sources, the IBM Cloud Support team will not provide assistance.
 
@@ -154,6 +160,7 @@ To open the ports, run the following command:
 firewall-cmd --permanent --add-port 50051/tcp
 
 ## Linux Script Installer Options
+{: #linux_script_install_options}
 
 The Backup agent installer has the following options available.
 
@@ -179,6 +186,7 @@ The Backup agent installer has the following options available.
 | \--yes-all, -y | Accept 'yes' answer to all questions in installer. \[Default: off\] This is useful for performing silent install/uninstall. |
 
 ## Install the Backup agent to run with the Root User
+{: #linux_agent_install_backup_run_root_user}
 
 Follow the steps below to install the Backup agent to run with the root user:
 
@@ -193,6 +201,7 @@ The above example does the following:
 *   `-I /opt` installs the agent in the /opt directory. If you do not specify the directory, then the default home directory of the user will be used, /root/ in this case.
 
 ## Sudo Privileges for Linux Users
+{: #linux_agent_sudo_privs}
 
 The Linux system administrator can allowlist set of commands that do not need the root rights to be executed from the Backup agent deployed on the Linux servers.
 
@@ -227,6 +236,7 @@ If **NOPASSWD:ALL** entry is present in the sudoers file, then all commands can 
 If **NOPASSWD:ALL** entry is removed from the sudoers file, then you can add the commands listed in the table above for allowlisting.
 
 ## Upgrade the Linux Agent
+{: #linux_agent_upgrade}
 
 You can upgrade the Linux agent either from the {{site.data.keyword.baas_full_notm}} UI or using the CLI.
 
@@ -238,6 +248,7 @@ In the following commands, replace the Backup agent version with the desired age
 | 1.  Navigate to **Data Protection > Sources**.<br>    <br>2.  Click **Download Backup agent**.<br>    <br>3.  Stop the Agent service on the server.<br>    <br>4.  Click **Upgrade Agents**.<br>    <br>5.  Restart the Agent service. | 1.  Navigate to the Agent installation directory.<br>    <br>2.  Run the following command to install the script installer package:<br>    <br>    sudo cohesity\_agent\_\_linux\_x64\_installer -- --install<br>    <br>3.  Run the following command to install the RPM package:<br>    <br>    rpm -U el-cohesity-agent-\-1.x86\_64.rpm<br>    <br>4.  Run the following command to install the Debian package:<br>    <br>    dpkg -i cohesity-agent\_\-1\_amd64.deb<br>    <br>5.  Run the following command to install the SUSE RPM package:<br>    <br>    rpm -U cohesity-agent-\-1.x86\_64.rpm<br>    <br>6.  Run the following command to install the PowerPC RPM package:<br>    <br>    rpm -U cohesity-java-agent-7.0.1-1.ppc64le.rpm |
 
 ## Auto-upgrade of the Backup agent
+{: #linux_agent_auto_upgrade}
 
 IBM Cloud Supports auto-upgrade of the Backup agent running on physical servers.
 
@@ -249,6 +260,7 @@ To enable auto-upgrade:
 2.  Select the **Upgrade Backup agent on all servers in Sources** checkbox.
 
 ## Uninstall the Script-Based Agent
+{: #linux_agent_uninstall_script_agent}
 
 To uninstall script-based agent, follow one of the methods listed below:
 
@@ -266,6 +278,7 @@ To uninstall script-based agent, follow one of the methods listed below:
 
 
 ## Uninstall RPM/PKG Agents
+{: #linux_agent_uninstall_rpm}
 
 To unistall the RPM/PKG agents, follow the steps listed below:
 
@@ -283,6 +296,7 @@ To unistall the RPM/PKG agents, follow the steps listed below:
 
 
 ## Sample Ubuntu Linux Installation Output
+{: #linux_agent_sample_ubuntu_install_output}
 
 Sample output for the following command:
 
@@ -631,6 +645,7 @@ Loaded: loaded (/usr/lib/systemd/system/cohesity-agent.service; enabled; vendor 
 Active: active (running) since Mon 2018-01-29 23:22:01 PST; 5ms ago
 
 ## Troubleshoot
+{: #linux_agent_troubleshoot}
 
 For troubleshooting information, see [Troubleshooting Backup agent issues on Linux physical servers](/docs/backup-recovery?topic=Troubleshooting-Cohesity-Agent-issues-on-Linux-physical-servers).
 
