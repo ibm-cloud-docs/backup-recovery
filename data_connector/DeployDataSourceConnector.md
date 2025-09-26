@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2025
-lastupdated: "2025-09-23"
+lastupdated: "2025-09-26"
 
 keywords: backup and recovery, data source connectors,
 
@@ -17,12 +17,12 @@ subcollection: backup-recovery
 
 To register your data sources with the IBM Cloud Backup and Recovery service, you need to establish connectivity between your source and the service using a Data Source Connection. A Data Source Connection consists of one or more Data Source Connectors, which are virtual machines (VMs) that facilitate the movement of data between your data sources and the IBM Cloud Backup and Recovery service.
 
-You can install a Data Source Connector using an installer OVA in your VMware environment, on a vCenter or ESXi host in your environment that has access to your data sources and meets the Data Source Connection system and ﬁrewall requirements.
+You need to install the VM for the Data Source Connector using an installer OVA in your VMware environment, on a vCenter or ESXi host in your environment that has access to your data sources and meets the Data Source Connection system and ﬁrewall requirements.
 
 ## Data Source Connector Requirements
 {: #data_source_connector_requirements}
 
-Before deploying the Data Source Connector, review and understand the following requirements:
+Before deploying the Data Source Connector, review and understand the following requirements needed for the VM(s) that you need to provision:
 
 ### Supported Sources
 {: #supported_sources}
@@ -191,28 +191,24 @@ To create a Data Source Connection:
 
 3. In the `Create Data Source Connection` dialog, select the following:
 
-   1. From the `Deployment Platform` drop-down, select `VPC`.
+   a. From the `Deployment Platform` drop-down, select `VPC`.
 
-    The VPC option will not be available at launch. It is ok to leave the Deployment Platform as VMware
-    {: NOTE}
+    - **NOTE:** The VPC option will not be available at launch. It is ok to leave the Deployment Platform as VMware
 
-   2. Copy the `Connection token` and click `Create`. The Connection token is utilized to link or claim the Data Source Connector with the created connection.
+   b. Copy the `Connection token` and click `Create`. The Connection token is utilized to link or claim the Data Source Connector with the created connection.
 
-   3. To deploy the Data Source Connector in your VPC, Go to the IBM Cloud Catalog
+   c. To deploy the Data Source Connector in your VPC, Go to the IBM Cloud Catalog
 
-   4. Search for `Backup and Recovery`
+   d. Search for `Backup and Recovery`
 
-   5. Select the `Backup and Recovery Data Source Connector` image and click the catalog tile
+   e. Select the `Backup and Recovery Data Source Connector` image and click the catalog tile
 
-If the image mentioned above is not available, the User may have to accept an invite. An invite will have been sent to the account admin's email or can be seen in `https://cloud.ibm.com/notifications` by the admin.
-{: NOTE}
+   - **NOTE:** If the image mentioned above is not available, the User may have to accept an invite. An invite will have been sent to the account admin's email or can be seen in `https://cloud.ibm.com/notifications` by the admin.
 
-   6. Accept the terms and select `Continue`
+   f. Accept the terms and select `Continue`
+   h. The `Virtual server for VPC` create page opens, Select appropriate `Location`, `Name`, `Resource Group`, `VPC` and create the Virtual Service.
+   - **NOTE:** The `Data Source Connector` needs to have access to the intended workloads. The recommendation is to create it within the same `VPC` as the workloads.
 
-   7. The `Virtual server for VPC` create page opens, Select appropriate `Location`, `Name`, `Resource Group`, `VPC` and create the Virtual Service.
-
-    The `Data Source Connector` needs to have access to the intended workloads. The recommendation is to create it within the same `VPC` as the workloads.
-    {: NOTE}
 
 Once the VSI is created and powered on, the services in the Data Source Connector VM (including the UI) can take 4-5 minutes to start.
 

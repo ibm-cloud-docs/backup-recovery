@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2025
-lastupdated: "2025-09-24"
+lastupdated: "2025-09-26"
 
 keywords: IBM cloud backup and recovery
 
@@ -57,6 +57,7 @@ To get started, you'll need to complete the following steps in the dashboard.
 
 1. Create [backup service connector](/docs/backup-recovery?topic=backup-recovery-deploy_data_source_connector) for virtual machines to move data between your sources and the Backup service.
 2. Download and install the [backup agents](/docs/backup-recovery?topic=backup-recovery-agent-download-install) onto the servers you want to back up.
+   - **NOTE:** You have to create a VM to be used as a [backup service connector](/docs/backup-recovery?topic=backup-recovery-deploy_data_source_connector) for virtual machines to move data between your sources and the {{site.data.keyword.baas_full_notm}} service.
 3. [Register sources](/docs/backup-recovery?topic=backup-recovery-source-registration-tutorial) to define the types of applications on those servers.
 
 
