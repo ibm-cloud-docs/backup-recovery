@@ -3,7 +3,7 @@
 copyright:
   years: 2024, 2025
 
-lastupdated: "2025-09-24"
+lastupdated: "2025-09-29"
 
 
 keywords: updates, releases, news, backup and recovery
@@ -22,8 +22,16 @@ content-type: release-note
 News on the latest releases from IBM's Backup and Recovery provide the updates you need on all things related to Backup and Recovery.
 {: shortdesc}
 
-## XX September 2025
-{: #baas-SepXX25}
+## 29 September 2025
+{: #baas-Sep2925}
+{: release-note}
+
+Release update
+:  {{site.data.keyword.cloud_notm}} Backup and Recovery is now available in multiple regions and workloads for customers. For more information, see [Workload Availability](/docs/backup-recovery?topic=backup-recovery-getting-started-backup-recovery#baas-compare-workload-availability) and [Regions](/docs/backup-recovery?topic=backup-recovery-service-availability&interface=cli#service-availability-region).
+
+
+## 26 September 2025
+{: #baas-Sep2625}
 {: release-note}
 
 Release update
