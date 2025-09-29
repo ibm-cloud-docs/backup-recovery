@@ -1,17 +1,333 @@
 toc:
   properties:
-    subcollection: repo-name
-    path: repo-name
-    href: /docs/repo-name
-    service-name: service-name # Replace
-    audience: audience-value # Replace
-    category: category-value # Replace
-    label: Docs subcollection title # Replace
-
+    subcollection: backup-recovery
+    service-name: backup-recovery
+    category: storage
+    audience: service
+    href: /docs/backup-recovery
+    console-page: /catalog/services/backup-and-recovery
+    product-page: https://www.ibm.com/products/backup-recovery
+    path: backup-recovery
+    label: Backup and Recovery
   entries:
-  - navgroup:
-      id: learn
-      links:
-      - link:
-        label: My V2 API docs
-        href: https://{DomainName}/apidocs/my-api/my-api-v2
+    - navgroup:
+        id: learn
+        topics:
+          - getting-started.md
+          - about-baas.md
+          - topicgroup:
+              label: Getting organized
+              topics:
+                - administrators.md
+                - developers.md
+          - topicgroup:
+              label: Optimizing performance
+              topics:
+                - topology.md
+                - data-io.md
+                - bottlenecks.md
+          - cos-responsibilities.md
+          - baas-comp-chart.md
+          - topic: release-notes.md
+            navtitle: Release notes
+    - navgroup:
+        id: tutorial
+        topics:
+          - topicgroup:
+              label: Protect a Physical Server (File-based)
+              topics:
+                - backup-linux.md
+                - backup-windows.md
+                - recover-linux.md
+                - recover-windows.md
+          - topicgroup:
+              label: Protect a MS SQL Server
+              topics:
+                - backup-mssql-vdi.md
+                - recover-mssql.md
+          - registration.md
+    - navgroup:
+        id: howto
+        topics:
+          - agent-download-install.md
+          - data_connector/DeployDataSourceConnector.md
+          - topicgroup:
+              label: Setting up access control
+              topics:
+                - baas-iam-access.md
+                - baas-iam.md
+                - baas-service-credentials.md
+          - topicgroup:
+              label: Integrated services
+              topics:
+              - topicgroup:
+                  label: Managing encryption
+                  topics:
+                    - baas-encryption-overview.md
+                    - baas-kp.md
+                    - baas-hpcs.md
+          - topicgroup:
+              label: Choose regions and connect services
+              topics:
+                - baas-service-endpoints.md
+                - baas-services.md
+          - topicgroup:
+              label: Observability
+              topics:
+                - baas-at-events.md
+                - baas-monitoring.md
+          - topicgroup:
+              label: Policies and Protection Groups
+              topics:
+                - policy-creation.md
+                - protection-groups.md
+          - topicgroup:
+              label: Enhancing security
+              topics:
+#                - architecture-workload-isolation.md
+                - security-service-endpoints.md
+                - vpe.md
+#                - data-security.md (Comment - this is a template)
+#          - topicgroup: (moved up under tutorials)
+#              label: Sources
+#              topics:
+#                - registration.md
+          - topicgroup:
+              label: Monitoring
+              topics:
+#              - jobs.md (blank)
+              - topicgroup:
+                  label: Reports
+                  topics:
+                    - reports/ReportList.md
+                    - reports/RunReports.md
+              - topicgroup:
+                  label: Alerts
+                  topics:
+                  - alerts/BackupRestoreAlerts.md
+                  - alerts/ConfiguringWebhooks.md
+                  - alerts/NotificationSettings.md
+                  - alerts/ResolutionSummary.md
+          - topicgroup:
+              label: Managing instances
+              topics:
+                - instance-remove.md
+          - topicgroup:
+              label: Databases
+              topics:
+              - topicgroup:
+                  label: SAP HANA
+                  topics:
+                    - sap_hana/BackupConceptUDASAPHANA.md
+                    - sap_hana/BackupSAPHANASource.md
+#                  - sap_hana/InstallSAPConnectorPPC.md Per Tim S hide for first release as PowerVS is a 2026 feature
+                    - sap_hana/InstallSAPConnectorx86.md
+                    - sap_hana/ManageProtectSAPHANADB.md
+                    - sap_hana/PlanandPrepare.md
+                    - sap_hana/ProtectSAPHANADB.md
+                    - sap_hana/RegisterSAPHANAUDASource.md
+                    - sap_hana/RestoreSAPHANADB.md
+                    - sap_hana/SAPHANACertification.md
+#                    - sap_hana/ref_topic/Objects.md
+              - topicgroup:
+                  label: Oracle
+                  topics:
+                    - data-protect/oracle-requirements.md
+                    - data-protect/register-oracle-sources.md
+ #                   - data-protect/ref_topics/saas-connection.md  Per Tim S hide because we already have a section on the datasource connector
+ #                   - data-protect/ref_topics/dataprotect-firewall-ports.md Per Tim S hide but move Oracle DB to Data Source Connections
+          - topicgroup:
+              label: Physical servers
+              topics:
+                - physical_servers/BackupConceptPhys.md
+                - physical_servers/JobServerPhysical_Download.md
+                - physical_servers/JobServerPhysical_FileBased.md
+                - physical_servers/JobServerPhysical.md
+                - physical_servers/MultipleProtectionRuns.md
+                - physical_servers/physical-recovery.md
+                - physical_servers/PhysicalServerSourceSideDedupe.md
+                - physical_servers/PhysicalServerThrottling.md
+                - physical_servers/plan-prepare-physical-servers.md
+                - physical_servers/Protect_FileServerRole_Windows.md
+                - physical_servers/ProtectWindowsFailoverCluster.md
+                - physical_servers/recover-files-orginal-physical.md
+                - physical_servers/recover-files-physcial-new.md
+                - physical_servers/recover-filesfolder-physical.md
+                - physical_servers/SourcePhysicalAdd.md
+                - physical_servers/ref_topics/AgentWindows.md
+                - physical_servers/ref_topics/BMR.md
+                - physical_servers/ref_topics/Indexing.md
+                - physical_servers/ref_topics/JobManage.md
+                - physical_servers/ref_topics/JobServerPhysical_AddExclusions.md
+                - physical_servers/ref_topics/JobServerPhysical_DirectiveFileBackup.md
+#                - physical_servers/ref_topics/JobServerPhysical.md (duplicate)
+                - physical_servers/ref_topics/OpenPorts.md
+                - physical_servers/ref_topics/PolicyCreateEdit.md
+                - physical_servers/ref_topics/PolicyProtectionJob.md
+                - physical_servers/ref_topics/PrePostScripts.md
+                - physical_servers/ref_topics/SourcePrivileges.md
+                - physical_servers/ref_topics/SupportedVersions.md
+                - physical_servers/ref_topics/SupportedWorkflows.md
+                - physical_servers/ref_topics/ViewBoxesCreateEdit.md
+    - navgroup:
+        id: reference
+        topics:
+          - topicgroup:
+              label: API reference
+              links:
+                - link:
+                    label: Backup and Recovery API
+                    href: https://cloud.ibm.com/apidocs/backup-recovery
+          - topicgroup:
+              label: Libraries
+              topics:
+                - baas-overview-sdks.md
+                - getting-started-sdks.md
+                - go.md
+                - backup-recovery-using-terraform.md
+          - topicgroup:
+              label: Use the command line
+              topics:
+                - backup-recovery-cli-v2.md
+          - topicgroup:
+              label: High availability and disaster recovery
+              topics:
+                - ha.md
+                - bc-dr.md
+          - topicgroup:
+              label: Security and compliance
+              topics:
+                - data-security-encryption.md
+                - compliance.md
+                - eu.md
+          - responsibilities.md
+          - performance-factors.md
+#          - topicgroup: (Comment:  moved whole section under how to)
+#              label: Databases
+#              topics:
+#              - topicgroup:
+#                  label: SAP HANA
+#                  topics:
+#                    - sap_hana/BackupConceptUDASAPHANA.md
+#                    - sap_hana/BackupSAPHANASource.md
+#                  - sap_hana/InstallSAPConnectorPPC.md Per Tim S hide for first release as PowerVS is a 2026 feature
+#                    - sap_hana/InstallSAPConnectorx86.md
+#                    - sap_hana/ManageProtectSAPHANADB.md
+#                    - sap_hana/PlanandPrepare.md
+#                    - sap_hana/ProtectSAPHANADB.md
+#                    - sap_hana/RegisterSAPHANAUDASource.md
+#                    - sap_hana/RestoreSAPHANADB.md
+#                    - sap_hana/SAPHANACertification.md
+#                    - sap_hana/ref_topic/Objects.md
+#          - topicgroup: Comment:  moved whole section under how to)
+#              label: Physical servers
+#              topics:
+#                - physical_servers/BackupConceptPhys.md
+#                - physical_servers/JobServerPhysical_Download.md
+#                - physical_servers/JobServerPhysical_FileBased.md
+#                - physical_servers/JobServerPhysical.md
+#                - physical_servers/MultipleProtectionRuns.md
+#                - physical_servers/physical-recovery.md
+#                - physical_servers/PhysicalServerSourceSideDedupe.md
+#                - physical_servers/PhysicalServerThrottling.md
+#                - physical_servers/plan-prepare-physical-servers.md
+#                - physical_servers/Protect_FileServerRole_Windows.md
+#                - physical_servers/ProtectWindowsFailoverCluster.md
+#                - physical_servers/recover-files-orginal-physical.md
+#                - physical_servers/recover-files-physcial-new.md
+#                - physical_servers/recover-filesfolder-physical.md
+#                - physical_servers/SourcePhysicalAdd.md
+#                - physical_servers/ref_topics/AgentWindows.md
+#                - physical_servers/ref_topics/BMR.md
+#                - physical_servers/ref_topics/Indexing.md
+#                - physical_servers/ref_topics/JobManage.md
+#                - physical_servers/ref_topics/JobServerPhysical_AddExclusions.md
+#                - physical_servers/ref_topics/JobServerPhysical_DirectiveFileBackup.md
+#                - physical_servers/ref_topics/JobServerPhysical.md (duplicate)
+#                - physical_servers/ref_topics/OpenPorts.md
+#                - physical_servers/ref_topics/PolicyCreateEdit.md
+#                - physical_servers/ref_topics/PolicyProtectionJob.md
+#                - physical_servers/ref_topics/PrePostScripts.md
+#                - physical_servers/ref_topics/SourcePrivileges.md
+#                - physical_servers/ref_topics/SupportedVersions.md
+#                - physical_servers/ref_topics/SupportedWorkflows.md
+#                - physical_servers/ref_topics/ViewBoxesCreateEdit.md
+          - topicgroup:
+              label: Managing agents Linux
+              topics:
+                - manage_agents_linux/AgentLinux.md
+                - manage_agents_linux/ref_topics/OpenPorts.md
+          - topicgroup:
+              label: Managing agents Windows
+              topics:
+                - manage_agents_windows/AgentWindows.md
+                - manage_agents_windows/ref_topics/OpenPorts.md
+          - topicgroup:
+              label: MS SQL
+              topics:
+                - mssql/plan-and-prepare.md
+                - mssql/register-and-manage.md
+                - mssql/restore-system-database.md
+                - mssql/sql-backup-methods.md
+                - mssql/sql-clone.md
+                - mssql/sql-considerations.md
+                - mssql/sql-migration.md
+                - mssql/sql-supported-database-types.md
+                - mssql/sql-vdi-recommendation.md
+                - mssql/SQLAutoDiscovery.md
+                - mssql/SQLBestPractices.md
+                - mssql/SQLClone.md
+                - mssql/SQLConceptBackup.md
+                - mssql/SQLConceptClone.md
+                - mssql/SQLConceptMigrate.md
+                - mssql/SQLConceptRecover.md
+                - mssql/SQLConceptRetention.md
+                - mssql/SQLDashboard.md
+                - mssql/SQLMigrate.md
+                - mssql/SQLProtection.md
+                - mssql/SQLProtectVDIBased.md
+                - mssql/SQLRecoverArchive.md
+                - mssql/SQLRequirements.md
+                - mssql/SQLRestore.md
+                - mssql/SQLRestoreAlternate.md
+                - mssql/SQLRestoreAlternateInstance.md
+                - mssql/SQLRestoreOriginal.md
+                - mssql/SQLSetupStandalone.md
+                - mssql/ref_topics/Cohesity-Deployment-Guide-Microsoft-SQL-Configurations.md
+                - mssql/ref_topics/Indexing.md
+                - mssql/ref_topics/PhysicalServerThrottling.md
+                - mssql/ref_topics/PrePostScripts.md
+                - mssql/ref_topics/Wildcard.md
+          - topicgroup:
+              label: Troubleshoot agents
+              topics:
+                - troubleshoot_agents/TroubleshootingAgent.md
+          - topicgroup:
+              label: Manage protection policies
+              topics:
+                - manage_protection_policies/datalock.md
+                - manage_protection_policies/extended-retention.md
+                - manage_protection_policies/Indexing.md
+                - manage_protection_policies/PolicyCreateEdit.md
+                - manage_protection_policies/PolicyManage.md
+                - manage_protection_policies/PolicyProtectionJob.md
+                - manage_protection_policies/PrePostScripts.md
+                - manage_protection_policies/ref_topics/CloneVMsCloudSpinAWS.md
+                - manage_protection_policies/ref_topics/CreatingDataProtectionJobOracle.md
+                - manage_protection_policies/ref_topics/DirectArchival.md
+                - manage_protection_policies/ref_topics/extended-retention.md
+                - manage_protection_policies/ref_topics/ExternalTargetsRegister.md
+                - manage_protection_policies/ref_topics/JobNAS.md
+                - manage_protection_policies/ref_topics/JobPure.md
+                - manage_protection_policies/ref_topics/JobServerPhysical_FileBased.md
+                - manage_protection_policies/ref_topics/ReplicationRegisterRemoteCluster.md
+                - manage_protection_policies/ref_topics/SourceAWS.md
+#                - manage_protection_policies/ref_topics/SourceAzureCloud.md
+                - manage_protection_policies/ref_topics/SQLProtectVolBased.md
+                - manage_protection_policies/ref_topics/VMWare_CDPBackups.md
+    - navgroup:
+        id: help
+        topics:
+          - support.md
+          - faq.md
+  #        - billing.md (Comment - moved to FAQ)
