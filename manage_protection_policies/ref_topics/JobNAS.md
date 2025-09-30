@@ -132,8 +132,10 @@ When you create a Protection Group, you can select an existing source, policy, o
 
     *   **Backup HDD**: The {{site.data.keyword.baas_full_notm}} writes the data directly to an HDD drive for this Protection Group.
     *   **Backup SSD**: The {{site.data.keyword.baas_full_notm}} writes the data directly to an SSD drive for this Protection Group. Only specify this policy if you need fast ingest speed for a small number of Protection Groups.
-    *   **Backup Auto**: (Applicable only for Cohesity C6000 series) The {{site.data.keyword.baas_full_notm}} writes the data to both SSDs and HDDs. The distribution of data will be based on the current usage of SSD and HDD. This policy tries to achieve similar backup performance as the **Backup SSD** policy and reduces the SSD wear-out compared to the Backup SSD policy.
+    *   **Backup Auto**: The {{site.data.keyword.baas_full_notm}} writes the data to both SSDs and HDDs. The distribution of data will be based on the current usage of SSD and HDD. This policy tries to achieve similar backup performance as the **Backup SSD** policy and reduces the SSD wear-out compared to the Backup SSD policy.
     *   **TestAndDev High:** The {{site.data.keyword.baas_full_notm}} writes the data to an SSD drive for this Protection Group. The I/Os with this QoS policy are given higher priority compared to other QoS policies. Use this policy for workloads that require lower I/O latency.
+
+    
 
 21. **Pre & Post Scripts:** Toggle **Enable** to run scripts on a Unix server before and/or after a Protection Group runs. If configured, scripts are run every time an object (or entity) is backed by a protection run. For example if there are five mount/shares that are backed up as part of the NAS Protection Group and the Pre Script is configured, then five instances of the Pre Script is executed in parallel. You can distinguish between the scripts that are run on the different objects (entities) using the `COHESITY_BACKUP_ENTITY` environment variable. The {{site.data.keyword.baas_full_notm}} populates this environment variable with the name of the backed object (or entity).
 
