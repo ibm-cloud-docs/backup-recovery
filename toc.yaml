@@ -321,10 +321,9 @@ toc:
                 - manage_protection_policies/ref_topics/JobPure.md
                 - manage_protection_policies/ref_topics/JobServerPhysical_FileBased.md
                 - manage_protection_policies/ref_topics/ReplicationRegisterRemoteCluster.md
-                - manage_protection_policies/ref_topics/SourceAWS.md
+#                - manage_protection_policies/ref_topics/SourceAWS.md    Hide per Ravi K
 #                - manage_protection_policies/ref_topics/SourceAzureCloud.md
                 - manage_protection_policies/ref_topics/SQLProtectVolBased.md
-                - manage_protection_policies/ref_topics/VMWare_CDPBackups.md
     - navgroup:
         id: help
         topics:

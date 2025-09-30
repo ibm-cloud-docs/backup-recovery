@@ -115,7 +115,7 @@ A Storage Domain, formerly known as a View Box, is a named storage location on a
     *   Tolerate SSD (metadata) failures of up to 2.
 
 
-    For more information, see the {{site.data.keyword.baas_full_notm}} white paper: [Cohesity Fault Tolerance — Data Integrity for Modern Web-scale Environments](https://docs.cohesity.com/TechGuides/PDFs/Cohesity-White-Paper-Fault-Tolerance-Data-Integrity.pdf){: external}.
+    
 
 14. **Erasure Coding:** Toggle on for better fault tolerance and capacity utilization. You can also select an Erasure Coding setting from the drop-down list. The available choices are determined by the **Fault Tolerance** setting and the number of nodes, chassis, or racks in the {{site.data.keyword.baas_full_notm}}. The settings indicate the ratio of the data stripes to the code stripes, expressed as x:y. For example, 2:1, 2:2, 3:1, 3.2, 4:1, 4:2, 4:3, 5:1, 5:2, or 5.3.
 
