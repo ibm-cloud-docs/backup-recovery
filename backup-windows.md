@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2025
-lastupdated: "2025-08-27"
+lastupdated: "2025-09-30"
 
 keywords: static website, hosting, tutorial
 
@@ -86,7 +86,7 @@ You will now be presented with the UI of your {{site.data.keyword.baas_full_notm
 
 Please refer to the steps in the following link(s) to accomplish this:
 1. [Plan and prepare for physical server protection](/docs/backup-recovery?topic=backup-recovery-plan_and_prepare_for_physical_server_protection)
-2. [Manage firewall ports](/docs/backup-recovery?topic=backup-recovery-manage_firewall_ports)
+2. [Manage firewall ports](/docs/backup-recovery?topic=backup-recovery-deploy_data_source_connector#port_requirements)
 3. [Install and Manage the Agent on Windows Servers](/docs/backup-recovery?topic=backup-recovery-install_and_manage_the_agent_on_windows_servers)
 4. [Protect a Physical Server (file-based)](/docs/backup-recovery?topic=backup-recovery-protect_a_physical_server_file-based)
 

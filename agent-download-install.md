@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2025
-lastupdated: "2025-08-27"
+lastupdated: "2025-09-30"
 
 keywords:  virtual machine
 
@@ -45,13 +45,13 @@ You will now be presented with the UI of your {{site.data.keyword.baas_full_notm
 
 Please refer to the steps in the following link(s) to accomplish this:
 
-1. [Manage firewall ports – Linux](/docs/backup-recovery?topic=backup-recovery-manage_firewall_ports)
+1. [Manage firewall ports – Linux](/docs/backup-recovery?topic=backup-recovery-deploy_data_source_connector#port_requirements)
 2. [Install and Manage the Agent on Linux Servers](/docs/backup-recovery?topic=backup-recovery-install-and-manage-the-agent-on-linux-servers)
 
     The Linux "Script Installer" must be used when installing an agent on a physical or virtual Linux host (e.g. RHEL, etc.).
     {: note}
 
-3. [Manage firewall ports – Windows and MS SQL](/docs/backup-recovery?topic=backup-recovery-manage_firewall_ports)
+3. [Manage firewall ports – Windows and MS SQL](/docs/backup-recovery?topic=backup-recovery-deploy_data_source_connector#port_requirements)
 4. [Install and Manage the Agent on Windows Servers](/docs/backup-recovery?topic=backup-recovery-install_and_manage_the_agent_on_windows_servers)
 
     The Windows Filesystem (Physical Server for File and Folder) and Microsoft SQL Server both use the same agent (.exe) for installation.

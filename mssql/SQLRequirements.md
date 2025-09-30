@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2025
-lastupdated: "2025-08-27"
+lastupdated: "2025-09-30"
 
 keywords: server protection, microsoft sql, backup agent, sysadmin role,
 
@@ -37,7 +37,7 @@ If you do not use the LOCAL SYSTEM account, ensure the following for the chosen 
 ## Ports used for communication
 {: #ports_used_for_communication}
 
-*   On physical servers or VMs with an ephemeral or installed agent, open the ports 445, 11113, 11117, and 50051. For more information, see [Manage Firewall Ports](/docs/backup-recovery?topic=backup-recovery-manage_firewall_ports).
+*   On physical servers or VMs with an ephemeral or installed agent, open the ports 445, 11113, 11117, and 50051. For more information, see [Manage Firewall Ports](/docs/backup-recovery?topic=backup-recovery-deploy_data_source_connector#port_requirements).
 
 *   If the Windows Firewall is used:
 
