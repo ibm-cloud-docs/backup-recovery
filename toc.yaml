@@ -96,11 +96,11 @@ toc:
               label: Monitoring
               topics:
 #              - jobs.md (blank)
-              - topicgroup:
-                  label: Reports
-                  topics:
-                    - reports/ReportList.md
-                    - reports/RunReports.md
+#              - topicgroup:
+#                  label: Reports  Per Ravi R hide topic.  This should be the section replaced with the new Mgmt Console section
+#                  topics:
+#                    - reports/ReportList.md
+#                    - reports/RunReports.md
               - topicgroup:
                   label: Alerts
                   topics:
@@ -155,19 +155,19 @@ toc:
                 - physical_servers/recover-filesfolder-physical.md
                 - physical_servers/SourcePhysicalAdd.md
                 - physical_servers/ref_topics/AgentWindows.md
-                - physical_servers/ref_topics/BMR.md
+#                - physical_servers/ref_topics/BMR.md Per Amit L hide topic
                 - physical_servers/ref_topics/Indexing.md
                 - physical_servers/ref_topics/JobManage.md
                 - physical_servers/ref_topics/JobServerPhysical_AddExclusions.md
                 - physical_servers/ref_topics/JobServerPhysical_DirectiveFileBackup.md
 #                - physical_servers/ref_topics/JobServerPhysical.md (duplicate)
-                - physical_servers/ref_topics/OpenPorts.md
+#                - physical_servers/ref_topics/OpenPorts.md Per Amit L hide topic
                 - physical_servers/ref_topics/PolicyCreateEdit.md
-                - physical_servers/ref_topics/PolicyProtectionJob.md
+#                - physical_servers/ref_topics/PolicyProtectionJob.md  Per Amit L hide topic
                 - physical_servers/ref_topics/PrePostScripts.md
-                - physical_servers/ref_topics/SourcePrivileges.md
+#                - physical_servers/ref_topics/SourcePrivileges.  Per Amit L hide topic
                 - physical_servers/ref_topics/SupportedVersions.md
-                - physical_servers/ref_topics/SupportedWorkflows.md
+#               - physical_servers/ref_topics/SupportedWorkflows.md  Per Amit L hide topic
                 - physical_servers/ref_topics/ViewBoxesCreateEdit.md
     - navgroup:
         id: reference
@@ -256,12 +256,12 @@ toc:
               label: Managing agents Linux
               topics:
                 - manage_agents_linux/AgentLinux.md
-                - manage_agents_linux/ref_topics/OpenPorts.md
+#                - manage_agents_linux/ref_topics/OpenPorts.md  Hide per Amit L
           - topicgroup:
               label: Managing agents Windows
               topics:
                 - manage_agents_windows/AgentWindows.md
-                - manage_agents_windows/ref_topics/OpenPorts.md
+#                - manage_agents_windows/ref_topics/OpenPorts.md  Hide per Amit L
           - topicgroup:
               label: MS SQL
               topics:
@@ -293,11 +293,11 @@ toc:
                 - mssql/SQLRestoreAlternateInstance.md
                 - mssql/SQLRestoreOriginal.md
                 - mssql/SQLSetupStandalone.md
-                - mssql/ref_topics/Cohesity-Deployment-Guide-Microsoft-SQL-Configurations.md
-                - mssql/ref_topics/Indexing.md
-                - mssql/ref_topics/PhysicalServerThrottling.md
-                - mssql/ref_topics/PrePostScripts.md
-                - mssql/ref_topics/Wildcard.md
+#               - mssql/ref_topics/Cohesity-Deployment-Guide-Microsoft-SQL-Configurations.  Hide all topics from here to Troubleshoot agents per Amit L
+#                - mssql/ref_topics/Indexing.md
+#                - mssql/ref_topics/PhysicalServerThrottling.md
+#                - mssql/ref_topics/PrePostScripts.md
+#                - mssql/ref_topics/Wildcard.md
           - topicgroup:
               label: Troubleshoot agents
               topics:
@@ -310,7 +310,7 @@ toc:
                 - manage_protection_policies/Indexing.md
                 - manage_protection_policies/PolicyCreateEdit.md
                 - manage_protection_policies/PolicyManage.md
-                - manage_protection_policies/PolicyProtectionJob.md
+#               - manage_protection_policies/PolicyProtectionJob.md
                 - manage_protection_policies/PrePostScripts.md
                 - manage_protection_policies/ref_topics/CloneVMsCloudSpinAWS.md
                 - manage_protection_policies/ref_topics/CreatingDataProtectionJobOracle.md

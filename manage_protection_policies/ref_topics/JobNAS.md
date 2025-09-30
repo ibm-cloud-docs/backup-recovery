@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024
-lastupdated: "2025-08-27"
+lastupdated: "2025-09-30"
 
 keywords: <KEYWORDS>
 
@@ -86,7 +86,7 @@ When you create a Protection Group, you can select an existing source, policy, o
 *   You can also filter with the following options:
     *   **NFS** -Displays NFS volumes only.
 
-        For Generic NAS and NetApp ONTAP sources, **NFSv3** and **NFSv4.1** filters are supported from Cohesity 6.6.0d version onwards. To enable this feature, contact [{{site.data.keyword.baas_full_notm}} Support](/docs/backup-recovery?topic=backup-recovery-troubleshooting-cos){: external}t.
+        For Generic NAS and NetApp ONTAP sources, **NFSv3** and **NFSv4.1** filters are supported from {{site.data.keyword.baas_full_notm}} 6.6.0d version onwards. To enable this feature, contact [{{site.data.keyword.baas_full_notm}} Support](/docs/backup-recovery?topic=backup-recovery-troubleshooting-cos){: external}t.
 
     *   **SMB** - Displays SMB volumes only.
 

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-08-28"
+lastupdated: "2025-09-30"
 
 keywords: <KEYWORDS>
 
@@ -44,7 +44,7 @@ A Storage Domain, formerly known as a View Box, is a named storage location on a
 
 8. **Encryption:** Toggle to enable encryption for the Storage Domain. Encryption can be enabled only when you are creating the Storage Domain. Once the Storage Domain is created, the options to enable encryption or modify its encryption settings are disabled in the {{site.data.keyword.baas_full_notm}}.
 
-    By default, Cohesity uses **Internal KMS** for encryption. If encryption is enabled at the cluster level, then data within the Storage Domains are also encrypted and you don't have to enable encryption for each Storage Domain. You can register an external KMS and select one of the following from the drop-down list:
+    By default, {{site.data.keyword.baas_full_notm}} uses **Internal KMS** for encryption. If encryption is enabled at the cluster level, then data within the Storage Domains are also encrypted and you don't have to enable encryption for each Storage Domain. You can register an external KMS and select one of the following from the drop-down list:
 
     *   AWS
 
@@ -125,7 +125,7 @@ A Storage Domain, formerly known as a View Box, is a named storage location on a
 
     For more details on {{site.data.keyword.baas_full_notm}} Erasure Coding, see the [Cohesity-White-Paper-Fault-Tolerance-Data-Integrity.pdf](https://docs.cohesity.com/HomePage/PDFs/Cohesity-White-Paper-Fault-Tolerance-Data-Integrity.pdf){: external}.
 
-    From Cohesity 6.6 onwards, you can use EC 8:2 for Azure, AWS, GCP, Imanis, MS SQL file-based, Physical Server, VMware, NAS, and SAN backup workloads.
+    From {{site.data.keyword.baas_full_notm}} 6.6 onwards, you can use EC 8:2 for Azure, AWS, GCP, Imanis, MS SQL file-based, Physical Server, VMware, NAS, and SAN backup workloads.
 
 
     | Number of Nodes  <br>in the Cluster | Number of Failures Tolerated |     | Storage Domain Resilience Settings |     |
@@ -171,7 +171,7 @@ A Storage Domain, formerly known as a View Box, is a named storage location on a
 
     The following table shows possible EC settings that can be set for the required resiliency of chassis.
 
-    From Cohesity 6.6 onwards, you can use EC 8:2 for Azure, AWS, GCP, Imanis, MS SQL file-based, Physical Server, VMware, NAS, and SAN backup workloads.
+    From {{site.data.keyword.baas_full_notm}} 6.6 onwards, you can use EC 8:2 for Azure, AWS, GCP, Imanis, MS SQL file-based, Physical Server, VMware, NAS, and SAN backup workloads.
 
 
     | Number of Chassis  <br>in the Cluster | Number of Failures Tolerated |     | Storage Domain Resilience Settings |     |
@@ -217,7 +217,7 @@ A Storage Domain, formerly known as a View Box, is a named storage location on a
 
     The following table shows possible EC settings that can be set for the required resiliency of racks.
 
-    From Cohesity 6.6 onwards, you can use EC 8:2 for Azure, AWS, GCP, Imanis, MS SQL file-based, Physical Server, VMware, NAS, and SAN backup workloads.
+    From {{site.data.keyword.baas_full_notm}} 6.6 onwards, you can use EC 8:2 for Azure, AWS, GCP, Imanis, MS SQL file-based, Physical Server, VMware, NAS, and SAN backup workloads.
 
 
     | Number of Racks  <br>in the Cluster | Number of Failures Tolerated |     | Storage Domain Resilience Settings |     |

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-08-28"
+lastupdated: "2025-09-30"
 
 keywords: <KEYWORDS>
 
@@ -60,7 +60,7 @@ subcollection: backup-recovery
         | Use the directive file for backup | The directive file defines the locations of the files and folders that you can back up in a protection group. Specify the file path of the directive file (meta-file) on the source while adding it to a protection group. For more information, see [Directive File Backup](JobServerPhysical_DirectiveFileBackup.htm).<br><br>Applies only to **Windows, AIX, and Linux** servers file-based backup |
         | Nested Mount Points | Based on the Physical server type you want to protect, select the mount points to skip.<br><br>**For Windows Physical Server**:<br><br>Skip Nested Mount Points: Enable this option if you do not want to backup the volumes that are mounted to a subfolder within the selected directory structure. By default, this option is enabled.<br><br>**For Linux Physical Server**:<br><br>Nested mount point types to skip: From the drop-down list, select the mount point types that you do not want to back up. By default, all the mount point types available on the server are selected.<br><br>**Example**<br><br>If you select this option and give the path as / root to backup, the Protection Group will exclude all other mount points except / root including local mount points like /usr/, /home/, /opt along with any NFS mount points.<br><br>If you do not select this option, the Protection Group will backup all the local file systems along with all the mounted NFS file systems. Click Add Path to protect an additional path. |
         | Add Exclusion | > You can use this option to add exclusion entries for Individual files and folders and Protect all local volumes. For more information, see [Add Exclusions](JobServerPhysical_AddExclusions.htm). |
-        | Add Path | Click Add Path to protect an additional path and then click Save.<br><br>For the Cohesity version below 6.6.0d\_u3, after an initial full backup of a cluster, if a parent directory is added, there is a probability of unaltered files going missing in the latest snapshot. This issue is fixed in Cohesity version 6.6.0d\_u3 and later. However, {{site.data.keyword.baas_full_notm}} recommends running at least one full backup after the upgrade. For more information, see [Incremental forever backups with parent directory addition](/docs/backup-recovery?topic=ncremental-forever-backups-with-parent-directory-addition){: external}. |
+        | Add Path | Click Add Path to protect an additional path and then click Save.<br><br>For the Cohesity version below 6.6.0d\_u3, after an initial full backup of a cluster, if a parent directory is added, there is a probability of unaltered files going missing in the latest snapshot. This issue is fixed in {{site.data.keyword.baas_full_notm}} version 6.6.0d\_u3 and later. However, {{site.data.keyword.baas_full_notm}} recommends running at least one full backup after the upgrade. For more information, see [Incremental forever backups with parent directory addition](/docs/backup-recovery?topic=ncremental-forever-backups-with-parent-directory-addition){: external}. |
 
 3. **Protection Group**: To enter a new name for the protection group, select **New Group** and enter the group name in the **Group Name** field. To use an existing protection group name, select **Existing Group** and select an existing group name from the **Group** drop-down list.
 

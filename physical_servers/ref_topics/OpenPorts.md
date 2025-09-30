@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2025
-lastupdated: "2025-08-28"
+lastupdated: "2025-09-30"
 
 keywords: <KEYWORDS>
 
@@ -1129,9 +1129,9 @@ If the {{site.data.keyword.baas_full_notm}} uses an interface with the node IP a
 ## Cohesity cli commands used to manage firewall ports
 {: #cohesity_cli_commands_used_to_manage_firewall_ports}
 
-For on-premises clusters, you can use the following Cohesity CLI commands to manage the cluster firewall configuration. For more information, see [Using the Cohesity CLI](https://docs.cohesity.com/7_2/Web/PDFs/72_PlatformCLI.pdf){: external} and [List of Cohesity CLI Commands](../CLI_Reference/Objects.htm).
+For on-premises clusters, you can use the following {{site.data.keyword.baas_full_notm}} CLI commands to manage the cluster firewall configuration. For more information, see [Using the Cohesity CLI](https://docs.cohesity.com/7_2/Web/PDFs/72_PlatformCLI.pdf){: external} and [List of Cohesity CLI Commands](../CLI_Reference/Objects.htm).
 
-The firewall commands use the following terminology: Active Cohesity rules are called an _attachment_. An attachment includes a _profile_ and multiple _ipsets_. A profile is a group of TCP or UDP ports. An ipset is subnet with the format of <IP/prefix>. An attachment can be on one or more specific network interfaces or it can apply to all interfaces when no interface is specified.
+The firewall commands use the following terminology: Active {{site.data.keyword.baas_full_notm}} rules are called an _attachment_. An attachment includes a _profile_ and multiple _ipsets_. A profile is a group of TCP or UDP ports. An ipset is subnet with the format of <IP/prefix>. An attachment can be on one or more specific network interfaces or it can apply to all interfaces when no interface is specified.
 
 
 | CLI Command | Description |
