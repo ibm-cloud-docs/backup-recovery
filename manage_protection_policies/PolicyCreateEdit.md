@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2025
-lastupdated: "2025-08-27"
+lastupdated: "2025-09-30"
 
 keywords: <KEYWORDS>
 
@@ -45,16 +45,6 @@ On the **Create Policy** page you can change underlined numeric fields by over t
 
         The policy schedule can be configured to run on specific dates as well (calendar-based scheduling). From the **Every** drop-down, select **Month**, and in the **On** field, select the **Date**. You can then choose the date of the month you want to run the backup. For example, you can schedule a backup to run on the 5th of every month.
 
-5. Under **Primary Copy**, specify the following:
-
-    1. **Keep On**: Select **Local** from the drop-down to keep the primary copy data on the {{site.data.keyword.baas_full_notm}}.
-
-        If you are selecting any external targets, then this policy can be only used for performing CloudArchive Direct wherein the primary copy of the data is stored on the external targets. For more information, see [Cloudarchive direct](/docs/backup-recovery?topic=backup-recovery-cloudarchive_direct).
-
-    2. **Retain for xx days**: Specify how many days, weeks, months, or years backups are retained on the {{site.data.keyword.baas_full_notm}} before they are deleted.
-
-        *   The **Retain** option can be set to a maximum value of 365000.
-        *   Retentions at 7-day boundaries turn into weeks.
 
 
 
@@ -83,9 +73,6 @@ On the **Create Policy** page you can change underlined numeric fields by over t
     *   {{site.data.keyword.baas_full_notm}} recommends a first full and incremental forever approach to backup all workloads (sources) with the exception for Oracle(SBT based backup) and SQL (VDI-based) where {{site.data.keyword.baas_full_notm}} recommends periodic full backups.
 
 
-10. **Continuous Data Protection**: (_Applies only for VMware_) To achieve near zero RPO, click the **Continuous Data Protection** option floating menu and specify the time unit (hours) to capture and retain logs on the {{site.data.keyword.baas_full_notm}}. This value defines the CDP schedule for capturing logs from the VMs.
-
-    You can use this option to restore the VM applications to a point-in-time as opposed to periodic snapshots available with regular backups.
 
 11. **Quiet Times:** Select this option from the **Backup Options** floating menu to add a quiet time. Quiet Times define time periods when new protection runs are not started. For example, you may want to configure hourly backups that run during weekdays but not on Saturday or Sunday. Quiet Times only prevent new protection runs from starting during the specified time period. Protection runs that started before the quiet time period are not affected and will continue to run. For example, if a protection run starts at 12:45 AM on Saturday morning and there is a weekend quiet time period that starts at 1 AM on Saturday morning, the protection run will continue to run past 1 AM. No new protection runs are started during the quiet times. Similarly, for jobs set on an interval basis, such as incremental jobs running every 6 hours, the job will start immediately after the Quiet Time ends. For example, if jobs are scheduled at 6 AM, 12 PM, 6 PM, and 12 AM, and a Quiet Time is set from 11:30 AM to 1:30 PM, the job originally planned for noon will instead commence at 1:31 PM. Once the run commences at 1:31 PM, the next run will take place at 7:30 PM and not 6 PM (6 hours difference).
 
@@ -114,65 +101,6 @@ On the **Create Policy** page you can change underlined numeric fields by over t
 
     
 
-14. **Storage Array Snapshot**: Select **Storage Array Snapshot** from the **Backup Options** floating menu to provide a backup schedule and retention period for the Safeguarded snapshots for IBM Storage FlashSystem volume and volume groups. These are point-in-time cyber-resilient copies of IBM Storage FlashSystem volume groups.
-
-    1. **Backup every xx**: Select the time unit for how often The Protection Group captures safeguarded snapshots.
-
-    2. **Retain for xx days**: Specify how many days the Safeguarded snapshots are retained on the {{site.data.keyword.baas_full_notm}} before they are deleted.
-
-15. **Extended Retention**: Click the **Primary Copy** tile and select this option from the **Backup Options** floating menu to retain a subset of snapshots (backups) for longer than defined by the protection schedule.
-
-    1. Specify when to take the first snapshot and how long to retain it. For more information, see [Extended Retention](/docs/backup-recovery?topic=backup-recovery-extended_retention).
-
-    2. **Lock**: Specify how many days, weeks, months, or years the retained backups should be locked. You cannot delete the snapshots during the specified period.
-
-        This option is available only if you have enabled the **DataLock** option at the policy level.
-
-    3. **Full Backup Only**: Toggle on to apply this setting for full backup. By default, the toggle is off and extended retention will not be used.
-
-
-16. **Add Archival:** Select this option to add an archive schedule.
-
-    1. **Archive to:** Select an existing external target. You can also register a new external target. For detailed instructions, see [Register an External Target](/docs/backup-recovery?topic=backup-recovery-register_an_external_target).
-
-    2. **Archive only fully successful Runs:** Check this box if you want archive to occur only if the snapshots of all the objects protected by the Protection Group were created. If the creation of any snapshots fails, no snapshots are archived.
-
-    3. **Full Backup Only**: Toggle on to archive only the full backups. By default, the toggle is off.
-
-    4. **Every #:** Specify the archive schedule for making copies of snapshots created by this Protection Group and storing them on a registered external target. (The storage domain, however, is specified in the Protection Group.) The archive schedule for copying snapshots cannot be more often than the protection schedule for capturing snapshots. For example if snapshots are captured daily, the {{site.data.keyword.baas_full_notm}} cannot archive them hourly but it can archive them daily or any value less often than daily.
-
-    5. **Retain for xx days:**
-
-        Full/Incremental Backups
-
-        Specify how long the snapshots are retained on the external target.
-
-        *   Cloud archive snapshots are expired per the retention policy. However, the garbage collection of the expired cloud archive snapshots happens in the background. The expired cloud archive snapshots will be garbage collected from the External Target once there are no active Cloud archive snapshots sharing data with them.
-        *   You cannot delete the latest archive snapshot as it might be needed in future. However, if you still want to delete the archive snapshot, you must contact [IBM Cloud Support](https://cloud.ibm.com/unifiedsupport/supportcenter).
-
-        *   The retention period is applicable only to the database backup and not the log backup.
-
-        *   The **Retain** option can be set to a maximum value of 365000.
-
-
-        Log Backups
-
-        Specify how long the log backup snapshots are retained on the external target.
-
-        The Retain option can be set to a maximum value of 365000.
-
-        You can add additional archive schedules.
-
-        If you specify multiple archive schedules with the same external target that archive the same set of snapshots with different retention periods, the snapshots are retained for the longest specified time period.
-
-    6. **Lock**: Specify how many days, weeks, months, or years the retained snapshots should be locked. You cannot delete the snapshots during the specified period.
-
-        *   This option is available only if you have enabled the **DataLock** option at the policy level.
-        *   The DataLock duration must be lesser than or equal to the retention period.
-
-
-17. **WORM on External Target**: Enable this option to lock the archives in the targets to prevent modification on the external target. The archives to this target will be WORM compliant. For more information, see [Prerequisites and Considerations for WORM Compliance](#Prerequi).
-
 18. Click **Create**.
 
 When editing an existing policy that is configured to capture backup snapshots on a minutes or hourly time schedule and you change the schedule to occur daily, weekly or monthly, you are prompted to specify a start time for each of the Protection Groups that use this policy.
@@ -182,74 +110,6 @@ The policy is immediately available to use in Protection Groups.
 *   For {{site.data.keyword.baas_full_notm}}, on NoSQL platforms, when you pause the backup job for a longer time than the retention period, the last successful snapshot will not be deleted even after the retention period expired on that snapshot.
 
 *   For {{site.data.keyword.baas_full_notm}}, the last snapshot is always retained on HDFS/HBase/Hive, MongoDB, Cassandra, and CouchBase platforms.
-
-
-## Prerequisites and considerations for worm compliance
-{: #prerequisites_and_considerations_for_worm_compliance}
-
-### Prerequisites
-{: #prerequisites}
-
-During the external target registration, {{site.data.keyword.baas_full_notm}} checks if the external target is WORM-capable by querying the external target properties.
-
-The following are the prerequisites to be set in:
-
-*   Confirm whether the target you select supports WORM. For the list of targets that support WORM, see [Supported Workflows and External Targets](/docs/backup-recovery?topic=backup-recovery-supported_workflows_and_external_targets).
-
-
-*   The WORM-supported AWS external target must have versioning and object lock enabled. For more information, see [Using S3 Object Lock](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html){: external}.
-
-*   For the Azure targets, the container must have a version-level immutability set, which means the storage account must also have version-level immutability. For more information, see [Enable version-level immutability support on a container](https://docs.microsoft.com/en-us/azure/storage/blobs/immutable-policy-configure-version-scope?tabs=azure-portal#enable-version-level-immutability-for-a-new-container){: external}.
-
-
-*   The above properties must be set at the time of bucket creation and cannot be enabled after creation.
-*   Avoid setting default retention on S3 buckets and Azure - this is not required as {{site.data.keyword.baas_full_notm}} locks the objects for the duration required. Large default retentions affect garbage collection and increase costs.
-
-*   By default, the objects will be locked in the [Governance retention mode](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock-overview.html){: external}. To use the **Compliance** mode, contact [IBM Cloud Support](https://cloud.ibm.com/unifiedsupport/supportcenter).
-
-
-### Considerations
-{: #considerations}
-
-*   This field is available only if the **DataLock** toggle is enabled.
-
-*   This field is currently available only for AWS and Azure WORM-capable targets.
-
-*   WORM is not supported on external targets already registered on {{site.data.keyword.baas_full_notm}}.
-
-*   When archiving data to versioned buckets, ensure that you do not edit the storage class of objects directly. Editing the storage class of objects directly will create a new version of the object while the original version remains in the previous storage tier. Object-level locks will not be carried over to the new version.
-
-*   If the **WORM on External Target** option is enabled in the policy after performing the archive, the next archive will be WORM compliant.
-
-*   The {{site.data.keyword.baas_full_notm}} Data Movement feature cannot coexist with WORM. An archival target in a Protection Policy can only have one of the settings enabled.
-
-*   For archival with period full format:
-
-    *   Supports both AWS and Azure WORM-capable targets. For the list of targets that support WORM for archival with periodic full, see [Supported Workflows and External Targets](../../ReleaseNotes/SupportedWorkflows.htm).
-
-    *   If WORM compliance is not met for an archive, the archive is still considered successful and can be recovered.
-
-    *   After archival, to view the WORM Compliance status, perform the following:
-
-        1. Click the **Protection** menu.
-
-        2. Select the required Protection Group.
-
-        3. Select the required run.
-
-        4. Click the **Cloud Archive** tab.
-
-        5. The **WORM Compliance** status and **WORM Expiry Time** will be displayed.
-
-*   **For archival with incremental forever format**:
-
-    *   Supports AWS WORM-capable targets. For the list of targets that support WORM for archival with incremental full, see [Supported Workflows and External Targets](/docs/backup-recovery?topic=backup-recovery-supported_workflows_and_external_targets).
-
-    *   If WORM compliance is not met for an archive, then the archival will fail.
-
-    *   {{site.data.keyword.baas_full_notm}} does not support WORM for CloudArchive Direct.
-
-    *   With WORM enabled, the storage utilization of external targets may be higher.
 
 
 ## Considerations

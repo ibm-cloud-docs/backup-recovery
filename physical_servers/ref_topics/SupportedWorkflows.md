@@ -1487,7 +1487,7 @@ This section lists the workflows that are supported for different servers, datab
 ## Aws cloud workflows
 {: #aws_cloud_workflows}
 
-### Protection workflows for aws cloud vm (ec2 instance) - cohesity snapshot
+### Protection workflows for aws cloud vm (ec2 instance) - {{site.data.keyword.baas_full_notm}} snapshot
 {: #protection_workflows_for_aws_cloud_vm_ec2_instance_-_cohesity_snapshot}
 
 
@@ -1519,7 +1519,7 @@ This section lists the workflows that are supported for different servers, datab
 | CONVERT AND DEPLOY | Register AWS source and clone VMs to AWS | No  | No  | No  |
 {: caption="" caption-side="bottom"}
 
-### Archival workflows for aws cloud vm (ec2 instance) - cohesity snapshot
+### Archival workflows for aws cloud vm (ec2 instance) - {{site.data.keyword.baas_full_notm}} snapshot
 {: #archival_workflows_for_aws_cloud_vm_ec2_instance_-_cohesity_snapshot}
 
 
@@ -1559,7 +1559,7 @@ This section lists the workflows that are supported for different servers, datab
 | Recover files from an archive to a source (to the same and different sources) | No  | No  | No  |
 {: caption="" caption-side="bottom"}
 
-### Replication workflows for aws cloud vm (ec2 instance) - cohesity snapshot
+### Replication workflows for aws cloud vm (ec2 instance) - {{site.data.keyword.baas_full_notm}} snapshot
 {: #replication_workflows_for_aws_cloud_vm_ec2_instance_-_cohesity_snapshot}
 
 
@@ -1830,7 +1830,7 @@ This section lists the workflows that are supported for different servers, datab
 ## Azure cloud workflows
 {: #azure_cloud_workflows}
 
-### Protection workflows for azure cloud vm - cohesity snapshot
+### Protection workflows for azure cloud vm - {{site.data.keyword.baas_full_notm}} snapshot
 {: #protection_workflows_for_azure_cloud_vm_-_cohesity_snapshot}
 
 
@@ -1863,7 +1863,7 @@ This section lists the workflows that are supported for different servers, datab
 | Register AWS source and clone VMs to AWS | No  | No  | No  |
 {: caption="" caption-side="bottom"}
 
-### Archival workflows for azure cloud vm - cohesity snapshot
+### Archival workflows for azure cloud vm - {{site.data.keyword.baas_full_notm}} snapshot
 {: #archival_workflows_for_azure_cloud_vm_-_cohesity_snapshot}
 
 
@@ -1903,7 +1903,7 @@ This section lists the workflows that are supported for different servers, datab
 | Recover files from an archive to a source (to the same and different sources) | No  | No  | No  |
 {: caption="" caption-side="bottom"}
 
-### Replication workflows for azure cloud vm - cohesity snapshot
+### Replication workflows for azure cloud vm - {{site.data.keyword.baas_full_notm}} snapshot
 {: #replication_workflows_for_azure_cloud_vm_-_cohesity_snapshot}
 
 
@@ -2046,7 +2046,7 @@ This section lists the workflows that are supported for different servers, datab
 ## Gcp cloud workflows
 {: #gcp_cloud_workflows}
 
-### Protection workflows for gcp cloud vm - cohesity snapshot
+### Protection workflows for gcp cloud vm - {{site.data.keyword.baas_full_notm}} snapshot
 {: #protection_workflows_for_gcp_cloud_vm_-_cohesity_snapshot}
 
 
@@ -2080,7 +2080,7 @@ This section lists the workflows that are supported for different servers, datab
 | Register AWS source and clone VMs to AWS | No  |
 {: caption="" caption-side="bottom"}
 
-### Archival workflows for gcp cloud vm - cohesity snapshot
+### Archival workflows for gcp cloud vm - {{site.data.keyword.baas_full_notm}} snapshot
 {: #archival_workflows_for_gcp_cloud_vm_-_cohesity_snapshot}
 
 
@@ -2120,7 +2120,7 @@ This section lists the workflows that are supported for different servers, datab
 | Recover files from an archive to a source (to the same and different sources) | No  |
 {: caption="" caption-side="bottom"}
 
-### Replication workflows for gcp cloud vm - cohesity snapshot
+### Replication workflows for gcp cloud vm - {{site.data.keyword.baas_full_notm}} snapshot
 {: #replication_workflows_for_gcp_cloud_vm_-_cohesity_snapshot}
 
 
@@ -2261,7 +2261,7 @@ If the **Object Key Pattern** of the S3 View you want to archive is **Object ID*
 | Recover files/folders to source from archive for downloaded CloudRetrieve jobs | Yes | Yes | No  | Yes | No  | Yes | Yes | No  | No  |
 | WORM Support | Yes | Yes | No  | Yes | No  | No  | Yes | Yes | Yes |
 | Cloud Vendor Provided Life Cycle Management (LCM) | Yes | Yes | No  | Yes | No  | No  | Yes | Yes | No  |
-| Cohesity Data Movement (LCM) | No  | No  | No  | No  | No  | No  | No  | No  | No  |
+| {{site.data.keyword.baas_full_notm}} Data Movement (LCM) | No  | No  | No  | No  | No  | No  | No  | No  | No  |
 {: caption="" caption-side="bottom"}
 
 ### External targets for cloudarchive (with periodic full) - gov
@@ -2286,7 +2286,7 @@ If the **Object Key Pattern** of the S3 View you want to archive is **Object ID*
 | Recover files/folders to source from archive for downloaded CloudRetrieve jobs | Yes | No  | No  |
 | WORM Support | No  | No  | No  |
 | Cloud Vendor Provided Life Cycle Management (LCM) | Yes | Yes | No  |
-| Cohesity Data Movement (LCM) | No  | No  | No  |
+| {{site.data.keyword.baas_full_notm}} Data Movement (LCM) | No  | No  | No  |
 {: caption="" caption-side="bottom"}
 
 ### External targets for cloudarchive (with periodic full) - c2s
@@ -2311,7 +2311,7 @@ If the **Object Key Pattern** of the S3 View you want to archive is **Object ID*
 | Recover files/folders to source from archive for downloaded CloudRetrieve jobs | Yes | No  |
 | WORM Support | No  | No  |
 | Cloud Vendor Provided Life Cycle Management (LCM) | No  | No  |
-| Cohesity Data Movement (LCM) | No  | No  |
+| {{site.data.keyword.baas_full_notm}} Data Movement (LCM) | No  | No  |
 {: caption="" caption-side="bottom"}
 
 ### External targets for cloudarchive (incremental forever) and cloudarchive direct (with dedup) - standard
@@ -2325,7 +2325,7 @@ If the **Object Key Pattern** of the S3 View you want to archive is **Object ID*
 
 *   CloudArchive Direct (with Dedup) for AWS S3 Glacier FLR is supported in NAS, but not supported in VMware.
 
-*   Recover files/folders to source from archived snapshots is only supported for VMWare, HyperV, NAS, Cohesity Views, and Physical (Linux, Windows, Solaris, HPUX and AIX) sources.
+*   Recover files/folders to source from archived snapshots is only supported for VMWare, HyperV, NAS, {{site.data.keyword.baas_full_notm}} Views, and Physical (Linux, Windows, Solaris, HPUX and AIX) sources.
 
 
 
@@ -2347,7 +2347,7 @@ If the **Object Key Pattern** of the S3 View you want to archive is **Object ID*
 | Recover files/folders to source from archive for downloaded CloudRetrieve jobs | Yes | No  | Yes | Yes | Yes | Yes | Yes | No  | No  |
 | WORM Support | Yes | No  | Yes | Yes | Yes | Yes | Yes | No  | No  |
 | Cloud Vendor Provided Life Cycle Management (LCM) | No  | No  | No  | No  | No  | No  | No  | No  | No  |
-| Cohesity Data Movement (LCM) | Yes | No  | Yes | Yes | Yes | Yes | No  | No  | No  |
+| {{site.data.keyword.baas_full_notm}} Data Movement (LCM) | Yes | No  | Yes | Yes | Yes | Yes | No  | No  | No  |
 {: caption="" caption-side="bottom"}
 
 ### External targets for cloudarchive (incremental forever) and cloudarchive direct (with dedup) - gov
@@ -2379,7 +2379,7 @@ If the **Object Key Pattern** of the S3 View you want to archive is **Object ID*
 | Recover files/folders to source from archive for downloaded CloudRetrieve jobs | Yes | Yes | Yes |
 | WORM Support | No  | No  | No  |
 | Cloud Vendor Provided Life Cycle Management (LCM) | No  | No  | No  |
-| Cohesity Data Movement (LCM) | No  | No  | No  |
+| {{site.data.keyword.baas_full_notm}} Data Movement (LCM) | No  | No  | No  |
 {: caption="" caption-side="bottom"}
 
 ### External targets for cloudarchive (incremental forever) and cloudarchive direct (with dedup) - c2s
@@ -2409,7 +2409,7 @@ If the **Object Key Pattern** of the S3 View you want to archive is **Object ID*
 | Recover files/folders to source from archive for downloaded CloudRetrieve jobs | No  | No  |
 | WORM Support | No  | No  |
 | Cloud Vendor Provided Life Cycle Management (LCM) | No  | No  |
-| Cohesity Data Movement (LCM) | No  | No  |
+| {{site.data.keyword.baas_full_notm}} Data Movement (LCM) | No  | No  |
 {: caption="" caption-side="bottom"}
 
 ### External targets for cloudarchive direct without dedup- standard
@@ -2567,7 +2567,7 @@ The option to enable CloudArchive Direct (native mode - no dedupe, no compressio
 | Recover files/folders to source from archive for downloaded CloudRetrieve jobs | Yes | Yes | No  | Yes | Yes | No  |
 | WORM Support | Yes | Yes | Yes | No  | No  | No  |
 | Cloud Vendor Provided Life Cycle Management (LCM) | No  | No  | No  | No  | No  | No  |
-| Cohesity Data Movement (LCM) | No  | No  | No  | No  | No  | No  |
+| {{site.data.keyword.baas_full_notm}} Data Movement (LCM) | No  | No  | No  | No  | No  | No  |
 {: caption="" caption-side="bottom"}
 
 ### External targets for cloudarchive (incremental forever) and cloudarchive direct (with dedup)
@@ -2597,7 +2597,7 @@ The option to enable CloudArchive Direct (native mode - no dedupe, no compressio
 | Recover files/folders to source from archive for downloaded CloudRetrieve jobs | Yes | Yes | Yes | No  |
 | WORM Support | No  | No  | No  | No  |
 | Cloud Vendor Provided Life Cycle Management (LCM) | No  | No  | No  | No  |
-| Cohesity Data Movement (LCM) | No  | No  | No  | No  |
+| {{site.data.keyword.baas_full_notm}} Data Movement (LCM) | No  | No  | No  | No  |
 {: caption="" caption-side="bottom"}
 
 ### External targets for cloudarchive direct without dedup
@@ -2682,7 +2682,7 @@ The option to enable CloudArchive Direct (native mode - no dedupe, no compressio
 | Recover files/folders to source from archive for downloaded CloudRetrieve jobs | Yes | Yes | Yes |
 | WORM Support | No  | No  | No  |
 | Cloud Vendor Provided Life Cycle Management (LCM) | No  | No  | No  |
-| Cohesity Data Movement (LCM) | No  | No  | No  |
+| {{site.data.keyword.baas_full_notm}} Data Movement (LCM) | No  | No  | No  |
 {: caption="" caption-side="bottom"}
 
 ### External targets for cloudarchive (incremental forever) and cloudarchive direct (with dedup)
@@ -2712,7 +2712,7 @@ The option to enable CloudArchive Direct (native mode - no dedupe, no compressio
 | Recover files/folders to source from archive for downloaded CloudRetrieve jobs | No  | No  | No  |
 | WORM Support | No  | No  | No  |
 | Cloud Vendor Provided Life Cycle Management (LCM) | No  | No  | No  |
-| Cohesity Data Movement (LCM) | No  | No  | No  |
+| {{site.data.keyword.baas_full_notm}} Data Movement (LCM) | No  | No  | No  |
 {: caption="" caption-side="bottom"}
 
 ### External targets for cloudarchive direct without dedup
@@ -2782,7 +2782,7 @@ The option to enable CloudArchive Direct (native mode - no dedupe, no compressio
 | Recover files/folders to source from archive for downloaded CloudRetrieve jobs | Yes | No  |
 | WORM Support | No  | No  |
 | Cloud Vendor Provided Life Cycle Management (LCM) | No  | No  |
-| Cohesity Data Movement (LCM) | No  | No  |
+| {{site.data.keyword.baas_full_notm}} Data Movement (LCM) | No  | No  |
 {: caption="" caption-side="bottom"}
 
 ### External targets for cloudarchive (incremental forever) and cloudarchive direct (with dedup)
@@ -2812,7 +2812,7 @@ The option to enable CloudArchive Direct (native mode - no dedupe, no compressio
 | Recover files/folders to source from archive for downloaded CloudRetrieve jobs | No  | No  |
 | WORM Support | No  | No  |
 | Cloud Vendor Provided Life Cycle Management (LCM) | No  | No  |
-| Cohesity Data Movement (LCM) | No  | No  |
+| {{site.data.keyword.baas_full_notm}} Data Movement (LCM) | No  | No  |
 {: caption="" caption-side="bottom"}
 
 ### External targets for cloudarchive direct without dedup
@@ -2868,7 +2868,7 @@ File-level recovery of objects archived to QStar tape is an Early Access feature
 
 | Workflows | External Targets |     |     |     |
 | --- | --- | --- | --- | --- |
-| NAS | QStar Tape | S3 - Compatible (E.g., Cohesity) | Tape-Based S3 - Compatible (E.g., IBM Storage Protect) \* |
+| NAS | QStar Tape | S3 - Compatible (E.g., {{site.data.keyword.baas_full_notm}}) | Tape-Based S3 - Compatible (E.g., IBM Storage Protect) \* |
 | --- | --- | --- | --- | --- |
 | Enable/disable deduplication at external target level | Yes | No  | Yes | No  |
 | Manual management of encryption keys | Yes | Yes | Yes | Yes |
@@ -2897,7 +2897,7 @@ Supported sources for CloudArchive Direct with Dedup are VMware, and NAS.
 
 | Workflows | External Targets |     |
 | --- | --- | --- |
-| NAS | S3 - Compatible (E.g., Cohesity) \* |
+| NAS | S3 - Compatible (E.g., {{site.data.keyword.baas_full_notm}}) \* |
 | --- | --- | --- |
 | Enable/disable compression at external target level | Yes | Yes |
 | Unregister external target | Yes | Yes |
@@ -2951,7 +2951,7 @@ The option to enable CloudArchive Direct (native mode - no dedupe, no compressio
 
 | Workflows | External Targets |     |
 | --- | --- | --- |
-| S3 - Compatible (E.g., Cohesity) \* | Netapp - StorageGrid |
+| S3 - Compatible (E.g., {{site.data.keyword.baas_full_notm}}) \* | Netapp - StorageGrid |
 | --- | --- | --- |
 | Enable encryption at external target level | Yes | Yes |
 | Once enabled, disable encryption at external target level | No  | No  |

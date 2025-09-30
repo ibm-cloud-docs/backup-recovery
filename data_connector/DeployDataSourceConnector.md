@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2025
-lastupdated: "2025-09-26"
+lastupdated: "2025-09-30"
 
 keywords: backup and recovery, data source connectors,
 
@@ -69,7 +69,7 @@ Microsoft SQL Servers
 
 Oracle Servers
 
-Ensure that the following ports are open to allow communication between the Cohesity SaaS Connector(s) and Oracle Server:
+Ensure that the following ports are open to allow communication between the Data Source Connector(s) and Oracle Server:
 
 | Source | Destination | Port | Protocol | Purpose |
 | --- | --- | --- | --- | --- |
@@ -151,12 +151,12 @@ To create a Data Source Connection:
 
 #### DataNetwork and SecondaryNetwork
 
-      - To deploy the Data Source Connector on a dual network, select different VLANs in `DataNetwork` and `SecondaryNetwork`, respectively.
-      - The Data Source Connector must have dual IP addresses if your data sources are in a private non-routable VLAN.
-      - Once you have deployed the Data Source Connector on a single network, you cannot modify the Data Source Connector to use a dual network or vice versa.
+- To deploy the Data Source Connector on a dual network, select different VLANs in `DataNetwork` and `SecondaryNetwork`, respectively.
+- The Data Source Connector must have dual IP addresses if your data sources are in a private non-routable VLAN.
+- Once you have deployed the Data Source Connector on a single network, you cannot modify the Data Source Connector to use a dual network or vice versa.
 
 
-   1.  On the `Customize template` page, enter the network settings: `Network IP Address`, `Network Netmask`, and `Default Gateway`. If you have selected a different VLAN for the secondary network, enter the `Network IP Address`, `Network Netmask`, and `Default Gateway` for the secondary network, as well. Click `Next`.
+   10.  On the `Customize template` page, enter the network settings: `Network IP Address`, `Network Netmask`, and `Default Gateway`. If you have selected a different VLAN for the secondary network, enter the `Network IP Address`, `Network Netmask`, and `Default Gateway` for the secondary network, as well. Click `Next`.
 
 - To set the network settings using static IP addresses, manually enter the details in the respective ﬁelds for both DataNetwork and SecondaryNetwork.
 - To set the network settings using DHCP, leave the ﬁelds blank in both the DataNetwork and
