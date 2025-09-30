@@ -22,7 +22,7 @@ A Storage Domain, formerly known as a View Box, is a named storage location on a
 1. Navigate to **Settings > Summary** and select the **Storage Domains** tab.
 2. In the Storage Domains page, complete one of the following actions:
     *   Click **Add Storage Domain** located at the top right of the page.
-    *   Edit an existing Storage Domain by clicking the Actions Menu (![](../../Resources/Images/i/icn/more-h.svg)) and selecting **Edit** (![](../../Resources/Images/i/icn/edit-h.svg "Edit")).
+    *   Edit an existing Storage Domain by clicking the Actions Menu  and selecting **Edit** 
 
 3. **Storage Domain Name:** Enter a name for the Storage Domain.
 4. **Associated External Target**: Select the external target to be associated with the Storage Domain. This associated external target stores all the data landing on this Storage Domain. Each Storage Domain can only be associated with one external target and vice versa. Once set, the associated external target cannot be changed.
@@ -88,7 +88,7 @@ A Storage Domain, formerly known as a View Box, is a named storage location on a
     | 1D:0N | Tolerate failure of 1 drive. No node failure is tolerated.<br><br>This is only available on physical ROBO clusters, it provides RF2 like redundancy and is set by default. |
     | 1D:1N | Tolerate failure of 1 drive or 1 node. The available options to select are RF2 or EC x:1. |
     | 2D:1N | Tolerate failure of 2 drives or at least 1 node. The available options to select include RF3 and EC x:2.<br><br>This option is available only if the Cluster has three or more nodes.<br><br>{{site.data.keyword.baas_full_notm}} will always make the best effort to place each EC stripe unit to be on separate nodes when sufficient nodes are available. Only when sufficient nodes are not present the EC stripe units will be placed within the same node but on separate disks. |
-    | 2D:2N | Tolerate failure of 2 drives or 2 nodes.<br><br>This setting is only available if there are at least four nodes.<br><br>With this setting, the available options are RF3 or EC x:2. {{site.data.keyword.baas_full_notm}} will always try to place each EC stripe unit on separate nodes when sufficient nodes are available.<br><br>You cannot change the fault tolerance setting to 2D:2N if the metadata usage is >=50% of the available storage. For more information, see the {{site.data.keyword.baas_full_notm}} white paper: [Cohesity Fault Tolerance — Data Integrity for Modern Web-scale Environments](https://docs.cohesity.com/TechGuides/PDFs/Cohesity-White-Paper-Fault-Tolerance-Data-Integrity.pdf){: external}.<br><br>The Erasure Coding (EC) setting is not recommended for Clusters with fewer than five nodes because the data cannot be healed after one Node failure. Your data will be at risk until the failed Node is replaced. |
+    | 2D:2N | Tolerate failure of 2 drives or 2 nodes.<br><br>This setting is only available if there are at least four nodes.<br><br>With this setting, the available options are RF3 or EC x:2. {{site.data.keyword.baas_full_notm}} will always try to place each EC stripe unit on separate nodes when sufficient nodes are available.<br><br>You cannot change the fault tolerance setting to 2D:2N if the metadata usage is >=50% of the available storage. <br><br>The Erasure Coding (EC) setting is not recommended for Clusters with fewer than five nodes because the data cannot be healed after one Node failure. Your data will be at risk until the failed Node is replaced. |
     | 3D:1N | Tolerate failure of 3 drives or 1 node.<br><br>This setting is only available if there are at least three nodes. With this setting, the available options are RF4, EC x:3, or EC x:4. |
     | 3D:2N | Tolerate failure of 3 drives or 2 nodes.<br><br>This setting is only available if there are at least seven nodes. With this setting, the available options are RF4, EC x:3, or EC x:4. |
     | 0D:0C | No hard disk failure or chassis failure can occur without triggering the alert.<br><br>This option provides Redundancy Factor 1 (RF1). If you select this option, you are opting for no replication and indicating that you trust the underlying datastore medium's resiliency. This option is available only in the Virtual Edition clusters.<br><br>If you select this option, Erasure Coding will be disabled. If RF1 is enabled on a multi-node Virtual Edition Cluster, during the cluster upgrade, data will be temporarily unavailable until the associated chassis comes online. |
@@ -119,11 +119,11 @@ A Storage Domain, formerly known as a View Box, is a named storage location on a
 
 14. **Erasure Coding:** Toggle on for better fault tolerance and capacity utilization. You can also select an Erasure Coding setting from the drop-down list. The available choices are determined by the **Fault Tolerance** setting and the number of nodes, chassis, or racks in the {{site.data.keyword.baas_full_notm}}. The settings indicate the ratio of the data stripes to the code stripes, expressed as x:y. For example, 2:1, 2:2, 3:1, 3.2, 4:1, 4:2, 4:3, 5:1, 5:2, or 5.3.
 
-    [![Closed](../../../Skins/Default/Stylesheets/Images/transparent.gif)**Node Resilience Settings**](#)
+   
 
     The following table shows possible EC settings that can be set for the required resiliency of hard drives and nodes. The table indicates the number of failures tolerated in disks _or_ nodes at any EC or RF level. For example, if a 5 node {{site.data.keyword.baas_full_notm}} is set to EC4:2, failures are tolerated in 2 disks or 1 node.
 
-    For more details on {{site.data.keyword.baas_full_notm}} Erasure Coding, see the [Cohesity-White-Paper-Fault-Tolerance-Data-Integrity.pdf](https://docs.cohesity.com/HomePage/PDFs/Cohesity-White-Paper-Fault-Tolerance-Data-Integrity.pdf){: external}.
+    
 
     From {{site.data.keyword.baas_full_notm}} 6.6 onwards, you can use EC 8:2 for Azure, AWS, GCP, Imanis, MS SQL file-based, Physical Server, VMware, NAS, and SAN backup workloads.
 
@@ -167,7 +167,7 @@ A Storage Domain, formerly known as a View Box, is a named storage location on a
     | 3   | 1   | 3:3, 4:3, 5:3 | RF4 |
     | 3   | 2   | 3:3, 4:3, 5:3 | RF4 |
 
-    [![Closed](../../../Skins/Default/Stylesheets/Images/transparent.gif)Chassis Resilience Settings](#)
+   
 
     The following table shows possible EC settings that can be set for the required resiliency of chassis.
 
@@ -213,7 +213,7 @@ A Storage Domain, formerly known as a View Box, is a named storage location on a
     | 3   | 1   | 3:3, 4:3, 5:3 | RF4 |
     | 3   | 2   | 3:3, 4:3, 5:3 | RF4 |
 
-    [![Closed](../../../Skins/Default/Stylesheets/Images/transparent.gif)Rack Resilience Settings](#)
+   
 
     The following table shows possible EC settings that can be set for the required resiliency of racks.
 
@@ -265,6 +265,6 @@ A Storage Domain, formerly known as a View Box, is a named storage location on a
 
     EC12:4 and EC16:4 are Early Access features. Contact [IBM Cloud Support](../../Support/ContactSupport.htm) to enable the feature.
 
-    For more information, see the {{site.data.keyword.baas_full_notm}} white paper: [Cohesity Fault Tolerance — Data Integrity for Modern Web-scale Environments](https://docs.cohesity.com/TechGuides/PDFs/Cohesity-White-Paper-Fault-Tolerance-Data-Integrity.pdf){: external}.
+    
 
 15. Click **Create Storage Domain**.
