@@ -22,7 +22,7 @@ A Storage Domain, formerly known as a View Box, is a named storage location on a
 1. Navigate to **Settings > Summary** and select the **Storage Domains** tab.
 2. In the Storage Domains page, complete one of the following actions:
     *   Click **Add Storage Domain** located at the top right of the page.
-    *   Edit an existing Storage Domain by clicking the Actions Menu (![](../../Resources/Images/i/icn/more-h.svg)) and selecting **Edit** (![](../../Resources/Images/i/icn/edit-h.svg "Edit")).
+    *   Edit an existing Storage Domain by clicking the Actions Menu  and selecting **Edit** 
 
 3. **Storage Domain Name:** Enter a name for the Storage Domain.
 4. **Associated External Target**: Select the external target to be associated with the Storage Domain. This associated external target stores all the data landing on this Storage Domain. Each Storage Domain can only be associated with one external target and vice versa. Once set, the associated external target cannot be changed.
@@ -119,11 +119,11 @@ A Storage Domain, formerly known as a View Box, is a named storage location on a
 
 14. **Erasure Coding:** Toggle on for better fault tolerance and capacity utilization. You can also select an Erasure Coding setting from the drop-down list. The available choices are determined by the **Fault Tolerance** setting and the number of nodes, chassis, or racks in the {{site.data.keyword.baas_full_notm}}. The settings indicate the ratio of the data stripes to the code stripes, expressed as x:y. For example, 2:1, 2:2, 3:1, 3.2, 4:1, 4:2, 4:3, 5:1, 5:2, or 5.3.
 
-    [![Closed](../../../Skins/Default/Stylesheets/Images/transparent.gif)**Node Resilience Settings**](#)
+   
 
     The following table shows possible EC settings that can be set for the required resiliency of hard drives and nodes. The table indicates the number of failures tolerated in disks _or_ nodes at any EC or RF level. For example, if a 5 node {{site.data.keyword.baas_full_notm}} is set to EC4:2, failures are tolerated in 2 disks or 1 node.
 
-    For more details on {{site.data.keyword.baas_full_notm}} Erasure Coding, see the [Cohesity-White-Paper-Fault-Tolerance-Data-Integrity.pdf](https://docs.cohesity.com/HomePage/PDFs/Cohesity-White-Paper-Fault-Tolerance-Data-Integrity.pdf){: external}.
+    
 
     From {{site.data.keyword.baas_full_notm}} 6.6 onwards, you can use EC 8:2 for Azure, AWS, GCP, Imanis, MS SQL file-based, Physical Server, VMware, NAS, and SAN backup workloads.
 
@@ -167,7 +167,7 @@ A Storage Domain, formerly known as a View Box, is a named storage location on a
     | 3   | 1   | 3:3, 4:3, 5:3 | RF4 |
     | 3   | 2   | 3:3, 4:3, 5:3 | RF4 |
 
-    [![Closed](../../../Skins/Default/Stylesheets/Images/transparent.gif)Chassis Resilience Settings](#)
+   
 
     The following table shows possible EC settings that can be set for the required resiliency of chassis.
 
@@ -213,7 +213,7 @@ A Storage Domain, formerly known as a View Box, is a named storage location on a
     | 3   | 1   | 3:3, 4:3, 5:3 | RF4 |
     | 3   | 2   | 3:3, 4:3, 5:3 | RF4 |
 
-    [![Closed](../../../Skins/Default/Stylesheets/Images/transparent.gif)Rack Resilience Settings](#)
+   
 
     The following table shows possible EC settings that can be set for the required resiliency of racks.
 
