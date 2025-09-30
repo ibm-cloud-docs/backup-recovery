@@ -46,7 +46,7 @@ Ensure that you have what you need to start:
   - VSI-based sources must use a VSI-based data source connector.
 - An Agent deployed to the source
   - Agents can be downloaded from your {{site.data.keyword.baas_full_notm}} instance UI on the Data Protection > Sources page.
-  - The Linux Agent is installed using the [Linux Script installer](/docs/backup-recovery?topic=backup-recovery-install-and-manage-the-agent-on-linux-servers).
+  - The Linux Agent is installed using the [Linux Script installer](/docs/backup-recovery?topic=backup-recovery-linux_agent_install_manage).
   - The Windows Agent is installed using the [Windows .exe installer](/docs/backup-recovery?topic=backup-recovery-install_and_manage_the_agent_on_windows_servers), which protects both Windows Server (e.g. for File and Folder), and MS SQL database source types.
 - Verify that you have proper access to your {{site.data.keyword.baas_full_notm}} instance.
   - Writer (backup-recovery.dashboard.edit) or Manager (backup-recovery.dashboard.edit) privileges to the {{site.data.keyword.baas_full_notm}} Service are needed to create and manage Protection Jobs (i.e. Backup Jobs) in your instance. These privileges can be assigned by your {{site.data.keyword.cloud_notm}} Platform account owner using an Access Group (multiple users) or Access Policy (specific user) tied to your IAM profile. Details on this are included [here](/docs/backup-recovery?topic=backup-recovery-iam-docs-template&interface=ui).
@@ -99,7 +99,7 @@ Please refer to the steps in the following link(s) to accomplish this:
    4. Manage firewall ports – [Windows Server](/docs/backup-recovery?topic=backup-recovery-install_and_manage_the_agent_on_windows_servers)
    5. Manage firewall ports – [MS SQL Server](/docs/backup-recovery?topic=backup-recovery-requirements_for_microsoft_sql_server_protection)
 4. Install and manage the agents.
-   1. [Linux](/docs/backup-recovery?topic=backup-recovery-install-and-manage-the-agent-on-linux-servers)
+   1. [Linux](/docs/backup-recovery?topic=backup-recovery-linux_agent_install_manage)
    2. [ Windows Server and MS SQL Server](/docs/backup-recovery?topic=backup-recovery-install_and_manage_the_agent_on_windows_servers)
 5. Register or edit your source.
    1. [Physical Server](/docs/backup-recovery?topic=backup-recovery-ensure-adequate-privileges-overview) (includes Physical Hosts, VMs and/or VSIs)

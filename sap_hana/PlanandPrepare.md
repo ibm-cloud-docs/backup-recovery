@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-08-27"
+lastupdated: "2025-09-30"
 
 keywords: plan, prepare, supported versions, port requirements, traffic, considerations, user store
 
@@ -135,7 +135,7 @@ tecadm@test-FI:/usr/sap/TEC/home>
 ## Download and install the {{site.data.keyword.cloud_notm}} Backup and Recovery linux agent
 {: #download_and_install_the_cohesity_linux_agent}
 
-The {{site.data.keyword.cloud_notm}} Backup and Recovery Linux Agent is available as script-based and RPM-based installers, based on your requirements download the installer and install it accordingly on the SAP HANA node(s). For detailed instructions, see [Download and Install the Linux Agent](/docs/backup-recovery?topic=backup-recovery-install-and-manage-the-agent-on-linux-servers).
+The {{site.data.keyword.cloud_notm}} Backup and Recovery Linux Agent is available as script-based and RPM-based installers, based on your requirements download the installer and install it accordingly on the SAP HANA node(s). For detailed instructions, see [Download and Install the Linux Agent](/docs/backup-recovery?topic=backup-recovery-linux_agent_install_manage).
 
 For multi-node SAP HANA deployments, ensure that you install the {{site.data.keyword.cloud_notm}} Backup and Recovery Linux Agent on the master node in the deployment.
 

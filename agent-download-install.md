@@ -46,7 +46,7 @@ You will now be presented with the UI of your {{site.data.keyword.baas_full_notm
 Please refer to the steps in the following link(s) to accomplish this:
 
 1. [Manage firewall ports – Linux](/docs/backup-recovery?topic=backup-recovery-deploy_data_source_connector#port_requirements)
-2. [Install and Manage the Agent on Linux Servers](/docs/backup-recovery?topic=backup-recovery-install-and-manage-the-agent-on-linux-servers)
+2. [Install and Manage the Agent on Linux Servers](/docs/backup-recovery?topic=backup-recovery-linux_agent_install_manage)
 
     The Linux "Script Installer" must be used when installing an agent on a physical or virtual Linux host (e.g. RHEL, etc.).
     {: note}
