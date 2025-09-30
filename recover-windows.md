@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2025
-lastupdated: "2025-08-27"
+lastupdated: "2025-09-30"
 
 keywords: static website, hosting, tutorial
 
@@ -86,7 +86,7 @@ You will now be presented with the UI of your {{site.data.keyword.baas_full_notm
 {: #baas-config-protect-job}
 
 Please refer to the steps in the following link(s) to accomplish this:
-1. [Manage firewall ports](/docs/backup-recovery?topic=backup-recovery-manage_firewall_ports)
+1. [Manage firewall ports](/docs/backup-recovery?topic=backup-recovery-deploy_data_source_connector#port_requirements)
 2. [Recover Physical Server Files or Folders](/docs/backup-recovery?topic=backup-recovery-Recover)
 3. [Recover physical server files or folders to the original location](/docs/backup-recovery?topic=backup-recovery-recover_physical_server_files_or_folders_to_the_original_location)
 4. [Recover physical server files or folders to a new location](/docs/backup-recovery?topic=backup-recovery-recover_physical_server_files_or_folders_to_a_new_location)

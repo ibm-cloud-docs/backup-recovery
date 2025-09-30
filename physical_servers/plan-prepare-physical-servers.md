@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2025
-lastupdated: "2025-08-27"
+lastupdated: "2025-09-30"
 
 keywords: <KEYWORDS>
 
@@ -41,7 +41,7 @@ Before you register your physical servers with {{site.data.keyword.baas_full_not
 ## Ports used for communication
 {: #ports_used_for_communication}
 
-Ensure all necessary ports are open in the firewall between {{site.data.keyword.baas_full_notm}} and physical servers. For more information, see [Manage Firewall Ports](/docs/backup-recovery?topic=backup-recovery-manage_firewall_ports).
+Ensure all necessary ports are open in the firewall between {{site.data.keyword.baas_full_notm}} and physical servers. For more information, see [Manage Firewall Ports](/docs/backup-recovery?topic=backup-recovery-deploy_data_source_connector#port_requirements).
 
 ## Prerequisites and considerations
 {: #prerequisites_and_considerations}

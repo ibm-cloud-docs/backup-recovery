@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-08-28"
+lastupdated: "2025-09-30"
 
 keywords: <KEYWORDS>
 
@@ -83,7 +83,7 @@ IBM Cloud Supports CloudSpin on both on-premises {{site.data.keyword.baas_full_n
 
                 UUID=2b262696-41a6-47c9-b173-d02717ee0e10 /mnt/expvol ext4 defaults,**nobootwait** 0 0
 
-        *   When backing up Windows VMs with multiple disks, before a Protection Group captures the Snapshot, the Backup agent and VMware tools must be installed on the VM and the VM must be running. For more information, see [Install and Manage the Agent on Windows Servers](/docs/backup-recovery?topic=backup-recovery-install_and_manage_the_agent_on_windows_servers). In addition, port 50051 must be open in your Firewall. For more information, see [Manage Firewall Ports](/docs/backup-recovery?topic=backup-recovery-manage_firewall_ports).
+        *   When backing up Windows VMs with multiple disks, before a Protection Group captures the Snapshot, the Backup agent and VMware tools must be installed on the VM and the VM must be running. For more information, see [Install and Manage the Agent on Windows Servers](/docs/backup-recovery?topic=backup-recovery-install_and_manage_the_agent_on_windows_servers). In addition, port 50051 must be open in your Firewall. For more information, see [Manage Firewall Ports](/docs/backup-recovery?topic=backup-recovery-deploy_data_source_connector#port_requirements).
 
         *   For a Windows VM, if you want to access the newly created VM in the Cloud service using Remote Desktop, enable the Windows Remote Desktop on the VM prior to capturing the Snapshots of a Windows VM.
 

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2025
-lastupdated: "2025-08-27"
+lastupdated: "2025-09-30"
 
 keywords: source, registration, getting started, basics
 
@@ -95,7 +95,7 @@ Please refer to the steps in the following link(s) to accomplish this:
 3. Plan and prepare for registering your source.
    1. [Physical Servers](/docs/backup-recovery?topic=backup-recovery-plan_and_prepare_for_physical_server_protection) (includes Linux and Windows Physical Hosts, VMs & VSIs).
    2. [MS SQL Server](/docs/backup-recovery?topic=backup-recovery-requirements_for_microsoft_sql_server_protection)
-   3. Manage firewall ports - [Linux](/docs/backup-recovery?topic=backup-recovery-manage_firewall_ports)
+   3. Manage firewall ports - [Linux](/docs/backup-recovery?topic=backup-recovery-deploy_data_source_connector#port_requirements)
    4. Manage firewall ports – [Windows Server](/docs/backup-recovery?topic=backup-recovery-install_and_manage_the_agent_on_windows_servers)
    5. Manage firewall ports – [MS SQL Server](/docs/backup-recovery?topic=backup-recovery-requirements_for_microsoft_sql_server_protection)
 4. Install and manage the agents.

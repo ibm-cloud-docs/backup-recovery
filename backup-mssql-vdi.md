@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2025
-lastupdated: "2025-08-27"
+lastupdated: "2025-09-30"
 
 keywords: vpc, mssql, tutorial, vdi, vm
 
@@ -109,7 +109,7 @@ TDE-enabled databases can also be contained within an Always On Availability Gro
 2. [Supported database types for Microsoft SQL Server](/docs/backup-recovery?topic=backup-recovery-supported_database_types_for_microsoft_sql_server).
 3. [General recommendations for Microsoft SQL Server backup methods](/docs/backup-recovery?topic=backup-recovery-general_recommendations_for_microsoft_sql_server_backup_methods&interface=ui).
 4. [Considerations for Microsoft SQL Server](/docs/backup-recovery?topic=backup-recovery-considerations_for_microsoft_sql_server).
-5. [Manage firewall ports](/docs/backup-recovery?topic=backup-recovery-manage_firewall_ports)
+5. [Manage firewall ports](/docs/backup-recovery?topic=backup-recovery-deploy_data_source_connector#port_requirements)
 6. [Port Requirements - MS SQL Server and Data Source Connector](/docs/backup-recovery?topic=backup-recovery-deploy_data_source_connector).
 7. [Set up standalone Microsoft SQL Server or Microsoft SQL Server AGs](/docs/backup-recovery?topic=backup-recovery-set_up_standalone_microsoft_sql_server_or_microsoft_sql_server_ags).
 8. [Backup Microsoft SQL Server (vdi-based)](/docs/backup-recovery?topic=backup-recovery-backup_microsoft_sql_server_vdi-based).

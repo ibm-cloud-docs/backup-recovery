@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2025
-lastupdated: "2025-09-05"
+lastupdated: "2025-09-30"
 
 keywords: <KEYWORDS>
 
@@ -15,7 +15,7 @@ subcollection: backup-recovery
 # Install and Manage the Agent on Windows Servers
 {: #install_and_manage_the_agent_on_windows_servers}
 
-If the Windows firewall is active upon installing the Backup agent, you need to add a rule in the firewall to open the port 50051 for communication with the {{site.data.keyword.baas_full}} nodes. For more information, see [Manage Firewall Ports](/docs/backup-recovery?topic=backup-recovery-manage_firewall_ports).
+If the Windows firewall is active upon installing the Backup agent, you need to add a rule in the firewall to open the port 50051 for communication with the {{site.data.keyword.baas_full}} nodes. For more information, see [Manage Firewall Ports](/docs/backup-recovery?topic=backup-recovery-deploy_data_source_connector#port_requirements).
 
 ## Backup agent Component Requirements
 {: #backup_agent_component_requirements}

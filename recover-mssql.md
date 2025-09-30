@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2025
-lastupdated: "2025-08-27"
+lastupdated: "2025-09-30"
 
 keywords: vpc, mssql, tutorial, vdi, vm
 
@@ -99,7 +99,7 @@ Additional considerations and recommendations can be found in the linked section
 1. [Recover Microsoft SQL Server](/docs/backup-recovery?topic=backup-recovery-recover_microsoft_sql_server)
 2. [Considerations for Microsoft SQL Server](/docs/backup-recovery?topic=backup-recovery-considerations_for_microsoft_sql_server)
 3. [Microsoft SQL Server vdi-based recovery recommendations](/docs/backup-recovery?topic=backup-recovery-microsoft_sql_server_vdi-based_recovery_recommendations)
-4. [Manage firewall ports](/docs/backup-recovery?topic=backup-recovery-manage_firewall_ports)
+4. [Manage firewall ports](/docs/backup-recovery?topic=backup-recovery-deploy_data_source_connector#port_requirements)
 5. [Port Requirements - MS SQL Server and Data Source Connector](/docs/backup-recovery?topic=backup-recovery-deploy_data_source_connector)
 6. [Recover Microsoft SQL Server database as a new database in the original Microsoft SQL Server instance](/docs/backup-recovery?topic=backup-recovery-recover_microsoft_sql_server_database_as_a_new_database_in_the_original_microsoft_sql_server_instance)
 7. [Recover Microsoft SQL Server database as a new database in an alternate Microsoft SQL Server instance](/docs/backup-recovery?topic=backup-recovery-recover_microsoft_sql_server_database_as_a_new_database_in_an_alternate_microsoft_sql_server_instance)
