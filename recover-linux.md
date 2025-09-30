@@ -42,7 +42,7 @@ Ensure that you have what you need to start:
 - A [Source](/docs/backup-recovery?topic=backup-recovery-source-registration-tutorial) (Linux physical host, VM or VSI) that is registered with your instance.
 - A [Protection Policy](/docs/backup-recovery?topic=backup-recovery-baas-policy-creation) that defines when and how your Linux data is backed up.
   - Policies can be created when configuring your Protection Group or beforehand on the Data Protection > Policies page.
-- A [Linux Agent](/docs/backup-recovery?topic=backup-recovery-install-and-manage-the-agent-on-linux-servers) deployed to the source (installed using the Linux script installer)
+- A [Linux Agent](/docs/backup-recovery?topic=backup-recovery-linux_agent_install_manage) deployed to the source (installed using the Linux script installer)
   - Agents can be downloaded from your {{site.data.keyword.baas_full_notm}} instance UI on the Data Protection > Sources page.
 - Verify that you have proper access to your {{site.data.keyword.baas_full_notm}} instance.
   - Writer (backup-recovery.dashboard.edit) or Manager (backup-recovery.dashboard.edit) privileges to the {{site.data.keyword.baas_full_notm}} Service are needed to create and manage Protection Jobs (i.e. Backup Jobs) in your instance. These privileges can be assigned by your {{site.data.keyword.cloud_notm}} Platform account owner using an Access Group (multiple users) or Access Policy (specific user) tied to your IAM profile. Details on this are included [here](/docs/backup-recovery?topic=backup-recovery-iam&interface=ui).

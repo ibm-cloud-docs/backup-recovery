@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2025
-lastupdated: "2025-08-27"
+lastupdated: "2025-09-30"
 
 keywords: <KEYWORDS>
 
@@ -281,7 +281,7 @@ For more information, see [Active Directory Protection Requirements](https://doc
 ## Linux Servers
 {: #ensure-adequate-privileges-linux-servers}
 
-For more information, see [Install and Manage the Agent on Linux Servers](/docs/backup-recovery?topic=backup-recovery-install-and-manage-the-agent-on-linux-servers).
+For more information, see [Install and Manage the Agent on Linux Servers](/docs/backup-recovery?topic=backup-recovery-linux_agent_install_manage).
 
 ## Windows Servers
 {: #ensure-adequate-privileges-windows-servers}

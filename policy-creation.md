@@ -3,7 +3,7 @@
 copyright:
   years: 2024
 
-lastupdated: "2025-08-27"
+lastupdated: "2025-09-30"
 
 keywords: policy
 
@@ -44,7 +44,7 @@ You will now be presented with the UI of your {{site.data.keyword.baas_full_notm
 1. [Indexing](/docs/backup-recovery?topic=backup-recovery-customize_indexing)
 2. [Create or edit a standard policy](/docs/backup-recovery?topic=backup-recovery-create_or_edit_a_standard_policy)
 3. [Manage policies](/docs/backup-recovery?topic=backup-recovery-manage_policies)
-4. [Manage protection policy](/docs/backup-recovery?topic=backup-recovery-manage_protection_policy)
+4. [Manage protection policy](/docs/backup-recovery?group=manage-protection-policies)
 5. [Configure Pre & Post Scripts](/docs/backup-recovery?topic=backup-recovery-configure-pre-post-scripts)
 6. [Datalock](/docs/backup-recovery?topic=backup-recovery-datalock)
 7. [Extended retention](/docs/backup-recovery?topic=backup-recovery-extended_retention)

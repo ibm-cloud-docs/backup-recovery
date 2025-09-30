@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2025
-lastupdated: "2025-08-27"
+lastupdated: "2025-09-30"
 
 keywords: physical server, protection group, backup agent, policies
 
@@ -18,7 +18,7 @@ subcollection: backup-recovery
 
 After installing the Backup agent on a physical Server and registering it with the {{site.data.keyword.baas_full}}, the {{site.data.keyword.baas_full_notm}} can use a file-based Protection Group to back up the physical Server. Protection Groups can run repetitively on a schedule.
 
-To learn more about the relationship between Protection Groups and Policies, see [Manage Protection Policy](/docs/backup-recovery?topic=backup-recovery-manage_protection_policy). For instructions on how to back up Physical Servers, see [Manage Protection Groups](/docs/backup-recovery?topic=backup-recovery-manage_protection_groups).
+To learn more about the relationship between Protection Groups and Policies, see [Manage Protection Policy](/docs/backup-recovery?group=manage-protection-policies). For instructions on how to back up Physical Servers, see [Manage Protection Groups](/docs/backup-recovery?topic=backup-recovery-manage_protection_groups).
 
 For example, you can create a block-based Protection Group with a protection schedule that backs up all the critical Servers every hour as represented by the _Critical_ Protection Group.
 
