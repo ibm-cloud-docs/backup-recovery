@@ -46,6 +46,7 @@ toc:
           - backup-mssql-vdi.md
           - recover-mssql.md
       - registration.md
+      - cbr-tutorial.md
   - navgroup:
       id: howto
       topics:
