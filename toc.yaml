@@ -51,7 +51,10 @@ toc:
       id: howto
       topics:
       - agent-download-install.md
-      - data_connector/DeployDataSourceConnector.md
+      - topicgroup:
+          label: Data source connector
+          topics:
+          - data_connector/DeployDataSourceConnector.md
       - topicgroup:
           label: Setting up access control
           topics:
