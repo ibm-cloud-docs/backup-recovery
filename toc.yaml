@@ -91,6 +91,10 @@ toc:
           label: Monitoring
           topics:
           - topicgroup:
+              label: Reports
+              topics:
+              - global_mgmt_console/reportingGmc.md
+          - topicgroup:
               label: Alerts
               topics:
               - alerts/BackupRestoreAlerts.md
