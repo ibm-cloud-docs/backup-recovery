@@ -56,6 +56,10 @@ toc:
           topics:
           - data_connector/DeployDataSourceConnector.md
       - topicgroup:
+          label: Kubernetes/OpenShift (Experimental use only)
+          topics:
+          - iks_roks/getting-started-iks-roks.md
+      - topicgroup:
           label: Setting up access control
           topics:
           - baas-iam-access.md
