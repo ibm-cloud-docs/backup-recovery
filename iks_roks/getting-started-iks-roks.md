@@ -31,19 +31,19 @@ Located to the right of this page is a summary of key topics that are found on t
 1. [Before you begin](#baas-getting-started-iks-roks).
 
 2. Prerequisites for backup and restore:
-   - You must have a [BRS instance created or create a new one](#data-source-connector-iks-roks-access-instance)
+   - You must have a [{{site.data.keyword.baas_full_notm}} instance created or create a new one](#data-source-connector-iks-roks-access-instance)
    - [Create or use existing Data source connector](#data-source-connector-iks-roks-create-configure)
    - [Kubernetes/OpenShit cluster should be registered](#data-source-connector-iks-roks-register)
 
 3. Take a backup of Kubernetes/OpenShift cluster:
-   - [Access BRS instance](#data-source-connector-iks-roks-access-instance)
+   - [Access {{site.data.keyword.baas_full_notm}} instance](#data-source-connector-iks-roks-access-instance)
    - [Create and configure Data Source Connector](#data-source-connector-iks-roks-create-configure)
    - [Configure and set up network SGs](#data-source-connector-iks-roks-setup-network-sgs-config)
    - [Register source kubernetes/OpenShift cluster](#data-source-connector-iks-roks-register)
    - [Create or schedule a backup](#protecting-namespace-iks-roks)
 
 4. [Restore backup to Kubernetes/OpenShift cluster](#recovering-restoring-backup):
-   - [Access BRS instance](#data-source-connector-iks-roks-access-instance)
+   - [Access {{site.data.keyword.baas_full_notm}} instance](#data-source-connector-iks-roks-access-instance)
    - [Create and configure Data Source Connector](#data-source-connector-iks-roks-create-configure)
    - [Configure and set up network SGs](#data-source-connector-iks-roks-setup-network-sgs-config)
    - [Register source kubernetes/OpenShift cluster](#data-source-connector-iks-roks-register)
@@ -194,7 +194,7 @@ To make these components communicate properly, you need to set up rules in the S
 - Open [data source connector security group.](#how-to-identify-sc-dcs)
 - Click on the **Rules** tab to add the following inbound rules:
 
-  To allow communication from BRS backup agent running on the Kubernetes/OpenShift cluster to DSC:
+  To allow communication from {{site.data.keyword.baas_full_notm}} backup agent running on the Kubernetes/OpenShift cluster to DSC:
 
   **Inbound**:
 
@@ -221,7 +221,7 @@ To make these components communicate properly, you need to set up rules in the S
 
     **Outbound**:
 
-    To allow the BRS backup agent to communicate to the Data Source Connector
+    To allow the {{site.data.keyword.baas_full_notm}} backup agent to communicate to the Data Source Connector
 
     |  Protocol  |  Source type  |  Source  |  Destination type  |  Destination  |  Value  |
     |----|----|----|----|----|----|
@@ -347,30 +347,31 @@ To allow Data Source Connector, need to copy data to COS endpoint – If your Da
 4. Choose a recovery location:
    - Original location
    - New location
-5. (If recovery is from ROKS to IKS) → Skip the version compatibility check (for now due to missing openshift role binding in IKS cluster)
+5. (If recovery is from OpenShift to Kubernetes) → Skip the version compatibility check: for now due to missing OpenShift role binding in the Kubernetes cluster.
 6. Complete the recovery process.
 
-After completion, the recovered namespace will be visible in the cluster with the configured name/prefix.
+After completion, the recovered namespace is visible in the cluster with the configured name/prefix.
+{: note}
 
 ## Troubleshooting
 {: #data-source-connector-iks-roks-troubleshooting}
 
-You can face issues while registering a Kubernetes/OpenShift cluster as a data source, taking backup or restoring backup with BRS instance:
+You can face issues while registering a Kubernetes/OpenShift cluster as a data source, taking backup or restoring backup with {{site.data.keyword.baas_full_notm}} instance:
 
 1. Kubernetes/OpenShift cluster and Data Source Connector should be on the same VPC.
-   1. This is the prerequisites to work with BRS instance for Kubernetes/OpenShift cluster, Data Source Connector and Kubernetes/OpenShift should be on the same VPC.
+   1. This is the prerequisites to work with {{site.data.keyword.baas_full_notm}} instance for Kubernetes/OpenShift cluster, Data Source Connector and Kubernetes/OpenShift should be on the same VPC.
    2. How to verify whether these are on the same VPC:
       - Verifying Kubernetes/OpenShift's VPC: Go to `Menu -> Containers -> Clusters ->` Go to your cluster's Overview and under Cluster Details check for the VPC (ex : roks-private-vpc ).
    3. How to verify whether these are on the same VPC:
-      - Verifying Kubernetes/OpenShift’s VPC: Go to `Menu -> Containers -> Clusters.`
-      - Verifying Data Source Connector’s VPC
+      1. Verify Kubernetes/OpenShift’s VPC: Go to `Menu -> Containers -> Clusters`.
+      2. Verify Data Source Connector’s VPC
 
 2. Security Group rules are missing in required Security Groups that are used to allow communications between the Data Source Connector, Kubernetes/OpenShift cluster, and {{site.data.keyword.baas_full_notm}} instance.
    1. This can be written based on previous steps that are covered in [Configure a Data Source Connector](#data-source-connector-iks-roks-create-configure).
 
-3. Not using correct brs-backup-agent image
-   1. In case of registration failure, verify that the BRS backup agent is running or not on the Kubernetes/OpenShift cluster.
-   2. Verify that the BRS backup agent is running or not:
+3. Not using the correct brs-backup-agent image
+   1. In case of registration failure, verify that the {{site.data.keyword.baas_full_notm}} backup agent is running or not on the Kubernetes/OpenShift cluster.
+   2. Verify that the {{site.data.keyword.baas_full_notm}} backup agent is running or not:
 
       ```sh
       kubectl get pods -n `kubectl get ns | grep brs-backup-agent | awk '{print $1}'`
@@ -388,10 +389,10 @@ You can face issues while registering a Kubernetes/OpenShift cluster as a data s
    - You can face connectivity issues in case of [VPC security groups](#how-to-identify-sc-dcs) has redundant rules specifically when Kubernetes/OpenShift cluster deleted and Security Group still containing `Unknown` source, all these rules need to be cleaned up specially from the Data Source Connector Security Group.
 
 5. Check health of the [Data Source Connector](#data-source-connector-iks-roks-create-configure)
-   - [Assign the floating IP](#data-source-connector-iks-roks-create-configure)
-   - Access by using floating IP and check whether it shows status as `healthy`
+   1. [Assign the floating IP](#data-source-connector-iks-roks-create-configure).
+   2. Access by using floating IP and check whether it shows status as `healthy`.
 
 6. If you still face this issue, collect the logs by running the script.
-   - [Download the script](https://ibm.ent.box.com/s/god4selhrt0b73rz2lxzf5sk1tzokylq)
-   - Change permission to the executable by using `chmod`
-   - Configure kubectl or oc command with your cluster where backup/restore failing
+   1. [Download the script](https://ibm.ent.box.com/s/god4selhrt0b73rz2lxzf5sk1tzokylq).
+   2. Change permission to the executable by using `chmod`.
+   3. Configure kubectl or oc command with your cluster where the backup/restore is failing.
