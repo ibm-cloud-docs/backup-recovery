@@ -391,7 +391,7 @@ You can face issues while registering a Kubernetes/OpenShift cluster as a data s
    - [Assign the floating IP](#data-source-connector-iks-roks-create-configure)
    - Access by using floating IP and check whether it shows status as `healthy`
 
-6. If you still face this issue, share the logs by running script.
+6. If you still face this issue, collect the logs by running the script.
    - [Download the script](https://ibm.ent.box.com/s/god4selhrt0b73rz2lxzf5sk1tzokylq)
    - Change permission to the executable by using `chmod`
    - Configure kubectl or oc command with your cluster where backup/restore failing
