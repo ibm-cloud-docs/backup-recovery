@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-10-23"
+lastupdated: "2025-10-24"
 
 keywords: data source connector, iks, roks, cluster
 
@@ -28,10 +28,11 @@ Located to the right of this page is a summary of key topics that are found on t
 ## Quick reference to key sections for new users
 {: #iks-roks-tutotial-quick-reference}
 
-1. [Before you begin](#baas-getting-started-iks-roks).
+1. [Before you begin](#baas-getting-started-iks-roks)
 
 2. Prerequisites for backup and restore:
    - You must have a [{{site.data.keyword.baas_full_notm}} instance created or create a new one](#data-source-connector-iks-roks-access-instance)
+   - Create a VPE gateway between your source VPC and your Backup and Recovery service. See [Create a VPE gateway](/docs/backup-recovery?topic=backup-recovery-deploy_data_source_connector#vpe_gateways)
    - [Create or use existing Data source connector](#data-source-connector-iks-roks-create-configure)
    - [Kubernetes/OpenShit cluster should be registered](#data-source-connector-iks-roks-register)
 
@@ -42,7 +43,7 @@ Located to the right of this page is a summary of key topics that are found on t
    - [Register source kubernetes/OpenShift cluster](#data-source-connector-iks-roks-register)
    - [Create or schedule a backup](#protecting-namespace-iks-roks)
 
-4. [Restore backup to Kubernetes/OpenShift cluster](#recovering-restoring-backup):
+4. Restore backup to Kubernetes/OpenShift cluster:
    - [Access {{site.data.keyword.baas_full_notm}} instance](#data-source-connector-iks-roks-access-instance)
    - [Create and configure Data Source Connector](#data-source-connector-iks-roks-create-configure)
    - [Configure and set up network SGs](#data-source-connector-iks-roks-setup-network-sgs-config)
@@ -98,7 +99,9 @@ Clusters must be compatible, especially in terms of storage configuration.
 
 1. Open the instance dashboard that was discussed in an earlier step on [Accessing your instances](#data-source-connector-iks-roks-access-instance).
 2. Navigate to: `Dashboard → System → Data Source Connections`.
-3. Click **New Connection**, and copy the Connection Token. You need this token when configuring the Data Source Connector (DSC), and then click **Create**.
+3. Click **New Connection**.
+4. Under the Deployment Platform, select VPC if it is not already selected.
+5. Copy the Connection Token and click **Create**. You need this token when configuring the Data Source Connector (DSC).
 
 ### Configure a Data Source Connector
 {: #data-source-connector-iks-roks-create-configure}
@@ -300,14 +303,14 @@ To allow Data Source Connector, need to copy data to COS endpoint – If your Da
    3. Run the command:
 
    ```sh
-    kubectl apply -f secret.yaml
+   kubectl apply -f secret.yaml
    ```
     {: pre}
 
    4. Get the bearer token and use for the registration
 
    ```sh
-   kubectl describe secrets -n default iks-token | grep token: | awk '{print $2}' | head -1
+   kubectl describe secrets -n default ibm-token | grep token: | awk '{print $2}' | head -1
    ```
    {: pre}
 
@@ -393,6 +396,6 @@ You can face issues while registering a Kubernetes/OpenShift cluster as a data s
    2. Access by using floating IP and check whether it shows status as `healthy`.
 
 6. If you still face this issue, collect the logs by running the script.
-   1. [Download the script](https://ibm.ent.box.com/s/god4selhrt0b73rz2lxzf5sk1tzokylq).
+   1. [Download the script](https://support-tools.s3.us-south.cloud-object-storage.appdomain.cloud/k8s_info_fetcher.sh).
    2. Change permission to the executable by using `chmod`.
    3. Configure kubectl or oc command with your cluster where the backup/restore is failing.
