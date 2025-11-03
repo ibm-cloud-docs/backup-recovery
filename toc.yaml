@@ -100,7 +100,7 @@ toc:
           - topicgroup:
               label: Reports
               topics:
-              - global_mgmt_console/reportingGmc.md
+              - mgmt_console/overviewSingleInstanceReportMc.md
           - topicgroup:
               label: Alerts
               topics:
