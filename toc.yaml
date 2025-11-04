@@ -97,10 +97,7 @@ toc:
       - topicgroup:
           label: Monitoring
           topics:
-          - topicgroup:
-              label: Reports
-              topics:
-              - mgmt_console/overviewSingleInstanceReportMc.md
+          - mgmt_console/overviewSingleInstanceReportMc.md
           - topicgroup:
               label: Alerts
               topics:
