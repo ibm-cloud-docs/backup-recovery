@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-10-24"
+lastupdated: "2025-11-04"
 
 keywords: data source connector, iks, roks, cluster
 
@@ -19,7 +19,7 @@ subcollection: backup-recovery
 This information is provided for experimental use only and is subject to change. Only region Washington DC (us-east) is available now for this feature.
 {: experimental}
 
-You must create a data source Connector on the same VPC where the Kubernetes/OpenShift cluster is deployed.
+You must create a data source connector on the same VPC where the Kubernetes/OpenShift cluster is deployed.
 {: important}
 
 Located to the right of this page is a summary of key topics that are found on this page. See on this page.
@@ -33,19 +33,19 @@ Located to the right of this page is a summary of key topics that are found on t
 2. Prerequisites for backup and restore:
    - You must have a [{{site.data.keyword.baas_full_notm}} instance created or create a new one](#data-source-connector-iks-roks-access-instance)
    - Create a VPE gateway between your source VPC and your Backup and Recovery service. See [Create a VPE gateway](/docs/backup-recovery?topic=backup-recovery-deploy_data_source_connector#vpe_gateways)
-   - [Create or use existing Data source connector](#data-source-connector-iks-roks-create-configure)
+   - [Create or use existing data source connector](#data-source-connector-iks-roks-create-configure)
    - [Kubernetes/OpenShit cluster should be registered](#data-source-connector-iks-roks-register)
 
-3. Take a backup of Kubernetes/OpenShift cluster:
+3. Take a backup of the Kubernetes/OpenShift cluster:
    - [Access {{site.data.keyword.baas_full_notm}} instance](#data-source-connector-iks-roks-access-instance)
-   - [Create and configure Data Source Connector](#data-source-connector-iks-roks-create-configure)
+   - [Create and configure data source connector](#data-source-connector-iks-roks-create-configure)
    - [Configure and set up network SGs](#data-source-connector-iks-roks-setup-network-sgs-config)
    - [Register source kubernetes/OpenShift cluster](#data-source-connector-iks-roks-register)
    - [Create or schedule a backup](#protecting-namespace-iks-roks)
 
 4. Restore backup to Kubernetes/OpenShift cluster:
    - [Access {{site.data.keyword.baas_full_notm}} instance](#data-source-connector-iks-roks-access-instance)
-   - [Create and configure Data Source Connector](#data-source-connector-iks-roks-create-configure)
+   - [Create and configure data source connector](#data-source-connector-iks-roks-create-configure)
    - [Configure and set up network SGs](#data-source-connector-iks-roks-setup-network-sgs-config)
    - [Register source kubernetes/OpenShift cluster](#data-source-connector-iks-roks-register)
    - [Restore backup](#recovering-restoring-backup)
@@ -66,7 +66,7 @@ You need the following to get started with {{site.data.keyword.baas_full_notm}} 
     1. Locate and open the [Resource List](https://cloud.ibm.com/resources) for your account.
     2. Filter by Product for Backup.
     3. Search for your instance name, or keep the search field empty to view all instances.
-    4. Click on an instance of your choice to see more details.
+    4. Click an instance of your choice to see more details.
     5. Click the **Launch dashboard** button to open the instance.
 2. Alternatively, obtain the instance details and credentials to log in.
 
@@ -81,7 +81,7 @@ Your Kubernetes/OpenShift cluster must be registered with the instance to:
 ## Backup and Restore compatibility
 {: #data-source-connector-iks-roks-brs-comp}
 
-You can backup and restore data on:
+You can back up and restore data on:
 
 - The same Kubernetes/OpenShift cluster
 - A different Kubernetes/OpenShift cluster within the same region
@@ -91,45 +91,45 @@ You can backup and restore data on:
 Clusters must be compatible, especially in terms of storage configuration.
 {: note}
 
-## Create or configure a data source Connector
+## Create or configure a data source connector
 {: #data-source-connector-iks-roks-create-configure}
 
-### Create a data source Connection
+### Create a data source connection
 {: #data-source-connector-iks-roks-create-data-source-connection}
 
 1. Open the instance dashboard that was discussed in an earlier step on [Accessing your instances](#data-source-connector-iks-roks-access-instance).
-2. Navigate to: `Dashboard → System → Data Source Connections`.
+2. Go to: `Dashboard → System → Data Source Connections`.
 3. Click **New Connection**.
 4. Under the Deployment Platform, select VPC if it is not already selected.
 5. Copy the Connection Token and click **Create**. You need this token when configuring the Data Source Connector (DSC).
 
-### Configure a Data Source Connector
+### Configure a data source connector
 {: #data-source-connector-iks-roks-create-configure}
 
 
 
 1. Create a Virtual Server Instance(VSI) on the same VPC as your Kubernetes/OpenShift cluster.
-   - Navigate to `Menu ->Infrastructure → Compute → Virtual Server Instances` and then click on the **Create** button.  Also, select the Data Source Connector image from the catalog images and use the [Backup and Recovery Data Source Connector](https://cloud.ibm.com/catalog/1082e7d2-5e2f-0a11-a3bc-f88a8e1931fc/content/content-ibm-backup-recovery-ds-connector-7-1fd41e29-5a36-42ab-81a9-99e4b452f4f3-global) image.
+   - Go to `Menu → Infrastructure → Compute → Virtual Server Instances` and then click the **Create** button.  Also, select the data source connector image from the catalog images and use the [Backup and Recovery data source connector](https://cloud.ibm.com/catalog/1082e7d2-5e2f-0a11-a3bc-f88a8e1931fc/content/content-ibm-backup-recovery-ds-connector-7-1fd41e29-5a36-42ab-81a9-99e4b452f4f3-global) image.
 
 2. Assign a temporary Floating IP to the VSI for configuration purposes.
    - Select the instance that was newly created in the steps before this.
-   - Click the **Networking** tab
+   - Click the **Networking** tab.
    - Select `eth0` interface and click the three-dot icon at the last, then click **Edit floating ips.**
    - Click **Attach**, select either the already existing floating ip or reserve a new one, then click **Attach**.
 
-3. Allow an inbound TCP connection on port 443 to access the Data Source Connector UI. This must be added in the security group of the Data Source Connector. The steps to get into the [Data Source Connector security group](#how-to-identify-sc-dcs) can be found here:
+3. Allow an inbound TCP connection on port 443 to access the data source connector UI. This must be added to the security group of the data source connector. The steps to get into the [Data source connector security group](#how-to-identify-sc-dcs) can be found here:
 
-4. Access the Data Source Connector UI in your browser at `https://<floating-ip>`. The floating-ip can be found in the steps before this. Default credentials to log in:
+4. Access the data source connector UI in your browser at `https://<floating-ip>`. The floating-ip can be found in the steps before this. Default credentials to log in:
 
     |  Username  |  Password  |
     |----|----|
     |admin|admin (change this after your first login)|
 
-5. Configure your connector using the details shown in the table.
+5. Configure your connector by using the details shown in the table.
 
     |  Domain name  |  Connector Name  |  Connection Token  |
     |----|----|----|
-    |`cloud.ibm.com`|Any descriptive name|Paste the token obtained from the [Create a Data Source Connection](#data-source-connector-iks-roks-create-data-source-connection) step|
+    |`cloud.ibm.com`|Any descriptive name|Paste the token obtained from the [Create a data source connection](#data-source-connector-iks-roks-create-data-source-connection) step|
 
 6. When all the required details are filled and ready to register click **Complete**.
 7. You are redirected to the connector status page. Wait for a couple of minutes for the connector to be in a healthy state.
@@ -137,65 +137,65 @@ Clusters must be compatible, especially in terms of storage configuration.
    - Remove the Floating IP.
    - Remove any temporary port 443 inbound rules added during setup.
 
-## How to identify the Security Group for the Data Source Connector
+## How to identify the security group for the data source connector
 {: #how-to-identify-sc-dcs}
 
-1. Go to `Menu -> Infrastructure -> Compute ->Virtual server Instances.`
-2. Filter the Virtual server instances based on a region where you created Data Source Connector: Washington DC (us-east).
-3. Search for a Data Source Connector VSI name, and click on the one you selected.
-4. You find tab options for **Overview**, **Networking**, **Storage**, **Monitoring,** and more. Click on the **Networking** tab.
+1. Go to `Menu → Infrastructure → Compute → Virtual server Instances.`
+2. Filter the Virtual server instances based on a region where you created data source connector: Washington DC (us-east).
+3. Search for a data source connector VSI name, and click on the one you selected.
+4. You find tab options for **Overview**, **Networking**, **Storage**, **Monitoring,** and more. Click the **Networking** tab.
 5. Now you see `eth0` as an interface and in the **Security Group** column, click **option.**
 6. Click on the name of the Security Group, a new page opens, and now you can add inbound and outbound rules as shown in the rules provided.
 
-## How to identity Security Group for Kubernetes/OpenShift cluster
+## How to identity security group for Kubernetes/OpenShift cluster
 {: #how-to-get-iks-roks-sec-grp-cluster}
 
 1. Get the Kubernetes/OpenShift [cluster ID](#how-to-get-iks-roks-cluster-id).
-2. Click on `Menu -> Infrastructure -> Network -> Security Groups.`
+2. Click `Menu → Infrastructure → Network → Security Groups.`
 3. Filter by region: Washington DC(us-east) as per your Kubernetes/OpenShift cluster.
 4. Search for [cluster ID](#how-to-get-iks-roks-cluster-id), then you see some Security Groups, but select only for `kube-<clusterID>`.
 
 ## How to identity VPE gateway for COS S3 direct endpoint
 {: #how-to-get-vpe-gateway-cos-s3}
 
-1. Go to `Menu -> Infrastructure -> Networking -> Virtual Private Endpoint Gateways`
+1. Go to `Menu → Infrastructure → Networking → Virtual Private Endpoint Gateways`
 2. Search by the VPC name, you get the subset of VPEGs.
 3. Select the one that is being used for Cloud Object Storage s3 direct endpoint.
 
 ## How to get the Kubernetes/OpenShift cluster ID
 {: #how-to-get-iks-roks-cluster-id}
 
-1. Go to `Menu -> Containers -> Clusters.`
+1. Go to `Menu → Containers → Clusters.`
 2. Filter by location: Washington DC(us-east) and search for your cluster name or ID.
-3. Click on cluster and in the **Overview** page look for the Cluster Details section to get the cluster ID.
+3. Click cluster and in the **Overview** page look for the Cluster Details section to get the cluster ID.
 
 ## How to get the Kubernetes/OpenShift cluster endpoint
 {: #how-to-get-iks-roks-endpoint}
 
-1. Go to `Menu -> Containers -> Clusters.`
+1. Go to `Menu → Containers → Clusters.`
 2. Filter by location: Washington DC(us-east).
 3. The endpoint can be found in the **Overview page** in the Networking section where you can find the information for your private and public endpoints.
 
 ## How to get security group for VPE gateway of COS endpoint
 {: #how-to-get-security-group-vpeg-cos-endpoint}
 
-1. Go to `Menu -> Infrastructure -> Networking -> Virtual Private Endpoint Gateways`
+1. Go to `Menu → Infrastructure → Networking → Virtual Private Endpoint Gateways`
 2. Search by the VPC name, you get all the VPEGs created under the same VPC.
-3. Select the one that is being used for Cloud Object Storage (service details column) **s3 direct endpoint**(service endpoint column).
+3. Select the one that is being used for Cloud Object Storage (service details column) **s3 direct endpoint** (service endpoint column).
 4. In the overview tab, enable Permit DNS resolution binding.
 5. Go to the Attached resources tab, scroll down to the security group section. You can find the security group that is attached to this VPEG.
 
-## Add rules to Network Security Groups to allow communication
+## Add rules to network security groups to allow communication
 {: #data-source-connector-iks-roks-setup-network-sgs-config}
 
-To register Kubernetes/OpenShift cluster as a source to your {{site.data.keyword.baas_full_notm}} instance, you need to add rules to a data source Connector security group and Kubernetes/OpenShift cluster security group.
+To register Kubernetes/OpenShift cluster as a source to your {{site.data.keyword.baas_full_notm}} instance, you need to add rules to a data source connector security group and Kubernetes/OpenShift cluster security group.
 
 To make these components communicate properly, you need to set up rules in the Security Groups that are used by these components:
 
 1. Adding rules to the Data Source Connector (DSC) Security Group:
 
 - Open [data source connector security group.](#how-to-identify-sc-dcs)
-- Click on the **Rules** tab to add the following inbound rules:
+- Click the **Rules** tab to add the following inbound rules:
 
   To allow communication from {{site.data.keyword.baas_full_notm}} backup agent running on the Kubernetes/OpenShift cluster to DSC:
 
@@ -207,10 +207,10 @@ To make these components communicate properly, you need to set up rules in the S
 
 2. Adding rules to the Kubernetes/OpenShift security group `kube-<clusterID>`: Example: `kube-d2mmidpw06t9d10ei1j0`
 
-   ### Adding rules to the Security Group for Kubernetes/OpenShift cluster:
+   ### Adding rules to the security group for Kubernetes/OpenShift cluster:
    {: #how-to-get-iks-roks-sec-grp-cluster}
 
-   You need to add the following rules into [`kube-<clusterID>`](#how-to-get-iks-roks-cluster-id) Security Group to allow communication in-between Data Source Connector and the BRS backup agent running on Kubernetes/OpenShift cluster.
+   You need to add the following rules into [`kube-<clusterID>`](#how-to-get-iks-roks-cluster-id) Security Group to allow communication in-between data source connector and the BRS backup agent running on Kubernetes/OpenShift cluster.
 
     **Inbound**:
 
@@ -224,7 +224,7 @@ To make these components communicate properly, you need to set up rules in the S
 
     **Outbound**:
 
-    To allow the {{site.data.keyword.baas_full_notm}} backup agent to communicate to the Data Source Connector
+    To allow the {{site.data.keyword.baas_full_notm}} backup agent to communicate to the data source connector
 
     |  Protocol  |  Source type  |  Source  |  Destination type  |  Destination  |  Value  |
     |----|----|----|----|----|----|
@@ -245,10 +245,10 @@ To make these components communicate properly, you need to set up rules in the S
 ## Permitting DNS resolution
 {: #permitting-dns-resolution}
 
-To allow Data Source Connector, need to copy data to COS endpoint – If your Data Source Connector is on a private network, then you need to follow the following steps to allow Data Source Connector to copy data
+To allow data source connector, you need to copy data to COS endpoint – If your data source connector is on a private network, then you need to follow the following steps to allow data source connector to copy data
 
    1. Create or identify [VPE gateway](#how-to-get-vpe-gateway-cos-s3) for COS direct endpoints - this normally created VPE gateway while creating Kubernetes/OpenShift cluster under VPC (default networking).
-   2. In the Overview tab, enable `Permit DNS resolution binding` to resolve from Data Source Connector.
+   2. In the Overview tab, enable `Permit DNS resolution binding` to resolve from data source connector.
 
 ## How to register an Kubernetes/OpenShift cluster with {{site.data.keyword.baas_full_notm}} service
 {: #data-source-connector-iks-roks-register}
@@ -256,7 +256,7 @@ To allow Data Source Connector, need to copy data to COS endpoint – If your Da
 1. Open your {{site.data.keyword.baas_full_notm}} instance.
 2. Go to: `Dashboard → Data Protection → Sources → Register Source`.
 3. Choose the Kubernetes cluster type.
-4. Select the previously created [Data Source Connection](#data-source-connector-iks-roks-create-data-source-connection), or create a new connection.
+4. Select the previously created [data source connection](#data-source-connector-iks-roks-create-data-source-connection), or create a new connection.
 5. Click **Continue**.
 6. Provide these details in the form:
 
@@ -267,7 +267,7 @@ To allow Data Source Connector, need to copy data to COS endpoint – If your Da
 7. Click on **Complete** to finish the registration.
 8. You are redirected to the list of data sources where you can see the status of your data source registration.
 
-## How to create a Bearer Token for a Kubernetes/OpenShift cluster
+## How to create a bearer token for a Kubernetes/OpenShift cluster
 {: #data-source-connector-iks-roks-create-bearer-token-cluster}
 
 1. Configure kubectl or oc cli by getting kube config `ibmcloud ks cluster config --cluster <cluster> --admin`
@@ -327,21 +327,21 @@ To allow Data Source Connector, need to copy data to COS endpoint – If your Da
 {: #data-source-connector-iks-roks-prereq-schedule-bak}
 
 1. You must have a [Protection Policy](/docs/backup-recovery?topic=backup-recovery-baas-policy-creation) in place to create or run a backup. You can either:
-   - Use an existing Protection Policy, or
+   - Use an existing protection policy, or
    - Create a new user-defined policy
 2. You need to create a [Protection Group](/docs/backup-recovery?topic=backup-recovery-protection-groups) that uses one of these policies to perform an incremental or full backup.
 
-## Protecting a namespace or cluster and Scheduling a Backup
+## Protecting a namespace or cluster and scheduling a backup
 {: #protecting-namespace-iks-roks}
 
 1. Go to: `Dashboard → Data Protection → Sources`.
 2. Locate your source cluster (based on the registration endpoint)
-3. Click on the cluster URL
+3. Click the cluster URL
 4. A list of namespaces will appear. Select the namespaces to protect and click Protect
 5. Enter the required details: like Protection Group Name, Protection Policy, and Leverage CSI snapshot.
-6. Click on **Submit**.
+6. Click **Submit**.
 
-## Recovering or restoring Backup:
+## Recovering or restoring backup:
 {: #recovering-restoring-backup}
 
 1. Go to: `Dashboard → Data Protection → Recoveries→Kubernetes Cluster`.
@@ -361,16 +361,16 @@ After completion, the recovered namespace is visible in the cluster with the con
 
 You can face issues while registering a Kubernetes/OpenShift cluster as a data source, taking backup or restoring backup with {{site.data.keyword.baas_full_notm}} instance:
 
-1. Kubernetes/OpenShift cluster and Data Source Connector should be on the same VPC.
-   1. This is the prerequisites to work with {{site.data.keyword.baas_full_notm}} instance for Kubernetes/OpenShift cluster, Data Source Connector and Kubernetes/OpenShift should be on the same VPC.
+1. Kubernetes/OpenShift cluster and data source connector should be on the same VPC.
+   1. This is the prerequisites to work with {{site.data.keyword.baas_full_notm}} instance for Kubernetes/OpenShift cluster, data source connector and Kubernetes/OpenShift should be on the same VPC.
    2. How to verify whether these are on the same VPC:
-      - Verifying Kubernetes/OpenShift's VPC: Go to `Menu -> Containers -> Clusters ->` Go to your cluster's Overview and under Cluster Details check for the VPC (ex : roks-private-vpc ).
+      - Verifying Kubernetes/OpenShift's VPC: Go to `Menu → Containers → Clusters`. Go to your cluster's Overview and under Cluster Details check for the VPC (ex : roks-private-vpc).
    3. How to verify whether these are on the same VPC:
-      1. Verify Kubernetes/OpenShift’s VPC: Go to `Menu -> Containers -> Clusters`.
-      2. Verify Data Source Connector’s VPC
+      1. Verify Kubernetes/OpenShift’s VPC: Go to `Menu → Containers → Clusters`.
+      2. Verify data source connector’s VPC
 
-2. Security Group rules are missing in required Security Groups that are used to allow communications between the Data Source Connector, Kubernetes/OpenShift cluster, and {{site.data.keyword.baas_full_notm}} instance.
-   1. This can be written based on previous steps that are covered in [Configure a Data Source Connector](#data-source-connector-iks-roks-create-configure).
+2. Security Group rules are missing in required Security Groups that are used to allow communications between the data source connector, Kubernetes/OpenShift cluster, and {{site.data.keyword.baas_full_notm}} instance.
+   1. This can be written based on previous steps that are covered in [Configure a data source connector](#data-source-connector-iks-roks-create-configure).
 
 3. Not using the correct brs-backup-agent image
    1. In case of registration failure, verify that the {{site.data.keyword.baas_full_notm}} backup agent is running or not on the Kubernetes/OpenShift cluster.
@@ -388,10 +388,10 @@ You can face issues while registering a Kubernetes/OpenShift cluster as a data s
       ```
       {: pre}
 
-4. Unwanted Security Group rules in the Security Groups of the Data Source Connector.
-   - You can face connectivity issues in case of [VPC security groups](#how-to-identify-sc-dcs) has redundant rules specifically when Kubernetes/OpenShift cluster deleted and Security Group still containing `Unknown` source, all these rules need to be cleaned up specially from the Data Source Connector Security Group.
+4. Unwanted Security Group rules in the Security Groups of the data source connector.
+   - You can face connectivity issues in case of [VPC security groups](#how-to-identify-sc-dcs) has redundant rules specifically when Kubernetes/OpenShift cluster deleted and Security Group still containing `Unknown` source, all these rules need to be cleaned up specially from the data source connector security group.
 
-5. Check health of the [Data Source Connector](#data-source-connector-iks-roks-create-configure)
+5. Check health of the [data source connector](#data-source-connector-iks-roks-create-configure)
    1. [Assign the floating IP](#data-source-connector-iks-roks-create-configure).
    2. Access by using floating IP and check whether it shows status as `healthy`.
 
