@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-11-03"
+lastupdated: "2025-11-06"
 
 keywords: reporting, single instance, data protection, download report
 
@@ -12,12 +12,57 @@ subcollection: backup-recovery
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Individual instance report
-{: #report-individual-instance}
+# View {{site.data.keyword.baas_full}} service instances
+{: #individual-instance-view}
 
-{{site.data.keyword.baas_full}} provides one-stop-shop reporting from the Management Console for the {{site.data.keyword.baas_full_notm}}. You have an aggregated view of your IBM deployment regardless of the use case, workload, or deployment type (on-premises, consumed as an IBM-hosted service, or a combination).
+The {{site.data.keyword.baas_full}} UI provides access to a list of available service instances, and detailed views from the backup policy management dashboard.
 
-The built-in reports are designed to address your most common use cases and are available for immediate use. You can view an instance level summary of your data protection jobs and Storage Systems, or you can analyze data at the granular level by using powerful filtering options. You can filter, view, and download reports for a single instance.
+
+
+## Details of an instance
+{: #instance-details}
+
+1. You must be logged into your IBM cloud account and have an active {{site.data.keyword.baas_full}} instance.
+2. View the details of an instance by either:
+   - clicking on it to launch into the backup policy management dashboard, and clicking launch dashboard, or
+   - click the ovewflow menu to the right of your instance, and select launch dashboard.
+3. The dashboard displays a quick clance of getting started, health, protection, compliance, data source connections, and recoveries.
+
+## Summary
+{: #dashboard-summary}
+
+| View | Description | Action |
+|------------|-------------------------------------------------|-------------------------------------------|
+| Getting started | - Connect Sources<br> - Create backup policies | - Setup a connection<br> - Create backup policies and protect your sources.
+| [Health](#dashboard-summary-health) | Displays active alerts within the last 24 hours | Click the panel to open a new page that displays the Alerts, Alert Analytics, Notifications Settings and Resolution Summary |
+| Protection | Percentage of objects protected |
+| Compliance |  Last run status that met BCO and missed BCO |
+| Data Source Connections and Connectors |
+
+
+### Health
+{: #dashboard-summary-health}
+
+| View | Description | Action |
+|------------|-------------------------------------------------|-------------------------------------------|
+| Alerts | Displays the number of critical, warning and healthy alerts | Alerts can be filtered by Severity: Critical, Info, Warning<br>Active +1:  Active, Note, Resolved<br>Date Range: Past Hour, Past 12 Hours, Past 24 Hours, Past 7 Days, Past 30 Days, Custom(Start Date - End Date)
+| Alert Analytics | Displays recent alerts and resolutions | - Filter by Open Alerts or Resolved Alerts<br>- Open Alerts by Category|
+| Notification Settings | blank | Add Alert Notification Rule:<br>1. Create a rule name<br>2. When by Alert Category, Alert Severities, Alert Name<br>Select to send Alert Notification by means of a Webhook: Include URL (POST request will be sent on the URL using cURL command) and  (Add parameters to be sent with cURL command ) |
+| Resolution Summary | Provides a summary of the resolution | |
+
+### Protection
+{: #dashboard-summary-protection}
+
+Displays protection groups found by group type, groups, policy, BCO, status. Indicates number that succeeded, have a warning, failed, runnning, canceled, met BCO, missed BCO.
+
+| View | Description | Action |
+|------------|-------------------------------------------------|-------------------------------------------|
+| Group Type | Select by Databases or Physical Servers | Databases: Select Oracle, Miscrosoft SQL, SAP HANA x86-x64<br>Physical Servers |
+| Deleted | Deleted<br>Failover Ready<br>Local<br>Paused |  |
+| Policy Type | Bronze<br>Gold<br>Silver | |
+| BCO Type | Met BCO<br>Missed BCO | |
+| Status | Running<br>Succeeded<br>Warning<br>Failed<br>Canceled<br>Canceling<br>Paused | Backup Running, Replication Running, Archical Running, CloudSpin Running<br>Backup Succeeded, Replication Succeeded, Archival Succeeded,CloudSpin
+
 
 ## Data protection
 {: #report-data-protection-mc}
@@ -31,7 +76,7 @@ Use the protection configuration window to create a [Protection Group](/docs/bac
 1. Choose the Objects (with Source), enter a Protection Group Name, configure a standard Protection Policy (Gold, Silver, or Bronze) or create a new custom Protection Policy.
 2. Click **Protect** to finalize your configurations; the protection group is created.
 
-### Recoveries
+### Recover
 {: #recoveries-mc}
 
 {{site.data.keyword.baas_full_notm}} provides the ability to recover files and folders from a Snapshot created earlier by a Protection Group. Files and folders can be recovered to their original location (limitations apply to physical Servers and specific operating systems) or to a newly specified location, which can be within the original source or a different one. For more information, see [Recover Physical Server Files or Folders](/docs/backup-recovery?topic=backup-recovery-Recover).
