@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-11-06"
+lastupdated: "2025-11-07"
 
 keywords: reporting, single instance, data protection, download report
 
@@ -12,7 +12,7 @@ subcollection: backup-recovery
 
 {{site.data.keyword.attribute-definition-list}}
 
-# View {{site.data.keyword.baas_full}} service instances
+# View status of service instances
 {: #individual-instance-view}
 
 The {{site.data.keyword.baas_full}} UI provides access to a list of available service instances, and detailed views from the backup policy management dashboard.
@@ -26,6 +26,7 @@ The {{site.data.keyword.baas_full}} UI provides access to a list of available se
 2. View the details of an instance by either:
    - clicking on it to launch into the backup policy management dashboard, and clicking launch dashboard, or
    - click the ovewflow menu to the right of your instance, and select launch dashboard.
+     - the overflow menu also includes the option to rename the instance, edit tags, and delete the instance
 3. The dashboard displays a quick clance of getting started, health, protection, compliance, data source connections, and recoveries.
 
 ## Summary
@@ -57,12 +58,37 @@ Displays protection groups found by group type, groups, policy, BCO, status. Ind
 
 | View | Description | Action |
 |------------|-------------------------------------------------|-------------------------------------------|
-| Group Type | Select by Databases or Physical Servers | Databases: Select Oracle, Miscrosoft SQL, SAP HANA x86-x64<br>Physical Servers |
+| Group Type | Select by Databases or Physical Servers | Databases: Select Oracle, Miscrosoft SQL, SAP HANA x86-x64<br>Physical Servers(file based) |
 | Deleted | Deleted<br>Failover Ready<br>Local<br>Paused |  |
 | Policy Type | Bronze<br>Gold<br>Silver | |
 | BCO Type | Met BCO<br>Missed BCO | |
-| Status | Running<br>Succeeded<br>Warning<br>Failed<br>Canceled<br>Canceling<br>Paused | Backup Running, Replication Running, Archical Running, CloudSpin Running<br>Backup Succeeded, Replication Succeeded, Archival Succeeded,CloudSpin
+| Status | Running<br>Succeeded<br>Warning<br>Failed<br>Canceled<br>Canceling<br>Paused | Backup, Replication, Archical, CloudSpin<br>"  "<br>" "<br>" "<br>" "<br>" "<br>" "|
 
+Protection status can be sorted by group, start time, duration, success/error, BCO.
+{: note}
+
+Add New protection from the drop-down for databases and physical server.
+1. Click Protect and choose databases or physical server
+2. Select MS SQL server, Oracle database or SAP HANA:
+   - MS SQL server options: add objects, protection group, policy, backup type and more options to add a registered source to protect
+   - Oracle database options: add objects, protection group, policy and more options to add a registered source to protect
+   - SAP/HANA options: add objects, protection group, policy and more options to add a registered source to protect
+3. Select Physical server:
+   - File-based: add objects, protection group, policy and more options to add a registered source to protect
+
+#### New Protection
+{: #dashboard-summary-new-protection}
+
+1. Complete the required input for the fields in the table.
+2. Click **Protect** to create a new protection.
+
+| Protect | Type | Description | Action |
+|---------------|----------------|-------------------------------|-----------------------------------------------|
+|Add objects | Database: MS SQL Server, Oracle DB, SAP HANA<br>Physical Server: File-based | Register source | Search or click to add a registered source by [creating a Data Source connection](/docs/backup-recovery?topic=backup-recovery-deploy_data_source_connector). Click to **Continue**.|
+| Protection group | Database: MS SQL Server, Oracle DB, SAP HANA<br>Physical Server: File-based | Name the Protection Group | Add a name of your choice |
+| Policy | Database: MS SQL Server, Oracle DB, SAP HANA<br>Physical Server: File-based |Add or create a policy | Bronze, Gold, Silver<br>Create Policy: Name the policy, Determine backup every minute, hour, day, week, month and determine data retention |
+|Backup Type (VDI-based) | Database: MS SQL Server |
+| More options | 
 
 ## Data protection
 {: #report-data-protection-mc}
