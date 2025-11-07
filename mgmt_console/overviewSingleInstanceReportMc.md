@@ -146,7 +146,7 @@ Procedure
 Here is how you see the reports for a single instance for the selected region:
 
 1. In the left navigation pane, click **Instance manager**, and select the region that you want to see the report for.
-2. The Management Console shows the report for all the instances for the selected region.
+2. The Global Management Console shows the report for all the instances for the selected region.
 3. From the **All Instances** drop-down list, select the instance for which you want to see the reports.
 2. In the left navigation pane, click **Reports**.
 
@@ -155,11 +155,11 @@ Here is how you see the reports for a single instance for the selected region:
 
 From the **Select Report** drop-down list, choose a report type to identify the information that you need. Currently, six built-in reports are available for a single instance for {{site.data.keyword.baas_full}}.
 
-[Backup Summary](/docs/backup-recovery?topic=backup-recovery-report_protected_unprotected_objects_gmc) - This report shows an overview of the Protection Groups that are run on the data source Instance for the specified filter criteria. For each Protection Group, this report shows how many times the Protection Group has run, total bytes read and statistics about the last time the Protection Group ran.
+[Backup Summary](/docs-draft/backup-recovery?topic=backup-recovery-report_backup_summary_mc) - This report shows an overview of the Protection Groups that are run on the data source Instance for the specified filter criteria. For each Protection Group, this report shows how many times the Protection Group has run, total bytes read and statistics about the last time the Protection Group ran.
 
 [Failed Objects](/docs/backup-recovery?topic=backup-recovery-report_failures_gmc) - This report lists all the Objects for which an error occurred during the last runs and prevented the Objects from being backed up.
 
-[Protected Objects Heatmap](/docs/backup-recovery?topic=backup-recovery-report_protected_objects_gmc) - **Need more information for this section**
+[Protected Objects Heatmap](/docs-draft/backup-recovery?topic=backup-recovery-report_protected_objects_mc) - **Need more information for this section**
 
 [Protection Runs Summary](/docs/backup-recovery?topic=backup-recovery-report_protection_runs_gmc) - **Need more information for this section**
 
