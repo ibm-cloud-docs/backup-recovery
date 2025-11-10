@@ -14,14 +14,16 @@ subcollection: backup-recovery
 
 # Getting started with Backup and Recovery
 {: #getting-started-backup-recovery}
-{{site.data.keyword.baas_full}} is a fully managed service that provides backup solutions for various {{site.data.keyword.cloud}} services and customer workloads running on IBM Cloud.  In this getting started tutorial, you will learn how to back up and recover a workload using the {{site.data.keyword.baas_full_notm}} service.
+{{site.data.keyword.baas_full}} is a managed service that provides backup solutions for various {{site.data.keyword.cloud}} services and customer workloads running on IBM Cloud.  In this getting started tutorial, you will learn how to back up and recover a workload using the {{site.data.keyword.baas_full_notm}} service.
 
 
 
 
 {: shortdesc}
 
-*Use code ***VPC1000*** and get ***USD 1,000*** in free credits to use towards different offerings on IBM Cloud VPC, including: Confidential computing with Intel® SGX®, Bare Metal for VPC, Backup and Recovery or any Block and File storage or networking components. ***Valid until 31 Dec 2025***.*
+Use code **VPC1000** and get **USD 1,000** in free credits to use towards different offerings on IBM Cloud VPC, including: Confidential computing with Intel® SGX®, Bare Metal for VPC, Backup and Recovery or any Block and File storage or networking components. **Valid until 31 Dec 2025**.
+{: important}
+
 
 ## Before you begin
 {: #baas-getting-started}
