@@ -21,7 +21,7 @@ subcollection: backup-recovery
 
 {: shortdesc}
 
-Use code <b>VPC1000</b> and get <b>USD 1,000</b> in free credits to use toward different offerings on IBM Cloud VPC, including: Confidential computing with Intel® SGX®, Bare Metal for VPC, {{site.data.keyword.baas_full_notm}}, or any Block and File storage or networking components. <b>Valid until 31 December 2025</b>.
+Use code **VPC1000** and get **USD 1,000** in free credits to use toward different offerings on IBM Cloud VPC, including: Confidential computing with Intel® SGX®, Bare Metal for VPC, {{site.data.keyword.baas_full_notm}}, or any Block and File storage or networking components. **Valid until 31 December 2025**.
 {: important}
 
 
