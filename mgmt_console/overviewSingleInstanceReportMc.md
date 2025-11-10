@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-11-03"
+lastupdated: "2025-11-07"
 
 keywords: reporting, single instance, data protection, download report
 
@@ -12,12 +12,83 @@ subcollection: backup-recovery
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Individual instance report
-{: #report-individual-instance}
+# View status of service instances
+{: #individual-instance-view}
 
-{{site.data.keyword.baas_full}} provides one-stop-shop reporting from the Management Console for the {{site.data.keyword.baas_full_notm}}. You have an aggregated view of your IBM deployment regardless of the use case, workload, or deployment type (on-premises, consumed as an IBM-hosted service, or a combination).
+The {{site.data.keyword.baas_full}} UI provides access to a list of available service instances, and detailed views from the backup policy management dashboard.
 
-The built-in reports are designed to address your most common use cases and are available for immediate use. You can view an instance level summary of your data protection jobs and Storage Systems, or you can analyze data at the granular level by using powerful filtering options. You can filter, view, and download reports for a single instance.
+
+
+## Details of an instance
+{: #instance-details}
+
+1. You must be logged into your IBM cloud account and have an active {{site.data.keyword.baas_full}} instance.
+2. View the details of an instance by either:
+   - clicking on it to launch into the backup policy management dashboard, and clicking launch dashboard, or
+   - click the ovewflow menu to the right of your instance, and select launch dashboard.
+     - the overflow menu also includes the option to rename the instance, edit tags, and delete the instance
+3. The dashboard displays a quick clance of getting started, health, protection, compliance, data source connections, and recoveries.
+
+## Summary
+{: #dashboard-summary}
+
+| View | Description | Action |
+|------------|-------------------------------------------------|-------------------------------------------|
+| Getting started | - Connect Sources<br> - Create backup policies | - Setup a connection<br> - Create backup policies and protect your sources.
+| [Health](#dashboard-summary-health) | Displays active alerts within the last 24 hours | Click the panel to open a new page that displays the Alerts, Alert Analytics, Notifications Settings and Resolution Summary |
+| Protection | Percentage of objects protected |
+| Compliance |  Last run status that met BCO and missed BCO |
+| Data Source Connections and Connectors |
+
+
+### Health
+{: #dashboard-summary-health}
+
+| View | Description | Action |
+|------------|-------------------------------------------------|-------------------------------------------|
+| Alerts | Displays the number of critical, warning and healthy alerts | Alerts can be filtered by Severity: Critical, Info, Warning<br>Active +1:  Active, Note, Resolved<br>Date Range: Past Hour, Past 12 Hours, Past 24 Hours, Past 7 Days, Past 30 Days, Custom(Start Date - End Date)
+| Alert Analytics | Displays recent alerts and resolutions | - Filter by Open Alerts or Resolved Alerts<br>- Open Alerts by Category|
+| Notification Settings | blank | Add Alert Notification Rule:<br>1. Create a rule name<br>2. When by Alert Category, Alert Severities, Alert Name<br>Select to send Alert Notification by means of a Webhook: Include URL (POST request will be sent on the URL using cURL command) and  (Add parameters to be sent with cURL command ) |
+| Resolution Summary | Provides a summary of the resolution | |
+
+### Protection
+{: #dashboard-summary-protection}
+
+Displays protection groups found by group type, groups, policy, BCO, status. Indicates number that succeeded, have a warning, failed, runnning, canceled, met BCO, missed BCO.
+
+| View | Description | Action |
+|------------|-------------------------------------------------|-------------------------------------------|
+| Group Type | Select by Databases or Physical Servers | Databases: Select Oracle, Miscrosoft SQL, SAP HANA x86-x64<br>Physical Servers(file based) |
+| Deleted | Deleted<br>Failover Ready<br>Local<br>Paused |  |
+| Policy Type | Bronze<br>Gold<br>Silver | |
+| BCO Type | Met BCO<br>Missed BCO | |
+| Status | Running<br>Succeeded<br>Warning<br>Failed<br>Canceled<br>Canceling<br>Paused | Backup, Replication, Archical, CloudSpin<br>"  "<br>" "<br>" "<br>" "<br>" "<br>" "|
+
+Protection status can be sorted by group, start time, duration, success/error, BCO.
+{: note}
+
+Add New protection from the drop-down for databases and physical server.
+1. Click Protect and choose databases or physical server
+2. Select MS SQL server, Oracle database or SAP HANA:
+   - MS SQL server options: add objects, protection group, policy, backup type and more options to add a registered source to protect
+   - Oracle database options: add objects, protection group, policy and more options to add a registered source to protect
+   - SAP/HANA options: add objects, protection group, policy and more options to add a registered source to protect
+3. Select Physical server:
+   - File-based: add objects, protection group, policy and more options to add a registered source to protect
+
+#### New Protection
+{: #dashboard-summary-new-protection}
+
+1. Complete the required input for the fields in the table.
+2. Click **Protect** to create a new protection.
+
+| Protect | Type | Description | Action |
+|---------------|----------------|-------------------------------|-----------------------------------------------|
+|Add objects | Database: MS SQL Server, Oracle DB, SAP HANA<br>Physical Server: File-based | Register source | Search or click to add a registered source by [creating a Data Source connection](/docs/backup-recovery?topic=backup-recovery-deploy_data_source_connector). Click to **Continue**.|
+| Protection group | Database: MS SQL Server, Oracle DB, SAP HANA<br>Physical Server: File-based | Name the Protection Group | Add a name of your choice |
+| Policy | Database: MS SQL Server, Oracle DB, SAP HANA<br>Physical Server: File-based |Add or create a policy | Bronze, Gold, Silver<br>Create Policy: Name the policy, Determine backup every minute, hour, day, week, month and determine data retention |
+|Backup Type (VDI-based) | Database: MS SQL Server |
+| More options | 
 
 ## Data protection
 {: #report-data-protection-mc}
@@ -31,7 +102,7 @@ Use the protection configuration window to create a [Protection Group](/docs/bac
 1. Choose the Objects (with Source), enter a Protection Group Name, configure a standard Protection Policy (Gold, Silver, or Bronze) or create a new custom Protection Policy.
 2. Click **Protect** to finalize your configurations; the protection group is created.
 
-### Recoveries
+### Recover
 {: #recoveries-mc}
 
 {{site.data.keyword.baas_full_notm}} provides the ability to recover files and folders from a Snapshot created earlier by a Protection Group. Files and folders can be recovered to their original location (limitations apply to physical Servers and specific operating systems) or to a newly specified location, which can be within the original source or a different one. For more information, see [Recover Physical Server Files or Folders](/docs/backup-recovery?topic=backup-recovery-Recover).
@@ -75,7 +146,7 @@ Procedure
 Here is how you see the reports for a single instance for the selected region:
 
 1. In the left navigation pane, click **Instance manager**, and select the region that you want to see the report for.
-2. The Management Console shows the report for all the instances for the selected region.
+2. The Global Management Console shows the report for all the instances for the selected region.
 3. From the **All Instances** drop-down list, select the instance for which you want to see the reports.
 2. In the left navigation pane, click **Reports**.
 
@@ -84,11 +155,11 @@ Here is how you see the reports for a single instance for the selected region:
 
 From the **Select Report** drop-down list, choose a report type to identify the information that you need. Currently, six built-in reports are available for a single instance for {{site.data.keyword.baas_full}}.
 
-[Backup Summary](/docs/backup-recovery?topic=backup-recovery-report_protected_unprotected_objects_gmc) - This report shows an overview of the Protection Groups that are run on the data source Instance for the specified filter criteria. For each Protection Group, this report shows how many times the Protection Group has run, total bytes read and statistics about the last time the Protection Group ran.
+[Backup Summary](/docs-draft/backup-recovery?topic=backup-recovery-report_backup_summary_mc) - This report shows an overview of the Protection Groups that are run on the data source Instance for the specified filter criteria. For each Protection Group, this report shows how many times the Protection Group has run, total bytes read and statistics about the last time the Protection Group ran.
 
 [Failed Objects](/docs/backup-recovery?topic=backup-recovery-report_failures_gmc) - This report lists all the Objects for which an error occurred during the last runs and prevented the Objects from being backed up.
 
-[Protected Objects Heatmap](/docs/backup-recovery?topic=backup-recovery-report_protected_objects_gmc) - **Need more information for this section**
+[Protected Objects Heatmap](/docs-draft/backup-recovery?topic=backup-recovery-report_protected_objects_mc) - **Need more information for this section**
 
 [Protection Runs Summary](/docs/backup-recovery?topic=backup-recovery-report_protection_runs_gmc) - **Need more information for this section**
 
