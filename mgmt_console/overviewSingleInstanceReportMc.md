@@ -36,7 +36,7 @@ The {{site.data.keyword.baas_full}} UI provides access to a list of available se
 |------------|-------------------------------------------------|-------------------------------------------|
 | Getting started | - Connect Sources<br> - Create backup policies | - Setup a connection<br> - Create backup policies and protect your sources.
 | [Health](#dashboard-summary-health) | Displays active alerts within the last 24 hours | Click the panel to open a new page that displays the Alerts, Alert Analytics, Notifications Settings and Resolution Summary |
-| Protection | Percentage of objects protected |
+| [Protection](#dashboard-summary-protection) | Percentage of objects protected |
 | Compliance |  Last run status that met BCO and missed BCO |
 | Data Source Connections and Connectors |
 
@@ -84,11 +84,11 @@ Add New protection from the drop-down for databases and physical server.
 
 | Protect | Type | Description | Action |
 |---------------|----------------|-------------------------------|-----------------------------------------------|
-|Add objects | Database: MS SQL Server, Oracle DB, SAP HANA<br>Physical Server: File-based | Register source | Search or click to add a registered source by [creating a Data Source connection](/docs/backup-recovery?topic=backup-recovery-deploy_data_source_connector). Click to **Continue**.|
-| Protection group | Database: MS SQL Server, Oracle DB, SAP HANA<br>Physical Server: File-based | Name the Protection Group | Add a name of your choice |
-| Policy | Database: MS SQL Server, Oracle DB, SAP HANA<br>Physical Server: File-based |Add or create a policy | Bronze, Gold, Silver<br>Create Policy: Name the policy, Determine backup every minute, hour, day, week, month and determine data retention |
-|Backup Type (VDI-based) | Database: MS SQL Server |
-| More options |
+|Add objects | Database: MS SQL Server, Oracle DB, or SAP HANA<br>Physical Server: File-based | Register source | Search or click to add a registered source by [creating a Data Source connection](/docs/backup-recovery?topic=backup-recovery-deploy_data_source_connector). Click to **Continue**.|
+| Protection group | Database: MS SQL Server, Oracle DB, or SAP HANA<br>Physical Server: File-based | Name the Protection Group | Add a name of your choice |
+| Policy | Database: MS SQL Server, Oracle DB, or SAP HANA<br>Physical Server: File-based |Add or create a policy | Bronze, Gold, Silver<br>Create Policy: Name the policy, Determine backup every minute, hour, day, week, month and determine data retention |
+|Backup Type (VDI-based) | Database: MS SQL Server | For VDI backups, the backup and restore retention requirements are identical to SQL native dumps. <br>This means that you will need to perform a full backup, incremental backup (equivalent to SQL <br>Server Differential backup), and T-log backups for PIT recoveries.<br><br>For example, If you have a retention requirement of 7 days for a SQL Server DB backup, your VDI <br>protection job policy should ensure that the retention period that encompasses the full and <br>incremental retention period is greater than 7 days. Similar to SQL native dumps, a full and <br>incremental backup is required for restore. Setting the retention period for longer than 7 days to <br>encompass the full, incremental, and even t-log backups will ensure that there is no hole in the recovery when using VDI.|Click Protect|
+| More options | 
 
 ## Data protection
 {: #report-data-protection-mc}
