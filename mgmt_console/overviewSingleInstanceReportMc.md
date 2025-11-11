@@ -88,7 +88,7 @@ Add New protection from the drop-down for databases and physical server.
 | Protection group | Database: MS SQL Server, Oracle DB, or SAP HANA<br>Physical Server: File-based | Name the Protection Group | Add a name of your choice |
 | Policy | Database: MS SQL Server, Oracle DB, or SAP HANA<br>Physical Server: File-based |Add or create a policy | Bronze, Gold, Silver<br>Create Policy: Name the policy, Determine backup every minute, hour, day, week, month and determine data retention |
 |Backup Type (VDI-based) | Database: MS SQL Server | For VDI backups, the backup and restore retention requirements are identical to SQL native dumps. <br>This means that you will need to perform a full backup, incremental backup (equivalent to SQL <br>Server Differential backup), and T-log backups for PIT recoveries.<br><br>For example, If you have a retention requirement of 7 days for a SQL Server DB backup, your VDI <br>protection job policy should ensure that the retention period that encompasses the full and <br>incremental retention period is greater than 7 days. Similar to SQL native dumps, a full and <br>incremental backup is required for restore. Setting the retention period for longer than 7 days to <br>encompass the full, incremental, and even t-log backups will ensure that there is no hole in the recovery when using VDI.|Click Protect|
-| More options | 
+| More options | Database: MS SQL Server, Oracle DB, or SAP HANA<br>Physical Server: File-based | Source: Db SQL, Db Oracle, Db SAP HANA?<br>Physical Server: File-based| Search or click to add a registered source by [creating a Data Source connection](/docs/backup-recovery?topic=backup-recovery-deploy_data_source_connector). Click to **Continue**.|
 
 ## Data protection
 {: #report-data-protection-mc}
@@ -102,7 +102,7 @@ Use the protection configuration window to create a [Protection Group](/docs/bac
 1. Choose the Objects (with Source), enter a Protection Group Name, configure a standard Protection Policy (Gold, Silver, or Bronze) or create a new custom Protection Policy.
 2. Click **Protect** to finalize your configurations; the protection group is created.
 
-### Recover
+### Recoveries
 {: #recoveries-mc}
 
 {{site.data.keyword.baas_full_notm}} provides the ability to recover files and folders from a Snapshot created earlier by a Protection Group. Files and folders can be recovered to their original location (limitations apply to physical Servers and specific operating systems) or to a newly specified location, which can be within the original source or a different one. For more information, see [Recover Physical Server Files or Folders](/docs/backup-recovery?topic=backup-recovery-Recover).
@@ -141,7 +141,8 @@ For more information, see [Alerts](/docs/backup-recovery?group=alerts).
 
 View reports for a single instance to analyze and improve the user experience.
 
-Procedure
+### Procedure
+{: #report-view-mc}
 
 Here is how you see the reports for a single instance for the selected region:
 
@@ -157,15 +158,15 @@ From the **Select Report** drop-down list, choose a report type to identify the 
 
 [Backup Summary](/docs-draft/backup-recovery?topic=backup-recovery-report_backup_summary_mc) - This report shows an overview of the Protection Groups that are run on the data source Instance for the specified filter criteria. For each Protection Group, this report shows how many times the Protection Group has run, total bytes read and statistics about the last time the Protection Group ran.
 
-[Failed Objects](/docs-draft/backup-recovery?topic=backup-recovery-report_failures_gmc) - This report lists all the Objects for which an error occurred during the last runs and prevented the Objects from being backed up.
+[Failed Objects](/docs-draft/backup-recovery?topic=backup-recovery-report_failed_objects_mc) - This report lists all the Objects for which an error occurred during the last runs and prevented the Objects from being backed up.
 
-[Protected Objects Heatmap](/docs-draft/backup-recovery?topic=backup-recovery-report_protected_objects_mc) - **Need more information for this section**
+[Protected Objects Heatmap](/docs-draft/backup-recovery?topic=backup-recovery-report_protected_objects_mc) - This is a visual report that displays the status of the backup tasks of Objects that are associated with a Protection Group.
 
-[Protection Runs Summary](/docs/backup-recovery?topic=backup-recovery-report_protection_runs_mc) - **Need more information for this section**
+[Protection Runs Summary](/docs-draft/backup-recovery?topic=backup-recovery-report_protection_runs_mc) - This report provides a summary and list of all backup activities per object per run.
 
-[Protection Summary by Object Type](/docs/backup-recovery?topic=backup-recovery-report_recovery_mc) - This report shows the protection status of Objects as of the last runs that occurred in the specified date range.
+[Protection Summary by Object Type](/docs-draft/backup-recovery?topic=backup-recovery-report_recovery_mc) - This report shows the protection status of Objects as of the last runs that occurred in the specified date range.
 
-[Unprotected/Protected VMs](/docs/backup-recovery?topic=backup-recovery-report_recovery_mc) - This report provides lists of VMs protected and not protected by IBM Cloud Backup.
+[Unprotected/Protected VMs](/docs-draft/backup-recovery?topic=backup-recovery-report_recovery_mc) - This report provides lists of VMs protected and not protected by IBM Cloud Backup.
 
 You can complete the following tasks for each of the report type:
 
