@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-11-07"
+lastupdated: "2025-11-11"
 
 keywords: reporting, single instance, data protection, download report
 
@@ -25,9 +25,9 @@ The {{site.data.keyword.baas_full}} UI provides access to a list of available se
 1. You must be logged into your IBM cloud account and have an active {{site.data.keyword.baas_full}} instance.
 2. View the details of an instance by either:
    - clicking on it to launch into the backup policy management dashboard, and clicking launch dashboard, or
-   - click the ovewflow menu to the right of your instance, and select launch dashboard.
+   - click the overflow menu to the right of your instance, and select launch dashboard.
      - the overflow menu also includes the option to rename the instance, edit tags, and delete the instance
-3. The dashboard displays a quick clance of getting started, health, protection, compliance, data source connections, and recoveries.
+3. The dashboard displays a quick glance of getting started, health, protection, compliance, data source connections, and recoveries.
 
 ## Summary
 {: #dashboard-summary}
@@ -88,7 +88,7 @@ Add New protection from the drop-down for databases and physical server.
 | Protection group | Database: MS SQL Server, Oracle DB, SAP HANA<br>Physical Server: File-based | Name the Protection Group | Add a name of your choice |
 | Policy | Database: MS SQL Server, Oracle DB, SAP HANA<br>Physical Server: File-based |Add or create a policy | Bronze, Gold, Silver<br>Create Policy: Name the policy, Determine backup every minute, hour, day, week, month and determine data retention |
 |Backup Type (VDI-based) | Database: MS SQL Server |
-| More options | 
+| More options |
 
 ## Data protection
 {: #report-data-protection-mc}
@@ -157,15 +157,15 @@ From the **Select Report** drop-down list, choose a report type to identify the 
 
 [Backup Summary](/docs-draft/backup-recovery?topic=backup-recovery-report_backup_summary_mc) - This report shows an overview of the Protection Groups that are run on the data source Instance for the specified filter criteria. For each Protection Group, this report shows how many times the Protection Group has run, total bytes read and statistics about the last time the Protection Group ran.
 
-[Failed Objects](/docs/backup-recovery?topic=backup-recovery-report_failures_gmc) - This report lists all the Objects for which an error occurred during the last runs and prevented the Objects from being backed up.
+[Failed Objects](/docs-draft/backup-recovery?topic=backup-recovery-report_failures_gmc) - This report lists all the Objects for which an error occurred during the last runs and prevented the Objects from being backed up.
 
 [Protected Objects Heatmap](/docs-draft/backup-recovery?topic=backup-recovery-report_protected_objects_mc) - **Need more information for this section**
 
-[Protection Runs Summary](/docs/backup-recovery?topic=backup-recovery-report_protection_runs_gmc) - **Need more information for this section**
+[Protection Runs Summary](/docs/backup-recovery?topic=backup-recovery-report_protection_runs_mc) - **Need more information for this section**
 
-[Protection Summary by Object Type](/docs/backup-recovery?topic=backup-recovery-report_recovery_gmc) - This report shows the protection status of Objects as of the last runs that occurred in the specified date range.
+[Protection Summary by Object Type](/docs/backup-recovery?topic=backup-recovery-report_recovery_mc) - This report shows the protection status of Objects as of the last runs that occurred in the specified date range.
 
-[Unprotected/Protected VMs](/docs/backup-recovery?topic=backup-recovery-report_recovery_gmc) - This report provides lists of VMs protected and not protected by IBM Cloud Backup.
+[Unprotected/Protected VMs](/docs/backup-recovery?topic=backup-recovery-report_recovery_mc) - This report provides lists of VMs protected and not protected by IBM Cloud Backup.
 
 You can complete the following tasks for each of the report type:
 
