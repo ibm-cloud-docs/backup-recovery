@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2025
-lastupdated: "2025-11-10"
+lastupdated: "2025-11-13"
 
 keywords: IBM cloud backup and recovery
 
@@ -21,7 +21,7 @@ subcollection: backup-recovery
 
 {: shortdesc}
 
-Use code **VPC1000** and get **USD 1,000** in free credits to use toward different offerings on IBM Cloud VPC, including: Confidential computing with Intel® SGX®, Bare Metal for VPC, {{site.data.keyword.baas_full_notm}}, or any Block and File storage or networking components. **Valid until 31 December 2025**.
+Use code **VPC1000** and get **USD 1,000** in no-charge credits to use toward different offerings on IBM Cloud VPC, including: Confidential computing with Intel® SGX®, Bare Metal for VPC, {{site.data.keyword.baas_full_notm}}, or any Block and File storage or networking components. **Valid until 31 December 2025**.
 {: important}
 
 
@@ -63,6 +63,8 @@ To get started, you need to complete the following steps in the dashboard.
 2. Download and install the [backup agents](/docs/backup-recovery?topic=backup-recovery-agent-download-install) onto the servers you want to back up.
    - **NOTE:** Create a VM to be used as a [backup service connector](/docs/backup-recovery?topic=backup-recovery-deploy_data_source_connector) for virtual machines to move data between your sources and the {{site.data.keyword.baas_full_notm}} service.
 3. [Register sources](/docs/backup-recovery?topic=backup-recovery-source-registration-tutorial) to define the types of applications on those servers.
+
+
 
 
 ## Configuring protection
