@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2025
-lastupdated: "2025-11-10"
+lastupdated: "2025-11-13"
 
 keywords: IBM cloud backup and recovery
 
@@ -21,7 +21,7 @@ subcollection: backup-recovery
 
 {: shortdesc}
 
-Use code **VPC1000** and get **USD 1,000** in free credits to use toward different offerings on IBM Cloud VPC, including: Confidential computing with Intel® SGX®, Bare Metal for VPC, {{site.data.keyword.baas_full_notm}}, or any Block and File storage or networking components. **Valid until 31 December 2025**.
+Use code **VPC1000** and get **USD 1,000** in no-charge credits to use toward different offerings on IBM Cloud VPC, including: Confidential computing with Intel® SGX®, Bare Metal for VPC, {{site.data.keyword.baas_full_notm}}, or any Block and File storage or networking components. **Valid until 31 December 2025**.
 {: important}
 
 
@@ -49,7 +49,7 @@ You need the following to get started with {{site.data.keyword.baas_full_notm}}:
 
 1. Start by searching for {{site.data.keyword.baas_full_notm}} in the [IBM Cloud catalog](https://cloud.ibm.com/catalog#highlights), and select your {{site.data.keyword.baas_full_notm}} storage instance from the resource list that is found under the navigation menu.
 2. Click your instance from the list to open the main page.
-3. Showing on the main page are the details of the information that you provided when creating a {{site.data.keyword.baas_full_notm}} instance.  From this page you can take more actions like rename, start dashboard for [setting up your environment](#baas-setting-up-environment) and [configuring protection](#baas-configure-protection), [view logging](/docs/cloud-logs?topic=cloud-logs-getting-started), [view monitoring](/docs/monitoring?topic=monitoring-getting-started#getting-started) and delete this instance.  Additional information is shown for the [API details](/docs/backup-recovery?topic=backup-recovery-compatibility-api) like your ID and endpoints.
+3. Showing on the main page are the details of the information that you provided when creating a {{site.data.keyword.baas_full_notm}} instance.  From this page you can take more actions like rename, start dashboard for [setting up your environment](#baas-setting-up-environment) and [configuring protection](#baas-configure-protection), [view logging](/docs/cloud-logs?topic=cloud-logs-getting-started), [view monitoring](/docs/monitoring?topic=monitoring-getting-started#getting-started) and delete this instance.  Additional information is shown for the [API details](https://cloud.ibm.com/apidocs/backup-recovery#br-intro) like your ID and endpoints.
 4. Click view in the Logging window to load your Logs Routing targets, or click [Manage routing](cloud.ibm.com/observability/logs-routing/targets) to define rules to collect and send platform logs to a Cloud Logs instance.
 5. Click view in the Monitoring window to load your Metrics Routing targets, or click [Manage routing](cloud.ibm.com/observability/metrics-routing/routes) to define your IBM Cloud Metrics Routing settings.
 
@@ -65,6 +65,8 @@ To get started, you need to complete the following steps in the dashboard.
 3. [Register sources](/docs/backup-recovery?topic=backup-recovery-source-registration-tutorial) to define the types of applications on those servers.
 
 
+
+
 ## Configuring protection
 {: #baas-configure-protection}{: step}
 
@@ -76,4 +78,4 @@ To get started, you need to complete the following steps in the dashboard.
 ## Next steps
 {: #baas-next-steps}
 
-Now that you are familiar with your {{site.data.keyword.baas_full_notm}} instance from the web-based console, you might be interested in doing a similar workflow from the command line. Check out using the `ibmcloud backup-recovery` command-line utility to create a service instance and interacting with IAM. And you can further use `curl` for accessing Cloud Object Storage directly. [Check out the API overview](/docs/backup-recovery?topic=backup-recovery-compatibility-api) to get started.
+Now that you are familiar with your {{site.data.keyword.baas_full_notm}} instance from the web-based console, you might be interested in doing a similar workflow from the command line. Check out using the `ibmcloud backup-recovery` command-line utility to create a service instance and interacting with IAM. And you can further use `curl` for accessing Cloud Object Storage directly. [Check out the API overview](https://cloud.ibm.com/apidocs/backup-recovery#br-intro) to get started.
