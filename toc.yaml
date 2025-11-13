@@ -95,11 +95,11 @@ toc:
           - security-service-endpoints.md
           - vpe.md
       - topicgroup:
-          label: Monitoring
+          label: Monitoring (Work-in-Progress)
           topics:
           - mgmt_console/overviewSingleInstanceReportMc.md
           - topicgroup:
-              label: Alerts
+              label: Alerts (Work-in-Progress)
               topics:
               - alerts/BackupRestoreAlerts.md
               - alerts/ConfiguringWebhooks.md

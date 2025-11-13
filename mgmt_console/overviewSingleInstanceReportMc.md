@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-11-11"
+lastupdated: "2025-11-13"
 
 keywords: reporting, single instance, data protection, download report
 
@@ -12,7 +12,7 @@ subcollection: backup-recovery
 
 {{site.data.keyword.attribute-definition-list}}
 
-# View status of service instances
+# Backup service instances
 {: #individual-instance-view}
 
 The {{site.data.keyword.baas_full}} UI provides access to a list of available service instances, and detailed views from the backup policy management dashboard.
@@ -89,6 +89,11 @@ Add New protection from the drop-down for databases and physical server.
 | Policy | Database: MS SQL Server, Oracle DB, or SAP HANA<br>Physical Server: File-based |Add or create a policy | Bronze, Gold, Silver<br>Create Policy: Name the policy, Determine backup every minute, hour, day, week, month and determine data retention |
 |Backup Type (VDI-based) | Database: MS SQL Server | For VDI backups, the backup and restore retention requirements are identical to SQL native dumps. <br>This means that you will need to perform a full backup, incremental backup (equivalent to SQL <br>Server Differential backup), and T-log backups for PIT recoveries.<br><br>For example, If you have a retention requirement of 7 days for a SQL Server DB backup, your VDI <br>protection job policy should ensure that the retention period that encompasses the full and <br>incremental retention period is greater than 7 days. Similar to SQL native dumps, a full and <br>incremental backup is required for restore. Setting the retention period for longer than 7 days to <br>encompass the full, incremental, and even t-log backups will ensure that there is no hole in the recovery when using VDI.|Click Protect|
 | More options | Database: MS SQL Server, Oracle DB, or SAP HANA<br>Physical Server: File-based | Source: Db SQL, Db Oracle, Db SAP HANA?<br>Physical Server: File-based| Search or click to add a registered source by [creating a Data Source connection](/docs/backup-recovery?topic=backup-recovery-deploy_data_source_connector). Click to **Continue**.|
+
+## Compliance
+{: #report-data-compliance-mc}
+
+Last run status that met BCO and missed BCO.  PENDING: missing page showing compliance status, currently defaults to same page as protection.
 
 ## Data protection
 {: #report-data-protection-mc}
