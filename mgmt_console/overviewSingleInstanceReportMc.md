@@ -22,7 +22,7 @@ The {{site.data.keyword.baas_full}} UI provides access to a list of available se
 ## Details of an instance
 {: #instance-details}
 
-1. You must be logged into your IBM cloud account and have an active {{site.data.keyword.baas_full}} instance.
+1. You must be logged in to your IBM cloud account and have an active {{site.data.keyword.baas_full}} instance.
 2. View the details of an instance by either:
    - clicking on it to launch into the backup policy management dashboard, and clicking launch dashboard, or
    - click the overflow menu to the right of your instance, and select launch dashboard.
@@ -35,7 +35,7 @@ The {{site.data.keyword.baas_full}} UI provides access to a list of available se
 | View | Description | Action |
 |------------|-------------------------------------------------|-------------------------------------------|
 | Getting started | - Connect Sources<br> - Create backup policies | - [Setup a connection](#report-data-source-connection-mc) <br> - [Register a source](/docs/backup-recovery?topic=backup-recovery-source-registration-tutorial), and [create backup policies](#policy-mc) and [protect your sources](#dashboard-summary-protection).
-| [Health](#dashboard-summary-health) | Displays active alerts within the last 24 hours | Click the panel to open a new page that displays the Alerts, Alert Analytics, Notifications Settings and Resolution Summary |
+| [Health](#dashboard-summary-health) | Displays active alerts within the last 24 hours | Click the panel to open a new page that displays the Alerts, Alert Analytics, Notifications Settings, and Resolution Summary |
 | [Protection](#dashboard-summary-protection) | Percentage of objects protected |
 | [Compliance](#report-data-compliance-mc) |  Last run status that met BCO and missed BCO |?|
 | [Data Source Connections and Connectors](#report-data-source-connection-mc) |Create data source connections to establish connectivity between your sources and this data source. <br>A connection consists of one or more virtual servers that move data between your data sources and IBM Cloud Backup.|Click New Connection|
@@ -47,35 +47,35 @@ The {{site.data.keyword.baas_full}} UI provides access to a list of available se
 
 | View | Description | Action |
 |------------|-------------------------------------------------|-------------------------------------------|
-| Alerts | Displays the number of critical, warning and healthy alerts | Alerts can be filtered by Severity: Critical, Info, Warning<br>Active +1:  Active, Note, Resolved<br>Date Range: Past Hour, Past 12 Hours, Past 24 Hours, Past 7 Days, Past 30 Days, Custom(Start Date - End Date)
+| Alerts | Displays the number of critical, warning, and healthy alerts | Alerts can be filtered by Severity: Critical, Info, Warning<br>Active +1:  Active, Note, Resolved<br>Date Range: Past Hour, Past 12 Hours, Past 24 Hours, Past 7 Days, Past 30 Days, Custom(Start Date - End Date)
 | Alert Analytics | Displays recent alerts and resolutions | - Filter by Open Alerts or Resolved Alerts<br>- Open Alerts by Category|
-| Notification Settings | blank | Add Alert Notification Rule:<br>1. Create a rule name<br>2. When by Alert Category, Alert Severities, Alert Name<br>Select to send Alert Notification by means of a Webhook: Include URL (POST request will be sent on the URL using cURL command) and  (Add parameters to be sent with cURL command ) |
+| Notification Settings | blank | Add Alert notification Rule:<br>1. Create a rule name<br>2. When by Alert Category, Alert Severities, Alert Name<br>Select to send an Alert notification with a webhook: Include URL (POST request is sent on the URL by using cURL command) and (Add parameters to be sent with cURL command ) |
 | Resolution Summary | Provides a summary of the resolution | |
 
 ### Protection
 {: #dashboard-summary-protection}
 
-Displays protection groups found by group type, groups, policy, BCO, status. Indicates number that succeeded, have a warning, failed, runnning, canceled, met BCO, missed BCO.
+Displays protection groups that are found by group type, groups, policy, BCO, status. Indicates number that succeeded, have a warning, failed, running, canceled, met BCO, missed BCO.
 
 | View | Description | Action |
 |------------|-------------------------------------------------|-------------------------------------------|
-| Group Type | Select by Databases or Physical Servers | Databases: Select Oracle, Miscrosoft SQL, SAP HANA x86-x64<br>Physical Servers(file based) |
+| Group Type | Select by Databases or Physical Servers | Databases: Select Oracle, Microsoft SQL, SAP HANA x86-x64<br>Physical Servers(file based) |
 | Deleted | Deleted<br>Failover Ready<br>Local<br>Paused |  |
 | Policy Type | Bronze<br>Gold<br>Silver | |
 | BCO Type | Met BCO<br>Missed BCO | |
-| Status | Running<br>Succeeded<br>Warning<br>Failed<br>Canceled<br>Canceling<br>Paused | Backup, Replication, Archical, CloudSpin<br>"  "<br>" "<br>" "<br>" "<br>" "<br>" "|
+| Status | Running<br>Succeeded<br>Warning<br>Failed<br>Canceled<br>Canceling<br>Paused | Backup, Replication, Archival, CloudSpin<br>"  "<br>" "<br>" "<br>" "<br>" "<br>" "|
 
 Protection status can be sorted by group, start time, duration, success/error, BCO.
 {: note}
 
 Add New protection from the drop-down for databases and physical server.
 1. Click Protect and choose databases or physical server
-2. Select MS SQL server, Oracle database or SAP HANA:
-   - MS SQL server options: add objects, protection group, policy, backup type and more options to add a registered source to protect
-   - Oracle database options: add objects, protection group, policy and more options to add a registered source to protect
-   - SAP/HANA options: add objects, protection group, policy and more options to add a registered source to protect
+2. Select MS SQL server, Oracle database, or SAP HANA:
+   - MS SQL server options: add objects, protection group, policy, backup type, and more options to add a registered source to protect
+   - Oracle database options: add objects, protection group, policy, and more options to add a registered source to protect
+   - SAP/HANA options: add objects, protection group, policy, and more options to add a registered source to protect
 3. Select Physical server:
-   - File-based: add objects, protection group, policy and more options to add a registered source to protect
+   - File-based: add objects, protection group, policy, and more options to add a registered source to protect
 
 #### New Protection
 {: #dashboard-summary-new-protection}
@@ -88,13 +88,13 @@ Add New protection from the drop-down for databases and physical server.
 |Add objects | Database: MS SQL Server, Oracle DB, or SAP HANA<br>Physical Server: File-based | Register source | Search or click to add a registered source by [creating a Data Source connection](/docs/backup-recovery?topic=backup-recovery-deploy_data_source_connector). Click to **Continue**.|
 | Protection group | Database: MS SQL Server, Oracle DB, or SAP HANA<br>Physical Server: File-based | Name the Protection Group | Add a name of your choice |
 | Policy | Database: MS SQL Server, Oracle DB, or SAP HANA<br>Physical Server: File-based |Add or create a policy | Bronze, Gold, Silver<br>Create Policy: Name the policy, Determine backup every minute, hour, day, week, month and determine data retention |
-|Backup Type (VDI-based) | Database: MS SQL Server | For VDI backups, the backup and restore retention requirements are identical to SQL native dumps. <br>This means that you will need to perform a full backup, incremental backup (equivalent to SQL <br>Server Differential backup), and T-log backups for PIT recoveries.<br><br>For example, If you have a retention requirement of 7 days for a SQL Server DB backup, your VDI <br>protection job policy should ensure that the retention period that encompasses the full and <br>incremental retention period is greater than 7 days. Similar to SQL native dumps, a full and <br>incremental backup is required for restore. Setting the retention period for longer than 7 days to <br>encompass the full, incremental, and even t-log backups will ensure that there is no hole in the recovery when using VDI.|Click Protect|
+|Backup Type (VDI-based) | Database: MS SQL Server | For VDI backups, the backup and restore retention requirements are identical to SQL native dumps. <br>This means that you need to perform a full backup, incremental backup (equivalent to SQL <br>Server Differential backup), and T-log backups for PIT recoveries.<br><br>For example, if you have a retention requirement of 7 days for an SQL Server DB backup, your VDI <br>protection job policy should can ensure that the retention period that encompasses the full and <br>incremental retention period is greater than 7 days. Similar to SQL native dumps, a full and <br>incremental backup is required for restore. Setting the retention period for longer than 7 days to <br>encompass the full, incremental, and even t-log backups will can ensure that there is no hole in the recovery when using VDI.|Click Protect|
 | More options | Database: MS SQL Server, Oracle DB, or SAP HANA<br>Physical Server: File-based | Source: Db SQL, Db Oracle, Db SAP HANA?<br>Physical Server: File-based| Search or click to add a registered source by [creating a Data Source connection](/docs/backup-recovery?topic=backup-recovery-deploy_data_source_connector). Click to **Continue**.|
 
 ## Compliance
 {: #report-data-compliance-mc}
 
-Last run status that met BCO and missed BCO.  PENDING: missing page showing compliance status, currently defaults to same page as protection.
+Last run status that met BCO and missed BCO.  PENDING: missing page showing compliance status, currently defaults to the same page as protection.
 
 ## Data protection
 {: #report-data-protection-mc}
