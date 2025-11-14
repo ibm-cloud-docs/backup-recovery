@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-11-13"
+lastupdated: "2025-11-14"
 
 keywords: reporting, single instance, data protection, download report
 
@@ -34,11 +34,12 @@ The {{site.data.keyword.baas_full}} UI provides access to a list of available se
 
 | View | Description | Action |
 |------------|-------------------------------------------------|-------------------------------------------|
-| Getting started | - Connect Sources<br> - Create backup policies | - Setup a connection<br> - Create backup policies and protect your sources.
+| Getting started | - Connect Sources<br> - Create backup policies | - [Setup a connection](#report-data-source-connection-mc) <br> - [Register a source](/docs/backup-recovery?topic=backup-recovery-source-registration-tutorial), and [create backup policies](#policy-mc) and [protect your sources](#dashboard-summary-protection).
 | [Health](#dashboard-summary-health) | Displays active alerts within the last 24 hours | Click the panel to open a new page that displays the Alerts, Alert Analytics, Notifications Settings and Resolution Summary |
 | [Protection](#dashboard-summary-protection) | Percentage of objects protected |
-| Compliance |  Last run status that met BCO and missed BCO |
-| Data Source Connections and Connectors |
+| [Compliance](#report-data-compliance-mc) |  Last run status that met BCO and missed BCO |?|
+| [Data Source Connections and Connectors](#report-data-source-connection-mc) |Create data source connections to establish connectivity between your sources and this data source. <br>A connection consists of one or more virtual servers that move data between your data sources and IBM Cloud Backup.|Click New Connection|
+|[Recoveries](#recoveries-mc) |Displays recoveries within 24 hours| Indicates recoveries that:<br>- Succeeded<br>- have a Warning<br>- Failed<br>- are Running<br>- have been Canceled|
 
 
 ### Health
