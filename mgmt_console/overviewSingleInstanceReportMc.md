@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-11-14"
+lastupdated: "2025-11-16"
 
 keywords: reporting, single instance, data protection, download report
 
@@ -51,6 +51,14 @@ The {{site.data.keyword.baas_full}} UI provides access to a list of available se
 | Alert Analytics | Displays recent alerts and resolutions | - Filter by Open Alerts or Resolved Alerts<br>- Open Alerts by Category|
 | Notification Settings | blank | Add Alert notification Rule:<br>1. Create a rule name<br>2. When by Alert Category, Alert Severities, Alert Name<br>Select to send an Alert notification with a webhook: Include URL (POST request is sent on the URL by using cURL command) and (Add parameters to be sent with cURL command ) |
 | Resolution Summary | Provides a summary of the resolution | |
+
+Each alert has a severity rating that indicates the seriousness of the problem:
+
+- Critical – Immediate action is required because it detects a severe problem that might be imminent or major functionality is not working, such as a missing VM backup.
+- Warning – Action is required, but the affected functionality is still working, such as the restore task failed due to some external target connectivity, some credentials issues or both.
+- Healthy – No action is required.
+
+For more information, see [Alerts](/docs/backup-recovery?group=alerts).
 
 ### Protection
 {: #dashboard-summary-protection}
@@ -130,32 +138,11 @@ Protection policies are a collection of reusable settings that define when and h
 
 Create data source connections to establish connectivity between your sources and this data source. A connection consists of one or more virtual servers that move data between your data sources and IBM Cloud Backup. For more information, see [Deploy data source connector](/docs/backup-recovery?topic=backup-recovery-deploy_data_source_connector).
 
-## Health
-{: #health-mc}
-
-From the Health dashboard, you can analyze the health of the system. You can configure webhooks, configure alert notification settings, or view the alert resolution summary.
-Each alert has a severity rating that indicates the seriousness of the problem:
-
-- Critical – Immediate action is required because it detects a severe problem that might be imminent or major functionality is not working, such as a missing VM backup.
-- Warning – Action is required, but the affected functionality is still working, such as the restore task failed due to some external target connectivity, some credentials issues or both.
-- Healthy – No action is required.
-
-For more information, see [Alerts](/docs/backup-recovery?group=alerts).
 
 ## Viewing reports
 {: #report-view-mc}
 
 View reports for a single instance to analyze and improve the user experience.
-
-### Procedure
-{: #report-view-mc}
-
-Here is how you see the reports for a single instance for the selected region:
-
-1. In the left navigation pane, click **Instance manager**, and select the region that you want to see the report for.
-2. The Global Management Console shows the report for all the instances for the selected region.
-3. From the **All Instances** drop-down list, select the instance for which you want to see the reports.
-2. In the left navigation pane, click **Reports**.
 
 ## Choosing a report type
 {: #choose-report-type-mc}
@@ -195,3 +182,8 @@ Download reports in CSV format from the single instance reports page.
 
 The time taken to generate a report depends on multiple factors such as the number of clusters selected, other filters applied on the report, and the amount of data. If the report is large, it might take a few moments to download the report.
 {: note}
+
+## Next steps
+{: #baas-next-steps}
+
+Now that you are familiar with your {{site.data.keyword.baas_full_notm}} backup policy management dashboard, you might be interested in accessing the Global Management Console for an aggregate view of the system. Check out  [Global Management Console]([/docs-draft/backup-recovery?group=global-management-console) and the [Backup and Recovery Reporting API operations](/docs-draft/backup-recovery?topic=backup-recovery-helios-reporting-operations) to get started.
