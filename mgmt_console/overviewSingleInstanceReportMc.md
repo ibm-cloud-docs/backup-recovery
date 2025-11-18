@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-11-17"
+lastupdated: "2025-11-18"
 
 keywords: reporting, single instance, data protection, download report
 
@@ -120,6 +120,8 @@ Displays recoveries that succeeded, have a warning, failed, are running, or have
 ## Data protection
 {: #report-data-protection-mc}
 
+The Data Protection lists the Protection, Recoveries, Sources and Policies that you can add and monitor for your service instance.
+
 ### Protection
 {: #protection-mc}
 
@@ -150,13 +152,38 @@ Register and view sources that you'd like to back up.
 1. First [download and install](/docs/backup-recovery?topic=backup-recovery-agent-download-install) the agent on the source.
 2. [Register the source](/docs/backup-recovery?topic=backup-recovery-source-registration-tutorial#baas-config-protect-job).
 
+| View | Description | Action |
+|------------|-------------------------------------------------|-------------------------------------------|
+| Unprotected, Protected<br>Details<br>Agents | - objects and data<br>-applications and sources<br>-errors,upgradeable,deployed | Source Type: Select by Databases, Physical Servers or Kubernetes Cluster<br>- Select DB2, Microsoft SQL, Oracle, SAP HANA x86-x64<br>- Physical Servers(file based)<br>- Kubernetes Cluster<br>Maintenance: Select by Scheduled or Under Maintenance  |
+
+
 ### Policies
 {: #policy-mc}
 
 Protection policies are a collection of reusable settings that define when and how sources, such as physical hosts, VMs, and databases are protected. For more information, see [Policy Creation](/docs/backup-recovery?topic=backup-recovery-baas-policy-creation).
 
+1. Create a Protection Policy for your service instance.
+2. Add a policy name.
+3. Establish when to backup: minutes, hours, days, week or month.
+4. Determine data retention:
+   - Retain for Days, Weeks, Months or Years
+   - Lock for Days, Weeks, Months or Years
+5. More options:
+   - Create policy name for build and determine if DataLock should be set: NOTE - If you enable DataLock, snapshots are retained for the duration specified in the Lock Field
+   - Summary displays the Backup choices and Retry Options
+6. Backup options:
+   - Preiodic full backup: Set for Day(s), Week, Month or Year (Click + to add more entries)
+   - Quiet Times: Set for a Start Time, End Time and Day(s) of the Week (Click + to add more entries)
+   - Retry Options:  Number of retries, and number of minutes to wait
+   - Log Backup (Databases):  Every minute or hours, retain for day(s), week(s), month(s) or year(s), and lock for day(s), week(s), month(s) or year(s) that has a max number based on retained value.
+7. Click Create to save or Cancel
+
+
+
 ## System
 {: system-mc}
+
+The System lists the Data Source Connections where you can create new connections, and the system health for a service instance.
 
 ### Data source connections
 {: #report-data-source-connection-mc}
