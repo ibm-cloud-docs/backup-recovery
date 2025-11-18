@@ -178,7 +178,11 @@ Protection policies are a collection of reusable settings that define when and h
    - Log Backup (Databases):  Every minute or hours, retain for day(s), week(s), month(s) or year(s), and lock for day(s), week(s), month(s) or year(s) that has a max number based on retained value.
 7. Click Create to save or Cancel
 
-
+| Policy | Description | Action |
+|------------|-------------------------------------------------|-------------------------------------------|
+| Bronze | Backup 1d, Retain 30d, DataLock 30d<br>Protection Groups<br>Protected Objects<br>Backup | Click policy to see summary of Backup and Extended Retention |
+| Gold | Backup 4h, Retain 1w, DataLock 1w<br>Protection Groups<br>Protected Objects<br>Backup | Click policy to see summary of Backup and Extended Retention |
+| Silver | Backup 12h, Retain 2w, DataLock 2w<br>Protection Groups<br>Protected Objects<br>Backup | Click policy to see summary of Backup and Extended Retention |
 
 ## System
 {: system-mc}
