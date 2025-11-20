@@ -106,10 +106,6 @@ toc:
               - alerts/NotificationSettings.md
               - alerts/ResolutionSummary.md
       - topicgroup:
-          label: Managing instances
-          topics:
-          - instance-remove.md
-      - topicgroup:
           label: Databases
           topics:
           - topicgroup:
