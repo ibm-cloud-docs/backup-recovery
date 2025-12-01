@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-11-18"
+lastupdated: "2025-12-01"
 
 keywords: reporting, single instance, data protection, download report
 
@@ -247,4 +247,4 @@ The time taken to generate a report depends on multiple factors such as the numb
 ## Next steps
 {: #baas-next-steps}
 
-Now that you are familiar with your {{site.data.keyword.baas_full_notm}} backup policy management dashboard, you might be interested in accessing the Global Management Console for an aggregate view of the system. Check out  [Global Management Console]([/docs-draft/backup-recovery?group=global-management-console) and the [Backup and Recovery Reporting API operations](/docs-draft/backup-recovery?topic=backup-recovery-helios-reporting-operations) to get started.
+Now that you are familiar with your {{site.data.keyword.baas_full_notm}} backup policy management dashboard, you might be interested in accessing the Backup and Recovery Manager for an aggregate view of the system. Check out  [Backup and Recovery Manager]([/docs-draft/backup-recovery?group=global-management-console) and the [Backup and Recovery Reporting API operations](/docs-draft/backup-recovery?topic=backup-recovery-helios-reporting-operations) to get started.
