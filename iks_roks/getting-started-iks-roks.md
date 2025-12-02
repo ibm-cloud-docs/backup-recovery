@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-11-04"
+lastupdated: "2025-12-02"
 
 keywords: data source connector, iks, roks, cluster
 
@@ -28,29 +28,31 @@ Located to the right of this page is a summary of key topics that are found on t
 ## Quick reference to key sections for new users
 {: #iks-roks-tutotial-quick-reference}
 
-1. [Before you begin](#baas-getting-started-iks-roks)
-
-2. Prerequisites for backup and restore:
-   - You must have a [{{site.data.keyword.baas_full_notm}} instance created or create a new one](#data-source-connector-iks-roks-access-instance)
-   - Create a VPE gateway between your source VPC and your Backup and Recovery service. See [Create a VPE gateway](/docs/backup-recovery?topic=backup-recovery-deploy_data_source_connector#vpe_gateways)
-   - [Create or use existing data source connector](#data-source-connector-iks-roks-create-configure)
-   - [Kubernetes/OpenShit cluster should be registered](#data-source-connector-iks-roks-register)
-
-3. Take a backup of the Kubernetes/OpenShift cluster:
-   - [Access {{site.data.keyword.baas_full_notm}} instance](#data-source-connector-iks-roks-access-instance)
-   - [Create and configure data source connector](#data-source-connector-iks-roks-create-configure)
-   - [Configure and set up network SGs](#data-source-connector-iks-roks-setup-network-sgs-config)
-   - [Register source kubernetes/OpenShift cluster](#data-source-connector-iks-roks-register)
-   - [Create or schedule a backup](#protecting-namespace-iks-roks)
-
-4. Restore backup to Kubernetes/OpenShift cluster:
-   - [Access {{site.data.keyword.baas_full_notm}} instance](#data-source-connector-iks-roks-access-instance)
-   - [Create and configure data source connector](#data-source-connector-iks-roks-create-configure)
-   - [Configure and set up network SGs](#data-source-connector-iks-roks-setup-network-sgs-config)
-   - [Register source kubernetes/OpenShift cluster](#data-source-connector-iks-roks-register)
-   - [Restore backup](#recovering-restoring-backup)
-
-5. [Troubleshooting](#data-source-connector-iks-roks-troubleshooting)
+- [Register Kubernetes/OpenShift as a data source](#register-kubernetesopenshift-as-a-data-source)
+  - [Quick reference to key sections for new users](#quick-reference-to-key-sections-for-new-users)
+  - [Before you begin](#before-you-begin)
+  - [Accessing your instances](#accessing-your-instances)
+  - [Backup requirements for Kubernetes/OpenShift clusters](#backup-requirements-for-kubernetesopenshift-clusters)
+  - [Backup and Restore compatibility](#backup-and-restore-compatibility)
+  - [Create or configure a data source connector](#create-or-configure-a-data-source-connector)
+    - [Create a data source connection](#create-a-data-source-connection)
+    - [Configure a data source connector](#configure-a-data-source-connector)
+  - [How to identify the security group for the data source connector](#how-to-identify-the-security-group-for-the-data-source-connector)
+  - [How to identity security group for Kubernetes/OpenShift cluster](#how-to-identity-security-group-for-kubernetesopenshift-cluster)
+  - [How to identity VPE gateway for COS S3 direct endpoint](#how-to-identity-vpe-gateway-for-cos-s3-direct-endpoint)
+  - [How to get the Kubernetes/OpenShift cluster ID](#how-to-get-the-kubernetesopenshift-cluster-id)
+  - [How to get the Kubernetes/OpenShift cluster endpoint](#how-to-get-the-kubernetesopenshift-cluster-endpoint)
+  - [How to get security group for VPE gateway of COS endpoint](#how-to-get-security-group-for-vpe-gateway-of-cos-endpoint)
+  - [Add rules to network security groups to allow communication](#add-rules-to-network-security-groups-to-allow-communication)
+    - [Adding rules to the security group for Kubernetes/OpenShift cluster:](#adding-rules-to-the-security-group-for-kubernetesopenshift-cluster)
+  - [Permitting DNS resolution](#permitting-dns-resolution)
+  - [How to register an Kubernetes/OpenShift cluster with {{site.data.keyword.baas\_full\_notm}} service](#how-to-register-an-kubernetesopenshift-cluster-with-sitedatakeywordbaas_full_notm-service)
+  - [How to create a bearer token for a Kubernetes/OpenShift cluster](#how-to-create-a-bearer-token-for-a-kubernetesopenshift-cluster)
+    - [Images to be used for a Kubernetes/OpenShift registration(for 7.2.15)](#images-to-be-used-for-a-kubernetesopenshift-registrationfor-7215)
+  - [Prerequisites for scheduling backups](#prerequisites-for-scheduling-backups)
+  - [Protecting a namespace or cluster and scheduling a backup](#protecting-a-namespace-or-cluster-and-scheduling-a-backup)
+  - [Recovering or restoring backup:](#recovering-or-restoring-backup)
+  - [Troubleshooting](#troubleshooting)
 
 ## Before you begin
 {: #baas-getting-started-iks-roks}
