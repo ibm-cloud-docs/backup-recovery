@@ -26,33 +26,31 @@ Located to the right of this page is a summary of key topics that are found on t
 {: note}
 
 ## Quick reference to key sections for new users
-{: #iks-roks-tutotial-quick-reference}
+{: #iks-roks-tutorial-quick-reference}
 
-- [Register Kubernetes/OpenShift as a data source](#register-kubernetesopenshift-as-a-data-source)
-  - [Quick reference to key sections for new users](#quick-reference-to-key-sections-for-new-users)
-  - [Before you begin](#before-you-begin)
-  - [Accessing your instances](#accessing-your-instances)
-  - [Backup requirements for Kubernetes/OpenShift clusters](#backup-requirements-for-kubernetesopenshift-clusters)
-  - [Backup and Restore compatibility](#backup-and-restore-compatibility)
-  - [Create or configure a data source connector](#create-or-configure-a-data-source-connector)
-    - [Create a data source connection](#create-a-data-source-connection)
-    - [Configure a data source connector](#configure-a-data-source-connector)
-  - [How to identify the security group for the data source connector](#how-to-identify-the-security-group-for-the-data-source-connector)
-  - [How to identity security group for Kubernetes/OpenShift cluster](#how-to-identity-security-group-for-kubernetesopenshift-cluster)
-  - [How to identity VPE gateway for COS S3 direct endpoint](#how-to-identity-vpe-gateway-for-cos-s3-direct-endpoint)
-  - [How to get the Kubernetes/OpenShift cluster ID](#how-to-get-the-kubernetesopenshift-cluster-id)
-  - [How to get the Kubernetes/OpenShift cluster endpoint](#how-to-get-the-kubernetesopenshift-cluster-endpoint)
-  - [How to get security group for VPE gateway of COS endpoint](#how-to-get-security-group-for-vpe-gateway-of-cos-endpoint)
-  - [Add rules to network security groups to allow communication](#add-rules-to-network-security-groups-to-allow-communication)
-    - [Adding rules to the security group for Kubernetes/OpenShift cluster:](#adding-rules-to-the-security-group-for-kubernetesopenshift-cluster)
-  - [Permitting DNS resolution](#permitting-dns-resolution)
-  - [How to register an Kubernetes/OpenShift cluster with {{site.data.keyword.baas\_full\_notm}} service](#how-to-register-an-kubernetesopenshift-cluster-with-sitedatakeywordbaas_full_notm-service)
-  - [How to create a bearer token for a Kubernetes/OpenShift cluster](#how-to-create-a-bearer-token-for-a-kubernetesopenshift-cluster)
-    - [Images to be used for a Kubernetes/OpenShift registration(for 7.2.15)](#images-to-be-used-for-a-kubernetesopenshift-registrationfor-7215)
-  - [Prerequisites for scheduling backups](#prerequisites-for-scheduling-backups)
-  - [Protecting a namespace or cluster and scheduling a backup](#protecting-a-namespace-or-cluster-and-scheduling-a-backup)
-  - [Recovering or restoring backup:](#recovering-or-restoring-backup)
-  - [Troubleshooting](#troubleshooting)
+A. [Before you begin](#baas-getting-started-iks-roks)
+
+B. Prerequisites for backup and restore:
+   - You must have a [{{site.data.keyword.baas_full_notm}} instance that is created or create a new one](#data-source-connector-iks-roks-access-instance)
+   - Create a VPE gateway between your source VPC and your Backup and Recovery service. See [Create a VPE gateway](/docs/backup-recovery?topic=backup-recovery-deploy_data_source_connector#vpe_gateways)
+   - [Create or use existing data source connector](#data-source-connector-iks-roks-create-configure)
+   - [Kubernetes/OpenShift cluster should be registered](#data-source-connector-iks-roks-register)
+
+C. Take a backup of the Kubernetes/OpenShift cluster:
+   - [Access {{site.data.keyword.baas_full_notm}} instance](#data-source-connector-iks-roks-access-instance)
+   - [Create and configure data source connector](#data-source-connector-iks-roks-create-configure)
+   - [Configure and set up network SGs](#data-source-connector-iks-roks-setup-network-sgs-config)
+   - [Register source kubernetes/OpenShift cluster](#data-source-connector-iks-roks-register)
+   - [Create or schedule a backup](#protecting-namespace-iks-roks)
+
+D. Restore backup to Kubernetes/OpenShift cluster:
+   - [Access {{site.data.keyword.baas_full_notm}} instance](#data-source-connector-iks-roks-access-instance)
+   - [Create and configure data source connector](#data-source-connector-iks-roks-create-configure)
+   - [Configure and set up network SGs](#data-source-connector-iks-roks-setup-network-sgs-config)
+   - [Register source kubernetes/OpenShift cluster](#data-source-connector-iks-roks-register)
+   - [Restore backup](#recovering-restoring-backup)
+
+E. [Troubleshooting](#data-source-connector-iks-roks-troubleshooting)
 
 ## Before you begin
 {: #baas-getting-started-iks-roks}
@@ -131,7 +129,7 @@ Clusters must be compatible, especially in terms of storage configuration.
 
     |  Domain name  |  Connector Name  |  Connection Token  |
     |----|----|----|
-    |`cloud.ibm.com`|Any descriptive name|Paste the token obtained from the [Create a data source connection](#data-source-connector-iks-roks-create-data-source-connection) step|
+    |`cloud.ibm.com`|Any descriptive name|Paste the token that is obtained from the [Create a data source connection](#data-source-connector-iks-roks-create-data-source-connection) step|
 
 6. When all the required details are filled and ready to register click **Complete**.
 7. You are redirected to the connector status page. Wait for a couple of minutes for the connector to be in a healthy state.
@@ -144,10 +142,10 @@ Clusters must be compatible, especially in terms of storage configuration.
 
 1. Go to `Menu → Infrastructure → Compute → Virtual server Instances.`
 2. Filter the Virtual server instances based on a region where you created data source connector: Washington DC (us-east).
-3. Search for a data source connector VSI name, and click on the one you selected.
+3. Search for a data source connector VSI name, and click the one you selected.
 4. You find tab options for **Overview**, **Networking**, **Storage**, **Monitoring,** and more. Click the **Networking** tab.
-5. Now you see `eth0` as an interface and in the **Security Group** column, click **option.**
-6. Click on the name of the Security Group, a new page opens, and now you can add inbound and outbound rules as shown in the rules provided.
+5. Now, you see `eth0` as an interface and in the **Security Group** column, click **option.**
+6. Click the name of the Security Group, a new page opens, and now you can add inbound and outbound rules as shown in the rules provided.
 
 ## How to identity security group for Kubernetes/OpenShift cluster
 {: #how-to-get-iks-roks-sec-grp-cluster}
@@ -157,7 +155,7 @@ Clusters must be compatible, especially in terms of storage configuration.
 3. Filter by region: Washington DC(us-east) as per your Kubernetes/OpenShift cluster.
 4. Search for [cluster ID](#how-to-get-iks-roks-cluster-id), then you see some Security Groups, but select only for `kube-<clusterID>`.
 
-## How to identity VPE gateway for COS S3 direct endpoint
+## How to identity VPE gateway for Cloud Object Storage S3 direct endpoint
 {: #how-to-get-vpe-gateway-cos-s3}
 
 1. Go to `Menu → Infrastructure → Networking → Virtual Private Endpoint Gateways`
@@ -178,7 +176,7 @@ Clusters must be compatible, especially in terms of storage configuration.
 2. Filter by location: Washington DC(us-east).
 3. The endpoint can be found in the **Overview page** in the Networking section where you can find the information for your private and public endpoints.
 
-## How to get security group for VPE gateway of COS endpoint
+## How to get security group for VPE gateway of Cloud Object Storage endpoint
 {: #how-to-get-security-group-vpeg-cos-endpoint}
 
 1. Go to `Menu → Infrastructure → Networking → Virtual Private Endpoint Gateways`
@@ -232,11 +230,11 @@ To make these components communicate properly, you need to set up rules in the S
     |----|----|----|----|----|----|
     |TCP|Any|0.0.0.0/0|Security group|`whiny-granddad-ability-container`|Port 3000|
 
-3. Add rules to VPE gateway of COS endpoint security group
-   Normally this VPE gateway getting created once a kubernetes/OpenShift cluster created under VPC
+3. Add rules to VPE gateway of Cloud Object Storage endpoint security group
+   Normally, this VPE gateway getting created once a kubernetes/OpenShift cluster created under VPC
 
-    - Open security group associated with [VPE gateway](#how-to-get-security-group-vpeg-cos-endpoint) for COS endpoint.
-    - To allow communication from DSC to COS bucket (configured with BRS instance):
+    - Open security group associated with [VPE gateway](#how-to-get-security-group-vpeg-cos-endpoint) for Cloud Object Storage endpoint.
+    - To allow communication from DSC to Cloud Object Storage bucket (configured with BRS instance):
 
    **Inbound**:
 
@@ -247,9 +245,9 @@ To make these components communicate properly, you need to set up rules in the S
 ## Permitting DNS resolution
 {: #permitting-dns-resolution}
 
-To allow data source connector, you need to copy data to COS endpoint – If your data source connector is on a private network, then you need to follow the following steps to allow data source connector to copy data
+To allow data source connector, you need to copy data to Cloud Object Storage endpoint – If your data source connector is on a private network, then you need to follow the following steps to allow the data source connector to copy data
 
-   1. Create or identify [VPE gateway](#how-to-get-vpe-gateway-cos-s3) for COS direct endpoints - this normally created VPE gateway while creating Kubernetes/OpenShift cluster under VPC (default networking).
+   1. Create or identify [VPE gateway](#how-to-get-vpe-gateway-cos-s3) for Cloud Object Storage direct endpoints - this normally created VPE gateway while creating Kubernetes/OpenShift cluster under VPC (default networking).
    2. In the Overview tab, enable `Permit DNS resolution binding` to resolve from data source connector.
 
 ## How to register an Kubernetes/OpenShift cluster with {{site.data.keyword.baas_full_notm}} service
@@ -266,7 +264,7 @@ To allow data source connector, you need to copy data to COS endpoint – If you
    |----|----|----|----|
    |[Private or Public](#how-to-get-iks-roks-endpoint)|[See How to create a Bearer Token](#data-source-connector-iks-roks-create-bearer-token-cluster)|Kubernetes/OpenShift| [Images to be used for Kubernetes/OpenShift registration](#data-source-connector-iks-roks-images-registration) |
 
-7. Click on **Complete** to finish the registration.
+7. Click **Complete** to finish the registration.
 8. You are redirected to the list of data sources where you can see the status of your data source registration.
 
 ## How to create a bearer token for a Kubernetes/OpenShift cluster
