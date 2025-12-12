@@ -46,6 +46,21 @@ toc:
           - backup-mssql-vdi.md
           - recover-mssql.md
       - topicgroup:
+          label: Protect a Oracle Server
+          topics:
+          - data-protect/backup-oracle.md
+          - data-protect/recover-oracle.md
+      - topicgroup:
+          label: Protect a SAP HANA Server
+          topics:
+          - sap_hana/BackupSAPHANASource.md
+          - sap_hana/RestoreSAPHANADB.md
+      - topicgroup:
+          label: Protect a Kubernetes/OpenShift Server (Experimental use only)
+          topics:
+          - iks_roks/backup-iksroks.md
+          - iks_roks?recover-iksroks.md
+      - topicgroup:
           label: Backup and Recovery Manager
           topics:
           - global_mgmt_console/tutorial-gmc.md
@@ -79,6 +94,20 @@ toc:
               - baas-kp.md
               - baas-hpcs.md
       - topicgroup:
+          label: Backup and Recovery Manager
+          topics:
+          - global_mgmt_console/getting-startedGmc.md
+          - global_mgmt_console/reportingGmc.md
+          - topicgroup:
+              label: List of reports
+              topics:
+              - global_mgmt_console/failuresReportGmc.md
+              - global_mgmt_console/protectedObjsReportGmc.md
+              - global_mgmt_console/protectedUnprotectObjsReportGmc.md
+              - global_mgmt_console/protectionRunsReportGmc.md
+              - global_mgmt_console/recoveryReportGmc.md
+          - global_mgmt_console/alertsGmc.md
+      - topicgroup:
           label: Choose regions and connect services
           topics:
           - baas-service-endpoints.md
@@ -100,9 +129,174 @@ toc:
           - vpe.md
           - cbr.md
       - topicgroup:
-          label: Monitoring (Work-in-Progress)
+          label: Monitoring
           topics:
           - mgmt_console/overviewSingleInstanceReportMc.md
+          - topicgroup:
+              label: Reports (Work-in-Progress)
+              topics:
+              - mgmt_console/backupSummaryReportMc.md
+              - mgmt_console/failuresReportMc.md
+              - mgmt_console/protectedObjsReportMc.md
+              - mgmt_console/protectionRunsReportMc.md
+              - mgmt_console/protectionSummaryObjectTypeMc.md
+              - mgmt_console/protectedUnprotectObjsReportMc.md
+          - topicgroup:
+              label: Alerts (Work-in-Progress)
+              topics:
+              - mgmt_console/alertsMC.
+              - alerts/BackupRestoreAlerts.md
+              - alerts/ConfiguringWebhooks.md
+              - alerts/NotificationSettings.md
+              - alerts/ResolutionSummary.md
+      - topicgroup:
+          label: Databases
+          topics:
+          - topicgroup:
+              label: SAP HANA
+              topics:
+              - sap_hana/BackupConceptUDASAPHANA.md
+              - sap_hana/BackupSAPHANASource.md
+              - sap_hana/InstallSAPConnectorx86.md
+              - sap_hana/ManageProtectSAPHANADB.md
+              - sap_hana/PlanandPrepare.md
+              - sap_hana/ProtectSAPHANADB.md
+              - sap_hana/RegisterSAPHANAUDASource.md
+              - sap_hana/RestoreSAPHANADB.md
+              - sap_hana/SAPHANACertification.md
+          - topicgroup:
+              label: Oracle
+              topics:
+              - data-protect/oracle-requirements.md
+              - data-protect/register-oracle-sources.md
+      - topicgroup:
+          label: Physical servers
+          topics:
+          - physical_servers/BackupConceptPhys.md
+          - physical_servers/JobServerPhysical_Download.md
+          - physical_servers/JobServerPhysical_FileBased.md
+          - physical_servers/JobServerPhysical.md
+          - physical_servers/MultipleProtectionRuns.md
+          - physical_servers/physical-recovery.md
+          - physical_servers/PhysicalServerSourceSideDedupe.md
+          - physical_servers/PhysicalServerThrottling.md
+          - physical_servers/plan-prepare-physical-servers.md
+          - physical_servers/Protect_FileServerRole_Windows.md
+          - physical_servers/ProtectWindowsFailoverCluster.md
+          - physical_servers/recover-files-orginal-physical.md
+          - physical_servers/recover-files-physcial-new.md
+          - physical_servers/recover-filesfolder-physical.md
+          - physical_servers/SourcePhysicalAdd.md
+          - physical_servers/ref_topics/AgentWindows.md
+          - physical_servers/ref_topics/Indexing.md
+          - physical_servers/ref_topics/JobManage.md
+          - physical_servers/ref_topics/JobServerPhysical_AddExclusions.md
+          - physical_servers/ref_topics/JobServerPhysical_DirectiveFileBackup.md
+          - physical_servers/ref_topics/PolicyCreateEdit.md
+          - physical_servers/ref_topics/PrePostScripts.md
+          - physical_servers/ref_topics/SupportedVersions.md
+          - physical_servers/ref_topics/ViewBoxesCreateEdit.md
+  - navgroup:
+      id: reference
+      topics:
+      - topicgroup:
+          label: API reference
+          links:
+          - link:
+              label: Backup and Recovery API
+              href: https://cloud.ibm.com/apidocs/backup-recovery
+          - link:
+              label: Reporting Service API
+              href: https://test.cloud.ibm.com/apidocs/ibm_reporting_api
+          topics:
+          - global_mgmt_console/reporting_service_apis.md
+      - topicgroup:
+          label: Libraries
+          topics:
+          - baas-overview-sdks.md
+          - getting-started-sdks.md
+          - go.md
+          - backup-recovery-using-terraform.md
+      - topicgroup:
+          label: Use the command line
+          topics:
+          - backup-recovery-cli-v2.md
+      - topicgroup:
+          label: High availability and disaster recovery
+          topics:
+          - ha.md
+          - bc-dr.md
+      - topicgroup:
+          label: Security and compliance
+          topics:
+          - data-security-encryption.md
+          - compliance.md
+          - eu.md
+      - responsibilities.md
+      - performance-factors.md
+      - service-dependency.md
+      - topicgroup:
+          label: Managing agents Linux
+          topics:
+          - manage_agents_linux/AgentLinux.md
+      - topicgroup:
+          label: Managing agents Windows
+          topics:
+          - manage_agents_windows/AgentWindows.md
+      - topicgroup:
+          label: MS SQL
+          topics:
+          - mssql/plan-and-prepare.md
+          - mssql/register-and-manage.md
+          - mssql/restore-system-database.md
+          - mssql/sql-backup-methods.md
+          - mssql/sql-clone.md
+          - mssql/sql-considerations.md
+          - mssql/sql-migration.md
+          - mssql/sql-supported-database-types.md
+          - mssql/sql-vdi-recommendation.md
+          - mssql/SQLAutoDiscovery.md
+          - mssql/SQLBestPractices.md
+          - mssql/SQLClone.md
+          - mssql/SQLConceptBackup.md
+          - mssql/SQLConceptClone.md
+          - mssql/SQLConceptMigrate.md
+          - mssql/SQLConceptRecover.md
+          - mssql/SQLConceptRetention.md
+          - mssql/SQLDashboard.md
+          - mssql/SQLMigrate.md
+          - mssql/SQLProtection.md
+          - mssql/SQLProtectVDIBased.md
+          - mssql/SQLRecoverArchive.md
+          - mssql/SQLRequirements.md
+          - mssql/SQLRestore.md
+          - mssql/SQLRestoreAlternate.md
+          - mssql/SQLRestoreAlternateInstance.md
+          - mssql/SQLRestoreOriginal.md
+          - mssql/SQLSetupStandalone.md
+      - topicgroup:
+          label: Troubleshoot agents
+          topics:
+          - troubleshoot_agents/TroubleshootingAgent.md
+      - topicgroup:
+          label: Manage protection policies
+          topics:
+          - manage_protection_policies/datalock.md
+          - manage_protection_policies/extended-retention.md
+          - manage_protection_policies/Indexing.md
+          - manage_protection_policies/PolicyCreateEdit.md
+          - manage_protection_policies/PolicyManage.md
+          - manage_protection_policies/PrePostScripts.md
+          - manage_protection_policies/ref_topics/CloneVMsCloudSpinAWS.md
+          - manage_protection_policies/ref_topics/CreatingDataProtectionJobOracle.md
+          - manage_protection_policies/ref_topics/DirectArchival.md
+          - manage_protection_policies/ref_topics/extended-retention.md
+          - manage_protection_policies/ref_topics/ExternalTargetsRegister.md
+          - manage_protection_policies/ref_topics/JobNAS.md
+          - manage_protection_policies/ref_topics/JobPure.md
+          - manage_protection_policies/ref_topics/JobServerPhysical_FileBased.md
+          - manage_protection_policies/ref_topics/ReplicationRegisterRemoteCluster.md
+          - manage_protection_policies/ref_topics/SQLProtectVolBased.md
   - navgroup:
       id: help
       topics:
