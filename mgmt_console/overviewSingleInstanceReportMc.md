@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-12-01"
+lastupdated: "2025-12-12"
 
 keywords: reporting, single instance, data protection, download report
 
@@ -210,17 +210,17 @@ View reports for a single instance to analyze and improve the user experience.
 
 From the **Select Report** drop-down list, choose a report type to identify the information that you need. Currently, six built-in reports are available for a single instance for {{site.data.keyword.baas_full}}.
 
-[Backup Summary](/docs-draft/backup-recovery?topic=backup-recovery-report_backup_summary_mc) - This report shows an overview of the Protection Groups that are run on the data source Instance for the specified filter criteria. For each Protection Group, this report shows how many times the Protection Group has run, total bytes read and statistics about the last time the Protection Group ran.
+[Backup Summary](/docs/backup-recovery?topic=backup-recovery-report_backup_summary_mc) - This report shows an overview of the Protection Groups that are run on the data source Instance for the specified filter criteria. For each Protection Group, this report shows how many times the Protection Group has run, total bytes read and statistics about the last time the Protection Group ran.
 
-[Failed Objects](/docs-draft/backup-recovery?topic=backup-recovery-report_failed_objects_mc) - This report lists all the Objects for which an error occurred during the last runs and prevented the Objects from being backed up.
+[Failed Objects](/docs/backup-recovery?topic=backup-recovery-report_failed_objects_mc) - This report lists all the Objects for which an error occurred during the last runs and prevented the Objects from being backed up.
 
-[Protected Objects Heatmap](/docs-draft/backup-recovery?topic=backup-recovery-report_protected_objects_mc) - This is a visual report that displays the status of the backup tasks of Objects that are associated with a Protection Group.
+[Protected Objects Heatmap](/docs/backup-recovery?topic=backup-recovery-report_protected_objects_mc) - This is a visual report that displays the status of the backup tasks of Objects that are associated with a Protection Group.
 
-[Protection Runs Summary](/docs-draft/backup-recovery?topic=backup-recovery-report_protection_runs_mc) - This report provides a summary and list of all backup activities per object per run.
+[Protection Runs Summary](/docs/backup-recovery?topic=backup-recovery-report_protection_runs_mc) - This report provides a summary and list of all backup activities per object per run.
 
-[Protection Summary by Object Type](/docs-draft/backup-recovery?topic=backup-recovery-report_recovery_mc) - This report shows the protection status of Objects as of the last runs that occurred in the specified date range.
+[Protection Summary by Object Type](/docs/backup-recovery?topic=backup-recovery-report_recovery_mc) - This report shows the protection status of Objects as of the last runs that occurred in the specified date range.
 
-[Unprotected/Protected VMs](/docs-draft/backup-recovery?topic=backup-recovery-report_recovery_mc) - This report provides lists of VMs protected and not protected by IBM Cloud Backup.
+[Unprotected/Protected VMs](/docs/backup-recovery?topic=backup-recovery-report_recovery_mc) - This report provides lists of VMs protected and not protected by IBM Cloud Backup.
 
 You can complete the following tasks for each of the report type:
 
@@ -247,4 +247,4 @@ The time taken to generate a report depends on multiple factors such as the numb
 ## Next steps
 {: #baas-next-steps}
 
-Now that you are familiar with your {{site.data.keyword.baas_full_notm}} backup policy management dashboard, you might be interested in accessing the Backup and Recovery Manager for an aggregate view of the system. Check out  [Backup and Recovery Manager]([/docs-draft/backup-recovery?group=global-management-console) and the [Backup and Recovery Reporting API operations](/docs-draft/backup-recovery?topic=backup-recovery-helios-reporting-operations) to get started.
+Now that you are familiar with your {{site.data.keyword.baas_full_notm}} backup policy management dashboard, you might be interested in accessing the Backup and Recovery Manager for an aggregate view of the system. Check out  [Backup and Recovery Manager]([/docs/backup-recovery?group=global-management-console) and the [Backup and Recovery Reporting API operations](/docs/backup-recovery?topic=backup-recovery-helios-reporting-operations) to get started.

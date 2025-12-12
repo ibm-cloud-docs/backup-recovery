@@ -64,7 +64,7 @@ The dashboard for the Backup and Recovery Manager includes a visual overview of 
 {: #reporting_viewing_tutorial_gmc}
 {: step}
 
-View reports in the [Backup and Recovery Manager](/docs-draft/backup-recovery?group=global-management-console) to analyze and improve the user experience.
+View reports in the [Backup and Recovery Manager](/docs/backup-recovery?group=global-management-console) to analyze and improve the user experience.
 
 Here is how you see the reports for all the instances for the selected region:
 
@@ -73,12 +73,12 @@ Here is how you see the reports for all the instances for the selected region:
    You need to stay in the Backup and Recovery Manager to see the reports for all instances where **All instances** is selected in the Backup and Recovery Manager UI.
    {: note}
 
-2. Click the type of report that you want to see the details: [Failures](/docs-draft/backup-recovery?topic=backup-recovery-report_failures_gmc), [Protected Objects](/docs-draft/backup-recovery?topic=backup-recovery-report_protected_objects_gmc), [Protected or Unprotected Objects](/docs-draft/backup-recovery?topic=backup-recovery-report_protected_unprotected_objects_gmc), [Protection Runs](/docs-draft/backup-recovery?topic=backup-recovery-report_protection_runs_gmc) and [Recovery](/docs-draft/backup-recovery?topic=backup-recovery-report_recovery_gmc).
-3. Select the report [filters](/docs-draft/backup-recovery?topic=backup-recovery-reports_gmc#reporting_filter_data_gmc). Time range filter is the only filter with a default value of 24 Hours.
+2. Click the type of report that you want to see the details: [Failures](/docs/backup-recovery?topic=backup-recovery-report_failures_gmc), [Protected Objects](/docs/backup-recovery?topic=backup-recovery-report_protected_objects_gmc), [Protected or Unprotected Objects](/docs/backup-recovery?topic=backup-recovery-report_protected_unprotected_objects_gmc), [Protection Runs](/docs/backup-recovery?topic=backup-recovery-report_protection_runs_gmc) and [Recovery](/docs/backup-recovery?topic=backup-recovery-report_recovery_gmc).
+3. Select the report [filters](/docs/backup-recovery?topic=backup-recovery-reports_gmc#reporting_filter_data_gmc). Time range filter is the only filter with a default value of 24 Hours.
 
 4. Select an export format (PDF, Excel, CSV) from the download icon to download the report
 
-See the section on available [reports and filters](/docs-draft/backup-recovery?group=list-of-reports) for more information.
+See the section on available [reports and filters](/docs/backup-recovery?group=list-of-reports) for more information.
 {: note}
 
 ## Accessing alerts
@@ -96,5 +96,4 @@ See the section on available [reports and filters](/docs-draft/backup-recovery?g
 
 {: #bass-gmc-next-steps}
 
-See the section on [Backup service instances](/docs-draft/backup-recovery?topic=backup-recovery-individual-instance-view) for details on how to access reports and alerts for a selected instance of Backup and Recovery.
-
+See the section on [Backup service instances](/docs/backup-recovery?topic=backup-recovery-individual-instance-view) for details on how to access reports and alerts for a selected instance of Backup and Recovery.
