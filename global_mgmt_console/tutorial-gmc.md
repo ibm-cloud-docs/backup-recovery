@@ -64,7 +64,7 @@ The dashboard for the Backup and Recovery Manager includes a visual overview of 
 {: #reporting_viewing_tutorial_gmc}
 {: step}
 
-View reports in the [Backup and Recovery Manager](/docs/backup-recovery?group=global-management-console) to analyze and improve the user experience.
+View reports in the [Backup and Recovery Manager](/docs/backup-recovery?topic=backup-recovery-reports_gmc) to analyze and improve your work experience with this feature.
 
 Here is how you see the reports for all the instances for the selected region:
 
