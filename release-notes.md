@@ -3,7 +3,7 @@
 copyright:
   years: 2024, 2025
 
-lastupdated: "2025-09-30"
+lastupdated: "2025-12-12"
 
 
 keywords: updates, releases, news, backup and recovery
@@ -21,6 +21,13 @@ content-type: release-note
 
 News on the latest releases from IBM's Backup and Recovery provide the updates you need on all things related to Backup and Recovery.
 {: shortdesc}
+
+## 12 December 2025
+{: #baas-Dec1225}
+{: release-note}
+
+Release update
+:  {{site.data.keyword.cloud_notm}} Backup and Recovery supports [Context-based restrictions](/docs/backup-recovery?topic=backup-recovery-cbr) and provides a [Backup and Recovery Manager](/docs/backup-recovery?group=backup-and-recovery-manager) for centralized monitoring, reporting, and alerts, enabling you to manage all your backup and recovery instances through a single, intuitive user interface.
 
 ## 30 September 2025
 {: #baas-Sep3025}

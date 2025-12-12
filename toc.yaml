@@ -45,7 +45,12 @@ toc:
           topics:
           - backup-mssql-vdi.md
           - recover-mssql.md
+      - topicgroup:
+          label: Backup and Recovery Manager
+          topics:
+          - global_mgmt_console/tutorial-gmc.md
       - registration.md
+      - cbr-tutorial.md
   - navgroup:
       id: howto
       topics:
@@ -93,6 +98,7 @@ toc:
           topics:
           - security-service-endpoints.md
           - vpe.md
+          - cbr.md
       - topicgroup:
           label: Monitoring (Work-in-Progress)
           topics:
