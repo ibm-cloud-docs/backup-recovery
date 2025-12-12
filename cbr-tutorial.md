@@ -19,13 +19,13 @@ completion-time: 10m
 {: toc-content-type="tutorial"}
 {: toc-completion-time="10m"}
 
-In this tutorial, you establish [context-based restrictions](/docs-draft/backup-recovery?topic=backup-recovery-cbr) that prevent any access to a Backup and Recovery service instance (resources) unless the request originates from a trusted network zone.
+In this tutorial, you establish [context-based restrictions](/docs/backup-recovery?topic=backup-recovery-cbr) that prevent any access to a Backup and Recovery service instance (resources) unless the request originates from a trusted network zone.
 {: shortdesc}
 
 ## Before you begin
 {: #brs-tutorial-cbr-prereqs}
 
-Before you plan on using [context-based restrictions](/docs-draft/backup-recovery?topic=backup-recovery-cbr) with Backup and Recovery resources, you need:
+Before you plan on using [context-based restrictions](/docs/backup-recovery?topic=backup-recovery-cbr) with Backup and Recovery resources, you need:
 
 - An [IBM Cloud™ Platform account](http://cloud.ibm.com/)
 - A [service instance of IBM Cloud Backup and Recovery](/catalog/services/backup-and-recovery)
@@ -107,4 +107,4 @@ An easy way to check that if it works is to [send a simple CLI command] from out
 ## Next steps
 {: #brs-tutorial-cbr-next}
 
-Learn more about [context-based restrictions for Backup and Recovery resources](/docs-draft/backup-recovery?topic=backup-recovery-cbr).
+Learn more about [context-based restrictions for Backup and Recovery resources](/docs/backup-recovery?topic=backup-recovery-cbr).
