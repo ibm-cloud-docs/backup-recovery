@@ -47,10 +47,10 @@ To access the Backup and Recovery Manager, you need to have an active {{site.dat
 
 1. Log in to your IBM cloud [account](https://cloud.ibm.com/){: external}.
 1. Go to the catalog by clicking **Catalog** from the navigation bar.
-1. In the left menu, Click the **Storage** category. Click the **Backup and Recovery** tile.
+1. Search the catalog for **Backup and Recovery**.
 1. Give the service instance a name.
 2. Select a region.
-3. Click **Create**.
+3. Click **Create** after accepting the license agreements.
 4. Open your {{site.data.keyword.baas_full_notm}} instance.
 4. In the left navigation window, click **Instance manager**, and select the region that you want to see the report for the Backup and Recovery Manager.
 5. The Backup and Recovery Manager dashboard displays key details such as Protection Coverage, Recovery Status by Type, Protection Status by Type, and Alerts for all instances within the selected region.
@@ -61,5 +61,3 @@ To access the Backup and Recovery Manager, you need to have an active {{site.dat
 {: #baas-next-steps}
 
 Learn to manage [Reports](/docs/backup-recovery?topic=backup-recovery-reports_gmc) and [Alerts](/docs/backup-recovery?topic=backup-recovery-alerts_gmc) in the Backup and Recovery Manager.
-
-
