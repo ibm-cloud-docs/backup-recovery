@@ -43,7 +43,7 @@ Maintain access to the Backup and Recovery Manager to see the reports and alerts
 
 2. Expand the Navigation menu (four horizontal lines, upper left) > select Resource List.
 
-3. Expand Storage > select your {{site.data.keyword.baas_full_notm}} instance.
+3. Expand Storage as an example, and select your {{site.data.keyword.baas_full_notm}} instance.
 
 4. In the left navigation window, click **Instance manager**, and select the region that you want to see the details.
 
