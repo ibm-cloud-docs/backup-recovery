@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2025
-lastupdated: "2025-11-13"
+lastupdated: "2025-12-09"
 
 keywords: IBM cloud backup and recovery
 
@@ -64,6 +64,8 @@ To get started, you need to complete the following steps in the dashboard.
    - **NOTE:** Create a VM to be used as a [backup service connector](/docs/backup-recovery?topic=backup-recovery-deploy_data_source_connector) for virtual machines to move data between your sources and the {{site.data.keyword.baas_full_notm}} service.
 3. [Register sources](/docs/backup-recovery?topic=backup-recovery-source-registration-tutorial) to define the types of applications on those servers.
 
+IBM supports setting the KMS Root CRN as part of your instance creation, and setting up a service-to-service authentication between {{site.data.keyword.baas_full_notm}} and Key Protect or Hyper Protect Crypto Services.
+{: note}
 
 
 
