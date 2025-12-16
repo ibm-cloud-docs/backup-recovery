@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-12-12"
+lastupdated: "2025-12-15"
 
 keywords: rest, helios, reporting, api, components, reports, resources
 
@@ -1240,4 +1240,4 @@ Host: <HELIOS_URL>
 
 ---
 
-For more information about {{site.data.keyword.baas_full_notm}} Reporting operations, see the [{{site.data.keyword.baas_full_notm}} Reporting documentation](https://cloud.ibm.com/docs/backup-recovery?topic=backup-recovery-reporting_gmc).
+For more information about {{site.data.keyword.baas_full_notm}} Reporting operations, see the [{{site.data.keyword.baas_full_notm}} Reporting documentation](/docs/backup-recovery?topic=backup-recovery-reports_gmc).
