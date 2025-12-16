@@ -207,7 +207,7 @@ toc:
               href: https://cloud.ibm.com/apidocs/backup-recovery
           - link:
               label: Reporting Service API
-              href: https://test.cloud.ibm.com/apidocs/ibm_reporting_api
+              href: https://cloud.ibm.com/apidocs/ibm_reporting_api
           topics:
           - global_mgmt_console/reporting_service_apis.md
       - topicgroup:
