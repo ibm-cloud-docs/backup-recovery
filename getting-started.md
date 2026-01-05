@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2024, 2025
-lastupdated: "2025-12-09"
+  years: 2024, 2026
+lastupdated: "2026-01-05"
 
 keywords: IBM cloud backup and recovery
 
@@ -21,7 +21,7 @@ subcollection: backup-recovery
 
 {: shortdesc}
 
-Use code **VPC1000** and get **USD 1,000** in no-charge credits to use toward different offerings on IBM Cloud VPC, including: Confidential computing with Intel® SGX®, Bare Metal for VPC, {{site.data.keyword.baas_full_notm}}, or any Block and File storage or networking components. **Valid until 31 December 2025**.
+Use code **VPC1000** and get **USD 1,000** in no-charge credits to use toward different offerings on IBM Cloud VPC, including: Confidential computing with Intel® SGX®, Bare Metal for VPC, {{site.data.keyword.baas_full_notm}}, or any Block and File storage or networking components. **Valid until 31 December 2026**.
 {: important}
 
 
