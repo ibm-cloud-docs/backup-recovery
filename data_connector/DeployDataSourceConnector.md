@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2024, 2025
-lastupdated: "2025-09-30"
+  years: 2024, 2026
+lastupdated: "2026-01-22"
 
 keywords: backup and recovery, data source connectors,
 
@@ -237,4 +237,4 @@ While the VSI can connect to the Backup and Recovery instance, a VPE gateway wil
 3. Under `Request connection to a service`, Select `IBM Cloud Service`
 4. Select `Cloud service offerings` to be `Backup and Recovery` and the appropriate `Cloud service regions`
 5. Select the appropriate `Backup and Service` instance in the table below
-6. Configure the `Reserved IP` as required and create the VPE Gateway.
+6. Configure the `Reserved IP` as required and create the VPE Gateway. 

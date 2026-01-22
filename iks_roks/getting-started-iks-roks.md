@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-12-02"
+lastupdated: "2026-01-22"
 
 keywords: data source connector, iks, roks, cluster
 
@@ -92,50 +92,7 @@ Clusters must be compatible, especially in terms of storage configuration.
 {: note}
 
 ## Create or configure a data source connector
-{: #data-source-connector-iks-roks-create-configure}
-
-### Create a data source connection
-{: #data-source-connector-iks-roks-create-data-source-connection}
-
-1. Open the instance dashboard that was discussed in an earlier step on [Accessing your instances](#data-source-connector-iks-roks-access-instance).
-2. Go to: `Dashboard → System → Data Source Connections`.
-3. Click **New Connection**.
-4. Under the Deployment Platform, select VPC if it is not already selected.
-5. Copy the Connection Token and click **Create**. You need this token when configuring the Data Source Connector (DSC).
-
-### Configure a data source connector
-{: #data-source-connector-iks-roks-create-configure}
-
-
-
-1. Create a Virtual Server Instance(VSI) on the same VPC as your Kubernetes/OpenShift cluster.
-   - Go to `Menu → Infrastructure → Compute → Virtual Server Instances` and then click the **Create** button.  Also, select the data source connector image from the catalog images and use the [Backup and Recovery data source connector](https://cloud.ibm.com/catalog/1082e7d2-5e2f-0a11-a3bc-f88a8e1931fc/content/content-ibm-backup-recovery-ds-connector-7-1fd41e29-5a36-42ab-81a9-99e4b452f4f3-global) image.
-
-2. Assign a temporary Floating IP to the VSI for configuration purposes.
-   - Select the instance that was newly created in the steps before this.
-   - Click the **Networking** tab.
-   - Select `eth0` interface and click the three-dot icon at the last, then click **Edit floating ips.**
-   - Click **Attach**, select either the already existing floating ip or reserve a new one, then click **Attach**.
-
-3. Allow an inbound TCP connection on port 443 to access the data source connector UI. This must be added to the security group of the data source connector. The steps to get into the [Data source connector security group](#how-to-identify-sc-dcs) can be found here:
-
-4. Access the data source connector UI in your browser at `https://<floating-ip>`. The floating-ip can be found in the steps before this. Default credentials to log in:
-
-    |  Username  |  Password  |
-    |----|----|
-    |admin|admin (change this after your first login)|
-
-5. Configure your connector by using the details shown in the table.
-
-    |  Domain name  |  Connector Name  |  Connection Token  |
-    |----|----|----|
-    |`cloud.ibm.com`|Any descriptive name|Paste the token that is obtained from the [Create a data source connection](#data-source-connector-iks-roks-create-data-source-connection) step|
-
-6. When all the required details are filled and ready to register click **Complete**.
-7. You are redirected to the connector status page. Wait for a couple of minutes for the connector to be in a healthy state.
-8. Clean up these items after configuration:
-   - Remove the Floating IP.
-   - Remove any temporary port 443 inbound rules added during setup.
+{: #data-source-connector-iks-roks-create-configure} 
 
 ## How to identify the security group for the data source connector
 {: #how-to-identify-sc-dcs}
@@ -331,30 +288,7 @@ To allow data source connector, you need to copy data to Cloud Object Storage en
    - Create a new user-defined policy
 2. You need to create a [Protection Group](/docs/backup-recovery?topic=backup-recovery-protection-groups) that uses one of these policies to perform an incremental or full backup.
 
-## Protecting a namespace or cluster and scheduling a backup
-{: #protecting-namespace-iks-roks}
 
-1. Go to: `Dashboard → Data Protection → Sources`.
-2. Locate your source cluster (based on the registration endpoint)
-3. Click the cluster URL
-4. A list of namespaces will appear. Select the namespaces to protect and click Protect
-5. Enter the required details: like Protection Group Name, Protection Policy, and Leverage CSI snapshot.
-6. Click **Submit**.
-
-## Recovering or restoring backup:
-{: #recovering-restoring-backup}
-
-1. Go to: `Dashboard → Data Protection → Recoveries→Kubernetes Cluster`.
-2. Click **Create New Recovery**.
-3. Select one or more namespaces that you want to recover
-4. Choose a recovery location:
-   - Original location
-   - New location
-5. (If recovery is from OpenShift to Kubernetes) → Skip the version compatibility check: for now due to missing OpenShift role binding in the Kubernetes cluster.
-6. Complete the recovery process.
-
-After completion, the recovered namespace is visible in the cluster with the configured name/prefix.
-{: note}
 
 ## Troubleshooting
 {: #data-source-connector-iks-roks-troubleshooting}
