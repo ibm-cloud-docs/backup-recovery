@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2026-01-22"
+lastupdated: "2026-01-29"
 
 keywords: data source connector, iks, roks, cluster
 
@@ -89,10 +89,7 @@ You can back up and restore data on:
 - Kubernetes/OpenShift namespace, PVCs, and more
 
 Clusters must be compatible, especially in terms of storage configuration.
-{: note}
-
-## Create or configure a data source connector
-{: #data-source-connector-iks-roks-create-configure} 
+{: note} 
 
 ## How to identify the security group for the data source connector
 {: #how-to-identify-sc-dcs}
