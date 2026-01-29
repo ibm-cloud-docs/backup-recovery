@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2026
-lastupdated: "2026-01-22"
+lastupdated: "2026-01-29"
 
 keywords: backup and recovery, data source connectors,
 
@@ -81,7 +81,7 @@ Ensure that the following ports are open to allow communication between the Data
 
 IBM Backup Service
 
-Ensure that the following ports are open to allow communication between the Data Source Connector(s) and IBM backup service, as well as the IBM Cloud Storage.
+Ensure that the following ports are open to allow communication between one or more Data Source Connectors and IBM backup service, as well as the IBM Cloud Storage.
 
 
 
