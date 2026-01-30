@@ -33,6 +33,9 @@ toc:
   - navgroup:
       id: tutorial
       topics:
+      - link:
+          label: Tutorials library for Backup and Recovery
+          href: https://cloud.ibm.com/docs?tab=tutorials&page=1&pageSize=20&tags=backup-recovery
       - topicgroup:
           label: Protect a Physical Server (File-based)
           topics:

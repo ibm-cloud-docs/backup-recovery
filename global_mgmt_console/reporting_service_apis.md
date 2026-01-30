@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-12-15"
+lastupdated: "2026-01-30"
 
 keywords: rest, helios, reporting, api, components, reports, resources
 
@@ -18,7 +18,7 @@ subcollection: cloud-object-storage
 The modern capabilities of {{site.data.keyword.baas_full_notm}} are conveniently available via a RESTful API. Operations and methods for listing report components, fetching component details, previewing components, listing resources, and managing reports are documented here.
 {: shortdesc}
 
-It uses {{site.data.keyword.iamlong}} for authentication and authorization. For more information about endpoints and authentication, see [Endpoints and storage locations](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-endpoints) and [Reporting Service API documentation](https://test.cloud.ibm.com/apidocs/ibm_reporting_api%3C/stage).
+It uses {{site.data.keyword.iamlong}} for authentication and authorization. For more information about endpoints and authentication, see [Endpoints and storage locations](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-endpoints) and [Reporting Service API documentation](https://cloud.ibm.com/apidocs/ibm_reporting_api%3C/stage).
 {: tip}
 
 
