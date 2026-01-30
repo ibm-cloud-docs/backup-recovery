@@ -242,31 +242,31 @@ To allow data source connector, you need to copy data to Cloud Object Storage en
    1. Create a file: secret.yaml.
    2. Add the following contents to the file.
 
-    ```yaml
-    apiVersion: v1
-    kind: Secret
-    metadata:
-      name: ibm-token
-      namespace: default
-      annotations:
-        kubernetes.io/service-account.name: ibm
-    type: kubernetes.io/service-account-token
-    ```
-    {: pre}
+      ```yaml
+      apiVersion: v1
+      kind: Secret
+      metadata:
+         name: ibm-token
+         namespace: default
+         annotations:
+         kubernetes.io/service-account.name: ibm
+      type: kubernetes.io/service-account-token
+      ```
+      {: pre}
 
    3. Run the command:
 
-   ```sh
-   kubectl apply -f secret.yaml
-   ```
-    {: pre}
+      ```sh
+      kubectl apply -f secret.yaml
+      ```
+      {: pre}
 
    4. Get the bearer token and use for the registration
 
-   ```sh
-   kubectl describe secrets -n default ibm-token | grep token: | awk '{print $2}' | head -1
-   ```
-   {: pre}
+      ```sh
+      kubectl describe secrets -n default ibm-token | grep token: | awk '{print $2}' | head -1
+      ```
+      {: pre}
 
 ### Images to be used for a Kubernetes/OpenShift registration(for 7.2.15)
 {: #data-source-connector-iks-roks-images-registration}
