@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2026-01-29"
+lastupdated: "2026-01-30"
 
 keywords: data source connector, iks, roks, cluster
 
@@ -16,8 +16,8 @@ subcollection: backup-recovery
 # Register Kubernetes/OpenShift as a data source
 {: #data-source-connector-iks-roks}
 
-This information is provided for experimental use only and is subject to change. Only region Washington DC (us-east) is available now for this feature.
-{: experimental}
+This information is provided for beta use only and is subject to change. Only region Washington DC (us-east) is available now for this feature.
+{: beta}
 
 You must create a data source connector on the same VPC where the Kubernetes/OpenShift cluster is deployed.
 {: important}
@@ -148,20 +148,20 @@ To make these components communicate properly, you need to set up rules in the S
 
 1. Adding rules to the Data Source Connector (DSC) Security Group:
 
-- Open [data source connector security group.](#how-to-identify-sc-dcs)
-- Click the **Rules** tab to add the following inbound rules:
+   - Open [data source connector security group.](#how-to-identify-sc-dcs)
+   - Click the **Rules** tab to add the following inbound rules:
 
-  To allow communication from {{site.data.keyword.baas_full_notm}} backup agent running on the Kubernetes/OpenShift cluster to DSC:
+     To allow communication from {{site.data.keyword.baas_full_notm}} backup agent running on the Kubernetes/OpenShift cluster to DSC:
 
-  **Inbound**:
+     **Inbound**:
 
-  |  Protocol  |  Source type  |  Source  |  Destination type  |  Destination  |  Value  |
-  |----|----|----|----|----|----|
-  |TCP|Security group|[`kube-d2mmidpw06t9d10ei1j0`](#how-to-get-iks-roks-sec-grp-cluster)|Any|0.0.0.0/0|Port 3000|
+     |  Protocol  |  Source type  |  Source  |  Destination type  |  Destination  |  Value  |
+     |----|----|----|----|----|----|
+     |TCP|Security group|[`kube-d2mmidpw06t9d10ei1j0`](#how-to-get-iks-roks-sec-grp-cluster)|Any|0.0.0.0/0|Port 3000|
 
 2. Adding rules to the Kubernetes/OpenShift security group `kube-<clusterID>`: Example: `kube-d2mmidpw06t9d10ei1j0`
 
-   ### Adding rules to the security group for Kubernetes/OpenShift cluster:
+   Adding rules to the security group for Kubernetes/OpenShift cluster:
    {: #how-to-get-iks-roks-sec-grp-cluster}
 
    You need to add the following rules into [`kube-<clusterID>`](#how-to-get-iks-roks-cluster-id) Security Group to allow communication in-between data source connector and the BRS backup agent running on Kubernetes/OpenShift cluster.
@@ -242,31 +242,31 @@ To allow data source connector, you need to copy data to Cloud Object Storage en
    1. Create a file: secret.yaml.
    2. Add the following contents to the file.
 
-    ```yaml
-    apiVersion: v1
-    kind: Secret
-    metadata:
-      name: ibm-token
-      namespace: default
-      annotations:
-        kubernetes.io/service-account.name: ibm
-    type: kubernetes.io/service-account-token
-    ```
-    {: pre}
+      ```yaml
+      apiVersion: v1
+      kind: Secret
+      metadata:
+         name: ibm-token
+         namespace: default
+         annotations:
+         kubernetes.io/service-account.name: ibm
+      type: kubernetes.io/service-account-token
+      ```
+      {: pre}
 
    3. Run the command:
 
-   ```sh
-   kubectl apply -f secret.yaml
-   ```
-    {: pre}
+      ```sh
+      kubectl apply -f secret.yaml
+      ```
+      {: pre}
 
    4. Get the bearer token and use for the registration
 
-   ```sh
-   kubectl describe secrets -n default ibm-token | grep token: | awk '{print $2}' | head -1
-   ```
-   {: pre}
+      ```sh
+      kubectl describe secrets -n default ibm-token | grep token: | awk '{print $2}' | head -1
+      ```
+      {: pre}
 
 ### Images to be used for a Kubernetes/OpenShift registration(for 7.2.15)
 {: #data-source-connector-iks-roks-images-registration}
