@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024
-lastupdated: "2025-12-12"
+lastupdated: "2026-01-30"
 
 keywords: backup recovery, terraform, guide
 
@@ -63,7 +63,7 @@ If the provider requires a specific endpoint, you can either:
 -   Set the endpoint directly in your terminal,
 
 ```sh
-BACKUP_RECOVERY_ENDPOINT=https://brs-stage-us-south-01.backup-recovery.test.cloud.ibm.com/v2
+BACKUP_RECOVERY_ENDPOINT=https://brs-stage-us-south-01.backup-recovery.cloud.ibm.com/v2
 ```
 -   or, specify it in an endpoint JSON file and reference this file in your Terraform configuration or ensure the provider reads it accordingly
 
@@ -71,7 +71,7 @@ BACKUP_RECOVERY_ENDPOINT=https://brs-stage-us-south-01.backup-recovery.test.clou
 {
     "BACKUP_RECOVERY_ENDPOINT" : {
         "public" : {
-            "us-south": "https://brs-stage-us-south-01.backup-recovery.test.cloud.ibm.com/v2"
+            "us-south": "https://brs-stage-us-south-01.backup-recovery.cloud.ibm.com/v2"
         }
     }
 }
@@ -241,4 +241,3 @@ resource "ibm_backup_recovery" "backup_recovery_instance" {
 		}
 }
 ```
-
