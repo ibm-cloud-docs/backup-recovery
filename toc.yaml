@@ -59,7 +59,7 @@ toc:
           - sap_hana/BackupSAPHANASource.md
           - sap_hana/RestoreSAPHANADB.md
       - topicgroup:
-          label: Protect a Kubernetes/OpenShift Server (Experimental use only)
+          label: Protect a Kubernetes/OpenShift Server (Beta use only)
           topics:
           - iks_roks/backup-iksroks.md
           - iks_roks?recover-iksroks.md
