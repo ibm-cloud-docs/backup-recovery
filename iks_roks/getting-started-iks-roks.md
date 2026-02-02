@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2026-01-30"
+lastupdated: "2026-02-02"
 
 keywords: data source connector, iks, roks, cluster
 
@@ -22,7 +22,7 @@ This information is provided for beta use only and is subject to change. Only re
 You must create a data source connector on the same VPC where the Kubernetes/OpenShift cluster is deployed.
 {: important}
 
-Located to the right of this page is a summary of key topics that are found on this page. See on this page.
+Located to the right of this page is a summary of key topics that are found on this page.
 {: note}
 
 ## Quick reference to key sections for new users
@@ -199,7 +199,7 @@ To make these components communicate properly, you need to set up rules in the S
 ## Permitting DNS resolution
 {: #permitting-dns-resolution}
 
-To allow data source connector, you need to copy data to Cloud Object Storage endpoint – If your data source connector is on a private network, then you need to follow the following steps to allow the data source connector to copy data
+To allow the data source connector, you need to copy data to Cloud Object Storage endpoint – If your data source connector is on a private network, then you need to follow the following steps to allow the data source connector to copy data
 
    1. Create or identify [VPE gateway](#how-to-get-vpe-gateway-cos-s3) for Cloud Object Storage direct endpoints - this normally created VPE gateway while creating Kubernetes/OpenShift cluster under VPC (default networking).
    2. In the Overview tab, enable `Permit DNS resolution binding` to resolve from data source connector.
@@ -268,14 +268,7 @@ To allow data source connector, you need to copy data to Cloud Object Storage en
       ```
       {: pre}
 
-### Images to be used for a Kubernetes/OpenShift registration(for 7.2.15)
-{: #data-source-connector-iks-roks-images-registration}
 
-1. Data mover:  `icr.io/ext/brs/cohesity-datamover:7.2.15-p2`
-2. OpenShift plug-in: `icr.io/ext/brs/cohesity-dataprotect-plugin:7.2.15-p2`
-3. Velero: `icr.io/ext/brs/velero:7.2.15-p2`
-4. S3 plug-in: `icr.io/ext/brs/velero-plugin-for-aws:7.2.15-p2`
-5. Data Protect plug-in: `icr.io/ext/brs/velero-plugin-for-openshift:7.2.15-p2`
 
 ## Prerequisites for scheduling backups
 {: #data-source-connector-iks-roks-prereq-schedule-bak}

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2026
-lastupdated: "2026-01-29"
+lastupdated: "2026-02-02"
 
 keywords: backup and recovery, data source connectors,
 
@@ -17,7 +17,7 @@ subcollection: backup-recovery
 
 To register your data sources with the IBM Cloud Backup and Recovery service, you need to establish connectivity between your source and the service using a Data Source Connection. A Data Source Connection consists of one or more Data Source Connectors, which are virtual machines (VMs) that facilitate the movement of data between your data sources and the IBM Cloud Backup and Recovery service.
 
-You need to install the VM for the Data Source Connector using an installer OVA in your VMware environment, on a vCenter or ESXi host in your environment that has access to your data sources and meets the Data Source Connection system and ﬁrewall requirements.
+You need to install the VM for the Data Source Connector using an installer OVA in your VMware environment, on a vCenter or ESXi host in your environment that has access to your data sources and meets the Data Source Connection system and firewall requirements.
 
 ## Data Source Connector Requirements
 {: #data_source_connector_requirements}
@@ -32,7 +32,7 @@ You can deploy Data Source Connectors for the following sources:
 - Physical Server
 - Microsoft SQL Server
 - Oracle Server
-
+- kubernetes/OpenShift
 
 ### Data Source Connector System Prerequisites
 {: #data_source_connector_system_prerequisites}
@@ -127,13 +127,13 @@ To create a Data Source Connection:
 
    3. On the `Select an OVF template` page, do one of the following and click Next:
 
-      - Paste the link of the OVA ﬁle you copied in Step 3 (b) in the `URL` ﬁeld.
+      - Paste the link of the OVA ﬁle you copied in Step 3 (b) in the `URL` field.
       - Select `Local ﬁle`, click `UPLOAD FILES`, and browse to the location of the OVA ﬁle you downloaded in step 3 (b).
 
    4. On the `Select a name and folder` page, enter the following and click `Next`:
 
-      - In the `Virtual machine name` ﬁeld, enter a unique name for your Data Source Connector.
-      - In the `Select a location for the Virtual Machine` ﬁeld, select where your VM should reside from the displayed list of inventory locations.
+      - In the `Virtual machine name` field, enter a unique name for your Data Source Connector.
+      - In the `Select a location for the Virtual Machine` field, select where your VM should reside from the displayed list of inventory locations.
 
    5. On the `Compute Resources` page, select a compute resource for the Data Source Connector VM and click
 
@@ -145,7 +145,7 @@ To create a Data Source Connection:
 
    8. On the `Select storage` page, select a datastore with at least 171 GB of free disk space and click `Next`.
 
-   9. On the `Select networks` page, select a destination network and click `Next`. You can select VLANs from both the `DataNetwork` and the `SecondaryNetwork` ﬁelds. The Data Network is used for communication with Data Source, and the Secondary Network is used for communication with your data sources. Based on your requirements:
+   9. On the `Select networks` page, select a destination network and click `Next`. You can select VLANs from both the `DataNetwork` and the `SecondaryNetwork` fields. The Data Network is used for communication with Data Source, and the Secondary Network is used for communication with your data sources. Based on your requirements:
 
       - To deploy the Data Source Connector on a single network, select the same VLAN in both
 
@@ -158,10 +158,10 @@ To create a Data Source Connection:
 
    10.  On the `Customize template` page, enter the network settings: `Network IP Address`, `Network Netmask`, and `Default Gateway`. If you have selected a different VLAN for the secondary network, enter the `Network IP Address`, `Network Netmask`, and `Default Gateway` for the secondary network, as well. Click `Next`.
 
-- To set the network settings using static IP addresses, manually enter the details in the respective ﬁelds for both DataNetwork and SecondaryNetwork.
-- To set the network settings using DHCP, leave the ﬁelds blank in both the DataNetwork and
+- To set the network settings using static IP addresses, manually enter the details in the respective fields for both DataNetwork and SecondaryNetwork.
+- To set the network settings using DHCP, leave the fields blank in both the DataNetwork and
 SecondaryNetwork sections.
-- Data Network and Secondary Network must be conﬁgured using the same network conﬁguration method. That is static IP addresses or DHCP.
+- Data Network and Secondary Network must be configured using the same network configuration method. That is static IP addresses or DHCP.
 
 
    11. Review the summary on the `Ready to complete` page and click `Finish`.
@@ -178,7 +178,7 @@ On the next screen, you are prompted to change your password. Change your defaul
 
 8. On the `Data` `Source` `Connector` `Conﬁguration` page, paste the `Connection` `token` in the `Connection` `Claim` `Token` ﬁeld and click `Save`.
 
-It can take another few minutes for the Data Source Connector to authenticate to the IBM Cloud Backup and Recovery Service. Click on the `Data Source Connection` to list the Data Source Connector(s) that are claimed.
+It can take another few minutes for the Data Source Connector to authenticate to the IBM Cloud Backup and Recovery Service. Click `Data Source Connection` to list the Data Source Connector(s) that are claimed.
 
 ## Create a Data Source Connection in VPC
 {: #create_a_data_source_connection_in_vpc}
@@ -217,22 +217,22 @@ The initial VSI deployment is your responsibility, after that the OS patching an
 
 4. Enter the IP address of the Data Source Connector VM in the address bar of your browser and click `Enter`.
 
-5. On the Data Source Connector's User Interface, enter `admin` in the `Username` and `Password` ﬁelds to log into the Data Source Connector.
+5. On the Data Source Connector's User Interface, enter `admin` in the `Username` and `Password` fields to log into the Data Source Connector.
 
 On the next screen, you are prompted to change your password. Change your default password and log in again with your new password.
 
-6. Verify the network conﬁguration settings, make necessary changes, and click `Continue`.
+6. Verify the network configuration settings, make necessary changes, and click `Continue`.
 
-7. On the `Data` `Source` `Connector` `Conﬁguration` page, paste the `Connection` `token` in the `Connection` `Claim` `Token` ﬁeld and click `Save`.
+7. On the `Data` `Source` `Connector` `Conﬁguration` page, paste the `Connection` `token` in the `Connection` `Claim` `Token` field and click `Save`.
 
-It can take another few minutes for the Data Source Connector to authenticate to the IBM Cloud Backup and Recovery Service. Click on the `Data Source Connection` to list the Data Source Connector(s) that are claimed.
+It can take another few minutes for the Data Source Connector to authenticate to the IBM Cloud Backup and Recovery Service. Click `Data Source Connection` to list the Data Source Connector(s) that are claimed.
 
 ### VPE Gateways
 {: #vpe_gateways}
 
 While the VSI can connect to the Backup and Recovery instance, a VPE gateway will provide a better performance, To create a VPE gateway, follow these steps.
 
-1. From the IBM Cloud catalog, search for `Virtual private endpoint` and click on the `Virtual private endpoint for VPC` tile,
+1. From the IBM Cloud catalog, search for `Virtual private endpoint` and click `Virtual private endpoint for VPC` tile,
 2. Select the appropriate `Location`, `Name`, `Resource Group`, `VPC`
 3. Under `Request connection to a service`, Select `IBM Cloud Service`
 4. Select `Cloud service offerings` to be `Backup and Recovery` and the appropriate `Cloud service regions`
