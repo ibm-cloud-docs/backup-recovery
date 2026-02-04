@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-12-12"
+lastupdated: "2026-02-04"
 
 keywords: global, management, console, tutorial
 subcollection: backup-recovery
@@ -45,9 +45,9 @@ Maintain access to the Backup and Recovery Manager to see the reports and alerts
 
 3. Expand Storage as an example, and select your {{site.data.keyword.baas_full_notm}} instance.
 
-4. In the left navigation window, click **Instance manager**, and select the region that you want to see the details.
+4. In the left navigation window, click **Backup Manager**, and select the region that you want to see the details.
 
-You are now presented with the UI of your {{site.data.keyword.baas_full_notm}} instance for that region. The next section covers how to back view your reports.
+You are now presented with links to the Backup Manager dashboards for your {{site.data.keyword.baas_full_notm}} instances in the regions where they are available.
 
 ### Dashboard
 {: #dashboard_viewing_tutorial_gmc}
