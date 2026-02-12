@@ -3,7 +3,7 @@
 copyright:
   years: 2024
 
-lastupdated: "2025-09-30"
+lastupdated: "2026-02-12"
 
 keywords: policy
 
@@ -22,34 +22,62 @@ In this section, you will learn how to create Protection Policies on your {{site
 ## Before you start
 {: #baas-policy-creation-before-you-start}
 
-Ensure that you have what you need to start:
+Ensure that the following prerequisites are met:
+1. You have an active [IBM Cloud Platform account](https://cloud.ibm.com/){: external}.
+2. An {{site.data.keyword.baas_full_notm}} service instance is deployed and accessible.
+3. To create or manage Protection Policies, you must have one of the following privileges on the {{site.data.keyword.baas_full_notm}} service:
+   - Writer (backup-recovery.dashboard.edit)
+   - Manager (backup-recovery.dashboard.edit)
 
-- An account for the {{site.data.keyword.cloud_notm}} Platform
-- An instance of {{site.data.keyword.baas_full_notm}} service is deployed
-- Verify that you have proper access to your {{site.data.keyword.baas_full_notm}} instance. Writer (backup-recovery.dashboard.edit) or Manager (backup-recovery.dashboard.edit) privileges to the {{site.data.keyword.baas_full_notm}} Service are needed to create and manage Protection Jobs (i.e. Backup Jobs) in your instance. These privileges can be assigned by your {{site.data.keyword.cloud_notm}} Platform account owner using an Access Group (multiple users) or Access Policy (specific user) tied to your IAM profile. Details on this are included [here](/docs/backup-recovery?topic=backup-recovery-iam-docs-template&interface=ui).
+These privileges can be assigned by your IBM Cloud account administrator using an Access Group (for multiple users) or an Access Policy (for a specific user) linked to your IAM profile. For more information, see the [IAM access documentation](/docs/backup-recovery?topic=backup-recovery-iam&interface=ui).
 
-## {{site.data.keyword.baas_full_notm}} Instance UI
-{: #baas-policy-creation-instance}
 
-1. Log into the {site.data.keyword.cloud_notm} Platform.
-2. Expand the Navigation Menu (four horizontal lines, top left) > select Resource List.
-3. Expand Storage > select your IBM Cloud Backup and Recovery instance.
-4. Select Launch dashboard > enter your SSO / account credentials to authenticate.
 
-You will now be presented with the UI of your {{site.data.keyword.baas_full_notm}} Instance. The next section will cover how to create your own Protection Policy.
 
-## Create your own Protection Policy
+
+
+## Accessing the {{site.data.keyword.baas_full_notm}} dashboard
+{: #baas-access-dashboard}
+
+1. Log in to the [IBM Cloud Platform account](https://cloud.ibm.com/){: external}.
+2. Open the Navigation Menu (four horizontal lines in the upper left corner) and select Resource List.
+3. Expand Storage, and select your {{site.data.keyword.baas_full_notm}} instance.
+4. Enter your SSO or account credentials to authenticate.
+
+After authentication, the {{site.data.keyword.baas_full_notm}} dashboard is displayed, where you can create and manage Protection Policies.
+
+
+
+
+## Creating and managing protection policies
 {: #baas-policy-creation-config-protect-job}
 
-1. [Indexing](/docs/backup-recovery?topic=backup-recovery-customize_indexing)
-2. [Create or edit a standard policy](/docs/backup-recovery?topic=backup-recovery-create_or_edit_a_standard_policy)
-3. [Manage policies](/docs/backup-recovery?topic=backup-recovery-manage_policies)
-4. [Manage protection policy](/docs/backup-recovery?group=manage-protection-policies)
-5. [Configure Pre & Post Scripts](/docs/backup-recovery?topic=backup-recovery-configure-pre-post-scripts)
-6. [Datalock](/docs/backup-recovery?topic=backup-recovery-datalock)
-7. [Extended retention](/docs/backup-recovery?topic=backup-recovery-extended_retention)
+Protection Policies define how and when your data is backed up. A policy includes the backup schedule, retention settings, and optional advanced features such as DataLock, indexing, and pre/post scripts, and so on.
+
+### Create a protection policy
+{: #baas-policy-creation}
+
+To create a new Protection Policy:
+1. In the {{site.data.keyword.baas_full_notm}} dashboard, navigate to `Protection` \> `Policies`.
+2. Click `Create Policy` and enter a Policy Name.
+3. Configure the backup schedule and frequency.
+4. Configure the retention period for backup snapshots.
+5. (Optional) Configure advanced options such as [DataLock](/docs/backup-recovery?topic=backup-recovery-datalock), [indexing](/docs/backup-recovery?topic=backup-recovery-customize_indexing), or [pre/post scripts](/docs/backup-recovery?topic=backup-recovery-configure-pre-post-scripts).
+6. Click Create to save the policy.
+
+Once created, the policy can be applied to Protection Groups to control how your workloads are protected.
+
+#### Detailed Policy Management Tasks
+{: #policy-detail-task}
+
+Use the links below for more detailed instructions on specific policy management tasks:
+
+1. [Create or edit a standard policy](/docs/backup-recovery?topic=backup-recovery-create_or_edit_a_standard_policy) - Detailed steps to configure schedules, retention, and advanced settings.
+2. [Manage policies](/docs/backup-recovery?topic=backup-recovery-manage_policies) - View, update, enable, disable, or delete existing policies.
+3. [Datalock](/docs/backup-recovery?topic=backup-recovery-datalock) - Enable or manage DataLock settings for compliance protection.
+4. [Extended retention](/docs/backup-recovery?topic=backup-recovery-extended_retention) - Configure long-term retention rules.
 
 ## Next steps
 {: #bass-policy-creation-next-steps}
 
-In the next section, learn about [Protection Groups](/docs/backup-recovery?topic=backup-recovery-protection-groups) that will use the schedules and settings of your newly created Protection Policy to determine when and how your backups are captured.
+After creating a Protection Policy, proceed to [Protection Groups](/docs/backup-recovery?topic=backup-recovery-protection-groups) to assign the policy to your workloads and begin protecting your data.

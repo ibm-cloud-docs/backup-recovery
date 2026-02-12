@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2026-02-02"
+lastupdated: "2026-02-12"
 
 keywords: data source connector, iks, roks, cluster
 
@@ -32,7 +32,6 @@ A. [Before you begin](#baas-getting-started-iks-roks)
 
 B. Prerequisites for backup and restore:
    - You must have a [{{site.data.keyword.baas_full_notm}} instance that is created or create a new one](#data-source-connector-iks-roks-access-instance)
-   - Create a VPE gateway between your source VPC and your Backup and Recovery service. See [Create a VPE gateway](/docs/backup-recovery?topic=backup-recovery-deploy_data_source_connector#vpe_gateways)
    - [Create or use existing data source connector](#data-source-connector-iks-roks-create-configure)
    - [Kubernetes/OpenShift cluster should be registered](#data-source-connector-iks-roks-register)
 
@@ -46,11 +45,11 @@ C. Take a backup of the Kubernetes/OpenShift cluster:
 D. Restore backup to Kubernetes/OpenShift cluster:
    - [Access {{site.data.keyword.baas_full_notm}} instance](#data-source-connector-iks-roks-access-instance)
    - [Create and configure data source connector](#data-source-connector-iks-roks-create-configure)
-   - [Configure and set up network SGs](#data-source-connector-iks-roks-setup-network-sgs-config)
    - [Register source kubernetes/OpenShift cluster](#data-source-connector-iks-roks-register)
    - [Restore backup](#recovering-restoring-backup)
 
 E. [Troubleshooting](#data-source-connector-iks-roks-troubleshooting)
+
 
 ## Before you begin
 {: #baas-getting-started-iks-roks}
@@ -89,32 +88,108 @@ You can back up and restore data on:
 - Kubernetes/OpenShift namespace, PVCs, and more
 
 Clusters must be compatible, especially in terms of storage configuration.
-{: note} 
+{: note}
 
-## How to identify the security group for the data source connector
-{: #how-to-identify-sc-dcs}
+## Create or configure a data source connector
+{: #data-source-connector-iks-roks-create-configure}
 
-1. Go to `Menu → Infrastructure → Compute → Virtual server Instances.`
-2. Filter the Virtual server instances based on a region where you created data source connector: Washington DC (us-east).
-3. Search for a data source connector VSI name, and click the one you selected.
-4. You find tab options for **Overview**, **Networking**, **Storage**, **Monitoring,** and more. Click the **Networking** tab.
-5. Now, you see `eth0` as an interface and in the **Security Group** column, click **option.**
-6. Click the name of the Security Group, a new page opens, and now you can add inbound and outbound rules as shown in the rules provided.
+Ensure the node has sufficient CPU and memory to run the Containerized Data Source Connector and Datamover pods. The following table lists their resource requirements. If both pods run on the same node, use at least a `cx2.8x16` node flavor to meet the combined workload demands.
 
-## How to identity security group for Kubernetes/OpenShift cluster
-{: #how-to-get-iks-roks-sec-grp-cluster}
+| Pod Name                                   | CPU Requests | Memory Requests | CPU Limits | Memory Limits |
+|--------------------------------------------|--------------|-----------------|------------|----------------|
+| Containerized Data Source Connector        | 2            | 5Gi             | 4          | 8Gi            |
+| Datamover                                  | 500m         | 128M            | 2          | 4Gi            |
 
-1. Get the Kubernetes/OpenShift [cluster ID](#how-to-get-iks-roks-cluster-id).
-2. Click `Menu → Infrastructure → Network → Security Groups.`
-3. Filter by region: Washington DC(us-east) as per your Kubernetes/OpenShift cluster.
-4. Search for [cluster ID](#how-to-get-iks-roks-cluster-id), then you see some Security Groups, but select only for `kube-<clusterID>`.
 
-## How to identity VPE gateway for Cloud Object Storage S3 direct endpoint
-{: #how-to-get-vpe-gateway-cos-s3}
+### Create a data source connection
+{: #data-source-connector-iks-roks-create-data-source-connection}
 
-1. Go to `Menu → Infrastructure → Networking → Virtual Private Endpoint Gateways`
-2. Search by the VPC name, you get the subset of VPEGs.
-3. Select the one that is being used for Cloud Object Storage s3 direct endpoint.
+1. Open the instance dashboard that was discussed in an earlier step on [Accessing your instances](#data-source-connector-iks-roks-access-instance).
+2. Go to: `Dashboard → System → Data Source Connections`.
+3. Click `New Connection`.
+4. Under the Deployment Platform, select one of the following options:
+
+   - `ROKS CLASSIC`
+   - `ROKS VPC`
+   - `IKS CLASSIC`
+   - `IKS VPC`
+
+5. Click `Done`, then open the three‑dot menu for the newly created connection. Click `Rename Connection` to rename it for easier future identification.
+
+
+
+### Configure a data source connector
+{: #data-source-connector-iks-roks-create-configure}
+
+
+
+
+
+
+
+1. Configure the connector by using the `helm install` command.
+2. In the Cloud Shell terminal, list the available Kubernetes/OpenShift clusters to identify the cluster name:
+
+   ```sh
+   ibmcloud ks cluster ls
+   ```
+   {: codeblock}
+
+   From the output, note the cluster name where the DSC will be deployed.
+
+3. Download and configure the `KUBECONFIG` for the selected cluster with admin privileges:
+
+   ```sh
+   ibmcloud ks cluster config --cluster <cluster-name> --admin
+   ```
+   {: codeblock}
+
+4. The Helm chart is hosted in the IBM Container Registry (ICR). Log in to the Helm/OCI registry by using the following command:
+
+   ```sh
+   helm registry login icr.io --username iamapikey --password "${API_KEY}"
+   ```
+   {: codeblock}
+
+   If successful, you see a login confirmation.
+
+
+
+   
+
+   
+
+5. Return to the UI and click the three‑dot menu for your selected connection. Click `Connection Token` to copy the connection token.
+6. Now, run the following command in the IBM Cloud Shell.
+
+   ```sh
+   # define variables
+   export NAMESPACE_NAME="ibm-brs-data-source-connector"
+   export RELEASE_NAME="dsc"
+   export CHART_LOCATION="oci://icr.io/ext/brs/brs-ds-connector-chart"
+   export CHART_VERSION="7.2.17-release-20260108-ed857f1c"
+   export REGISTRATION_TOKEN='<paste the connection/registration token here>'
+
+   # install data source connector chart
+   helm install ${RELEASE_NAME} ${CHART_LOCATION} --version ${CHART_VERSION} --set secrets.registrationToken=${REGISTRATION_TOKEN} --set fullnameOverride=dsc  --namespace ${NAMESPACE_NAME} --create-namespace
+   ```
+   {: codeblock}
+
+   
+
+   
+7. Check that the Helm release is installed:
+
+   ```sh
+   helm list -n ${NAMESPACE_NAME}
+   ```
+   {: codeblock}
+
+
+
+
+
+
 
 ## How to get the Kubernetes/OpenShift cluster ID
 {: #how-to-get-iks-roks-cluster-id}
@@ -130,71 +205,10 @@ Clusters must be compatible, especially in terms of storage configuration.
 2. Filter by location: Washington DC(us-east).
 3. The endpoint can be found in the **Overview page** in the Networking section where you can find the information for your private and public endpoints.
 
-## How to get security group for VPE gateway of Cloud Object Storage endpoint
-{: #how-to-get-security-group-vpeg-cos-endpoint}
-
-1. Go to `Menu → Infrastructure → Networking → Virtual Private Endpoint Gateways`
-2. Search by the VPC name, you get all the VPEGs created under the same VPC.
-3. Select the one that is being used for Cloud Object Storage (service details column) **s3 direct endpoint** (service endpoint column).
-4. In the overview tab, enable Permit DNS resolution binding.
-5. Go to the Attached resources tab, scroll down to the security group section. You can find the security group that is attached to this VPEG.
-
-## Add rules to network security groups to allow communication
-{: #data-source-connector-iks-roks-setup-network-sgs-config}
-
-To register Kubernetes/OpenShift cluster as a source to your {{site.data.keyword.baas_full_notm}} instance, you need to add rules to a data source connector security group and Kubernetes/OpenShift cluster security group.
-
-To make these components communicate properly, you need to set up rules in the Security Groups that are used by these components:
-
-1. Adding rules to the Data Source Connector (DSC) Security Group:
-
-   - Open [data source connector security group.](#how-to-identify-sc-dcs)
-   - Click the **Rules** tab to add the following inbound rules:
-
-     To allow communication from {{site.data.keyword.baas_full_notm}} backup agent running on the Kubernetes/OpenShift cluster to DSC:
-
-     **Inbound**:
-
-     |  Protocol  |  Source type  |  Source  |  Destination type  |  Destination  |  Value  |
-     |----|----|----|----|----|----|
-     |TCP|Security group|[`kube-d2mmidpw06t9d10ei1j0`](#how-to-get-iks-roks-sec-grp-cluster)|Any|0.0.0.0/0|Port 3000|
-
-2. Adding rules to the Kubernetes/OpenShift security group `kube-<clusterID>`: Example: `kube-d2mmidpw06t9d10ei1j0`
-
-   Adding rules to the security group for Kubernetes/OpenShift cluster:
-   {: #how-to-get-iks-roks-sec-grp-cluster}
-
-   You need to add the following rules into [`kube-<clusterID>`](#how-to-get-iks-roks-cluster-id) Security Group to allow communication in-between data source connector and the BRS backup agent running on Kubernetes/OpenShift cluster.
-
-    **Inbound**:
-
-    Port should be starting from 31000 to 31000+number of nodes are there or expected in the cluster.  This can conflict as the application might be already using some of these ports and then user need to free those ports from application as of now. For this example, there are three nodes in the cluster and `whiny-granddad-ability-container` is an example of the security group that is used by the data source connector.
-    {:note}
-
-    |  Protocol  |  Source type  |  Source  |  Destination type  |  Destination  |  Value  |
-    |----|----|----|----|----|----|
-    |TCP|Security group|`whiny-granddad-ability-container`|Any|0.0.0.0/0|Ports 31000-31000+|
 
 
-    **Outbound**:
 
-    To allow the {{site.data.keyword.baas_full_notm}} backup agent to communicate to the data source connector
 
-    |  Protocol  |  Source type  |  Source  |  Destination type  |  Destination  |  Value  |
-    |----|----|----|----|----|----|
-    |TCP|Any|0.0.0.0/0|Security group|`whiny-granddad-ability-container`|Port 3000|
-
-3. Add rules to VPE gateway of Cloud Object Storage endpoint security group
-   Normally, this VPE gateway getting created once a kubernetes/OpenShift cluster created under VPC
-
-    - Open security group associated with [VPE gateway](#how-to-get-security-group-vpeg-cos-endpoint) for Cloud Object Storage endpoint.
-    - To allow communication from DSC to Cloud Object Storage bucket (configured with BRS instance):
-
-   **Inbound**:
-
-    |  Protocol  |  Source type  |  Source  |  Destination type  |  Destination  |  Value  |
-    |----|----|----|----|----|----|
-    |TCP|Security group|`whiny-granddad-ability-container`|Any|0.0.0.0/0|Port 443|
 
 ## Permitting DNS resolution
 {: #permitting-dns-resolution}
@@ -214,9 +228,11 @@ To allow the data source connector, you need to copy data to Cloud Object Storag
 5. Click **Continue**.
 6. Provide these details in the form:
 
-   |  Cluster Endpoint  |  Bearer Token |  Kubernetes Distribution  | Images |
-   |----|----|----|----|
-   |[Private or Public](#how-to-get-iks-roks-endpoint)|[See How to create a Bearer Token](#data-source-connector-iks-roks-create-bearer-token-cluster)|Kubernetes/OpenShift| [Images to be used for Kubernetes/OpenShift registration](#data-source-connector-iks-roks-images-registration) |
+   |  Cluster Endpoint  |  Bearer Token |  Kubernetes Distribution  |
+   |----|----|----|
+   |[Private or Public](#how-to-get-iks-roks-endpoint)|[See How to create a Bearer Token](#data-source-connector-iks-roks-create-bearer-token-cluster)|Kubernetes/OpenShift|
+
+   
 
 7. Click **Complete** to finish the registration.
 8. You are redirected to the list of data sources where you can see the status of your data source registration.
@@ -280,46 +296,269 @@ To allow the data source connector, you need to copy data to Cloud Object Storag
 
 
 
+## Protecting a namespace or cluster and scheduling a backup
+{: #protecting-namespace-iks-roks}
+
+1. Log in to the {{site.data.keyword.baas_full_notm}}.
+2. Go to: **Dashboard** \> **Data Protection** \> **Protection**.
+3. Locate your Kubernetes source cluster using the registration endpoint.
+4. Click the cluster URL to view available objects.
+5. After selecting the cluster, a list of namespaces appears.
+6. Choose one of the following:
+   - One or more namespaces (you can also exclude namespace based on lables)
+   - Entire cluster (if supported by your deployment)
+
+7. Click **Protect**.
+
+   IBM Backup and Recovery service supports backup of:
+   - Persistent Volume Claims (PVCs)
+   - Kubernetes cluster resources
+   - Namespace metadata
+
+   PVC protection uses CSI Volume Snapshot capability when enabled.
+   {: note}
+
+8. Choose or Create a Protection Group. When prompted, select one of the following options.
+
+| Option | Description |
+|------|-------------|
+| **Create a New Protection Group** | When creating a new group, configure the following:<br><br>- **Protection Group Name**<br>- **Protection Policy**<br>- **Start Time and Time Zone**<br>- **Leverage CSI Snapshot** (toggle)<br>- **Pause Future Runs** (optional)<br>- **Alerts and Email Recipients**<br>- **Priority** (High / Medium / Low)<br>- **Include or Exclude Labels**<br>- **Description**<br><br>These settings are configurable **only during creation** of a new Protection Group. |
+| **Use an Existing Protection Group** | All settings are **prefilled** from the existing group.<br>Fields are **read-only** and cannot be modified at this stage. |
+
+9. Configure the CSI Snapshot Protection.
+
+   - Enable Leverage CSI Snapshot (toggle).
+   - When enabled:
+      - PVCs are protected using CSI driver snapshots.
+      - Snapshots are crash consistent, capturing the volume state at the snapshot moment.
+
+10. Configure Additional Protection Settings.
+
+| Category | Description |
+|--------|-------------|
+| **Scheduling** | **Start Time**: Defines when the protection job runs.<br>**Time Zone**: Select the appropriate time zone. |
+| **Run Controls** | **Pause Future Runs**: Prevents any future scheduled runs.<br>**End Date**: Stops snapshot capture after the selected date (current runs complete). |
+| **Storage & Performance** | **QoS Policy**:<br>- Backup HDD (default)<br>- Backup SSD<br>- Backup Auto |
+| **Alerts** | Configure alerts for:<br>- Success<br>- Failure<br>- SLA Violation<br>Add **email recipients** if required. |
+| **Priority** | Sets execution priority when system load is high:<br>- High<br>- Medium (default)<br>- Low |
+
+11. Configure Include and Exclude Labels:
+
+       - Define rules to:
+          - Include PVCs with specific labels
+          - Exclude PVCs with specific labels
+       - Label matching options:
+          - Match all labels
+          - Match any selected label
+
+12. Create or Select a Protection Policy.
+
+| Option | Description |
+|------|-------------|
+| **Create a New Protection Policy** | A Protection Policy defines how backups are handled. Available options include:<br><br>- **DataLock** – Enables tamper‑proof retention (manageable only by Data Security role users)<br>- **Backup Schedule & Retention** – Defines backup frequency, retention period, and type<br>- **Periodic Full Backups** – Schedule recurring full backups<br>- **Extended Retention** – Retain selected snapshots longer<br>- **Quiet Times** – Block new runs during defined windows<br>- **Retry Options** – Configure snapshot retry behavior |
+| **Use an Existing Protection Policy** | Go to **Policy Management** \> Select the policy \> Click **Edit** \> Update Kubernetes‑specific settings \> Click **Save**.<br><br>**Note:** Policy changes take effect during the **next scheduled protection run**. |
+
+13. You can assign a new Protection Policy to a Kubernetes object, effective from the next scheduled protection run.
+
+   - In **Backup and Recovery Service**, go to `Sources`, select the Kubernetes source, select the namespace and click Protect.
+   - Choose the required policy from the Policy drop-down.
+   - Click `Protect` to apply.
+
+14. Enable Auto Protect. Auto Protect ensures automatic inclusion of new namespaces.
+
+| Auto Protect Type | Steps |
+|-----------------|-------|
+| **Cluster‑Level Auto Protect** | Go to **Protection** \> Select the Kubernetes cluster \> Toggle **Auto Protect** at cluster level \> Click **Protect** to confirm. |
+
+15. Start Protection and Monitor. Click **Protect** to initiate protection. The Protection Service begins backing up selected objects. You can monitor progress at: **Activity** \> **Protection**.
+
+16. IBM Backup and Recovery Service supports application quiescing for stateful Kubernetes workloads. The Supported Quiescing Modes are:
+   - Together Mode - Parallel execution (fast)
+   - Independent Mode - Parallel volume groups (fastest)
+   - Sequential Mode - Ordered execution (most controlled)
+
+Quiescing briefly pauses an application to ensure consistent data for backup. {{site.data.keyword.baas_full_notm}} quiesces stateful Kubernetes workloads before taking PVC snapshots, then automatically unquiesces them once the snapshot is complete.
+{: note}
+
+Here is how to configure:
+
+   1. Select namespace \> click **Edit**.
+   2. Go to Scripts.
+   3. Choose Quiesce Mode.
+   4. Create rules using:
+
+     - Pod selector labels
+     - Pre snapshot scripts
+     - Post snapshot scripts
+   5. Configure failure behaviour.
+   6. Click **Save**.
+
+Scripts run inside containers and have configurable timeouts.
+{: note}
+
+17. Manage Protection Lifecycle.
+
+| Action | Description |
+|------|-------------|
+| **Pause Future Runs** | Protection \> Select job \> Kebab menu \> **Pause Future Runs** |
+| **Resume Protection** | Protection \> Select job \> Kebab menu \> **Resume** |
+| **Delete Protection** | **Delete Object Only**: Keeps snapshots until expiry<br>**Delete Object and Snapshots**: Removes object and all backups |
+
+18. If needed, after you create the protection group, click `Run Now` to start the backup immediately. For more information see [Protection group Run Now](#draft).
+
+## Recovering or restoring backup:
+{: #recovering-restoring-backup}
+
+1. Go to: `Dashboard` \> `Data Protection` \> `Recoveries` and select `Kubernetes Cluster`.
+2. Click **Create New Recovery**.
+3. Search for and select one or more namespaces or a Protection Group (latest snapshot is selected by default).
+4. (Optional) Click the edit icon to choose a different recovery point (local or cloud snapshot).
+5. Click **Next: Recover Options** and choose the **Recovery Location**.
+   - Original location - restores only missing or deleted resources.
+   - New location - restores the full namespace to another registered cluster.
+6. Customize recovery options such as rename(prefix/suffix), task name, PVC Selection, Storage class mapping, Namespace based Resource Inclusion/Exclusion(showing only resources present in the namespace), PVC Inclusion/Exclusion based on labels.
+7. (If recovering between incompatible clusters, for example, `OpenShift` \> `Kubernetes`) Enable **Skip cluster compatibility check**.
+8. Click **Recovery** to start the restore and monitor progress under `Data Protection` \> `Recoveries`.
+
+After completion, the recovered namespace appears in the destination cluster with the configured name or prefix.
+{: note}
+
+
+
 ## Troubleshooting
 {: #data-source-connector-iks-roks-troubleshooting}
 
-You can face issues while registering a Kubernetes/OpenShift cluster as a data source, taking backup or restoring backup with {{site.data.keyword.baas_full_notm}} instance:
+### Data Source Connector related issues
+{: #dsc-troubleshooting}
 
-1. Kubernetes/OpenShift cluster and data source connector should be on the same VPC.
-   1. This is the prerequisites to work with {{site.data.keyword.baas_full_notm}} instance for Kubernetes/OpenShift cluster, data source connector and Kubernetes/OpenShift should be on the same VPC.
-   2. How to verify whether these are on the same VPC:
-      - Verifying Kubernetes/OpenShift's VPC: Go to `Menu → Containers → Clusters`. Go to your cluster's Overview and under Cluster Details check for the VPC (ex : roks-private-vpc).
-   3. How to verify whether these are on the same VPC:
-      1. Verify Kubernetes/OpenShift’s VPC: Go to `Menu → Containers → Clusters`.
-      2. Verify data source connector’s VPC
+#### Data Source Connector Not Appearing After Installation
+{: #dsc-not-appearing}
 
-2. Security Group rules are missing in required Security Groups that are used to allow communications between the data source connector, Kubernetes/OpenShift cluster, and {{site.data.keyword.baas_full_notm}} instance.
-   1. This can be written based on previous steps that are covered in [Configure a data source connector](#data-source-connector-iks-roks-create-configure).
+If the Data Source Connector does not show up in the {{site.data.keyword.baas_full_notm}} service (or related interface) even after completing the installation, follow these steps in order to identify and resolve the issue.
 
-3. Not using the correct brs-backup-agent image
-   1. In case of registration failure, verify that the {{site.data.keyword.baas_full_notm}} backup agent is running or not on the Kubernetes/OpenShift cluster.
-   2. Verify that the {{site.data.keyword.baas_full_notm}} backup agent is running or not:
+1. Verify VPE Gateway Settings Check your VPC configuration to ensure that no VPE (Virtual Private Endpoint) gateway is enabled for the BRS (Backup and Recovery Service) instance.
+2. Confirm the Correct Connection Type Double-check that the connection type selected during setup matches your actual cluster:
+- IKS classic
+- IKS VPC
+- ROKS classic
+- ROKS VPC
 
-      ```sh
-      kubectl get pods -n `kubectl get ns | grep brs-backup-agent | awk '{print $1}'`
-      ```
-      {: pre}
+Using the wrong type prevents the connector from registering correctly and appearing in the console.
 
-   3. If BRS backup agent is not running and getting ImagePullBackOff, then you need to describe the Velero, or DM pods got from previous step and then describe to see what all images you have used at the time of registration.
+3. Use a Fresh, Valid Connection Token Connection tokens can expire quickly.
+- Always generate a new token right before starting the installation.
+- Do not reuse an old or previously generated token, as it may already be invalid.
+4. Install the Latest Version of the Connector Make sure you are deploying the most recent version available:
+- Older versions may have compatibility issues or bugs that prevent proper registration.
+5. Check the Data Source Connector Pod for Issues Inspect the connector pod in your Kubernetes/OpenShift cluster for problems during startup:
+- Run `kubectl describe pod <pod>` (or equivalent oc command) and review the Events section.
+- Look specifically for `Readiness probe failures`, `Volume attachment errors`, and `IAM-related authentication issues during volume mounting/attachment`.
+- If you see IAM/permission errors tied to volume attachment, reset the infrastructure API key by running:
 
-      ```sh
-      kubectl describe pod velero-* -n `kubectl get ns | grep brs-backup-agent | awk '{print $1}'`
-      ```
-      {: pre}
+```sh
+ibmcloud ks api-key reset --region <your-region>
+```
+{: codeblock}
 
-4. Unwanted Security Group rules in the Security Groups of the data source connector.
-   - You can face connectivity issues in case of [VPC security groups](#how-to-identify-sc-dcs) has redundant rules specifically when Kubernetes/OpenShift cluster deleted and Security Group still containing `Unknown` source, all these rules need to be cleaned up specially from the data source connector security group.
+Then, restart or redeploy the affected pod or pods as needed. This refreshes the credentials used for storage and infrastructure operations.
 
-5. Check health of the [data source connector](#data-source-connector-iks-roks-create-configure)
-   1. [Assign the floating IP](#data-source-connector-iks-roks-create-configure).
-   2. Access by using floating IP and check whether it shows status as `healthy`.
+Next Steps if the issue persists:
+- Review pod logs (`kubectl exec -it brs-ds-connector-0 -n ibm-brs-data-source-connector -- cat /cohesity_logs/iris_exec.ERROR`) for more detailed error messages.
+- Confirm the connector is successfully authenticated with the Backup and Recovery service (this may take a few extra minutes after deployment).
+- Open a support case with logs and the output of the above commands.
 
-6. If you still face this issue, collect the logs by running the script.
-   1. [Download the script](https://support-tools.s3.us-south.cloud-object-storage.appdomain.cloud/k8s_info_fetcher.sh).
-   2. Change permission to the executable by using `chmod`.
-   3. Configure kubectl or oc command with your cluster where the backup/restore is failing.
+#### DSC Pod Scheduling and Zonal Constraints
+{: #dsc-pod-scheduling}
+
+Data Services (DSC) is deployed as a StatefulSet, which relies on the VPC Block CSI driver. Because VPC Block storage is a zonal resource, a Persistent Volume (PV) created in "Zone A" cannot be attached to a pod running in "Zone B."
+If you modify your cluster's zones or experience a zonal outage, your DSC pods may enter a `Pending` state or fail to attach storage.
+
+**Common Symptoms**
+- DSC Pods remain in `Pending` status indefinitely.
+- Describe pod errors such as: `node(s) had volume node affinity conflict`.
+- Errors indicating: `FailedAttachVolume` or `Volume is already in use by another pod`.
+
+**Root Cause Analysis**
+This issue typically occurs under three scenarios:
+- Zone Removal: A zone was removed from the worker pool, but DSC volumes still reside in that zone.
+- Configuration Change: The cluster's zonal layout was modified after the initial DSC installation.
+- Zonal Outage: A specific zone is experiencing a service disruption, preventing the CSI driver from mounting the volume.
+
+**Resolution Steps**
+
+Option 1: Restore the Original Zonal Configuration (Recommended)
+The fastest way to restore service is to bring the cluster back to the state it was in when DSC was first deployed.
+- Step: Readd the removed zones to your worker pool.
+- Result: The scheduler recognizes the nodes in those zones and successfully bind the existing VPC Block volumes to the DSC pods.
+
+Option 2: Reinstall DSC
+If you must move to a new zonal configuration and do not need to persist the existing data, a fresh installation is required.
+- Completely uninstall the DSC deployment.
+- Ensure the Persistent Volume Claims (PVCs) and PVs associated with the old zones are deleted.
+- Reinstall DSC. This will allow the CSI driver to provision new volumes in the currently active zones.
+
+### Source registration-related issues
+{: #registration-troubleshooting}
+
+#### Data Source Connector & Cluster Alignment
+{: #dsc-allignment}
+
+To ensure successful source registration and maintain data integrity, please follow these deployment requirements:
+1. **Single Installation Policy**: Each Kubernetes or OpenShift cluster must have only one release of the Data Source Connector installed.
+2. **Dedicated Cluster Pairing**: Every cluster should be paired with its own unique Data Source Connection.
+3. **Connection Integrity**: While it is technically possible to share a single Data Source Connection across multiple clusters, we strongly recommend a **dedicated connection per cluster**. This alignment prevents data inconsistencies and ensures a successful handshake between the Data connector and the source cluster.
+
+#### Incorrect brs-backup-agent image
+{: #incorrect-backup-agent}
+
+In case of registration failure, verify that the IBM Cloud Backup and Recovery backup agent is running or not on the Kubernetes/OpenShift cluster.
+
+Check if the backup agent is running:
+```bash
+kubectl get pods -n `kubectl get ns | grep brs-backup-agent | awk '{print $1}'`
+```
+
+If BRS backup agent is not running and getting ImagePullBackOff, then you need to describe the Velero, or DM pods got from previous step and then describe to see what all images you have used at the time of registration.
+```bash
+kubectl describe pod velero-* -n `kubectl get ns | grep brs-backup-agent | awk '{print $1}'`
+kubectl describe pod cohesity-dm-* -n `kubectl get ns | grep brs-backup-agent | awk '{print $1}'`
+```
+
+#### Check Health of the Connector
+{: #connector-health}
+
+To verify the status of your connection and ensure the connector is operating correctly, follow these steps in the console:
+1. Navigate to the Health Status: Go to `System` \> `Data Source Connection`.
+2. Verify Connectivity: Locate your specific Data Source Connection and confirm that both the `Connection` and the `Connector` are showing a `Healthy` status.
+
+#### HTTP Connection Errors
+{: #http-connection-error}
+
+If you encounter an HTTP connection error on the Data Protection > Sources page during registration, please follow these verification steps to identify and resolve the issue:
+
+1. **Verify Cluster and Resource Integrity**: Confirm that your Kubernetes or OpenShift cluster is active and has not been deleted or scaled down. Ensure that all core resources associated with the integration are intact and fully functional.
+2. **Check Health of Velero and Datamover Pods**: Verify that the Velero and datamover pods are in a Running state within the `brs-backup-agent-<uuid>` namespace. If these pods are offline or experiencing frequent restarts, the connector will be unable to process data requests successfully.Make sure the right images are being used for veloro and data mover pods. See [Incorrect brs-backup-agent image](#incorrect-backup-agent).
+3. **Verify Data Source Connector Status**:
+   1. Ensure Data source connector is healthy. See [Check Health of the Connector](#connector-health).
+   2. Ensure the Data Source Connector (DSC) pods are running correctly within the ibm-brs-data-source-connector namespace. Check for any deployment failures, such as restart loops or ImagePullBackOff errors, to ensure the connector is in a healthy state.
+4. **Review Network Security Rules**: Inspect your VPC and cluster-level security groups or Network ACLs to ensure no recent firewall rules or security policies are blocking the connector's traffic. While the required communication on ports **443 (communication to cos storage)** and **29991(communication to cohesity cluster)** is typically enabled by default and does not require manual configuration, you should verify that no custom outbound or inbound restrictions have been implemented that might inadvertently disrupt connectivity on these specific ports.
+
+### Alerts troubleshoot
+{: #alert-troubleshooting}
+
+#### Monitoring Alerts and Debugging Failed Jobs
+{: #monitor-alert}
+
+If you see an alert in the `System` \> `Health` dashboard, follow these steps to identify and resolve the underlying issue.
+
+**Verify environment integrity**:
+
+Before diving into detailed logs, perform a quick high-level check to ensure the foundation of your integration is still valid:
+- **Source Registration**: Navigate to the `Data Protection` > `Sources` page to confirm the source registration is still intact and has not been accidentally removed.
+- **Resource Availability**: Verify that the underlying Kubernetes or OpenShift cluster resources are active and have not been deleted or scaled down, as this will cause all associated jobs to fail.
+
+**Identifying the Alert**:
+When a job fails, a health alert is generated with a description that helps pinpoint the source of the error.
+1. **Locate the Details**: The alert description will specify the **Protection Group** name and the **type of job** that failed.
+2. **Example Alert**: `Backup run of protection group [Group-Name] of type kKubernetes failed`.
+3. **Check the Cause**: The alert will often include a summary of the failure cause to give you an immediate starting point for troubleshooting.

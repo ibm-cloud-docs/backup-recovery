@@ -81,6 +81,10 @@ toc:
           label: Kubernetes/OpenShift (Beta)
           topics:
           - iks_roks/getting-started-iks-roks.md
+          - iks_roks/protecting-namespace-cluster-iks-roks.md
+          - iks_roks/recover-restore-iks-roks.md
+          - iks_roks/run-now-iks-roks.md
+          - iks_roks/troubleshoot-iks-roks.md
       - topicgroup:
           label: Setting up access control
           topics:
