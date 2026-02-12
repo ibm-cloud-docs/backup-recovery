@@ -14,7 +14,7 @@ subcollection: backup-recovery
 {{site.data.keyword.attribute-definition-list}}
 
 # Protection group Run Now
-{: #data-source-connector-iks-roks}
+{: #protection-group-run-now}
 
 The Run Now feature allows you to immediately start a backup for the objects included in a Protection Group, without waiting for a scheduled policy.
 This is useful for:
