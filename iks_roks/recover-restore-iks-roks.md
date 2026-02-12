@@ -29,9 +29,8 @@ For example, a Kubernetes namespace you want to restore to the same location con
 
 To restore the namespaces of a Kubernetes cluster to the same location:
 
-1. In the BRS UI, navigate to `Dashboard` \> `Data Protection` \> `Recoveries`.
-2. Click `Recovery `on the upper-right of the page and then select `Kubernetes Cluster` \> `Namespace` as the recovery source.
-    The Kubernetes Namespaces page appears.
+1. In the {{site.data.keyword.baas_full_notm}} UI, navigate to `Dashboard` \> `Data Protection` \> `Recoveries`.
+2. Click `Recovery `on the upper-right of the page and then select `Kubernetes Cluster` \> `Namespace` as the recovery source.<br> The Kubernetes Namespaces page appears.
 3. Search for a namespace or Protection Group that contains the snapshots to recover from by entering characters of the namespace name, Protection Group name, or by specifying the wildcard character `*`.
 You can optionally filter the search results by source, Protection Group, Storage Domain, or date.
 
@@ -58,7 +57,6 @@ To choose a different snapshot for a Namespace:
  - Select the snapshots to be recovered.
  - Optionally, you can also select snapshots archived to the cloud by clicking the cloud icon if available in the `Location` option.
  - Click Select Recovery Point and then go to step 6.
-
 6. Click Next: Recover Options.
 7. From the `Recover To` options, select `Original Location` to recover the namespace to the original location.
 8. Edit the default settings of the following Recovery Options:

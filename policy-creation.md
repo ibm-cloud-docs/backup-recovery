@@ -40,9 +40,10 @@ These privileges can be assigned by your IBM Cloud account administrator using a
 {: #baas-access-dashboard}
 
 1. Log in to the [IBM Cloud Platform account](https://cloud.ibm.com/){: external}.
-2. Open the Navigation Menu (four horizontal lines in the upper left corner) and select Resource List.
-3. Expand Storage, and select your {{site.data.keyword.baas_full_notm}} instance.
-4. Enter your SSO or account credentials to authenticate.
+2. Go to `Navigation Menu` \> `Backup and Recovery`.
+3. Search for and select your {{site.data.keyword.baas_full_notm}} instance.
+4. On the instance details page, click `Launch dashboard`.
+5. Enter your SSO or account credentials to authenticate.
 
 After authentication, the {{site.data.keyword.baas_full_notm}} dashboard is displayed, where you can create and manage Protection Policies.
 
@@ -62,7 +63,7 @@ To create a new Protection Policy:
 2. Click `Create Policy` and enter a Policy Name.
 3. Configure the backup schedule and frequency.
 4. Configure the retention period for backup snapshots.
-5. (Optional) Configure advanced options such as [DataLock](/docs/backup-recovery?topic=backup-recovery-datalock), [indexing](/docs/backup-recovery?topic=backup-recovery-customize_indexing), or [pre/post scripts](/docs/backup-recovery?topic=backup-recovery-configure-pre-post-scripts).
+5. (Optional) Configure advanced options such as [DataLock](/docs/backup-recovery?topic=backup-recovery-datalock).
 6. Click Create to save the policy.
 
 Once created, the policy can be applied to Protection Groups to control how your workloads are protected.

@@ -36,9 +36,7 @@ Here is how to protect a namespace or cluster and schedule a backup:
 6. Choose one of the following:
    - One or more namespaces (you can also exclude namespace based on lables)
    - Entire cluster (if supported by your deployment)
-
 7. Click **Protect**.
-
    IBM Backup and Recovery service supports backup of:
    - Persistent Volume Claims (PVCs)
    - Kubernetes cluster resources
@@ -72,7 +70,6 @@ Here is how to protect a namespace or cluster and schedule a backup:
 | **Priority** | Sets execution priority when system load is high:<br>- High<br>- Medium (default)<br>- Low |
 
 11. Configure Include and Exclude Labels:
-
        - Define rules to:
           - Include PVCs with specific labels
           - Exclude PVCs with specific labels
@@ -88,20 +85,17 @@ Here is how to protect a namespace or cluster and schedule a backup:
 | **Use an Existing Protection Policy** | Go to **Policy Management** \> Select the policy \> Click **Edit** \> Update Kubernetes‑specific settings \> Click **Save**.<br><br>**Note:** Policy changes take effect during the **next scheduled protection run**. |
 
 13. You can assign a new Protection Policy to a Kubernetes object, effective from the next scheduled protection run.
-
-   - In **Backup and Recovery Service**, go to `Sources`, select the Kubernetes source, select the namespace and click Protect.
-   - Choose the required policy from the Policy drop-down.
-   - Click `Protect` to apply.
+    - In **Backup and Recovery Service**, go to `Sources`, select the Kubernetes source, select the namespace and click Protect.
+    - Choose the required policy from the Policy drop-down.
+    - Click `Protect` to apply.
 
 14. Exclude namespace based on labels:
-
     1. In Protection, under Objects click on Labels.
     2. Select a label.
     3. Click on STOP icon (Upon hovering it shows `Exclude Tag Off. Click to exclude this label`).
     4. Selected namespace will be excluded and Excluded will be shown corresponding to namespace.
 
 15. Every namespace can be customized while creating protection run, this include:
-
     1. Inclusion/Exclusion of PVC’s - Include/Exclude PVC that are available in a namespace.
     2. Inclusion/Exclusion of Resources- Include/Exclude Resources - Pods. Demon Set, Replica Set, Secret, Service, Stateful Set, and so on.
     3. Scripts- Select the Quiesce Mode and Add Rules(Pre/Post Snapshot Scripts).
@@ -120,7 +114,6 @@ When Auto Protect is enabled:
    - Existing backups of removed or unlabeled namespaces remain preserved until their configured retention period expires.
 
 17. Start Protection and Monitor. Click **Protect** to initiate protection. The Protection Service begins backing up selected objects. You can monitor progress at: **Activity** \> **Protection**.
-
 18. BRS supports quiescing stateful Kubernetes workloads to ensure consistent and reliable PVC snapshots. Before capturing a snapshot, it temporarily pauses the application to bring it to a quiesced state, creating a stable and consistent backup point. Once the snapshot is successfully taken, the workloads are automatically unquiesced, allowing them to resume normal operation with minimal disruption. The Supported Quiescing Modes are:
 
     **Together mode**: All quiescing rules run in parallel within a single volume group, quiescing the application simultaneously, taking snapshots together, and unquiescing once — offering faster performance than sequential execution.
@@ -172,4 +165,4 @@ Scripts run inside containers and have configurable timeouts.
 | **Resume Protection** | Protection \> Select job \> Kebab menu \> **Resume** |
 | **Delete Protection** | **Delete Object Only**: Keeps snapshots until expiry<br>**Delete Object and Snapshots**: Removes object and all backups |
 
-20. If needed, after you create the protection group, click `Run Now` to start the backup immediately. For more information see the [Protection group Run Now](#draft).
+20. If needed, after you create the protection group, click `Run Now` to start the backup immediately. For more information see the [Protection group Run Now](/docs/backup-recovery?topic=backup-recovery-protection-group-run-now).
