@@ -62,7 +62,7 @@ toc:
           label: Protect a Kubernetes/OpenShift Server (Beta use only)
           topics:
           - iks_roks/backup-iksroks.md
-          - iks_roks?recover-iksroks.md
+          - iks_roks/recover-iksroks.md
       - topicgroup:
           label: Backup and Recovery Manager
           topics:
