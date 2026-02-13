@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2024, 2025
-lastupdated: "2025-12-12"
+  years: 2024, 2026
+lastupdated: "2026-02-12"
 
 keywords: <KEYWORDS>
 
@@ -16,11 +16,12 @@ subcollection: backup-recovery
 {: #extended_retention}
 
 
-Snapshots selected for extended retention are retained for a longer time than defined in the protection schedule. You can retain the first snapshot of the backup run taken on the specified hours, every run, days, weeks, months, or years for a longer period of time.
+Extended retention allows specific snapshots to be kept for a longer period than the normal retention defined in the protection policy.
 
-The retention period can be set to a maximum value of 365000 days.
+Using extended retention, you can preserve specific backups such as the first snapshot taken every hour, day, week, month, or year for compliance, auditing, or long-term archival purposes. The retention period can be set to a maximum value of **365,000 days**.
 
-The table below lists the options available for protection policy and extended retention policy and the respective outcome.
+**Extended Retention Behaviour Matrix**
+The following tables describe how extended retention behaves based on the configured **backup schedule** and **extended retention rule**.
 
 
 | Backup | Extended Retention | Description | Example |
@@ -46,19 +47,48 @@ The table below lists the options available for protection policy and extended r
 | Days |
 | Weeks |
 | Months | The first snapshot captured during the specified month is retained for the number of days as mentioned in the extended retention policy. Every subsequent snapshot captured is retained for the number of days specified in the backup policy. | Define a backup policy that captures snapshots every month and retains the snapshot for 14 days. Specify an extended retention policy to capture the first snapshot taken every two months and retain the snapshot for 28 days.<br><br>**January, February** - The first snapshot captured is retained for 28 days. Every subsequent snapshot captured in the month is retained for 14 days. <br><br>**March, April** - The first snapshot captured is retained for 28 days. |
-{: caption="" caption-side="bottom"}
 
-You can create one or more extended schedules. For example, you could define a protection schedule that captures snapshots every hour and retains them on the {{site.data.keyword.baas_full_notm}} for 1 day. This protection schedule retains 24 sets of snapshots on a rotating basis, each hour a new set of snapshots are retained and the oldest set of snapshots is deleted.
-If you want to retain a subset of these snapshots for a longer period of time, you could define an additional extended retention schedule to retain a single subset of snapshots daily for 90 days. This extended retention schedule retains 90 sets of snapshots on a rotating basis, each day a new set of snapshots are retained and the oldest set of snapshots is deleted.
 
-If you specify multiple extended retention rules for the same set of snapshots with different retention periods, the snapshots are retained for the longest specified time period. For example if you define two extended retention rules that retain the same set of snapshots but one rule specifies a retention period of 90 days and another specifies a retention period of 180 days, the set of snapshots are retained for 180 days.
+**Multiple Extended Retention Schedules**
 
-For backup, archive, replication, and CloudSpin; the extended retention schedule is as follows:
+You can create **one or more extended retention schedules** within a Protection Policy.
 
-*   **Weekly**: The first successful run that started on a Sunday or later.
-*   **Monthly**: The first successful run that started on the first day of the month or later.
-*   **Yearly**: The first successful run that started on the first day of the year or later.
+For example, you might define a protection schedule that captures hourly snapshots and retains them for **1 day**. This schedule maintains 24 sets of snapshots on a rotating basis. Each hour, a new snapshot is retained, and the oldest snapshot is deleted.
 
-For backup schedule, {{site.data.keyword.baas_full_notm}} allows you to set the day for weekly backup and any day of the week for monthly backup.
+If you need to retain a subset of these snapshots for a longer period, you can configure an **additional extended retention schedule**. For instance, you could retain the first snapshot taken each day for **90 days**. In this case, the extended retention schedule maintains 90 daily snapshots on a rotating basis, with the oldest snapshot deleted as a new one is added.
 
-If a backup fails, the extended retention is applied to the next scheduled snapshot taken by the {{site.data.keyword.baas_full_notm}}. However, if a manual backup was run in place of the failed backup after selecting "all objects" when selecting the VMs, extended retention is applied to the manual snapshot. For example, you've set the extended retention to be applied on the first snapshot on the first of every month. The scheduled backup on Feb 1st fails. After selecting all the objects (VMs), you run a manual backup successfully. The extended retention is applied to the snapshot of the manual backup.
+**Multiple Rules Applied to the Same Snapshots**
+
+If multiple extended retention rules apply to the same set of snapshots with different retention periods, the snapshots are retained for the **longest specified duration**.
+
+For example, if two extended retention rules apply to the same snapshots, one with a retention period of 90 days and another with 180 days, the snapshots are retained for **180 days**.
+
+**How Extended Retention Determines Eligible Snapshots**
+For backup, archive, replication, and CloudSpin schedules, extended retention selects snapshots based on the following logic:
+- **Weekly** – The first successful run that starts on **Sunday or later**.
+
+- **Monthly** – The first successful run that starts on the **first day of the month or later**.
+
+- **Yearly** – The first successful run that starts on the **first day of the year or later**.
+
+For standard backup schedules, IBM Cloud Backup and Recovery also allows you to configure:
+
+- Any day of the week for **weekly** extended retention
+
+- Any day of the month for **monthly** extended retention
+
+**Behaviour When Scheduled Backups Fail**
+
+If a scheduled backup that qualifies for extended retention fails, extended retention is applied to the **next successful scheduled snapshot**.
+
+However, if a manual backup is performed in place of the failed scheduled backup after selecting all objects, extended retention is applied to that manual snapshot instead.
+
+**Example**:
+
+- Extended retention is configured to apply to the first snapshot on the first day of each month.
+
+- The scheduled backup on February 1st fails.
+
+- A manual backup is run successfully after selecting all objects (VMs).
+
+- Extended retention is applied to the snapshot created by the manual backup.

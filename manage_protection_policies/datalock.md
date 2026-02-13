@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2024, 2025
-lastupdated: "2025-12-12"
+  years: 2024, 2026
+lastupdated: "2026-02-12"
 
 keywords: <KEYWORDS>
 
@@ -15,34 +15,30 @@ subcollection: backup-recovery
 # Datalock
 {: #datalock}
 
+**DataLock** is a security and compliance feature in {{site.data.keyword.baas_full}} that enforces WORM (Write Once, Read Many) protection for backup data.
 
-DataLock is the {{site.data.keyword.baas_full}} WORM (write once read many) feature that locks and retains files for compliance and regulatory purposes and to protect the files from accidental deletion or modification.
+When DataLock is enabled, protected snapshots and archives cannot be modified or deleted until the configured lock period expires. This helps meet regulatory requirements and protects backup data from accidental or malicious deletion.
 
-DataLock enables your storage to be WORM-compliant. When it is enabled, your data such as backups and archives cannot be tampered with or deleted. This results in the prevention of ransomware attacks on your clusters.
-
-The {{site.data.keyword.baas_full_notm}} Console displays a lock icon to indicate DataLocked policies and snapshots.
+In the {{site.data.keyword.baas_full_notm}} instance dashboard, a lock icon is displayed next to policies and snapshots that are protected by DataLock.
 
 ## Features of datalock
 {: #features_of_datalock}
 
-*   You can apply DataLock for each schedule (such as backup, extended retention, archive, and replication) defined in the Protection Policy.
+With DataLock, you can:
 
-*   You can specify DataLock duration in days, weeks, months, or years for each schedule defined in the Protection Policy.
-
+- Enable retention locking for individual schedules within a Protection Policy (backup, archive, replication).
+- Define a DataLock duration in `days`, `weeks`, `months`, or `years`.
+- Prevent deletion of snapshots until the lock period expires.
+- Apply different lock durations for different schedules within the same policy.
 
 ## Considerations
 {: #considerations}
 
-*   The DataLock expiry date:
-
-    *   Doesn’t get extended if you extend the snapshot retention time of the runs that were created after the extension.
-
-    *   Gets extended if you extend the snapshot retention time of the runs that were created before the extension.
-
-*   Using DataLock with longer snapshot retention periods and for auto-protected sources can result in the cluster running out of space.
-
-*   DataLock retention must be less than or equal to backup retention.
-
+- The DataLock expiry date is tied to the original snapshot creation time.
+- Extending the retention period of **existing snapshots** extends the DataLock expiry.
+- Extending retention for **new snapshots** does not modify the DataLock expiry of previously created snapshots.
+- Using long retention periods with DataLock, especially for auto-protected sources, can increase storage consumption.
+- The DataLock retention period must always be **less than or equal to** the configured backup retention period.
 
 ## Policy
 {: #policy}
@@ -66,7 +62,7 @@ The following table provides DataLock details when created by a user with a Data
 | --- | --- | --- |
 | **Run Now** | *   Able to edit the backup retention period.<br>    <br>*   Able to add a new target but the DataLock setting is not available.<br>    <br>*   If you want to specify DataLock for a new target it must be enabled when creating or editing the protection policy.<br>    <br>*   Delete existing targets irrespective of the DataLock setting. | *   Able to edit the backup retention period.<br>    <br>*   Able to add a new target but the DataLock setting is not available.<br>    <br>*   If you want to specify DataLock for a new target it must be enabled when creating the protection policy.<br>    <br>*   Delete existing targets irrespective of the DataLock setting. |
 | **Edit Run** | *   Able to edit the backup retention period.<br>    <br>*   Able to add a new target but the DataLock setting is not available. If you want to add DataLock to a new target it must be enabled when creating or editing the protection policy.<br>    <br>*   Unable to delete existing targets.<br>    <br>*   Delete the DataLocked snapshot only if the Lock retention period expires or DataLock is disabled on the snapshot. | *   Able to edit the backup retention period.<br>    <br>*   Able to add a new target but the DataLock setting is not available. If you want to add DataLock to a new target it must be enabled when creating the protection policy.<br>    <br>*   Unable to delete existing targets.<br>    <br>*   Delete the DataLocked snapshot if the Lock retention period expires or DataLock is disabled on the snapshot. |
-{: caption="" caption-side="bottom"}
+
 
 ## Upgrade
 {: #upgrade}
@@ -75,4 +71,3 @@ The following table provides DataLock details when created by a user with a Data
 | Upgraded Cluster | New Cluster |
 | --- | --- |
 | *   No change to the existing system and user-created policies.<br>    <br>*   DataLock is enabled by default when creating a new policy.<br>    <br>*   You can disable DataLock on specific targets (Backup, Replication, Archival, and CloudSpin) when creating a new policy irrespective of the user’s role. | *   DataLock is enabled by default for both system policy and new policy created by a user.<br>    <br>*   You can disable DataLock on specific targets (Backup, Replication, Archival, and CloudSpin) when creating a new policy irrespective of the user’s role. |
-{: caption="" caption-side="bottom"}

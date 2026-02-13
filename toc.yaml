@@ -39,7 +39,7 @@ toc:
       - topicgroup:
           label: Protect a Physical Server (File-based)
           topics:
-          - backup-linux.md
+          - backup-linux-basic.md
           - backup-windows.md
           - recover-linux.md
           - recover-windows.md
@@ -59,11 +59,6 @@ toc:
           - sap_hana/BackupSAPHANASource.md
           - sap_hana/RestoreSAPHANADB.md
       - topicgroup:
-          label: Protect a Kubernetes/OpenShift Server (Beta use only)
-          topics:
-          - iks_roks/backup-iksroks.md
-          - iks_roks?recover-iksroks.md
-      - topicgroup:
           label: Backup and Recovery Manager
           topics:
           - global_mgmt_console/tutorial-gmc.md
@@ -81,6 +76,10 @@ toc:
           label: Kubernetes/OpenShift (Beta)
           topics:
           - iks_roks/getting-started-iks-roks.md
+          - iks_roks/protecting-namespace-cluster-iks-roks.md
+          - iks_roks/recover-restore-iks-roks.md
+          - iks_roks/run-now-iks-roks.md
+          - iks_roks/troubleshoot-iks-roks.md
       - topicgroup:
           label: Setting up access control
           topics:
