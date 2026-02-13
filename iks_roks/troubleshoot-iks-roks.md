@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2026-02-12"
+lastupdated: "2026-02-13"
 
 keywords: data source connector, iks, roks, cluster, run now
 
@@ -129,7 +129,7 @@ If you encounter an HTTP connection error on the Data Protection > Sources page 
 3. **Verify Data Source Connector Status**:
    1. Ensure Data source connector is healthy. See [Check Health of the Connector](#connector-health).
    2. Ensure the Data Source Connector (DSC) pods are running correctly within the ibm-brs-data-source-connector namespace. Check for any deployment failures, such as restart loops or ImagePullBackOff errors, to ensure the connector is in a healthy state.
-4. **Review Network Security Rules**: Inspect your VPC and cluster-level security groups or Network ACLs to ensure no recent firewall rules or security policies are blocking the connector's traffic. While the required communication on ports **443 (communication to cos storage)** and **29991(communication to cohesity cluster)** is typically enabled by default and does not require manual configuration, you should verify that no custom outbound or inbound restrictions have been implemented that might inadvertently disrupt connectivity on these specific ports.
+4. **Review Network Security Rules**: Inspect your VPC and cluster-level security groups or Network ACLs to ensure no recent firewall rules or security policies are blocking the connector's traffic. While the required communication on ports **443 (communication to cos storage)** and **29991(communication to backup recovery service cluster)** is typically enabled by default and does not require manual configuration, you should verify that no custom outbound or inbound restrictions have been implemented that might inadvertently disrupt connectivity on these specific ports.
 
 ## Alerts troubleshoot
 {: #alert-troubleshooting}

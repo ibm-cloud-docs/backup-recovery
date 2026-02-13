@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2026-02-12"
+lastupdated: "2026-02-13"
 
 keywords: <KEYWORDS>
 
@@ -89,7 +89,7 @@ To choose a different snapshot for a Namespace:
 You can recover the namespaces of the Kubernetes to an alternative Kubernetes cluster that is registered with the BRS instance. If you are recovering the Kubernetes namespace to an alternative location, then the entire namespace is restored. However, if you are restoring to this location again, then BRS will not restore the resources, PVCs, or the metadata of the Kubernetes namespace that already exist in the location.
 
 To restore the namespaces of a Kubernetes cluster to a new location:
-1. In the BRS UI, navigate to: `Dashboard` \> `Data Protection` \> `Recoveries`.
+1. In the {{site.data.keyword.baas_full_notm}} UI, navigate to: `Dashboard` \> `Data Protection` \> `Recoveries`.
 2. Click `Recovery` on the upper-right of the page and then select `Kubernetes Cluster` \> `Namespace` as the recovery source.<br> The Kubernetes Namespaces page appears.
 3. Search for a namespace or Protection Group that contains the snapshots to recover from by entering characters of the namespace name, Protection Group name, or by specifying the wildcard character `*`.<br> You can optionally filter the search results by source, Protection Group, Storage Domain, or date.
 4. From the list of search results, select one or more objects (namespaces) or Protection Groups that contain the snapshots to recover. By default, the latest snapshot is selected for recovery.

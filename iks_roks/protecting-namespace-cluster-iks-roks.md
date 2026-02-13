@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2026-02-12"
+lastupdated: "2026-02-13"
 
 keywords: data source connector, iks, roks, cluster
 
@@ -53,12 +53,10 @@ Here is how to protect a namespace or cluster and schedule a backup:
 | **Use an Existing Protection Group** | All settings are **prefilled** from the existing group.<br>Fields are **read-only** and cannot be modified at this stage. |
 
 9. Configure the CSI Snapshot Protection.
-
    - Enable Leverage CSI Snapshot (toggle).
    - When enabled:
       - PVCs are protected using CSI driver snapshots.
       - Snapshots are crash consistent, capturing the volume state at the snapshot moment.
-
 10. Configure Additional Protection Settings.
 
 | Category | Description |
@@ -76,7 +74,6 @@ Here is how to protect a namespace or cluster and schedule a backup:
        - Label matching options:
           - Match all labels
           - Match any selected label
-
 12. Create or Select a Protection Policy.
 
 | Option | Description |
@@ -88,19 +85,15 @@ Here is how to protect a namespace or cluster and schedule a backup:
     - In **Backup and Recovery Service**, go to `Sources`, select the Kubernetes source, select the namespace and click Protect.
     - Choose the required policy from the Policy drop-down.
     - Click `Protect` to apply.
-
 14. Exclude namespace based on labels:
     1. In Protection, under Objects click on Labels.
     2. Select a label.
     3. Click on STOP icon (Upon hovering it shows `Exclude Tag Off. Click to exclude this label`).
     4. Selected namespace will be excluded and Excluded will be shown corresponding to namespace.
-
 15. Every namespace can be customized while creating protection run, this include:
     1. Inclusion/Exclusion of PVC’s - Include/Exclude PVC that are available in a namespace.
     2. Inclusion/Exclusion of Resources- Include/Exclude Resources - Pods. Demon Set, Replica Set, Secret, Service, Stateful Set, and so on.
-    3. Scripts- Select the Quiesce Mode and Add Rules(Pre/Post Snapshot Scripts).
-
-Once either of the above three are added to a namespace, it is customized and corresponding to namespace we can see Customized with a pencil icon.
+    3. Scripts- Select the Quiesce Mode and Add Rules(Pre/Post Snapshot Scripts).<br> Once either of the above three are added to a namespace, it is customized and corresponding to namespace we can see Customized with a pencil icon.
 
 16. Enable Auto Protect. Auto Protect ensures automatic inclusion of new namespaces.
 
@@ -112,7 +105,6 @@ When Auto Protect is enabled:
    - Newly created namespaces or existing namespaces that receive the selected protection label are automatically added to the protection group and included in the next scheduled backup run.
    - Namespaces that are deleted from the cluster or have the protection label removed are automatically excluded from all future backup operations.
    - Existing backups of removed or unlabeled namespaces remain preserved until their configured retention period expires.
-
 17. Start Protection and Monitor. Click **Protect** to initiate protection. The Protection Service begins backing up selected objects. You can monitor progress at: **Activity** \> **Protection**.
 18. BRS supports quiescing stateful Kubernetes workloads to ensure consistent and reliable PVC snapshots. Before capturing a snapshot, it temporarily pauses the application to bring it to a quiesced state, creating a stable and consistent backup point. Once the snapshot is successfully taken, the workloads are automatically unquiesced, allowing them to resume normal operation with minimal disruption. The Supported Quiescing Modes are:
 
@@ -133,7 +125,7 @@ To configure quiescing for a namespace:
    5. Set the failure behavior (for example, continue or fail the backup on script/rule error).
    6. Click Save to apply the configuration.
 
-IBM Backup and Recovery Service supports application quiescing for stateful Kubernetes workloads. The Supported Quiescing Modes are:
+{{site.data.keyword.baas_full_notm}} supports application quiescing for stateful Kubernetes workloads. The Supported Quiescing Modes are:
    - Together Mode - Parallel execution (fast)
    - Independent Mode - Parallel volume groups (fastest)
    - Sequential Mode - Ordered execution (most controlled)

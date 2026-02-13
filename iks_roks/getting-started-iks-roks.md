@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2026-02-12"
+lastupdated: "2026-02-13"
 
 keywords: data source connector, iks, roks, cluster
 
@@ -16,7 +16,7 @@ subcollection: backup-recovery
 # Register Kubernetes/OpenShift as a data source
 {: #data-source-connector-iks-roks}
 
-This information is provided for beta use only and is subject to change. Only region Washington DC (us-east) is available now for this feature.
+This information is provided for beta use only and is subject to change. Only the regions us-east, us-south, eu-fr2, and eu-es are available now for this feature.
 {: beta}
 
 You must create a data source connector on the same VPC where the Kubernetes/OpenShift cluster is deployed.
@@ -105,7 +105,7 @@ Ensure the node has sufficient CPU and memory to run the Containerized Data Sour
 {: #data-source-connector-iks-roks-create-data-source-connection}
 
 1. Open the instance dashboard that was discussed in an earlier step on [Accessing your instances](#data-source-connector-iks-roks-access-instance).
-2. Go to: `Dashboard → System → Data Source Connections`.
+2. Go to: `Dashboard` \> `System` \> `Data Source Connections`.
 3. Click `New Connection`.
 4. Under the Deployment Platform, select one of the following options:
 
@@ -183,32 +183,19 @@ Ensure the node has sufficient CPU and memory to run the Containerized Data Sour
 
    
 
-## How to identify the security group for the data source connector
-{: #how-to-identify-sc-dcs}
-
-1. Go to `Menu → Infrastructure → Compute → Virtual server Instances.`
-2. Filter the Virtual server instances based on a region where you created data source connector: Washington DC (us-east).
-3. Search for a data source connector VSI name, and click the one you selected.
-4. You find tab options for **Overview**, **Networking**, **Storage**, **Monitoring,** and more. Click the **Networking** tab.
-5. Now, you see `eth0` as an interface and in the **Security Group** column, click **option.**
-6. Click the name of the Security Group, a new page opens, and now you can add inbound and outbound rules as shown in the rules provided. -->
 
 
 
 
 
-## How to get the Kubernetes/OpenShift cluster ID
-{: #how-to-get-iks-roks-cluster-id}
 
-1. Go to `Menu → Containers → Clusters.`
-2. Filter by location: Washington DC(us-east) and search for your cluster name or ID.
-3. Click cluster and in the **Overview** page look for the Cluster Details section to get the cluster ID.
+
 
 ## How to get the Kubernetes/OpenShift cluster endpoint
 {: #how-to-get-iks-roks-endpoint}
 
-1. Go to `Menu → Containers → Clusters.`
-2. Filter by location: Washington DC(us-east).
+1. Go to `Menu` \> `Containers` \> `Clusters`.
+2. Filter by location. For example, Washington DC(us-east).
 3. The endpoint can be found in the **Overview page** in the Networking section where you can find the information for your private and public endpoints.
 
 
@@ -222,7 +209,7 @@ Ensure the node has sufficient CPU and memory to run the Containerized Data Sour
 {: #data-source-connector-iks-roks-register}
 
 1. Open your {{site.data.keyword.baas_full_notm}} instance.
-2. Go to: `Dashboard → Data Protection → Sources → Register Source`.
+2. Go to: `Dashboard` \> `Data Protection` \> `Sources` \> `Register Source`.
 3. Choose the Kubernetes cluster type.
 4. Select the previously created [data source connection](#data-source-connector-iks-roks-create-data-source-connection), or create a new connection.
 5. Click **Continue**.
