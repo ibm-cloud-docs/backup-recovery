@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2026-02-13"
+lastupdated: "2026-02-16"
 
 keywords: data source connector, iks, roks, cluster
 
@@ -36,7 +36,7 @@ subcollection: backup-recovery
 5. After selecting the cluster, a list of namespaces appears.
 6. Choose one of the following:
    - One or more namespaces (you can also exclude namespace based on labels)
-   - Entire cluster (if supported by your deployment)
+   - Entire cluster
 7. Click **Protect**.
    IBM Backup and Recovery service supports backup of:
    - Persistent Volume Claims (PVCs)
@@ -50,8 +50,8 @@ subcollection: backup-recovery
 
    | Option | Description |
    |------|-------------|
-   | **Create a New Protection Group** | When creating a new group, configure the following:<br><br>- **Protection Group Name**<br>- **Protection Policy**<br>- **Start Time and Time Zone**<br>- **Leverage CSI Snapshot** (toggle)<br>- **Pause Future Runs** (optional)<br>- **Alerts and Email Recipients**<br>- **Priority** (High / Medium / Low)<br>- **Include or Exclude Labels**<br>- **Description**<br><br>These settings are configurable **only during creation** of a new Protection Group. |
-   | **Use an Existing Protection Group** | All settings are **prefilled** from the existing group.<br>Fields are **read-only** and cannot be modified at this stage. |
+   | **Create a New Protection Group** | When creating a new group, configure the following settings (configurable **only during creation**): <ul><li>**Protection Group Name**</li><li>**Protection Policy**</li><li>**Start Time and Time Zone**</li><li>**Leverage CSI Snapshot** (toggle)</li><li>**Pause Future Runs** (optional)</li><li>**Alerts and Email Recipients**</li><li>**Priority** (High / Medium / Low)</li><li>**Include or Exclude Labels**</li><li>**Description**</li></ul> |
+   | **Use an Existing Protection Group** | All settings are **prefilled** from the existing group. Fields are **read-only** and cannot be modified at this stage. |
 
 9. Configure the CSI Snapshot Protection.
    - Enable Leverage CSI Snapshot (toggle).
@@ -63,14 +63,13 @@ subcollection: backup-recovery
 
     | Category | Description |
     |--------|-------------|
-    | **Scheduling** | **Start Time**: Defines when the protection job runs.<br>**Time Zone**: Select the appropriate time zone. |
-    | **Run Controls** | **Pause Future Runs**: Prevents any future scheduled runs.<br>**End Date**: Stops snapshot capture after the selected date (current runs complete). |
-    | **Storage & Performance** | **QoS Policy**:<br>- Backup HDD (default)<br>- Backup SSD<br>- Backup Auto |
-    | **Alerts** | Configure alerts for:<br>- Success<br>- Failure<br>- SLA Violation<br>Add **email recipients** if required. |
-    | **Priority** | Sets execution priority when system load is high:<br>- High<br>- Medium (default)<br>- Low |
+    | **Scheduling** | <ul><li>**Start Time**: Defines when the protection job runs.</li><li>**Time Zone**: Select the appropriate time zone.</li></ul> |
+    | **Run Controls** | <ul><li>**Pause Future Runs**: Prevents any future scheduled runs.</li><li>**End Date**: Stops snapshot capture after the selected date (current runs complete).</li></ul> |
+    | **Storage & Performance** | **QoS Policy**: <ul><li>Backup HDD (default)</li><li>Backup SSD</li><li>Backup Auto</li></ul> |
+    | **Alerts** | Configure alerts for: <ul><li>Success</li><li>Failure</li><li>SLA Violation</li></ul> Add **email recipients** if required. |
+    | **Priority** | Sets execution priority when system load is high: <ul><li>High</li><li>Medium (default)</li><li>Low</li></ul> |
 
 11. Configure Include and Exclude Labels:
-
        - Define the rules to:
           - Include PVCs with specific labels
           - Exclude PVCs with specific labels
@@ -82,7 +81,7 @@ subcollection: backup-recovery
 
     | Option | Description |
     |------|-------------|
-    | **Create a New Protection Policy** | A Protection Policy defines how backups are handled. Available options include:<br><br>- **DataLock** – Enables tamper‑proof retention (manageable only by Data Security role users)<br>- **Backup Schedule & Retention** – Defines backup frequency, retention period, and type<br>- **Periodic Full Backups** – Schedule recurring full backups<br>- **Extended Retention** – Retain selected snapshots longer<br>- **Quiet Times** – Block new runs during defined windows<br>- **Retry Options** – Configure snapshot retry behavior |
+    | **Create a New Protection Policy** | A Protection Policy defines how backups are handled. Available options include: <ul><li>**DataLock**: Enables tamper‑proof retention (manageable only by Data Security role users).</li><li>**Backup Schedule & Retention**: Defines backup frequency, retention period, and type.</li><li>**Periodic Full Backups**: Schedule recurring full backups.</li><li>**Extended Retention**: Retain selected snapshots longer.</li><li>**Quiet Times**: Block new runs during defined windows.</li><li>**Retry Options**: Configure snapshot retry behavior.</li></ul> |
     | **Use an Existing Protection Policy** | Go to **Policy Management** \> Select the policy \> Click **Edit** \> Update Kubernetes‑specific settings \> Click **Save**.<br><br>**Note:** Policy changes take effect during the **next scheduled protection run**. |
 
 13. You can assign a new Protection Policy to a Kubernetes object, effective from the next scheduled protection run.
@@ -93,13 +92,13 @@ subcollection: backup-recovery
 14. Exclude namespace based on labels:
     1. In Protection, under Objects click on Labels.
     2. Select a label.
-    3. Click on STOP icon (Upon hovering it shows `Exclude Tag Off. Click to exclude this label`).
-    4. Selected namespace will be excluded and Excluded will be shown corresponding to the namespace.
+    3. Click on the exclude icon (tooltip: `Exclude Tag Off. Click to exclude this label`).
+    4. Selected namespace will be excluded from protection runs.
 
 15. Every namespace can be customized while creating protection run, this includes:
-    1. Inclusion/Exclusion of PVC’s - Include/Exclude PVC that are available in a namespace.
-    2. Inclusion/Exclusion of Resources- Include/Exclude Resources - Pods. Demon Set, Replica Set, Secret, Service, Stateful Set, and so on.
-    3. Scripts- Select the Quiesce Mode and Add Rules(Pre/Post Snapshot Scripts).<br> Once either of the above three are added to a namespace, it is customized and corresponding to the namespace we can see Customized with a pencil icon.
+    1. **Inclusion/Exclusion of PVCs**: Include/Exclude PVCs that are available in a namespace.
+    2. **Inclusion/Exclusion of Resources**: Include/Exclude resources such as Pods, DaemonSets, ReplicaSets, Secrets, Services, StatefulSets, etc.
+    3. **Scripts**: Select the Quiesce Mode and Add Rules (Pre/Post Snapshot Scripts). Once customized, a pencil icon appears next to the namespace.
 
 16. Enable Auto Protect. Auto Protect helps ensure automatic inclusion of new namespaces.
 
@@ -114,55 +113,36 @@ subcollection: backup-recovery
 
 17. Start Protection and Monitor. Click **Protect** to initiate protection. The Protection Service begins backing up selected objects. You can monitor progress at: **Activity** \> **Protection**.
 
-18. BRS supports quiescing stateful Kubernetes workloads to help ensure consistent and reliable PVC snapshots. Before capturing a snapshot, it temporarily pauses the application to bring it to a quiesced state, creating a stable and consistent backup point. Once the snapshot is successfully taken, the workloads are automatically unquiesced, allowing them to resume normal operation with minimal disruption. The Supported Quiescing Modes are:
+18. **Application Quiescing**: BRS supports quiescing stateful Kubernetes workloads to help ensure consistent and reliable PVC snapshots. Before capturing a snapshot, it temporarily pauses the application to bring it to a quiesced state. Once the snapshot is successfully taken, the workloads are automatically unquiesced.
 
-    **Together mode**: All quiescing rules run in parallel within a single volume group, quiescing the application simultaneously, taking snapshots together, and unquiescing once — offering faster performance than sequential execution.
+    **Supported Quiescing Modes:**
 
-    **Independent mode**: Uses multiple volume groups where each group runs its own set of rules independently and in parallel, allowing overlapping quiesce → snapshot → unquiesce operations across groups — delivering the fastest overall backup speed.
+    | Mode | Description |
+    |---|---|
+    | **Together mode** | All quiescing rules run in parallel within a single volume group. Offers faster performance than sequential execution. |
+    | **Independent mode** | Uses multiple volume groups where each group runs its own set of rules independently and in parallel. Delivers the fastest overall backup speed. |
+    | **Sequential mode** | Processes all quiescing rules one after another in a single volume group. Resulting in the slowest backup but providing the strictest control. |
 
-    **Sequential mode**: Processes all quiescing rules one after another in a single volume group, completing each rule (including unquiescing) before starting the next — resulting in the slowest backup but providing the strictest control and failure handling.
+    **Configure quiescing for a namespace:**
+       1. Select the target namespace and click **Edit**.
+       2. Navigate to the **Scripts** section.
+       3. Select the desired **Quiesce Mode** (Together, Independent, or Sequential).
+       4. Create quiesce rules by specifying:
+          - **Pod selector labels**: To identify which pods to quiesce.
+          - **Pre-snapshot scripts**: Run before snapshot.
+          - **Post-snapshot scripts**: Run after snapshot.
+       5. Set the failure behavior (e.g., continue or fail the backup on script/rule error).
+       6. Click **Save** to apply the configuration.
 
-      Configure quiescing for a namespace:
-         1. Select the target namespace and click Edit.
-         2. Navigate to the Scripts section.
-         3. Select the desired Quiesce Mode (Together, Independent, or Sequential).
-         4. Create quiesce rules by specifying:
-            - Pod selector labels (to identify which pods to quiesce)
-            - Pre-snapshot scripts (run before snapshot)
-            - Post-snapshot scripts (run after snapshot)
-         5. Set the failure behavior (for example, continue or fail the backup on script/rule error).
-         6. Click Save to apply the configuration.
-
-      {{site.data.keyword.baas_full_notm}} supports application quiescing for stateful Kubernetes workloads. The Supported Quiescing Modes are:
-         - Together Mode - Parallel execution (fast)
-         - Independent Mode - Parallel volume groups (fastest)
-         - Sequential Mode - Ordered execution (most controlled)
-
-      Quiescing briefly pauses an application to help ensure consistent data for backup. {{site.data.keyword.baas_full_notm}} quiesces stateful Kubernetes workloads before taking PVC snapshots, then automatically unquiesces them once the snapshot is complete.
-      {: note}
-
-      Here is how to configure:
-
-         1. Select namespace \> click **Edit**.
-         2. Go to Scripts.
-         3. Choose Quiesce Mode.
-         4. Create rules using:
-
-         - Pod selector labels
-         - Pre snapshot scripts
-         - Post snapshot scripts
-         5. Configure failure behaviour.
-         6. Click **Save**.
-
-      Scripts run inside containers and have configurable timeouts.
-      {: note}
+    Scripts run inside containers and have configurable timeouts.
+    {: note}
 
 19. Manage Protection Lifecycle.
 
     | Action | Description |
     |------|-------------|
-    | **Pause Future Runs** | Protection \> Select job \> Kebab menu \> **Pause Future Runs** |
-    | **Resume Protection** | Protection \> Select job \> Kebab menu \> **Resume** |
-    | **Delete Protection** | **Delete Object Only**: Keeps snapshots until expiry<br>**Delete Object and Snapshots**: Removes object and all backups |
+    | **Pause Future Runs** | Protection \> Select job \> Actions menu \> **Pause Future Runs** |
+    | **Resume Protection** | Protection \> Select job \> Actions menu \> **Resume** |
+    | **Delete Protection** | **Delete Object Only**: Keeps snapshots until expiry.<br>**Delete Object and Snapshots**: Removes object and all backups. |
 
 20. If needed, after you create the protection group, click `Run Now` to start the backup immediately. For more information, see the [Protection group Run Now](/docs/backup-recovery?topic=backup-recovery-protection-group-run-now).

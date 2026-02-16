@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2026
-lastupdated: "2026-02-12"
+lastupdated: "2026-02-16"
 
 keywords: <KEYWORDS>
 
@@ -12,14 +12,14 @@ subcollection: backup-recovery
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Create or edit a standard policy
+# Creating and configuring protection policies
 {: #create_or_edit_a_standard_policy}
 
 A **Protection Policy** is a reusable set of configuration settings that defines how and when data sources are protected, replicated, and archived. Protection Groups use the schedules and settings defined in a policy to determine when backups are captured and how long they are retained.
 
 Using Protection Policies simplifies management by allowing the same settings/Policies to be applied across multiple Protection Groups.
 
-**To create or edit a standard policy:**
+**To create or edit a protection policy:**
 
 1. Navigate to `Data Protection` \> `Policies` in the IBM Cloud Backup and Recovery instance dashboard.
 
@@ -41,7 +41,7 @@ In {{site.data.keyword.baas_full_notm}}, the Policy Description field is not ava
 
 When creating or editing a Protection Policy, you configure both required and optional settings that determine how backups are scheduled, retained, and managed.
 
-The following table summarises all available policy options with additional details.
+The following table summarizes all available policy options with additional details.
 
 | **Option**               | **Description** |
 |--------------------------|-----------------|
@@ -66,7 +66,7 @@ The following sections describe each option in detail.
 |-------------|-----------------|
 | **Policy Name** | Specify a unique name for the Protection Policy. <br>- The name can contain alphanumeric characters, underscores, hyphens, periods, and spaces. <br>- This field is required and can be changed later.<br>- The Policy Description field is not supported and cannot be set or modified in IBM Cloud Backup and Recovery. |
 | **Backup Schedule (Backup every xx)** | Defines how often backups are captured by Protection Groups using this policy. You can configure schedules in several ways:<br>• **Interval‑based scheduling** – Run backups every specified number of minutes, hours, or days.<br>• **Day‑based scheduling** – Run backups on specific days of the week (for example, Monday, Wednesday, and Friday).<br>• **Calendar‑based scheduling** – Run backups on specific dates within a month (for example, the 5th of every month).<br> These options allow precise control over when backups are captured.|
-| **Retention Period (Retain for xx)** | Specifies how long backup snapshots are kept on IBM Cloud Backup and Recovery before they are automatically deleted.. |
+| **Retention Period (Retain for xx)** | Specifies how long backup snapshots are kept on IBM Cloud Backup and Recovery before they are automatically deleted. |
 
 **Advanced options**
 

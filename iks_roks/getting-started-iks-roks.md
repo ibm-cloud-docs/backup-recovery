@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2026-02-13"
+lastupdated: "2026-02-16"
 
 keywords: data source connector, iks, roks, cluster
 
@@ -67,7 +67,6 @@ You need the following to get started with {{site.data.keyword.baas_full_notm}} 
     4. Enter your SSO or account credentials to authenticate.
 2. Alternatively, obtain the instance details and credentials to log in.
 
-   
 
 ## Backup requirements for Kubernetes/OpenShift clusters
 {: #data-source-connector-iks-roks-backup-requirements}
@@ -93,12 +92,12 @@ Clusters must be compatible, especially in terms of storage configuration.
 ## Create or configure a data source connector
 {: #data-source-connector-iks-roks-create-configure}
 
-Ensure the node has sufficient CPU and memory to run the Containerized Data Source Connector and Datamover pods. The following table lists their resource requirements. If both pods run on the same node, use at least a `cx2.8x16` node flavor to meet the combined workload demands.
+Ensure the node has sufficient CPU and memory to run the Containerized Data Source Connector and Datamover pods. The following table lists their resource requirements.
 
-| Pod Name                                   | CPU Requests | Memory Requests | CPU Limits | Memory Limits |
-|--------------------------------------------|--------------|-----------------|------------|----------------|
-| Containerized Data Source Connector        | 2            | 5Gi             | 4          | 8Gi            |
-| Datamover                                  | 500m         | 128M            | 2          | 4Gi            |
+| Pod Name                                   | CPU Requests | Memory Requests |
+|--------------------------------------------|--------------|-----------------|
+| Containerized Data Source Connector        | 2            | 5Gi             |
+| Datamover                                  | 500m         | 128M            |
 
 
 ### Create a data source connection
@@ -107,14 +106,15 @@ Ensure the node has sufficient CPU and memory to run the Containerized Data Sour
 1. Open the instance dashboard that was discussed in an earlier step on [Accessing your instances](#data-source-connector-iks-roks-access-instance).
 2. Go to: `Dashboard` \> `System` \> `Data Source Connections`.
 3. Click `New Connection`.
-4. Under the Deployment Platform, select one of the following options:
+4. Under the Deployment Platform, select one of the following options that matches your Kubernetes/OpenShift cluster type:
 
    - `ROKS CLASSIC`
    - `ROKS VPC`
    - `IKS CLASSIC`
    - `IKS VPC`
 
-5. Click `Done`, then open the three‑dot menu for the newly created connection. Click `Rename Connection` to rename it for easier future identification.
+5. Click `Create`. You are presented with a helm install command that you need to run on the cluster you want to protect. Copy the helm install command and save it securely, as you need it in a later step.
+6. Click `Done`, then open the menu for the newly created connection. Click `Rename Connection` to rename it for easier future identification.
 
 
 
@@ -127,17 +127,16 @@ Ensure the node has sufficient CPU and memory to run the Containerized Data Sour
 
 
 
-1. Configure the connector by using the `helm install` command.
-2. In the Cloud Shell terminal, list the available Kubernetes/OpenShift clusters to identify the cluster name:
+1. In the Cloud Shell terminal, list the available Kubernetes/OpenShift clusters to identify the cluster name:
 
    ```sh
    ibmcloud ks cluster ls
    ```
    {: codeblock}
 
-   From the output, note the cluster name where the DSC will be deployed.
+   From the output, note the cluster name where the Data Source Connector should be deployed to protect the cluster.
 
-3. Download and configure the `KUBECONFIG` for the selected cluster with admin privileges:
+2. Download and configure the `KUBECONFIG` for the selected cluster with admin privileges:
 
    ```sh
    ibmcloud ks cluster config --cluster <cluster-name> --admin
@@ -152,26 +151,18 @@ Ensure the node has sufficient CPU and memory to run the Containerized Data Sour
    {: codeblock}
 
    If successful, you see a login confirmation.
-5. Return to the UI and click the three‑dot menu for your selected connection. Click `Connection Token` to copy the connection token.
-6. Now, run the following command in the IBM Cloud Shell.
+5. Update the previously generated helm install command with `--namespace`, `--create-namespace`, `fullnameOverride` and the release name. In the following example, `registrationToken` is masked:
 
-   ```sh
-   # define variables
-   export NAMESPACE_NAME="ibm-brs-data-source-connector"
-   export RELEASE_NAME="dsc"
-   export CHART_LOCATION="oci://icr.io/ext/brs/brs-ds-connector-chart"
-   export CHART_VERSION="7.2.17-release-20260108-ed857f1c"
-   export REGISTRATION_TOKEN='<paste the connection/registration token here>'
-
-   # install data source connector chart
-   helm install ${RELEASE_NAME} ${CHART_LOCATION} --version ${CHART_VERSION} --set secrets.registrationToken=${REGISTRATION_TOKEN} --set fullnameOverride=dsc  --namespace ${NAMESPACE_NAME} --create-namespace
-   ```
-   {: codeblock}
+      ```sh
+      helm install dsc oci://icr.io/ext/brs/brs-ds-connector-chart --version 7.2.17-release-20260108-ed857f1c --set secrets.registrationToken=xxxxxxx --set fullnameOverride=dsc  --namespace ibm-brs-data-source-connector --create-namespace
+      ```
+      {: codeblock}
+6. Run the updated helm install command in the IBM Cloud Shell.
 
 7. Check that the Helm release is installed:
 
    ```sh
-   helm list -n ${NAMESPACE_NAME}
+   helm list -n ibm-brs-data-source-connector
    ```
    {: codeblock}
 
