@@ -17,14 +17,14 @@ subcollection: backup-recovery
 
 After protecting your Kubernetes namespaces, you can recover them using the IBM Backup and Recovery Service to:
 - The original (same) Kubernetes or OpenShift cluster.
-- A different Kubernetes or OpenShift cluster registered with BRS.
+- A different Kubernetes or OpenShift cluster registered with {{site.data.keyword.baas_full_notm}}.
 
 ## Recovering Namespaces to the original Kubernetes or OpenShift cluster
 {: #recovering-same-location}
 
-When recovering namespaces to their original location (the same Kubernetes or OpenShift cluster), only the resources, PVCs, or metadata that are **missing or deleted** are restored from the selected snapshot. BRS does not overwrite or restore any resources, PVCs, or metadata that already exist in the original location.
+When recovering namespaces to their original location (the same Kubernetes or OpenShift cluster), only the resources, PVCs, or metadata that are **missing or deleted** are restored from the selected snapshot. {{site.data.keyword.baas_full_notm}} does not overwrite or restore any resources, PVCs, or metadata that already exist in the original location.
 
-For example, suppose a namespace you want to restore contains a deployment resource and a service account. If the service account is missing but the deployment resource still exists, BRS restores only the service account and skips the deployment resource.
+For example, suppose a namespace you want to restore contains a deployment resource and a service account. If the service account is missing but the deployment resource still exists, {{site.data.keyword.baas_full_notm}} restores only the service account and skips the deployment resource.
 
 ## Restoring namespaces to the same Kubernetes or OpenShift cluster
 {: #recovering-restoring-same-location}
@@ -70,7 +70,7 @@ For example, suppose a namespace you want to restore contains a deployment resou
          - **Persistent Volume Claim (PVC) Inclusion/Exclusion**: Choose specific PVCs to include or exclude. You can also successfully recover *only* PVCs and their dependent resources (ConfigMaps, PersistentVolumes).
          - **Resource Inclusion/Exclusion**: Include or exclude specific resource classes.
       - **Storage Class**:
-         - **Unbind PVCs from original PV mapping**: *Requires the BRS DataProtect plug-in image to be specified during source registration.* This option clears metadata binding PVCs to their original PersistentVolumes (PVs), allowing them to provision new PVs or bind to available ones. Useful for PVCs with a `Retain` reclaim policy.
+         - **Unbind PVCs from original PV mapping**: *Requires the {{site.data.keyword.baas_full_notm}} DataProtect plug-in image to be specified during source registration.* This option clears metadata binding PVCs to their original PersistentVolumes (PVs), allowing them to provision new PVs or bind to available ones. Useful for PVCs with a `Retain` reclaim policy.
          - **Map PVCs to a different storage class**: Click **+ Add** to map a source storage class (left) to a target storage class (right). This ensures recovered PVCs use the correct storage class in the destination.
       - **Recover PVCs Only**: Enable this to recover only PVCs and their dependencies, skipping the namespace metadata.
       - **Include or Exclude Labels**: Filter PVCs by label.
@@ -83,10 +83,10 @@ For example, suppose a namespace you want to restore contains a deployment resou
 ## Recovering Namespaces to a different Kubernetes or OpenShift cluster
 {: #recovering-different-location}
 
-You can recover Kubernetes namespaces to a different Kubernetes or OpenShift cluster registered with the same BRS instance.
+You can recover Kubernetes namespaces to a different Kubernetes or OpenShift cluster registered with the same {{site.data.keyword.baas_full_notm}} instance.
 
 - **New Location**: The entire namespace is restored to a different cluster.
-- **Overwrite Behavior**: If the namespace already exists in the destination cluster, BRS **does not** overwrite existing resources, PVCs, or metadata. It only restores missing items.
+- **Overwrite Behavior**: If the namespace already exists in the destination cluster, {{site.data.keyword.baas_full_notm}} **does not** overwrite existing resources, PVCs, or metadata. It only restores missing items.
 
 To restore to a new location (different cluster):
 
@@ -117,9 +117,9 @@ To restore to a new location (different cluster):
       - **Recover PVCs Only**: Recover only PVCs and dependencies, ignoring namespace metadata.
       - **Include/Exclude Labels**: Filter PVCs by label key/value pairs.
 
-   - **Alternative Region/Zone Recovery**: BRS supports recovering to a different region or zone.
+   - **Alternative Region/Zone Recovery**: {{site.data.keyword.baas_full_notm}} supports recovering to a different region or zone.
       - Specify region and zone mappings.
-      - BRS automatically updates:
+      - {{site.data.keyword.baas_full_notm}} automatically updates:
          - **Storage Classes**: Updates region/zone parameters and `allowedTopologies`.
          - **Secrets**: Updates storage class secrets (e.g., for `vpc.block.csi.ibm.io`, `openshift-storage`, `portworx`).
          - **Persistent Volumes**: Updates zone/region attributes and node affinity.

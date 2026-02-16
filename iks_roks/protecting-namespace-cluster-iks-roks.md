@@ -113,7 +113,7 @@ subcollection: backup-recovery
 
 17. Start Protection and Monitor. Click **Protect** to initiate protection. The Protection Service begins backing up selected objects. You can monitor progress at: **Activity** \> **Protection**.
 
-18. **Application Quiescing**: BRS supports quiescing stateful Kubernetes workloads to help ensure consistent and reliable PVC snapshots. Before capturing a snapshot, it temporarily pauses the application to bring it to a quiesced state. Once the snapshot is successfully taken, the workloads are automatically unquiesced.
+18. **Application Quiescing**: {{site.data.keyword.baas_full_notm}} supports quiescing stateful Kubernetes workloads to help ensure consistent and reliable PVC snapshots. Before capturing a snapshot, it temporarily pauses the application to bring it to a quiesced state. Once the snapshot is successfully taken, the workloads are automatically unquiesced.
 
     **Supported Quiescing Modes:**
 
