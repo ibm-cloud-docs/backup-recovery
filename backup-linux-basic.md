@@ -20,7 +20,7 @@ completion-time: 30m
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Protecting data with {{site.data.keyword.baas_full}} for VPC (VSIs) workloads
+# Protecting data with Backup and Recovery for VPC (VSIs) workloads
 {: #backup-linux-tutorial-basic-user}
 {: toc-content-type="tutorial"}
 {: toc-services="backup-recovery"}
@@ -37,7 +37,7 @@ This tutorial assumes you’re starting from scratch without any existing resour
 |---|---|---|---|
 |[Setting up a {{site.data.keyword.baas_full_notm}} instance](#baas-setting-up-deployment)| | | |
 | | UI | Deploy your {{site.data.keyword.baas_full_notm}} instance | |
-| | UI | Create a Data Source Connection (for a VPC) in {{site.data.keyword.baas_full_notm}} | Data source connection is a tunnel between the {{site.data.keyword.baas_full_notm}} instance and the source server. The Data Source Connector is the thing that forms that tunnel. |
+| | UI | Create a Data Source Connection (for a VPC) in {{site.data.keyword.baas_full_notm}} | Data source connection is a tunnel between the {{site.data.keyword.baas_full_notm}} instance and the source server. The Data Source Connector is the component that forms that tunnel. |
 | | UI | Create the Data Source Connector instance for the VSI | Connector VSI instance |
 | | UI or CLI | Reserve (or bind) Floating IP for the Connector VSI | |
 | | UI | Configure the Connector VSI in the {{site.data.keyword.baas_full_notm}} UI | Set up password and token: First, add the domain: ‘cloud.ibm.com’ works as a default. Then, paste the claim token from the ‘Create source connection’ modal. |
@@ -157,10 +157,10 @@ Next, make the Source VSI accessible from your local machine by [reserve or bind
    1. From the terminal, go to the Downloads folder (cd/Downloads) or wherever the agent installer from the previous step was downloaded.
    2. Copy the agent installer from your local environment to your source VSI using scp. For example:(Substitute necessary information in the commands.)
 
-   ```sh
-   scp -i .ssh/SOURCE_SSH_KEY_NAME Downloads/AGENT_FILE_NAME root@FLOATING_IP_ADDRESS_OF_SOURCE_VSI:/
+      ```sh
+      scp -i .ssh/SOURCE_SSH_KEY_NAME Downloads/AGENT_FILE_NAME root@FLOATING_IP_ADDRESS_OF_SOURCE_VSI:/
 
-   ```
+      ```
 
    1. (Optional) Verify a copy by going to the root folder (cd) and listing files (ls). You should be able to see the {{site.data.keyword.baas_full_notm}} agent installer.
 
