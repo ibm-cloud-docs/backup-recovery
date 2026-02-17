@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2026-02-16"
+lastupdated: "2026-02-17"
 
 keywords: data source connector, iks, roks, cluster, troubleshooting
 
@@ -204,7 +204,7 @@ If you see a `Warning FailedScheduling` message similar to the one below, you ar
 - **Exceed Max Volume Count**: Each worker node has a hard limit on the number of volumes it can attach (12 volumes per node). This error means the node is "full."
 - **Volume Node Affinity Conflict**: The pod needs to access a specific volume that is physically located on a different node, but that node is already at its capacity or otherwise unavailable.
 
-**Recommended Solutions**
+### Recommended Solutions
 
 If your environment has reached its volume capacity, use one of the following methods to resolve the bottleneck:
 
@@ -213,3 +213,128 @@ If your environment has reached its volume capacity, use one of the following me
 | **Clean Up Resources** | Delete unused Persistent Volume Claims (PVCs) or orphan volumes that are still occupying slots on your worker nodes. | Quick fixes; environments with high churn. |
 | **Scale Out Cluster** | Add a new worker node to the cluster. This provides a fresh set of volume "slots" for the scheduler to use. | Long-term growth; high-density workloads. |
 | **Optimize Density** | Evaluate if multiple applications can share volumes or if smaller volumes can be consolidated. | Advanced users optimizing for cost. |
+{: caption="Table 1. Recommended solutions for volume limit issues" caption-side="bottom"}
+
+## Deleting and Unregistering Resources
+{: #deleting-unregistering-resources}
+
+To maintain data integrity and security, specific dependencies must be cleared before you can delete core resources like Connections, Connectors, or Unregistered Sources.
+If your resources are currently associated with a Protection Group, follow the structured workflow below to help ensure a smooth deletion process.
+
+### Understanding Data Lock Constraints
+{: #data-lock-constraints}
+
+Before attempting to delete a Protection Group, check if your assigned policy has Data Lock enabled.
+
+- **The Restriction**: If Data Lock is active, the Protection Group and its associated resources cannot be deleted until the lock period expires.
+- **How to Check**: Navigate to the **Run Details** page for your job. Look for the **Expiry Date**; this is the earliest date the resource will become available for deletion.
+- **Proactive Tip**: To avoid long wait times in the future, consider creating a Custom Policy with a shorter Data Lock duration or with Data Lock disabled entirely, rather than using the default settings.
+
+### Recommended Deletion Order
+{: #recommended-deletion-order}
+
+Once any applicable Data Locks have expired, resources must be removed in this specific sequence to avoid dependency errors:
+
+1. **Protection Group**: Delete the group first to stop all scheduled tasks.
+2. **Unregister Source**: Once the group is gone, you can safely unregister the data source.
+3. **Connectors**: Remove the bridge between your source and the connection.
+4. **Connection**: Finally, delete the underlying connection credentials/configuration.
+
+## Using the Kubernetes Info Fetcher Script
+{: #info-fetcher-script}
+
+The `k8s-info-fetcher.sh` script collects detailed information about your Kubernetes cluster and the BRS Backup Agent (datamover) components. It can also optionally collect information from a specific user namespace.
+
+### Usage
+{: #script-usage}
+
+```bash
+./k8s-info-fetcher.sh [-u|--user_ns <ns-name>] [-p|--prefix <prefix>]
+```
+
+*   `-u, --user_ns`: (Optional) Specify an additional user namespace to fetch information from.
+*   `-p, --prefix`: (Optional) Prefix for the backup namespace (default: `brs-backup-agent-`).
+
+### What the Script Collects
+{: #what-script-collects}
+
+The script gathers the following data and bundles it into a `.tar` archive:
+
+**1. Cluster‑level information**
+*   Nodes
+*   Namespaces
+*   StorageClasses
+*   PersistentVolumes
+*   CRDs
+*   ClusterRoles
+*   ClusterRoleBindings
+*   VolumeSnapshotClasses
+
+**2. Backup Agent Namespace Information**
+From the namespace matching the prefix (default: `brs-backup-agent-*`), it captures:
+*   Pods
+*   PVCs
+*   Services
+*   Deployments
+*   DaemonSets
+*   Resource Limits
+*   Secrets
+*   Service Accounts
+*   VolumeSnapshots
+*   VolumeSnapshotContents
+*   **Velero Logs**: Fetched from the Velero deployment.
+*   **Datamover Logs**: Copied from `/opt/cohesityagent/data/logs/` inside pods matching `cohesity-dm-`.
+
+**3. User Namespace Information (Optional)**
+If a user namespace is specified with `-u`, it captures:
+*   Pods
+*   Jobs
+*   Services
+*   Deployments
+*   DaemonSets
+*   Resource Limits
+*   PVCs
+*   VolumeSnapshots
+*   VolumeSnapshotContents
+
+### How to Run the Script
+{: #run-script}
+
+**Step 1: Download the script**
+
+[Download the script](https://support-tools.s3.us-south.cloud-object-storage.appdomain.cloud/k8s_info_fetcher.sh).
+
+**Step 2: Download and configure the cluster**
+
+```bash
+ibmcloud ks cluster config --cluster <cluster-id> --admin
+```
+{: codeblock}
+
+**Step 3: Verify your context**
+
+```bash
+kubectl config current-context
+```
+{: codeblock}
+
+**Step 4: Give script execute permissions**
+
+```bash
+chmod +x k8s-info-fetcher.sh
+```
+{: codeblock}
+
+**Step 5: Run the script**
+
+*   **Standard collection** (Cluster info + Backup Agent info):
+    ```bash
+    ./k8s-info-fetcher.sh
+    ```
+    {: codeblock}
+
+*   **Collection with User Namespace** (Cluster + Backup Agent + Your App Namespace):
+    ```bash
+    ./k8s-info-fetcher.sh -u <your-namespace>
+    ```
+    {: codeblock}

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2026-02-16"
+lastupdated: "2026-02-17"
 
 keywords: data source connector, iks, roks, cluster
 
@@ -38,17 +38,16 @@ B. Prerequisites for backup and restore:
 C. Take a backup of the Kubernetes/OpenShift cluster:
    - [Access {{site.data.keyword.baas_full_notm}} instance](#data-source-connector-iks-roks-access-instance)
    - [Create and configure data source connector](#data-source-connector-iks-roks-create-configure)
-   - [Register source kubernetes/OpenShift cluster](#data-source-connector-iks-roks-register)
+   - [Register source Kubernetes/OpenShift cluster](#data-source-connector-iks-roks-register)
    - [Create or schedule a backup](/docs/backup-recovery?topic=backup-recovery-protecting-namespace-iks-roks)
 
 D. Restore backup to Kubernetes/OpenShift cluster:
    - [Access {{site.data.keyword.baas_full_notm}} instance](#data-source-connector-iks-roks-access-instance)
    - [Create and configure data source connector](#data-source-connector-iks-roks-create-configure)
-   - [Register source kubernetes/OpenShift cluster](#data-source-connector-iks-roks-register)
+   - [Register source Kubernetes/OpenShift cluster](#data-source-connector-iks-roks-register)
    - [Restore backup](/docs/backup-recovery?topic=backup-recovery-recovering-restoring-backup)
 
 E. [Troubleshooting](/docs/backup-recovery?topic=backup-recovery-data-source-connector-iks-roks-troubleshooting)
-
 
 ## Before you begin
 {: #baas-getting-started-iks-roks}
@@ -116,16 +115,8 @@ Ensure the node has sufficient CPU and memory to run the Containerized Data Sour
 5. Click `Create`. You are presented with a helm install command that you need to run on the cluster you want to protect. Copy the helm install command and save it securely, as you need it in a later step.
 6. Click `Done`, then open the menu for the newly created connection. Click `Rename Connection` to rename it for easier future identification.
 
-
-
 ### Configure a data source connector
 {: #data-source-connector-iks-roks-create-configure}
-
-
-
-
-
-
 
 1. In the Cloud Shell terminal, list the available Kubernetes/OpenShift clusters to identify the cluster name:
 
@@ -143,7 +134,7 @@ Ensure the node has sufficient CPU and memory to run the Containerized Data Sour
    ```
    {: codeblock}
 
-4. The Helm chart is hosted in the IBM Container Registry (ICR). Log in to the Helm/OCI registry by using the following command:
+3. The Helm chart is hosted in the IBM Container Registry (ICR). Log in to the Helm/OCI registry by using the following command:
 
    ```sh
    helm registry login icr.io --username iamapikey --password "${API_KEY}"
@@ -151,15 +142,21 @@ Ensure the node has sufficient CPU and memory to run the Containerized Data Sour
    {: codeblock}
 
    If successful, you see a login confirmation.
-5. Update the previously generated helm install command with `--namespace`, `--create-namespace`, `fullnameOverride` and the release name. In the following example, `registrationToken` is masked:
 
-      ```sh
-      helm install dsc oci://icr.io/ext/brs/brs-ds-connector-chart --version 7.2.17-release-20260108-ed857f1c --set secrets.registrationToken=xxxxxxx --set fullnameOverride=dsc  --namespace ibm-brs-data-source-connector --create-namespace
-      ```
-      {: codeblock}
-6. Run the updated helm install command in the IBM Cloud Shell.
+4. Update the previously generated helm install command with `--namespace`, `--create-namespace`, `fullnameOverride` and the release name. In the following example, `registrationToken` is masked:
 
-7. Check that the Helm release is installed:
+   ```sh
+   helm install dsc oci://icr.io/ext/brs/brs-ds-connector-chart --version 7.2.17-release-20260108-ed857f1c --set secrets.registrationToken=xxxxxxx --set fullnameOverride=dsc  --namespace ibm-brs-data-source-connector --create-namespace
+   ```
+   {: codeblock}
+   
+   You can use `--set volumeClaimTemplate.storageClass=<storage-class-name>` to specify a custom storage class (default: `ibmc-vpc-block-metro-5iops-tier`).
+   We recommend **not** using object storage for the Data Source Connector Persistent Volume.
+   {: note}
+
+5. Run the updated helm install command in the IBM Cloud Shell.
+
+6. Check that the Helm release is installed:
 
    ```sh
    helm list -n ibm-brs-data-source-connector
@@ -167,20 +164,8 @@ Ensure the node has sufficient CPU and memory to run the Containerized Data Sour
    {: codeblock}
 
 
-
-   
-
-   
-
-   
-
-
-
-
-
-
-
-
+   **Important**: Scaling down or deleting the Data Source Connector deployment (StatefulSet) does *not* automatically remove the Persistent Volume Claims (PVCs) or the underlying data. This is a Kubernetes safety feature. If you uninstall the connector, you must manually delete the PVCs (and potentially the PVs, depending on the reclaim policy) to free up storage.
+   {: attention}
 
 ## How to get the Kubernetes/OpenShift cluster endpoint
 {: #how-to-get-iks-roks-endpoint}
@@ -189,14 +174,7 @@ Ensure the node has sufficient CPU and memory to run the Containerized Data Sour
 2. Filter by location. For example, Washington DC(us-east).
 3. The endpoint can be found in the **Overview page** in the Networking section where you can find the information for your private and public endpoints.
 
-
-
-
-
-
-
-
-## How to register an Kubernetes/OpenShift cluster with {{site.data.keyword.baas_full_notm}} service
+## How to register a Kubernetes/OpenShift cluster with {{site.data.keyword.baas_full_notm}}
 {: #data-source-connector-iks-roks-register}
 
 1. Open your {{site.data.keyword.baas_full_notm}} instance.
@@ -208,12 +186,10 @@ Ensure the node has sufficient CPU and memory to run the Containerized Data Sour
 
    |  Cluster Endpoint  |  Bearer Token |  Kubernetes Distribution  |
    |----|----|----|
-   |[Private or Public](#how-to-get-iks-roks-endpoint)|[See How to create a Bearer Token](#data-source-connector-iks-roks-create-bearer-token-cluster)|Kubernetes/OpenShift|
+   | [Private or Public](#how-to-get-iks-roks-endpoint) | [See How to create a Bearer Token](#data-source-connector-iks-roks-create-bearer-token-cluster) | Kubernetes/OpenShift |
 
 7. Click **Complete** to finish the registration.
 8. You are redirected to the list of data sources where you can see the status of your data source registration.
-
-
 
 ## How to create a bearer token for a Kubernetes/OpenShift cluster
 {: #data-source-connector-iks-roks-create-bearer-token-cluster}
@@ -260,3 +236,17 @@ Ensure the node has sufficient CPU and memory to run the Containerized Data Sour
       kubectl describe secrets -n default ibm-token | grep token: | awk '{print $2}' | head -1
       ```
       {: pre}
+
+## Creating Protection Groups and Policies
+
+After registering your cluster, you can proceed to create Protection Groups and Policies to start backing up your data.
+
+1. **Protect a Namespace**: See [Protecting a namespace or cluster](/docs/backup-recovery?topic=backup-recovery-protecting-namespace-ik-roks).
+2. **Configure Policies**: See [Creating and configuring protection policies](/docs/backup-recovery?topic=backup-recovery-create_or_edit_a_standard_policy).
+3. **Run Backups**: You can schedule backups via policies or trigger a backup immediately using [Run Now](/docs/backup-recovery?topic=backup-recovery-protection-group-run-now).
+4. **Restore Data**: To recover data, follow the instructions in [Recovering or restoring backup](/docs/backup-recovery?topic=backup-recovery-recovering-restoring-backup).
+
+## Troubleshooting
+{: #troubleshooting}
+
+For issues related to Data Source Connector installation, registration failures, or pod scheduling, refer to the [Troubleshooting Guide](/docs/backup-recovery?topic=backup-recovery-data-source-connector-iks-roks-troubleshooting).

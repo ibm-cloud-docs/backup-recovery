@@ -2,7 +2,7 @@
 
 copyright:
   years:  2025
-lastupdated: "2025-09-19"
+lastupdated: "2026-02-17"
 
 keywords: aspera, key protect, archive, worm
 
@@ -24,23 +24,33 @@ For more information about the following services, be sure to check out the resp
 * [File systems](/docs/backup-recovery?group=protect-a-physical-server-file-based)
 * [MS SQL](/docs/backup-recovery?group=ms-sql)
 * [SAP HANA](/docs/backup-recovery?group=sap-hana)
-* [Oracle](/docs/backup-recovery?group=sap-hana)
+* [Oracle](/docs/backup-recovery?group=protect-a-oracle-server)
+* [Kubernetes/Openshift](/docs/backup-recovery?group=kubernetesopenshift-beta)
 
 ## Regional
 {: #service-availability-region}
 
-| Region     | File systems | MS SQL  | SAP HANA | Oracle |
-|------------|--------------|---------|----------|--------|
-| `au-syd`   | Yes          | Yes     | Yes      |  Yes   |
-| `br-sao`   | Yes          | Yes     | Yes      |  Yes   |
-| `ca-tor`   | Yes          | Yes     | Yes      |  Yes   |
-| `eu-gb`    | Yes          | Yes     | Yes      |  Yes   |
-| `eu-de`    | Yes          | Yes     | Yes      |  Yes   |
-| `eu-es`    | Yes          | Yes     | Yes      |  Yes   |
-| `jp-tok`   | Yes          | Yes     | Yes      |  Yes   |
-| `jp-osa`   | Yes          | Yes     | Yes      |  Yes   |
-| `us-south` | Yes          | Yes     | Yes      |  Yes   |
-| `us-east`  | Yes          | Yes     | Yes      |  Yes   |
+| Region     | File systems | MS SQL  | SAP HANA | Oracle | Kubernetes/Openshift |
+|------------|--------------|---------|----------|--------|----------------------|
+| `au-syd`   | Yes          | Yes     | Yes      |  Yes   | No |
+| `br-sao`   | Yes          | Yes     | Yes      |  Yes   | No |
+| `ca-tor`   | Yes          | Yes     | Yes      |  Yes   | No |
+| `eu-gb`    | Yes          | Yes     | Yes      |  Yes   | No |
+| `eu-de`    | Yes          | Yes     | Yes      |  Yes   | No |
+| `eu-es`    | Yes          | Yes     | Yes      |  Yes   | Yes|
+| `jp-tok`   | Yes          | Yes     | Yes      |  Yes   | No |
+| `jp-osa`   | Yes          | Yes     | Yes      |  Yes   | No |
+| `us-south` | Yes          | Yes     | Yes      |  Yes   | Ye |
+| `us-east`  | Yes          | Yes     | Yes      |  Yes   | Yes|
+| `eu-fr2`   | Yes          | Yes     | Yes      |  Yes   | Yes|
+
+## Software versions supported
+{: #service-availability-software-version}
+
+| Software   | Version |
+|------------|--------------|
+| VSI        | X.X.X          |
+| VMware | Yes          |
 
 
 ## More information

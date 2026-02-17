@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2026-02-16"
+lastupdated: "2026-02-17"
 
 keywords: <KEYWORDS>
 
@@ -15,7 +15,7 @@ subcollection: backup-recovery
 # Recover Kubernetes Namespaces
 {: #recovering-restoring-backup}
 
-After protecting your Kubernetes namespaces, you can recover them using the IBM Backup and Recovery Service to:
+After protecting your Kubernetes namespaces, you can recover them using the {{site.data.keyword.baas_full_notm}} to:
 - The original (same) Kubernetes or OpenShift cluster.
 - A different Kubernetes or OpenShift cluster registered with {{site.data.keyword.baas_full_notm}}.
 
@@ -29,22 +29,26 @@ For example, suppose a namespace you want to restore contains a deployment resou
 ## Restoring namespaces to the same Kubernetes or OpenShift cluster
 {: #recovering-restoring-same-location}
 
-1. In the {{site.data.keyword.baas_full_notm}} UI, go to **Dashboard** \> **Data Protection** \> **Recoveries**.
-2. Click **Recovery** in the upper-right corner and select **Kubernetes Cluster** \> **Namespace**.
-3. Search for the namespace or **Protection Group** containing the snapshots you want to recover.
+1. Log in to the [IBM Cloud Console](https://cloud.ibm.com/){: external}.
+2. Go to **Navigation Menu** \> **Backup and Recovery**.
+3. Select your {{site.data.keyword.baas_full_notm}} instance.
+4. Click **Launch dashboard**.
+5. Go to **Dashboard** \> **Data Protection** \> **Recoveries**.
+6. Click **Recovery** in the upper-right corner and select **Kubernetes Cluster** \> **Namespace**.
+7. Search for the namespace or **Protection Group** containing the snapshots you want to recover.
    - You can enter the namespace name, Protection Group name, or use the wildcard character `*`.
    - Optionally filter results by Source, Protection Group, Storage Domain, or Date.
 
-4. Select one or more namespaces or Protection Groups from the list. By default, the latest snapshot is selected.
+8. Select one or more namespaces or Protection Groups from the list. By default, the latest snapshot is selected.
 
    If you select a **Protection Group**, all namespaces backed up in its latest run are selected. You cannot select these namespaces individually. Selecting a namespace or Protection Group locks the **Storage Domain** and **Source** filters.
    {: note}
 
-5. To recover from a specific snapshot (instead of the default latest one):
+9. To recover from a specific snapshot (instead of the default latest one):
 
    **For a Protection Group:**
    - Hover over the Protection Group in the selection list and click the **edit** (pencil) icon.
-   - select the desired snapshot from the **Protection Run** drop-down.
+   - Select the desired snapshot from the **Protection Run** drop-down.
    - (Optional) Click the cloud icon to select a snapshot archived to the cloud.
    - Click **Select Recovery Point**.
 
@@ -59,9 +63,9 @@ For example, suppose a namespace you want to restore contains a deployment resou
    Deleted snapshots may briefly appear as valid recovery points until they are removed from the search index.
    {: note}
 
-6. Click **Next: Recover Options**.
-7. Under **Recover To**, select **Original Location** to recover the namespace to the same Kubernetes or OpenShift cluster.
-8. Configure the **Recovery Options** as needed:
+10. Click **Next: Recover Options**.
+11. Under **Recover To**, select **Original Location** to recover the namespace to the same Kubernetes or OpenShift cluster.
+12. Configure the **Recovery Options** as needed:
    - **Rename**: Add a **Prefix** and/or **Suffix** to the names of recovered namespaces.
      - *Example*: Adding prefix `Test_` and suffix `_QA` to namespace `App` creates `Test_App_QA`.
    - **Task Name**: Customize the name of this recovery task.
@@ -77,7 +81,7 @@ For example, suppose a namespace you want to restore contains a deployment resou
          - Select **Match Any** or **Match All** logical rules.
          - Choose **Include** or **Exclude**, click **+ Add**, and enter the Label Key and Value.
 
-9. Click **Recovery**. You can monitor the progress on the **Recoveries** page.
+13. Click **Recovery**. You can monitor the progress on the **Recoveries** page.
 
 
 ## Recovering Namespaces to a different Kubernetes or OpenShift cluster
@@ -90,22 +94,26 @@ You can recover Kubernetes namespaces to a different Kubernetes or OpenShift clu
 
 To restore to a new location (different cluster):
 
-1. In the {{site.data.keyword.baas_full_notm}} UI, go to **Dashboard** \> **Data Protection** \> **Recoveries**.
-2. Click **Recovery** and select **Kubernetes Cluster** \> **Namespace**.
-3. Search for the namespace or **Protection Group**. You can filter by Source, Protection Group, Storage Domain, or Date.
-4. Select the namespaces or Protection Groups to recover.
+1. Log in to the [IBM Cloud Console](https://cloud.ibm.com/){: external}.
+2. Go to **Navigation Menu** \> **Backup and Recovery**.
+3. Select your {{site.data.keyword.baas_full_notm}} instance.
+4. Click **Launch dashboard**.
+5. Go to **Dashboard** \> **Data Protection** \> **Recoveries**.
+6. Click **Recovery** and select **Kubernetes Cluster** \> **Namespace**.
+7. Search for the namespace or **Protection Group**. You can filter by Source, Protection Group, Storage Domain, or Date.
+8. Select the namespaces or Protection Groups to recover.
    - Selecting a **Protection Group** selects all namespaces from its latest run.
    - Filters lock after your first selection.
 
-5. (Optional) To choose a specific snapshot:
+9. (Optional) To choose a specific snapshot:
    - **For Protection Groups**: Hover, click **edit**, and select a snapshot from the **Protection Run** menu.
    - **For Namespaces**: Hover, click **edit**, filter by **Date** if needed, and select the desired snapshot.
    - *Cloud snapshots* can be selected by clicking the cloud icon.
 
-6. Click **Next: Recover Options**.
-7. Under **Recover To**, select **New Location** to recover the namespace to a different Kubernetes or OpenShift cluster.
-8. Under **Registered Source**, select the destination Kubernetes or OpenShift cluster (or click **Register Source** to add a new one).
-9. (Optional) Configure **Recovery Options**:
+10. Click **Next: Recover Options**.
+11. Under **Recover To**, select **New Location** to recover the namespace to a different Kubernetes or OpenShift cluster.
+12. Under **Registered Source**, select the destination Kubernetes or OpenShift cluster (or click **Register Source** to add a new one).
+13. (Optional) Configure **Recovery Options**:
    - **Rename**: Add a prefix or suffix to the new namespace name (e.g., `Test_` + `App` = `Test_App`).
    - **Task Name**: Rename the recovery task for easier tracking.
    - **Namespace Resources**: Click **edit** to granularly select resources:
@@ -124,7 +132,7 @@ To restore to a new location (different cluster):
          - **Secrets**: Updates storage class secrets (e.g., for `vpc.block.csi.ibm.io`, `openshift-storage`, `portworx`).
          - **Persistent Volumes**: Updates zone/region attributes and node affinity.
 
-10. Click **Recovery**. Monitor the status on the **Recoveries** page.
+14. Click **Recovery**. Monitor the status on the **Recoveries** page.
 
 ## Recovery UI Features
 {: #recovery-ui-features}
