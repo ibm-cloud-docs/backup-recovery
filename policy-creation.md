@@ -3,7 +3,7 @@
 copyright:
   years: 2025
 
-lastupdated: "2026-02-16"
+lastupdated: "2026-02-17"
 
 keywords: policy
 
@@ -26,10 +26,7 @@ A **Protection Policy** is a reusable set of rules that defines:
 
 Policies can be applied to various sources, including physical hosts, VMs, databases, and Kubernetes clusters.
 
-### DataLock Feature
-DataLock is a security and compliance feature in IBM Cloud® Backup and Recovery that enforces WORM (Write Once, Read Many) protection for backup data.
 
-When DataLock is enabled, protected snapshots and archives cannot be modified or deleted until the configured lock period expires. This helps meet regulatory requirements and protects backup data from accidental or malicious deletion.
 
 ## Before you start
 {: #baas-policy-creation-before-you-start}
@@ -43,7 +40,7 @@ Ensure you have the following:
 ## Accessing the {{site.data.keyword.baas_full_notm}} dashboard
 {: #baas-access-dashboard}
 
-To manage policies, you must first access the {{site.data.keyword.baas_full_notm}} dashboard:
+To manage policies, you must first access the {{site.data.keyword.baas_full_notm}} instance dashboard:
 
 1.  Log in to the [IBM Cloud Console](https://cloud.ibm.com/){: external}.
 2.  Go to **Navigation Menu** \> **Backup and Recovery**.
