@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2026
-lastupdated: "2026-02-17"
+lastupdated: "2026-02-18"
 
 keywords: tutorial, virtual server instance, virtual private cloud, virtual private endpoint gateway, floating IP, SSH key, first-time user
 
@@ -28,7 +28,7 @@ completion-time: 30m
 
 This tutorial shows you how to get started with {{site.data.keyword.baas_full_notm}} to protect data in a Virtual Server Instance that is running Ubuntu Linux. The intended audience is first-time users of the service where you learn to deploy and configure a {{site.data.keyword.baas_full_notm}} instance, and create a Data Source Connector that links your Virtual Server and the instance. Then you can create a new protection group and apply a custom policy that defines backup schedules and retention. Once the policy is applied to the protection group, your data is protected.
 
-## High-level steps for the tutorial
+## High-level overview of tutorial steps
 {: #baas-backup-linux-basic-user-overview}
 
 This tutorial assumes you’re starting from scratch without any existing resources. It guides you through creating new instances; however, you can choose to use your existing resources instead if you have them. If you create new instances, note that this increases your monthly costs. To avoid additional charges, be sure to stop your VSI at the end of the tutorial.
@@ -200,7 +200,7 @@ Next, make the Source VSI accessible from your local machine by [reserve or bind
 
 1. Select type and register Source VSI
 
-   1. Return to the {{site.data.keyword.baas_full_notm}} instance Dashboard, and navigate to the Data Protection > Sources page.
+   1. Return to the {{site.data.keyword.baas_full_notm}} instance Dashboard, and navigate to the **Data Protection > Sources** page.
    2. Click the **Register Source** button.
    3. Select **Physical** from the dialog.
    4. From the dropdown, select the Data Source Connection that is created earlier.
@@ -216,9 +216,9 @@ Next, make the Source VSI accessible from your local machine by [reserve or bind
 1. Set up a new Protection group
 
    1. In the {{site.data.keyword.baas_full_notm}} instance Dashboard, navigate to the **Data Protection > Protection** page
-   2. Click **Protect** and select **Physical server** then **File based**
+   2. Click **Protect** and select **Physical server** then **File based**.
    3. In the New Protection popup, **Add Object**, select your **Physical Servers**. It is listed as the reserved IP from the previous step.
-   4. Click **Continue**
+   4. Click **Continue**.
    5. Add a name for the Protection Group.
    6. Select the **Bronze** protection policy.
    7. Bronze policy includes: taking a backup every day, retains it for 30 days and a 90 days DataLock. Learn more about [policies](/docs/backup-recovery?topic=backup-recovery-individual-instance-view#policy-mc).
