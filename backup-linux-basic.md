@@ -35,31 +35,31 @@ This tutorial assumes you’re starting from scratch without any existing resour
 
 |Step|Environment|Task|Note|
 |---|---|---|---|
-|[Setting up a {{site.data.keyword.baas_full_notm}} instance](#baas-setting-up-deployment)| | | |
-| | UI | Deploy your {{site.data.keyword.baas_full_notm}} instance | |
-| | UI | Create a Data Source Connection (for a VPC) in {{site.data.keyword.baas_full_notm}} | Data source connection is a tunnel between the {{site.data.keyword.baas_full_notm}} instance and the source server. The Data Source Connector is the component that forms that tunnel. |
-| | UI | Create the Data Source Connector instance for the VSI | Connector VSI instance |
-| | UI or CLI | Reserve (or bind) Floating IP for the Connector VSI | |
-| | UI | Configure the Connector VSI in the {{site.data.keyword.baas_full_notm}} UI | Set up password and token: First, add the domain: ‘cloud.ibm.com’ works as a default. Then, paste the claim token from the ‘Create source connection’ modal. |
-| | UI or CLI | Deploy (or identify) a Virtual Private Endpoint gateway instance | |
-|[Setting up Source Virtual Server Instance (VSI)](#baas-setting-up-source-vsi)| | | |
-| Optional | UI or CLI |Set up (or identify) the Source Virtual Server Instance|Source Virtual Server Instance|
+|Step 1:[Set up a {{site.data.keyword.baas_full_notm}} instance](#baas-setting-up-deployment)| | | |
+| | UI | Deploy your {{site.data.keyword.baas_full_notm}} instance. | |
+| | UI | Create a Data Source Connection (for a VPC) in {{site.data.keyword.baas_full_notm}}. | Data source connection is a tunnel between the {{site.data.keyword.baas_full_notm}} instance and the source server. The Data Source Connector is the component that forms that tunnel. |
+| | UI | Create the Data Source Connector instance for the VSI. | Connector VSI instance. |
+| | UI or CLI | Reserve (or bind) Floating IP for the Connector VSI. | |
+| | UI | Configure the Connector VSI in the {{site.data.keyword.baas_full_notm}} UI. | Set up password and token: First, add the domain: ‘cloud.ibm.com’ works as a default. Then, paste the claim token from the **Create source connection** modal. |
+| | UI or CLI | Deploy (or identify) a Virtual Private Endpoint gateway instance. | |
+|Step 2:[Set up a Source Virtual Server Instance (VSI)](#baas-setting-up-source-vsi)| | | |
+| Optional | UI or CLI |Set up (or identify) the Source Virtual Server Instance.|Source Virtual Server Instance|
 | | UI or CLI |Reserve (or bind) Floating IP| |
-|[Setting up {{site.data.keyword.baas_full_notm}} agent to Source VSI](#baas-setting-up-agent-source-vsi)| | | |
-| | UI |Download and install the Linux-based {{site.data.keyword.baas_full_notm}} script installer from the {{site.data.keyword.baas_full_notm}} > Sources page | Securely copy the agent installer from your local environment to the Source VSI |
+|Step 3:[Set up a {{site.data.keyword.baas_full_notm}} agent to Source VSI](#baas-setting-up-agent-source-vsi)| | | |
+| | UI |Download and install the Linux-based {{site.data.keyword.baas_full_notm}} script installer from the {{site.data.keyword.baas_full_notm}} > Sources page. | Securely copy the agent installer from your local environment to the Source VSI. |
 |Optional| Terminal|Verify copying|Note: The installer is not yet executable. |
-| |Terminal| Configure the Source Server to manage NFS (minimum requirement) | Install NFS (file handler) |
+| |Terminal| Configure the Source Server to manage NFS (minimum requirement). | Install NFS (file handler) |
 | |Terminal| Install agent to Source VSI | |
-|[Registering Source VSI into {{site.data.keyword.baas_full_notm}}](#baas-register-source-vsi)| | | |
-| |UI|Register the Source VSI in {{site.data.keyword.baas_full_notm}} UI (Source page)|Add Source VSI’s Reserved IP address|
-|[Setting up Protection group in {{site.data.keyword.baas_full_notm}}](#baas-set-up-data-protection)| | | |
-| |UI - need to check plug-in|Create and configure a new Protection group in {{site.data.keyword.baas_full_notm}} UI (Protection page)|Physical server > File - Add object|
-|Optional|UI - need to check plugin|Verify backup up creation and progress on the {{site.data.keyword.baas_full_notm}} instance subpage| |
+|[Register a Source VSI into {{site.data.keyword.baas_full_notm}}](#baas-register-source-vsi)| | | |
+| |UI|Register the Source VSI in {{site.data.keyword.baas_full_notm}} UI (Source page).|Add Source VSI’s Reserved IP address|
+|[Set up a Protection group in {{site.data.keyword.baas_full_notm}}](#baas-set-up-data-protection)| | | |
+| |UI - need to check plug-in|Create and configure a new Protection group in {{site.data.keyword.baas_full_notm}} UI (Protection page)|Physical server > File - Add object.|
+|Optional|UI - need to check plugin|Verify backup up creation and progress on the {{site.data.keyword.baas_full_notm}} instance subpage.| |
 {: caption="High-level steps for the tutorial" caption-side="bottom"}
 
 
 
-## Setting up a {{site.data.keyword.baas_full_notm}} deployment
+## Set up a {{site.data.keyword.baas_full_notm}} deployment
 {: #baas-setting-up-deployment}
 {: step}
 
@@ -124,7 +124,7 @@ This tutorial assumes you’re starting from scratch without any existing resour
    5. Click **Create**.
 
 
-## Setting up the Source VSI
+## Set up the Source VSI
 {: #baas-setting-up-source-vsi}
 {: step}
 
@@ -142,7 +142,7 @@ This tutorial assumes you’re starting from scratch without any existing resour
 
 Next, make the Source VSI accessible from your local machine by [reserve or bind an existing Floating IP address](https://cloud.ibm.com/infrastructure/network/floatingIPs) to the Source VSI.
 
-## Setting up a {{site.data.keyword.baas_full_notm}} agent to the source VSI
+## Set up a {{site.data.keyword.baas_full_notm}} agent to the source VSI
 {: #baas-setting-up-agent-source-vsi}
 {: step}
 
