@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-12-12"
+lastupdated: "2026-02-17"
 
 keywords: extended, retention
 
@@ -19,8 +19,6 @@ subcollection: backup-recovery
 Snapshots selected for extended retention are retained for a longer time than defined in the protection schedule. You can retain the first snapshot of the backup run taken on the specified hours, every run, days, weeks, months, or years for a longer period of time.
 
 The retention period can be set to a maximum value of 365000 days.
-
-![](../../Resources/Images/extended-retentions/extended-retentions.PNG)
 
 The table below lists the options available for protection policy and extended retention policy and the respective outcome.
 

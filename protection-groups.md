@@ -3,7 +3,7 @@
 copyright:
   years: 2024, 2026
 
-lastupdated: "2026-02-12"
+lastupdated: "2026-02-17"
 
 keywords: protection, groups
 
@@ -36,9 +36,9 @@ Ensure that you have what you need to start:
 {: #protection-groups-instance-ui}
 
 1. Log in to the [IBM Cloud Platform account](https://cloud.ibm.com/){: external}.
-2. Go to `Navigation Menu` \> `Backup and Recovery`.
+2. Go to **Navigation Menu** \> **Backup and Recovery**.
 3. Search for and select your {{site.data.keyword.baas_full_notm}} instance.
-4. On the instance details page, click `Launch dashboard`.
+4. On the instance details page, click **Launch dashboard**.
 5. Enter your SSO or account credentials to authenticate.
 
 After completing the steps, you are now presented with the UI of your {{site.data.keyword.baas_full}} instance.

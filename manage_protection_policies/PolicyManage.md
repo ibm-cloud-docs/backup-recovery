@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2026
-lastupdated: "2026-02-12"
+lastupdated: "2026-02-17"
 
 keywords: <KEYWORDS>
 
@@ -29,10 +29,10 @@ From the Policies page in the IBM Cloud Backup and Recovery instance dashboard, 
 | **Organization** | Organization or account to which the policy belongs. |
 | **Backup** | Indicates that snapshots are stored locally in {{site.data.keyword.baas_full_notm}} with one or more retention rules applied. |
 | **Archive** | Indicates that snapshots are archived to a configured cloud archive target. |
-| **Actions** | Provides options to manage the policy (Copy, Edit, Delete).<br><br>*   **Copy** —Create a new policy using the settings of an existing policy as a template.<br>*   **Edit** —Configure the settings of an existing policy. Follow the instructions provided in [Create or Edit a Standard Policy](/docs/backup-recovery?topic=backup-recovery-create_or_edit_a_standard_policy).<br>*   **Delete** —Delete this policy. If a Protection Group is based on a policy and the policy is deleted, the Protection Group keeps the original settings and is not deleted. |
+| **Actions** | Provides options to manage the policy (Copy, Edit, Delete).<br><br>*   **Copy** —Create a new policy using the settings of an existing policy as a template.<br>*   **Edit** —Configure the settings of an existing policy. Follow the instructions provided in [Creating and configuring protection policies](/docs/backup-recovery?topic=backup-recovery-create_or_edit_a_standard_policy).<br>*   **Delete** —Delete this policy. If a Protection Group is based on a policy and the policy is deleted, the Protection Group keeps the original settings and is not deleted. |
 {: caption="Policy settings " caption-side="bottom"}
 
-For jobs protecting servers, indexing is set at the Protection Group level.
+
 
 ## Default policies
 {: #default_policies}
@@ -40,34 +40,34 @@ For jobs protecting servers, indexing is set at the Protection Group level.
 {{site.data.keyword.baas_full_notm}} provides several predefined Protection Policies that can be used without additional configuration.
 
 *   Gold Policy
-    *   Capture a snapshot every `4 hours`
-    *   Retain snapshots for `7 days`
+    *   Capture a snapshot every **4 hours**
+    *   Retain snapshots for **7 days**
     *   Extended retention:
-       - First snapshot each day retained for `90 days`
-       - First snapshot each week retained for `365 days`
-       - First snapshot each month retained for `1095 days`
-    *  Retry behavior: 3 retries with 5-minute intervals
+        - First snapshot each day retained for **90 days**
+        - First snapshot each week retained for **365 days**
+        - First snapshot each month retained for **1095 days**
+    *  Retry behavior: **3 retries** with **5-minute intervals**
 
 *   Silver
-    *   Capture a snapshot every `12 hours`
-    *   Retain snapshots for `14 days`
+    *   Capture a snapshot every **12 hours**
+    *   Retain snapshots for **14 days**
     *   Extended retention:
-       - Daily snapshot retained for `90 days`
-       - Weekly snapshot retained for `365 days`
-       - Monthly snapshot retained for `730 days`
-    *   Retry behavior: `3 retries` with `5-minute intervals`
+        - Daily snapshot retained for **90 days**
+        - Weekly snapshot retained for **365 days**
+        - Monthly snapshot retained for **730 days**
+    *   Retry behavior: **3 retries** with **5-minute intervals**
 
 *   Bronze
-    *   Capture a snapshot `once per day`
-    *   Retain snapshots for `30 days`
+    *   Capture a snapshot **once per day**
+    *   Retain snapshots for **30 days**
     *   Extended retention:
-       - Weekly snapshot retained for `90 days`
-       - Monthly snapshot retained for `365 days`
-    *   Retry behavior: `3 retries` with `5-minute intervals`
+        - Weekly snapshot retained for **90 days**
+        - Monthly snapshot retained for **365 days**
+    *   Retry behavior: **3 retries** with **5-minute intervals**
 *   Protect Once
-    *   Capture a `single full backup`
-    *   Retain for `14 days`
+    *   Capture a **single full backup**
+    *   Retain for **14 days**
 
 
-DataLock is enabled by default for certain default policies to support compliance requirements. For more details, see the DataLock documentation.
+DataLock is enabled by default for certain default policies to support compliance requirements. For more details, see the [DataLock documentation](/docs/backup-recovery?topic=backup-recovery-datalock).
 {: note}

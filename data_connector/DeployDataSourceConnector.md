@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2026
-lastupdated: "2026-02-02"
+lastupdated: "2026-02-16"
 
 keywords: backup and recovery, data source connectors,
 
@@ -32,7 +32,7 @@ You can deploy Data Source Connectors for the following sources:
 - Physical Server
 - Microsoft SQL Server
 - Oracle Server
-- kubernetes/OpenShift
+- Kubernetes/OpenShift
 
 ### Data Source Connector System Prerequisites
 {: #data_source_connector_system_prerequisites}

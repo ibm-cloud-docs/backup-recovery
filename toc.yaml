@@ -40,6 +40,7 @@ toc:
           label: Protect a Physical Server (File-based)
           topics:
           - backup-linux-basic.md
+          - backup-linux.md
           - backup-windows.md
           - recover-linux.md
           - recover-windows.md

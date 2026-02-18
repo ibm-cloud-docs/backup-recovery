@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2026
-lastupdated: "2026-02-12"
+lastupdated: "2026-02-17"
 
 keywords: <KEYWORDS>
 
@@ -12,7 +12,7 @@ subcollection: backup-recovery
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Datalock
+# DataLock
 {: #datalock}
 
 **DataLock** is a security and compliance feature in {{site.data.keyword.baas_full}} that enforces WORM (Write Once, Read Many) protection for backup data.
@@ -21,7 +21,7 @@ When DataLock is enabled, protected snapshots and archives cannot be modified or
 
 In the {{site.data.keyword.baas_full_notm}} instance dashboard, a lock icon is displayed next to policies and snapshots that are protected by DataLock.
 
-## Features of datalock
+## Features of dataLock
 {: #features_of_datalock}
 
 With DataLock, you can:
