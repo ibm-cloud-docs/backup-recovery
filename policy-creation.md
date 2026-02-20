@@ -3,7 +3,7 @@
 copyright:
   years: 2025
 
-lastupdated: "2026-02-17"
+lastupdated: "2026-02-20"
 
 keywords: policy
 
@@ -31,21 +31,24 @@ Policies can be applied to various sources, including physical hosts, VMs, datab
 ## Before you start
 {: #baas-policy-creation-before-you-start}
 
-Ensure you have the following:
+Ensure that you have the following:
 1.  An active [IBM Cloud Platform account](https://cloud.ibm.com/){: external}.
 2.  A deployed and accessible {{site.data.keyword.baas_full_notm}} service instance.
 3.  Appropriate service access privileges (**Writer** or **Manager**) to create or manage policies.
-    *   *Note: Access can be assigned by your account administrator via IAM.*
+
+Access can be assigned by your account administrator via IAM.
+{: note}
 
 ## Accessing the {{site.data.keyword.baas_full_notm}} dashboard
 {: #baas-access-dashboard}
 
 To manage policies, you must first access the {{site.data.keyword.baas_full_notm}} instance dashboard:
 
-1.  Log in to the [IBM Cloud Console](https://cloud.ibm.com/){: external}.
-2.  Go to **Navigation Menu** \> **Backup and Recovery**.
-3.  Select your {{site.data.keyword.baas_full_notm}} instance.
-4.  Click **Launch dashboard**.
+1. Verify that your [IBM Cloud Platform account](https://cloud.ibm.com/){: external} has access to the required {{site.data.keyword.baas_full_notm}} service.
+2. Go to `Navigation Menu` \> `Backup and Recovery`.
+3. On the **Backup service instances** page, use the search bar to find your instance by name.
+4. Identify the instance with **Active** status and click its name.
+5. On the instance details page, click `Launch dashboard`.
 
 ## Creating and managing protection policies
 {: #baas-policy-creation-config-protect-job}

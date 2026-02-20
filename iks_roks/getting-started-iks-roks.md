@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2026-02-19"
+lastupdated: "2026-02-20"
 
 keywords: data source connector, iks, roks, cluster
 
@@ -18,9 +18,6 @@ subcollection: backup-recovery
 
 This information is provided for beta use only and is subject to change. Only the regions us-east, us-south, eu-fr2, and eu-es are available now for this feature.
 {: beta}
-
-You must create a data source connector on the same VPC where the Kubernetes or OpenShift cluster is deployed.
-{: important}
 
 Located to the right of this page is a summary of key topics that are found on this page.
 {: note}
@@ -151,12 +148,11 @@ Ensure that the node has sufficient CPU and memory to run the {{site.data.keywor
 4. Retrieve the `helm install` command that you copied earlier in the [Create a data source connection](#data-source-connector-iks-roks-create-data-source-connection) section. Update the command by adding the release name (for example, `dsc`). In the following example, `registrationToken` is masked:
 
    ```sh
-   helm install dsc oci://icr.io/ext/brs/brs-ds-connector-chart --version 7.2.17-release-20260108-ed857f1c --set secrets.registrationToken=xxxxxxx
+   helm install dsc oci://icr.io/ext/brs/brs-ds-connector-chart --version 7.2.17-release-20260108-ed857f1c --namespace ibm-brs-data-source-connector --create-namespace --set secrets.registrationToken=xxxxxxx
    ```
    {: codeblock}
 
-   This installs the data source connector in the **default** namespace. You can customize the command by adding the following optional flags:
-   *   `--namespace <namespace_name>` and `--create-namespace`: To deploy the data source connector in a specific namespace.
+   We recommend deploying the data source connector in the `ibm-brs-data-source-connector` namespace using the `--namespace` and `--create-namespace` flags, as shown above. You can further customize the command with these optional flags:
    *   `--set fullnameOverride=<name>`: To give a specific name to the data source connector pods.
    *   `--set replicaCount=2`: To set the number of replicas (the default is 3).
    *   `--set volumeClaimTemplate.storageClass=<storage-class-name>`: To specify a custom storage class (default: `ibmc-vpc-block-metro-5iops-tier`).
@@ -167,7 +163,7 @@ Ensure that the node has sufficient CPU and memory to run the {{site.data.keywor
 6. Check that the Helm release is installed:
 
    ```sh
-   helm list -n <namespace_name>
+   helm list -n ibm-brs-data-source-connector
    ```
    {: codeblock}
 
@@ -185,6 +181,9 @@ Ensure that the node has sufficient CPU and memory to run the {{site.data.keywor
 
 ## How to register a Kubernetes or OpenShift cluster with {{site.data.keyword.baas_full_notm}}
 {: #data-source-connector-iks-roks-register}
+
+If you are registering a cluster that was previously registered, you must ensure that any remnant `brs-backup-agent-<uuid>` namespaces are deleted from the cluster before proceeding. The presence of these namespaces will cause the new registration to fail.
+{: important}
 
 1. Access the [{{site.data.keyword.baas_full_notm}} instance dashboard](#data-source-connector-iks-roks-access-instance).
 2. Go to: `Dashboard` \> `Data Protection` \> `Sources` \> click `Register Source`.
@@ -232,32 +231,34 @@ Ensure that the node has sufficient CPU and memory to run the {{site.data.keywor
 3. Create the secret and retrieve the bearer token:
 
     ```sh
-    cat <<EOF | kubectl apply -f -
+    cat <<EOF > brs-sa-token.yaml
     apiVersion: v1
     kind: Secret
     metadata:
-      name: ibm-token
+      name: brs-sa-token
       namespace: default
       annotations:
         kubernetes.io/service-account.name: brs-sa
     type: kubernetes.io/service-account-token
     EOF
+    kubectl apply -f brs-sa-token.yaml
     ```
     {: codeblock}
 
-    Wait a moment for the token to populate, then retrieve it:
+    Wait a moment for the token to populate, then retrieve and decode it:
 
     ```sh
-    kubectl get secret ibm-token -n default -o jsonpath='{.data.token}'
+    kubectl get secret brs-sa-token -n default -o jsonpath='{.data.token}' | base64 --decode && echo ""
     ```
     {: codeblock}
 
 ## Protecting and Restoring Data
+{: #protect-restore-data-iks-roks}
 
 After registering your cluster, you can proceed to create Protection Groups and Policies to start backing up your data.
 
-1. **Protect a Namespace**: See [Protecting a namespace or cluster](/docs/backup-recovery?topic=backup-recovery-protecting-namespace-ik-roks).
-2. **Configure Policies**: See [Creating and configuring protection policies](/docs/backup-recovery?topic=backup-recovery-create_or_edit_a_standard_policy).
+1. **Protect a Namespace**: See [Protecting a namespace or cluster](/docs/backup-recovery?topic=backup-recovery-protecting-namespace-iks-roks).
+2. **Configure Policies**: See [Creating and configuring protection policies](/docs/backup-recovery?topic=backup-recovery-create-edit-standard-policy).
 3. **Run Backups**: You can schedule backups via policies or trigger a backup immediately by using [Run Now](/docs/backup-recovery?topic=backup-recovery-protection-group-run-now).
 4. **Restore Data**: To recover data, follow the instructions in [Recovering or restoring backup](/docs/backup-recovery?topic=backup-recovery-recovering-restoring-backup).
 

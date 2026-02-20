@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2026
-lastupdated: "2026-02-17"
+lastupdated: "2026-02-20"
 
 keywords: <KEYWORDS>
 
@@ -13,7 +13,7 @@ subcollection: backup-recovery
 {{site.data.keyword.attribute-definition-list}}
 
 # Manage policies
-{: #manage_policies}
+{: #manage-policies}
 
 A Protection Policy must be associated with a **Protection Group** to protect workloads and capture backups.
 
@@ -29,13 +29,13 @@ From the Policies page in the IBM Cloud Backup and Recovery instance dashboard, 
 | **Organization** | Organization or account to which the policy belongs. |
 | **Backup** | Indicates that snapshots are stored locally in {{site.data.keyword.baas_full_notm}} with one or more retention rules applied. |
 | **Archive** | Indicates that snapshots are archived to a configured cloud archive target. |
-| **Actions** | Provides options to manage the policy (Copy, Edit, Delete).<br><br>*   **Copy** —Create a new policy using the settings of an existing policy as a template.<br>*   **Edit** —Configure the settings of an existing policy. Follow the instructions provided in [Creating and configuring protection policies](/docs/backup-recovery?topic=backup-recovery-create_or_edit_a_standard_policy).<br>*   **Delete** —Delete this policy. If a Protection Group is based on a policy and the policy is deleted, the Protection Group keeps the original settings and is not deleted. |
+| **Actions** | Provides options to manage the policy (Copy, Edit, Delete).<br><br>*   **Copy** —Create a new policy using the settings of an existing policy as a template.<br>*   **Edit** —Configure the settings of an existing policy. Follow the instructions provided in [Creating and configuring protection policies](/docs/backup-recovery?topic=backup-recovery-create-edit-standard-policy).<br>*   **Delete** —Delete this policy. If a Protection Group is based on a policy and the policy is deleted, the Protection Group keeps the original settings and is not deleted. |
 {: caption="Policy settings " caption-side="bottom"}
 
 
 
 ## Default policies
-{: #default_policies}
+{: #default-policies}
 
 {{site.data.keyword.baas_full_notm}} provides several predefined Protection Policies that can be used without additional configuration.
 

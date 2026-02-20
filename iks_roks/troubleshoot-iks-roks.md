@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2026-02-19"
+lastupdated: "2026-02-20"
 
 keywords: data source connector, iks, roks, cluster, troubleshooting
 
@@ -112,7 +112,7 @@ To help ensure successful source registration and maintain data integrity, follo
 ### Incorrect brs-backup-agent image
 {: #incorrect-backup-agent}
 
-If there is a registration failure, verify whether the {{site.data.keyword.baas_full_notm}} backup agent is running on the Kubernetes/OpenShift cluster.
+If there is a registration failure, verify whether the {{site.data.keyword.baas_full_notm}} backup agent is running on the Kubernetes or OpenShift cluster.
 
 Check whether the backup agent is running:
 ```bash
@@ -238,7 +238,7 @@ Once any applicable Data Locks have expired, resources must be removed in this s
 1. **Protection Group**: Delete the group first to stop all scheduled tasks.
 2. **Unregister Source**: Once the group is gone, you can safely unregister the data source.
 3. **Connectors**: Remove the bridge between your source and the connection.
-4. **Connection**: Finally, delete the underlying connection credentials/configuration.
+4. **Connection**: Finally, delete the underlying connection credentials or configuration.
 
 ## Using the Kubernetes Info Fetcher Script
 {: #info-fetcher-script}

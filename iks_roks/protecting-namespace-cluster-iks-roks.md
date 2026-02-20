@@ -2,9 +2,9 @@
 
 copyright:
   years: 2025
-lastupdated: "2026-02-19"
+lastupdated: "2026-02-20"
 
-keywords: data source connector, iks, roks, cluster
+keywords: data source connector, iks, roks, cluster, protection
 
 subcollection: backup-recovery
 
@@ -45,7 +45,7 @@ Follow these steps to quickly protect your Kubernetes resources:
 
    | Option | Description |
    |------|-------------|
-   | **Use an Existing Protection Group** | All settings are prefilled from the existing group and are read only at this stage. |
+   | **Use an Existing Protection Group** | All settings are prefilled from the existing group and are read-only at this stage. |
    | **Create a New Protection Group** | When creating a new group, configure the following settings: <ul><li>**Protection Group Name**</li><li>**Protection Policy**</li><li>**Start Time and Time Zone** </li><li>**Leverage CSI Snapshot** (toggle)</li><li>**Pause Future Runs**</li><li>**Alerts and Email Recipients**</li><li>**Priority** (High / Medium / Low)</li><li>**Include or Exclude Labels**</li><li>**Description**</li></ul> |
 
 11. **Select or Create a Protection Policy**:
