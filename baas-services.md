@@ -2,7 +2,7 @@
 
 copyright:
   years:  2025
-lastupdated: "2026-02-17"
+lastupdated: "2026-02-23"
 
 keywords: aspera, key protect, archive, worm
 
@@ -42,7 +42,7 @@ For more information about the following services, be sure to check out the resp
 | `jp-osa`   | Yes          | Yes     | Yes      |  Yes   | No |
 | `us-south` | Yes          | Yes     | Yes      |  Yes   | Ye |
 | `us-east`  | Yes          | Yes     | Yes      |  Yes   | Yes|
-| `eu-fr2`   | Yes          | Yes     | Yes      |  Yes   | Yes|
+
 
 ## Software versions supported
 {: #service-availability-software-version}
