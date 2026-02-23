@@ -42,10 +42,10 @@ You need the following to get started with {{site.data.keyword.baas_full_notm}}:
 {: caption="Workload availability " caption-side="bottom"}
 
 
-## High-level overview of tutorial steps
+## High-level overview of getting started
 {: #baas-backup-linux-basic-user-overview}
 
-This tutorial assumes you’re starting from scratch without any existing resources. It guides you through creating new instances; however, you can choose to use your existing resources instead if you have them. If you create new instances, note that this increases your monthly costs. To avoid additional charges, be sure to stop your VSI at the end of the tutorial.
+This section assumes you’re starting from scratch without any existing resources. It guides you through creating new instances; however, you can choose to use your existing resources instead if you have them. If you create new instances, note that this increases your monthly costs. To avoid additional charges, be sure to stop your VSI at the end of the getting started steps.
 
 |Step|Environment|Task|Note|
 |---|---|---|---|
@@ -69,7 +69,7 @@ This tutorial assumes you’re starting from scratch without any existing resour
 |**Step 5:** [Set up a Protection group in {{site.data.keyword.baas_full_notm}}](#baas-set-up-data-protection)| | | |
 | |UI - need to check plug-in|Create and configure a new Protection group in {{site.data.keyword.baas_full_notm}} UI (Protection page)|Physical server > File - Add object.|
 |Optional|UI - need to check plugin|Verify backup up creation and progress on the {{site.data.keyword.baas_full_notm}} instance subpage.| |
-{: caption="High-level steps for the tutorial" caption-side="bottom"}
+{: caption="High-level overview of getting started" caption-side="bottom"}
 
 
 ## Set up a {{site.data.keyword.baas_full_notm}} deployment
