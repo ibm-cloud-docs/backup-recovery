@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024
-lastupdated: "2026-01-30"
+lastupdated: "2026-02-23"
 
 keywords: backup recovery, terraform, guide
 
@@ -56,16 +56,24 @@ provider "ibm" {
 }
 ```
 
-### Set the required environment variable
+### Set the endpoint for Backup Recovery
+{: #terraform-set-endpoint}
+
+You can configure the Backup Recovery endpoint in one of the following ways:
+
+#### Option 1: Set the environment variable
 {: #terraform-set-environ-var}
 
-If the provider requires a specific endpoint, you can either:
--   Set the endpoint directly in your terminal,
+Set the endpoint directly in your terminal:
 
 ```sh
 BACKUP_RECOVERY_ENDPOINT=https://brs-stage-us-south-01.backup-recovery.cloud.ibm.com/v2
 ```
--   or, specify it in an endpoint JSON file and reference this file in your Terraform configuration or ensure the provider reads it accordingly
+
+#### Option 2: Use an endpoint JSON file
+{: #terraform-set-endpoint-json}
+
+Specify the endpoint in an endpoint JSON file and reference this file in your Terraform configuration or ensure the provider reads it accordingly:
 
 ```sh
 {
@@ -76,6 +84,17 @@ BACKUP_RECOVERY_ENDPOINT=https://brs-stage-us-south-01.backup-recovery.cloud.ibm
     }
 }
 ```
+
+#### Option 3: Use resource-level parameters (overrides Options 1 and 2)
+{: #terraform-set-required-params}
+
+The following parameters can be set on all Backup Recovery related resources and datasources. If `instance_id` and `region` are provided together, the provider constructs the endpoint URL using them, which **overrides** any value set through the `BACKUP_RECOVERY_ENDPOINT` environment variable or the `endpoints.json` file.
+
+| Parameter | Type | Required | Description |
+| --- | --- | --- | --- |
+| `endpoint_type` | String | Optional | Backup Recovery endpoint type. By default set to `"public"`. |
+| `instance_id` | String | Optional | Backup Recovery instance ID. If provided along with `region`, overrides the environment variable and `endpoints.json` file. |
+| `region` | String | Optional | Backup Recovery region. If provided along with `instance_id`, overrides the environment variable and `endpoints.json` file. |
 
 ### Initialize Terraform
 {: #terraform-initialize}
@@ -96,6 +115,9 @@ terraform init --upgrade
 resource "ibm_backup_recovery_data_source_connection" "terra_connection_instance" {
 	x_ibm_tenant_id = "79mle1bk3m/"
 	connection_name = "test-conn-110"
+	endpoint_type   = "public"
+	instance_id     = "<instance-id>"
+	region          = "us-south"
 }
 ```
 
@@ -107,6 +129,9 @@ resource "ibm_backup_recovery_source_registration" "terra_source_registration_in
     x_ibm_tenant_id = "79mle1bk3m/"
     environment = "kPhysical"
     connection_id = "7754198299738915743"
+    endpoint_type   = "public"
+    instance_id     = "<instance-id>"
+    region          = "us-south"
     physical_params {
         endpoint = "172.26.1.12"
         host_type = "kLinux"
@@ -122,6 +147,9 @@ resource "ibm_backup_recovery_source_registration" "terra_source_registration_in
 data "ibm_backup_recovery_source_registration" "backup_recovery_source_registration_instance"{
 	x_ibm_tenant_id = "79mle1bk3m/"
 	source_registration_id = 217
+	endpoint_type   = "public"
+	instance_id     = "<instance-id>"
+	region          = "us-south"
 }
 ```
 
@@ -131,6 +159,9 @@ data "ibm_backup_recovery_source_registration" "backup_recovery_source_registrat
 ```sh
 resource "ibm_backup_recovery_protection_policy" "baas_protection_policy_instance" {
     x_ibm_tenant_id = "79mle1bk3m/"
+    endpoint_type   = "public"
+    instance_id     = "<instance-id>"
+    region          = "us-south"
 	name = "terra-test-policy-1"
 	backup_policy {
 		regular {
@@ -165,6 +196,9 @@ resource "ibm_backup_recovery_protection_policy" "baas_protection_policy_instanc
 data "ibm_backup_recovery_protection_policies" "backup_recovery_protection_policies_instance" {
 		x_ibm_tenant_id = "79mle1bk3m/"
 		ids = ["2783038300930052:1729529537348:8635"]
+		endpoint_type   = "public"
+		instance_id     = "<instance-id>"
+		region          = "us-south"
 	}
 ```
 
@@ -174,6 +208,9 @@ data "ibm_backup_recovery_protection_policies" "backup_recovery_protection_polic
 ```sh
 resource "ibm_backup_recovery_protection_group" "baas_protection_group_instance" {
 	x_ibm_tenant_id = "79mle1bk3m/"
+	endpoint_type   = "public"
+	instance_id     = "<instance-id>"
+	region          = "us-south"
 	policy_id = ibm_backup_recovery_protection_policy.baas_protection_policy_instance.id
 	name = "terra-test-group-1"
 	environment = "kPhysical"
@@ -198,6 +235,9 @@ resource "ibm_backup_recovery_protection_group" "baas_protection_group_instance"
 data "ibm_backup_recovery_protection_group" "backup_recovery_protection_group_instance" {
 		x_ibm_tenant_id = "79mle1bk3m/"
 		protection_group_id = "2783038300930052:1729529537348:8639"
+		endpoint_type   = "public"
+		instance_id     = "<instance-id>"
+		region          = "us-south"
 }
 ```
 
@@ -209,6 +249,9 @@ resource "ibm_backup_recovery_protection_group_run_request" "my_name_4" {
     x_ibm_tenant_id = "79mle1bk3m/"
     group_id = "5901263190628181:1725393921826:9630"
     run_type = "kRegular"
+    endpoint_type   = "public"
+    instance_id     = "<instance-id>"
+    region          = "us-south"
 }
 ```
 
@@ -219,6 +262,9 @@ resource "ibm_backup_recovery_protection_group_run_request" "my_name_4" {
 resource "ibm_backup_recovery" "backup_recovery_instance" {
 		x_ibm_tenant_id = "79mle1bk3m/"
 		snapshot_environment = "kPhysical"
+		endpoint_type   = "public"
+		instance_id     = "<instance-id>"
+		region          = "us-south"
 		name = "terra-recovery-1"
 		physical_params {
 		  recovery_action = "RecoverFiles"
