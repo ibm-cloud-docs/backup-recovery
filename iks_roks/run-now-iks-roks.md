@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2026-02-16"
+lastupdated: "2026-02-19"
 
 keywords: data source connector, iks, roks, cluster, run now
 
@@ -31,73 +31,68 @@ You can manually start a protection run for the Kubernetes namespaces (objects) 
 ## Starting a protection run
 {: #protection-starting-run}
 
-1. In the {{site.data.keyword.baas_full_notm}} instance dashboard, navigate to **Data Protection** \> **Protection**.
-2. On the **Protection** page, locate the protection group you want to run the backup for.
-3. Click the **Actions menu** (three dots) and select **Run Now**.
-4. In the pop-up window, click the pencil icon to edit the run settings, and perform the following:
-   - In the **Backup** list, select one of the following:
-      - **Backup all Objects**: Backs up every object (namespace) defined in the group.
-      - **Backup only selected Objects**: Allows you to choose specific objects to back up.
-   - In the **Backup Type** list, select the backup type (Full or Incremental). By default, an archival backup is performed if configured.
-5. Click **Run Now** to start the job.
+1. In the {{site.data.keyword.baas_full_notm}} instance dashboard, navigate to `Data Protection` \> `Protection`.
+2. On the **Protection** page, locate the protection group that you want to run the backup for.
+3. Click the **Actions** icon `⋮` and select `Run Now`. In the **Run Protection Now** modal configure the following options:
+
+      | Setting | Option | Description |
+      |---|---|---|
+      | **Backup** | **All objects in protection group** | Backs up all defined resources. |
+      | | **All objects that succeeded last run** | Backs up objects that were successfully protected in the previous run. |
+      | | **Selected objects in the protection run** | Allows you to choose specific objects to back up. |
+      | **Backup Type** | **Incremental** | Captures only changes since the last backup (faster). |
+      | | **Full** | Captures a complete copy of all objects and data in the protection group, regardless of previous backup history. |
+
+5. Click `Run Now` to start the job.
 
 ## Pause future runs
 {: #iks-roks-pause-run}
 
-You can pause future scheduled runs for the objects in a protection group. If a protection run is currently executing, it will continue to completion, and only subsequent scheduled runs will be paused.
+You can pause future scheduled runs for the objects in a protection group. If a protection run is currently executing, it continues to completion, and only subsequent scheduled runs will be paused.
 
 To pause future runs:
 1. In the {{site.data.keyword.baas_full_notm}} instance dashboard, navigate to **Data Protection** \> **Protection**.
-2. On the **Protection** page, locate the protection group you want to pause.
-3. Click the **Actions menu** and select **Pause Future Runs**.
+2. On the **Protection** page, locate the protection group that you want to pause.
+3. Click the **Actions** icon `⋮` and select `Pause Future Runs`.
 
 ## Resume paused protection runs
 {: #iks-roks-resume-run}
 
-You can resume a paused protection run at any time. When you resume, if the previous backup snapshots have expired, a full backup may be triggered.
+You can resume a paused protection run at any time. When you resume, if the previous backup snapshots have expired, a full backup might be triggered.
 
 To resume a paused protection run:
-1. In the {{site.data.keyword.baas_full_notm}} instance dashboard, navigate to **Data Protection** \> **Protection**.
-2. On the **Protection** page, locate the protection group you want to resume.
-3. Click the **Actions menu** and select **Resume**.
+1. In the {{site.data.keyword.baas_full_notm}} instance dashboard, navigate to `Data Protection` \> `Protection`.
+2. On the **Protection** page, locate the protection group that you want to resume.
+3. Click the **Actions** icon `⋮` and select `Resume`.
 
-## Delete the object
+## Delete Protection Group
 {: #iks-roks-delete-object}
 
-You can delete a protected object (namespace) if you:
-- No longer want to retain the backups and snapshots generated for it.
-- Want to reclaim the storage space used by the object.
+You can delete a protection group if you:
+- No longer want to retain the backups and snapshots that are generated for it.
+- Want to reclaim the storage space used by the objects in the group.
 
-You can delete an object in two ways:
-- **Delete Object Only**: Removes the object from {{site.data.keyword.baas_full_notm}} management but preserves all existing backups until they expire naturally.
-- **Delete Object and Snapshots**: Removes the object and immediately deletes all its local and archived snapshots.
+You can delete a protection group in two ways:
+- **Delete Object Only**: Removes the protection group from {{site.data.keyword.baas_full_notm}} management but preserves all existing backups until they expire naturally.
+- **Delete Object and Snapshots**: Removes the protection group and immediately deletes all its local and archived snapshots.
 
-After deleting objects and snapshots, the reclaimed storage space may take some time to appear on the {{site.data.keyword.baas_full_notm}} Dashboard.
+After deleting a protection group and its snapshots, the reclaimed storage space might take some time to appear on the {{site.data.keyword.baas_full_notm}} Dashboard.
 
-To delete an object:
-1. In the {{site.data.keyword.baas_full_notm}} instance dashboard, navigate to **Data Protection** \> **Protection**.
-2. On the **Protection** page, locate the protection group containing the object.
-3. Click the **Actions menu** and select **Delete**. (Note: The protection group is deleted only if the backup is paused).
-4. In the **Delete Protection Group?** dialog box, select one of the following options:
-   - Delete Object Only
-   - Delete Object and Snapshots
+To delete a protection group:
+1. In the {{site.data.keyword.baas_full_notm}} instance dashboard, navigate to `Data Protection` \> `Protection`.
+2. On the **Protection** page, locate the protection group that you want to delete.
+3. Click the **Actions** icon `⋮` and select `Delete`. (Note: The protection group is deleted only if the backup is paused).
+4. In the **Delete Protection Group?** dialog box, perform the following:
+   - **Delete Snapshots**: Toggle to enable if you want to delete all snapshots associated with this protection group. If disabled, only the protection group is removed, and existing snapshots are retained until they expire.
+   - **Confirm**: Type `YES` in the text box to confirm the action.
+5. Click `Delete Group`.
 
 ## Backup types available under Run Now
 {: #iks-roks-backup-types-run-now}
 
-When triggering a manual backup, you may see the following backup types available:
+When triggering a manual backup, you might see the following backup types available:
 
 | Backup Type | Details |
 |--------|---------|
 | **Full Backup** | Captures all selected data regardless of previous backup history. <ul><li>**Scope**: Can run for all objects, selected objects, or objects that succeeded in the last run.</li><li>**Suggested use**: Complete data copy, first backup of a new protection group, or to reset the incremental chain.</li></ul> |
 | **Incremental Backup** | Captures only changed data since the last successful backup. <ul><li>**Scope**: Can run for all objects, selected objects, or succeeded objects (only if previous run had partial or full success).</li><li>**Suggested use**: Quick backups to protect recent changes.</li></ul> |
-
-### Selection Options
-
-The following options are available when choosing which objects to back up:
-
-| Selection Option | Description | Availability |
-|------------------|-------------|-------------------|
-| **All Objects in the Protection Group** | Runs a backup (full or incremental) on every object that is defined in the group. Use when you want consistent coverage of the entire environment. | Always available. |
-| **Selected Objects in the Protection Group** | Allows manual selection of objects to back up. Useful when backing up only a specific namespace or testing backups for a particular object. | Always available. |
-| **All Objects that succeeded in the Last Run** | Uses the success list from the last run and backs up only those objects. Helps ensure consistency and avoids running backups on unknown or incomplete object sets. | **Appears when:** <ul><li>Last run succeeded.</li><li>Last run had partial success (e.g., 2 out of 5 namespaces succeeded).</li></ul> **Hidden when:** <ul><li>Previous run was cancelled.</li><li>Previous run failed completely.</li><li>No successful run exists.</li></ul> |

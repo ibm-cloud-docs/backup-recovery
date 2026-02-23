@@ -2,9 +2,9 @@
 
 copyright:
   years: 2025
-lastupdated: "2026-02-17"
+lastupdated: "2026-02-20"
 
-keywords: <KEYWORDS>
+keywords: data source connector, iks, roks, cluster, recover
 
 subcollection: backup-recovery
 
@@ -17,122 +17,156 @@ subcollection: backup-recovery
 
 After protecting your Kubernetes namespaces, you can recover them using the {{site.data.keyword.baas_full_notm}} to:
 - The original (same) Kubernetes or OpenShift cluster.
-- A different Kubernetes or OpenShift cluster registered with {{site.data.keyword.baas_full_notm}}.
+- A different Kubernetes or OpenShift cluster that is registered with {{site.data.keyword.baas_full_notm}}.
 
 ## Recovering Namespaces to the original Kubernetes or OpenShift cluster
 {: #recovering-same-location}
 
-When recovering namespaces to their original location (the same Kubernetes or OpenShift cluster), only the resources, PVCs, or metadata that are **missing or deleted** are restored from the selected snapshot. {{site.data.keyword.baas_full_notm}} does not overwrite or restore any resources, PVCs, or metadata that already exist in the original location.
+When recovering namespaces to their original location (the same Kubernetes or OpenShift cluster), only the resources, PVCs, or metadata that are **missing or deleted** are restored from the selected snapshot. {{site.data.keyword.baas_full_notm}} does not overwrite or restore any resources, PVCs, or metadata that exist in the original location.
 
-For example, suppose a namespace you want to restore contains a deployment resource and a service account. If the service account is missing but the deployment resource still exists, {{site.data.keyword.baas_full_notm}} restores only the service account and skips the deployment resource.
+For example, suppose a namespace that you want to restore contains a deployment resource and a service account. If the service account is missing but the deployment resource still exists, {{site.data.keyword.baas_full_notm}} restores only the service account and skips the deployment resource.
 
 ## Restoring namespaces to the same Kubernetes or OpenShift cluster
 {: #recovering-restoring-same-location}
 
 1. Log in to the [IBM Cloud Console](https://cloud.ibm.com/){: external}.
-2. Go to **Navigation Menu** \> **Backup and Recovery**.
-3. Select your {{site.data.keyword.baas_full_notm}} instance.
-4. Click **Launch dashboard**.
-5. Go to **Dashboard** \> **Data Protection** \> **Recoveries**.
-6. Click **Recovery** in the upper-right corner and select **Kubernetes Cluster** \> **Namespace**.
-7. Search for the namespace or **Protection Group** containing the snapshots you want to recover.
-   - You can enter the namespace name, Protection Group name, or use the wildcard character `*`.
-   - Optionally filter results by Source, Protection Group, Storage Domain, or Date.
+2. Go to `Navigation Menu` \> `Backup and Recovery`.
+3. On the **Backup service instances** page, use the search bar to find your instance by name.
+4. Identify the instance with **Active** status and click its name.
+5. On the instance details page, click `Launch dashboard`.
+6. Go to `Dashboard` \> `Data Protection` \> `Recoveries`.
+7. Click `Recover` in the upper-right corner and select `Kubernetes Cluster` \> `Namespace`.
+8. In the **New Recovery** modal:
+    *   Search for the namespace or **Protection Group** you want to recover.
+    *   You can enter the namespace name, Protection Group name, or use the wildcard character `*` for partial matches.
+    *   Filter results by **Source**, **Protection Group**, or **date range**.
 
-8. Select one or more namespaces or Protection Groups from the list. By default, the latest snapshot is selected.
+9. Identify the item you want to recover. Items in the list are distinguished by their type:
+    *   **Protection Groups**: Identified by a blue 'K8' icon. Represents a group of one or more namespaces.
+    *   **Namespaces**: Identified by a grey hexagon icon. Represents an individual Kubernetes namespace.
+    *   To recover the latest snapshot, select the checkbox next to the item name.
+    *   To recover a specific snapshot:
+        1. Click the **Edit** (pencil) icon next to the item name.
+        2. In the recovery point selection view, select the wanted snapshot from the list.
+        3. Click `Select Recovery Point`.
 
-   If you select a **Protection Group**, all namespaces backed up in its latest run are selected. You cannot select these namespaces individually. Selecting a namespace or Protection Group locks the **Storage Domain** and **Source** filters.
-   {: note}
-
-9. To recover from a specific snapshot (instead of the default latest one):
-
-   **For a Protection Group:**
-   - Hover over the Protection Group in the selection list and click the **edit** (pencil) icon.
-   - Select the desired snapshot from the **Protection Run** drop-down.
-   - (Optional) Click the cloud icon to select a snapshot archived to the cloud.
-   - Click **Select Recovery Point**.
-
-   **For a Namespace:**
-   - Hover over the namespace and click the **edit** icon.
-   - The *Edit recovery point* page appears, showing snapshots from the last month by default.
-   - To see other dates, use the **Date** filter and click **Apply**.
-   - Select the snapshot you want to allow to recover.
-   - (Optional) Click the cloud icon to select a snapshot archived to the cloud.
-   - Click **Select Recovery Point**.
-
-   Deleted snapshots may briefly appear as valid recovery points until they are removed from the search index.
-   {: note}
-
-10. Click **Next: Recover Options**.
-11. Under **Recover To**, select **Original Location** to recover the namespace to the same Kubernetes or OpenShift cluster.
+10. Click `Next: Recover Options`.
+11. Under **Recover To**, select **Original Location** to recover the namespace to the same cluster.
 12. Configure the **Recovery Options** as needed:
-   - **Rename**: Add a **Prefix** and/or **Suffix** to the names of recovered namespaces.
-     - *Example*: Adding prefix `Test_` and suffix `_QA` to namespace `App` creates `Test_App_QA`.
-   - **Task Name**: Customize the name of this recovery task.
-   - **Namespace Resources**: Choose specific resources to recover. Click the **edit** icon to customize:
-      - **Resources**:
-         - **Persistent Volume Claim (PVC) Inclusion/Exclusion**: Choose specific PVCs to include or exclude. You can also successfully recover *only* PVCs and their dependent resources (ConfigMaps, PersistentVolumes).
-         - **Resource Inclusion/Exclusion**: Include or exclude specific resource classes.
-      - **Storage Class**:
-         - **Unbind PVCs from original PV mapping**: *Requires the {{site.data.keyword.baas_full_notm}} DataProtect plug-in image to be specified during source registration.* This option clears metadata binding PVCs to their original PersistentVolumes (PVs), allowing them to provision new PVs or bind to available ones. Useful for PVCs with a `Retain` reclaim policy.
-         - **Map PVCs to a different storage class**: Click **+ Add** to map a source storage class (left) to a target storage class (right). This ensures recovered PVCs use the correct storage class in the destination.
-      - **Recover PVCs Only**: Enable this to recover only PVCs and their dependencies, skipping the namespace metadata.
-      - **Include or Exclude Labels**: Filter PVCs by label.
-         - Select **Match Any** or **Match All** logical rules.
-         - Choose **Include** or **Exclude**, click **+ Add**, and enter the Label Key and Value.
+    *   **Rename**: Add a **Prefix** or **Suffix** to the names of recovered namespaces. By default, the prefix `copy-` is added to the original namespace name.
+    *   **Task Name**: View or customize the name of this recovery task.
+    *   **Skip cluster compatibility check**: Toggle to enable/disable skipping the check if the target cluster is compatible or not. This option is about kubernetes compatibility.
+    *   **Include or Exclude Labels**: Toggle to enable **Persistent Volume Claim(PVC) Inclusion/Exclusion**.
+        *   **Logical Rule**: Select **Match Any of the following labels** or **Match All of the following labels**.
+        *   Choose to **Include** or **Exclude** matched labels.
+        *   Enter the label **key** and **value**, then click `+ Add`.
+    *   **Cluster Resources**:
+        *   Toggle **Include Cluster Level Resources** to restore cluster-scoped resources.
+        *   *Warning*: Recovering cluster resources can create conflicts. Proceed with caution.
+        *   Select the **Snapshot with Cluster Resource** from the dropdown if multiple are available.
+    *   **Namespace Resources**: Choose specific resources to recover. Click the **edit** icon to customize:
+        *   **Resources** Tab:
+            *   Toggle **Resource Inclusion/Exclusion** to specific resources.
+            *   Select **Include** or **Exclude** radio buttons.
+            *   Use the search bar or click `+ Add` to filter by resource type (for example, `Deployment`, `ReplicaSet`).
+        *   **Storage Class** Tab:
+            *   Toggle **Unbind the PVCs from their original PV mapping** if needed.
+            *   Map **Old Storage Class** to **New Storage Class** by using the dropdowns.
+            *   Use **Clear All** to reset mappings.
 
-13. Click **Recovery**. You can monitor the progress on the **Recoveries** page.
+13. Click **Recover**. You can monitor the progress on the **Recoveries** page.
 
 
 ## Recovering Namespaces to a different Kubernetes or OpenShift cluster
 {: #recovering-different-location}
 
-You can recover Kubernetes namespaces to a different Kubernetes or OpenShift cluster registered with the same {{site.data.keyword.baas_full_notm}} instance.
+You can recover Kubernetes namespaces to a different Kubernetes or OpenShift cluster that is registered with the same {{site.data.keyword.baas_full_notm}} instance.
 
 - **New Location**: The entire namespace is restored to a different cluster.
-- **Overwrite Behavior**: If the namespace already exists in the destination cluster, {{site.data.keyword.baas_full_notm}} **does not** overwrite existing resources, PVCs, or metadata. It only restores missing items.
+- **Overwrite Behavior**: If the namespace exists in the destination cluster, {{site.data.keyword.baas_full_notm}} **does not** overwrite existing resources, PVCs, or metadata. It only restores missing items.
 
 To restore to a new location (different cluster):
 
 1. Log in to the [IBM Cloud Console](https://cloud.ibm.com/){: external}.
-2. Go to **Navigation Menu** \> **Backup and Recovery**.
-3. Select your {{site.data.keyword.baas_full_notm}} instance.
-4. Click **Launch dashboard**.
-5. Go to **Dashboard** \> **Data Protection** \> **Recoveries**.
-6. Click **Recovery** and select **Kubernetes Cluster** \> **Namespace**.
-7. Search for the namespace or **Protection Group**. You can filter by Source, Protection Group, Storage Domain, or Date.
-8. Select the namespaces or Protection Groups to recover.
-   - Selecting a **Protection Group** selects all namespaces from its latest run.
-   - Filters lock after your first selection.
+2. Go to `Navigation Menu` > `Backup and Recovery`.
+3. On the **Backup service instances** page, use the search bar to find your instance by name.
+4. Identify the instance with **Active** status and click its name.
+5. On the instance details page, click `Launch dashboard`.
+6. Go to `Dashboard` \> `Data Protection` \> `Recoveries`.
+7. Click `Recover` in the upper-right corner and select `Kubernetes Cluster` \> `Namespace`.
+8. In the **New Recovery** modal:
+    *   Search for the namespace or **Protection Group** you want to recover.
+    *   You can enter the namespace name, Protection Group name, or use the wildcard character `*` for partial matches.
+    *   Filter results by **Source**, **Protection Group**, or **date range**.
 
-9. (Optional) To choose a specific snapshot:
-   - **For Protection Groups**: Hover, click **edit**, and select a snapshot from the **Protection Run** menu.
-   - **For Namespaces**: Hover, click **edit**, filter by **Date** if needed, and select the desired snapshot.
-   - *Cloud snapshots* can be selected by clicking the cloud icon.
+9. Identify the item you want to recover. Items in the list are distinguished by their type:
+    *   **Protection Groups**: Identified by a blue 'K8' icon. Represents a group of one or more namespaces.
+    *   **Namespaces**: Identified by a grey hexagon icon. Represents an individual Kubernetes namespace.
+    *   To recover the latest snapshot, select the checkbox next to the item name.
+    *   To recover a specific snapshot:
+        1. Click the **Edit** (pencil) icon next to the item name.
+        2. In the recovery point selection view, select the wanted snapshot from the list.
+        3. Click `Select Recovery Point`.
 
-10. Click **Next: Recover Options**.
-11. Under **Recover To**, select **New Location** to recover the namespace to a different Kubernetes or OpenShift cluster.
-12. Under **Registered Source**, select the destination Kubernetes or OpenShift cluster (or click **Register Source** to add a new one).
-13. (Optional) Configure **Recovery Options**:
-   - **Rename**: Add a prefix or suffix to the new namespace name (e.g., `Test_` + `App` = `Test_App`).
-   - **Task Name**: Rename the recovery task for easier tracking.
-   - **Namespace Resources**: Click **edit** to granularly select resources:
-      - **PVC Inclusion/Exclusion**: Select specific PVCs to recover.
-      - **Resource Inclusion/Exclusion**: Include/exclude specific resource types.
-      - **Storage Class Mappings**:
-         - **Unbind PVCs**: Remove original PV bindings (useful for `Retain` policies).
-         - **Mapping**: Click **+ Add** to map source storage classes to destination storage classes.
-      - **Recover PVCs Only**: Recover only PVCs and dependencies, ignoring namespace metadata.
-      - **Include/Exclude Labels**: Filter PVCs by label key/value pairs.
+10. Click `Next: Recover Options`.
+11. Under `Recover To`, select `New Location` to recover the namespace to a different Kubernetes or OpenShift cluster.
+12. Under `Registered Source`, select the destination Kubernetes or OpenShift cluster (or click `Register Source` to add a new one).
+13. Configure the **Recovery Options** as needed:
+    *   **Rename**: Add a **Prefix** or **Suffix** to the names of recovered namespaces. By default, the prefix `copy-` is added to the original namespace name.
+    *   **Task Name**: View or customize the name of this recovery task.
+    *   **Skip cluster compatibility check**: Toggle to enable/disable skipping the check if the target cluster is compatible or not. This option is about kubernetes compatibility.
+    *   **Include or Exclude Labels**: Toggle to enable **Persistent Volume Claim(PVC) Inclusion/Exclusion**.
+        *   **Logical Rule**: Select **Match Any of the following labels** or **Match All of the following labels**.
+        *   Choose to **Include** or **Exclude** matched labels.
+        *   Enter the label **key** and **value**, then click `+ Add`.
+    *   **Cluster Resources**:
+        *   Toggle **Include Cluster Level Resources** to restore cluster-scoped resources.
+        *   *Warning*: Recovering cluster resources can create conflicts. Proceed with caution.
+        *   Select the **Snapshot with Cluster Resource** from the dropdown if multiple are available.
+    *   **Namespace Resources**: Choose specific resources to recover. Click the **edit** icon to customize:
+        *   **Resources** Tab:
+            *   Toggle **Resource Inclusion/Exclusion** to specific resources.
+            *   Select **Include** or **Exclude** radio buttons.
+            *   Use the search bar or click `+ Add` to filter by resource type (for example, `Deployment`, `ReplicaSet`).
+        *   **Storage Class** Tab:
+            *   Toggle **Unbind the PVCs from their original PV mapping** if needed.
+            *   Map **Old Storage Class** to **New Storage Class** by using the dropdowns.
+            *   Use **Clear All** to reset mappings.
 
-   - **Alternative Region/Zone Recovery**: {{site.data.keyword.baas_full_notm}} supports recovering to a different region or zone.
-      - Specify region and zone mappings.
-      - {{site.data.keyword.baas_full_notm}} automatically updates:
-         - **Storage Classes**: Updates region/zone parameters and `allowedTopologies`.
-         - **Secrets**: Updates storage class secrets (e.g., for `vpc.block.csi.ibm.io`, `openshift-storage`, `portworx`).
-         - **Persistent Volumes**: Updates zone/region attributes and node affinity.
+    **Alternative Region/Zone Recovery**: {{site.data.keyword.baas_full_notm}} supports recovering to a different region or zone.
+    *   **Region Mapping**:
+        *   Specify the **Source** region and the **Target** region.
+    *   **Zone Mapping**:
+        *   Specify the **Source** zone and the **Target** zone.
+        *   Click the `+` icon (if available) to add multiple zone mappings.
+    *   These mappings automatically update Storage Classes, Secrets, and Persistent Volumes during recovery.
 
-14. Click **Recovery**. Monitor the status on the **Recoveries** page.
+14. Click `Recover`. You can monitor the progress on the **Recoveries** page.
+
+## Monitoring Recoveries
+{: #monitoring-recoveries}
+
+You can track the status of your recovery tasks on the **Recoveries** page.
+
+*   **Recovery List details**: The list displays key information for each task, including:
+    *   **Recovery Task**: name of the task.
+    *   **Start Time**: When the task was initiated.
+    *   **Status**: Current state of the recovery.
+    *   **Duration**: How long the task took to complete.
+
+*   **Dashboard Overview**: View a summary of recovery tasks by status:
+    *   **Succeeded**: The recovery task completed successfully.
+    *   **Warning**: The task completed with warnings.
+    *   **Failed**: The task failed to complete.
+    *   **Running**: The task is currently in progress.
+    *   **Canceled**: The task was manually canceled.
+
+*   **Filtering**: Use the available filters to narrow down the list of recoveries:
+    *   **Recovered From**: Filter by source type (for example, **Cloud Archive**, **Local**, **Tape Archive**).
+    *   **Recovery Type**: Filter by the type of data recovered (for example, **Files and Folders**, **Kubernetes**, **Microsoft SQL**, **Oracle**, **Physical Server**, **VMware**, **SAP HANA**, **Instana**, **Etcd**, **Volume**).
+    *   **Status**: Filter by task status (for example, **Running**, **Succeeded**, **Warning**, **Failed**, **Canceled**, **Canceling**, **Skipped**, **Accepted**, **Finalizing Migration**, **In Sync**, **Migrating**, **Migration Finalized**).
+    *   **Date Range**: Select a time period such as **Past Hour**, **Past 12 Hours**, **Past 24 Hours**, **Past 7 Days**, **Past 30 Days**, or a **Custom** range.
+
 
 ## Recovery UI Features
 {: #recovery-ui-features}
@@ -143,7 +177,7 @@ To restore to a new location (different cluster):
 | **Task Name** | Assigns a custom name to the recovery task for easier identification and tracking in the workflow. |
 | **Cluster Resources** | Specifies which cluster-scoped resources to include in the migration. These are restored at the cluster level in the destination. |
 | **Namespace Resources** | Limits recovery to specific resources existing in the source namespace. You can also filter PVCs and related resources for inclusion/exclusion. |
-| **Skip cluster compatibility check** | Bypasses version validation between source and destination clusters. Useful when checking restoring between different cluster types (e.g., ROKS to IKS). |
+| **Skip cluster compatibility check** | Bypasses version validation between source and destination clusters. Useful when checking restoring between different cluster types (for example, ROKS to IKS). |
 | **Region Mapping** | Updates region parameters in custom StorageClasses during restore, creating them with new region values in the destination. |
 | **Zone Mapping** | Updates zone parameters in custom StorageClasses during restore, applying new zone values in the destination. |
 | **Include/Exclude Labels** | Filters PersistentVolumeClaims (PVCs) by label, allowing you to include or exclude specific PVCs from the migration. |
