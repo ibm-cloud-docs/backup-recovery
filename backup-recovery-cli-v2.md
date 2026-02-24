@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024
-lastupdated: "2026-02-23"
+lastupdated: "2026-02-24"
 
 keywords: backup recovery, cli, guide
 
@@ -403,61 +403,64 @@ ibmcloud backup-recovery protection-source register --xibm-tenant-id XIBM-TENANT
 `--connector-group-id` (int64)
 :   Specifies the connector group id of connector groups.
 
-`kubernetes-params` (string)
+`--kubernetes-params` (string)
 :   Specifies the parameters to register a Kubernetes source. It should be a JSON string or a path to a JSON file.
 
-`kubernetes-params-auto-protect-config` (string)
+`--kubernetes-params-auto-protect-config` (string)
 :   Specifies the parameters to auto protect the source after registration. It should be a JSON string or a path to a JSON file.
 
-`kubernetes-params-client-private-key` (string)
+`--kubernetes-params-client-private-key` (string)
 :   Specifies the bearer token or private key of Kubernetes source.
 
-`kubernetes-params-data-mover-image-location` (string)
+`--kubernetes-params-data-mover-image-location` (string)
 :   Specifies the datamover image location of Kubernetes source.
 
-`kubernetes-params-datamover-service-type` (string)
+`--kubernetes-params-datamover-service-type` (string)
 :   Specifies the data mover service type of Kubernetes source. Allowable values are: kNodePort, kLoadBalancer, kClusterIp.
 
-`kubernetes-params-default-vlan-params` (string)
+`--kubernetes-params-default-vlan-params` (string)
 :   Specifies VLAN params associated with the backup/restore operation. It should be a JSON string or a path to a JSON file.
 
-`kubernetes-params-endpoint` (string)
+`--kubernetes-params-endpoint` (string)
 :   Specifies the endpoint of Kubernetes source.
 
-`kubernetes-params-init-container-image-location` (string)
+`--kubernetes-params-init-container-image-location` (string)
 :   Specifies the initial container image location of Kubernetes source.
 
-`kubernetes-params-kubernetes-distribution` (string)
+`--kubernetes-params-cohesity-dataprotect-plugin-image-location` (string)
+:   Specifies the custom Cohesity Dataprotect plugin image location of the Kubernetes source.
+
+`--kubernetes-params-kubernetes-distribution` (string)
 :   Specifies the distribution type of Kubernetes source. Allowable values are: kOpenshift, kMainline, kVMwareTanzu, kRancher, kEKS, kGKE, kAKS, kIKS, kROKS.
 
-`kubernetes-params-kubernetes-type` (string)
+`--kubernetes-params-kubernetes-type` (string)
 :   Specifies the type of kubernetes source. Allowable values are: kCluster, kNamespace, kService, kPVC, kPersistentVolumeClaim, kPersistentVolume, kLabel.
 
-`kubernetes-params-priority-class-name` (string)
+`--kubernetes-params-priority-class-name` (string)
 :   Specifies the priority class name for cohesity resources.
 
-`kubernetes-params-resource-annotations` (string)
+`--kubernetes-params-resource-annotations` (string)
 :   Specifies resource annotations to be applied on cohesity resources. It should be a JSON string or a path to a JSON file.
 
-`kubernetes-params-resource-labels` (string)
+`--kubernetes-params-resource-labels` (string)
 :   Specifies resource label to be applied on cohesity resources. It should be a JSON string or a path to a JSON file.
 
-`kubernetes-params-san-fields` (string)
+`--kubernetes-params-san-fields` (string)
 :   Specifies the SAN field for agent certificate.
 
-`kubernetes-params-service-annotations` (string)
+`--kubernetes-params-service-annotations` (string)
 :   Specifies the service annotation object of Kubernetes source. It should be a JSON string or a path to a JSON file.
 
-`kubernetes-params-velero-aws-plugin-image-location` (string)
+`--kubernetes-params-velero-aws-plugin-image-location` (string)
 :   Specifies the velero AWS plugin image location of the Kubernetes source.
 
-`kubernetes-params-velero-image-location` (string)
+`--kubernetes-params-velero-image-location` (string)
 :   Specifies the velero image location of the Kubernetes source.
 
-`kubernetes-params-velero-openshift-plugin-image-location` (string)
+`--kubernetes-params-velero-openshift-plugin-image-location` (string)
 :   Specifies the velero open shift plugin image for the Kubernetes source.
 
-`kubernetes-params-vlan-info-vec` (string)
+`--kubernetes-params-vlan-info-vec` (string)
 :   Specifies VLAN information provided during registration. It should be a JSON string or a path to a JSON file.
 
 `--advanced-configs`
@@ -614,58 +617,64 @@ ibmcloud backup-recovery protection-source registration-update --id ID --xibm-te
 `--connector-group-id` (int64)
 :   Specifies the connector group id of connector groups.
 
-`kubernetes-params-auto-protect-config` (string)
+`--kubernetes-params-auto-protect-config` (string)
 :   Specifies the parameters to auto protect the source after registration. It should be a JSON string or a path to a JSON file.
 
-`kubernetes-params-client-private-key` (string)
+`--kubernetes-params-client-private-key` (string)
 :   Specifies the bearer token or private key of Kubernetes source.
 
-`kubernetes-params-data-mover-image-location` (string)
+`--kubernetes-params-cohesity-dataprotect-plugin-image-location` (string)
+:   Specifies the custom Cohesity Dataprotect plugin image location of the Kubernetes source.
+
+`--kubernetes-params-data-mover-image-location` (string)
 :   Specifies the datamover image location of Kubernetes source.
 
-`kubernetes-params-datamover-service-type` (string)
+`--kubernetes-params-datamover-service-type` (string)
 :   Specifies the data mover service type of Kubernetes source. Allowable values are: kNodePort, kLoadBalancer, kClusterIp.
 
-`kubernetes-params-default-vlan-params` (string)
+`--kubernetes-params-default-vlan-params` (string)
 :   Specifies VLAN params associated with the backup/restore operation. It should be a JSON string or a path to a JSON file.
 
-`kubernetes-params-endpoint` (string)
+`--kubernetes-params-endpoint` (string)
 :   Specifies the endpoint of Kubernetes source.
 
-`kubernetes-params-init-container-image-location` (string)
+`--kubernetes-params` (string)
+:   Specifies the parameters to register an Kubernetes source.
+
+`--kubernetes-params-init-container-image-location` (string)
 :   Specifies the initial container image location of Kubernetes source.
 
-`kubernetes-params-kubernetes-distribution` (string)
+`--kubernetes-params-kubernetes-distribution` (string)
 :   Specifies the distribution type of Kubernetes source. Allowable values are: kOpenshift, kMainline, kVMwareTanzu, kRancher, kEKS, kGKE, kAKS, kIKS, kROKS.
 
-`kubernetes-params-kubernetes-type` (string)
+`--kubernetes-params-kubernetes-type` (string)
 :   Specifies the type of kubernetes source. Allowable values are: kCluster, kNamespace, kService, kPVC, kPersistentVolumeClaim, kPersistentVolume, kLabel.
 
-`kubernetes-params-priority-class-name` (string)
+`--kubernetes-params-priority-class-name` (string)
 :   Specifies the priority class name for cohesity resources.
 
-`kubernetes-params-resource-annotations` (string)
+`--kubernetes-params-resource-annotations` (string)
 :   Specifies resource annotations to be applied on cohesity resources. It should be a JSON string or a path to a JSON file.
 
-`kubernetes-params-resource-labels` (string)
+`--kubernetes-params-resource-labels` (string)
 :   Specifies resource label to be applied on cohesity resources. It should be a JSON string or a path to a JSON file.
 
-`kubernetes-params-san-fields` (string)
+`--kubernetes-params-san-fields` (string)
 :   Specifies the SAN field for agent certificate.
 
-`kubernetes-params-service-annotations` (string)
+`--kubernetes-params-service-annotations` (string)
 :   Specifies the service annotation object of Kubernetes source. It should be a JSON string or a path to a JSON file.
 
-`kubernetes-params-velero-aws-plugin-image-location` (string)
+`--kubernetes-params-velero-aws-plugin-image-location` (string)
 :   Specifies the velero AWS plugin image location of the Kubernetes source.
 
-`kubernetes-params-velero-image-location` (string)
+`--kubernetes-params-velero-image-location` (string)
 :   Specifies the velero image location of the Kubernetes source.
 
-`kubernetes-params-velero-openshift-plugin-image-location` (string)
+`--kubernetes-params-velero-openshift-plugin-image-location` (string)
 :   Specifies the velero open shift plugin image for the Kubernetes source.
 
-`kubernetes-params-vlan-info-vec` (string)
+`--kubernetes-params-vlan-info-vec` (string)
 :   Specifies VLAN information provided during registration. It should be a JSON string or a path to a JSON file.
 
 `--advanced-configs`
@@ -1581,40 +1590,40 @@ ibmcloud backup-recovery protection-group create --xibm-tenant-id XIBM-TENANT-ID
 #### Command options
 {: #backup-recovery-protection-group-create-cli-options}
 
-`kubernetes-params` (string)
+`--kubernetes-params` (string)
 :   Specifies the parameters which are related to Kubernetes Protection Groups. It should be a JSON string or a path to aJSON file.
 
-`kubernetes-params-enable-indexing`
+`--kubernetes-params-enable-indexing`
 :   Specifies if indexing of files and folders is allowed or not while backing up namespace. If allowed files and folder can be recovered.
 
-`kubernetes-params-exclude-label-ids` (string)
+`--kubernetes-params-exclude-label-ids` (string)
 :   Array of arrays of label IDs that specify labels to exclude. Optionally specify a list of labels to exclude from protecting by listing protection source ids of labels in this two dimensional array. Using this two dimensional array of label IDs, the Cluster generates a list of namespaces to exclude from protecting, which are derived from intersections of the inner arrays and union of the outer array. It should be a JSON string or a path to a JSON file.
 
-`kubernetes-params-exclude-object-ids` (string)
+`--kubernetes-params-exclude-object-ids` (string)
 :   Specifies the objects to be excluded in the Protection Group.
 
-`kubernetes-params-exclude-params` (string)
+`--kubernetes-params-exclude-params` (string)
 :   Specifies the parameters to in/exclude objects (for example, volumes). An object satisfying any of these criteria will be included by this filter. It should be a JSON string or a path to a JSON file.
 
-`kubernetes-params-include-params` (string)
+`--kubernetes-params-include-params` (string)
 :   Specifies the parameters to in/exclude objects (for example, volumes). An object satisfying any of these criteria will be included by this filter. It should be a JSON string or a path to a JSON file.
 
-`kubernetes-params-label-ids` (string)
+`--kubernetes-params-label-ids` (string)
 :   Array of array of label IDs that specify labels to protect. Optionally specify a list of labels to protect by listing protection source ids of labels in this two dimensional array. Using this two dimensional array of label IDs, the cluster generates a list of namespaces to protect, which are derived from intersections of the inner arrays and union of the outer array. It should be a JSON string or a path to a JSON file.
 
-`kubernetes-params-leverage-csi-snapshot`
+`--kubernetes-params-leverage-csi-snapshot`
 :   Specifies if CSI snapshots should be used for backup of namespaces.
 
-`kubernetes-params-non-snapshot-backup`
+`--kubernetes-params-non-snapshot-backup`
 :   Specifies if snapshot backup fails, non-snapshot backup will be proceeded.
 
-`kubernetes-params-objects` (string)
+`--kubernetes-params-objects` (string)
 :   Specifies the objects included in the Protection Group. It should be a JSON string or a path to a JSON file.
 
-`kubernetes-params-vlan-params` (string)
+`--kubernetes-params-vlan-params` (string)
 :   Specifies VLAN params associated with the backup/restore operation. It should be a JSON string or a path to a JSON file.
 
-`kubernetes-params-volume-backup-failure`
+`--kubernetes-params-volume-backup-failure`
 :   Specifies whether to process with backup if volumes backup fails.
 
 `--xibm-tenant-id` (string)
@@ -1884,40 +1893,40 @@ ibmcloud backup-recovery protection-group update --id ID --xibm-tenant-id XIBM-T
 `--id` (string)
 :   Specifies the id of the Protection Group. Required.
 
-`kubernetes-params` (string)
+`--kubernetes-params` (string)
 :   Specifies the parameters which are related to Kubernetes Protection Groups. It should be a JSON string or a path to a JSON file.
 
-`kubernetes-params-enable-indexing`
+`--kubernetes-params-enable-indexing`
 :   Specifies if indexing of files and folders is allowed or not while backing up namespace. If allowed files and folder can be recovered.
 
-`kubernetes-params-exclude-label-ids` (string)
+`--kubernetes-params-exclude-label-ids` (string)
 :   Array of arrays of label IDs that specify labels to exclude. Optionally specify a list of labels to exclude from protecting by listing protection source ids of labels in this two dimensional array. Using this two dimensional array of label IDs, the Cluster generates a list of namespaces to exclude from protecting, which are derived from intersections of the inner arrays and union of the outer array. It should be a JSON string or a path to a JSON file.
 
-`kubernetes-params-exclude-object-ids` (string)
+`--kubernetes-params-exclude-object-ids` (string)
 :   Specifies the objects to be excluded in the Protection Group.
 
-`kubernetes-params-exclude-params` (string)
+`--kubernetes-params-exclude-params` (string)
 :   Specifies the parameters to in/exclude objects (for example, volumes). An object satisfying any of these criteria will be included by this filter. It should be a JSON string or a path to a JSON file.
 
-`kubernetes-params-include-params` (string)
+`--kubernetes-params-include-params` (string)
 :   Specifies the parameters to in/exclude objects (for example, volumes). An object satisfying any of these criteria will be included by this filter. It should be a JSON string or a path to a JSON file.
 
-`kubernetes-params-label-ids` (string)
+`--kubernetes-params-label-ids` (string)
 :   Array of array of label IDs that specify labels to protect. Optionally specify a list of labels to protect by listing protection source ids of labels in this two dimensional array. Using this two dimensional array of label IDs, the cluster generates a list of namespaces to protect, which are derived from intersections of the inner arrays and union of the outer array. It should be a JSON string or a path to a JSON file.
 
-`kubernetes-params-leverage-csi-snapshot`
+`--kubernetes-params-leverage-csi-snapshot`
 :   Specifies if CSI snapshots should be used for backup of namespaces.
 
-`kubernetes-params-non-snapshot-backup`
+`--kubernetes-params-non-snapshot-backup`
 :   Specifies if snapshot backup fails, non-snapshot backup will be proceeded.
 
-`kubernetes-params-objects` (string)
+`--kubernetes-params-objects` (string)
 :   Specifies the objects included in the Protection Group. It should be a JSON string or a path to a JSON file.
 
-`kubernetes-params-vlan-params` (string)
+`--kubernetes-params-vlan-params` (string)
 :   Specifies VLAN params associated with the backup/restore operation. It should be a JSON string or a path to a JSON file.
 
-`kubernetes-params-volume-backup-failure`
+`--kubernetes-params-volume-backup-failure`
 :   Specifies whether to process with backup if volumes backup fails.
 
 `--xibm-tenant-id` (string)
@@ -2556,22 +2565,22 @@ ibmcloud backup-recovery recovery create --xibm-tenant-id XIBM-TENANT-ID --name 
 #### Command options
 {: #backup-recovery-recovery-create-cli-options}
 
-`kubernetes-params` (string)
+`--kubernetes-params` (string)
 :   Specifies the recovery options specific to Kubernetes environment. It should be a JSON string or a path to a JSON file.
 
-`kubernetes-params-download-file-and-folder-params` (string)
+`--kubernetes-params-download-file-and-folder-params` (string)
 :   Specifies the parameters to download files and folders. It should be a JSON string or a path to a JSON file.
 
-`kubernetes-params-objects` (string)
+`--kubernetes-params-objects` (string)
 :   Specifies the list of objects which need to be recovered. It should be a JSON string or a path to a JSON file.
 
-`kubernetes-params-recover-file-and-folder-params` (string)
+`--kubernetes-params-recover-file-and-folder-params` (string)
 :   Specifies the parameters to perform a file and folder recovery. It should be a JSON string or a path to a JSON file.
 
-`kubernetes-params-recover-namespace-params` (string)
+`--kubernetes-params-recover-namespace-params` (string)
 :   Specifies the parameters to recover Kubernetes Namespaces. It should be a JSON string or a path to a JSON file.
 
-`kubernetes-params-recovery-action` (string)
+`--kubernetes-params-recovery-action` (string)
 :   Specifies the type of recover action to be performed. Allowable values are: RecoverNamespaces, RecoverFiles, DownloadFilesAndFolders.
 
 `--xibm-tenant-id` (string)
