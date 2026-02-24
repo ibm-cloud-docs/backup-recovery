@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024
-lastupdated: "2025-12-12"
+lastupdated: "2026-02-24"
 
 keywords: backup recovery, cli, guide
 
@@ -368,7 +368,7 @@ ibmcloud backup-recovery protection-source registrations-list \
 Register a Protection Source.
 
 ```sh
-ibmcloud backup-recovery protection-source register --xibm-tenant-id XIBM-TENANT-ID --environment ENVIRONMENT [--name NAME] [--is-internal-encrypted=IS-INTERNAL-ENCRYPTED] [--encryption-key ENCRYPTION-KEY] [--connection-id CONNECTION-ID] [--connections CONNECTIONS] [--connector-group-id CONNECTOR-GROUP-ID] [--advanced-configs ADVANCED-CONFIGS] [--data-source-connection-id DATA-SOURCE-CONNECTION-ID] [--physical-params PHYSICAL-PARAMS | --physical-params-endpoint PHYSICAL-PARAMS-ENDPOINT --physical-params-force-register=PHYSICAL-PARAMS-FORCE-REGISTER --physical-params-host-type PHYSICAL-PARAMS-HOST-TYPE --physical-params-physical-type PHYSICAL-PARAMS-PHYSICAL-TYPE --physical-params-applications PHYSICAL-PARAMS-APPLICATIONS]
+ibmcloud backup-recovery protection-source register --xibm-tenant-id XIBM-TENANT-ID --environment ENVIRONMENT [--name NAME] [--is-internal-encrypted=IS-INTERNAL-ENCRYPTED] [--encryption-key ENCRYPTION-KEY] [--connection-id CONNECTION-ID] [--connections CONNECTIONS] [--connector-group-id CONNECTOR-GROUP-ID] [--advanced-configs ADVANCED-CONFIGS] [--data-source-connection-id DATA-SOURCE-CONNECTION-ID] [--physical-params PHYSICAL-PARAMS | --physical-params-endpoint PHYSICAL-PARAMS-ENDPOINT --physical-params-force-register=PHYSICAL-PARAMS-FORCE-REGISTER --physical-params-host-type PHYSICAL-PARAMS-HOST-TYPE --physical-params-physical-type PHYSICAL-PARAMS-PHYSICAL-TYPE --physical-params-applications PHYSICAL-PARAMS-APPLICATIONS] [--kubernetes-params KUBERNETES-PARAMS | --auto-protect-config=AUTO-PROTECT-CONFIG --client-private-key=CLIENT-PRIVATE-KEY]
 ```
 
 
@@ -402,6 +402,66 @@ ibmcloud backup-recovery protection-source register --xibm-tenant-id XIBM-TENANT
 
 `--connector-group-id` (int64)
 :   Specifies the connector group id of connector groups.
+
+`--kubernetes-params` (string)
+:   Specifies the parameters to register a Kubernetes source. It should be a JSON string or a path to a JSON file.
+
+`--kubernetes-params-auto-protect-config` (string)
+:   Specifies the parameters to auto protect the source after registration. It should be a JSON string or a path to a JSON file.
+
+`--kubernetes-params-client-private-key` (string)
+:   Specifies the bearer token or private key of Kubernetes source.
+
+`--kubernetes-params-data-mover-image-location` (string)
+:   Specifies the datamover image location of Kubernetes source.
+
+`--kubernetes-params-datamover-service-type` (string)
+:   Specifies the data mover service type of Kubernetes source. Allowable values are: kNodePort, kLoadBalancer, kClusterIp.
+
+`--kubernetes-params-default-vlan-params` (string)
+:   Specifies VLAN params associated with the backup/restore operation. It should be a JSON string or a path to a JSON file.
+
+`--kubernetes-params-endpoint` (string)
+:   Specifies the endpoint of Kubernetes source.
+
+`--kubernetes-params-init-container-image-location` (string)
+:   Specifies the initial container image location of Kubernetes source.
+
+`--kubernetes-params-cohesity-dataprotect-plugin-image-location` (string)
+:   Specifies the custom Cohesity Dataprotect plugin image location of the Kubernetes source.
+
+`--kubernetes-params-kubernetes-distribution` (string)
+:   Specifies the distribution type of Kubernetes source. Allowable values are: kOpenshift, kMainline, kVMwareTanzu, kRancher, kEKS, kGKE, kAKS, kIKS, kROKS.
+
+`--kubernetes-params-kubernetes-type` (string)
+:   Specifies the type of kubernetes source. Allowable values are: kCluster, kNamespace, kService, kPVC, kPersistentVolumeClaim, kPersistentVolume, kLabel.
+
+`--kubernetes-params-priority-class-name` (string)
+:   Specifies the priority class name for cohesity resources.
+
+`--kubernetes-params-resource-annotations` (string)
+:   Specifies resource annotations to be applied on cohesity resources. It should be a JSON string or a path to a JSON file.
+
+`--kubernetes-params-resource-labels` (string)
+:   Specifies resource label to be applied on cohesity resources. It should be a JSON string or a path to a JSON file.
+
+`--kubernetes-params-san-fields` (string)
+:   Specifies the SAN field for agent certificate.
+
+`--kubernetes-params-service-annotations` (string)
+:   Specifies the service annotation object of Kubernetes source. It should be a JSON string or a path to a JSON file.
+
+`--kubernetes-params-velero-aws-plugin-image-location` (string)
+:   Specifies the velero AWS plugin image location of the Kubernetes source.
+
+`--kubernetes-params-velero-image-location` (string)
+:   Specifies the velero image location of the Kubernetes source.
+
+`--kubernetes-params-velero-openshift-plugin-image-location` (string)
+:   Specifies the velero open shift plugin image for the Kubernetes source.
+
+`--kubernetes-params-vlan-info-vec` (string)
+:   Specifies VLAN information provided during registration. It should be a JSON string or a path to a JSON file.
 
 `--advanced-configs`
 :   Specifies the advanced configuration for a protection source.
@@ -452,6 +512,7 @@ ibmcloud backup-recovery protection-source register \
     --connector-group-id 26 \
     --advanced-configs '[{"key": "configKey", "value": "configValue"}]' \
     --data-source-connection-id DatasourceConnectionId \
+    --kubernetes-params '{"autoProtectConfig": {"errorMessage": "exampleString", "isDefaultAutoProtected": true, "policyId": "exampleString", "protectionGroupId": "exampleString", "storageDomainId": 26}, "clientPrivateKey": "exampleString", "dataMoverImageLocation": "exampleString", "datamoverServiceType": "kNodePort", "defaultVlanParams": {"disableVlan": true, "interfaceName": "exampleString", "vlanId": 38}, "endpoint": "exampleString", "initContainerImageLocation": "exampleString", "kubernetesDistribution": "kOpenshift", "kubernetesType": "kCluster", "priorityClassName": "exampleString", "resourceAnnotations": [{"key": "exampleString", "value": "exampleString"}], "resourceLabels": [{"key": "exampleString", "value": "exampleString"}], "sanFields": ["exampleString","anotherTestString"], "serviceAnnotations": [{"key": "exampleString", "value": "exampleString"}], "veleroAwsPluginImageLocation": "exampleString", "veleroImageLocation": "exampleString", "veleroOpenshiftPluginImageLocation": "exampleString", "vlanInfoVec": [{"serviceAnnotations": [{"key": "exampleString", "value": "exampleString"}], "vlanParams": {"disableVlan": true, "interfaceName": "exampleString", "vlanId": 38}}]}' \
     --physical-params '{"endpoint": "xxx.xx.xx.xx", "forceRegister": true, "hostType": "kLinux", "physicalType": "kGroup", "applications": ["kSQL","kOracle"]}'
 ```
 {: pre}
@@ -518,7 +579,7 @@ ibmcloud backup-recovery protection-source registration-get \
 Update Protection Source registration.
 
 ```sh
-ibmcloud backup-recovery protection-source registration-update --id ID --xibm-tenant-id XIBM-TENANT-ID --environment ENVIRONMENT [--name NAME] [--is-internal-encrypted=IS-INTERNAL-ENCRYPTED] [--encryption-key ENCRYPTION-KEY] [--connection-id CONNECTION-ID] [--connections CONNECTIONS] [--connector-group-id CONNECTOR-GROUP-ID] [--advanced-configs ADVANCED-CONFIGS] [--data-source-connection-id DATA-SOURCE-CONNECTION-ID] [--last-modified-timestamp-usecs LAST-MODIFIED-TIMESTAMP-USECS] [--physical-params PHYSICAL-PARAMS | --physical-params-endpoint PHYSICAL-PARAMS-ENDPOINT --physical-params-force-register=PHYSICAL-PARAMS-FORCE-REGISTER --physical-params-host-type PHYSICAL-PARAMS-HOST-TYPE --physical-params-physical-type PHYSICAL-PARAMS-PHYSICAL-TYPE --physical-params-applications PHYSICAL-PARAMS-APPLICATIONS]
+ibmcloud backup-recovery protection-source registration-update --id ID --xibm-tenant-id XIBM-TENANT-ID --environment ENVIRONMENT [--name NAME] [--is-internal-encrypted=IS-INTERNAL-ENCRYPTED] [--encryption-key ENCRYPTION-KEY] [--connection-id CONNECTION-ID] [--connections CONNECTIONS] [--connector-group-id CONNECTOR-GROUP-ID] [--advanced-configs ADVANCED-CONFIGS] [--data-source-connection-id DATA-SOURCE-CONNECTION-ID] [--last-modified-timestamp-usecs LAST-MODIFIED-TIMESTAMP-USECS] [--physical-params PHYSICAL-PARAMS | --physical-params-endpoint PHYSICAL-PARAMS-ENDPOINT --physical-params-force-register=PHYSICAL-PARAMS-FORCE-REGISTER --physical-params-host-type PHYSICAL-PARAMS-HOST-TYPE --physical-params-physical-type PHYSICAL-PARAMS-PHYSICAL-TYPE --physical-params-applications PHYSICAL-PARAMS-APPLICATIONS] [--kubernetes-params KUBERNETES-PARAMS | | --auto-protect-config=AUTO-PROTECT-CONFIG --client-private-key=CLIENT-PRIVATE-KEY]
 ```
 
 
@@ -555,6 +616,66 @@ ibmcloud backup-recovery protection-source registration-update --id ID --xibm-te
 
 `--connector-group-id` (int64)
 :   Specifies the connector group id of connector groups.
+
+`--kubernetes-params-auto-protect-config` (string)
+:   Specifies the parameters to auto protect the source after registration. It should be a JSON string or a path to a JSON file.
+
+`--kubernetes-params-client-private-key` (string)
+:   Specifies the bearer token or private key of Kubernetes source.
+
+`--kubernetes-params-cohesity-dataprotect-plugin-image-location` (string)
+:   Specifies the custom Cohesity Dataprotect plugin image location of the Kubernetes source.
+
+`--kubernetes-params-data-mover-image-location` (string)
+:   Specifies the datamover image location of Kubernetes source.
+
+`--kubernetes-params-datamover-service-type` (string)
+:   Specifies the data mover service type of Kubernetes source. Allowable values are: kNodePort, kLoadBalancer, kClusterIp.
+
+`--kubernetes-params-default-vlan-params` (string)
+:   Specifies VLAN params associated with the backup/restore operation. It should be a JSON string or a path to a JSON file.
+
+`--kubernetes-params-endpoint` (string)
+:   Specifies the endpoint of Kubernetes source.
+
+`--kubernetes-params` (string)
+:   Specifies the parameters to register an Kubernetes source.
+
+`--kubernetes-params-init-container-image-location` (string)
+:   Specifies the initial container image location of Kubernetes source.
+
+`--kubernetes-params-kubernetes-distribution` (string)
+:   Specifies the distribution type of Kubernetes source. Allowable values are: kOpenshift, kMainline, kVMwareTanzu, kRancher, kEKS, kGKE, kAKS, kIKS, kROKS.
+
+`--kubernetes-params-kubernetes-type` (string)
+:   Specifies the type of kubernetes source. Allowable values are: kCluster, kNamespace, kService, kPVC, kPersistentVolumeClaim, kPersistentVolume, kLabel.
+
+`--kubernetes-params-priority-class-name` (string)
+:   Specifies the priority class name for cohesity resources.
+
+`--kubernetes-params-resource-annotations` (string)
+:   Specifies resource annotations to be applied on cohesity resources. It should be a JSON string or a path to a JSON file.
+
+`--kubernetes-params-resource-labels` (string)
+:   Specifies resource label to be applied on cohesity resources. It should be a JSON string or a path to a JSON file.
+
+`--kubernetes-params-san-fields` (string)
+:   Specifies the SAN field for agent certificate.
+
+`--kubernetes-params-service-annotations` (string)
+:   Specifies the service annotation object of Kubernetes source. It should be a JSON string or a path to a JSON file.
+
+`--kubernetes-params-velero-aws-plugin-image-location` (string)
+:   Specifies the velero AWS plugin image location of the Kubernetes source.
+
+`--kubernetes-params-velero-image-location` (string)
+:   Specifies the velero image location of the Kubernetes source.
+
+`--kubernetes-params-velero-openshift-plugin-image-location` (string)
+:   Specifies the velero open shift plugin image for the Kubernetes source.
+
+`--kubernetes-params-vlan-info-vec` (string)
+:   Specifies VLAN information provided during registration. It should be a JSON string or a path to a JSON file.
 
 `--advanced-configs`
 :   Specifies the advanced configuration for a protection source.
@@ -610,7 +731,8 @@ ibmcloud backup-recovery protection-source registration-update \
     --advanced-configs '[{"key": "configKey", "value": "configValue"}]' \
     --data-source-connection-id DatasourceConnectionId \
     --last-modified-timestamp-usecs 26 \
-    --physical-params '{"endpoint": "xxx.xx.xx.xx", "forceRegister": true, "hostType": "kLinux", "physicalType": "kGroup", "applications": ["kSQL","kOracle"]}'
+    --physical-params '{"endpoint": "xxx.xx.xx.xx", "forceRegister": true, "hostType": "kLinux", "physicalType": "kGroup", "applications": ["kSQL","kOracle"]}' \
+    --kubernetes-params '{"autoProtectConfig": {"errorMessage": "exampleString", "isDefaultAutoProtected": true, "policyId": "exampleString", "protectionGroupId": "exampleString", "storageDomainId": 26}, "clientPrivateKey": "exampleString", "dataMoverImageLocation": "exampleString", "datamoverServiceType": "kNodePort", "defaultVlanParams": {"disableVlan": true, "interfaceName": "exampleString", "vlanId": 38}, "endpoint": "exampleString", "initContainerImageLocation": "exampleString", "kubernetesDistribution": "kOpenshift", "kubernetesType": "kCluster", "priorityClassName": "exampleString", "resourceAnnotations": [{"key": "exampleString", "value": "exampleString"}], "resourceLabels": [{"key": "exampleString", "value": "exampleString"}], "sanFields": ["exampleString","anotherTestString"], "serviceAnnotations": [{"key": "exampleString", "value": "exampleString"}], "veleroAwsPluginImageLocation": "exampleString", "veleroImageLocation": "exampleString", "veleroOpenshiftPluginImageLocation": "exampleString", "vlanInfoVec": [{"serviceAnnotations": [{"key": "exampleString", "value": "exampleString"}], "vlanParams": {"disableVlan": true, "interfaceName": "exampleString", "vlanId": 38}}]}'
 ```
 {: pre}
 
@@ -1461,12 +1583,48 @@ ibmcloud backup-recovery protection-group list \
 Create a Protection Group.
 
 ```sh
-ibmcloud backup-recovery protection-group create --xibm-tenant-id XIBM-TENANT-ID --name NAME --policy-id POLICY-ID --environment ENVIRONMENT [--priority PRIORITY] [--description DESCRIPTION] [--start-time START-TIME | --start-time-hour START-TIME-HOUR --start-time-minute START-TIME-MINUTE --start-time-time-zone START-TIME-TIME-ZONE] [--end-time-usecs END-TIME-USECS] [--last-modified-timestamp-usecs LAST-MODIFIED-TIMESTAMP-USECS] [--alert-policy ALERT-POLICY | --alert-policy-backup-run-status ALERT-POLICY-BACKUP-RUN-STATUS --alert-policy-alert-targets ALERT-POLICY-ALERT-TARGETS --alert-policy-raise-object-level-failure-alert=ALERT-POLICY-RAISE-OBJECT-LEVEL-FAILURE-ALERT --alert-policy-raise-object-level-failure-alert-after-last-attempt=ALERT-POLICY-RAISE-OBJECT-LEVEL-FAILURE-ALERT-AFTER-LAST-ATTEMPT --alert-policy-raise-object-level-failure-alert-after-each-attempt=ALERT-POLICY-RAISE-OBJECT-LEVEL-FAILURE-ALERT-AFTER-EACH-ATTEMPT] [--sla SLA] [--qos-policy QOS-POLICY] [--abort-in-blackouts=ABORT-IN-BLACKOUTS] [--pause-in-blackouts=PAUSE-IN-BLACKOUTS] [--is-paused=IS-PAUSED] [--advanced-configs ADVANCED-CONFIGS] [--physical-params PHYSICAL-PARAMS | --physical-params-protection-type PHYSICAL-PARAMS-PROTECTION-TYPE --physical-params-volume-protection-type-params PHYSICAL-PARAMS-VOLUME-PROTECTION-TYPE-PARAMS --physical-params-file-protection-type-params PHYSICAL-PARAMS-FILE-PROTECTION-TYPE-PARAMS] [--mssql-params MSSQL-PARAMS | --mssql-params-file-protection-type-params MSSQL-PARAMS-FILE-PROTECTION-TYPE-PARAMS --mssql-params-native-protection-type-params MSSQL-PARAMS-NATIVE-PROTECTION-TYPE-PARAMS --mssql-params-protection-type MSSQL-PARAMS-PROTECTION-TYPE --mssql-params-volume-protection-type-params MSSQL-PARAMS-VOLUME-PROTECTION-TYPE-PARAMS]
+ibmcloud backup-recovery protection-group create --xibm-tenant-id XIBM-TENANT-ID --name NAME --policy-id POLICY-ID --environment ENVIRONMENT [--priority PRIORITY] [--description DESCRIPTION] [--start-time START-TIME | --start-time-hour START-TIME-HOUR --start-time-minute START-TIME-MINUTE --start-time-time-zone START-TIME-TIME-ZONE] [--end-time-usecs END-TIME-USECS] [--last-modified-timestamp-usecs LAST-MODIFIED-TIMESTAMP-USECS] [--alert-policy ALERT-POLICY | --alert-policy-backup-run-status ALERT-POLICY-BACKUP-RUN-STATUS --alert-policy-alert-targets ALERT-POLICY-ALERT-TARGETS --alert-policy-raise-object-level-failure-alert=ALERT-POLICY-RAISE-OBJECT-LEVEL-FAILURE-ALERT --alert-policy-raise-object-level-failure-alert-after-last-attempt=ALERT-POLICY-RAISE-OBJECT-LEVEL-FAILURE-ALERT-AFTER-LAST-ATTEMPT --alert-policy-raise-object-level-failure-alert-after-each-attempt=ALERT-POLICY-RAISE-OBJECT-LEVEL-FAILURE-ALERT-AFTER-EACH-ATTEMPT] [--sla SLA] [--qos-policy QOS-POLICY] [--abort-in-blackouts=ABORT-IN-BLACKOUTS] [--pause-in-blackouts=PAUSE-IN-BLACKOUTS] [--is-paused=IS-PAUSED] [--advanced-configs ADVANCED-CONFIGS] [--physical-params PHYSICAL-PARAMS | --physical-params-protection-type PHYSICAL-PARAMS-PROTECTION-TYPE --physical-params-volume-protection-type-params PHYSICAL-PARAMS-VOLUME-PROTECTION-TYPE-PARAMS --physical-params-file-protection-type-params PHYSICAL-PARAMS-FILE-PROTECTION-TYPE-PARAMS] [--mssql-params MSSQL-PARAMS | --mssql-params-file-protection-type-params MSSQL-PARAMS-FILE-PROTECTION-TYPE-PARAMS --mssql-params-native-protection-type-params MSSQL-PARAMS-NATIVE-PROTECTION-TYPE-PARAMS --mssql-params-protection-type MSSQL-PARAMS-PROTECTION-TYPE --mssql-params-volume-protection-type-params MSSQL-PARAMS-VOLUME-PROTECTION-TYPE-PARAMS] [ --kubernetes-params KUBERNETES-PARAMS ]
 ```
 
 
 #### Command options
 {: #backup-recovery-protection-group-create-cli-options}
+
+`--kubernetes-params` (string)
+:   Specifies the parameters which are related to Kubernetes Protection Groups. It should be a JSON string or a path to aJSON file.
+
+`--kubernetes-params-enable-indexing`
+:   Specifies if indexing of files and folders is allowed or not while backing up namespace. If allowed files and folder can be recovered.
+
+`--kubernetes-params-exclude-label-ids` (string)
+:   Array of arrays of label IDs that specify labels to exclude. Optionally specify a list of labels to exclude from protecting by listing protection source ids of labels in this two dimensional array. Using this two dimensional array of label IDs, the Cluster generates a list of namespaces to exclude from protecting, which are derived from intersections of the inner arrays and union of the outer array. It should be a JSON string or a path to a JSON file.
+
+`--kubernetes-params-exclude-object-ids` (string)
+:   Specifies the objects to be excluded in the Protection Group.
+
+`--kubernetes-params-exclude-params` (string)
+:   Specifies the parameters to in/exclude objects (for example, volumes). An object satisfying any of these criteria will be included by this filter. It should be a JSON string or a path to a JSON file.
+
+`--kubernetes-params-include-params` (string)
+:   Specifies the parameters to in/exclude objects (for example, volumes). An object satisfying any of these criteria will be included by this filter. It should be a JSON string or a path to a JSON file.
+
+`--kubernetes-params-label-ids` (string)
+:   Array of array of label IDs that specify labels to protect. Optionally specify a list of labels to protect by listing protection source ids of labels in this two dimensional array. Using this two dimensional array of label IDs, the cluster generates a list of namespaces to protect, which are derived from intersections of the inner arrays and union of the outer array. It should be a JSON string or a path to a JSON file.
+
+`--kubernetes-params-leverage-csi-snapshot`
+:   Specifies if CSI snapshots should be used for backup of namespaces.
+
+`--kubernetes-params-non-snapshot-backup`
+:   Specifies if snapshot backup fails, non-snapshot backup will be proceeded.
+
+`--kubernetes-params-objects` (string)
+:   Specifies the objects included in the Protection Group. It should be a JSON string or a path to a JSON file.
+
+`--kubernetes-params-vlan-params` (string)
+:   Specifies VLAN params associated with the backup/restore operation. It should be a JSON string or a path to a JSON file.
+
+`--kubernetes-params-volume-backup-failure`
+:   Specifies whether to process with backup if volumes backup fails.
 
 `--xibm-tenant-id` (string)
 :   Specifies the key to be used to encrypt the source credential. If includeSourceCredentials is set to true this key must be specified. Required.
@@ -1631,7 +1789,8 @@ ibmcloud backup-recovery protection-group create \
     --is-paused=true \
     --advanced-configs '[{"key": "configKey", "value": "configValue"}]' \
     --physical-params '{"protectionType": "kFile", "volumeProtectionTypeParams": {"objects": [{"id": 3, "volumeGuids": ["volumeGuid1"], "enableSystemBackup": true, "excludedVssWriters": ["writerName1","writerName2"]}], "indexingPolicy": {"enableIndexing": true, "includePaths": ["~/dir1"], "excludePaths": ["~/dir2"]}, "performSourceSideDeduplication": true, "quiesce": true, "continueOnQuiesceFailure": true, "incrementalBackupAfterRestart": true, "prePostScript": {"preScript": {"path": "~/script1", "params": "param1", "timeoutSecs": 1, "isActive": true, "continueOnError": true}, "postScript": {"path": "~/script2", "params": "param2", "timeoutSecs": 1, "isActive": true}}, "dedupExclusionSourceIds": [26,27], "excludedVssWriters": ["writerName1","writerName2"], "cobmrBackup": true}, "fileProtectionTypeParams": {"excludedVssWriters": ["writerName1","writerName2"], "objects": [{"excludedVssWriters": ["writerName1","writerName2"], "id": 2, "filePaths": [{"includedPath": "~/dir1/", "excludedPaths": ["~/dir2"], "skipNestedVolumes": true}], "usesPathLevelSkipNestedVolumeSetting": true, "nestedVolumeTypesToSkip": ["volume1"], "followNasSymlinkTarget": true, "metadataFilePath": "~/dir3"}], "indexingPolicy": {"enableIndexing": true, "includePaths": ["~/dir1"], "excludePaths": ["~/dir2"]}, "performSourceSideDeduplication": true, "performBrickBasedDeduplication": true, "taskTimeouts": [{"timeoutMins": 26, "backupType": "kRegular"}], "quiesce": true, "continueOnQuiesceFailure": true, "cobmrBackup": true, "prePostScript": {"preScript": {"path": "~/script1", "params": "param1", "timeoutSecs": 1, "isActive": true, "continueOnError": true}, "postScript": {"path": "~/script2", "params": "param2", "timeoutSecs": 1, "isActive": true}}, "dedupExclusionSourceIds": [26,27], "globalExcludePaths": ["~/dir1"], "globalExcludeFS": ["~/dir2"], "ignorableErrors": ["kEOF","kNonExistent"], "allowParallelRuns": true}}' \
-    --mssql-params '{"fileProtectionTypeParams": {"aagBackupPreferenceType": "kPrimaryReplicaOnly", "advancedSettings": {"clonedDbBackupStatus": "kError", "dbBackupIfNotOnlineStatus": "kError", "missingDbBackupStatus": "kError", "offlineRestoringDbBackupStatus": "kError", "readOnlyDbBackupStatus": "kError", "reportAllNonAutoprotectDbErrors": "kError"}, "backupSystemDbs": true, "excludeFilters": [{"filterString": "filterString", "isRegularExpression": false}], "fullBackupsCopyOnly": true, "logBackupNumStreams": 38, "logBackupWithClause": "backupWithClause", "prePostScript": {"preScript": {"path": "~/script1", "params": "param1", "timeoutSecs": 1, "isActive": true, "continueOnError": true}, "postScript": {"path": "~/script2", "params": "param2", "timeoutSecs": 1, "isActive": true}}, "useAagPreferencesFromServer": true, "userDbBackupPreferenceType": "kBackupAllDatabases", "additionalHostParams": [{"disableSourceSideDeduplication": true, "hostId": 26}], "objects": [{"id": 6}], "performSourceSideDeduplication": true}, "nativeProtectionTypeParams": {"aagBackupPreferenceType": "kPrimaryReplicaOnly", "advancedSettings": {"clonedDbBackupStatus": "kError", "dbBackupIfNotOnlineStatus": "kError", "missingDbBackupStatus": "kError", "offlineRestoringDbBackupStatus": "kError", "readOnlyDbBackupStatus": "kError", "reportAllNonAutoprotectDbErrors": "kError"}, "backupSystemDbs": true, "excludeFilters": [{"filterString": "filterString", "isRegularExpression": false}], "fullBackupsCopyOnly": true, "logBackupNumStreams": 38, "logBackupWithClause": "backupWithClause", "prePostScript": {"preScript": {"path": "~/script1", "params": "param1", "timeoutSecs": 1, "isActive": true, "continueOnError": true}, "postScript": {"path": "~/script2", "params": "param2", "timeoutSecs": 1, "isActive": true}}, "useAagPreferencesFromServer": true, "userDbBackupPreferenceType": "kBackupAllDatabases", "numStreams": 38, "objects": [{"id": 6}], "withClause": "withClause"}, "protectionType": "kFile", "volumeProtectionTypeParams": {"aagBackupPreferenceType": "kPrimaryReplicaOnly", "advancedSettings": {"clonedDbBackupStatus": "kError", "dbBackupIfNotOnlineStatus": "kError", "missingDbBackupStatus": "kError", "offlineRestoringDbBackupStatus": "kError", "readOnlyDbBackupStatus": "kError", "reportAllNonAutoprotectDbErrors": "kError"}, "backupSystemDbs": true, "excludeFilters": [{"filterString": "filterString", "isRegularExpression": false}], "fullBackupsCopyOnly": true, "logBackupNumStreams": 38, "logBackupWithClause": "backupWithClause", "prePostScript": {"preScript": {"path": "~/script1", "params": "param1", "timeoutSecs": 1, "isActive": true, "continueOnError": true}, "postScript": {"path": "~/script2", "params": "param2", "timeoutSecs": 1, "isActive": true}}, "useAagPreferencesFromServer": true, "userDbBackupPreferenceType": "kBackupAllDatabases", "additionalHostParams": [{"enableSystemBackup": true, "hostId": 8, "volumeGuids": ["volumeGuid1"]}], "backupDbVolumesOnly": true, "incrementalBackupAfterRestart": true, "indexingPolicy": {"enableIndexing": true, "includePaths": ["~/dir1"], "excludePaths": ["~/dir2"]}, "objects": [{"id": 6}]}}'
+    --mssql-params '{"fileProtectionTypeParams": {"aagBackupPreferenceType": "kPrimaryReplicaOnly", "advancedSettings": {"clonedDbBackupStatus": "kError", "dbBackupIfNotOnlineStatus": "kError", "missingDbBackupStatus": "kError", "offlineRestoringDbBackupStatus": "kError", "readOnlyDbBackupStatus": "kError", "reportAllNonAutoprotectDbErrors": "kError"}, "backupSystemDbs": true, "excludeFilters": [{"filterString": "filterString", "isRegularExpression": false}], "fullBackupsCopyOnly": true, "logBackupNumStreams": 38, "logBackupWithClause": "backupWithClause", "prePostScript": {"preScript": {"path": "~/script1", "params": "param1", "timeoutSecs": 1, "isActive": true, "continueOnError": true}, "postScript": {"path": "~/script2", "params": "param2", "timeoutSecs": 1, "isActive": true}}, "useAagPreferencesFromServer": true, "userDbBackupPreferenceType": "kBackupAllDatabases", "additionalHostParams": [{"disableSourceSideDeduplication": true, "hostId": 26}], "objects": [{"id": 6}], "performSourceSideDeduplication": true}, "nativeProtectionTypeParams": {"aagBackupPreferenceType": "kPrimaryReplicaOnly", "advancedSettings": {"clonedDbBackupStatus": "kError", "dbBackupIfNotOnlineStatus": "kError", "missingDbBackupStatus": "kError", "offlineRestoringDbBackupStatus": "kError", "readOnlyDbBackupStatus": "kError", "reportAllNonAutoprotectDbErrors": "kError"}, "backupSystemDbs": true, "excludeFilters": [{"filterString": "filterString", "isRegularExpression": false}], "fullBackupsCopyOnly": true, "logBackupNumStreams": 38, "logBackupWithClause": "backupWithClause", "prePostScript": {"preScript": {"path": "~/script1", "params": "param1", "timeoutSecs": 1, "isActive": true, "continueOnError": true}, "postScript": {"path": "~/script2", "params": "param2", "timeoutSecs": 1, "isActive": true}}, "useAagPreferencesFromServer": true, "userDbBackupPreferenceType": "kBackupAllDatabases", "numStreams": 38, "objects": [{"id": 6}], "withClause": "withClause"}, "protectionType": "kFile", "volumeProtectionTypeParams": {"aagBackupPreferenceType": "kPrimaryReplicaOnly", "advancedSettings": {"clonedDbBackupStatus": "kError", "dbBackupIfNotOnlineStatus": "kError", "missingDbBackupStatus": "kError", "offlineRestoringDbBackupStatus": "kError", "readOnlyDbBackupStatus": "kError", "reportAllNonAutoprotectDbErrors": "kError"}, "backupSystemDbs": true, "excludeFilters": [{"filterString": "filterString", "isRegularExpression": false}], "fullBackupsCopyOnly": true, "logBackupNumStreams": 38, "logBackupWithClause": "backupWithClause", "prePostScript": {"preScript": {"path": "~/script1", "params": "param1", "timeoutSecs": 1, "isActive": true, "continueOnError": true}, "postScript": {"path": "~/script2", "params": "param2", "timeoutSecs": 1, "isActive": true}}, "useAagPreferencesFromServer": true, "userDbBackupPreferenceType": "kBackupAllDatabases", "additionalHostParams": [{"enableSystemBackup": true, "hostId": 8, "volumeGuids": ["volumeGuid1"]}], "backupDbVolumesOnly": true, "incrementalBackupAfterRestart": true, "indexingPolicy": {"enableIndexing": true, "includePaths": ["~/dir1"], "excludePaths": ["~/dir2"]}, "objects": [{"id": 6}]}}' \
+    --kubernetes-params '{"enableIndexing": true, "excludeLabelIds": [26,27,26,27],[26,27, 26,27], "excludeObjectIds": [26,27], "excludeParams": {"labelCombinationMethod": "AND", "labelVector": [{}], "objects": [26,27]}, "includeParams": {"labelCombinationMethod": "AND", "labelVector": [{}], "objects": [26,27]}, "labelIds": [26,27,26,27],[26,27, 26,27], "leverageCSISnapshot": true, "nonSnapshotBackup": true, "objects": [{"backupOnlyPvc": true, "excludePvcs": [{}], "excludedResources": ["exampleString","anotherTestString"], "id": 26, "includePvcs": [{}], "includedResources": ["exampleString","anotherTestString"], "quiesceGroups": [{"quiesceMode": "kQuiesceTogether", "quiesceRules": [{"podSelectorLabels": [{}], "postSnapshotHooks": [{"commands": ["exampleString","anotherTestString"], "container": "exampleString", "failOnError": true, "timeout": 26}], "preSnapshotHooks": [{"commands": ["exampleString","anotherTestString"], "container": "exampleString", "failOnError": true, "timeout": 26}]}]}]}], "vlanParams": {"disableVlan": true, "interfaceName": "exampleString", "vlanId": 38}, "volumeBackupFailure": true}'
 ```
 {: pre}
 
@@ -1724,6 +1883,7 @@ Update the specified Protection Group.
 
 ```sh
 ibmcloud backup-recovery protection-group update --id ID --xibm-tenant-id XIBM-TENANT-ID --name NAME --policy-id POLICY-ID --environment ENVIRONMENT [--priority PRIORITY] [--description DESCRIPTION] [--start-time START-TIME | --start-time-hour START-TIME-HOUR --start-time-minute START-TIME-MINUTE --start-time-time-zone START-TIME-TIME-ZONE] [--end-time-usecs END-TIME-USECS] [--last-modified-timestamp-usecs LAST-MODIFIED-TIMESTAMP-USECS] [--alert-policy ALERT-POLICY | --alert-policy-backup-run-status ALERT-POLICY-BACKUP-RUN-STATUS --alert-policy-alert-targets ALERT-POLICY-ALERT-TARGETS --alert-policy-raise-object-level-failure-alert=ALERT-POLICY-RAISE-OBJECT-LEVEL-FAILURE-ALERT --alert-policy-raise-object-level-failure-alert-after-last-attempt=ALERT-POLICY-RAISE-OBJECT-LEVEL-FAILURE-ALERT-AFTER-LAST-ATTEMPT --alert-policy-raise-object-level-failure-alert-after-each-attempt=ALERT-POLICY-RAISE-OBJECT-LEVEL-FAILURE-ALERT-AFTER-EACH-ATTEMPT] [--sla SLA] [--qos-policy QOS-POLICY] [--abort-in-blackouts=ABORT-IN-BLACKOUTS] [--pause-in-blackouts=PAUSE-IN-BLACKOUTS] [--is-paused=IS-PAUSED] [--advanced-configs ADVANCED-CONFIGS] [--physical-params PHYSICAL-PARAMS | --physical-params-protection-type PHYSICAL-PARAMS-PROTECTION-TYPE --physical-params-volume-protection-type-params PHYSICAL-PARAMS-VOLUME-PROTECTION-TYPE-PARAMS --physical-params-file-protection-type-params PHYSICAL-PARAMS-FILE-PROTECTION-TYPE-PARAMS] [--mssql-params MSSQL-PARAMS | --mssql-params-file-protection-type-params MSSQL-PARAMS-FILE-PROTECTION-TYPE-PARAMS --mssql-params-native-protection-type-params MSSQL-PARAMS-NATIVE-PROTECTION-TYPE-PARAMS --mssql-params-protection-type MSSQL-PARAMS-PROTECTION-TYPE --mssql-params-volume-protection-type-params MSSQL-PARAMS-VOLUME-PROTECTION-TYPE-PARAMS]
+  [--kubernetes-params KUBERNETES-PARAMS | --enableIndexing PHYSICALINDEXING --exclude-object-ids EXCLUDE-OBJECT-IDS --inlcude-object-ids INCLUDE-OBJECT-IDS]
 ```
 
 
@@ -1732,6 +1892,42 @@ ibmcloud backup-recovery protection-group update --id ID --xibm-tenant-id XIBM-T
 
 `--id` (string)
 :   Specifies the id of the Protection Group. Required.
+
+`--kubernetes-params` (string)
+:   Specifies the parameters which are related to Kubernetes Protection Groups. It should be a JSON string or a path to a JSON file.
+
+`--kubernetes-params-enable-indexing`
+:   Specifies if indexing of files and folders is allowed or not while backing up namespace. If allowed files and folder can be recovered.
+
+`--kubernetes-params-exclude-label-ids` (string)
+:   Array of arrays of label IDs that specify labels to exclude. Optionally specify a list of labels to exclude from protecting by listing protection source ids of labels in this two dimensional array. Using this two dimensional array of label IDs, the Cluster generates a list of namespaces to exclude from protecting, which are derived from intersections of the inner arrays and union of the outer array. It should be a JSON string or a path to a JSON file.
+
+`--kubernetes-params-exclude-object-ids` (string)
+:   Specifies the objects to be excluded in the Protection Group.
+
+`--kubernetes-params-exclude-params` (string)
+:   Specifies the parameters to in/exclude objects (for example, volumes). An object satisfying any of these criteria will be included by this filter. It should be a JSON string or a path to a JSON file.
+
+`--kubernetes-params-include-params` (string)
+:   Specifies the parameters to in/exclude objects (for example, volumes). An object satisfying any of these criteria will be included by this filter. It should be a JSON string or a path to a JSON file.
+
+`--kubernetes-params-label-ids` (string)
+:   Array of array of label IDs that specify labels to protect. Optionally specify a list of labels to protect by listing protection source ids of labels in this two dimensional array. Using this two dimensional array of label IDs, the cluster generates a list of namespaces to protect, which are derived from intersections of the inner arrays and union of the outer array. It should be a JSON string or a path to a JSON file.
+
+`--kubernetes-params-leverage-csi-snapshot`
+:   Specifies if CSI snapshots should be used for backup of namespaces.
+
+`--kubernetes-params-non-snapshot-backup`
+:   Specifies if snapshot backup fails, non-snapshot backup will be proceeded.
+
+`--kubernetes-params-objects` (string)
+:   Specifies the objects included in the Protection Group. It should be a JSON string or a path to a JSON file.
+
+`--kubernetes-params-vlan-params` (string)
+:   Specifies VLAN params associated with the backup/restore operation. It should be a JSON string or a path to a JSON file.
+
+`--kubernetes-params-volume-backup-failure`
+:   Specifies whether to process with backup if volumes backup fails.
 
 `--xibm-tenant-id` (string)
 :   Specifies the key to be used to encrypt the source credential. If includeSourceCredentials is set to true this key must be specified. Required.
@@ -1897,7 +2093,8 @@ ibmcloud backup-recovery protection-group update \
     --is-paused=true \
     --advanced-configs '[{"key": "configKey", "value": "configValue"}]' \
     --physical-params '{"protectionType": "kFile", "volumeProtectionTypeParams": {"objects": [{"id": 3, "volumeGuids": ["volumeGuid1"], "enableSystemBackup": true, "excludedVssWriters": ["writerName1","writerName2"]}], "indexingPolicy": {"enableIndexing": true, "includePaths": ["~/dir1"], "excludePaths": ["~/dir2"]}, "performSourceSideDeduplication": true, "quiesce": true, "continueOnQuiesceFailure": true, "incrementalBackupAfterRestart": true, "prePostScript": {"preScript": {"path": "~/script1", "params": "param1", "timeoutSecs": 1, "isActive": true, "continueOnError": true}, "postScript": {"path": "~/script2", "params": "param2", "timeoutSecs": 1, "isActive": true}}, "dedupExclusionSourceIds": [26,27], "excludedVssWriters": ["writerName1","writerName2"], "cobmrBackup": true}, "fileProtectionTypeParams": {"excludedVssWriters": ["writerName1","writerName2"], "objects": [{"excludedVssWriters": ["writerName1","writerName2"], "id": 2, "filePaths": [{"includedPath": "~/dir1/", "excludedPaths": ["~/dir2"], "skipNestedVolumes": true}], "usesPathLevelSkipNestedVolumeSetting": true, "nestedVolumeTypesToSkip": ["volume1"], "followNasSymlinkTarget": true, "metadataFilePath": "~/dir3"}], "indexingPolicy": {"enableIndexing": true, "includePaths": ["~/dir1"], "excludePaths": ["~/dir2"]}, "performSourceSideDeduplication": true, "performBrickBasedDeduplication": true, "taskTimeouts": [{"timeoutMins": 26, "backupType": "kRegular"}], "quiesce": true, "continueOnQuiesceFailure": true, "cobmrBackup": true, "prePostScript": {"preScript": {"path": "~/script1", "params": "param1", "timeoutSecs": 1, "isActive": true, "continueOnError": true}, "postScript": {"path": "~/script2", "params": "param2", "timeoutSecs": 1, "isActive": true}}, "dedupExclusionSourceIds": [26,27], "globalExcludePaths": ["~/dir1"], "globalExcludeFS": ["~/dir2"], "ignorableErrors": ["kEOF","kNonExistent"], "allowParallelRuns": true}}' \
-    --mssql-params '{"fileProtectionTypeParams": {"aagBackupPreferenceType": "kPrimaryReplicaOnly", "advancedSettings": {"clonedDbBackupStatus": "kError", "dbBackupIfNotOnlineStatus": "kError", "missingDbBackupStatus": "kError", "offlineRestoringDbBackupStatus": "kError", "readOnlyDbBackupStatus": "kError", "reportAllNonAutoprotectDbErrors": "kError"}, "backupSystemDbs": true, "excludeFilters": [{"filterString": "filterString", "isRegularExpression": false}], "fullBackupsCopyOnly": true, "logBackupNumStreams": 38, "logBackupWithClause": "backupWithClause", "prePostScript": {"preScript": {"path": "~/script1", "params": "param1", "timeoutSecs": 1, "isActive": true, "continueOnError": true}, "postScript": {"path": "~/script2", "params": "param2", "timeoutSecs": 1, "isActive": true}}, "useAagPreferencesFromServer": true, "userDbBackupPreferenceType": "kBackupAllDatabases", "additionalHostParams": [{"disableSourceSideDeduplication": true, "hostId": 26}], "objects": [{"id": 6}], "performSourceSideDeduplication": true}, "nativeProtectionTypeParams": {"aagBackupPreferenceType": "kPrimaryReplicaOnly", "advancedSettings": {"clonedDbBackupStatus": "kError", "dbBackupIfNotOnlineStatus": "kError", "missingDbBackupStatus": "kError", "offlineRestoringDbBackupStatus": "kError", "readOnlyDbBackupStatus": "kError", "reportAllNonAutoprotectDbErrors": "kError"}, "backupSystemDbs": true, "excludeFilters": [{"filterString": "filterString", "isRegularExpression": false}], "fullBackupsCopyOnly": true, "logBackupNumStreams": 38, "logBackupWithClause": "backupWithClause", "prePostScript": {"preScript": {"path": "~/script1", "params": "param1", "timeoutSecs": 1, "isActive": true, "continueOnError": true}, "postScript": {"path": "~/script2", "params": "param2", "timeoutSecs": 1, "isActive": true}}, "useAagPreferencesFromServer": true, "userDbBackupPreferenceType": "kBackupAllDatabases", "numStreams": 38, "objects": [{"id": 6}], "withClause": "withClause"}, "protectionType": "kFile", "volumeProtectionTypeParams": {"aagBackupPreferenceType": "kPrimaryReplicaOnly", "advancedSettings": {"clonedDbBackupStatus": "kError", "dbBackupIfNotOnlineStatus": "kError", "missingDbBackupStatus": "kError", "offlineRestoringDbBackupStatus": "kError", "readOnlyDbBackupStatus": "kError", "reportAllNonAutoprotectDbErrors": "kError"}, "backupSystemDbs": true, "excludeFilters": [{"filterString": "filterString", "isRegularExpression": false}], "fullBackupsCopyOnly": true, "logBackupNumStreams": 38, "logBackupWithClause": "backupWithClause", "prePostScript": {"preScript": {"path": "~/script1", "params": "param1", "timeoutSecs": 1, "isActive": true, "continueOnError": true}, "postScript": {"path": "~/script2", "params": "param2", "timeoutSecs": 1, "isActive": true}}, "useAagPreferencesFromServer": true, "userDbBackupPreferenceType": "kBackupAllDatabases", "additionalHostParams": [{"enableSystemBackup": true, "hostId": 8, "volumeGuids": ["volumeGuid1"]}], "backupDbVolumesOnly": true, "incrementalBackupAfterRestart": true, "indexingPolicy": {"enableIndexing": true, "includePaths": ["~/dir1"], "excludePaths": ["~/dir2"]}, "objects": [{"id": 6}]}}'
+    --mssql-params '{"fileProtectionTypeParams": {"aagBackupPreferenceType": "kPrimaryReplicaOnly", "advancedSettings": {"clonedDbBackupStatus": "kError", "dbBackupIfNotOnlineStatus": "kError", "missingDbBackupStatus": "kError", "offlineRestoringDbBackupStatus": "kError", "readOnlyDbBackupStatus": "kError", "reportAllNonAutoprotectDbErrors": "kError"}, "backupSystemDbs": true, "excludeFilters": [{"filterString": "filterString", "isRegularExpression": false}], "fullBackupsCopyOnly": true, "logBackupNumStreams": 38, "logBackupWithClause": "backupWithClause", "prePostScript": {"preScript": {"path": "~/script1", "params": "param1", "timeoutSecs": 1, "isActive": true, "continueOnError": true}, "postScript": {"path": "~/script2", "params": "param2", "timeoutSecs": 1, "isActive": true}}, "useAagPreferencesFromServer": true, "userDbBackupPreferenceType": "kBackupAllDatabases", "additionalHostParams": [{"disableSourceSideDeduplication": true, "hostId": 26}], "objects": [{"id": 6}], "performSourceSideDeduplication": true}, "nativeProtectionTypeParams": {"aagBackupPreferenceType": "kPrimaryReplicaOnly", "advancedSettings": {"clonedDbBackupStatus": "kError", "dbBackupIfNotOnlineStatus": "kError", "missingDbBackupStatus": "kError", "offlineRestoringDbBackupStatus": "kError", "readOnlyDbBackupStatus": "kError", "reportAllNonAutoprotectDbErrors": "kError"}, "backupSystemDbs": true, "excludeFilters": [{"filterString": "filterString", "isRegularExpression": false}], "fullBackupsCopyOnly": true, "logBackupNumStreams": 38, "logBackupWithClause": "backupWithClause", "prePostScript": {"preScript": {"path": "~/script1", "params": "param1", "timeoutSecs": 1, "isActive": true, "continueOnError": true}, "postScript": {"path": "~/script2", "params": "param2", "timeoutSecs": 1, "isActive": true}}, "useAagPreferencesFromServer": true, "userDbBackupPreferenceType": "kBackupAllDatabases", "numStreams": 38, "objects": [{"id": 6}], "withClause": "withClause"}, "protectionType": "kFile", "volumeProtectionTypeParams": {"aagBackupPreferenceType": "kPrimaryReplicaOnly", "advancedSettings": {"clonedDbBackupStatus": "kError", "dbBackupIfNotOnlineStatus": "kError", "missingDbBackupStatus": "kError", "offlineRestoringDbBackupStatus": "kError", "readOnlyDbBackupStatus": "kError", "reportAllNonAutoprotectDbErrors": "kError"}, "backupSystemDbs": true, "excludeFilters": [{"filterString": "filterString", "isRegularExpression": false}], "fullBackupsCopyOnly": true, "logBackupNumStreams": 38, "logBackupWithClause": "backupWithClause", "prePostScript": {"preScript": {"path": "~/script1", "params": "param1", "timeoutSecs": 1, "isActive": true, "continueOnError": true}, "postScript": {"path": "~/script2", "params": "param2", "timeoutSecs": 1, "isActive": true}}, "useAagPreferencesFromServer": true, "userDbBackupPreferenceType": "kBackupAllDatabases", "additionalHostParams": [{"enableSystemBackup": true, "hostId": 8, "volumeGuids": ["volumeGuid1"]}], "backupDbVolumesOnly": true, "incrementalBackupAfterRestart": true, "indexingPolicy": {"enableIndexing": true, "includePaths": ["~/dir1"], "excludePaths": ["~/dir2"]}, "objects": [{"id": 6}]}}' \
+    --kubernetes-params '{"enableIndexing": true, "excludeLabelIds": [26,27,26,27],[26,27, 26,27], "excludeObjectIds": [26,27], "excludeParams": {"labelCombinationMethod": "AND", "labelVector": [{}], "objects": [26,27]}, "includeParams": {"labelCombinationMethod": "AND", "labelVector": [{}], "objects": [26,27]}, "labelIds": [26,27,26,27],[26,27, 26,27], "leverageCSISnapshot": true, "nonSnapshotBackup": true, "objects": [{"backupOnlyPvc": true, "excludePvcs": [{}], "excludedResources": ["exampleString","anotherTestString"], "id": 26, "includePvcs": [{}], "includedResources": ["exampleString","anotherTestString"], "quiesceGroups": [{"quiesceMode": "kQuiesceTogether", "quiesceRules": [{"podSelectorLabels": [{}], "postSnapshotHooks": [{"commands": ["exampleString","anotherTestString"], "container": "exampleString", "failOnError": true, "timeout": 26}], "preSnapshotHooks": [{"commands": ["exampleString","anotherTestString"], "container": "exampleString", "failOnError": true, "timeout": 26}]}]}]}], "vlanParams": {"disableVlan": true, "interfaceName": "exampleString", "vlanId": 38}, "volumeBackupFailure": true}'
 ```
 {: pre}
 
@@ -2361,12 +2558,30 @@ ibmcloud backup-recovery recovery list \
 Performs a Recovery.
 
 ```sh
-ibmcloud backup-recovery recovery create --xibm-tenant-id XIBM-TENANT-ID --name NAME --snapshot-environment SNAPSHOT-ENVIRONMENT [--physical-params PHYSICAL-PARAMS | --physical-params-objects PHYSICAL-PARAMS-OBJECTS --physical-params-recovery-action PHYSICAL-PARAMS-RECOVERY-ACTION --physical-params-recover-volume-params PHYSICAL-PARAMS-RECOVER-VOLUME-PARAMS --physical-params-mount-volume-params PHYSICAL-PARAMS-MOUNT-VOLUME-PARAMS --physical-params-recover-file-and-folder-params PHYSICAL-PARAMS-RECOVER-FILE-AND-FOLDER-PARAMS --physical-params-download-file-and-folder-params PHYSICAL-PARAMS-DOWNLOAD-FILE-AND-FOLDER-PARAMS --physical-params-system-recovery-params PHYSICAL-PARAMS-SYSTEM-RECOVERY-PARAMS] [--mssql-params MSSQL-PARAMS | --mssql-params-recover-app-params MSSQL-PARAMS-RECOVER-APP-PARAMS --mssql-params-recovery-action MSSQL-PARAMS-RECOVERY-ACTION --mssql-params-vlan-config MSSQL-PARAMS-VLAN-CONFIG] [--request-initiator-type REQUEST-INITIATOR-TYPE]
+ibmcloud backup-recovery recovery create --xibm-tenant-id XIBM-TENANT-ID --name NAME --snapshot-environment SNAPSHOT-ENVIRONMENT [--physical-params PHYSICAL-PARAMS | --physical-params-objects PHYSICAL-PARAMS-OBJECTS --physical-params-recovery-action PHYSICAL-PARAMS-RECOVERY-ACTION --physical-params-recover-volume-params PHYSICAL-PARAMS-RECOVER-VOLUME-PARAMS --physical-params-mount-volume-params PHYSICAL-PARAMS-MOUNT-VOLUME-PARAMS --physical-params-recover-file-and-folder-params PHYSICAL-PARAMS-RECOVER-FILE-AND-FOLDER-PARAMS --physical-params-download-file-and-folder-params PHYSICAL-PARAMS-DOWNLOAD-FILE-AND-FOLDER-PARAMS --physical-params-system-recovery-params PHYSICAL-PARAMS-SYSTEM-RECOVERY-PARAMS] [--mssql-params MSSQL-PARAMS | --mssql-params-recover-app-params MSSQL-PARAMS-RECOVER-APP-PARAMS --mssql-params-recovery-action MSSQL-PARAMS-RECOVERY-ACTION --mssql-params-vlan-config MSSQL-PARAMS-VLAN-CONFIG] [--request-initiator-type REQUEST-INITIATOR-TYPE] [--kubernetes-params KUBERNETES-PARAMS]
 ```
 
 
 #### Command options
 {: #backup-recovery-recovery-create-cli-options}
+
+`--kubernetes-params` (string)
+:   Specifies the recovery options specific to Kubernetes environment. It should be a JSON string or a path to a JSON file.
+
+`--kubernetes-params-download-file-and-folder-params` (string)
+:   Specifies the parameters to download files and folders. It should be a JSON string or a path to a JSON file.
+
+`--kubernetes-params-objects` (string)
+:   Specifies the list of objects which need to be recovered. It should be a JSON string or a path to a JSON file.
+
+`--kubernetes-params-recover-file-and-folder-params` (string)
+:   Specifies the parameters to perform a file and folder recovery. It should be a JSON string or a path to a JSON file.
+
+`--kubernetes-params-recover-namespace-params` (string)
+:   Specifies the parameters to recover Kubernetes Namespaces. It should be a JSON string or a path to a JSON file.
+
+`--kubernetes-params-recovery-action` (string)
+:   Specifies the type of recover action to be performed. Allowable values are: RecoverNamespaces, RecoverFiles, DownloadFilesAndFolders.
 
 `--xibm-tenant-id` (string)
 :   Specifies the key to be used to encrypt the source credential. If includeSourceCredentials is set to true this key must be specified. Required.
@@ -2455,6 +2670,7 @@ ibmcloud backup-recovery recovery create \
     --name create-recovery \
     --snapshot-environment kPhysical \
     --physical-params '{"objects": [{"snapshotId": "snapshotID", "pointInTimeUsecs": 26, "protectionGroupId": "protectionGroupID", "protectionGroupName": "protectionGroupName", "recoverFromStandby": true}], "recoveryAction": "RecoverPhysicalVolumes", "recoverVolumeParams": {"targetEnvironment": "kPhysical", "physicalTargetParams": {"mountTarget": {"id": 26}, "volumeMapping": [{"sourceVolumeGuid": "sourceVolumeGuid", "destinationVolumeGuid": "destinationVolumeGuid"}], "forceUnmountVolume": true, "vlanConfig": {"id": 38, "disableVlan": true}}}, "mountVolumeParams": {"targetEnvironment": "kPhysical", "physicalTargetParams": {"mountToOriginalTarget": true, "originalTargetConfig": {"serverCredentials": {"username": "Username", "password": "Password"}}, "newTargetConfig": {"mountTarget": {"id": 26}, "serverCredentials": {"username": "Username", "password": "Password"}}, "readOnlyMount": true, "volumeNames": ["volume1"], "vlanConfig": {"id": 38, "disableVlan": true}}}, "recoverFileAndFolderParams": {"filesAndFolders": [{"absolutePath": "~/folder1", "isDirectory": true, "isViewFileRecovery": true}], "targetEnvironment": "kPhysical", "physicalTargetParams": {"recoverTarget": {"id": 26}, "restoreToOriginalPaths": true, "overwriteExisting": true, "alternateRestoreDirectory": "~/dirAlt", "preserveAttributes": true, "preserveTimestamps": true, "preserveAcls": true, "continueOnError": true, "saveSuccessFiles": true, "vlanConfig": {"id": 38, "disableVlan": true}, "restoreEntityType": "kRegular"}}, "downloadFileAndFolderParams": {"expiryTimeUsecs": 26, "filesAndFolders": [{"absolutePath": "~/folder1", "isDirectory": true, "isViewFileRecovery": true}], "downloadFilePath": "~/downloadFile"}, "systemRecoveryParams": {"fullNasPath": "~/nas"}}' \
+    --kubernetes-params '{"downloadFileAndFolderParams": {"expiryTimeUsecs": 26, "filesAndFolders": [{"absolutePath": "~/folder1", "isDirectory": true, "isViewFileRecovery": true}], "downloadFilePath": "exampleString"}, "objects": [{"snapshotId": "snapshotID", "pointInTimeUsecs": 26, "protectionGroupId": "protectionGroupID", "protectionGroupName": "protectionGroupName", "recoverFromStandby": true}], "recoverFileAndFolderParams": {"filesAndFolders": [{"absolutePath": "~/folder1", "isDirectory": true, "isViewFileRecovery": true}], "kubernetesTargetParams": {"continueOnError": true, "newTargetConfig": {"absolutePath": "exampleString", "targetNamespace": {"id": 26}, "targetPvc": {"id": 26}, "targetSource": {"id": 26}}, "originalTargetConfig": {"alternatePath": "exampleString", "recoverToOriginalPath": true}, "overwriteExisting": true, "preserveAttributes": true, "recoverToOriginalTarget": true, "vlanConfig": {"id": 38, "disableVlan": true}}, "targetEnvironment": "kKubernetes"}, "recoverNamespaceParams": {"kubernetesTargetParams": {"excludeParams": {"labelCombinationMethod": "AND", "labelVector": [{}], "objects": [26,27]}, "excludedPvcs": [{}], "includeParams": {"labelCombinationMethod": "AND", "labelVector": [{}], "objects": [26,27]}, "objects": [{"snapshotId": "snapshotID", "pointInTimeUsecs": 26, "protectionGroupId": "protectionGroupID", "protectionGroupName": "protectionGroupName", "recoverFromStandby": true}], "recoverProtectionGroupRunsParams": [{"archivalTargetId": 26, "protectionGroupId": "exampleString", "protectionGroupInstanceId": 26, "protectionGroupRunId": "exampleString"}], "recoverPvcsOnly": true, "recoveryTargetConfig": {"newSourceConfig": {"source": {"id": 26}}, "recoverToNewSource": true}, "renameRecoveredNamespacesParams": {"prefix": "exampleString", "suffix": "exampleString"}, "skipClusterCompatibilityCheck": true, "storageClass": {"storageClassMapping": [{}], "useStorageClassMapping": true}}, "targetEnvironment": "kKubernetes", "vlanConfig": {"id": 38, "disableVlan": true}}, "recoveryAction": "RecoverNamespaces"}' \
     --mssql-params '{"recoverAppParams": [{"snapshotId": "snapshotId", "pointInTimeUsecs": 26, "protectionGroupId": "protectionGroupId", "protectionGroupName": "protectionGroupName", "recoverFromStandby": true, "aagInfo": {"name": "aagInfoName", "objectId": 26}, "hostInfo": {"id": "hostInfoId", "name": "hostInfoName", "environment": "kPhysical"}, "isEncrypted": true, "sqlTargetParams": {"newSourceConfig": {"keepCdc": true, "multiStageRestoreOptions": {"enableAutoSync": true, "enableMultiStageRestore": true}, "nativeLogRecoveryWithClause": "LogRecoveryWithClause", "nativeRecoveryWithClause": "RecoveryWithClause", "overwritingPolicy": "FailIfExists", "replayEntireLastLog": true, "restoreTimeUsecs": 26, "secondaryDataFilesDirList": [{"directory": "~/dir1", "filenamePattern": ".sql"}], "withNoRecovery": true, "dataFileDirectoryLocation": "~/dir1", "databaseName": "recovery-database-sql", "host": {"id": 26}, "instanceName": "database-instance-1", "logFileDirectoryLocation": "~/dir2"}, "originalSourceConfig": {"keepCdc": true, "multiStageRestoreOptions": {"enableAutoSync": true, "enableMultiStageRestore": true}, "nativeLogRecoveryWithClause": "LogRecoveryWithClause", "nativeRecoveryWithClause": "RecoveryWithClause", "overwritingPolicy": "FailIfExists", "replayEntireLastLog": true, "restoreTimeUsecs": 26, "secondaryDataFilesDirList": [{"directory": "~/dir1", "filenamePattern": ".sql"}], "withNoRecovery": true, "captureTailLogs": true, "dataFileDirectoryLocation": "~/dir1", "logFileDirectoryLocation": "~/dir2", "newDatabaseName": "recovery-database-sql-new"}, "recoverToNewSource": true}, "targetEnvironment": "kSQL"}], "recoveryAction": "RecoverApps", "vlanConfig": {"id": 38, "disableVlan": true}}' \
     --request-initiator-type UIUser
 ```
