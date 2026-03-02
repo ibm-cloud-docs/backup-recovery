@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2025
-lastupdated: "2026-02-20"
+  years: 2025, 2026
+lastupdated: "2026-03-02"
 
 keywords: data source connector, iks, roks, cluster, protection
 
@@ -34,30 +34,29 @@ Follow these steps to quickly protect your Kubernetes resources:
 3. On the **Backup service instances** page, use the search bar to find your instance by name.
 4. Identify the instance with **Active** status and click its name.
 5. On the instance details page, click `Launch dashboard`.
-5. Go to: `Dashboard` \> `Data Protection` \> `Sources`.
-6. Locate your Kubernetes source cluster by using the cluster endpoint.
-7. Click the cluster endpoint. A list of available namespaces appears.
-8. Choose the namespaces that you want to protect (or select the entire cluster).
-9. Click `Protect` to further configure the protection settings.
+6. Go to: `Dashboard` \> `Data Protection` \> `Sources`.
+7. Locate your Kubernetes source cluster by using the cluster endpoint.
+8. Click the cluster endpoint. A list of available namespaces appears.
+9. Choose the namespaces that you want to protect (or select the entire cluster).
+10. Click `Protect` to further configure the protection settings.
+11. **Select or Create a Protection Group**: When prompted, choose one of the following options:
 
+      | Option | Description |
+      |------|-------------|
+      | **Use an Existing Protection Group** | All settings are prefilled from the existing group and are read only at this stage. |
+      | **Create a New Protection Group** | When creating a new group, configure the following settings: <ul><li>**Protection Group Name**</li><li>**Protection Policy**</li><li>**Start Time and Time Zone** </li><li>**Leverage CSI Snapshot** (toggle)</li><li>**Pause Future Runs**</li><li>**Alerts and Email Recipients**</li><li>**Priority** (High / Medium / Low)</li><li>**Include or Exclude Labels**</li><li>**Description**</li></ul> |
+      {: caption="Protection Group options" caption-side="bottom"}
 
-10. **Select or Create a Protection Group**: When prompted, choose one of the following options:
+12. **Select or Create a Protection Policy**:
+    - **Create New**: Define backup frequency, retention, and other policy settings.
+    - **Use Existing**: Select a policy, click `Edit` to update settings if needed, and save.
 
-   | Option | Description |
-   |------|-------------|
-   | **Use an Existing Protection Group** | All settings are prefilled from the existing group and are read-only at this stage. |
-   | **Create a New Protection Group** | When creating a new group, configure the following settings: <ul><li>**Protection Group Name**</li><li>**Protection Policy**</li><li>**Start Time and Time Zone** </li><li>**Leverage CSI Snapshot** (toggle)</li><li>**Pause Future Runs**</li><li>**Alerts and Email Recipients**</li><li>**Priority** (High / Medium / Low)</li><li>**Include or Exclude Labels**</li><li>**Description**</li></ul> |
-
-11. **Select or Create a Protection Policy**:
-   - **Create New**: Define backup frequency, retention, and other policy settings.
-   - **Use Existing**: Select a policy, click `Edit` to update settings if needed, and save.
-
-12. **Start Protection**: Click `Protect` to initiate protection. The service begins backing up selected objects according to the schedule. To monitor progress:
+13. **Start Protection**: Click `Protect` to initiate protection. The service begins backing up selected objects according to the schedule. To monitor progress:
     - Go to `Data Protection` \> `Protection`.
     - Click the `Protection Group Name`.
     - Select a specific run by clicking its `Date and Time` to view detailed information.
 
-## Configuration Options
+## Configuration options
 {: #protecting-namespace-iks-roks-advanced}
 
 After you set up protection, you can customize the configuration to better suit your needs by following these steps:
@@ -72,30 +71,32 @@ After you set up protection, you can customize the configuration to better suit 
 - **Start Time**: Defines when the protection job runs. (Time zone can also be selected here).
 - **Leverage CSI Snapshot**: Toggle this option to protect PVC data by capturing a crash-consistent state of the volume by using CSI driver snapshots.
 
-### 2. Additional Settings
+### 2. Additional settings
 {: #configure-additional-settings}
 
 When creating a new protection group, you find these under the collapsible **Additional Settings** section:
 
 | Setting | Description |
 |--------|-------------|
-| **Pause Future Runs** | Toggle to enable. "Once enabled, no runs will be scheduled." |
+| **Pause Future Runs** | Toggle to enable. "Once enabled, no runs are scheduled." |
 | **End Date** | Toggle to set a specific end date for protection runs. |
 | **QoS Policy** | Select one of the following: <ul><li>Backup HDD (Default)</li><li>Backup SSD</li><li>Backup Auto</li></ul> |
 | **Alerts** | Select events to trigger alerts: <ul><li>BCO Violation</li><li>Failure</li><li>Success</li></ul> Click `Add` to configure email recipients. |
 | **Priority** | Sets execution priority: <ul><li>High</li><li>Medium</li><li>Low</li></ul> |
 | **BCO (Backup Completion Objective)** | <ul><li>**Full**: Default 1 day.</li><li>**Incremental**: Default 12 hours.</li></ul> <br> _Backup Completion Objective (BCO) will be met if Full Backups complete within 1 day and Incremental Backups complete within 12 hours._ |
 | **Description** | Enter a brief description for the Protection Group. |
-| **Include or Exclude Labels** | Toggle **Persistent Volume Claim(PVC) Inclusion/Exclusion** to filter PVCs by labels.  <br> <ul><li>**Logical Rule**: Select "Match Any of the following labels" or "Match All of the following labels".</li><li>Select **Include** or **Exclude** radio button.</li><li>Enter **key** and **value** for the existing resource label.</li><li>Click **+ Add**.</li></ul> |
+| **Include or Exclude Labels** | Toggle **Persistent Volume Claim(PVC) Inclusion/Exclusion** to filter PVCs by labels.  <br> <ul><li>**Logical Rule**: Select "Match Any of the following labels" or "Match All of the following labels".</li><li>Select **Include** or **Exclude** radio button.</li><li>Enter the **key** and **value** for the existing resource label.</li><li>Click **+ Add**.</li></ul> |
+{: caption="Additional settings" caption-side="bottom"}
 
 ### 3. Auto Protect
 {: #auto-protect}
 
-Auto Protect helps ensure that any new namespaces added to the cluster in the future are automatically included in the protection group.
+Auto Protect helps to ensure that any new namespaces added to the cluster in the future are automatically included in the protection group.
 
 | Auto Protect Type | Steps |
 |-----------------|-------|
 | **Cluster‑Level Auto Protect** | Go to `Data Protection` > Click `Sources` > Go to **Kubernetes Source** section > locate your source by using the cluster endpoint > Click **Menu** `⋮` > Select `Protect` > Click the **Shield Icon** on the cluster row. > Select `New Group` or `Existing Group` configure the details, and then click `Protect`. |
+{: caption="Auto Protect types" caption-side="bottom"}
 
 When Auto Protect is enabled:
 - **New Namespaces**: Automatically added to the protection group if they match the criteria.
@@ -103,52 +104,59 @@ When Auto Protect is enabled:
 - **Existing Backups**: Preserved until retention expires.
 - Existing namespaces can be updated and have their own inclusion/exclusion rules and pre/post hook scripts (Application Quiescing).
 
-### 4. Label-based Inclusion and Exclusion
+### 4. Label-based inclusion and exclusion
 {: #label-inclusion-exclusion}
 
-You can fine-tune what gets backed up using labels. Note that label-based filtering works alongside Auto Protect, enabling you to exclude specific namespaces even when the entire cluster is automatically protected.
+You can fine-tune what gets backed up using labels. 
 
-- **Exclude Namespaces by Label**:
+Label-based filtering works alongside Auto Protect, enabling you to exclude specific namespaces even when the entire cluster is automatically protected.
+{: note}
+
+- **Exclude namespaces by a label**:
   1. Click the **Tags icon** (upper right) to switch to the label view.
   2. In the **Select Labels** dropdown, choose the labels that you want to filter by (for example, `kubernetes.io/metadata.name:my-label`). The list updates to show resources matching the selected labels.
   3. Click the **Exclude icon** (circle with slash) on the label row. The status changes to **Excluded** with a red icon, and all resources with that label are excluded from protection.
   4. Namespaces **not** excluded by these label rules remain in the list. Click `Protect` to proceed.
 
-- **Customize Individual Namespaces**:
+- **Customize individual namespaces**:
   1. Click the **pencil icon** next to a namespace to edit its settings.
-  2. In the **Options for [namespace]** modal:
-     - Toggle **Persistent Volume Claim(PVC) Inclusion/Exclusion** to enable customized filtering.
-       - **Note**: "This overrides the inclusion or exclusion settings made for Protection Group level in Additional Settings".
-     - Select **Include** or **Exclude** radio button.
-     - Use the **Search** dropdown to select specific PVCs (for example, `primary-vol-brs-agent-connector-0`) to include or exclude.
-     - (Optional) Toggle **Resource Inclusion/Exclusion** to filter other Kubernetes resources.
-       - Select **Include** or **Exclude** radio button.
-       - **Specific Resources**: Use the dropdown to select resources like `Daemon set`, `Deployment`, `Pod`, `Secret`, `Service`, etc.
-       - **Custom Resources**: Click `+ Add Custom Resources` to specify custom resource definitions.
-     - pre/post hook scripts (Application Quiescing)
-  3. Click `Save` to apply the changes.
+  1. In the **Options for [namespace]** modal:
+        - Toggle **Persistent Volume Claim(PVC) Inclusion/Exclusion** to enable customized filtering.
 
-### 5. Application Quiescing
+          This overrides the inclusion or exclusion settings that are made for Protection Group level in the Additional Settings.
+          {: note}
+
+        - Select **Include** or **Exclude** radio button.
+        - Use the **Search** dropdown to select specific PVCs (for example, `primary-vol-brs-agent-connector-0`) to include or exclude.
+        - (Optional) Toggle **Resource Inclusion/Exclusion** to filter other Kubernetes resources.
+          - Select **Include** or **Exclude** radio button.
+          - **Specific Resources**: Use the dropdown to select resources like `Daemon set`, `Deployment`, `Pod`, `Secret`, `Service`, etc.
+          - **Custom Resources**: Click `+ Add Custom Resources` to specify custom resource definitions.
+        - pre/post hook scripts (Application Quiescing)
+  1. Click `Save` to apply the changes.
+
+### 5. Application quiescing
 {: #application-quiescing}
 
 {{site.data.keyword.baas_full_notm}} supports quiescing for consistent backups of stateful workloads.
 
-**Supported Quiescing Modes:**
+**Supported quiescing modes:**
 
 | Mode | Description |
 |---|---|
 | **Together mode** | Parallel execution within a single volume group. Faster than sequential. |
 | **Independent mode** | Parallel execution across multiple volume groups. Fastest backup speed. |
 | **Sequential mode** | Serial execution within a single volume group. Slowest but most controlled. |
+{: caption="Supported Quiescing modes" caption-side="bottom"}
 
-**To configure quiescing:**
+**Configure quiescing:**
 1. Select the target namespace and click the **pencil icon** to edit.
 2. Navigate to the **Scripts** tab.
 3. Toggle **Fail Backups on Hook Failure** to control backup behavior on script errors.
 4. Select a **Quiesce Mode**:
-   - **Apply following rules together** (Parallel execution within volume group)
-   - **Apply following rules independently** (Parallel execution across volume groups)
-   - **Apply following rules sequentially** (Serial execution)
+   - **Apply the following rules together** (Parallel execution within volume group)
+   - **Apply the following rules independently** (Parallel execution across volume groups)
+   - **Apply the following rules sequentially** (Serial execution)
 5. Click `+ Add Rule` to define a new rule:
    - **Pod Selector Labels**: Click `+ Add Label` to select target pods where the pre and post script will execute.
    - **Pre Snapshot Scripts**: Click `+ Add Script` to define one or more commands to run before the snapshot.
