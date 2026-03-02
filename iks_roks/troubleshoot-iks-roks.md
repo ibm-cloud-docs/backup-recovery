@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2025
-lastupdated: "2026-02-20"
+  years: 2025, 2026
+lastupdated: "2026-03-02"
 
 keywords: data source connector, iks, roks, cluster, troubleshooting
 
@@ -46,7 +46,7 @@ This issue typically occurs under three scenarios:
 
 The fastest way to restore service is to bring the cluster back to the state it was in when Data Source Connector was first deployed.
 - **Step**: Readd the removed zones to your worker pool.
-- **Result**: The scheduler recognizes the nodes in those zones and successfully bind the existing VPC Block volumes to the Data Source Connector pods.
+- **Result**: The scheduler recognizes the nodes in those zones and successfully binds the existing VPC Block volumes to the Data Source Connector pods.
 
 **Option 2: Reinstall Data Source Connector**
 
@@ -107,7 +107,7 @@ If the Data Source Connector does not show up in the {{site.data.keyword.baas_fu
 To help ensure successful source registration and maintain data integrity, follow these deployment requirements:
 1. **Single Installation Policy**: Each Kubernetes or OpenShift cluster must have only one release of the Data Source Connector installed.
 2. **Dedicated Cluster Pairing**: Every cluster must be paired with its own unique Data Source Connection.
-3. **Connection Integrity**: While it is technically possible to share a single Data Source Connection across multiple clusters, we strongly recommend a **dedicated connection per cluster**. This alignment prevents data inconsistencies and helps ensure a successful handshake between the Data connector and the source cluster.
+3. **Connection Integrity**: While it is technically possible to share a single Data Source Connection across multiple clusters, we strongly recommend a **dedicated connection per cluster**. This alignment prevents data inconsistencies and helps to ensure a successful handshake between the Data connector and the source cluster.
 
 ### Incorrect brs-backup-agent image
 {: #incorrect-backup-agent}
@@ -201,7 +201,7 @@ If you see a `Warning FailedScheduling` message similar to the one below, you ar
 
 **What this means:**
 
-- **Exceed Max Volume Count**: Each worker node has a hard limit on the number of volumes it can attach (12 volumes per node). This error means that the node is "full."
+- **Exceed Max Volume Count**: Each worker node has a hard limit on the number of volumes that it can attach (12 volumes per node). This error means that the node is "full."
 - **Volume Node Affinity Conflict**: The pod needs to access a specific volume that is physically located on a different node, but that node is already at its capacity or otherwise unavailable.
 
 ### Recommended Solutions
@@ -215,11 +215,12 @@ If your environment has reached its volume capacity, use one of the following me
 | **Optimize Density** | Evaluate if multiple applications can share volumes or if smaller volumes can be consolidated. | Advanced users optimizing for cost. |
 {: caption="Table 1. Recommended solutions for volume limit issues" caption-side="bottom"}
 
+
 ## Deleting and Unregistering Resources
 {: #deleting-unregistering-resources}
 
 To maintain data integrity and security, specific dependencies must be cleared before you can delete core resources like Connections, Connectors, or Unregistered Sources.
-If your resources are currently associated with a Protection Group, follow the structured workflow below to help ensure a smooth deletion process.
+If your resources are currently associated with a Protection Group, the following structured workflow can help to ensure a smooth deletion process.
 
 ### Understanding Data Lock Constraints
 {: #data-lock-constraints}
@@ -227,7 +228,7 @@ If your resources are currently associated with a Protection Group, follow the s
 Before attempting to delete a Protection Group, check if your assigned policy has Data Lock enabled.
 
 - **The Restriction**: If Data Lock is active, the Protection Group and its associated resources cannot be deleted until the lock period expires.
-- **How to Check**: Navigate to the **Run Details** page for your job. Look for the **Expiry Date**; this is the earliest date the resource becomes available for deletion.
+- **How to Check**: Navigate to the **Run Details** page for your job. Look for the **Expiry Date**; this is the earliest date that the resource becomes available for deletion.
 - **Proactive Tip**: To avoid long waiting times in the future, consider creating a Custom Policy with a shorter Data Lock duration or with Data Lock disabled entirely, rather than using the default settings.
 
 ### Recommended Deletion Order
@@ -327,7 +328,7 @@ chmod +x k8s-info-fetcher.sh
 
 **Step 5: Run the script**
 
-*   **Standard collection** (Cluster info + Backup Agent info):
+*   **Standard collection** (Cluster information + Backup Agent information):
     ```bash
     ./k8s-info-fetcher.sh
     ```

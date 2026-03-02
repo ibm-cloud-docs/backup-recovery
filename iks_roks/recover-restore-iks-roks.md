@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2025
-lastupdated: "2026-02-20"
+  years: 2025, 2026
+lastupdated: "2026-03-02"
 
 keywords: data source connector, iks, roks, cluster, recover
 
@@ -41,9 +41,9 @@ For example, suppose a namespace that you want to restore contains a deployment 
     *   You can enter the namespace name, Protection Group name, or use the wildcard character `*` for partial matches.
     *   Filter results by **Source**, **Protection Group**, or **date range**.
 
-9. Identify the item you want to recover. Items in the list are distinguished by their type:
+9. Identify the item that you want to recover. Items in the list are distinguished by their type:
     *   **Protection Groups**: Identified by a blue 'K8' icon. Represents a group of one or more namespaces.
-    *   **Namespaces**: Identified by a grey hexagon icon. Represents an individual Kubernetes namespace.
+    *   **Namespaces**: Identified by a gray hexagon icon. Represents an individual Kubernetes namespace.
     *   To recover the latest snapshot, select the checkbox next to the item name.
     *   To recover a specific snapshot:
         1. Click the **Edit** (pencil) icon next to the item name.
@@ -55,7 +55,7 @@ For example, suppose a namespace that you want to restore contains a deployment 
 12. Configure the **Recovery Options** as needed:
     *   **Rename**: Add a **Prefix** or **Suffix** to the names of recovered namespaces. By default, the prefix `copy-` is added to the original namespace name.
     *   **Task Name**: View or customize the name of this recovery task.
-    *   **Skip cluster compatibility check**: Toggle to enable/disable skipping the check if the target cluster is compatible or not. This option is about kubernetes compatibility.
+    *   **Skip cluster compatibility check**: Toggle to enable/disable skipping the check if the target cluster is compatible or not. This option is about Kubernetes compatibility.
     *   **Include or Exclude Labels**: Toggle to enable **Persistent Volume Claim(PVC) Inclusion/Exclusion**.
         *   **Logical Rule**: Select **Match Any of the following labels** or **Match All of the following labels**.
         *   Choose to **Include** or **Exclude** matched labels.
@@ -83,7 +83,7 @@ For example, suppose a namespace that you want to restore contains a deployment 
 You can recover Kubernetes namespaces to a different Kubernetes or OpenShift cluster that is registered with the same {{site.data.keyword.baas_full_notm}} instance.
 
 - **New Location**: The entire namespace is restored to a different cluster.
-- **Overwrite Behavior**: If the namespace exists in the destination cluster, {{site.data.keyword.baas_full_notm}} **does not** overwrite existing resources, PVCs, or metadata. It only restores missing items.
+- **Overwrite Behavior**: If the namespace exists in the destination cluster, {{site.data.keyword.baas_full_notm}} **does not** overwrite existing resources, PVCs, or metadata. It restores only the missing items.
 
 To restore to a new location (different cluster):
 
@@ -99,9 +99,9 @@ To restore to a new location (different cluster):
     *   You can enter the namespace name, Protection Group name, or use the wildcard character `*` for partial matches.
     *   Filter results by **Source**, **Protection Group**, or **date range**.
 
-9. Identify the item you want to recover. Items in the list are distinguished by their type:
+9. Identify the item that you want to recover. Items in the list are distinguished by their type:
     *   **Protection Groups**: Identified by a blue 'K8' icon. Represents a group of one or more namespaces.
-    *   **Namespaces**: Identified by a grey hexagon icon. Represents an individual Kubernetes namespace.
+    *   **Namespaces**: Identified by a gray hexagon icon. Represents an individual Kubernetes namespace.
     *   To recover the latest snapshot, select the checkbox next to the item name.
     *   To recover a specific snapshot:
         1. Click the **Edit** (pencil) icon next to the item name.
@@ -114,7 +114,7 @@ To restore to a new location (different cluster):
 13. Configure the **Recovery Options** as needed:
     *   **Rename**: Add a **Prefix** or **Suffix** to the names of recovered namespaces. By default, the prefix `copy-` is added to the original namespace name.
     *   **Task Name**: View or customize the name of this recovery task.
-    *   **Skip cluster compatibility check**: Toggle to enable/disable skipping the check if the target cluster is compatible or not. This option is about kubernetes compatibility.
+    *   **Skip cluster compatibility check**: Toggle to enable/disable skipping the check if the target cluster is compatible or not. This option is about Kubernetes compatibility.
     *   **Include or Exclude Labels**: Toggle to enable **Persistent Volume Claim(PVC) Inclusion/Exclusion**.
         *   **Logical Rule**: Select **Match Any of the following labels** or **Match All of the following labels**.
         *   Choose to **Include** or **Exclude** matched labels.
@@ -181,3 +181,4 @@ You can track the status of your recovery tasks on the **Recoveries** page.
 | **Region Mapping** | Updates region parameters in custom StorageClasses during restore, creating them with new region values in the destination. |
 | **Zone Mapping** | Updates zone parameters in custom StorageClasses during restore, applying new zone values in the destination. |
 | **Include/Exclude Labels** | Filters PersistentVolumeClaims (PVCs) by label, allowing you to include or exclude specific PVCs from the migration. |
+{: caption="Recovery UI features" caption-side="bottom"}
