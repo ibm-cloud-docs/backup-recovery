@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025,
-lastupdated: "2025-12-12"
+lastupdated: "2026-03-03"
 
 keywords: reporting
 
@@ -31,7 +31,7 @@ Procedure
 
 Here is how you see the reports for all the instances for the selected region:
 
-1. In the left navigation pane, click **Instance manager**, and select the region you want to see the report for.
+1. In the left navigation pane, click **Backup Manager**, and select the region you want to see the report for.
 2. In the left navigation pane, click **Reports**. The Backup and Recovery Manager shows the report for all the instances for the selected region.
 
 
@@ -122,5 +122,3 @@ To switch to the default from the Backup and Recovery Manager for {{site.data.ke
 The Backup and Recovery Manager for {{site.data.keyword.baas_full_notm}} architecture is API driven. You can programmatically interface with the Data Management Reporting service.
 
 To learn more about using the Backup and Recovery Manager with {{site.data.keyword.baas_full_notm}} Reporting APIs, see the [Backup and Recovery Reporting API operations](/docs/backup-recovery?topic=backup-recovery-helios-reporting-operations).
-
-
