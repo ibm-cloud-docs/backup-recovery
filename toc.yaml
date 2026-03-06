@@ -87,15 +87,6 @@ toc:
           - baas-iam.md
           - baas-service-credentials.md
       - topicgroup:
-          label: Integrated services
-          topics:
-          - topicgroup:
-              label: Managing encryption
-              topics:
-              - baas-encryption-overview.md
-              - baas-kp.md
-              - baas-hpcs.md
-      - topicgroup:
           label: Backup and Recovery Manager
           topics:
           - global_mgmt_console/getting-startedGmc.md
