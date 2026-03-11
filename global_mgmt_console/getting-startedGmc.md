@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2025
-lastupdated: "2026-02-04"
+  years: 2025, 2026
+lastupdated: "2026-03-11"
 
 keywords: IBM cloud backup and recovery
 
@@ -49,12 +49,15 @@ To access the Backup and Recovery Manager, you need to have an active {{site.dat
 1. Go to the catalog by clicking **Catalog** from the navigation bar.
 1. Search the catalog for **Backup and Recovery**.
 1. Give the service instance a name.
-2. Select a region.
-3. Click **Create** after accepting the license agreements.
-4. Open your {{site.data.keyword.baas_full_notm}} instance.
-4. In the left navigation window, click **Backup Manager**, and select the region that you want to see the report for the Backup and Recovery Manager.
-5. The Backup and Recovery Manager dashboard displays key details such as Protection Coverage, Recovery Status by Type, Protection Status by Type, and Alerts for all instances within the selected region.
+1. Select a region.
+1. Click **Create** after accepting the license agreements.
+1. Open your {{site.data.keyword.baas_full_notm}} instance.
+1. In the left navigation window, click **Backup Manager**, and select the region that you want to see the report for the Backup and Recovery Manager.
+1. The Backup and Recovery Manager dashboard displays key details such as Protection Coverage, Recovery Status by Type, Protection Status by Type, and Alerts for all instances within the selected region.
 
+Any context-based restriction rules you may have on a {{site.data.keyword.baas_full_notm}} instance are enforced whenever you attempt to access it, either directly or through the {{site.data.keyword.baas_full_notm}} Manager.
+For more information on how context-based restrictions integrate with the {{site.data.keyword.baas_full_notm}} service see [Protecting backup-recovery resources with context-based restrictions](/docs/backup-recovery?topic=backup-recovery-cbr).
+{: note}
 
 
 ## Next steps
