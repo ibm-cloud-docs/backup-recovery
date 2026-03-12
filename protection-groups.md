@@ -3,7 +3,7 @@
 copyright:
   years: 2024, 2026
 
-lastupdated: "2026-02-17"
+lastupdated: "2026-03-12"
 
 keywords: protection, groups
 
@@ -17,7 +17,7 @@ subcollection: backup-recovery
 # Protection groups
 {: #protection-groups}
 
-This tutorial shows how to backup Microsoft SQL Server (VDI-based) data using your {{site.data.keyword.baas_full}} service. This entails choosing the Sources and Objects (i.e. Microsoft SQL Server hosts and their data) to protect, along with naming the Protection Group and assigning a pre-existing or custom Protection Policy that defines your backup schedule, data retention duration and more.
+This tutorial shows how to backup Microsoft SQL Server (Virtual Device Interface (VDI)-based) data using your {{site.data.keyword.baas_full}} service. This entails choosing the Sources and Objects (i.e. Microsoft SQL Server hosts and their data) to protect, along with naming the Protection Group and assigning a pre-existing or custom Protection Policy that defines your backup schedule, data retention duration and more.
 
 ## Before you start
 {: #protection-groups-before-you-start}
@@ -26,11 +26,11 @@ Ensure that you have what you need to start:
 
 - An account for the [{{site.data.keyword.cloud}} Platform](https://cloud.ibm.com).
 - An instance of {{site.data.keyword.baas_full_notm}} service is deployed.
-- A [Data Source Connector](/docs/backup-recovery?topic=backup-recovery-deploy-data-source-connector) (VM or VSI) that is registered with your instance.
+- A [Data Source Connector](/docs/backup-recovery?topic=backup-recovery-deploy-data-source-connector) (Virtual Machine (VM) or Virtual Server Instance (VSI)) that is registered with your instance.
 - A [Source](/docs/backup-recovery?topic=backup-recovery-baas-registration) (physical host, VM or VSI) that is registered with your instance.
 - An [Agent](/docs/backup-recovery?topic=backup-recovery-agent-download-install) deployed to the source (installed using the required installer).
 - Verify that you have proper access to your {{site.data.keyword.baas_full_notm}} instance.
-  - Writer (backup-recovery.dashboard.edit) or Manager (backup-recovery.dashboard.edit) privileges to the {{site.data.keyword.baas_full_notm}} Service are needed to create and manage Protection Jobs (i.e. Backup Jobs) in your instance. These privileges can be assigned by your {{site.data.keyword.cloud_notm}} Platform account owner using an Access Group (multiple users) or Access Policy (specific user) tied to your IAM profile. Details on this are included [here](/docs/backup-recovery?topic=backup-recovery-iam-docs-template&interface=ui).
+  - Writer (backup-recovery.dashboard.edit) or Manager (backup-recovery.dashboard.edit) privileges to the {{site.data.keyword.baas_full_notm}} Service are needed to create and manage Protection Jobs (i.e. Backup Jobs) in your instance. These privileges can be assigned by your {{site.data.keyword.cloud_notm}} Platform account owner using an Access Group (multiple users) or Access Policy (specific user) tied to your Identity and Access Management (IAM) profile. Details on this are included [here](/docs/backup-recovery?topic=backup-recovery-iam-docs-template&interface=ui).
 
 ## Launch your {{site.data.keyword.baas_full_notm}} Instance UI
 {: #protection-groups-instance-ui}
@@ -39,7 +39,7 @@ Ensure that you have what you need to start:
 2. Go to **Navigation Menu** \> **Backup and Recovery**.
 3. Search for and select your {{site.data.keyword.baas_full_notm}} instance.
 4. On the instance details page, click **Launch dashboard**.
-5. Enter your SSO or account credentials to authenticate.
+5. Enter your Single Sign-On (SSO) or account credentials to authenticate.
 
 After completing the steps, you are now presented with the UI of your {{site.data.keyword.baas_full}} instance.
 

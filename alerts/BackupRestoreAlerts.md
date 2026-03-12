@@ -18,7 +18,7 @@ subcollection: backup-recovery
 
 Verification operation found possible metadata inconsistency.
 
-Contact [IBM Cloud Support](../../../Support/ContactSupport.htm).
+Contact [IBM Cloud Support](https://cloud.ibm.com/unifiedsupport/supportcenter) {: external}.
 
 Not Applicable
 
@@ -124,7 +124,7 @@ All
 
 The backup failed .
 
-This alert is raised when the {{site.data.keyword.baas_full_notm}} detects that an object (such as a VM) failed to be backed up during a Protection Group Run. One alert is raised for each object (such as a VM) that failed to be backed up. For instructions on how to enable this alert, contact [IBM Cloud Support](../../../Support/ContactSupport.htm). A protection run can fail to back up an object for any of the following reasons:
+This alert is raised when the {{site.data.keyword.baas_full_notm}} detects that an object (such as a VM) failed to be backed up during a Protection Group Run. One alert is raised for each object (such as a VM) that failed to be backed up. For instructions on how to enable this alert, contact [IBM Cloud Support](https://cloud.ibm.com/unifiedsupport/supportcenter) {: external}. A protection run can fail to back up an object for any of the following reasons:
 
 *   There is an issue with primary environment such as a removed VM or a Snapshot failure.
 *   The primary storage is full. (The primary storage contains the Objects that are backed up by the {{site.data.keyword.baas_full_notm}}.) 
@@ -241,7 +241,7 @@ Migrated VM(s) identified on the vCenter.
 
 This alert is triggered when the {{site.data.keyword.baas_full_notm}} identifies a VM in a vCenter that was earlier part of another vCenter registered on the {{site.data.keyword.baas_full_notm}}.
 
-No action is required if the migrated VMs are mentioned in the alert. If not, contact [IBM Cloud Support](../../../Support/ContactSupport.htm).
+No action is required if the migrated VMs are mentioned in the alert. If not, contact [IBM Cloud Support](https://cloud.ibm.com/unifiedsupport/supportcenter) {: external}.
 
 Not Applicable
 
@@ -308,7 +308,7 @@ This alert is triggered when CDP is disabled for an entity in a Protection Group
 *   Another {{site.data.keyword.baas_full_notm}} is managing the ESXi cluster on which the VMware VM is running.
 
 
-Fix the validation errors related to the source provided in the alert information. For other errors, contact [IBM Cloud Support](../../../Support/ContactSupport.htm).
+Fix the validation errors related to the source provided in the alert information. For other errors, contact [IBM Cloud Support](https://cloud.ibm.com/unifiedsupport/supportcenter) {: external}.
 
 Not Applicable
 
@@ -403,7 +403,7 @@ This alert is triggered when a user action is required for CDP protected entity.
 *   When a user performs Pause, Deactivation or Delete operation on a Protection group
 
 
-Perform the required action mentioned in the alert. For more details, contact [IBM Cloud Support](../../../Support/ContactSupport.htm).
+Perform the required action mentioned in the alert. For more details, contact [IBM Cloud Support](https://cloud.ibm.com/unifiedsupport/supportcenter) {: external}.
 
 Not Applicable
 
@@ -475,7 +475,7 @@ This alert is triggered when the Protection service is not initialized for more 
 
 The Protection service may not initialize on time because the master node is unresponsive.
 
-Contact [IBM Cloud Support](../../../Support/ContactSupport.htm).
+Contact [IBM Cloud Support](https://cloud.ibm.com/unifiedsupport/supportcenter) {: external}.
 
 Not Applicable
 
@@ -619,7 +619,7 @@ There is restore chain break in previous backup.
 
 This alert is triggered when a gap is discovered in between backups which might cause an unrecoverable time range. This alert can be caused by an unknown backup error or due to some backup being deleted inappropriately (manually or due to the policy).
 
-Run a full/incremental backup to fix the log chain break. If a chain break alert is still triggered, contact [IBM Cloud Support](../../../Support/ContactSupport.htm) or refer to KB for details/resolution.
+Run a full/incremental backup to fix the log chain break. If a chain break alert is still triggered, contact [IBM Cloud Support](https://cloud.ibm.com/unifiedsupport/supportcenter) {: external} or refer to KB for details/resolution.
 
 Not Applicable
 
@@ -744,7 +744,7 @@ Protection Service is unable to contact the indexing service.
 
 This alert is triggered when the protection service hasn’t made a successful call to the indexing service for a long time and has a long queue of pending requests built up waiting to be sent. This can happen when the indexing service is down or overloaded.
 
-Contact [IBM Cloud Support](../../../Support/ContactSupport.htm) for assistance.
+Contact [IBM Cloud Support](https://cloud.ibm.com/unifiedsupport/supportcenter) {: external} for assistance.
 
 Not Applicable
 
@@ -849,7 +849,7 @@ The handshake for a replication job to the remote cluster is stuck.
 
 The alert is raised if the remote cluster does not respond to the handshake request for a given job in a given time window.
 
-Check the network connection to see if there’s any issue. If not, contact [IBM Cloud Support](../../../Support/ContactSupport.htm).
+Check the network connection to see if there’s any issue. If not, contact [IBM Cloud Support](https://cloud.ibm.com/unifiedsupport/supportcenter) {: external}.
 
 
 
@@ -891,7 +891,7 @@ A critically high amount of unclaimed garbage has been detected in the {{site.da
 
 The garbage percentage concerning the cluster capacity is consistently higher (> 15%) for the last 3 Garbage Collection cycles.
 
-Contact [IBM Cloud Support](../../../Support/ContactSupport.htm) to examining the garbage backlog in the {{site.data.keyword.baas_full_notm}}.
+Contact [IBM Cloud Support](https://cloud.ibm.com/unifiedsupport/supportcenter) {: external} to examining the garbage backlog in the {{site.data.keyword.baas_full_notm}}.
 
 Not Applicable
 

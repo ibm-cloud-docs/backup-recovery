@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2024, 2025
-lastupdated: "2025-12-12"
+  years: 2024, 2026
+lastupdated: "2026-03-12"
 
 keywords: <KEYWORDS>
 
@@ -35,8 +35,6 @@ The option to enable CloudArchive Direct (native mode - no dedupe, no compressio
 {: #how_cloudarchive_direct_works}
 
 When you run a Protection Group for a registered NAS source with CloudArchive Direct enabled, then according to the policy set for the Protection Group, the file system from NAS is read and stored on the external target as a streaming backup using the {{site.data.keyword.baas_full_notm}} as a temporary cache.
-
-![CloudArchive Direct](../Resources/Images/NAS/CloudArchiveDirect.png)
 
 ## Cloudarchive direct characteristics
 {: #cloudarchive_direct_characteristics}

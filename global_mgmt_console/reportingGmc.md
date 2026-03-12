@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2025,
-lastupdated: "2026-03-03"
+  years: 2025, 2026
+lastupdated: "2026-03-12"
 
 keywords: reporting
 
@@ -15,7 +15,9 @@ subcollection: backup-recovery
 # Backup and Recovery Manager reports
 {: #reports_gmc}
 
-{{site.data.keyword.baas_full}} offers centralized reporting through its Backup and Recovery Manager, providing a unified view of all backup and recovery activities.
+{{site.data.keyword.baas_full}} offers centralized reporting through its Backup and Recovery Manager, providing a unified view of all backup and recovery activities. Reports are generated based on metadata collected from Backup and Recovery service instances in the selected region.
+
+You must have appropriate Identity and Access Management (IAM) permissions to access Backup and Recovery Manager reports.
 
 The built-in reports are designed to address your most common use cases and are available for immediate use. You can view an overall summary of your data protection jobs and storage systems, or you can analyze data at the granular level by using powerful filtering options. You can filter, view, and download reports.
 
@@ -25,7 +27,7 @@ The built-in reports are designed to address your most common use cases and are 
 ## Viewing reports
 {: #reporting_viewing_gmc}
 
-View reports in the Backup and Recovery Manager to analyze and improve user experience.
+Reports are generated per region. Cross-region aggregation is not supported. View reports in the Backup and Recovery Manager to analyze and improve user experience.
 
 Procedure
 
@@ -119,6 +121,6 @@ To switch to the default from the Backup and Recovery Manager for {{site.data.ke
 ## Reporting APIs
 {: #reporting_apis_gmc}
 
-The Backup and Recovery Manager for {{site.data.keyword.baas_full_notm}} architecture is API driven. You can programmatically interface with the Data Management Reporting service.
+The Backup and Recovery Manager for {{site.data.keyword.baas_full_notm}} architecture is API driven. You can programmatically interface with the Data Management Reporting service. Use Reporting APIs for automation, integration, and building custom dashboards.
 
 To learn more about using the Backup and Recovery Manager with {{site.data.keyword.baas_full_notm}} Reporting APIs, see the [Backup and Recovery Reporting API operations](/docs/backup-recovery?topic=backup-recovery-helios-reporting-operations).

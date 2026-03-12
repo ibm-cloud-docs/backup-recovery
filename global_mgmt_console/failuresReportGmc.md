@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025,
-lastupdated: "2025-12-12"
+lastupdated: "2026-03-12"
 
 keywords: report, failures
 
@@ -15,7 +15,9 @@ subcollection: backup-recovery
 # Failures
 {: #report_failures_gmc}
 
-The Failures report provides a summary and list of objects that had one or more backup run failures. It also helps you identify consecutive failures in the last three backups, and breaks down the failed objects by object type.
+The Failures report provides a summary and list of objects that had one or more backup run failures. It also helps you identify consecutive failures in the last three backups, and breaks down the failed objects by object type. A failure refers to a completed backup run that ended with a failed status. Data is aggregated from Backup and Recovery service instances in the selected region.
+
+The Failures report reflects data for the selected region only.
 
 Example use case: Which object do I have no successful backup of in the last week?
 
@@ -27,7 +29,7 @@ Example use case: Which object do I have no successful backup of in the last wee
 ## Filter Report Data
 {: #report_failures_filters_gmc}
 
-The report supports multiple filters to pare down the data that you want to view in the report:
+The report supports multiple filters to pare down the data that you want to view in the report. Available filters may vary depending on the selected report and region.
 
 | Object Name | Description |
 |-------------------------|--------------------------------------------------------------|
@@ -54,7 +56,7 @@ The summary provides a summary of the report for the specified period:
 - Total Sources: The total number of sources.
 - Total Objects: The total number of objects.
 - Failed Objects: The total number of objects that experienced one or more backup run failures during the specified date range.
-- Without Snapshots: The total number of objects without any snapshots.
+- Without Snapshots: The total number of objects without any snapshots. Without Snapshots refers to objects with no successful snapshot in the selected time range.
 
 ## Charts
 {: #report_failures_charts_gmc}
@@ -76,8 +78,11 @@ To add or remove columns, click the gear icon and enable or disable the toggle s
 |-------------------------|--------------------------------------------------------------|
 | Object Name |	The name of the object. |
 | Source	    | The hostname or IP address of the registered source. |
-| Policy      |	The protection policy associated with the Protection Group. |
+| Policy      |	The protection policy associated with the Protection Group. The policy shown reflects the policy applied during the most recent backup within the selected time range. |
 | Last Failed Run |	The date and time at which the last backup run failed. |
 | Failed Backups	| The total number of backup runs that failed. |
 | Failures in Last Three Backups	| The total number of failures in the last three backups. |
 | Last Failure Reason	| The reason for the failure of the last backup. |
+
+The report reflects historical backup runs within the selected time range only. If you see an empty report, verify the time range, filters, region selection, and IAM access.
+{: note}

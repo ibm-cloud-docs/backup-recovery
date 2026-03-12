@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025,
-lastupdated: "2025-12-12"
+lastupdated: "2026-03-12"
 
 keywords:
 
@@ -15,7 +15,9 @@ subcollection: backup-recovery
 # Recovery
 {: #report_recovery_gmc}
 
-The Recovery report provides a summary and list of all the clone and recovery tasks that were executed. It also provides other details such as the time taken for the operation and status of the operation.
+The Recovery report provides a summary and list of all the clone and recovery tasks that were executed. It also provides other details such as the time taken for the operation and status of the operation. A recovery task represents a restore or clone operation executed for an object. Data is aggregated from Backup and Recovery service instances within the selected region.
+
+This report reflects data for the selected region only.
 
 
 
@@ -48,7 +50,7 @@ The report supports multiple filters to pare down the data that you want to view
 
 The summary provides a summary of the report for the specified period.
 
-- Success Rate: Total Successful or Total Runs.
+- Success Rate: Total Successful Recoveries / Total Recoveries.
 - Total Recoveries: The total number of recoveries.
 - Successful: The total number of successful runs.
 - Success: The total number of recoveries with status Success.
@@ -73,13 +75,13 @@ You can add or remove columns. For more information, see Customize table columns
 
 | Column Name | Description |
 |-----------------|--------------------------------------------------------------------------------|
-| Start Time | The date and time at which the recovery task started.|
-| Object Name | The name of the object.|
-| Source | The hostname or IP address of the registered source.|
-| Recovery Point | The date and time of the backup run from which the object was recovered.|
-| Duration | The time taken by the recovery task.|
-| Task Name | The name of the recovery task.|
-| Username | The name of the user who initiated the recovery.|
+| Start Time | The date and time at which the recovery task started. |
+| Object Name | The name of the object. |
+| Source | The hostname or IP address of the registered source. |
+| Recovery Point | The date and time of the backup run from which the object was recovered. |
+| Duration | Duration reflects the execution time of the recovery task. |
+| Task Name | The name of the recovery task. |
+| Username | The name of the user who initiated the recovery. |
 
-
-
+If you see an empty report, verify the time range, filters, region selection, and IAM access.
+{: note}

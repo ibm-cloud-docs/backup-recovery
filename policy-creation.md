@@ -3,7 +3,7 @@
 copyright:
   years: 2025
 
-lastupdated: "2026-02-20"
+lastupdated: "2026-03-12"
 
 keywords: policy
 
@@ -36,7 +36,7 @@ Ensure that you have the following:
 2.  A deployed and accessible {{site.data.keyword.baas_full_notm}} service instance.
 3.  Appropriate service access privileges (**Writer** or **Manager**) to create or manage policies.
 
-Access can be assigned by your account administrator via IAM.
+Access can be assigned by your account administrator via Identity and Access Management (IAM).
 {: note}
 
 ## Accessing the {{site.data.keyword.baas_full_notm}} dashboard
