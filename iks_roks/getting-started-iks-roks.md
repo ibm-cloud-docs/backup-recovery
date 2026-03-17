@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2026-02-23"
+lastupdated: "2026-03-17"
 
 keywords: data source connector, iks, roks, cluster
 
@@ -52,6 +52,8 @@ E. [Troubleshooting](/docs/backup-recovery?topic=backup-recovery-data-source-con
 You need the following to get started with {{site.data.keyword.baas_full_notm}} with Kubernetes or OpenShift:
 - An [{{site.data.keyword.cloud}} Platform account](https://cloud.ibm.com)
 - An active instance of [{{site.data.keyword.baas_full_notm}} service](https://cloud.ibm.com/catalog/services/backup-and-recovery?catalog_query=aHR0cHM6Ly9jbG91ZC5pYm0uY29tL2NhdGFsb2cjaGlnaGxpZ2h0cw%3D%3D)
+
+Alternatively, you can use the pre-built, open-source and enterprise-ready [Terraform IBM modules](/docs/ibm-cloud-provider-for-terraform?topic=ibm-cloud-provider-for-terraform-about-tim) with {{site.data.keyword.baas_full_notm}} service. These modules provide best practices for provisioning {{site.data.keyword.cloud_notm}} resources and can be referenced directly in your Terraform configurations.
 
 ## Accessing your {{site.data.keyword.baas_full_notm}} instances
 {: #data-source-connector-iks-roks-access-instance}

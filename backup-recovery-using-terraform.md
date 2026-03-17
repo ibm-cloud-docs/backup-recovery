@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024
-lastupdated: "2026-02-23"
+lastupdated: "2026-03-17"
 
 keywords: backup recovery, terraform, guide
 
@@ -287,3 +287,16 @@ resource "ibm_backup_recovery" "backup_recovery_instance" {
 		}
 }
 ```
+
+## Using Terraform IBM Modules (TIM)
+{: #terraform-ibm-modules}
+
+As an alternative to writing Terraform configurations from scratch, you can use [Terraform IBM Modules (TIM)](/docs/ibm-cloud-provider-for-terraform?topic=ibm-cloud-provider-for-terraform-about-tim), which deliver enterprise-grade, production-ready infrastructure components that streamline your {{site.data.keyword.baas_full_notm}} service deployment. These modules are built with security best practices, designed for scalability, and help you deploy faster while maintaining consistency across your environments.
+
+The following Terraform IBM Modules are available for {{site.data.keyword.baas_full_notm}} service:
+
+- **[IBM Backup and Recovery Service (BRS) Module](https://registry.terraform.io/modules/terraform-ibm-modules/backup-recovery/ibm/latest){: external}** - Provides comprehensive infrastructure automation for deploying and managing {{site.data.keyword.baas_full_notm}} service instances, including service provisioning, IAM policies, and resource configuration.
+
+- **[IBM Backup & Recovery for IKS/ROKS with Data Source Connector](https://registry.terraform.io/modules/terraform-ibm-modules/iks-ocp-backup-recovery/ibm/latest){: external}** - Simplifies the deployment of backup and recovery solutions for IBM Cloud Kubernetes Service (IKS) and Red Hat OpenShift on IBM Cloud (ROKS) clusters, including automated Data Source Connector setup.
+
+For more information about Terraform IBM Modules, visit the [Terraform IBM Modules registry](https://registry.terraform.io/namespaces/terraform-ibm-modules){: external}.

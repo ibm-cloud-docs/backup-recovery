@@ -2,7 +2,7 @@
 
 copyright:
   years:  2017, 2022
-lastupdated: "2025-08-27"
+lastupdated: "2026-03-17"
 
 keywords: authorization, iam, basics
 
@@ -341,3 +341,5 @@ resource "ibm_iam_user_policy" "policy" {
 {: codeblock}
 
 For more information, see [ibm_iam_user_policy](https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/iam_user_policy){: external}.
+
+For production-ready deployments, explore the [Terraform IBM Modules (TIM)](https://registry.terraform.io/namespaces/terraform-ibm-modules){: external} repository. These enterprise-grade modules provide pre-configured infrastructure automation, including IAM policies and complete {{site.data.keyword.baas_full_notm}} configurations that follow {{site.data.keyword.cloud_notm}} best practices.
