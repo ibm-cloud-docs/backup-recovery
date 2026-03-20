@@ -188,21 +188,14 @@ If you are registering a cluster that was previously registered, you must ensure
 {: important}
 
 1. Access the [{{site.data.keyword.baas_full_notm}} instance dashboard](#data-source-connector-iks-roks-access-instance).
-![Backup and Recovery Dashboard](images_registration/access_backup_and_recovery_dashboard.png)
-
 2. Go to: `Dashboard` \> `Data Protection` \> `Sources` \> click `Register Source`.
-![Navigate to source registration](images_registration/navigate_to_source_registration.png)
-   
 3. In the **Select Source** page, select the `Kubernetes Cluster (Beta)` tile and click `Start Registration`.
-![Select registering kubernetes cluster](images_registration/select_registering_kubernetes_cluster.png)
-
 4. In the **Register Kubernetes Source** wizard:
 
     **Step 1: Data Source Connection**
 
     *   Select the previously created [Data Source Connection](#data-source-connector-iks-roks-create-data-source-connection), or create a new connection.
     *   Click `Continue`.
-   ![Select data source connection](images_registration/select_data_source_connection.png)
 
     **Step 2: Source Details**
 
@@ -210,21 +203,15 @@ If you are registering a cluster that was previously registered, you must ensure
 
         |  Cluster Endpoint  |  Password-Bearer Token |  Kubernetes Distribution  |
         |----|----|----|
-        ![Select cluster endpoint](images_registration/cluster_endpoint.png)
-        ![Enter the bearer token](images_registration/bearer_token.png)
-        ![Select kubernetes distribution](images_registration/select_kubernetes_distribution.png)
-
         | [Private (Recommended) or Public](#how-to-get-iks-roks-endpoint) | [See How to create a Bearer Token](#data-source-connector-iks-roks-create-bearer-token-cluster) | IBM Kubernetes Service / IBM Red Hat OpenShift Kubernetes Service |
 
         Make sure that **Kubernetes Distribution** matches the **Deployment Platform** of the selected Data Source Connection.
 
     *   (Optional) Configure Optional settings (for example, Service Type, Images) by expanding the **Optional** section.
-         ![Option to select datamover type](images_registration/datamover_options.png)
-         ![Optional Images](images_registration/optional_images.png)
 
 5. Click `Complete` to finish the registration.
 6. You are redirected to the **Sources** page, where you can view the status of your registered cluster.
-![Status of Source](images_registration/source_registration_successful.png)
+
 ## How to create a bearer token for a Kubernetes or OpenShift cluster
 {: #data-source-connector-iks-roks-create-bearer-token-cluster}
 

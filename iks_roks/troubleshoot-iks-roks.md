@@ -336,6 +336,6 @@ chmod +x k8s-info-fetcher.sh
 
 *   **Collection with User Namespace** (Cluster + Backup Agent + Your App Namespace):
     ```bash
-    ./k8s_info_fetcher.sh -u <your_namespace> -d <data_source_connector_name>
+    ./k8s-info-fetcher.sh -u <your-namespace>
     ```
     {: codeblock}
