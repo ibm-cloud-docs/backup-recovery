@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025, 2026
-lastupdated: "2026-03-02"
+lastupdated: "2026-03-20"
 
 keywords: data source connector, iks, roks, cluster, protection
 
@@ -86,6 +86,7 @@ When creating a new protection group, you find these under the collapsible **Add
 | **BCO (Backup Completion Objective)** | <ul><li>**Full**: Default 1 day.</li><li>**Incremental**: Default 12 hours.</li></ul> <br> _Backup Completion Objective (BCO) will be met if Full Backups complete within 1 day and Incremental Backups complete within 12 hours._ |
 | **Description** | Enter a brief description for the Protection Group. |
 | **Include or Exclude Labels** | Toggle **Persistent Volume Claim(PVC) Inclusion/Exclusion** to filter PVCs by labels.  <br> <ul><li>**Logical Rule**: Select "Match Any of the following labels" or "Match All of the following labels".</li><li>Select **Include** or **Exclude** radio button.</li><li>Enter the **key** and **value** for the existing resource label.</li><li>Click **+ Add**.</li></ul> |
+| **Snapshot Timeout** | Snapshot Timeout specifies the maximum time (in seconds) to wait for each PVC snapshot to reach the Ready state when CSI Snapshot is enabled. This setting is configured per protection job and applies to all subsequent runs. You can set a timeout value between 60 seconds and 43200 seconds. <br> <ol><li>Make sure that **Leverage CSI snapshot** is enabled.</li><li>Scroll down to locate the **Snapshot Timeout** field.</li><li>Enter the desired timeout value (in seconds) within the supported range (60-43200 seconds).</li><li>Click **Save** to apply the changes.</li></ol>|
 {: caption="Additional settings" caption-side="bottom"}
 
 ### 3. Auto Protect
@@ -107,7 +108,7 @@ When Auto Protect is enabled:
 ### 4. Label-based inclusion and exclusion
 {: #label-inclusion-exclusion}
 
-You can fine-tune what gets backed up using labels. 
+You can fine-tune what gets backed up using labels.
 
 Label-based filtering works alongside Auto Protect, enabling you to exclude specific namespaces even when the entire cluster is automatically protected.
 {: note}
