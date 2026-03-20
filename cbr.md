@@ -2,7 +2,7 @@
 
 copyright:
   years:  2025, 2026
-lastupdated: "2026-03-11"
+lastupdated: "2026-03-20"
 
 keywords: cbr, backup-recovery
 
@@ -61,8 +61,8 @@ If you need to allow some **backup-recovery** API categories and restrict others
   }
   ```
 
-Any context-based restriction rules you may have on a {{site.data.keyword.baas_full_notm}} instance are enforced whenever you attempt to access it, either directly or through the {{site.data.keyword.baas_full_notm}} Manager.
-For more information about {{site.data.keyword.baas_full_notm}} Manager see [Accessing the IBM Cloud Backup and Recovery Manager from your instance of Backup and Recovery](/docs/backup-recovery?topic=backup-recovery-getting-started-backup-recovery-gmc).
+Any context-based restriction rules that you may have on a {{site.data.keyword.baas_full_notm}} instance are enforced whenever you attempt to access it, either directly or through the {{site.data.keyword.baas_full_notm}} Manager.
+For more information about {{site.data.keyword.baas_full_notm}} Manager, see [Accessing the IBM Cloud Backup and Recovery Manager from your instance of Backup and Recovery](/docs/backup-recovery?topic=backup-recovery-getting-started-backup-recovery-gmc).
 {: note}
 
 ## Limitations
