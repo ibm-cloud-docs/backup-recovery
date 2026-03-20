@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025,
-lastupdated: "2025-12-12"
+lastupdated: "2026-03-12"
 
 keywords:
 
@@ -15,7 +15,8 @@ subcollection: backup-recovery
 # Protected objects
 {: #report_protected_objects_gmc}
 
-The Protected Objects report provides a summary and list of all protected objects that had a backup run. You can view the backup status and the objects with an active snapshot.
+The Protected Objects report provides a summary and list of all protected objects that had a backup run. You can view the backup status and the objects with an active snapshot. A protected object is an object currently associated with a Protection Group, regardless of recent backup activity. Data is aggregated from Backup and Recovery service instances within the selected region.
+The Protected Objects report reflects data for the selected region only.
 
 Example use case: Do I have a good backup of my VM in the last month?
 
@@ -48,7 +49,7 @@ The report supports multiple filters to pare down the data that you want to view
 
 The summary provides a summary of the report for the specified period:
 
-- Success Rate: Without Successful Backup / Total Objects.
+- Success Rate: With Successful Backup / Total Objects.
 - Total Objects: The total number of objects.
 - With Successful Backup: The total number of objects that have one or more successful backups.
 - Without Successful Backup: The total number of objects that did not have any successful protection runs.
@@ -74,7 +75,7 @@ To add or remove columns, click the gear icon and enable or disable the toggle s
 |-----------------------|----------------------------------------------------------------------------|
 | Object Name | The name of the protected object. |
 | Source      | The hostname or IP address of the registered source. |
-| Policy      | The protection policy associated with the latest run of the object. |
+| Policy      | The protection policy associated with the latest run of the object. Policy reflects the policy used during the most recent backup run. |
 | Last Run    | The date and time at which the last backup for the object ran. |
 | Protection Status    | Identifies whether an object is protected or unprotected. |
 | Active Snapshots | The total number of active snapshots for the object. |
@@ -83,3 +84,6 @@ To add or remove columns, click the gear icon and enable or disable the toggle s
 
 
 
+
+The report reflects historical data within the selected time range only. If you see an empty report, verify the time range, filters, region selection, and IAM access.
+{: note}

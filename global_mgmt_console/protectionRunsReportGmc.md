@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025,
-lastupdated: "2025-12-12"
+lastupdated: "2026-03-12"
 
 keywords:
 
@@ -15,7 +15,9 @@ subcollection: backup-recovery
 # Protection Runs
 {: #report_protection_runs_gmc}
 
-The Protection Runs report provides a summary and list of all backup activities per object per run. You can view the summary and success rate of protection runs. You can also view the snapshot status of the protection run.
+The Protection Runs report provides a summary and list of all backup activities per object per run. You can view the summary and success rate of protection runs. You can also view the snapshot status of the protection run. A protection run represents a single execution of a backup job for an object. Data is aggregated from Backup and Recovery service instances within the selected region.
+
+This report reflects data for the selected region only.
 
 Example use case: How many failed protection runs did I have in the last week?
 
@@ -36,17 +38,17 @@ The report supports multiple filters to pare down the data that you want to view
 | Source	    | Select all the sources for which you want to see the reports. Click the drop-down arrow to select the hostname or IP address of the registered source. |
 | Protection Group |	Select all protection groups for which you want to see the reports. |
 | Object Type |	Choose the types of objects for which you want to see the reports, such as Generic NAS, Isilon, NetApp, Physical, Pure, VMware. |
-| Run Status |	Choose the types of objects to include — Generic NAS, Isilon, NetApp, Physical, Pure, VMware, and so on. |
+| Run Status |	Filter by run status — Success, Failed, Warning, Canceled, Skipped, Running. |
 | Snapshot Status |	Filter by the status of the snapshot — Active or Expired. |
 | Time Range	| Set the time period for your report. If you set a time period, the report displays all objects that had a backup run during the selected time period. If an object is no longer protected, the report would still display data if the object had a backup run during the selected time period. If an object is protected and if it did not have a backup run during the selected time period, the report does not display the data specific to this object.|
-| BCO Status	| Indicates if the backup met its Backup Completion Objective within the defined time window.|
+| BCO Status	| Indicates whether the backup completed within the defined Backup Completion Objective window. |
 | Object	| Enter an object name in the search bar to filter the reports by object name. |
 
 ## Summary
 {: #report_protection_runs_summary_gmc}
 
 The glance bar provides a summary of the report for the specified period:
-- Success Rate: Total Successful or Total Runs.
+- Success Rate: Total Successful Runs / Total Runs.
 - Total Runs: The total number of protection runs.
 - Total Successful: The total number of successful runs.
 - Success: The total number of protection runs with status Success.
@@ -86,6 +88,7 @@ The following table describes the data displayed in the Data table. Use the sear
 | BCO| Displays the defined Backup Completion Objective. |
 | Snapshot Status | The status of the snapshot.|
 | Duration | The time taken by the protection run.|
-| Logical Data | The combined total of data in the objects that are protected by Data Management. These metrics are different depending on workload type.<br>VMs—The data size reported by VMware is the provisioned amount, not the actual data residing in the VM. For example, if a VM is provisioned for 1 TB but contains only 100 GB of data, VMware reports it as 1 TB.</br><br>All Other Workloads—The data size reported is the actual front end data residing on the server. If a server with 1 TB capacity contains 100 GB of data, the server reports 100 GB.</br><br>**Note:** Data Management does not include unprotected objects in these metrics. Currently, the logical data value that is shown on the Data Management Dashboard is a sum of the logical data values that are captured across all the protection runs. For instance, if the source has 100 GB of logical data, and assuming it remains at 100 GB for the first 10 protection runs, Data Management would report, after 10 runs, the Logical Data to be 1000 GB (1 TB).</br>|
+| Logical Data | The combined total of data in the objects that are protected by Data Management. These metrics are different depending on workload type.<br>VMs—The data size reported by VMware is the provisioned amount, not the actual data residing in the VM. For example, if a VM is provisioned for 1 TB but contains only 100 GB of data, VMware reports it as 1 TB.</br><br>All Other Workloads—The data size reported is the actual front end data residing on the server. If a server with 1 TB capacity contains 100 GB of data, the server reports 100 GB.</br><br>**Note:** Data Management does not include unprotected objects in these metrics. Currently, the logical data value that is shown on the Data Management Dashboard is a sum of the logical data values that are captured across all the protection runs. For instance, if the source has 100 GB of logical data, and assuming it remains at 100 GB for the first 10 protection runs, Data Management would report, after 10 runs, the Logical Data to be 1000 GB (1 TB).</br> Logical Data reflects cumulative processed data across runs and does not represent current storage usage. |
 
-
+If you see an empty report, verify the time range, filters, region selection, and IAM access.
+{: note}

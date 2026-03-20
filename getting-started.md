@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2026
-lastupdated: "2026-02-23"
+lastupdated: "2026-03-17"
 
 keywords: IBM cloud backup and recovery, VPC, VSI, new user, workload availability, deployment
 
@@ -245,3 +245,5 @@ Next, make the Source VSI accessible from your local machine by [reserve or bind
 {: #baas-next-steps}
 
 Now that you are familiar with your {{site.data.keyword.baas_full_notm}} instance from the web-based console, you might be interested in doing a similar workflow from the command line. Check out using the `ibmcloud backup-recovery` command-line utility to create a service instance and interacting with IAM. And you can further use `curl` for accessing Cloud Object Storage directly. [Check out the API overview](https://cloud.ibm.com/apidocs/backup-recovery#br-intro) to get started.
+
+Additionally, explore the [IBM Backup and Recovery Service (BRS) Module](https://registry.terraform.io/modules/terraform-ibm-modules/backup-recovery/ibm/latest){: external} for production-ready infrastructure automation.

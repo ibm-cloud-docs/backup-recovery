@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024
-lastupdated: "2025-08-28"
+lastupdated: "2026-03-17"
 
 keywords: about, backup and recovery
 
@@ -42,8 +42,9 @@ Take advantage of granular role-based access control to stop unauthorized actors
 ### Data consistency
 {: #data-consistency}
 Achieve higher data resiliency through the consistency and integrity of your protected data.
-
 ## Next Steps
 {: #about-baas-next-steps}
 
-Documentation on the best way to [get started](/docs/backup-recovery?topic=backup-recovery-getting-started-backup-recovery) with the service.
+- Documentation on the best way to [get started](/docs/backup-recovery?topic=backup-recovery-getting-started-backup-recovery) with the service.
+
+- Explore [Terraform IBM Modules (TIM)](/docs/ibm-cloud-provider-for-terraform?topic=ibm-cloud-provider-for-terraform-about-tim) for production-ready, pre-built modules for infrastructure automation.

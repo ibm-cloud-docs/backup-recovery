@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2026
-lastupdated: "2026-02-16"
+lastupdated: "2026-03-17"
 
 keywords: backup and recovery, data source connectors,
 
@@ -18,6 +18,8 @@ subcollection: backup-recovery
 To register your data sources with the IBM Cloud Backup and Recovery service, you need to establish connectivity between your source and the service using a Data Source Connection. A Data Source Connection consists of one or more Data Source Connectors, which are virtual machines (VMs) that facilitate the movement of data between your data sources and the IBM Cloud Backup and Recovery service.
 
 You need to install the VM for the Data Source Connector using an installer OVA in your VMware environment, on a vCenter or ESXi host in your environment that has access to your data sources and meets the Data Source Connection system and firewall requirements.
+
+Alternatively, you can also refer the terraform [IBM Backup & Recovery for IKS/ROKS with Data Source Connector](https://registry.terraform.io/modules/terraform-ibm-modules/iks-ocp-backup-recovery/ibm/latest){: external} module that offers ready-to-use code and examples for integrating the Data Source connector.
 
 ## Data Source Connector Requirements
 {: #data_source_connector_requirements}

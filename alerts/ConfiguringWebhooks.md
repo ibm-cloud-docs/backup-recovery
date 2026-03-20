@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2025
-lastupdated: "2025-12-12"
+lastupdated: "2026-03-12"
 
 keywords: <KEYWORDS>
 
@@ -40,8 +40,6 @@ To create an alert notification rule and enable a webhook:
 
     Ensure that the Webhook configuration follows the [rfc3986](https://www.rfc-editor.org/rfc/rfc3986#page-12){: external} standards.
 
-    [![](../../Resources/Images/webhookstoggle_thumb_400_0.png "Click to expand")](../../Resources/Images/webhookstoggle.png)
-
 5. Click **Save**.
 
 ## Alert request
@@ -66,17 +64,17 @@ The Payload sent to the above URL:
 	"alertHelpText": "Check and provide alternate DNS server.",
 	"languageCode": "en-us",
 	"alertUrl": "https://cluster-ip/health/alert-info/437441:1665640208440874",
-	"clusterName": "cohesity", 
-	"clusterId": "4398906079065976", 
-	"alertCode": "CE03601060", 
-	"alertProperties": 
-	{ 
-		"cluster\_id": "4398906079065976", 
-		"alert\_message": "DNS servers \[10.2.0.1\] unreachable. Please update DNS Server." 
+	"clusterName": "cohesity",
+	"clusterId": "4398906079065976",
+	"alertCode": "CE03601060",
+	"alertProperties":
+	{
+		"cluster\_id": "4398906079065976",
+		"alert\_message": "DNS servers \[10.2.0.1\] unreachable. Please update DNS Server."
 	},
 	"firstOccurrenceUsecs": "1665640208440874",
 	"lastOccurrenceUsecs": "1665640208440874"
-}			
+}
 
 _prod-cluster.eng.cohesity.com_ refers to the IP address of the cluster.
 
@@ -135,4 +133,3 @@ Payload :
 {"resolutionDetails":{"resolutionSummary":"Resolved at 11/1, high priority"},"alertIdList":\["157373326:1577990357283489"\]}
 
 _alertIdList_ refers to the alertID in the payload. _Resolved at 11/1, high priority_ is a user defined string.
-

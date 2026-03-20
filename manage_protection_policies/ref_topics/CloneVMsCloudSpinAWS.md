@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-12-12"
+lastupdated: "2026-03-12"
 
 keywords: <KEYWORDS>
 
@@ -33,11 +33,7 @@ IBM Cloud Supports the CloudSpin of VMware VMs with UEFI boot mode enabled. AWS 
 *   Ubuntu 16, 18
 
 
-IBM Cloud Supports CloudSpin on both on-premises {{site.data.keyword.baas_full_notm}} and Cloud Edition {{site.data.keyword.baas_full_notm}}s:
-
-![](../../Resources/Images/CloudSpinBasic.png)
-
-![](../../Resources/Images/CloudSpinFromCloud.png)
+IBM Cloud Supports CloudSpin on both on-premises {{site.data.keyword.baas_full_notm}} and Cloud Edition {{site.data.keyword.baas_full_notm}}s.
 
 **To use CloudSpin to clone Snapshots to AWS:** 
 

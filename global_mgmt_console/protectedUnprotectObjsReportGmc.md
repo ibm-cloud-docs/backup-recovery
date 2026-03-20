@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025,
-lastupdated: "2025-12-12"
+lastupdated: "2026-03-12"
 
 keywords:
 
@@ -15,7 +15,9 @@ subcollection: backup-recovery
 # Protected or unprotected objects
 {: #report_protected_unprotected_objects_gmc}
 
-The Protected or Unprotected Objects report provides a summary and list of objects along with their protection status.
+The Protected or Unprotected Objects report provides a summary and list of objects along with their protection status. Protected objects are those currently associated with a Protection Group. Unprotected objects are not associated with any Protection Group. Data is aggregated from Backup and Recovery service instances in the selected region. Data is aggregated from Backup and Recovery service instances in the selected region.
+
+This report reflects data for the selected region only.
 
 You can identify objects that are not associated with a Protection Group. The report does not contain data about IBM® views.
 
@@ -49,7 +51,7 @@ The report supports multiple filters to pare down the data that you want to view
 
 The summary provides a summary of the report for the specified period:
 
-- Protected Objects: The percentage of Protected Objects to Total Objects.
+- Protected Objects (% of Total): The percentage of Protected Objects to Total Objects.
 - Total Sources: The total number of sources.
 - Total Objects: The total number of objects.
 - Protected Objects: The total number of protected objects.
@@ -66,7 +68,7 @@ The report includes the following two charts:
 ## Report Data
 {: #report_protected_unprotected_objects_report_data_gmc}
 
-TThe following table describes the data displayed in the Data table. Use the search bar to filter the data by object name, protection status, source, or system name. To add or remove columns, click the gear icon, and enable or disable the toggle switch for each data type.
+The following table describes the data displayed in the Data table. Use the search bar to filter the data by object name, protection status, source, or system name. To add or remove columns, click the gear icon, and enable or disable the toggle switch for each data type.
 
 | Column Name | Description |
 |-------------------|-----------------------------------------------------------------------------------------------------------------|
@@ -74,7 +76,7 @@ TThe following table describes the data displayed in the Data table. Use the sea
 | Protection Status | The protection status of the object.|
 | Source | The name of the registered source.|
 | System | The name of the cluster on which the object is registered.|
-| Logical Data | The combined total of data in the objects that are protected by Data Management. These metrics are different depending on workload type. <br>- VMs - The data size reported by VMware is the provisioned amount, not the actual data residing in the VM. For example, if a VM is provisioned for 1 TB but contains only 100 GB of data, VMware reports it as 1 TB.</br><br>- All Other Workloads - The data size reported is the actual front end data residing on the server. If a server with 1 TB capacity contains 100 GB of data, the server reports 100 GB.</br><br>Data Management does not include unprotected objects in these metrics. Currently, the logical data value shown on the Data Management Dashboard is a sum of the logical data values captured across all the protection runs. For instance, if the source has 100 GB of logical data, and assuming it remains at 100 GB for the first 10 protection runs, Data Management would report, after 10 runs, the Logical Data to be 1000 GB (1 TB).</br> |
+| Logical Data | The combined total of data in the objects that are protected by Data Management. These metrics are different depending on workload type. <br>- VMs - The data size reported by VMware is the provisioned amount, not the actual data residing in the VM. For example, if a VM is provisioned for 1 TB but contains only 100 GB of data, VMware reports it as 1 TB.</br><br>- All Other Workloads - The data size reported is the actual front end data residing on the server. If a server with 1 TB capacity contains 100 GB of data, the server reports 100 GB.</br><br>Data Management does not include unprotected objects in these metrics. Currently, the logical data value shown on the Data Management Dashboard is a sum of the logical data values captured across all the protection runs. For instance, if the source has 100 GB of logical data, and assuming it remains at 100 GB for the first 10 protection runs, Data Management would report, after 10 runs, the Logical Data to be 1000 GB (1 TB).</br> This value represents cumulative logical data processed across runs and does not reflect current storage usage. |
 
-
-
+If you see an empty report, verify the region selection, IAM permissions, and source registration.
+{: note}

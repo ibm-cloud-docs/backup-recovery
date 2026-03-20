@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024
-lastupdated: "2025-12-12"
+lastupdated: "2026-03-12"
 
 keywords: <KEYWORDS>
 
@@ -97,15 +97,9 @@ When you create a Protection Group, you can select an existing source, policy, o
 
 *   If you are creating a new Protection Group and the![](../../Resources/Images/i/icn/protected-source.svg) shield appears next to the volume, this volume is protected by another Protection Group.
 
-    ![](../../Resources/Images/ObjectProtectedNAS.png)
-
 *   If you are editing an existing Protection Group and the ![](../../Resources/Images/i/icn/protected-source.svg) shield appears next to the volume and the volume is selected (![](../../Resources/Images/checkboxSelected.png)), it will be protected by the current Protection Group. (It may also be protected by another Protection Group.)
 
-    ![](../../Resources/Images/ObjectProtectedSelectedNAS.png)
-
-    [![](../../Resources/Images/CreateBackupJobProtectShieldNASEdit_thumb_0_48.png)](../../Resources/Images/CreateBackupJobProtectShieldNASEdit.png)
-
-*   Click the ![](../../Resources/Images/i/icn/view.svg) icon to see details about the object.
+*   Click the **View** icon to see details about the object.
 
 
 11. Select the backup preference mode of the volume you want to backup.
