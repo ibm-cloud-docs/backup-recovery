@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2026-03-23"
+lastupdated: "2026-03-24"
 
 keywords: data source connector, iks, roks, cluster
 
@@ -139,7 +139,7 @@ Ensure that the node has sufficient CPU and memory to run the {{site.data.keywor
     
      ![Add connector](Images_datasource_connection/add_connector43.png){: caption="Add connector"}
 
-    ![Add connector](Images_datasource_connection/add_connector43.png){: caption="Add connector"}
+    ![Add connector](Images_datasource_connection/add_connector43crop.png){: caption="Add connector"}
 ### Configure a data source connector
 {: #data-source-connector-iks-roks-create-configure}
 
