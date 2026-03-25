@@ -164,6 +164,7 @@ Label-based filtering works alongside Auto Protect, enabling you to exclude spec
 {: caption="Supported Quiescing modes" caption-side="bottom"}
 
 **Configure quiescing:**
+
 1. Select the target namespace and click the **pencil icon** to edit.
 2. Navigate to the **Scripts** tab.
 3. Toggle **Fail Backups on Hook Failure** to control backup behavior on script errors.
@@ -174,13 +175,15 @@ Label-based filtering works alongside Auto Protect, enabling you to exclude spec
 
 
 
-![Application quiescing mode](images_protection_group/Application_quiescing.png){: caption="Application quiescing mode"}
+    ![Application quiescing mode](images_protection_group/Application_quiescing.png){: caption="Application quiescing mode"}
 
-5. Click `+ Add Rule` to define a new rule:
+1. Click `+ Add Rule` to define a new rule:
+
    - **Pod Selector Labels**: Click `+ Add Label` to select target pods where the pre and post script will execute.
    - **Pre Snapshot Scripts**: Click `+ Add Script` to define one or more commands to run before the snapshot.
    - **Post Snapshot Scripts**: Click `+ Add Script` to define one or more commands to run after the snapshot.
-6. Click `Save` to apply the configuration.
+
+1. Click `Save` to apply the configuration.
 
 Scripts run inside containers and have configurable timeouts. The script must be present within the container, and you must specify its absolute path to start it.
 {: note}

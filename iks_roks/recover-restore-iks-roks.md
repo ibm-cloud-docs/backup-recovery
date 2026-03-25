@@ -37,14 +37,14 @@ For example, if a namespace that you want to recover contains a deployment resou
 6. Go to `Dashboard` \> `Data Protection` \> `Recoveries`.
 7. Click `Recover` in the upper-right corner and select `Kubernetes Cluster` \> `Namespace`.
 
-
+    
 
 8. In the **New Recovery** modal:
     *   Search for the namespace or **Protection Group** you want to recover.
     *   You can enter the namespace name, Protection Group name, or use the wildcard character `*` for partial matches.
     *   Filter results by **Source**, **Protection Group**, or **date range**.
 
-
+    
 
 9. Identify the item that you want to recover. Items in the list are distinguished by their type:
     *   **Protection Groups**: Identified by a blue 'K8' icon. Represents a group of one or more namespaces.
@@ -55,7 +55,7 @@ For example, if a namespace that you want to recover contains a deployment resou
         2. In the recovery point selection view, select the snapshot that you want from the list.
         3. Click **Select Recovery Point**.
 
-
+    
 
 10. Click **Next: Recover Options**.
 
