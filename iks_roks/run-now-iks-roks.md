@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025, 2026
-lastupdated: "2026-03-23"
+lastupdated: "2026-03-25"
 
 keywords: data source connector, iks, roks, cluster, run now
 
@@ -34,9 +34,6 @@ You can manually start a protection that is run for the Kubernetes namespaces (o
 {: #protection-starting-run}
 
 1. In the {{site.data.keyword.baas_full_notm}} instance dashboard, navigate to `Data Protection` \> `Protection`.
-
-<img src="images_run_now/Run_now_protection_page.png" alt="locate the protection group that you want to run the backup for." width="800">
-
 1. On the **Protection** page, locate the protection group that you want to run the backup for.
 1. Click the **Actions** icon `⋮` and select `Run Now`. In the **Run Protection Now** modal configure the following options:
 
@@ -51,7 +48,11 @@ You can manually start a protection that is run for the Kubernetes namespaces (o
 
 1. Click `Run Now` to start the job.
 
-<img src="images_run_now/RUN_NOW.png" alt="Click run now image" width="800">
+   
+
+   ![Run now](images_run_now/RUN_NOW.png){: caption="Run now"}
+
+   
 
 ## Pause future runs
 {: #iks-roks-pause-run}
@@ -64,10 +65,6 @@ To pause future runs:
 2. On the **Protection** page, locate the protection group that you want to pause.
 3. Click the **Actions** icon `⋮` and select `Pause Future Runs`.
 
-<img src="images_run_now/Pause_future_runs.png" alt="Click Pause Future Runs" width="800">
-
-
-<img src="images_run_now/confirm_pause.png" alt="Click Pause Future Runs" width="800">
 
 
 ## Resume paused protection runs
@@ -81,7 +78,7 @@ To resume a paused protection run:
 2. On the **Protection** page, locate the protection group that you want to resume.
 3. Click the **Actions** icon `⋮` and select `Resume`.
 
-<img src="images_run_now/Resume_run_now.png" alt="Click Pause Future Runs" width="800">
+
 
 ## Delete Protection Group
 {: #iks-roks-delete-object}
@@ -95,13 +92,11 @@ You can delete a protection group in two ways:
 
 - **Delete Object Only**: Removes the protection group from {{site.data.keyword.baas_full_notm}} management but preserves all existing backups until they expire naturally.
 
-<img src="images_run_now/Delete_object_only.png" alt="delete object only" width="800">
-
 - **Delete Object and Snapshots**: Removes the protection group and immediately deletes all its local and archived snapshots.
 
-<img src="images_run_now/Delete_object_snapshot.png" alt="delete object and snapshot" width="800">
-
 After deleting a protection group and its snapshots, the reclaimed storage space might take some time to appear on the {{site.data.keyword.baas_full_notm}} Dashboard.
+
+ 
 
 To delete a protection group:
 
@@ -124,24 +119,4 @@ When triggering a manual backup, you might see the following backup types availa
 | **Incremental Backup** | Captures only changed data since the last successful backup. <ul><li>**Scope**: Can run for all objects, selected objects, or succeeded objects (only if previous run had partial or full success).</li><li>**Suggested use**: Quick backups to protect recent changes.</li></ul> |
 {: caption="Backup types" caption-side="bottom"}
 
-
-<figure>
-  <img src="images_run_now/Run_now_edit.png"
-       alt="Protection page showing protection name and policy used"
-       width="800">
-  <figcaption> Figure 5.1 Run now options.</figcaption>
-</figure>
-
-<figure>
-  <img src="images_run_now/Full_incremental_option.png"
-       alt="Protection page showing protection name and policy used"
-       width="800">
-  <figcaption> Figure 5.2 Incrmental or full backup.</figcaption>
-</figure>
-
-<figure>
-  <img src="images_run_now/Objects_list_options.png"
-       alt="Protection page showing protection name and policy used"
-       width="800">
-  <figcaption> Figure 5.3 The scope of the objects to be backed up.</figcaption>
-</figure>
+![Run now options](images_run_now/Run_now_edit.png){: caption="Run now options"}

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2026-03-24"
+lastupdated: "2026-03-25"
 
 keywords: data source connector, iks, roks, cluster
 
@@ -107,40 +107,23 @@ Ensure that the node has sufficient CPU and memory to run the {{site.data.keywor
 1. Access the [{{site.data.keyword.baas_full_notm}} instance dashboard](#data-source-connector-iks-roks-access-instance).
 2. Go to `Dashboard` > `System` > `Data Source Connections`.
 3. Click `New Connection`.
-
-<img src="Images_datasource_connection/New_connection.png" alt="New connection creation" width="800">
-
 4. In the **Create data source connection** wizard:
    - **Step 1: Create data source connection**:
      - Select the **Deployment Platform** (for example, **ROKS VPC**, **IKS VPC**, **ROKS classic**, **IKS classic**).
-
-   <img src="Images_datasource_connection/roks_vpc.png" alt="Click on ROKS VPC in dropdown" width="800">
-
      - Click `Create`.
-
-   <img src="Images_datasource_connection/create.png" alt="Click on create button" width="800">
-
    - **Step 2: Install Data Source Connectors**:
      - Copy the provided `helm install` command. Save it securely, as you need it later.
-     
-  <img src="Images_datasource_connection/copy_command.png" alt="copy the helm install command" width="800">
-
      - Click `Done`.
-
 5. (Optional) Manage the data source connection by using the **Actions** menu (three vertical dots):
    - **Rename Connection**: Change the connection name for easier identification.
 
    - **Add Connector**: Retrieve the `helm install` command to deploy connectors on the source cluster (kubernetes or Openshift).
 
-   <img src="Images_datasource_connection/add_connector.png" alt="Add the connector" width="800">
-
-    <img src="Images_datasource_connection/add_connector43.png" alt="Add the connector" width="800">
-
-    ![Add connector](/iks_roks/Images_datasource_connection/add_connector43.png){: caption="Add connector"}
-
-     ![Add connector](Images_datasource_connection/add_connector43.png){: caption="Add connector"}
+    ![Data source connection](Images_datasource_connection/create.png){: caption="Data source connections"}
 
    
+
+
 ### Configure a data source connector
 {: #data-source-connector-iks-roks-create-configure}
 
@@ -230,10 +213,11 @@ If you are registering a cluster that was previously registered, you must ensure
         Make sure that **Kubernetes Distribution** matches the **Deployment Platform** of the selected Data Source Connection.
 
     *   (Optional) Configure Optional settings (for example, Service Type, Images) by expanding the **Optional** section.
-         
-         HostPort is the default communication method for the datamover, using port 33769 by default. Users can specify a custom 
-         port if needed or choose NodePort or LoadBalancer, and switch between these options as required. The HostPort field is 
-         optional and defaults to 33769 if not provided.
+
+        HostPort is the default and recommended communication method for the datamover, using port 33769. Users can optionally specify a
+        custom port or switch to NodePort or LoadBalancer if needed. If not specified, HostPort defaults to port 33769.
+
+        ![HostPort](Images_datasource_connection/HostPort.png){: caption="Register Kubernetes source"}
 
 5. Click `Complete` to finish the registration.
 6. You are redirected to the **Sources** page, where you can view the status of your registered cluster.

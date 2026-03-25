@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025, 2026
-lastupdated: "2026-03-23"
+lastupdated: "2026-03-25"
 
 keywords: data source connector, iks, roks, cluster, recover
 
@@ -31,21 +31,20 @@ For example, if a namespace that you want to recover contains a deployment resou
 
 1. Log in to the [IBM Cloud Console](https://cloud.ibm.com/){: external}.
 2. Go to `Navigation Menu` \> `Backup and Recovery`.
-<img src="images_recovery/IBM_console.png" alt="Sources page listing Kubernetes clusters and namespaces" width="800">
 3. On the **Backup service instances** page, use the search bar to find your instance by name.
 4. Identify the instance with **Active** status and click on the instance name.
-<img src="images_recovery/IBM_BRS_service_instances_list.png" alt="Sources page listing Kubernetes clusters and namespaces" width="800">
 5. On the instance details page, click `Launch dashboard`.
-<img src="images_recovery/IBM_BRS_launch_page.png" alt="Sources page listing Kubernetes clusters and namespaces" width="800">
 6. Go to `Dashboard` \> `Data Protection` \> `Recoveries`.
-<img src="images_recovery/BRS_instance_recover_dashboard.png" alt="Sources page listing Kubernetes clusters and namespaces" width="800">
 7. Click `Recover` in the upper-right corner and select `Kubernetes Cluster` \> `Namespace`.
-<img src="images_recovery/BRS_recover_option.png" alt="Sources page listing Kubernetes clusters and namespaces" width="800">
+
+
+
 8. In the **New Recovery** modal:
     *   Search for the namespace or **Protection Group** you want to recover.
     *   You can enter the namespace name, Protection Group name, or use the wildcard character `*` for partial matches.
     *   Filter results by **Source**, **Protection Group**, or **date range**.
-<img src="images_recovery/New_recover_page.png" alt="Sources page listing Kubernetes clusters and namespaces" width="800">
+
+
 
 9. Identify the item that you want to recover. Items in the list are distinguished by their type:
     *   **Protection Groups**: Identified by a blue 'K8' icon. Represents a group of one or more namespaces.
@@ -56,14 +55,19 @@ For example, if a namespace that you want to recover contains a deployment resou
         2. In the recovery point selection view, select the snapshot that you want from the list.
         3. Click **Select Recovery Point**.
 
-<img src="images_recovery/recover_ns_snapshot.png" alt="Sources page listing Kubernetes clusters and namespaces" width="800">
+
 
 10. Click **Next: Recover Options**.
+
+    ![Recover options](images_recovery/Full_recover_page.png){: caption="Recover options"}
+
+    
+
 11. Under **Recover To**, select one of the following options:
     *   **Original Location** - Select **Original Location** to recover the namespace to the same cluster.
-    *   **New Location** - Select **New Location** to recover the namespace to a different Kubernetes or OpenShift cluster. Under 
+    *   **New Location** - Select **New Location** to recover the namespace to a different Kubernetes or OpenShift cluster. Under
     **Registered Source**, select the destination Kubernetes or OpenShift cluster (or click **Register Source** to add a new one).
-<img src="images_recovery/recover_to_section.png" alt="Sources page listing Kubernetes clusters and namespaces" width="800">
+    
 12. Configure the **Recovery Options** as needed:
     *   **Rename**: Add a **Prefix** or **Suffix** to the names of recovered namespaces. By default, the prefix `copy-` is added to the original namespace name.
     *   **Task Name**: View or customize the name of this recovery task.
@@ -85,7 +89,7 @@ For example, if a namespace that you want to recover contains a deployment resou
             *   Toggle **Unbind the PVCs from their original PV mapping** if needed.
             *   Map **Old Storage Class** to **New Storage Class** by using the dropdowns.
             *   Use **Clear All** to reset mappings.
-<img src="images_recovery/recover_options.png" alt="Sources page listing Kubernetes clusters and namespaces" width="800">
+
     **Alternative Region/Zone Recovery** (applicable when recovering to a different cluster): {{site.data.keyword.baas_full_notm}} supports recovering to a different region or zone.
     *   **Region Mapping**:
         *   Specify the **Source** region and the **Target** region.
@@ -93,9 +97,15 @@ For example, if a namespace that you want to recover contains a deployment resou
         *   Specify the **Source** zone and the **Target** zone.
         *   Click the **+** icon (if available) to add multiple zone mappings.
     *   These mappings automatically update Storage Classes, Secrets, and PersistentVolumes during recovery.
-<img src="images_recovery/mapping_options.png" alt="Sources page listing Kubernetes clusters and namespaces" width="800">
+
+      
+
+      ![Mapping](images_recovery/mapping_options.png){: caption="Mapping"}
+
 13. Click **Recover**. You can monitor the progress on the **Recoveries** page.
-<img src="images_recovery/Full_recover_page.png" alt="Sources page listing Kubernetes clusters and namespaces" width="800">
+
+
+
 ## Monitoring recoveries
 {: #monitoring-recoveries}
 
@@ -119,7 +129,7 @@ You can track the status of your recovery tasks on the **Recoveries** page.
     *   **Recovery Type**: Filter by the type of data recovered (for example, **Files and Folders**, **Kubernetes**, **Microsoft SQL**, **Oracle**, **Physical Server**, **VMware**, **SAP HANA**, **Instana**, **Etcd**, **Volume**).
     *   **Status**: Filter by task status (for example, **Running**, **Succeeded**, **Warning**, **Failed**, **Canceled**, **Canceling**, **Skipped**, **Accepted**, **Finalizing Migration**, **In Sync**, **Migrating**, **Migration Finalized**).
     *   **Date Range**: Select a time period such as **Past Hour**, **Past 12 Hours**, **Past 24 Hours**, **Past 7 Days**, **Past 30 Days**, or a **Custom** range.
-<img src="images_recovery/BRS_instance_recover_dashboard.png" alt="Sources page listing Kubernetes clusters and namespaces" width="800">
+
 
 
 ## Recovery UI Features
