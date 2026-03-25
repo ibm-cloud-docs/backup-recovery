@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025, 2026
-lastupdated: "2026-03-02"
+lastupdated: "2026-03-25"
 
 keywords: data source connector, iks, roks, cluster, run now
 
@@ -48,6 +48,12 @@ You can manually start a protection that is run for the Kubernetes namespaces (o
 
 1. Click `Run Now` to start the job.
 
+   
+
+   ![Run now](images_run_now/RUN_NOW.png){: caption="Run now"}
+
+   
+
 ## Pause future runs
 {: #iks-roks-pause-run}
 
@@ -58,6 +64,8 @@ To pause future runs:
 1. In the {{site.data.keyword.baas_full_notm}} instance dashboard, navigate to **Data Protection** \> **Protection**.
 2. On the **Protection** page, locate the protection group that you want to pause.
 3. Click the **Actions** icon `⋮` and select `Pause Future Runs`.
+
+
 
 ## Resume paused protection runs
 {: #iks-roks-resume-run}
@@ -70,6 +78,8 @@ To resume a paused protection run:
 2. On the **Protection** page, locate the protection group that you want to resume.
 3. Click the **Actions** icon `⋮` and select `Resume`.
 
+
+
 ## Delete Protection Group
 {: #iks-roks-delete-object}
 
@@ -81,9 +91,12 @@ You can delete a protection group if you:
 You can delete a protection group in two ways:
 
 - **Delete Object Only**: Removes the protection group from {{site.data.keyword.baas_full_notm}} management but preserves all existing backups until they expire naturally.
+
 - **Delete Object and Snapshots**: Removes the protection group and immediately deletes all its local and archived snapshots.
 
 After deleting a protection group and its snapshots, the reclaimed storage space might take some time to appear on the {{site.data.keyword.baas_full_notm}} Dashboard.
+
+ 
 
 To delete a protection group:
 
@@ -105,3 +118,5 @@ When triggering a manual backup, you might see the following backup types availa
 | **Full Backup** | Captures all selected data regardless of previous backup history. <ul><li>**Scope**: Can run for all objects, selected objects, or objects that succeeded in the last run.</li><li>**Suggested use**: Complete data copy, first backup of a new protection group, or to reset the incremental chain.</li></ul> |
 | **Incremental Backup** | Captures only changed data since the last successful backup. <ul><li>**Scope**: Can run for all objects, selected objects, or succeeded objects (only if previous run had partial or full success).</li><li>**Suggested use**: Quick backups to protect recent changes.</li></ul> |
 {: caption="Backup types" caption-side="bottom"}
+
+![Run now options](images_run_now/Run_now_edit.png){: caption="Run now options"}

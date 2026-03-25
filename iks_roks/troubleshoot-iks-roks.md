@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025, 2026
-lastupdated: "2026-03-20"
+lastupdated: "2026-03-25"
 
 keywords: data source connector, iks, roks, cluster, troubleshooting
 
@@ -336,6 +336,6 @@ chmod +x k8s-info-fetcher.sh
 
 *   **Collection with User Namespace** (Cluster + Backup Agent + Your App Namespace):
     ```bash
-    ./k8s-info-fetcher.sh -u <your-namespace>
+    ./k8s_info_fetcher.sh -u <your_namespace> -d <data_source_connector_namespace>
     ```
     {: codeblock}

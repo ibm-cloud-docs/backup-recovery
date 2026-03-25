@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025, 2026
-lastupdated: "2026-03-20"
+lastupdated: "2026-03-25"
 
 keywords: data source connector, iks, roks, cluster, protection
 
@@ -47,6 +47,8 @@ Follow these steps to quickly protect your Kubernetes resources:
       | **Create a New Protection Group** | When creating a new group, configure the following settings: <ul><li>**Protection Group Name**</li><li>**Protection Policy**</li><li>**Start Time and Time Zone** </li><li>**Leverage CSI Snapshot** (toggle)</li><li>**Pause Future Runs**</li><li>**Alerts and Email Recipients**</li><li>**Priority** (High / Medium / Low)</li><li>**Include or Exclude Labels**</li><li>**Description**</li></ul> |
       {: caption="Protection Group options" caption-side="bottom"}
 
+
+
 12. **Select or Create a Protection Policy**:
     - **Create New**: Define backup frequency, retention, and other policy settings.
     - **Use Existing**: Select a policy, click `Edit` to update settings if needed, and save.
@@ -86,7 +88,10 @@ When creating a new protection group, you find these under the collapsible **Add
 | **BCO (Backup Completion Objective)** | <ul><li>**Full**: Default 1 day.</li><li>**Incremental**: Default 12 hours.</li></ul> <br> _Backup Completion Objective (BCO) will be met if Full Backups complete within 1 day and Incremental Backups complete within 12 hours._ |
 | **Description** | Enter a brief description for the Protection Group. |
 | **Include or Exclude Labels** | Toggle **Persistent Volume Claim(PVC) Inclusion/Exclusion** to filter PVCs by labels.  <br> <ul><li>**Logical Rule**: Select "Match Any of the following labels" or "Match All of the following labels".</li><li>Select **Include** or **Exclude** radio button.</li><li>Enter the **key** and **value** for the existing resource label.</li><li>Click **+ Add**.</li></ul> |
+| **Snapshot Timeout** | Snapshot Timeout specifies the maximum time (in seconds) to wait for each PVC snapshot to reach the Ready state when CSI Snapshot is enabled. This setting is configured per protection job and applies to all subsequent runs. You can set a timeout value between 60 seconds and 43200 seconds. <br> <ol><li>Make sure that **Leverage CSI snapshot** is enabled.</li><li>Scroll down to locate the **Snapshot Timeout** field.</li><li>Enter the desired timeout value (in seconds) within the supported range (60-43200 seconds).</li><li>Click **Save** to apply the changes.</li></ol>|
 {: caption="Additional settings" caption-side="bottom"}
+
+
 
 ### 3. Auto Protect
 {: #auto-protect}
@@ -104,10 +109,14 @@ When Auto Protect is enabled:
 - **Existing Backups**: Preserved until retention expires.
 - Existing namespaces can be updated and have their own inclusion/exclusion rules and pre/post hook scripts (Application Quiescing).
 
+
+
+![Auto protect](images_protection_group/Autoprotect_namespaces.png){: caption="Auto protect"}
+
 ### 4. Label-based inclusion and exclusion
 {: #label-inclusion-exclusion}
 
-You can fine-tune what gets backed up using labels. 
+You can fine-tune what gets backed up using labels.
 
 Label-based filtering works alongside Auto Protect, enabling you to exclude specific namespaces even when the entire cluster is automatically protected.
 {: note}
@@ -132,7 +141,12 @@ Label-based filtering works alongside Auto Protect, enabling you to exclude spec
           - Select **Include** or **Exclude** radio button.
           - **Specific Resources**: Use the dropdown to select resources like `Daemon set`, `Deployment`, `Pod`, `Secret`, `Service`, etc.
           - **Custom Resources**: Click `+ Add Custom Resources` to specify custom resource definitions.
-        - pre/post hook scripts (Application Quiescing)
+        - Pre/post hook scripts (Application Quiescing)
+
+          
+
+           
+
   1. Click `Save` to apply the changes.
 
 ### 5. Application quiescing
@@ -157,6 +171,11 @@ Label-based filtering works alongside Auto Protect, enabling you to exclude spec
    - **Apply the following rules together** (Parallel execution within volume group)
    - **Apply the following rules independently** (Parallel execution across volume groups)
    - **Apply the following rules sequentially** (Serial execution)
+
+
+
+![Application quiescing mode](images_protection_group/Application_quiescing.png){: caption="Application quiescing mode"}
+
 5. Click `+ Add Rule` to define a new rule:
    - **Pod Selector Labels**: Click `+ Add Label` to select target pods where the pre and post script will execute.
    - **Pre Snapshot Scripts**: Click `+ Add Script` to define one or more commands to run before the snapshot.
@@ -165,6 +184,8 @@ Label-based filtering works alongside Auto Protect, enabling you to exclude spec
 
 Scripts run inside containers and have configurable timeouts. The script must be present within the container, and you must specify its absolute path to start it.
 {: note}
+
+
 
 ## Running an on-demand backup
 {: #run-protection-now}
@@ -180,3 +201,30 @@ For detailed instructions on managing your backups, see [Managing Protection Gro
 - **Run Now**: Trigger an immediate backup.
 - **Pause/Resume**: Temporarily stop or restart scheduled backups.
 - **Delete**: Remove protection for an object (namespace). Can be object only or object and snapshots.
+
+
+## **Known issues**
+{: #known-issues-iks-roks}
+
+### Snapshot Timeout resets to 300 seconds when toggling CSI Snapshot
+{: #known-issue-snapshot-timeout-reset}
+
+There is a known UI issue that affects the **Snapshot Timeout** field in a Protection Group:
+
+- When the **Leverage CSI Snapshot** option is toggled **OFF** and then **ON** again,
+  the **Snapshot Timeout value resets to the default `300` seconds**, even if a different value was previously configured.
+
+#### How to reproduce
+1. Open the Protection Group settings.
+2. Enter a custom Snapshot Timeout value (for example, 1200 seconds).
+3. Toggle **Leverage CSI Snapshot** OFF.
+4. Toggle it ON again.
+
+**Observed behavior:**
+The Snapshot Timeout resets to **300 seconds**.
+
+#### Workaround
+- After enabling **Leverage CSI Snapshot**, **re-enter the desired Snapshot Timeout** (60–43200 seconds) before clicking **Save**.
+
+This issue affects only the UI.
+The backend uses the correct value once saved
