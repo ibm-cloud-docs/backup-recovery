@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025, 2026
-lastupdated: "2026-03-25"
+lastupdated: "2026-03-26"
 
 keywords: data source connector, iks, roks, cluster
 
@@ -230,7 +230,9 @@ If you are registering a cluster that was previously registered, you must ensure
 
     *   (Optional) Configure Optional settings (for example, Service Type, Images) by expanding the **Optional** section.
 
-         HostPort is the default communication method for the datamover, using port 33769 by default. Users can specify a custom port if needed or choose NodePort or LoadBalancer, and switch between these options as required. The HostPort field is optional and defaults to 33769 if not provided.
+        HostPort is the default and recommended communication method for the backup and recovery agent. 
+        Users can optionally specify a custom port; if not specified, the default port (33769) is used.
+
 
 5. Click `Complete` to finish the registration.
 6. You are redirected to the **Sources** page, where you can view the status of your registered cluster.
