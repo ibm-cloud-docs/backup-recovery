@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025, 2026
-lastupdated: "2026-03-25"
+lastupdated: "2026-03-26"
 
 keywords: data source connector, iks, roks, cluster, protection
 
@@ -111,7 +111,7 @@ When Auto Protect is enabled:
 
 
 
-![Auto protect](images_protection_group/Autoprotect_namespaces.png){: caption="Auto protect"}
+![Auto protect](images_protection_group/Autoprotect_namespaces43crop.png){: caption="Auto protect"}
 
 ### 4. Label-based inclusion and exclusion
 {: #label-inclusion-exclusion}
@@ -164,7 +164,6 @@ Label-based filtering works alongside Auto Protect, enabling you to exclude spec
 {: caption="Supported Quiescing modes" caption-side="bottom"}
 
 **Configure quiescing:**
-
 1. Select the target namespace and click the **pencil icon** to edit.
 2. Navigate to the **Scripts** tab.
 3. Toggle **Fail Backups on Hook Failure** to control backup behavior on script errors.
@@ -175,15 +174,13 @@ Label-based filtering works alongside Auto Protect, enabling you to exclude spec
 
 
 
-    ![Application quiescing mode](images_protection_group/Application_quiescing.png){: caption="Application quiescing mode"}
+![Application quiescing mode](images_protection_group/Application_quiescing43crop.png){: caption="Application quiescing mode"}
 
-1. Click `+ Add Rule` to define a new rule:
-
+5. Click `+ Add Rule` to define a new rule:
    - **Pod Selector Labels**: Click `+ Add Label` to select target pods where the pre and post script will execute.
    - **Pre Snapshot Scripts**: Click `+ Add Script` to define one or more commands to run before the snapshot.
    - **Post Snapshot Scripts**: Click `+ Add Script` to define one or more commands to run after the snapshot.
-
-1. Click `Save` to apply the configuration.
+6. Click `Save` to apply the configuration.
 
 Scripts run inside containers and have configurable timeouts. The script must be present within the container, and you must specify its absolute path to start it.
 {: note}
