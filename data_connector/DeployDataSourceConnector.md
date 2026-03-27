@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2026
-lastupdated: "2026-03-17"
+lastupdated: "2026-03-27"
 
 keywords: backup and recovery, data source connectors,
 
@@ -15,16 +15,16 @@ subcollection: backup-recovery
 # Deploy Data Source Connector
 {: #deploy_data_source_connector}
 
-To register your data sources with the IBM Cloud Backup and Recovery service, you need to establish connectivity between your source and the service using a Data Source Connection. A Data Source Connection consists of one or more Data Source Connectors, which are virtual machines (VMs) that facilitate the movement of data between your data sources and the IBM Cloud Backup and Recovery service.
+To register your data sources with the IBM Cloud Backup and Recovery service, you need to establish connectivity between your source and the service by using a Data Source Connection. A Data Source Connection consists of one or more Data Source Connectors, which are virtual machines (VMs) that facilitate the movement of data between your data sources and the IBM Cloud Backup and Recovery service.
 
-You need to install the VM for the Data Source Connector using an installer OVA in your VMware environment, on a vCenter or ESXi host in your environment that has access to your data sources and meets the Data Source Connection system and firewall requirements.
+You need to install the VM for the Data Source Connector by using an installer OVA in your VMware environment, on a vCenter or ESXi host in your environment that has access to your data sources and meets the Data Source Connection system and firewall requirements.
 
-Alternatively, you can also refer the terraform [IBM Backup & Recovery for IKS/ROKS with Data Source Connector](https://registry.terraform.io/modules/terraform-ibm-modules/iks-ocp-backup-recovery/ibm/latest){: external} module that offers ready-to-use code and examples for integrating the Data Source connector.
+Alternatively, you can also refer to the terraform [IBM Backup & Recovery for IKS/ROKS with Data Source Connector](https://registry.terraform.io/modules/terraform-ibm-modules/iks-ocp-backup-recovery/ibm/latest){: external} module that offers ready-to-use code and examples for integrating the Data Source connector.
 
 ## Data Source Connector Requirements
 {: #data_source_connector_requirements}
 
-Before deploying the Data Source Connector, review and understand the following requirements needed for the VM(s) that you need to provision:
+Before deploying the Data Source Connector, review and understand the following requirements that are needed for the VM(s) that you need to provision:
 
 ### Supported Sources
 {: #supported_sources}
@@ -39,7 +39,7 @@ You can deploy Data Source Connectors for the following sources:
 ### Data Source Connector System Prerequisites
 {: #data_source_connector_system_prerequisites}
 
-Ensure that the Data Source Connector VM that you deploy for your Data Source Connection meets the following system requirements:
+Make sure that the Data Source Connector VM that you deploy for your Data Source Connection meets the following system requirements:
 
 - 4 CPUs
 - 16 GB RAM
@@ -66,7 +66,7 @@ Microsoft SQL Servers
 | --- | --- | --- | --- | --- |
 | Data Source Connector | MS SQL Host | 50051 | TCP | Required for Backup and Recovery operations. |
 | MS SQL Host | Data Source Connector | 11113,11117 | TCP | Required for Backup and Recovery operations. |
-| MS SQL Host | Agent running on the MS SQL Host | 1433 | TCP | Default TCP port for MS SQL instances. Ensure the port is open to allow communication between the MS SQL instance and the Agent. |
+| MS SQL Host | Agent running on the MS SQL Host | 1433 | TCP | Default TCP port for MS SQL instances. Ensure that the port is open to allow communication between the MS SQL instance and the Agent. |
 {: caption="Microsoft SQL Servers" caption-side="bottom"}
 
 Oracle Servers
@@ -119,7 +119,7 @@ To create a Data Source Connection:
 
    2. To deploy the Data Source Connector in your data center, click `Copy OVA URL`. The OVA URL is used to deploy the OVA template in VMware vCenter or ESXi.
 
-   3. Copy the `Connection token` and click `Create`. The Connection token is utilized to link or claim the Data Source Connector with the created connection.
+   3. Copy the `Connection token` and click `Create`. The Connection token is used to link or claim the Data Source Connector with the created connection.
 
 4. To deploy the Data Source Connector OVA in your data center:
 
@@ -129,7 +129,7 @@ To create a Data Source Connection:
 
    3. On the `Select an OVF template` page, do one of the following and click Next:
 
-      - Paste the link of the OVA ﬁle you copied in Step 3 (b) in the `URL` field.
+      - Paste the link of the OVA ﬁle that you copied in Step 3 (b) in the `URL` field.
       - Select `Local ﬁle`, click `UPLOAD FILES`, and browse to the location of the OVA ﬁle you downloaded in step 3 (b).
 
    4. On the `Select a name and folder` page, enter the following and click `Next`:
@@ -172,11 +172,11 @@ SecondaryNetwork sections.
 
 5. Enter the IP address of the Data Source Connector VM in the address bar of your browser and click `Enter`.
 
-6. On the Data Source Connector's User Interface, enter `admin` in the `Username` and `Password` ﬁelds to log into the Data Source Connector.
+6. On the Data Source Connector's User Interface, enter `admin` in the `Username` and `Password` ﬁelds to log in to the Data Source Connector.
 
 On the next screen, you are prompted to change your password. Change your default password and log in again with your new password.
 
-7. Verify the network conﬁguration settings, make necessary changes, and click `Continue`.
+7. Verify the network configuration settings, make necessary changes, and click `Continue`.
 
 8. On the `Data` `Source` `Connector` `Conﬁguration` page, paste the `Connection` `token` in the `Connection` `Claim` `Token` ﬁeld and click `Save`.
 
@@ -205,7 +205,7 @@ To create a Data Source Connection:
 
    e. Select the `Backup and Recovery Data Source Connector` image and click the catalog tile
 
-   - **NOTE:** If the image mentioned above is not available, the User may have to accept an invite. An invite will have been sent to the account admin's email or can be seen in `https://cloud.ibm.com/notifications` by the admin.
+   - **NOTE:** If the image mentioned earlier is not available, the User might have to accept an invite. An invite will have been sent to the account admin's email or can be seen in `https://cloud.ibm.com/notifications` by the admin.
 
    f. Accept the terms and select `Continue`
    h. The `Virtual server for VPC` create page opens, Select appropriate `Location`, `Name`, `Resource Group`, `VPC` and create the Virtual Service.
@@ -219,7 +219,7 @@ The initial VSI deployment is your responsibility, after that the OS patching an
 
 4. Enter the IP address of the Data Source Connector VM in the address bar of your browser and click `Enter`.
 
-5. On the Data Source Connector's User Interface, enter `admin` in the `Username` and `Password` fields to log into the Data Source Connector.
+5. On the Data Source Connector's User Interface, enter `admin` in the `Username` and `Password` fields to log in to the Data Source Connector.
 
 On the next screen, you are prompted to change your password. Change your default password and log in again with your new password.
 
@@ -232,11 +232,186 @@ It can take another few minutes for the Data Source Connector to authenticate to
 ### VPE Gateways
 {: #vpe_gateways}
 
-While the VSI can connect to the Backup and Recovery instance, a VPE gateway will provide a better performance, To create a VPE gateway, follow these steps.
+While the VSI can connect to the Backup and Recovery instance, a VPE gateway provides a better performance, To create a VPE gateway, follow these steps.
 
-1. From the IBM Cloud catalog, search for `Virtual private endpoint` and click `Virtual private endpoint for VPC` tile,
-2. Select the appropriate `Location`, `Name`, `Resource Group`, `VPC`
-3. Under `Request connection to a service`, Select `IBM Cloud Service`
-4. Select `Cloud service offerings` to be `Backup and Recovery` and the appropriate `Cloud service regions`
-5. Select the appropriate `Backup and Service` instance in the table below
-6. Configure the `Reserved IP` as required and create the VPE Gateway. 
+1. From the IBM Cloud catalog, search for `Virtual private endpoint` and click `Virtual private endpoint for VPC` tile.
+2. Select the appropriate `Location`, `Name`, `Resource Group`, `VPC`.
+3. Under `Request connection to a service`, Select `IBM Cloud Service`.
+4. Select `Cloud service offerings` to be `Backup and Recovery` and the appropriate `Cloud service regions`.
+5. Select the appropriate `Backup and Service` instance in the table below.
+6. Configure the `Reserved IP` as required and create the VPE Gateway.
+
+## Create a data source connection for Kubernetes/OpenShift
+{: #create_data_source_connection_iks_roks}
+
+
+To create a Data Source Connection:
+
+1. Go to: `Dashboard` \> `System` \> `Data Source Connections`.
+2. Click `New Connection`.
+3. Under the Deployment Platform, select one of the following options that matches your Kubernetes/OpenShift cluster type:
+
+   - `ROKS CLASSIC`
+   - `ROKS VPC`
+   - `IKS CLASSIC`
+   - `IKS VPC`
+
+4. Click `Create`. You are presented with a helm install command that you need to run on the cluster you want to protect. Copy the helm install command and save it securely, as you need it in a later step.
+5. Click `Done`, then open the menu for the newly created connection. Click `Rename Connection` to rename it for easier future identification.
+
+## Install Data Source Connector for Kubernetes/OpenShift
+{: #install_data_source_connector_iks_roks}
+
+Ensure that the node on the cluster has sufficient CPU and memory to run the Containerized Data Source Connector and Datamover pods. The following table lists their resource requirements.
+
+| Pod Name                                   | CPU Requests | Memory Requests |
+|--------------------------------------------|--------------|-----------------|
+| Containerized Data Source Connector        | 2            | 5Gi             |
+| Datamover                                  | 500m         | 128M            |
+
+1. Open [IBM Cloud Shell](https://cloud.ibm.com/shell).
+2. In the Cloud Shell terminal, list the available Kubernetes/OpenShift clusters to identify the cluster name:
+
+   ```sh
+   ibmcloud ks cluster ls
+   ```
+   {: codeblock}
+
+   From the output, note the cluster name where the Data Source Connector should be deployed.
+
+3. Download and configure the `KUBECONFIG` for the selected cluster with admin privileges:
+
+   ```sh
+   ibmcloud ks cluster config --cluster <cluster-name> --admin
+   ```
+   {: codeblock}
+
+4. The Helm chart is hosted in the IBM Container Registry (ICR). Log in to the Helm/OCI registry by using the following command:
+
+   ```sh
+   helm registry login icr.io --username iamapikey --password "${API_KEY}"
+   ```
+   {: codeblock}
+
+   See [Creating an API_KEY](https://cloud.ibm.com/docs/account?topic=account-userapikey&interface=ui#create_user_key) to create a new API_KEY if you don't have an existing one.
+
+
+5. Retrieve the Helm install command that you copied earlier in the [Create a data source connection](/docs/backup-recovery?topic=backup-recovery-data-source-connector-iks-roks#data-source-connector-iks-roks-create-data-source-connection) section. In the following example `registrationToken` is masked:
+
+   ```sh
+   helm install <k8-app-name> oci://icr.io/ext/brs/brs-ds-connector-chart --version 7.2.18-release-20260226-49768040  --set secrets.registrationToken=xxxxxxx
+   ```
+   {: codeblock}
+
+   For **classic clusters**, you must add the `--set volumeClaimTemplate.storageClass=<storage-class-name>` flag and specify an appropriate storage class name available on the classic cluster.
+   {: important}
+
+6. Run the updated helm install command in the IBM Cloud Shell.
+
+7. Check that the Helm release is installed:
+
+   ```sh
+   helm list -n ibm-brs-data-source-connector
+   ```
+   {: codeblock}
+
+   Check the data source connector pods status:
+
+   ```sh
+   kubectl get pods -n ibm-brs-data-source-connector
+   ```
+   {: codeblock}
+
+   ### Customizing the Helm install command
+   {: #customizing-helm-command}
+
+   You can customize the Helm install command with the following optional flags:
+
+   - **`--namespace <namespace-name>`**: Specifies the namespace where the Data Source Connector will be deployed. If not specified, the default namespace is used.
+
+   - **`--create-namespace`**: Creates the specified namespace if it doesn't exist. This flag is useful when deploying to a new namespace.
+
+   - **`--set volumeClaimTemplate.storageClass=<storage-class-name>`**: Specifies the StorageClass to use for provisioning the persistent volume for the Data Source Connector. This is required for classic clusters as the default VPC storage class cannot be used.
+
+   - **`--set replicaCount=<number>`**: Sets the number of Data Source Connector pod replicas. The default value is 3. Adjust this based on your high availability and workload requirements.
+
+   - **`--set fullnameOverride=<name>`**: Assigns a specific name to the Data Source Connector pods, making them easier to identify and manage.
+
+   - **`--set deploymentPlatform.rocp.sccEnabled=false`**: Disables Security Context Constraints (SCC) for the deployment. This flag should be used for IBM Kubernetes Service clusters, as SCC is specific to OpenShift clusters.
+
+   - **`--set nodeSelector.<key>="<value>"`**: Schedules Data Source Connector pods on nodes with the specified label. This is useful when you want to run the connector on dedicated worker nodes.
+
+   - **`--set "tolerations[<index>].key=<key>"`**: Sets the toleration key for node taints. Tolerations allow pods to be scheduled on nodes with matching taints.
+
+   - **`--set "tolerations[<index>].operator=<operator>"`**: Specifies the toleration operator. Common values are `Equal` (exact match) or `Exists` (key exists).
+
+   - **`--set "tolerations[<index>].value=<value>"`**: Sets the toleration value that must match the taint value on the node.
+
+   - **`--set "tolerations[<index>].effect=<effect>"`**: Specifies the taint effect. Common values are `NoSchedule` (prevents scheduling), `PreferNoSchedule` (tries to avoid scheduling), or `NoExecute` (evicts existing pods).
+
+   ### Adding a dedicated worker pool for Data Source Connector
+   {: #add-dedicated-worker-pool}
+
+   It's recommended to create a dedicated worker pool for the Data Source Connector. This helps ensure that the connector pods run on a dedicated worker pool with appropriate taints and labels to ensure workload isolation and performance.
+
+   1. [Deploy a dedicated worker pool](https://cloud.ibm.com/docs/containers?topic=containers-add-workers-vpc#vpc_add_pool){: external}.
+   2. [Add labels to the worker pool](https://cloud.ibm.com/docs/containers?topic=containers-worker-tag-label&interface=ui#worker_pool_labels){: external}.
+   3. Add taints to the worker pool:
+
+      ```sh
+      ibmcloud ks worker-pool taint set \
+          --cluster "${CLUSTER_NAME_ID}" \
+          --worker-pool "${WORKER_POOL_NAME}" \
+          --taint "${TAINT_KEY}=${TAINT_VALUE}:${TAINT_EFFECT}" -f
+      ```
+      {: codeblock}
+
+   4. Deploy the Data Source Connector to the dedicated worker pool.
+
+   **Example Helm install command:**
+
+   ```sh
+   helm install dsc-test oci://icr.io/ext/brs/brs-ds-connector-chart \
+      --version 7.2.18-release-20260226-49768040 \
+      --namespace ibm-brs-data-source-connector \
+      --create-namespace \
+      --set secrets.registrationToken=xxx \
+      --set fullnameOverride=dsc \
+      --set replicaCount=2 \
+      --set nodeSelector.dedicated="data-source-connector" \
+      --set "tolerations[0].key=dedicated" \
+      --set "tolerations[0].operator=Equal" \
+      --set "tolerations[0].value=data-source-connector" \
+      --set "tolerations[0].effect=NoSchedule"
+   ```
+   {: codeblock}
+
+   **Alternative: Using a values.yaml file**
+
+   As an alternative to using multiple `--set` flags, you can use a `values.yaml` file to pass configuration values. This approach is cleaner and easier to manage, especially when dealing with complex configurations.
+
+   1. Create a `custom-values.yaml` file with the following content:
+
+      ```yaml
+      nodeSelector:
+        <label-key>: <label-value>
+
+      tolerations:
+        - key: "<taint-key>"
+          operator: "Equal"
+          value: "<taint-value>"
+          effect: "NoSchedule"
+      ```
+      {: codeblock}
+
+   2. Run the Helm install command using the values file:
+
+      ```sh
+      helm install dsc oci://icr.io/ext/brs/brs-ds-connector-chart \
+        --version 7.2.18-release-20260226-49768040 \
+        --namespace ibm-brs-data-source-connector \
+        --create-namespace \
+        -f custom-values.yaml \
+        --set secrets.registrationToken=*******
+      ```
+      {: codeblock}
