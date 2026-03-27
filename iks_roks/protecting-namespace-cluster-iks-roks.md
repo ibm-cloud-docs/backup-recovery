@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025, 2026
-lastupdated: "2026-03-26"
+lastupdated: "2026-03-27"
 
 keywords: data source connector, iks, roks, cluster, protection
 
@@ -100,7 +100,7 @@ Auto Protect helps to ensure that any new namespaces added to the cluster in the
 
 | Auto Protect Type | Steps |
 |-----------------|-------|
-| **Cluster‑Level Auto Protect** | Go to `Data Protection` > Click `Sources` > Go to **Kubernetes Source** section > locate your source by using the cluster endpoint > Click **Menu** `⋮` > Select `Protect` > Click the **Shield Icon** on the cluster row. > Select `New Group` or `Existing Group` configure the details, and then click `Protect`. |
+| **Cluster‑Level Auto Protect** | <ol><li>Go to `Data Protection`.</li><li>Click `Sources`.</li><li>Go to **Kubernetes Source** section and locate your source by using the cluster endpoint.</li><li>Click **Menu** `⋮`.</li><li>Select `Protect`.</li><li>Click the **Shield Icon** on the cluster row.</li><li>Select `New Group` or `Existing Group`, configure the details, and then click `Protect`.</li></ol>  |
 {: caption="Auto Protect types" caption-side="bottom"}
 
 When Auto Protect is enabled:
