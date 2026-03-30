@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2026
-lastupdated: "2026-03-27"
+lastupdated: "2026-03-30"
 
 keywords: backup and recovery, data source connectors,
 
@@ -394,12 +394,12 @@ Ensure that the node on the cluster has sufficient CPU and memory to run the Con
 
       ```yaml
       nodeSelector:
-        <label-key>: <label-value>
+        dedicated: data-source-connector
 
       tolerations:
-        - key: "<taint-key>"
+        - key: "dedicated"
           operator: "Equal"
-          value: "<taint-value>"
+          value: "data-source-connector"
           effect: "NoSchedule"
       ```
       {: codeblock}
