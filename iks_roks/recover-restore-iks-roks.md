@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025, 2026
-lastupdated: "2026-03-25"
+lastupdated: "2026-03-30"
 
 keywords: data source connector, iks, roks, cluster, recover
 
@@ -15,7 +15,7 @@ subcollection: backup-recovery
 # Recover Kubernetes namespaces
 {: #recovering-restoring-backup}
 
-After protecting your Kubernetes namespaces, you can use {{site.data.keyword.baas_full_notm}} to recover them to::
+After protecting your Kubernetes namespaces, you can use {{site.data.keyword.baas_full_notm}} to recover them to:
 - The original (same) Kubernetes or OpenShift cluster
 - A different Kubernetes or OpenShift cluster that is registered with {{site.data.keyword.baas_full_notm}}
 
@@ -32,7 +32,7 @@ For example, if a namespace that you want to recover contains a deployment resou
 1. Log in to the [IBM Cloud Console](https://cloud.ibm.com/){: external}.
 2. Go to `Navigation Menu` \> `Backup and Recovery`.
 3. On the **Backup service instances** page, use the search bar to find your instance by name.
-4. Identify the instance with **Active** status and click on the instance name.
+4. Identify the instance with **Active** status and click the instance name.
 5. On the instance details page, click `Launch dashboard`.
 6. Go to `Dashboard` \> `Data Protection` \> `Recoveries`.
 7. Click `Recover` in the upper-right corner and select `Kubernetes Cluster` \> `Namespace`.
@@ -67,11 +67,15 @@ For example, if a namespace that you want to recover contains a deployment resou
     *   **Original Location** - Select **Original Location** to recover the namespace to the same cluster.
     *   **New Location** - Select **New Location** to recover the namespace to a different Kubernetes or OpenShift cluster. Under
     **Registered Source**, select the destination Kubernetes or OpenShift cluster (or click **Register Source** to add a new one).
+
+    If one or more namespaces being recovered already exist in the target location, a warning is displayed: _"This action will overwrite the existing namespaces."_ This warning might not appear if the namespace was created less than 8 hours ago, because the source periodic sync runs every 8 hours. Until the next sync completes, {{site.data.keyword.baas_full_notm}} might not detect the newly created namespace.
+    {: important}
+
     
 12. Configure the **Recovery Options** as needed:
     *   **Rename**: Add a **Prefix** or **Suffix** to the names of recovered namespaces. By default, the prefix `copy-` is added to the original namespace name.
     *   **Task Name**: View or customize the name of this recovery task.
-    *   **Skip cluster compatibility check**: Toggle to enable or disable skipping the compatibility check for the target cluster. This option relates to Kubernetes version compatibility.
+    *   **Skip cluster compatibility check**: Toggle to enable or disable skipping the compatibility check for the target cluster. Compatibility is determined on the basis of the availability of Custom Resource Definitions (CRDs) in the target cluster. If the target cluster does not have the required CRDs, the recovery might fail or produce incomplete results.
     *   **Include or Exclude Labels**: Filter **Persistent Volume Claim(PVC)** based on labels.
         *   **Logical Rule**: Select **Match Any of the following labels** or **Match All of the following labels**.
         *   Choose to **Include** or **Exclude** matched labels.
@@ -82,9 +86,13 @@ For example, if a namespace that you want to recover contains a deployment resou
         *   Select the **Snapshot with Cluster Resource** from the dropdown if multiple are available.
     *   **Namespace Resources**: Choose specific resources to recover. Click the **edit** icon to customize:
         *   **Resources** Tab:
-            *   Toggle **Resource Inclusion/Exclusion** to Include or exclude specific resource types.
-            *   Select **Include** or **Exclude** radio buttons.
-            *   Use the search bar or click **+ Add** to filter by resource type (for example, `Deployment`, `ReplicaSet`).
+            *   Toggle **Persistent Volume Claim(PVC) Inclusion/Exclusion** to filter PVCs at the namespace level.
+                *   Select **Include** or **Exclude** radio button.
+                *   Use the **Include PVCs** or **Exclude PVCs** dropdown to search and select specific PVCs.
+                *   (Optional) Select **Recover only PVC and related resources** to limit the recovery to only the selected PVCs and their related resources.
+            *   Toggle **Resource Inclusion/Exclusion** to include or exclude specific resource types.
+                *   Select **Include** or **Exclude** radio buttons.
+                *   Use the search bar or click **+ Add** to filter by resource type (for example, `Deployment`, `ReplicaSet`).
         *   **Storage Class** Tab:
             *   Toggle **Unbind the PVCs from their original PV mapping** if needed.
             *   Map **Old Storage Class** to **New Storage Class** by using the dropdowns.

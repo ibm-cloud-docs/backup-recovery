@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025, 2026
-lastupdated: "2026-03-26"
+lastupdated: "2026-03-30"
 
 keywords: data source connector, iks, roks, cluster
 
@@ -123,59 +123,10 @@ Ensure that the node has sufficient CPU and memory to run the {{site.data.keywor
 
    
 
-### Configure a data source connector
+### Install and configure the data source connector
 {: #data-source-connector-iks-roks-create-configure}
 
-1. In the [IBM Cloud Shell](https://cloud.ibm.com/shell) terminal, list the available Kubernetes or OpenShift clusters to identify the cluster name:
-   From the output, note the cluster name where the Data Source Connector must be deployed to protect the cluster.
-
-   ```sh
-   ibmcloud ks cluster ls
-   ```
-   {: codeblock}
-
-
-2. Download and configure the `KUBECONFIG` for the selected cluster with admin privileges:
-
-   ```sh
-   ibmcloud ks cluster config --cluster <cluster-name> --admin
-   ```
-   {: codeblock}
-
-3. The Helm chart is hosted in the IBM Container Registry (ICR). Log in to the Helm or OCI registry by using the following command:
-
-   ```sh
-   helm registry login icr.io --username iamapikey --password "${API_KEY}"
-   ```
-   {: codeblock}
-
-   If successful, you see a login confirmation.
-
-4. Retrieve the `helm install` command that you copied earlier in the [Create a data source connection](#data-source-connector-iks-roks-create-data-source-connection) section. Update the command by adding the release name (for example, `dsc`). In the following example, `registrationToken` is masked:
-
-   ```sh
-   helm install dsc oci://icr.io/ext/brs/brs-ds-connector-chart --version 7.2.17-release-20260108-ed857f1c --namespace ibm-brs-data-source-connector --create-namespace --set secrets.registrationToken=xxxxxxx
-   ```
-   {: codeblock}
-
-   We recommend deploying the data source connector in the `ibm-brs-data-source-connector` namespace using the `--namespace` and `--create-namespace` flags, as shown above. You can further customize the command with these optional flags:
-   *   `--set fullnameOverride=<name>`: To give a specific name to the data source connector pods.
-   *   `--set replicaCount=2`: To set the number of replicas (the default is 3).
-   *   `--set volumeClaimTemplate.storageClass=<storage-class-name>`: To specify a custom storage class (default: `ibmc-vpc-block-metro-5iops-tier`).
-   {: note}
-
-5. Run the updated helm install command in the [IBM Cloud Shell](https://cloud.ibm.com/shell).
-
-6. Check that the Helm release is installed:
-
-   ```sh
-   helm list -n ibm-brs-data-source-connector
-   ```
-   {: codeblock}
-
-
-   Scaling down or deleting the Data Source Connector deployment (StatefulSet) does *not* automatically remove the Persistent Volume Claims (PVCs) or the underlying data. If you uninstall the connector, you must manually delete the PVCs (and potentially the PVs, depending on the reclaim policy).
-   {: important}
+After you create a data source connection, you must install and configure the Data Source Connector on your Kubernetes or OpenShift cluster. For detailed instructions, including resource requirements, Helm install commands, and customization options, see [Install Data Source Connector for Kubernetes/OpenShift](/docs/backup-recovery?topic=backup-recovery-deploy_data_source_connector#install_data_source_connector_iks_roks).
 
 ## How to get the Kubernetes or OpenShift cluster endpoint
 {: #how-to-get-iks-roks-endpoint}
@@ -218,6 +169,10 @@ If you are registering a cluster that was previously registered, you must ensure
         ![HostPort](Images_datasource_connection/HostPort43crop.png){: caption="Register Kubernetes source"}
 
 5. Click `Complete` to finish the registration.
+
+    The registration process can take approximately 5 minutes to complete.
+    {: note}
+
 6. You are redirected to the **Sources** page, where you can view the status of your registered cluster.
 
 ## How to create a bearer token for a Kubernetes or OpenShift cluster
