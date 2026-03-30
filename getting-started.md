@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2026
-lastupdated: "2026-03-17"
+lastupdated: "2026-03-30"
 
 keywords: IBM cloud backup and recovery, VPC, VSI, new user, workload availability, deployment
 
@@ -20,6 +20,9 @@ subcollection: backup-recovery
 This topic shows you how to get started with {{site.data.keyword.baas_full_notm}} to protect data in a Virtual Server Instance that is running Ubuntu Linux. The intended audience is first-time users of the service where you learn to deploy and configure a {{site.data.keyword.baas_full_notm}} instance, and create a Data Source Connector that links your Virtual Server and the instance. Then you can create a new protection group and apply a custom policy that defines backup schedules and retention. Once the policy is applied to the protection group, your data is protected.
 
 Use code **VPC1000** and get **USD 1,000** in no-charge credits to use toward different offerings on IBM Cloud VPC, including: Confidential computing with Intel® SGX®, Bare Metal for VPC, {{site.data.keyword.baas_full_notm}}, or any Block and File storage or networking components. **Valid until 31 December 2026**.
+{: important}
+
+**Boost your Backup Budget**: Unlock **USD 5000** in credits to use towards IBM Cloud Backup and Recovery services. Apply Code **BUYBRS**.
 {: important}
 
 ## Before you begin
