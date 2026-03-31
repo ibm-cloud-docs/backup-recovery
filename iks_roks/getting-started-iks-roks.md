@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025, 2026
-lastupdated: "2026-03-30"
+lastupdated: "2026-03-31"
 
 keywords: data source connector, iks, roks, cluster
 
@@ -96,7 +96,7 @@ Ensure that the node has sufficient CPU and memory to run the {{site.data.keywor
 
 | Pod Name                                   | CPU Requests | Memory Requests |
 |--------------------------------------------|--------------|-----------------|
-| Data Source Connector (per replica, default `replicaCount` is 3) | 2*3=6            | 5*3=15Gi             |
+| Data Source Connector (per replica, default `replicaCount` is 2) | 2*2=4            | 5*4=10Gi             |
 | Datamover (DaemonSet) | 500m*N         | 128Mi*N           |
 | Velero                                     | 500m         | 128Mi           |
 
