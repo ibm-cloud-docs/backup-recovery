@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025, 2026
-lastupdated: "2026-03-31"
+lastupdated: "2026-04-01"
 
 keywords: data source connector, iks, roks, cluster
 
@@ -165,6 +165,9 @@ If you are registering a cluster that was previously registered, you must ensure
     *   (Optional) Configure Optional settings (for example, Service Type, Images) by expanding the **Optional** section.
 
          HostPort is the default and recommended communication method for the backup and recovery agent. Users can optionally specify a custom port; if not specified, the default port (33769) is used.
+         | **Source**             | **Destination** | **Port** | **Protocol** | **Purpose**                               |
+         |------------------------|-----------------|----------|--------------|--------------------------------------------|
+         | Data Source Connector  | HOST            | 33769    | TCP          | Reserved for Kubernetes/OpenShift clusters             |
 
         ![HostPort](Images_datasource_connection/HostPort43crop.png){: caption="Register Kubernetes source"}
 
