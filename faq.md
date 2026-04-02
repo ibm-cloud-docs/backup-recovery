@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2024
-lastupdated: "2025-08-27"
+  years: 2024, 2026
+lastupdated: "2026-04-02"
 
 
 keywords: faq, frequently asked questions, object storage, S3, HMAC, general
@@ -29,19 +29,19 @@ Physical size of storage
 ## What is Data in (read)?
 {: #baas-terminology-data-in}
 
-Amount of data backed up (prior to dedup and compression)
+Amount of data backed up (before dedup and compression)
 
 ## What is Data written?
 {: #baas-terminology-data-written}
 
-Amout of data backed up (after dedup and compression)
+Amount of data backed up (after dedup and compression)
 
 ## What is an Agent name?
 {: #baas-terminology-agent-name}
 
 Backup agent to backup agent
 
-## What is an SaaS connector?
+## What is a SaaS connector?
 {: #baas-terminology-saas-connector}
 
 Backup service connection.  See the topics on [Deploy Data Source Connector](/docs/backup-recovery?topic=backup-recovery-deploy_data_source_connector) and [Factors affecting the Performance of IBM Cloud® Backup and Recovery service](/docs/backup-recovery?topic=backup-recovery-performance-factors) for more information.
@@ -51,12 +51,12 @@ Backup service connection.  See the topics on [Deploy Data Source Connector](/do
 
 BCO (Backup completion objective)
 
-## What factors effect the performance of {{site.data.keyword.baas_full}} service ?
+## What factors affect the performance of {{site.data.keyword.baas_full}} service?
 {: #baas-terminology-performance-factors}
 
-See [Factors effecting Performance of {{site.data.keyword.baas_short}}](/docs/backup-recovery?topic=backup-recovery-performance-factors).
+See [Factors affecting Performance of {{site.data.keyword.baas_full_notm}}](/docs/backup-recovery?topic=backup-recovery-performance-factors).
 
-## Who do I talk to about billing?
+## Who to talk to about billing?
 {: #baas-billing}
 
-Contact IBM Offering Management or Sales for additional info on the Pricing.
+Contact IBM Offering Management or Sales for more information on the Pricing.
