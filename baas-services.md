@@ -2,7 +2,7 @@
 
 copyright:
   years:  2025, 2026
-lastupdated: "2026-03-30"
+lastupdated: "2026-04-03"
 
 keywords: aspera, key protect, archive, worm
 
@@ -32,25 +32,21 @@ For more information about the following services, be sure to check out the resp
 
 | Region     | File systems | MS SQL  | SAP HANA | Oracle | Kubernetes/Openshift |
 |------------|--------------|---------|----------|--------|----------------------|
-| `au-syd`   | Yes          | Yes     | Yes      |  Yes   | No |
-| `br-sao`   | Yes          | Yes     | Yes      |  Yes   | No |
-| `ca-tor`   | Yes          | Yes     | Yes      |  Yes   | No |
-| `eu-gb`    | Yes          | Yes     | Yes      |  Yes   | No |
-| `eu-de`    | Yes          | Yes     | Yes      |  Yes   | No |
-| `eu-es`    | Yes          | Yes     | Yes      |  Yes   | Yes|
-| `jp-tok`   | Yes          | Yes     | Yes      |  Yes   | No |
-| `jp-osa`   | Yes          | Yes     | Yes      |  Yes   | No |
-| `us-south` | Yes          | Yes     | Yes      |  Yes   | Yes|
-| `us-east`  | Yes          | Yes     | Yes      |  Yes   | Yes|
+| `au-syd`   | Yes          | Yes     | Yes      |  Yes   | No                   |
+| `br-sao`   | Yes          | Yes     | Yes      |  Yes   | No                   |
+| `ca-tor`   | Yes          | Yes     | Yes      |  Yes   | No                   |
+| `eu-gb`    | Yes          | Yes     | Yes      |  Yes   | No                   |
+| `eu-de`    | Yes          | Yes     | Yes      |  Yes   | No                   |
+| `eu-es`    | Yes          | Yes     | Yes      |  Yes   | Yes                  |
+| `jp-tok`   | Yes          | Yes     | Yes      |  Yes   | No                   |
+| `jp-osa`   | Yes          | Yes     | Yes      |  Yes   | No                   |
+| `us-south` | Yes          | Yes     | Yes      |  Yes   | Yes                  |
+| `us-east`  | Yes          | Yes     | Yes      |  Yes   | Yes                  |
 
 
-## Software versions supported
-{: #service-availability-software-version}
 
-| Software   | Version |
-|------------|--------------|
-| VSI        | X.X.X          |
-| VMware | Yes          |
+
+
 
 
 ## More information

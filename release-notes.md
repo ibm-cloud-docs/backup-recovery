@@ -1,9 +1,9 @@
 ---
 
 copyright:
-  years: 2024, 2025
+  years: 2024, 2026
 
-lastupdated: "2025-12-12"
+lastupdated: "2026-04-03"
 
 
 keywords: updates, releases, news, backup and recovery
@@ -21,6 +21,8 @@ content-type: release-note
 
 News on the latest releases from IBM's Backup and Recovery provide the updates you need on all things related to Backup and Recovery.
 {: shortdesc}
+
+
 
 ## 12 December 2025
 {: #baas-Dec1225}
