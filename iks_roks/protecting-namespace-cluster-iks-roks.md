@@ -71,7 +71,7 @@ After you set up protection, you can customize the configuration to better suit 
 {: #configure-settings}
 
 - **Start Time**: Defines when the protection job runs. (Time zone can also be selected here).
-- **Leverage CSI Snapshot**: **Recommended** - Enable this option to protect PVC data by capturing a crash-consistent state of the volume by using CSI driver snapshots. This is the recommended approach for crash-consistent backups.
+- **Leverage CSI Snapshot**: **Recommended** - Enable this option to protect PVC data by capturing a crash-consistent state of the volume by using CSI driver snapshots.
 
     This mode applies only to PVCs whose storage driver supports CSI snapshots. PVCs with drivers that do not support CSI snapshots continue to be backed up by using file system backup.
     {: note}

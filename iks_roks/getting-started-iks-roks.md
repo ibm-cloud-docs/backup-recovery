@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025, 2026
-lastupdated: "2026-04-01"
+lastupdated: "2026-04-03"
 
 keywords: data source connector, iks, roks, cluster
 
@@ -219,6 +219,28 @@ If you are registering a cluster that was previously registered, you must ensure
     kubectl get secret brs-sa-token -n default -o jsonpath='{.data.token}' | base64 --decode && echo ""
     ```
     {: codeblock}
+
+## Upgrading the Backup Agent Components
+{: #upgrade-brs-backup-agent}
+
+Upgrades for the brs-backup-agent components are currently manual. When you register a Kubernetes/OpenShift source, the system creates a namespace `brs-backup-agent-<GUID>` that contains:
+- Datamover DaemonSet
+- Velero Deployment
+
+Each release of {{site.data.keyword.baas_full_notm}} includes default image versions for these components. To upgrade an existing source registration:
+
+1. Go to: `Dashboard` \> `Data Protection` \> `Sources`.
+2. Locate your Kubernetes/OpenShift source.
+3. Click the menu `⋮` and select `Edit Registration`.
+4. In the Edit Registration dialog, provide the following:
+   - **Bearer Token**: The authentication token for the cluster
+   - **Cluster Endpoint**: The cluster API endpoint
+   - **Distribution Type**: Select the appropriate type (IBM Kubernetes Service / IBM Red Hat OpenShift Kubernetes Service)
+5. Leave other optional parameters at their default values. The system automatically uses the latest default image versions for datamover, Velero, and plugin components.
+6. Click `Save` to apply the upgrade.
+
+The upgrade process updates the component images in the `brs-backup-agent-<GUID>` namespace to the latest versions associated with your {{site.data.keyword.baas_full_notm}} version.
+{: note}
 
 ## Protecting and Restoring Data
 {: #protect-restore-data-iks-roks}
