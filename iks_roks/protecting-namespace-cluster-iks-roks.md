@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025, 2026
-lastupdated: "2026-03-30"
+lastupdated: "2026-04-03"
 
 keywords: data source connector, iks, roks, cluster, protection
 
@@ -44,7 +44,7 @@ Follow these steps to quickly protect your Kubernetes resources:
       | Option | Description |
       |------|-------------|
       | **Use an Existing Protection Group** | All settings are prefilled from the existing group and are read only at this stage. |
-      | **Create a New Protection Group** | When creating a new group, configure the following settings: <ul><li>**Protection Group Name**</li><li>**Protection Policy**</li><li>**Start Time and Time Zone** </li><li>**Leverage CSI Snapshot** (toggle)</li><li>**Pause Future Runs**</li><li>**Alerts and Email Recipients**</li><li>**Priority** (High / Medium / Low)</li><li>**Include or Exclude Labels**</li><li>**Description**</li></ul> |
+      | **Create a New Protection Group** | When creating a new group, configure the following settings: <ul><li>**Protection Group Name**</li><li>**Protection Policy**</li><li>**Start Time and Time Zone** </li><li>**Leverage CSI Snapshot** (toggle) - Recommended for crash-consistent backups</li><li>**Pause Future Runs**</li><li>**Alerts and Email Recipients**</li><li>**Priority** (High / Medium / Low)</li><li>**Include or Exclude Labels**</li><li>**Description**</li></ul> |
       {: caption="Protection Group options" caption-side="bottom"}
 
 
@@ -71,7 +71,7 @@ After you set up protection, you can customize the configuration to better suit 
 {: #configure-settings}
 
 - **Start Time**: Defines when the protection job runs. (Time zone can also be selected here).
-- **Leverage CSI Snapshot**: Toggle this option to protect PVC data by capturing a crash-consistent state of the volume by using CSI driver snapshots.
+- **Leverage CSI Snapshot**: **Recommended** - Enable this option to protect PVC data by capturing a crash-consistent state of the volume by using CSI driver snapshots. This is the recommended approach for crash-consistent backups.
 
     This mode applies only to PVCs whose storage driver supports CSI snapshots. PVCs with drivers that do not support CSI snapshots continue to be backed up by using file system backup.
     {: note}

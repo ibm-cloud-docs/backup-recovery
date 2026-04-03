@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2026
-lastupdated: "2026-03-30"
+lastupdated: "2026-04-03"
 
 keywords: backup and recovery, data source connectors,
 
@@ -296,17 +296,30 @@ Ensure that the node on the cluster has sufficient CPU and memory to run the Con
    See [Creating an API_KEY](https://cloud.ibm.com/docs/account?topic=account-userapikey&interface=ui#create_user_key) to create a new API_KEY if you don't have an existing one.
 
 
-5. Retrieve the Helm install command that you copied earlier in the [Create a data source connection](/docs/backup-recovery?topic=backup-recovery-data-source-connector-iks-roks#data-source-connector-iks-roks-create-data-source-connection) section. In the following example `registrationToken` is masked:
+5. Retrieve the Helm install command that you copied earlier in the [Create a data source connection](/docs/backup-recovery?topic=backup-recovery-data-source-connector-iks-roks#data-source-connector-iks-roks-create-data-source-connection) section and update it based on your cluster type.
+
+   **For VPC clusters (IKS VPC or ROKS VPC):**
+   
+   The default storage class `ibmc-vpc-block-metro-5iops-tier` is used automatically. Run the command as provided:
 
    ```sh
-   helm install <k8-app-name> oci://icr.io/ext/brs/brs-ds-connector-chart --version 7.2.18-release-20260226-49768040  --set secrets.registrationToken=xxxxxxx
+   helm install <k8-app-name> oci://icr.io/ext/brs/brs-ds-connector-chart --version 7.2.18-release-20260226-49768040 --set secrets.registrationToken=<your-registration-token>
    ```
    {: codeblock}
 
-   For **classic clusters**, you must add the `--set volumeClaimTemplate.storageClass=<storage-class-name>` flag and specify an appropriate storage class name available on the classic cluster.
+   **For Classic clusters (IKS Classic or ROKS Classic):**
+   
+   You must specify a storage class that is available on Classic clusters. Replace `<storage-class-name>` with an appropriate Classic storage class (e.g., `ibmc-block-gold`, `ibmc-block-silver`, or `ibmc-block-bronze`):
+
+   ```sh
+   helm install <k8-app-name> oci://icr.io/ext/brs/brs-ds-connector-chart --version 7.2.18-release-20260226-49768040 --set secrets.registrationToken=<your-registration-token> --set volumeClaimTemplate.storageClass=<storage-class-name>
+   ```
+   {: codeblock}
+
+   The default storage class `ibmc-vpc-block-metro-5iops-tier` is only available on VPC clusters and will not work on Classic clusters.
    {: important}
 
-6. Run the updated helm install command in the IBM Cloud Shell.
+6. Run the appropriate Helm install command in the IBM Cloud Shell based on your cluster type.
 
 7. Check that the Helm release is installed:
 
@@ -331,7 +344,7 @@ Ensure that the node on the cluster has sufficient CPU and memory to run the Con
 
    - **`--create-namespace`**: Creates the specified namespace if it doesn't exist. This flag is useful when deploying to a new namespace.
 
-   - **`--set volumeClaimTemplate.storageClass=<storage-class-name>`**: Specifies the StorageClass to use for provisioning the persistent volume for the Data Source Connector. This is required for classic clusters as the default VPC storage class cannot be used.
+   - **`--set volumeClaimTemplate.storageClass=<storage-class-name>`**: Specifies the StorageClass to use for provisioning the persistent volume for the Data Source Connector. This parameter sets the storage class specifically for the Data Source Connector's persistent volume. This is required for Classic clusters as the default VPC storage class (`ibmc-vpc-block-metro-5iops-tier`) cannot be used on Classic clusters.
 
    - **`--set replicaCount=<number>`**: Sets the number of Data Source Connector pod replicas. The default value is 3. Adjust this based on your high availability and workload requirements.
 
