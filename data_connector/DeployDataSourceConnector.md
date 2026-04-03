@@ -298,25 +298,43 @@ Ensure that the node on the cluster has sufficient CPU and memory to run the Con
 
 5. Retrieve the Helm install command that you copied earlier in the [Create a data source connection](/docs/backup-recovery?topic=backup-recovery-data-source-connector-iks-roks#data-source-connector-iks-roks-create-data-source-connection) section and update it based on your cluster type.
 
-   **For VPC clusters (IKS VPC or ROKS VPC):**
+   **For IKS Classic clusters:**
    
-   The default storage class `ibmc-vpc-block-metro-5iops-tier` is used automatically. Run the command as provided:
+   You must specify a storage class that is available on Classic clusters and disable SCC (Security Context Constraints) as it's specific to OpenShift:
 
    ```sh
-   helm install <k8-app-name> oci://icr.io/ext/brs/brs-ds-connector-chart --version 7.2.18-release-20260226-49768040 --set secrets.registrationToken=<your-registration-token>
+   helm install <k8-app-name> oci://icr.io/ext/brs/brs-ds-connector-chart --version 7.2.18-release-20260226-49768040 --set secrets.registrationToken=<your-registration-token> --set deploymentPlatform.rocp.sccEnabled=false --set volumeClaimTemplate.storageClass=ibmc-block-bronze --namespace ibm-brs-data-source-connector --create-namespace
    ```
    {: codeblock}
 
-   **For Classic clusters (IKS Classic or ROKS Classic):**
+   **For IKS VPC clusters:**
    
-   You must specify a storage class that is available on Classic clusters. Replace `<storage-class-name>` with an appropriate Classic storage class (e.g., `ibmc-block-gold`, `ibmc-block-silver`, or `ibmc-block-bronze`):
+   The default storage class `ibmc-vpc-block-metro-5iops-tier` is used automatically. Disable SCC as it's specific to OpenShift:
 
    ```sh
-   helm install <k8-app-name> oci://icr.io/ext/brs/brs-ds-connector-chart --version 7.2.18-release-20260226-49768040 --set secrets.registrationToken=<your-registration-token> --set volumeClaimTemplate.storageClass=<storage-class-name>
+   helm install <k8-app-name> oci://icr.io/ext/brs/brs-ds-connector-chart --version 7.2.18-release-20260226-49768040 --set secrets.registrationToken=<your-registration-token> --set deploymentPlatform.rocp.sccEnabled=false --namespace ibm-brs-data-source-connector --create-namespace
    ```
    {: codeblock}
 
-   The default storage class `ibmc-vpc-block-metro-5iops-tier` is only available on VPC clusters and will not work on Classic clusters.
+   **For ROKS Classic clusters:**
+   
+   You must specify a storage class that is available on Classic clusters. SCC is enabled by default for OpenShift:
+
+   ```sh
+   helm install <k8-app-name> oci://icr.io/ext/brs/brs-ds-connector-chart --version 7.2.18-release-20260226-49768040 --set secrets.registrationToken=<your-registration-token> --set volumeClaimTemplate.storageClass=ibmc-block-bronze --namespace ibm-brs-data-source-connector --create-namespace
+   ```
+   {: codeblock}
+
+   **For ROKS VPC clusters:**
+   
+   The default storage class `ibmc-vpc-block-metro-5iops-tier` is used automatically. SCC is enabled by default for OpenShift:
+
+   ```sh
+   helm install <k8-app-name> oci://icr.io/ext/brs/brs-ds-connector-chart --version 7.2.18-release-20260226-49768040 --set secrets.registrationToken=<your-registration-token> --namespace ibm-brs-data-source-connector --create-namespace
+   ```
+   {: codeblock}
+
+   The default storage class `ibmc-vpc-block-metro-5iops-tier` is only available on VPC clusters and will not work on Classic clusters. For Classic clusters, use `ibmc-block-bronze`, `ibmc-block-silver`, or `ibmc-block-gold`.
    {: important}
 
 6. Run the appropriate Helm install command in the IBM Cloud Shell based on your cluster type.
@@ -397,7 +415,28 @@ Ensure that the node on the cluster has sufficient CPU and memory to run the Con
       --set "tolerations[0].value=data-source-connector" \
       --set "tolerations[0].effect=NoSchedule"
    ```
-   {: codeblock}
+
+## Upgrading the Data Source Connector
+{: #upgrade-data-source-connector}
+
+Upgrades for the Data Source Connector are currently manual. To upgrade the Data Source Connector to a newer version, use the Helm upgrade command:
+
+```sh
+helm upgrade --install <k8-app-name> oci://icr.io/ext/brs/brs-ds-connector-chart --version <new-version> --reuse-values --set secrets.registrationToken=xxx
+```
+{: codeblock}
+
+Replace `<k8-app-name>` with your release name and `<new-version>` with the target version number.
+
+The `--reuse-values` flag preserves your existing configuration settings during the upgrade.
+{: tip}
+
+**Example upgrade command:**
+
+```sh
+helm upgrade --install my-dsc oci://icr.io/ext/brs/brs-ds-connector-chart --version 7.2.19-release-20260301-12345678 --reuse-values --set secrets.registrationToken=xxx
+```
+{: codeblock}
 
    **Alternative: Using a values.yaml file**
 
