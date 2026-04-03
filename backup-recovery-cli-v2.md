@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024
-lastupdated: "2026-02-24"
+lastupdated: "2026-04-03"
 
 keywords: backup recovery, cli, guide
 
@@ -68,6 +68,62 @@ Global parameters can also be stored in persistent configuration so that they do
 ibmcloud backup-recovery config
 ```
 
+#### Understanding service-url
+{: #backup-recovery-service-url-explained}
+
+The `service-url` is the API endpoint (private or public) of your {{site.data.keyword.baas_full_notm}} instance. This URL is required to connect the CLI to your specific BRS instance.
+
+**Service URL format:**
+- **Private endpoint:** `https://<instance_ID>.private.<region>.backup-recovery.cloud.ibm.com/v2`
+- **Public endpoint:** `https://<instance_ID>.<region>.backup-recovery.cloud.ibm.com/v2`
+
+Where `<region>` is the IBM Cloud region where your Backup & Recovery instance is deployed (e.g., `us-east`, `us-south`, `eu-de`, `eu-gb`, `eu-es`, `ca-tor`, `br-sao`, `jp-tok`, `jp-osa`, `au-syd`). For the complete list of supported regions and workload availability, see [Integrated service availability](/docs/backup-recovery?topic=backup-recovery-service-availability).
+
+**To retrieve your instance endpoints:**
+
+1. Run the following IBM Cloud CLI command:
+
+   ```sh
+   ibmcloud resource service-instance <INSTANCE_NAME_OR_ID> --output json
+   ```
+   {: pre}
+
+2. Locate the endpoint information in the `extensions.endpoints` section of the JSON response:
+
+   ```json
+   {
+       "extensions": {
+           "endpoints": {
+              "public": "https://<instance_ID>.us-east.backup-recovery.cloud.ibm.com",
+              "private": "https://<instance_ID>.private.us-east.backup-recovery.cloud.ibm.com"
+           }
+       }
+   }
+   ```
+   {: codeblock}
+
+3. Append `/v2` to the endpoint URL when setting the service-url.
+
+For more details, see [Service endpoints](/docs/backup-recovery?topic=backup-recovery-endpoints).
+
+#### Understanding management-reporting-service-url
+{: #backup-recovery-management-reporting-url-explained}
+
+The `management-reporting-service-url` (also referred to as the Backup Recovery Management URL) is the endpoint for the {{site.data.keyword.baas_full_notm}} Manager's reporting and monitoring APIs. This URL provides access to centralized reporting, monitoring, and alert management capabilities across all your backup and recovery instances in a region.
+
+**Management Reporting Service URL format:**
+```
+https://manager.backup-recovery.cloud.ibm.com/heliosreporting/api/v1
+```
+
+This is a **fixed regional endpoint** that does not require an instance ID. It provides access to:
+- Report components and report management
+- Centralized monitoring dashboards
+- Alert aggregation across instances
+- Resource listings (policies, protection groups, registered sources)
+
+For more information about the Backup and Recovery Manager and its reporting capabilities, see [Accessing the IBM Cloud Backup and Recovery Manager](/docs/backup-recovery?topic=backup-recovery-getting-started-backup-recovery-gmc).
+
 ### `ibmcloud backup-recovery config set`
 {: #backup-recovery-cli-config-set-command}
 
@@ -80,12 +136,29 @@ ibmcloud backup-recovery config set <option> <value>
 #### Examples
 {: #backup-recovery-config-set-command-examples}
 
+Set the service-url:
 ```sh
-ibmcloud backup-recovery config set service-url 'https://my.recovery.cloud.ibm.com/v2'
+ibmcloud backup-recovery config set service-url 'https://fae93403-de8e-45c3-972d-a3a3ad873a62.us-east.backup-recovery-tests.cloud.ibm.com/v2'
+```
+{: pre}
 
+Expected output:
+```
+OK
+```
+{: screen}
+
+Set the management-reporting-service-url:
+```sh
 ibmcloud backup-recovery config set management-reporting-service-url 'https://manager.backup-recovery.cloud.ibm.com/heliosreporting/api/v1'
 ```
 {: pre}
+
+Expected output:
+```
+OK
+```
+{: screen}
 
 ### `ibmcloud backup-recovery config get`
 {: #backup-recovery-cli-config-get-command}
@@ -96,22 +169,51 @@ Print out the currently set value for a specific option. Each subcommand of the 
 ibmcloud backup-recovery config get <option>
 ```
 
+#### Available options
+{: #backup-recovery-config-get-options}
+
+- `service-url` - The API endpoint for your Backup & Recovery instance
+- `management-reporting-service-url` - The endpoint for Backup & Recovery Manager reporting APIs
+- `connector-service-url` - The endpoint for connector services
+- `management-sre-service-url` - The endpoint for management SRE services
+- `management-sre-service-apikey` - API key for management SRE services
+- `management-sre-service-username` - Username for management SRE services
+- `management-sre-service-password` - Password for management SRE services
+- `management-sre-service-authentication-url` - Authentication URL for management SRE services
+
 #### Examples
 {: #backup-recovery-config-get-command-examples}
 
+Get the service-url:
 ```sh
 ibmcloud backup-recovery config get service-url
+```
+{: pre}
 
+Expected output:
+```
+https://fae93403-de8e-45c3-972d-a3a3ad873a62.us-east.backup-recovery-tests.cloud.ibm.com/v2
+```
+{: screen}
+
+Get the management-reporting-service-url:
+```sh
 ibmcloud backup-recovery config get management-reporting-service-url
 ```
 {: pre}
+
+Expected output:
+```
+https://manager.backup-recovery.cloud.ibm.com/heliosreporting/api/v1
+```
+{: screen}
 
 ### `ibmcloud backup-recovery config unset`
 {: #backup-recovery-cli-config-unset-command}
 
 Unset the currently set value for a specific option. Each subcommand of the `unset` command maps to a global option.
 
-The subcommands available for this service are: `service-url`, .
+The available options are the same as listed in the `config get` command above.
 
 ```sh
 ibmcloud backup-recovery config unset <option>
@@ -368,7 +470,7 @@ ibmcloud backup-recovery protection-source registrations-list \
 Register a Protection Source.
 
 ```sh
-ibmcloud backup-recovery protection-source register --xibm-tenant-id XIBM-TENANT-ID --environment ENVIRONMENT [--name NAME] [--is-internal-encrypted=IS-INTERNAL-ENCRYPTED] [--encryption-key ENCRYPTION-KEY] [--connection-id CONNECTION-ID] [--connections CONNECTIONS] [--connector-group-id CONNECTOR-GROUP-ID] [--advanced-configs ADVANCED-CONFIGS] [--data-source-connection-id DATA-SOURCE-CONNECTION-ID] [--physical-params PHYSICAL-PARAMS | --physical-params-endpoint PHYSICAL-PARAMS-ENDPOINT --physical-params-force-register=PHYSICAL-PARAMS-FORCE-REGISTER --physical-params-host-type PHYSICAL-PARAMS-HOST-TYPE --physical-params-physical-type PHYSICAL-PARAMS-PHYSICAL-TYPE --physical-params-applications PHYSICAL-PARAMS-APPLICATIONS] [--kubernetes-params KUBERNETES-PARAMS | --auto-protect-config=AUTO-PROTECT-CONFIG --client-private-key=CLIENT-PRIVATE-KEY]
+ibmcloud backup-recovery protection-source register --xibm-tenant-id XIBM-TENANT-ID --environment ENVIRONMENT [--name NAME] [--is-internal-encrypted=IS-INTERNAL-ENCRYPTED] [--encryption-key ENCRYPTION-KEY] [--connection-id CONNECTION-ID] [--connections CONNECTIONS] [--connector-group-id CONNECTOR-GROUP-ID] [--advanced-configs ADVANCED-CONFIGS] [--data-source-connection-id DATA-SOURCE-CONNECTION-ID] [--physical-params PHYSICAL-PARAMS | --physical-params-endpoint PHYSICAL-PARAMS-ENDPOINT --physical-params-force-register=PHYSICAL-PARAMS-FORCE-REGISTER --physical-params-host-type PHYSICAL-PARAMS-HOST-TYPE --physical-params-physical-type PHYSICAL-PARAMS-PHYSICAL-TYPE --physical-params-applications PHYSICAL-PARAMS-APPLICATIONS] [--kubernetes-params KUBERNETES-PARAMS | --kubernetes-params-auto-protect-config KUBERNETES-PARAMS-AUTO-PROTECT-CONFIG --kubernetes-params-client-private-key KUBERNETES-PARAMS-CLIENT-PRIVATE-KEY --kubernetes-params-cohesity-dataprotect-plugin-image-location KUBERNETES-PARAMS-COHESITY-DATAPROTECT-PLUGIN-IMAGE-LOCATION --kubernetes-params-data-mover-image-location KUBERNETES-PARAMS-DATA-MOVER-IMAGE-LOCATION --kubernetes-params-datamover-service-type KUBERNETES-PARAMS-DATAMOVER-SERVICE-TYPE --kubernetes-params-default-vlan-params KUBERNETES-PARAMS-DEFAULT-VLAN-PARAMS --kubernetes-params-endpoint KUBERNETES-PARAMS-ENDPOINT --kubernetes-params-init-container-image-location KUBERNETES-PARAMS-INIT-CONTAINER-IMAGE-LOCATION --kubernetes-params-kubernetes-distribution KUBERNETES-PARAMS-KUBERNETES-DISTRIBUTION --kubernetes-params-kubernetes-type KUBERNETES-PARAMS-KUBERNETES-TYPE --kubernetes-params-priority-class-name KUBERNETES-PARAMS-PRIORITY-CLASS-NAME --kubernetes-params-resource-annotations KUBERNETES-PARAMS-RESOURCE-ANNOTATIONS --kubernetes-params-resource-labels KUBERNETES-PARAMS-RESOURCE-LABELS --kubernetes-params-san-fields KUBERNETES-PARAMS-SAN-FIELDS --kubernetes-params-service-annotations KUBERNETES-PARAMS-SERVICE-ANNOTATIONS --kubernetes-params-velero-aws-plugin-image-location KUBERNETES-PARAMS-VELERO-AWS-PLUGIN-IMAGE-LOCATION --kubernetes-params-velero-image-location KUBERNETES-PARAMS-VELERO-IMAGE-LOCATION --kubernetes-params-velero-openshift-plugin-image-location KUBERNETES-PARAMS-VELERO-OPENSHIFT-PLUGIN-IMAGE-LOCATION --kubernetes-params-vlan-info-vec KUBERNETES-PARAMS-VLAN-INFO-VEC]
 ```
 
 
@@ -404,64 +506,72 @@ ibmcloud backup-recovery protection-source register --xibm-tenant-id XIBM-TENANT
 :   Specifies the connector group id of connector groups.
 
 `--kubernetes-params` (string)
-:   Specifies the parameters to register a Kubernetes source. It should be a JSON string or a path to a JSON file.
+:   Specifies the parameters to register a Kubernetes source. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--kubernetes-params=@path/to/file.json`.
 
 `--kubernetes-params-auto-protect-config` (string)
-:   Specifies the parameters to auto protect the source after registration. It should be a JSON string or a path to a JSON file.
+:   Specifies the parameters to auto protect the source after registration. It should be a JSON string or a path to a JSON file. This option provides a value for a sub-field of the JSON option 'kubernetes-params'. It is mutually exclusive with that option.
 
 `--kubernetes-params-client-private-key` (string)
-:   Specifies the bearer token or private key of Kubernetes source.
-
-`--kubernetes-params-data-mover-image-location` (string)
-:   Specifies the datamover image location of Kubernetes source.
-
-`--kubernetes-params-datamover-service-type` (string)
-:   Specifies the data mover service type of Kubernetes source. Allowable values are: kNodePort, kLoadBalancer, kClusterIp.
-
-`--kubernetes-params-default-vlan-params` (string)
-:   Specifies VLAN params associated with the backup/restore operation. It should be a JSON string or a path to a JSON file.
-
-`--kubernetes-params-endpoint` (string)
-:   Specifies the endpoint of Kubernetes source.
-
-`--kubernetes-params-init-container-image-location` (string)
-:   Specifies the initial container image location of Kubernetes source.
+:   Specifies the bearer token or private key of Kubernetes source. This option provides a value for a sub-field of the JSON option 'kubernetes-params'. It is mutually exclusive with that option.
 
 `--kubernetes-params-cohesity-dataprotect-plugin-image-location` (string)
-:   Specifies the custom Cohesity Dataprotect plugin image location of the Kubernetes source.
+:   Specifies the custom Cohesity Dataprotect plugin image location of the Kubernetes source. This option provides a value for a sub-field of the JSON option 'kubernetes-params'. It is mutually exclusive with that option.
+
+`--kubernetes-params-data-mover-image-location` (string)
+:   Specifies the datamover image location of Kubernetes source. This option provides a value for a sub-field of the JSON option 'kubernetes-params'. It is mutually exclusive with that option.
+
+`--kubernetes-params-datamover-service-type` (string)
+:   Specifies the data mover service type of Kubernetes source. This option provides a value for a sub-field of the JSON option 'kubernetes-params'. It is mutually exclusive with that option.
+
+    Allowable values are: `kNodePort`, `kLoadBalancer`, `kClusterIp`.
+
+`--kubernetes-params-default-vlan-params` (string)
+:   Specifies VLAN params associated with the backup/restore operation. It should be a JSON string or a path to a JSON file. This option provides a value for a sub-field of the JSON option 'kubernetes-params'. It is mutually exclusive with that option.
+
+`--kubernetes-params-endpoint` (string)
+:   Specifies the endpoint of Kubernetes source. This option provides a value for a sub-field of the JSON option 'kubernetes-params'. It is mutually exclusive with that option.
+
+`--kubernetes-params-init-container-image-location` (string)
+:   Specifies the initial container image location of Kubernetes source. This option provides a value for a sub-field of the JSON option 'kubernetes-params'. It is mutually exclusive with that option.
 
 `--kubernetes-params-kubernetes-distribution` (string)
-:   Specifies the distribution type of Kubernetes source. Allowable values are: kOpenshift, kMainline, kVMwareTanzu, kRancher, kEKS, kGKE, kAKS, kIKS, kROKS.
+:   Specifies the distribution type of Kubernetes source. This option provides a value for a sub-field of the JSON option 'kubernetes-params'. It is mutually exclusive with that option.
+
+    Allowable values are: `kOpenshift`, `kMainline`, `kVMwareTanzu`, `kRancher`, `kEKS`, `kGKE`, `kAKS`, `kIKS`, `kROKS`.
 
 `--kubernetes-params-kubernetes-type` (string)
-:   Specifies the type of kubernetes source. Allowable values are: kCluster, kNamespace, kService, kPVC, kPersistentVolumeClaim, kPersistentVolume, kLabel.
+:   Specifies the type of kubernetes source. This option provides a value for a sub-field of the JSON option 'kubernetes-params'. It is mutually exclusive with that option.
+
+    Allowable values are: `kCluster`, `kNamespace`, `kService`, `kPVC`, `kPersistentVolumeClaim`, `kPersistentVolume`, `kLabel`.
 
 `--kubernetes-params-priority-class-name` (string)
-:   Specifies the priority class name for cohesity resources.
+:   Specifies the priority class name for cohesity resources. This option provides a value for a sub-field of the JSON option 'kubernetes-params'. It is mutually exclusive with that option.
 
 `--kubernetes-params-resource-annotations` (string)
-:   Specifies resource annotations to be applied on cohesity resources. It should be a JSON string or a path to a JSON file.
+:   Specifies resource annotations to be applied on cohesity resources. It should be a JSON string or a path to a JSON file. This option provides a value for a sub-field of the JSON option 'kubernetes-params'. It is mutually exclusive with that option.
 
 `--kubernetes-params-resource-labels` (string)
-:   Specifies resource label to be applied on cohesity resources. It should be a JSON string or a path to a JSON file.
+:   Specifies resource label to be applied on cohesity resources. It should be a JSON string or a path to a JSON file. This option provides a value for a sub-field of the JSON option 'kubernetes-params'. It is mutually exclusive with that option.
 
 `--kubernetes-params-san-fields` (string)
-:   Specifies the SAN field for agent certificate.
+:   Specifies the SAN field for agent certificate. This option provides a value for a sub-field of the JSON option 'kubernetes-params'. It is mutually exclusive with that option.
 
 `--kubernetes-params-service-annotations` (string)
-:   Specifies the service annotation object of Kubernetes source. It should be a JSON string or a path to a JSON file.
+:   Specifies the service annotation object of Kubernetes source. It should be a JSON string or a path to a JSON file. This option provides a value for a sub-field of the JSON option 'kubernetes-params'. It is mutually exclusive with that option.
 
 `--kubernetes-params-velero-aws-plugin-image-location` (string)
-:   Specifies the velero AWS plugin image location of the Kubernetes source.
+:   Specifies the velero AWS plugin image location of the Kubernetes source. This option provides a value for a sub-field of the JSON option 'kubernetes-params'. It is mutually exclusive with that option.
 
 `--kubernetes-params-velero-image-location` (string)
-:   Specifies the velero image location of the Kubernetes source.
+:   Specifies the velero image location of the Kubernetes source. This option provides a value for a sub-field of the JSON option 'kubernetes-params'. It is mutually exclusive with that option.
 
 `--kubernetes-params-velero-openshift-plugin-image-location` (string)
-:   Specifies the velero open shift plugin image for the Kubernetes source.
+:   Specifies the velero open shift plugin image for the Kubernetes source. This option provides a value for a sub-field of the JSON option 'kubernetes-params'. It is mutually exclusive with that option.
 
 `--kubernetes-params-vlan-info-vec` (string)
-:   Specifies VLAN information provided during registration. It should be a JSON string or a path to a JSON file.
+:   Specifies VLAN information provided during registration. It should be a JSON string or a path to a JSON file. This option provides a value for a sub-field of the JSON option 'kubernetes-params'. It is mutually exclusive with that option.
 
 `--advanced-configs`
 :   Specifies the advanced configuration for a protection source.
@@ -579,7 +689,7 @@ ibmcloud backup-recovery protection-source registration-get \
 Update Protection Source registration.
 
 ```sh
-ibmcloud backup-recovery protection-source registration-update --id ID --xibm-tenant-id XIBM-TENANT-ID --environment ENVIRONMENT [--name NAME] [--is-internal-encrypted=IS-INTERNAL-ENCRYPTED] [--encryption-key ENCRYPTION-KEY] [--connection-id CONNECTION-ID] [--connections CONNECTIONS] [--connector-group-id CONNECTOR-GROUP-ID] [--advanced-configs ADVANCED-CONFIGS] [--data-source-connection-id DATA-SOURCE-CONNECTION-ID] [--last-modified-timestamp-usecs LAST-MODIFIED-TIMESTAMP-USECS] [--physical-params PHYSICAL-PARAMS | --physical-params-endpoint PHYSICAL-PARAMS-ENDPOINT --physical-params-force-register=PHYSICAL-PARAMS-FORCE-REGISTER --physical-params-host-type PHYSICAL-PARAMS-HOST-TYPE --physical-params-physical-type PHYSICAL-PARAMS-PHYSICAL-TYPE --physical-params-applications PHYSICAL-PARAMS-APPLICATIONS] [--kubernetes-params KUBERNETES-PARAMS | | --auto-protect-config=AUTO-PROTECT-CONFIG --client-private-key=CLIENT-PRIVATE-KEY]
+ibmcloud backup-recovery protection-source registration-update --id ID --xibm-tenant-id XIBM-TENANT-ID --environment ENVIRONMENT [--name NAME] [--is-internal-encrypted=IS-INTERNAL-ENCRYPTED] [--encryption-key ENCRYPTION-KEY] [--connection-id CONNECTION-ID] [--connections CONNECTIONS] [--connector-group-id CONNECTOR-GROUP-ID] [--advanced-configs ADVANCED-CONFIGS] [--data-source-connection-id DATA-SOURCE-CONNECTION-ID] [--last-modified-timestamp-usecs LAST-MODIFIED-TIMESTAMP-USECS] [--physical-params PHYSICAL-PARAMS | --physical-params-endpoint PHYSICAL-PARAMS-ENDPOINT --physical-params-force-register=PHYSICAL-PARAMS-FORCE-REGISTER --physical-params-host-type PHYSICAL-PARAMS-HOST-TYPE --physical-params-physical-type PHYSICAL-PARAMS-PHYSICAL-TYPE --physical-params-applications PHYSICAL-PARAMS-APPLICATIONS] [--kubernetes-params KUBERNETES-PARAMS | --kubernetes-params-auto-protect-config KUBERNETES-PARAMS-AUTO-PROTECT-CONFIG --kubernetes-params-client-private-key KUBERNETES-PARAMS-CLIENT-PRIVATE-KEY --kubernetes-params-cohesity-dataprotect-plugin-image-location KUBERNETES-PARAMS-COHESITY-DATAPROTECT-PLUGIN-IMAGE-LOCATION --kubernetes-params-data-mover-image-location KUBERNETES-PARAMS-DATA-MOVER-IMAGE-LOCATION --kubernetes-params-datamover-service-type KUBERNETES-PARAMS-DATAMOVER-SERVICE-TYPE --kubernetes-params-default-vlan-params KUBERNETES-PARAMS-DEFAULT-VLAN-PARAMS --kubernetes-params-endpoint KUBERNETES-PARAMS-ENDPOINT --kubernetes-params-init-container-image-location KUBERNETES-PARAMS-INIT-CONTAINER-IMAGE-LOCATION --kubernetes-params-kubernetes-distribution KUBERNETES-PARAMS-KUBERNETES-DISTRIBUTION --kubernetes-params-kubernetes-type KUBERNETES-PARAMS-KUBERNETES-TYPE --kubernetes-params-priority-class-name KUBERNETES-PARAMS-PRIORITY-CLASS-NAME --kubernetes-params-resource-annotations KUBERNETES-PARAMS-RESOURCE-ANNOTATIONS --kubernetes-params-resource-labels KUBERNETES-PARAMS-RESOURCE-LABELS --kubernetes-params-san-fields KUBERNETES-PARAMS-SAN-FIELDS --kubernetes-params-service-annotations KUBERNETES-PARAMS-SERVICE-ANNOTATIONS --kubernetes-params-velero-aws-plugin-image-location KUBERNETES-PARAMS-VELERO-AWS-PLUGIN-IMAGE-LOCATION --kubernetes-params-velero-image-location KUBERNETES-PARAMS-VELERO-IMAGE-LOCATION --kubernetes-params-velero-openshift-plugin-image-location KUBERNETES-PARAMS-VELERO-OPENSHIFT-PLUGIN-IMAGE-LOCATION --kubernetes-params-vlan-info-vec KUBERNETES-PARAMS-VLAN-INFO-VEC]
 ```
 
 
@@ -617,65 +727,73 @@ ibmcloud backup-recovery protection-source registration-update --id ID --xibm-te
 `--connector-group-id` (int64)
 :   Specifies the connector group id of connector groups.
 
+`--kubernetes-params` (string)
+:   Specifies the parameters to register a Kubernetes source. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
+
+    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, e.g. `--kubernetes-params=@path/to/file.json`.
+
 `--kubernetes-params-auto-protect-config` (string)
-:   Specifies the parameters to auto protect the source after registration. It should be a JSON string or a path to a JSON file.
+:   Specifies the parameters to auto protect the source after registration. It should be a JSON string or a path to a JSON file. This option provides a value for a sub-field of the JSON option 'kubernetes-params'. It is mutually exclusive with that option.
 
 `--kubernetes-params-client-private-key` (string)
-:   Specifies the bearer token or private key of Kubernetes source.
+:   Specifies the bearer token or private key of Kubernetes source. This option provides a value for a sub-field of the JSON option 'kubernetes-params'. It is mutually exclusive with that option.
 
 `--kubernetes-params-cohesity-dataprotect-plugin-image-location` (string)
-:   Specifies the custom Cohesity Dataprotect plugin image location of the Kubernetes source.
+:   Specifies the custom Cohesity Dataprotect plugin image location of the Kubernetes source. This option provides a value for a sub-field of the JSON option 'kubernetes-params'. It is mutually exclusive with that option.
 
 `--kubernetes-params-data-mover-image-location` (string)
-:   Specifies the datamover image location of Kubernetes source.
+:   Specifies the datamover image location of Kubernetes source. This option provides a value for a sub-field of the JSON option 'kubernetes-params'. It is mutually exclusive with that option.
 
 `--kubernetes-params-datamover-service-type` (string)
-:   Specifies the data mover service type of Kubernetes source. Allowable values are: kNodePort, kLoadBalancer, kClusterIp.
+:   Specifies the data mover service type of Kubernetes source. This option provides a value for a sub-field of the JSON option 'kubernetes-params'. It is mutually exclusive with that option.
+
+    Allowable values are: `kNodePort`, `kLoadBalancer`, `kClusterIp`.
 
 `--kubernetes-params-default-vlan-params` (string)
-:   Specifies VLAN params associated with the backup/restore operation. It should be a JSON string or a path to a JSON file.
+:   Specifies VLAN params associated with the backup/restore operation. It should be a JSON string or a path to a JSON file. This option provides a value for a sub-field of the JSON option 'kubernetes-params'. It is mutually exclusive with that option.
 
 `--kubernetes-params-endpoint` (string)
-:   Specifies the endpoint of Kubernetes source.
-
-`--kubernetes-params` (string)
-:   Specifies the parameters to register an Kubernetes source.
+:   Specifies the endpoint of Kubernetes source. This option provides a value for a sub-field of the JSON option 'kubernetes-params'. It is mutually exclusive with that option.
 
 `--kubernetes-params-init-container-image-location` (string)
-:   Specifies the initial container image location of Kubernetes source.
+:   Specifies the initial container image location of Kubernetes source. This option provides a value for a sub-field of the JSON option 'kubernetes-params'. It is mutually exclusive with that option.
 
 `--kubernetes-params-kubernetes-distribution` (string)
-:   Specifies the distribution type of Kubernetes source. Allowable values are: kOpenshift, kMainline, kVMwareTanzu, kRancher, kEKS, kGKE, kAKS, kIKS, kROKS.
+:   Specifies the distribution type of Kubernetes source. This option provides a value for a sub-field of the JSON option 'kubernetes-params'. It is mutually exclusive with that option.
+
+    Allowable values are: `kOpenshift`, `kMainline`, `kVMwareTanzu`, `kRancher`, `kEKS`, `kGKE`, `kAKS`, `kIKS`, `kROKS`.
 
 `--kubernetes-params-kubernetes-type` (string)
-:   Specifies the type of kubernetes source. Allowable values are: kCluster, kNamespace, kService, kPVC, kPersistentVolumeClaim, kPersistentVolume, kLabel.
+:   Specifies the type of kubernetes source. This option provides a value for a sub-field of the JSON option 'kubernetes-params'. It is mutually exclusive with that option.
+
+    Allowable values are: `kCluster`, `kNamespace`, `kService`, `kPVC`, `kPersistentVolumeClaim`, `kPersistentVolume`, `kLabel`.
 
 `--kubernetes-params-priority-class-name` (string)
-:   Specifies the priority class name for cohesity resources.
+:   Specifies the priority class name for cohesity resources. This option provides a value for a sub-field of the JSON option 'kubernetes-params'. It is mutually exclusive with that option.
 
 `--kubernetes-params-resource-annotations` (string)
-:   Specifies resource annotations to be applied on cohesity resources. It should be a JSON string or a path to a JSON file.
+:   Specifies resource annotations to be applied on cohesity resources. It should be a JSON string or a path to a JSON file. This option provides a value for a sub-field of the JSON option 'kubernetes-params'. It is mutually exclusive with that option.
 
 `--kubernetes-params-resource-labels` (string)
-:   Specifies resource label to be applied on cohesity resources. It should be a JSON string or a path to a JSON file.
+:   Specifies resource label to be applied on cohesity resources. It should be a JSON string or a path to a JSON file. This option provides a value for a sub-field of the JSON option 'kubernetes-params'. It is mutually exclusive with that option.
 
 `--kubernetes-params-san-fields` (string)
-:   Specifies the SAN field for agent certificate.
+:   Specifies the SAN field for agent certificate. This option provides a value for a sub-field of the JSON option 'kubernetes-params'. It is mutually exclusive with that option.
 
 `--kubernetes-params-service-annotations` (string)
-:   Specifies the service annotation object of Kubernetes source. It should be a JSON string or a path to a JSON file.
+:   Specifies the service annotation object of Kubernetes source. It should be a JSON string or a path to a JSON file. This option provides a value for a sub-field of the JSON option 'kubernetes-params'. It is mutually exclusive with that option.
 
 `--kubernetes-params-velero-aws-plugin-image-location` (string)
-:   Specifies the velero AWS plugin image location of the Kubernetes source.
+:   Specifies the velero AWS plugin image location of the Kubernetes source. This option provides a value for a sub-field of the JSON option 'kubernetes-params'. It is mutually exclusive with that option.
 
 `--kubernetes-params-velero-image-location` (string)
-:   Specifies the velero image location of the Kubernetes source.
+:   Specifies the velero image location of the Kubernetes source. This option provides a value for a sub-field of the JSON option 'kubernetes-params'. It is mutually exclusive with that option.
 
 `--kubernetes-params-velero-openshift-plugin-image-location` (string)
-:   Specifies the velero open shift plugin image for the Kubernetes source.
+:   Specifies the velero open shift plugin image for the Kubernetes source. This option provides a value for a sub-field of the JSON option 'kubernetes-params'. It is mutually exclusive with that option.
 
 `--kubernetes-params-vlan-info-vec` (string)
-:   Specifies VLAN information provided during registration. It should be a JSON string or a path to a JSON file.
+:   Specifies VLAN information provided during registration. It should be a JSON string or a path to a JSON file. This option provides a value for a sub-field of the JSON option 'kubernetes-params'. It is mutually exclusive with that option.
 
 `--advanced-configs`
 :   Specifies the advanced configuration for a protection source.
@@ -800,7 +918,7 @@ ibmcloud backup-recovery protection-source registration-patch \
 Delete Protection Source Registration.
 
 ```sh
-ibmcloud backup-recovery protection-source registration-delete --id ID --xibm-tenant-id XIBM-TENANT-ID
+ibmcloud backup-recovery protection-source registration-delete --id ID --xibm-tenant-id XIBM-TENANT-ID [--force]
 ```
 
 
@@ -812,6 +930,9 @@ ibmcloud backup-recovery protection-source registration-delete --id ID --xibm-te
 
 `--xibm-tenant-id` (string)
 :   Specifies the key to be used to encrypt the source credential. If includeSourceCredentials is set to true this key must be specified. Required.
+
+`-f`, `--force` (bool)
+:   Force the command to execute without confirmation.
 
 #### Example
 {: #backup-recovery-protection-source-registration-delete-examples}
@@ -1425,7 +1546,7 @@ ibmcloud backup-recovery protection-policy update \
 Deletes a Protection Policy based on given policy id.
 
 ```sh
-ibmcloud backup-recovery protection-policy delete --id ID --xibm-tenant-id XIBM-TENANT-ID
+ibmcloud backup-recovery protection-policy delete --id ID --xibm-tenant-id XIBM-TENANT-ID [--force]
 ```
 
 
@@ -1437,6 +1558,9 @@ ibmcloud backup-recovery protection-policy delete --id ID --xibm-tenant-id XIBM-
 
 `--xibm-tenant-id` (string)
 :   Specifies the key to be used to encrypt the source credential. If includeSourceCredentials is set to true this key must be specified. Required.
+
+`--force` (bool)
+:   Force the command to execute.
 
 #### Example
 {: #backup-recovery-protection-policy-delete-examples}
@@ -2140,7 +2264,7 @@ ibmcloud backup-recovery protection-group update \
 Returns Success if the Protection Group is deleted.
 
 ```sh
-ibmcloud backup-recovery protection-group delete --id ID --xibm-tenant-id XIBM-TENANT-ID [--delete-snapshots=DELETE-SNAPSHOTS]
+ibmcloud backup-recovery protection-group delete --id ID --xibm-tenant-id XIBM-TENANT-ID [--delete-snapshots=DELETE-SNAPSHOTS] [--force]
 ```
 
 
@@ -2155,6 +2279,9 @@ ibmcloud backup-recovery protection-group delete --id ID --xibm-tenant-id XIBM-T
 
 `--delete-snapshots` (bool)
 :   Specifies if Snapshots generated by the Protection Group should also be deleted when the Protection Group is deleted.
+
+`-f`, `--force` (bool)
+:   Force the command to execute without confirmation.
 
 #### Example
 {: #backup-recovery-protection-group-delete-examples}
@@ -2304,7 +2431,7 @@ ibmcloud backup-recovery protection-group-run list \
 Update runs for a particular Protection Group. A user can perform the following actions: 1. Extend or reduce retention of a local, replication and archival snapshots. 2. Can perform resync operation on failed copy snapshots attempts in this Run. 3. Add new replication and archival snapshot targets to the Run. 4. Add or remove legal hold on the snapshots. Only a user with DSO role can perform this operation. 5. Delete the snapshots that were created as a part of this Run. 6. Apply datalock on existing snapshots where a user cannot manually delete snapshots before the expiry time.
 
 ```sh
-ibmcloud backup-recovery protection-group-run update --id ID --xibm-tenant-id XIBM-TENANT-ID --update-protection-group-run-params UPDATE-PROTECTION-GROUP-RUN-PARAMS
+ibmcloud backup-recovery protection-group-run update --id ID --xibm-tenant-id XIBM-TENANT-ID --update-protection-group-run-params UPDATE-PROTECTION-GROUP-RUN-PARAMS | @UPDATE-PROTECTION-GROUP-RUN-PARAMS-FILE
 ```
 
 
@@ -2422,7 +2549,7 @@ ibmcloud backup-recovery protection-group-run create \
 Perform various actions on a Protection Group run.
 
 ```sh
-ibmcloud backup-recovery protection-group-run perform-action --id ID --xibm-tenant-id XIBM-TENANT-ID --action ACTION [--pause-params PAUSE-PARAMS] [--resume-params RESUME-PARAMS] [--cancel-params CANCEL-PARAMS]
+ibmcloud backup-recovery protection-group-run perform-action --id ID --xibm-tenant-id XIBM-TENANT-ID --action ACTION [--pause-params PAUSE-PARAMS | @PAUSE-PARAMS-FILE] [--resume-params RESUME-PARAMS | @RESUME-PARAMS-FILE] [--cancel-params CANCEL-PARAMS | @CANCEL-PARAMS-FILE]
 ```
 
 
@@ -2522,7 +2649,7 @@ ibmcloud backup-recovery recovery list --xibm-tenant-id XIBM-TENANT-ID [--ids ID
 `--snapshot-environments` ([]string)
 :   Specifies the list of snapshot environment types to filter Recoveries. If empty, Recoveries related to all environments will be returned.
 
-    Allowable list items are: `kPhysical`, `kSQL`.
+    Allowable list items are: `kPhysical`, `kSQL`, `kKubernetes`.
 
 `--status` ([]string)
 :   Specifies the list of run status to filter Recoveries. If empty, Recoveries with all run status will be returned.
@@ -2860,7 +2987,7 @@ ibmcloud backup-recovery data-source-connection create \
 Delete a data-source connection using its ID. After deleting a connection, any connectors within it won't be able to connect to the cluster. A connection should only be deleted after ensuring that no sources are using it.
 
 ```sh
-ibmcloud backup-recovery data-source-connection delete --connection-id CONNECTION-ID --xibm-tenant-id XIBM-TENANT-ID
+ibmcloud backup-recovery data-source-connection delete --connection-id CONNECTION-ID --xibm-tenant-id XIBM-TENANT-ID [--force]
 ```
 
 
@@ -2872,6 +2999,9 @@ ibmcloud backup-recovery data-source-connection delete --connection-id CONNECTIO
 
 `--xibm-tenant-id` (string)
 :   Specifies the key to be used to encrypt the source credential. If includeSourceCredentials is set to true this key must be specified. Required.
+
+`-f`, `--force` (bool)
+:   Force the command to execute without confirmation.
 
 #### Example
 {: #backup-recovery-data-source-connection-delete-examples}
@@ -2998,7 +3128,7 @@ ibmcloud backup-recovery data-source-connector list \
 Delete the data-source connector specified by the ID in the request path.
 
 ```sh
-ibmcloud backup-recovery data-source-connector delete --connector-id CONNECTOR-ID --xibm-tenant-id XIBM-TENANT-ID
+ibmcloud backup-recovery data-source-connector delete --connector-id CONNECTOR-ID --xibm-tenant-id XIBM-TENANT-ID [--force]
 ```
 
 
@@ -3010,6 +3140,9 @@ ibmcloud backup-recovery data-source-connector delete --connector-id CONNECTOR-I
 
 `--xibm-tenant-id` (string)
 :   Specifies the key to be used to encrypt the source credential. If includeSourceCredentials is set to true this key must be specified. Required.
+
+`-f`, `--force` (bool)
+:   Force the command to execute without confirmation.
 
 #### Example
 {: #backup-recovery-data-source-connector-delete-examples}
@@ -3053,8 +3186,91 @@ ibmcloud backup-recovery data-source-connector patch \
     --connector-name connectorName
 ```
 {: pre}
+### `ibmcloud backup-recovery data-source-connector-logs`
+{: #backup-recovery-cli-data-source-connector-logs-command}
 
-##
+Lists the logs corresponding to the data-source connector creation and registration.
+
+```sh
+ibmcloud backup-recovery data-source-connector-logs --access-token ACCESS-TOKEN
+```
+
+
+#### Command options
+{: #backup-recovery-data-source-connector-logs-cli-options}
+
+`--access-token` (string)
+:   Access-token that is received from the connector. Required.
+
+#### Example
+{: #backup-recovery-data-source-connector-logs-examples}
+
+```sh
+ibmcloud backup-recovery data-source-connector-logs \
+    --access-token eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRoLXR5cGUiOiIxIiwiZG9tYWluIjoiTE9DQUwiLCJleHBpcmF0aW9uLXRpbWUiOiIxNzM4NjY0NTI2IiwiaW4tY2x1c3RlciI6dHJ1ZSwibG9jYWxlIjoiZW4tdXMiLCJyb2xlcyI6IkNPSEVTSVRZX0FETUlOIiwic2lkcy1oYXNoIjoidG9CT3FhSllHUVhOTEF6ZWN5TTh1S05vbXNMT1VnbFVQUjYwNTJkdmJIYyIsInVzZXItc2lkIjoiUy0xLTEwMC0yMS0xMDY3Mjc0Mi0zOTcxMDE1MS0xIiwidXNlcm5hbWUiOiJhZG1pbiJ9.CiW0yedyrx7GQeI9GxloKU-zcuHUDCt0jvcz6H2bGd0ABNUWxryX22xNzEzAYIjoU3qdaS1hF7ch9WzKU-Jnk3eh2wmn_Ezb8Qe_gmxmeXRxKqPGSnVYZdMREXQsPJYfbncyftr-iiOluPZ52UgzkcBS2MeRIur5UEYNCumZqoYDVXAxLbuEyBhIrWMPQMUAe2gym4QRd6U-zmtMoLwa6DlKyzJsV_75mR-B9Vg9Aq78_DjXTgX6Lbq_IJJHplL83Sd1vJhlMO92C1Zm8AF2n_PeyDeFbUtU6TfCS6BlqFAfFv1sxDjKLAoPqmNagvEB-w_HeW_dfjGLfNUzqc3JUQ
+```
+{: pre}
+### `ibmcloud backup-recovery data-source-connector-register`
+{: #backup-recovery-cli-data-source-connector-register-command}
+
+Register a data source connector with a cluster using the supplied registration token. The registration token for the data-source connection with which this connector is to be registered has to be obtained by the user by invoking the relevant '/data-source-connections' APIs.
+
+```sh
+ibmcloud backup-recovery data-source-connector-register --registration-token REGISTRATION-TOKEN [--access-token ACCESS-TOKEN] [--connector-id CONNECTOR-ID]
+```
+
+
+#### Command options
+{: #backup-recovery-data-source-connector-register-cli-options}
+
+`--registration-token` (string)
+:   The registration token. Required.
+
+`--access-token` (string)
+:   Access token for authentication.
+
+`--connector-id` (int64)
+:   The connector's ID to be used for registration. Two connectors belonging to the same tenant are guaranteed to have different IDs.
+
+#### Example
+{: #backup-recovery-data-source-connector-register-examples}
+
+```sh
+ibmcloud backup-recovery data-source-connector-register \
+    --access-token eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRoLXR5cGUiOiIxIiwiZG9tYWluIjoiTE9DQUwiLCJleHBpcmF0aW9uLXRpbWUiOiIxNzM4NjY0NTI2IiwiaW4tY2x1c3RlciI6dHJ1ZSwibG9jYWxlIjoiZW4tdXMiLCJyb2xlcyI6IkNPSEVTSVRZX0FETUlOIiwic2lkcy1oYXNoIjoidG9CT3FhSllHUVhOTEF6ZWN5TTh1S05vbXNMT1VnbFVQUjYwNTJkdmJIYyIsInVzZXItc2lkIjoiUy0xLTEwMC0yMS0xMDY3Mjc0Mi0zOTcxMDE1MS0xIiwidXNlcm5hbWUiOiJhZG1pbiJ9.CiW0yedyrx7GQeI9GxloKU-zcuHUDCt0jvcz6H2bGd0ABNUWxryX22xNzEzAYIjoU3qdaS1hF7ch9WzKU-Jnk3eh2wmn_Ezb8Qe_gmxmeXRxKqPGSnVYZdMREXQsPJYfbncyftr-iiOluPZ52UgzkcBS2MeRIur5UEYNCumZqoYDVXAxLbuEyBhIrWMPQMUAe2gym4QRd6U-zmtMoLwa6DlKyzJsV_75mR-B9Vg9Aq78_DjXTgX6Lbq_IJJHplL83Sd1vJhlMO92C1Zm8AF2n_PeyDeFbUtU6TfCS6BlqFAfFv1sxDjKLAoPqmNagvEB-w_HeW_dfjGLfNUzqc3JUQ \
+    --registration-token exampleString \
+    --connector-id 26
+### `ibmcloud backup-recovery data-source-connector-status`
+{: #backup-recovery-cli-data-source-connector-status-command}
+
+Lists the data source connector status, which includes registration as well as cluster-connectivity status.
+
+```sh
+ibmcloud backup-recovery data-source-connector-status --access-token ACCESS-TOKEN
+```
+
+
+#### Command options
+{: #backup-recovery-data-source-connector-status-cli-options}
+
+`--access-token` (string)
+:   Access-token that is received from the connector. Required.
+
+#### Example
+{: #backup-recovery-data-source-connector-status-examples}
+
+```sh
+ibmcloud backup-recovery data-source-connector-status \
+    --access-token eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRoLXR5cGUiOiIxIiwiZG9tYWluIjoiTE9DQUwiLCJleHBpcmF0aW9uLXRpbWUiOiIxNzM4NjY0NTI2IiwiaW4tY2x1c3RlciI6dHJ1ZSwibG9jYWxlIjoiZW4tdXMiLCJyb2xlcyI6IkNPSEVTSVRZX0FETUlOIiwic2lkcy1oYXNoIjoidG9CT3FhSllHUVhOTEF6ZWN5TTh1S05vbXNMT1VnbFVQUjYwNTJkdmJIYyIsInVzZXItc2lkIjoiUy0xLTEwMC0yMS0xMDY3Mjc0Mi0zOTcxMDE1MS0xIiwidXNlcm5hbWUiOiJhZG1pbiJ9.CiW0yedyrx7GQeI9GxloKU-zcuHUDCt0jvcz6H2bGd0ABNUWxryX22xNzEzAYIjoU3qdaS1hF7ch9WzKU-Jnk3eh2wmn_Ezb8Qe_gmxmeXRxKqPGSnVYZdMREXQsPJYfbncyftr-iiOluPZ52UgzkcBS2MeRIur5UEYNCumZqoYDVXAxLbuEyBhIrWMPQMUAe2gym4QRd6U-zmtMoLwa6DlKyzJsV_75mR-B9Vg9Aq78_DjXTgX6Lbq_IJJHplL83Sd1vJhlMO92C1Zm8AF2n_PeyDeFbUtU6TfCS6BlqFAfFv1sxDjKLAoPqmNagvEB-w_HeW_dfjGLfNUzqc3JUQ
+```
+{: pre}
+
+```
+{: pre}
+
+
+
+## Agent commands
 {: #backup-recovery-agent-cli}
 
 ### `ibmcloud backup-recovery agent-download`
@@ -3110,7 +3326,7 @@ ibmcloud backup-recovery agent-download \
 ```
 {: pre}
 
-##
+## Data source connector commands
 {: #backup-recovery-data-source-connector-cli}
 
 ### `ibmcloud backup-recovery connector-metadata-get`
@@ -3138,7 +3354,7 @@ ibmcloud backup-recovery connector-metadata-get \
 ```
 {: pre}
 
-##
+## Object commands
 {: #backup-recovery-object-cli}
 
 ### `ibmcloud backup-recovery object-snapshots-list`
@@ -3216,7 +3432,7 @@ ibmcloud backup-recovery object-snapshots-list \
 ```
 {: pre}
 
-##
+## Recovery commands
 {: #backup-recovery-recovery-cli}
 
 ### `ibmcloud backup-recovery download-recovery-create`
@@ -3410,7 +3626,7 @@ ibmcloud backup-recovery indexed-file-download \
 ```
 {: pre}
 
-##
+## Search commands
 {: #backup-recovery-search-cli}
 
 ### `ibmcloud backup-recovery indexed-objects-search`
@@ -3427,7 +3643,7 @@ ibmcloud backup-recovery indexed-objects-search --xibm-tenant-id XIBM-TENANT-ID 
 {: #backup-recovery-indexed-objects-search-cli-options}
 
 `--xibm-tenant-id` (string)
-:   Specifies the key to be used to encrypt the source credential. If includeSourceCredentials is set to true this key must be specified. Required.
+:   Specifies the tenant ID for multi-tenant environments. This identifies which tenant's resources should be accessed. Required.
 
 `--object-type` (string)
 :   Specifies the object type to be searched for. Required.
@@ -3449,10 +3665,10 @@ ibmcloud backup-recovery indexed-objects-search --xibm-tenant-id XIBM-TENANT-ID 
     The default value is `false`.
 
 `--tags` ([]string)
-:   "This field is deprecated. Please use mightHaveTagIds.".
+:   This field is deprecated. Use --might-have-tag-ids instead.
 
 `--snapshot-tags` ([]string)
-:   "This field is deprecated. Please use mightHaveSnapshotTagIds.".
+:   This field is deprecated. Use --might-have-snapshot-tag-ids instead.
 
 `--must-have-tag-ids` ([]string)
 :   Specifies tags which must be all present in the document.
@@ -4331,4 +4547,324 @@ ibmcloud backup-recovery protected-objects-search \
     --cdp-protected-only=true \
     --use-cached-data=true
 ```
-{: pre} 
+{: pre}
+
+## provider-instances
+{: #backup-recovery-provider-instances-cli}
+
+List all the Provider Instances with details. The API returns the detailed listing of provider instances. The providers are responsible for managing the life cycle of instances and this API only intends to provide metadata information about the instances.
+
+```sh
+ibmcloud backup-recovery provider-instances [--instance-ids INSTANCE-IDS] [--regions REGIONS] [--include-service-instance-status=INCLUDE-SERVICE-INSTANCE-STATUS]
+```
+
+
+#### Command options
+{: #backup-recovery-provider-instances-cli-options}
+
+`--instance-ids` ([]string)
+:   List of Provider Instance IDs to filter on.
+
+`--regions` ([]string)
+:   List of regions to filter Provider Instances on.
+
+`--include-service-instance-status` (bool)
+:   Bool flag to check whether to include other details like cluster details and software version along with status for the service instances. The default value is false.
+
+#### Example
+{: #backup-recovery-provider-instances-examples}
+
+```sh
+ibmcloud backup-recovery provider-instances \
+    --instance-ids exampleString,anotherTestString \
+    --regions exampleString,anotherTestString \
+    --include-service-instance-status=false
+```
+{: pre}
+
+## ibmcloud backup-recovery management-console-resources
+{: #backup-recovery-console-resources-cli}
+
+Commands for Management Console resources.
+
+```sh
+ibmcloud backup-recovery management-console-resources --help
+```
+
+### `ibmcloud br management-console-resources list`
+{: #backup-recovery-cli-console-resources-list-command}
+
+Get different kinds of resources available which are discovered on Management Console. These values can be used for filtering options.
+
+```sh
+  ibmcloud backup-recovery management-console resources-list --resource-type RESOURCE-TYPE
+```
+
+#### Command options
+{: #backup-recovery-console-resources-list-cli-options}
+
+`--resource-type` (string)
+:   Required. Specifies the type of the resource. Allowable values are: Policies, ProtectionGroups, RegisteredSources, MessageCodeMappings.
+
+#### Example
+{: #backup-recovery-console-resources-list-examples}
+
+```sh
+ ibmcloud backup-recovery management-console resources-list \
+    --resource-type Policies
+```
+{: pre}
+
+### `ibmcloud backup-recovery management-console components-get`
+{: #backup-recovery-cli-console-components-get-command}
+
+Get information about a Report component.
+
+```sh
+ibmcloud backup-recovery management-console components-get --id ID
+```
+
+#### Command options
+{: #backup-recovery-console-components-get-cli-options}
+
+`--id` (string)
+:   Specifies the id of the report component. Required.
+
+#### Example
+{: #backup-recovery-console-components-get-examples}
+
+```sh
+ibmcloud backup-recovery management-console components-get \
+    --id exampleString
+```
+{: pre}
+
+### `ibmcloud backup-recovery management-console components-list`
+{: #backup-recovery-cli-console-components-list-command}
+
+Fetches list of all report components accessible by logged in user.
+
+```sh
+ibmcloud backup-recovery management-console components-list [--ids IDS]
+```
+
+#### Command options
+{: #backup-recovery-console-components-list-cli-options}
+
+`--ids` ([]string)
+:   Specifies the ids of the report component to fetch.
+
+#### Example
+{: #backup-recovery-console-components-list-examples}
+
+```sh
+ibmcloud backup-recovery management-console components-list \
+    --ids exampleString,anotherTestString
+```
+{: pre}
+
+### `ibmcloud backup-recovery management-console components-preview`
+{: #backup-recovery-cli-console-components-get-preview-command}
+
+Get preview for a component specified by Id.
+
+```sh
+ibmcloud backup-recovery management-console components-preview --id ID [--filters FILTERS | @FILTERS-FILE] [--limit (LIMIT | @LIMIT-FILE) | --limit-from LIMIT-FROM --limit-size LIMIT-SIZE] [--sort SORT | @SORT-FILE] [--timezone TIMEZONE]
+```
+
+#### Command options
+{: #backup-recovery-console-components-get-preview-cli-options}
+
+`--id` (string)
+:   Specifies the id of the component. Required.
+
+`--filters` (string)
+:   Specifies list of global filters that are applicable to given components in the report. It should be a JSON string or a path to a JSON file.
+
+`--limit` (string)
+:   Specifies the parameters to limit the resulting dataset. It should be a JSON string or a path to a JSON file.
+
+`--limit-from` (int)
+:   Specifies the offset to which resulting data will be skipped before applying the size parameter. For example if dataset size is 10 objects, from=2 and size=5, then from 10 objects only 5 objects are returned starting from offset 2 i.e., 2 to 7. If not specified, then none of the objects are skipped.
+
+`--limit-size` (int)
+:   Specifies the number of objects to be returned from the offset specified. The minimum value is 1.
+
+`--sort` (string)
+:   Specifies the sorting (ordering) parameters to be applied to the resulting data. It should be a JSON string or a path to a JSON file.
+
+`--timezone` (string)
+:   Specifies timezone of the user. If nil, defaults to UTC. The time specified should be a location name in the IANA Time Zone database, for example, 'America/Los_Angeles'.
+
+#### Example
+{: #backup-recovery-console-components-get-preview-examples}
+
+```sh
+ibmcloud backup-recovery management-console components-preview \
+    --id exampleString \
+    --filters '[{"attribute": "exampleString", "filterType": "In", "inFilterParams": {"attributeDataType": "Bool", "attributeLabels": ["exampleString","anotherTestString"], "boolFilterValues": [true,false], "int32FilterValues": [38,39], "int64FilterValues": [26,27], "stringFilterValues": ["exampleString","anotherTestString"]}, "rangeFilterParams": {"lowerBound": 26, "upperBound": 26}, "systemsFilterParams": {"systemIds": ["exampleString","anotherTestString"], "systemNames": ["exampleString","anotherTestString"]}, "timeRangeFilterParams": {"dateRange": "Last1Hour", "durationHours": 26, "lowerBound": 26, "upperBound": 26}}]' \
+    --limit '{"from": 38, "size": 1}' \
+    --sort '[{"attribute": "exampleString", "desc": true}]' \
+    --timezone exampleString
+```
+{: pre}
+
+### `ibmcloud backup-recovery management-console report-type`
+{: #backup-recovery-cli-management-console-report-type-command}
+
+Fetches list of properties of a report type.
+
+```sh
+  ibmcloud backup-recovery management-console report-type --report-type REPORT-TYPE
+```
+
+#### Command options
+{: #backup-recovery-management-console-report-type-cli-options}
+
+`--report-type` (string)
+:   Required. Specifies the report type. Allowable values are: Failures, ProtectedUnprotectedObjects, ProtectedObjects, ProtectionActivity, ProtectionGroupSummary, ProtectionRuns, ProtectionRunsTrend, Recovery.
+
+#### Example
+{: #backup-recovery-management-console-report-type-examples}
+
+```sh
+  ibmcloud backup-recovery management-console report-type \
+    --report-type Failures
+```
+{: pre}
+
+### `ibmcloud backup-recovery management-console export-report`
+{: #backup-recovery-cli-management-console-export-report-command}
+
+Export a configured report.
+
+```sh
+  ibmcloud backup-recovery management-console export-report --id ID [--async=ASYNC] [--filters FILTERS | @FILTERS-FILE] [--layout LAYOUT] [--report-format REPORT-FORMAT] [--timezone TIMEZONE]
+```
+
+#### Command options
+{: #backup-recovery-management-console-export-report-cli-options}
+
+`--async` (boolean)
+:   Specifies if the report should be generated asynchronously.
+
+`--filters` (string)
+:   Specifies list of global filters that are applicable to given components in the report. It should be a JSON string or a path to a JSON file.
+
+`--id` (string)
+:   Required. Specifies the id of the report.
+
+`--layout` (string)
+:   The layout of the report which needs to be exported.
+
+`--output-file` (string)
+:   Filename/path to write the resulting output to.
+
+`--report-format` (string)
+:   The format in which the report needs to be exported. Allowable values are: XLS, CSV.
+
+`--timezone` (string)
+:   Specifies timezone of the user. If nil, defaults to UTC. The time specified should be a location name in the IANA Time Zone database, for example, 'America/Los_Angeles'.
+
+#### Example
+{: #backup-recovery-management-console-export-report-examples}
+
+```sh
+  ibmcloud backup-recovery management-console export-report \
+    --id exampleString \
+    --async=true \
+    --filters '[{"attribute": "exampleString", "filterType": "In", "inFilterParams": {"attributeDataType": "Bool", "attributeLabels": ["exampleString","anotherTestString"], "boolFilterValues": [true,false], "int32FilterValues": [38,39], "int64FilterValues": [26,27], "stringFilterValues": ["exampleString","anotherTestString"]}, "rangeFilterParams": {"lowerBound": 26, "upperBound": 26}, "systemsFilterParams": {"systemIds": ["exampleString","anotherTestString"], "systemNames": ["exampleString","anotherTestString"]}, "timeRangeFilterParams": {"dateRange": "Last1Hour", "durationHours": 26, "lowerBound": 26, "upperBound": 26}}]' \
+    --layout exampleString \
+    --report-format XLS \
+    --timezone exampleString \
+    --output-file tempdir/example-output.txt
+```
+{: pre}
+
+### `ibmcloud backup-recovery management-console reports-preview`
+{: #backup-recovery-cli-management-console-reports-preview-command}
+
+Get preview of a configured report.
+
+```sh
+  ibmcloud backup-recovery management-console reports-preview --id ID [--component-ids COMPONENT-IDS] [--filters FILTERS | @FILTERS-FILE] [--timezone TIMEZONE]
+```
+
+#### Command options
+{: #backup-recovery-management-console-reports-preview-cli-options}
+
+`--component-ids` (string)
+:   Specifies list of components ids to be evaluated for the given report. If not specified, then all the components are evaluated.
+
+`--filters` (string)
+:   Specifies list of global filters that are applicable to given components in the report. It should be a JSON string or a path to a JSON file.
+
+`--id` (string)
+:   Required. Specifies the id of the report.
+
+`--timezone` (string)
+:   Specifies timezone of the user. If nil, defaults to UTC. The time specified should be a location name in the IANA Time Zone database, for example, 'America/Los_Angeles'.
+
+#### Example
+{: #backup-recovery-management-console-reports-preview-examples}
+
+```sh
+  ibmcloud backup-recovery management-console reports-preview \
+    --id exampleString \
+    --component-ids exampleString,anotherTestString \
+    --filters '[{"attribute": "exampleString", "filterType": "In", "inFilterParams": {"attributeDataType": "Bool", "attributeLabels": ["exampleString","anotherTestString"], "boolFilterValues": [true,false], "int32FilterValues": [38,39], "int64FilterValues": [26,27], "stringFilterValues": ["exampleString","anotherTestString"]}, "rangeFilterParams": {"lowerBound": 26, "upperBound": 26}, "systemsFilterParams": {"systemIds": ["exampleString","anotherTestString"], "systemNames": ["exampleString","anotherTestString"]}, "timeRangeFilterParams": {"dateRange": "Last1Hour", "durationHours": 26, "lowerBound": 26, "upperBound": 26}}]' \
+    --timezone exampleString
+```
+{: pre}
+
+### `ibmcloud backup-recovery management-console reports-get`
+{: #backup-recovery-cli-management-console-reports-get-command}
+
+Get a report for a given id.
+
+```sh
+  ibmcloud backup-recovery management-console reports-get --id ID
+```
+
+#### Command options
+{: #backup-recovery-management-console-reports-get-cli-options}
+
+`--id` (string)
+:   Required. Specifies the id of the report.
+
+#### Example
+{: #backup-recovery-management-console-reports-get-examples}
+
+```sh
+  ibmcloud backup-recovery management-console reports-get \
+    --id exampleString
+```
+{: pre}
+
+### `ibmcloud backup-recovery management-console reports-list`
+{: #backup-recovery-cli-management-console-reports-list-command}
+
+Fetches list of all reports accessible by logged in user.
+
+```sh
+  ibmcloud backup-recovery management-console reports-list [--ids IDS] [--user-context USER-CONTEXT]
+```
+
+#### Command options
+{: #backup-recovery-management-console-reports-list-cli-options}
+
+`--ids` (string)
+:   Specifies the id of the report.
+
+`--user-context` (string)
+:   Specifies the user context to filter reports. Allowable values are: IBMBaaS.
+
+#### Example
+{: #backup-recovery-management-console-reports-list-examples}
+
+```sh
+  ibmcloud backup-recovery management-console reports-list \
+    --ids exampleString,anotherTestString \
+    --user-context IBMBaaS
+```
+{: pre}
