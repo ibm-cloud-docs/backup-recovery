@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025, 2026
-lastupdated: "2026-04-03"
+lastupdated: "2026-04-06"
 
 keywords: data source connector, iks, roks, cluster
 
@@ -80,7 +80,6 @@ You can back up and restore data on:
 
 - The same Kubernetes or OpenShift cluster
 - A different Kubernetes or OpenShift cluster within the same region
-- An application running on a Kubernetes or OpenShift cluster
 - Kubernetes or OpenShift cluster scoped resources, namespaces, and the resources within namespaces.
 
 Clusters must be compatible, especially in terms of storage and network configuration.
@@ -89,42 +88,67 @@ Clusters must be compatible, especially in terms of storage and network configur
 ## Create or configure a data source connector
 {: #data-source-connector-iks-roks-create-configure}
 
-### Backup agents resource requirements
+To back up and restore Kubernetes or OpenShift clusters, you must set up a data source connector. This process involves two main steps:
+
+1. **Create a data source connection** in the {{site.data.keyword.baas_full_notm}} dashboard (or use an existing connection if available)
+2. **Install the Data Source Connector** on your Kubernetes or OpenShift cluster using Helm
+
+The data source connection establishes the communication channel between your {{site.data.keyword.baas_full_notm}} instance and your cluster. You can reuse an existing connection for multiple clusters if they are on the same deployment platform, or create a new connection for different platforms.
+
+### Resource requirements for backup components
 {: #data-source-connector-iks-roks-resource-reqs}
 
-Ensure that the node has sufficient CPU and memory to run the {{site.data.keyword.baas_full_notm}} components (Data Source Connector, Datamover, and Velero). The following table lists their resource requirements.
+Ensure that the node has sufficient CPU and memory to run the {{site.data.keyword.baas_full_notm}} components. The Data Source Connector is installed first to establish connectivity. During cluster registration, additional backup agent components (Datamover and Velero) are deployed to the cluster. The following table lists their resource requirements.
 
 | Pod Name                                   | CPU Requests | Memory Requests |
 |--------------------------------------------|--------------|-----------------|
-| Data Source Connector (per replica, default `replicaCount` is 2) | 2*2=4            | 5*4=10Gi             |
-| Datamover (DaemonSet) | 500m*N         | 128Mi*N           |
-| Velero                                     | 500m         | 128Mi           |
+| Data Source Connector (per replica, default `replicaCount` is 2) | 2*2=4            | 5*2=10Gi             |
+| Datamover (DaemonSet, deployed during registration) | 500m*N         | 128Mi*N           |
+| Velero (deployed during registration)                                     | 500m         | 128Mi           |
 
 
 ### Create a data source connection
 {: #data-source-connector-iks-roks-create-data-source-connection}
 
+You can either create a new data source connection or use an existing one. If you already have a connection for the same deployment platform, you can skip to [Install and configure the data source connector](#data-source-connector-iks-roks-install-configure).
+
+#### Choosing the deployment platform
+{: #data-source-connector-iks-roks-deployment-platform}
+
+Select the deployment platform that matches your cluster type and infrastructure:
+
+- **ROKS VPC**: Red Hat OpenShift Kubernetes Service clusters on VPC infrastructure
+- **IKS VPC**: IBM Kubernetes Service clusters on VPC infrastructure
+- **ROKS classic**: Red Hat OpenShift Kubernetes Service clusters on classic infrastructure
+- **IKS classic**: IBM Kubernetes Service clusters on classic infrastructure
+
+The deployment platform must match your cluster's actual infrastructure type. You can verify your cluster type in the IBM Cloud Console under `Navigation Menu` > `Containers` > `Clusters`.
+{: important}
+
+#### Steps to create a new connection
+{: #data-source-connector-iks-roks-create-new-connection}
+
 1. Access the [{{site.data.keyword.baas_full_notm}} instance dashboard](#data-source-connector-iks-roks-access-instance).
 2. Go to `Dashboard` > `System` > `Data Source Connections`.
-3. Click `New Connection`.
-4. In the **Create data source connection** wizard:
+3. Check if an existing connection is available for your deployment platform. If yes, you can use it and skip to [Install and configure the data source connector](#data-source-connector-iks-roks-install-configure).
+4. To create a new connection, click `New Connection`.
+5. In the **Create data source connection** wizard:
    - **Step 1: Create data source connection**:
-     - Select the **Deployment Platform** (for example, **ROKS VPC**, **IKS VPC**, **ROKS classic**, **IKS classic**).
+     - Select the **Deployment Platform** that matches your cluster (for example, **ROKS VPC**, **IKS VPC**, **ROKS classic**, **IKS classic**).
      - Click `Create`.
    - **Step 2: Install Data Source Connectors**:
-     - Copy the provided `helm install` command. Save it securely, as you need it later.
+     - Copy the provided `helm install` command. Save it securely, as you need it in the next step.
      - Click `Done`.
-5. (Optional) Manage the data source connection by using the **Actions** menu (three vertical dots):
+6. (Optional) Manage the data source connection by using the **Actions** menu (three vertical dots):
    - **Rename Connection**: Change the connection name for easier identification.
-
-   - **Add Connector**: Retrieve the `helm install` command to deploy connectors on the source cluster (kubernetes or Openshift).
+   - **Add Connector**: Retrieve the `helm install` command again if needed to deploy connectors on additional clusters.
 
     ![Data source connection](Images_datasource_connection/create43crop.png){: caption="Data source connections"}
 
    
 
 ### Install and configure the data source connector
-{: #data-source-connector-iks-roks-create-configure}
+{: #data-source-connector-iks-roks-install-configure}
 
 After you create a data source connection, you must install and configure the Data Source Connector on your Kubernetes or OpenShift cluster. For detailed instructions, including resource requirements, Helm install commands, and customization options, see [Install Data Source Connector for Kubernetes/OpenShift](/docs/backup-recovery?topic=backup-recovery-deploy_data_source_connector#install_data_source_connector_iks_roks).
 
