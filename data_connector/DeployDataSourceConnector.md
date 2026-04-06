@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2026
-lastupdated: "2026-04-03"
+lastupdated: "2026-04-06"
 
 keywords: backup and recovery, data source connectors,
 
@@ -15,9 +15,13 @@ subcollection: backup-recovery
 # Deploy Data Source Connector
 {: #deploy_data_source_connector}
 
-To register your data sources with the IBM Cloud Backup and Recovery service, you need to establish connectivity between your source and the service by using a Data Source Connection. A Data Source Connection consists of one or more Data Source Connectors, which are virtual machines (VMs) that facilitate the movement of data between your data sources and the IBM Cloud Backup and Recovery service.
+To register your data sources with the IBM Cloud Backup and Recovery service, you need to establish connectivity between your source and the service by using a Data Source Connection. A Data Source Connection consists of one or more Data Source Connectors that facilitate the movement of data between your data sources and the IBM Cloud Backup and Recovery service.
 
-You need to install the VM for the Data Source Connector by using an installer OVA in your VMware environment, on a vCenter or ESXi host in your environment that has access to your data sources and meets the Data Source Connection system and firewall requirements.
+The deployment method for Data Source Connectors varies based on your source type:
+
+- **For VM-based sources** (Physical Servers, Microsoft SQL Server, Oracle Server): Deploy the Data Source Connector as a virtual machine (VM) using an installer OVA in your VMware environment, on a vCenter or ESXi host that has access to your data sources and meets the system and firewall requirements.
+
+- **For Kubernetes/OpenShift clusters**: Deploy the Data Source Connector using Helm charts directly on your cluster. See [Install Data Source Connector for Kubernetes/OpenShift](#install_data_source_connector_iks_roks) for detailed instructions.
 
 Alternatively, you can also refer to the terraform [IBM Backup & Recovery for IKS/ROKS with Data Source Connector](https://registry.terraform.io/modules/terraform-ibm-modules/iks-ocp-backup-recovery/ibm/latest){: external} module that offers ready-to-use code and examples for integrating the Data Source connector.
 
@@ -244,40 +248,44 @@ While the VSI can connect to the Backup and Recovery instance, a VPE gateway pro
 ## Create a data source connection for Kubernetes/OpenShift
 {: #create_data_source_connection_iks_roks}
 
+To create a data source connection for Kubernetes or OpenShift clusters, including detailed guidance on choosing the correct deployment platform and managing connections, see [Create a data source connection](/docs/backup-recovery?topic=backup-recovery-data-source-connector-iks-roks#data-source-connector-iks-roks-create-data-source-connection) in the Kubernetes/OpenShift getting started guide.
 
-To create a Data Source Connection:
+The process involves:
+1. Selecting the appropriate deployment platform (ROKS VPC, IKS VPC, ROKS classic, or IKS classic) that matches your cluster infrastructure
+2. Creating the connection in the {{site.data.keyword.baas_full_notm}} dashboard
+3. Copying the provided Helm install command for use in the next step
 
-1. Go to: `Dashboard` \> `System` \> `Data Source Connections`.
-2. Click `New Connection`.
-3. Under the Deployment Platform, select one of the following options that matches your Kubernetes/OpenShift cluster type:
+You can reuse an existing connection for multiple clusters on the same deployment platform.
 
-   - `ROKS CLASSIC`
-   - `ROKS VPC`
-   - `IKS CLASSIC`
-   - `IKS VPC`
-
-4. Click `Create`. You are presented with a helm install command that you need to run on the cluster you want to protect. Copy the helm install command and save it securely, as you need it in a later step.
-5. Click `Done`, then open the menu for the newly created connection. Click `Rename Connection` to rename it for easier future identification.
-
-## Install Data Source Connector for Kubernetes/OpenShift
+## Install Data Source Connector on Kubernetes and OpenShift
 {: #install_data_source_connector_iks_roks}
 
-Ensure that the node on the cluster has sufficient CPU and memory to run the Containerized Data Source Connector and Datamover pods. The following table lists their resource requirements.
+The Data Source Connector is deployed as a StatefulSet with 2 replicas (by default) on your Kubernetes or OpenShift cluster. This establishes the communication channel between your cluster and the {{site.data.keyword.baas_full_notm}} service.
 
-| Pod Name                                   | CPU Requests | Memory Requests |
-|--------------------------------------------|--------------|-----------------|
-| Containerized Data Source Connector        | 2            | 5Gi             |
-| Datamover                                  | 500m         | 128M            |
+### Resource requirements
+{: #install_data_source_connector_resource_requirements}
+
+Ensure that your cluster has sufficient CPU and memory resources. The Data Source Connector will consume resources from your cluster nodes. Additional backup agent components (Datamover and Velero) will be deployed later during cluster registration.
+
+**Data Source Connector resource consumption:**
+
+| Component                                   | Deployment Type | CPU Requests | Memory Requests | Total (default 2 replicas) |
+|--------------------------------------------|-----------------|--------------|-----------------|----------------------------|
+| Data Source Connector        | StatefulSet (2 replicas) | 2 per replica | 5Gi per replica | 4 CPU, 10Gi Memory |
+
+**Note:** Datamover (DaemonSet) and Velero components are deployed automatically during cluster registration and are not part of the initial Data Source Connector installation.
 
 1. Open [IBM Cloud Shell](https://cloud.ibm.com/shell).
-2. In the Cloud Shell terminal, list the available Kubernetes/OpenShift clusters to identify the cluster name:
+2. Identify the source cluster where you want to install the Data Source Connector. This should be the Kubernetes or OpenShift cluster that you want to back up and protect. You must have admin access to this cluster to install the Data Source Connector.
+
+   List the available clusters:
 
    ```sh
    ibmcloud ks cluster ls
    ```
    {: codeblock}
 
-   From the output, note the cluster name where the Data Source Connector should be deployed.
+   From the output, note the cluster name where the Data Source Connector should be deployed. Ensure you have admin privileges for this cluster.
 
 3. Download and configure the `KUBECONFIG` for the selected cluster with admin privileges:
 
@@ -383,10 +391,10 @@ Ensure that the node on the cluster has sufficient CPU and memory to run the Con
    ### Adding a dedicated worker pool for Data Source Connector
    {: #add-dedicated-worker-pool}
 
-   It's recommended to create a dedicated worker pool for the Data Source Connector. This helps ensure that the connector pods run on a dedicated worker pool with appropriate taints and labels to ensure workload isolation and performance.
+   It's recommended to create a dedicated worker pool for the Data Source Connector. This helps ensure that the connector pods run on a dedicated worker pool with appropriate taints to ensure workload isolation and performance.
 
    1. [Deploy a dedicated worker pool](https://cloud.ibm.com/docs/containers?topic=containers-add-workers-vpc#vpc_add_pool){: external}.
-   2. [Add labels to the worker pool](https://cloud.ibm.com/docs/containers?topic=containers-worker-tag-label&interface=ui#worker_pool_labels){: external}.
+   2. (Optional) [Add labels to the worker pool](https://cloud.ibm.com/docs/containers?topic=containers-worker-tag-label&interface=ui#worker_pool_labels){: external} if you want to use node selectors for scheduling.
    3. Add taints to the worker pool:
 
       ```sh
@@ -419,10 +427,48 @@ Ensure that the node on the cluster has sufficient CPU and memory to run the Con
 ## Upgrading the Data Source Connector
 {: #upgrade-data-source-connector}
 
-Upgrades for the Data Source Connector are currently manual. To upgrade the Data Source Connector to a newer version, use the Helm upgrade command:
+Upgrades for the Data Source Connector are currently manual. Follow these steps to check your current version and upgrade to a newer version:
+
+### Check your current Data Source Connector version
+{: #check-current-version}
+
+To find the currently installed version of the Data Source Connector:
 
 ```sh
-helm upgrade --install <k8-app-name> oci://icr.io/ext/brs/brs-ds-connector-chart --version <new-version> --reuse-values --set secrets.registrationToken=xxx
+helm list -n ibm-brs-data-source-connector
+```
+{: codeblock}
+
+This command displays the installed Helm releases in the `ibm-brs-data-source-connector` namespace, including the chart version (APP VERSION column).
+
+Alternatively, you can check the version using kubectl:
+
+```sh
+kubectl get statefulset -n ibm-brs-data-source-connector -o jsonpath='{.items[0].spec.template.spec.containers[0].image}'
+```
+{: codeblock}
+
+This command shows the container image tag, which includes the version number.
+
+### Check for available versions
+{: #check-available-versions}
+
+To view all available versions of the Data Source Connector chart:
+
+```sh
+helm search repo oci://icr.io/ext/brs/brs-ds-connector-chart --versions
+```
+{: codeblock}
+
+You can also check the {{site.data.keyword.baas_full_notm}} service dashboard for version update notifications and release notes.
+
+### Upgrade to a newer version
+{: #upgrade-to-newer-version}
+
+Once you've identified the target version, use the Helm upgrade command:
+
+```sh
+helm upgrade --install <k8-app-name> oci://icr.io/ext/brs/brs-ds-connector-chart --version <new-version> --reuse-values --set secrets.registrationToken=xxx -n ibm-brs-data-source-connector
 ```
 {: codeblock}
 
@@ -434,7 +480,24 @@ The `--reuse-values` flag preserves your existing configuration settings during 
 **Example upgrade command:**
 
 ```sh
-helm upgrade --install my-dsc oci://icr.io/ext/brs/brs-ds-connector-chart --version 7.2.19-release-20260301-12345678 --reuse-values --set secrets.registrationToken=xxx
+helm upgrade --install my-dsc oci://icr.io/ext/brs/brs-ds-connector-chart --version 7.2.19-release-20260301-12345678 --reuse-values --set secrets.registrationToken=xxx -n ibm-brs-data-source-connector
+```
+{: codeblock}
+
+### Verify the upgrade
+{: #verify-upgrade}
+
+After upgrading, verify that the new version is running:
+
+```sh
+helm list -n ibm-brs-data-source-connector
+```
+{: codeblock}
+
+Check the pod status to ensure all pods are running with the new version:
+
+```sh
+kubectl get pods -n ibm-brs-data-source-connector
 ```
 {: codeblock}
 
