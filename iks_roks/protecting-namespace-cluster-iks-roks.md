@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025, 2026
-lastupdated: "2026-04-03"
+lastupdated: "2026-04-07"
 
 keywords: data source connector, iks, roks, cluster, protection
 
@@ -185,7 +185,7 @@ Label-based filtering works alongside Auto Protect, enabling you to exclude spec
    - **Post Snapshot Scripts**: Click `+ Add Script` to define one or more commands to run after the snapshot.
 6. Click `Save` to apply the configuration.
 
-Scripts run inside containers and have configurable timeouts. The script must be present within the container, and you must specify its absolute path to start it.
+Scripts run inside containers and have configurable timeouts. The script must be present within the container, and you must specify its absolute path to start it. For example, if you have a script at `/usr/local/bin/backup-prep.sh`, you would specify `/usr/local/bin/backup-prep.sh` as the script path.
 {: note}
 
 

@@ -338,4 +338,42 @@ chmod +x k8s-info-fetcher.sh
     ```bash
     ./k8s_info_fetcher.sh -u <your_namespace> -d <data_source_connector_namespace>
     ```
+
+## PartiallyFailed Recovery Errors
+{: #partially-failed-recovery}
+
+During recovery operations, you may encounter a "PartiallyFailed" status. This occurs when certain resources fail to recover, but the recovery task continues and completes with a partial failure message.
+
+### Understanding PartiallyFailed Errors
+{: #understanding-partially-failed}
+
+A PartiallyFailed error indicates that:
+- The recovery operation completed, but some resources could not be restored
+- The recovery shows a failure status with the message "PartiallyFailed"
+- The majority of the namespace resources were successfully recovered
+
+### Common Causes
+{: #partially-failed-causes}
+
+PartiallyFailed errors typically occur due to:
+- **Resource conflicts**: Resources that already exist in the target namespace
+- **Permission issues**: Insufficient permissions to create certain resource types
+- **API version mismatches**: Resources using deprecated or unavailable API versions in the target cluster
+- **Custom Resource Definitions (CRDs)**: Missing CRDs in the target cluster that are required by certain resources
+
+### Impact and Resolution
+{: #partially-failed-resolution}
+
+In most cases, PartiallyFailed errors are benign and do not affect the correctness of the restored namespace. The critical resources (such as PVCs, Deployments, Services) are typically restored successfully.
+
+**To verify the recovery:**
+1. Check the recovery task details to identify which specific resources failed
+2. Verify that the essential application resources (Deployments, StatefulSets, Services, PVCs) were restored successfully
+3. Manually inspect the target namespace to confirm the application is functioning correctly
+
+**If action is needed:**
+- Review the failed resources in the recovery logs
+- Manually create any critical resources that failed to restore
+- Ensure all required CRDs are installed in the target cluster before attempting recovery
+- Check for resource naming conflicts in the target namespace
     {: codeblock}

@@ -263,7 +263,7 @@ The Data Source Connector is deployed as a StatefulSet with 2 replicas (by defau
 ### Resource requirements
 {: #install_data_source_connector_resource_requirements}
 
-Ensure that your cluster has sufficient CPU and memory resources. The Data Source Connector will consume resources from your cluster nodes. Additional backup agent components (Datamover and Velero) will be deployed later during cluster registration.
+Ensure that your cluster has sufficient CPU and memory resources. The Data Source Connector will consume resources from your cluster nodes. Additional backup agent components (Datamover and Velero) will be deployed later during source registration.
 
 **Data Source Connector resource consumption:**
 
@@ -271,7 +271,7 @@ Ensure that your cluster has sufficient CPU and memory resources. The Data Sourc
 |--------------------------------------------|-----------------|--------------|-----------------|----------------------------|
 | Data Source Connector        | StatefulSet (2 replicas) | 2 per replica | 5Gi per replica | 4 CPU, 10Gi Memory |
 
-**Note:** Datamover (DaemonSet) and Velero components are deployed automatically during cluster registration and are not part of the initial Data Source Connector installation.
+**Note:** Datamover (DaemonSet) and Velero components are deployed automatically during source registration and are not part of the initial Data Source Connector installation.
 
 1. Open [IBM Cloud Shell](https://cloud.ibm.com/shell).
 2. Identify the source cluster where you want to install the Data Source Connector. This should be the Kubernetes or OpenShift cluster that you want to back up and protect. You must have admin access to this cluster to install the Data Source Connector.

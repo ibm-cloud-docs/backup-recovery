@@ -98,7 +98,13 @@ The data source connection establishes the communication channel between your {{
 ### Resource requirements for backup components
 {: #data-source-connector-iks-roks-resource-reqs}
 
-Ensure that the node has sufficient CPU and memory to run the {{site.data.keyword.baas_full_notm}} components. The Data Source Connector is installed first to establish connectivity. During cluster registration, additional backup agent components (Datamover and Velero) are deployed to the cluster. The following table lists their resource requirements.
+Ensure that the node has sufficient CPU and memory to run the {{site.data.keyword.baas_full_notm}} components. The Data Source Connector is installed first to establish connectivity. During source registration, additional backup agent components (Datamover and Velero) are deployed to the cluster. The following table lists their resource requirements.
+
+The Datamover is installed by default on all worker nodes as a DaemonSet (not on control plane nodes) after the source registration is complete.
+{: note}
+
+The Datamover is installed by default on all worker nodes as a DaemonSet and not on control plane nodes.
+{: note}
 
 | Pod Name                                   | CPU Requests | Memory Requests |
 |--------------------------------------------|--------------|-----------------|
@@ -163,7 +169,7 @@ After you create a data source connection, you must install and configure the Da
 ## How to register a Kubernetes or OpenShift cluster with {{site.data.keyword.baas_full_notm}}
 {: #data-source-connector-iks-roks-register}
 
-If you are registering a cluster that was previously registered, you must ensure that any remnant `brs-backup-agent-<uuid>` namespaces are deleted from the cluster before proceeding. The presence of these namespaces will cause the new registration to fail.
+If you are registering a cluster that was previously registered as a source, you must ensure that any remnant `brs-backup-agent-<uuid>` namespaces are deleted from the cluster before proceeding. The presence of these namespaces will cause the new source registration to fail.
 {: important}
 
 1. Access the [{{site.data.keyword.baas_full_notm}} instance dashboard](#data-source-connector-iks-roks-access-instance).
@@ -195,12 +201,12 @@ If you are registering a cluster that was previously registered, you must ensure
 
         ![HostPort](Images_datasource_connection/HostPort43crop.png){: caption="Register Kubernetes source"}
 
-5. Click `Complete` to finish the registration.
+5. Click `Complete` to finish the source registration.
 
-    The registration process can take approximately 5 minutes to complete.
+    The source registration process can take approximately 5 minutes to complete.
     {: note}
 
-6. You are redirected to the **Sources** page, where you can view the status of your registered cluster.
+6. You are redirected to the **Sources** page, where you can view the status of your registered source.
 
 ## How to create a bearer token for a Kubernetes or OpenShift cluster
 {: #data-source-connector-iks-roks-create-bearer-token-cluster}
@@ -250,20 +256,20 @@ If you are registering a cluster that was previously registered, you must ensure
 The {{site.data.keyword.baas_full_notm}} service releases updates on a monthly cadence. It is recommended to upgrade your Backup Agent Components when new releases become available to ensure you have the latest features, security patches, and bug fixes.
 
 Upgrades for the brs-backup-agent components are currently manual. When you register a Kubernetes/OpenShift source, the system creates a namespace `brs-backup-agent-<GUID>` that contains:
-- Datamover DaemonSet
-- Velero Deployment
+- Datamover DaemonSet (named `cohesity-dm`)
+- Velero Deployment (named `velero`)
 
 Each release of {{site.data.keyword.baas_full_notm}} includes default image versions for these components. To upgrade an existing source registration:
 
 1. Delete the existing backup agent components from your cluster:
    
    ```sh
-   kubectl delete daemonset -n brs-backup-agent-<GUID> <datamover-daemonset-name>
-   kubectl delete deployment -n brs-backup-agent-<GUID> <velero-deployment-name>
+   kubectl delete daemonset -n brs-backup-agent-<GUID> cohesity-dm
+   kubectl delete deployment -n brs-backup-agent-<GUID> velero
    ```
    {: codeblock}
 
-   Replace `<GUID>` with your actual namespace GUID, and replace the daemonset and deployment names with the actual names in your cluster.
+   Replace `<GUID>` with your actual namespace GUID.
 
 2. Trigger a refresh on the source registration:
    - Go to: `Dashboard` \> `Data Protection` \> `Sources`.
@@ -278,7 +284,7 @@ The `Edit Registration` option does not update the datamover and Velero images. 
 ## Protecting and Restoring Data
 {: #protect-restore-data-iks-roks}
 
-After registering your cluster, you can proceed to create Protection Groups and Policies to start backing up your data.
+After registering your cluster as a data source, you can proceed to create Protection Groups and Policies to start backing up your data.
 
 1. **Protect a Namespace**: See [Protecting a namespace or cluster](/docs/backup-recovery?topic=backup-recovery-protecting-namespace-iks-roks).
 2. **Configure Policies**: See [Creating and configuring protection policies](/docs/backup-recovery?topic=backup-recovery-create-edit-standard-policy).
