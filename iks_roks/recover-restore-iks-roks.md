@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025, 2026
-lastupdated: "2026-03-30"
+lastupdated: "2026-04-07"
 
 keywords: data source connector, iks, roks, cluster, recover
 
@@ -26,7 +26,7 @@ When you recover namespaces to their original location (the same Kubernetes or O
 
 For example, if a namespace that you want to recover contains a deployment resource and a service account, and the service account is missing but the deployment resource still exists, {{site.data.keyword.baas_full_notm}} recovers only the service account and skips the deployment resource.
 
-## Steps to revover namespaces
+## Steps to recover namespaces
 {: #recovering-restoring-same-location}
 
 1. Log in to the [IBM Cloud Console](https://cloud.ibm.com/){: external}.

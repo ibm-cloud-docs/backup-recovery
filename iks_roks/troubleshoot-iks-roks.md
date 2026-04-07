@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025, 2026
-lastupdated: "2026-03-25"
+lastupdated: "2026-04-07"
 
 keywords: data source connector, iks, roks, cluster, troubleshooting
 
@@ -52,7 +52,7 @@ The fastest way to restore service is to bring the cluster back to the state it 
 
 If you must move to a new zonal configuration and do not need to persist the existing data, a fresh installation is required.
 1. Completely uninstall the Data Source Connector deployment.
-2. Help ensure the Persistent Volume Claims (PVCs) and PVs associated with the old zones are deleted.
+2. Ensure that the Persistent Volume Claims (PVCs) and PVs associated with the old zones are deleted.
 3. Reinstall Data Source Connector. This allows the CSI driver to provision new volumes in the currently active zones.
 
 ### Data Source Connector Not Appearing After Installation

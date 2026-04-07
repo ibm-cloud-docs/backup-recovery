@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024
-lastupdated: "2026-04-06"
+lastupdated: "2026-04-07"
 
 keywords: backup recovery, cli, guide
 
@@ -94,15 +94,15 @@ Where `<region>` is the IBM Cloud region where your Backup & Recovery instance i
    {
        "extensions": {
            "endpoints": {
-              "public": "https://<instance_ID>.us-east.backup-recovery.cloud.ibm.com",
-              "private": "https://<instance_ID>.private.us-east.backup-recovery.cloud.ibm.com"
+              "public": "<instance_ID>.us-east.backup-recovery.cloud.ibm.com",
+              "private": "<instance_ID>.private.us-east.backup-recovery.cloud.ibm.com"
            }
        }
    }
    ```
    {: codeblock}
 
-3. Append `/v2` to the endpoint URL when setting the service-url.
+3. Add the `https://` prefix and append `/v2` suffix to the endpoint when setting the service-url.
 
 For more details, see [Service endpoints](/docs/backup-recovery?topic=backup-recovery-endpoints).
 
@@ -312,11 +312,6 @@ ibmcloud backup-recovery protection-source list --xibm-tenant-id XIBM-TENANT-ID 
 
     Allowable list items are: `kVCenter`, `kFolder`, `kDatacenter`, `kComputeResource`, `kClusterComputeResource`, `kResourcePool`, `kDatastore`, `kHostSystem`, `kVirtualMachine`, `kVirtualApp`, `kStandaloneHost`, `kStoragePod`, `kNetwork`, `kDistributedVirtualPortgroup`, `kTagCategory`, `kTag`.
 
-`--exclude-aws-types` ([]string)
-:   Specifies the Object types to be filtered out for AWS that match the passed in types such as 'kEC2Instance', 'kRDSInstance', 'kAuroraCluster', 'kTag', 'kAuroraTag', 'kRDSTag', kS3Bucket, kS3Tag. For example, set this parameter to 'kEC2Instance' to exclude ec2 instance from being returned.
-
-    Allowable list items are: `kEC2Instance`, `kRDSInstance`, `kAuroraCluster`, `kS3Bucket`, `kTag`, `kRDSTag`, `kAuroraTag`, `kS3Tag`.
-
 `--exclude-kubernetes-types` ([]string)
 :   Specifies the Object types to be filtered out for Kubernetes that match the passed in types such as 'kService'. For example, set this parameter to 'kService' to exclude services from being returned.
 
@@ -338,9 +333,9 @@ ibmcloud backup-recovery protection-source list --xibm-tenant-id XIBM-TENANT-ID 
 :   Set this parameter to true to also return system VApp object types that are found in the Source in addition to their Object subtrees. By default, VM folder objects are not returned.
 
 `--environments` ([]string)
-:   Return only Protection Sources that match the passed in environment type such as 'kVMware', 'kSQL', 'kView' 'kPhysical', 'kPuppeteer', 'kPure', 'kNetapp', 'kGenericNas', 'kHyperV', 'kAcropolis', or 'kAzure'. For example, set this parameter to 'kVMware' to only return the Sources (and their Object subtrees) found in the 'kVMware' (VMware vCenter Server) environment.
+:   Return only Protection Sources that match the passed in environment type such as 'kVMware', 'kSQL', 'kView' 'kPhysical', 'kPuppeteer', 'kPure', 'kNetapp', 'kGenericNas', 'kHyperV', 'kAcropolis'. For example, set this parameter to 'kVMware' to only return the Sources (and their Object subtrees) found in the 'kVMware' (VMware vCenter Server) environment.
 
-    Allowable list items are: `kVMware`, `kHyperV`, `kSQL`, `kView`, `kPuppeteer`, `kPhysical`, `kPure`, `kNimble`, `kAzure`, `kNetapp`, `kAgent`, `kGenericNas`, `kAcropolis`, `kPhysicalFiles`, `kIsilon`, `kGPFS`, `kKVM`, `kAWS`, `kExchange`, `kHyperVVSS`, `kOracle`, `kGCP`, `kFlashBlade`, `kAWSNative`, `kO365`, `kO365Outlook`, `kHyperFlex`, `kGCPNative`, `kAzureNative`, `kKubernetes`, `kElastifile`, `kAD`, `kRDSSnapshotManager`, `kCassandra`, `kMongoDB`, `kCouchbase`, `kHdfs`, `kHBase`, `kUDA`, `KSfdc`, `kAwsS3`.
+    Allowable list items are: `kVMware`, `kHyperV`, `kSQL`, `kView`, `kPuppeteer`, `kPhysical`, `kPure`, `kNimble`, `kNetapp`, `kAgent`, `kGenericNas`, `kAcropolis`, `kPhysicalFiles`, `kIsilon`, `kGPFS`, `kKVM`, `kExchange`, `kHyperVVSS`, `kOracle`, `kFlashBlade`, `kO365`, `kO365Outlook`, `kHyperFlex`, `kKubernetes`, `kElastifile`, `kAD`, `kCassandra`, `kMongoDB`, `kCouchbase`, `kHdfs`, `kHBase`, `kUDA`, `kSfdc`.
 
 `--environment` (string)
 :   This field is deprecated. Use environments instead.
@@ -393,14 +388,13 @@ ibmcloud backup-recovery protection-source list \
     --id 26 \
     --num-levels 72.5 \
     --exclude-types kVCenter,kFolder,kDatacenter,kComputeResource,kClusterComputeResource,kResourcePool,kDatastore,kHostSystem,kVirtualMachine,kVirtualApp,kStandaloneHost,kStoragePod,kNetwork,kDistributedVirtualPortgroup,kTagCategory,kTag \
-    --exclude-aws-types kEC2Instance,kRDSInstance,kAuroraCluster,kS3Bucket,kTag,kRDSTag,kAuroraTag,kS3Tag \
     --exclude-kubernetes-types kService \
     --include-datastores=true \
     --include-networks=true \
     --include-vm-folders=true \
     --include-sfdc-fields=true \
     --include-system-v-apps=true \
-    --environments kVMware,kHyperV,kSQL,kView,kPuppeteer,kPhysical,kPure,kNimble,kAzure,kNetapp,kAgent,kGenericNas,kAcropolis,kPhysicalFiles,kIsilon,kGPFS,kKVM,kAWS,kExchange,kHyperVVSS,kOracle,kGCP,kFlashBlade,kAWSNative,kO365,kO365Outlook,kHyperFlex,kGCPNative,kAzureNative,kKubernetes,kElastifile,kAD,kRDSSnapshotManager,kCassandra,kMongoDB,kCouchbase,kHdfs,kHBase,kUDA,KSfdc,kAwsS3 \
+    --environments kVMware,kHyperV,kSQL,kView,kPuppeteer,kPhysical,kPure,kNimble,kNetapp,kAgent,kGenericNas,kAcropolis,kPhysicalFiles,kIsilon,kGPFS,kKVM,kExchange,kHyperVVSS,kOracle,kFlashBlade,kO365,kO365Outlook,kHyperFlex,kKubernetes,kElastifile,kAD,kCassandra,kMongoDB,kCouchbase,kHdfs,kHBase,kUDA,kSfdc \
     --environment kPhysical \
     --include-entity-permission-info=true \
     --sids sid1 \
@@ -2659,7 +2653,7 @@ ibmcloud backup-recovery recovery list --xibm-tenant-id XIBM-TENANT-ID [--ids ID
 `--recovery-actions` ([]string)
 :   Specifies the list of recovery actions to filter Recoveries. If empty, Recoveries related to all actions will be returned.
 
-    Allowable list items are: `RecoverVMs`, `RecoverFiles`, `InstantVolumeMount`, `RecoverVmDisks`, `RecoverVApps`, `RecoverVAppTemplates`, `UptierSnapshot`, `RecoverRDS`, `RecoverAurora`, `RecoverS3Buckets`, `RecoverRDSPostgres`, `RecoverAzureSQL`, `RecoverApps`, `CloneApps`, `RecoverNasVolume`, `RecoverPhysicalVolumes`, `RecoverSystem`, `RecoverExchangeDbs`, `CloneAppView`, `RecoverSanVolumes`, `RecoverSanGroup`, `RecoverMailbox`, `RecoverOneDrive`, `RecoverSharePoint`, `RecoverPublicFolders`, `RecoverMsGroup`, `RecoverMsTeam`, `ConvertToPst`, `DownloadChats`, `RecoverMailboxCSM`, `RecoverOneDriveCSM`, `RecoverSharePointCSM`, `RecoverNamespaces`, `RecoverObjects`, `RecoverSfdcObjects`, `RecoverSfdcOrg`, `RecoverSfdcRecords`, `DownloadFilesAndFolders`, `CloneVMs`, `CloneView`, `CloneRefreshApp`, `CloneVMsToView`, `ConvertAndDeployVMs`, `DeployVMs`.
+    Allowable list items are: `RecoverVMs`, `RecoverFiles`, `InstantVolumeMount`, `RecoverVmDisks`, `RecoverVApps`, `RecoverVAppTemplates`, `UptierSnapshot`, `RecoverApps`, `CloneApps`, `RecoverNasVolume`, `RecoverPhysicalVolumes`, `RecoverSystem`, `RecoverExchangeDbs`, `CloneAppView`, `RecoverSanVolumes`, `RecoverSanGroup`, `RecoverMailbox`, `RecoverOneDrive`, `RecoverSharePoint`, `RecoverPublicFolders`, `RecoverMsGroup`, `RecoverMsTeam`, `ConvertToPst`, `DownloadChats`, `RecoverMailboxCSM`, `RecoverOneDriveCSM`, `RecoverSharePointCSM`, `RecoverNamespaces`, `RecoverObjects`, `RecoverSfdcObjects`, `RecoverSfdcOrg`, `RecoverSfdcRecords`, `DownloadFilesAndFolders`, `CloneVMs`, `CloneView`, `CloneRefreshApp`, `CloneVMsToView`, `ConvertAndDeployVMs`, `DeployVMs`.
 
 #### Example
 {: #backup-recovery-recovery-list-examples}
@@ -2675,7 +2669,7 @@ ibmcloud backup-recovery recovery list \
     --archival-target-type Tape,Cloud,Nas \
     --snapshot-environments kPhysical,kSQL \
     --status Accepted,Running,Canceled,Canceling,Failed,Missed,Succeeded,SucceededWithWarning,OnHold,Finalizing,Skipped,LegalHold \
-    --recovery-actions RecoverVMs,RecoverFiles,InstantVolumeMount,RecoverVmDisks,RecoverVApps,RecoverVAppTemplates,UptierSnapshot,RecoverRDS,RecoverAurora,RecoverS3Buckets,RecoverRDSPostgres,RecoverAzureSQL,RecoverApps,CloneApps,RecoverNasVolume,RecoverPhysicalVolumes,RecoverSystem,RecoverExchangeDbs,CloneAppView,RecoverSanVolumes,RecoverSanGroup,RecoverMailbox,RecoverOneDrive,RecoverSharePoint,RecoverPublicFolders,RecoverMsGroup,RecoverMsTeam,ConvertToPst,DownloadChats,RecoverMailboxCSM,RecoverOneDriveCSM,RecoverSharePointCSM,RecoverNamespaces,RecoverObjects,RecoverSfdcObjects,RecoverSfdcOrg,RecoverSfdcRecords,DownloadFilesAndFolders,CloneVMs,CloneView,CloneRefreshApp,CloneVMsToView,ConvertAndDeployVMs,DeployVMs
+    --recovery-actions RecoverVMs,RecoverFiles,InstantVolumeMount,RecoverVmDisks,RecoverVApps,RecoverVAppTemplates,UptierSnapshot,RecoverApps,CloneApps,RecoverNasVolume,RecoverPhysicalVolumes,RecoverSystem,RecoverExchangeDbs,CloneAppView,RecoverSanVolumes,RecoverSanGroup,RecoverMailbox,RecoverOneDrive,RecoverSharePoint,RecoverPublicFolders,RecoverMsGroup,RecoverMsTeam,ConvertToPst,DownloadChats,RecoverMailboxCSM,RecoverOneDriveCSM,RecoverSharePointCSM,RecoverNamespaces,RecoverObjects,RecoverSfdcObjects,RecoverSfdcOrg,RecoverSfdcRecords,DownloadFilesAndFolders,CloneVMs,CloneView,CloneRefreshApp,CloneVMsToView,ConvertAndDeployVMs,DeployVMs
 ```
 {: pre}
 
@@ -3391,7 +3385,7 @@ ibmcloud backup-recovery object-snapshots-list --id ID --xibm-tenant-id XIBM-TEN
 `--snapshot-actions` ([]string)
 :   Specifies a list of recovery actions. Only snapshots that apply to these actions will be returned.
 
-    Allowable list items are: `RecoverVMs`, `RecoverFiles`, `InstantVolumeMount`, `RecoverVmDisks`, `MountVolumes`, `RecoverVApps`, `RecoverRDS`, `RecoverAurora`, `RecoverS3Buckets`, `RecoverApps`, `RecoverNasVolume`, `RecoverPhysicalVolumes`, `RecoverSystem`, `RecoverSanVolumes`, `RecoverNamespaces`, `RecoverObjects`, `DownloadFilesAndFolders`, `RecoverPublicFolders`, `RecoverVAppTemplates`, `RecoverMailbox`, `RecoverOneDrive`, `RecoverMsTeam`, `RecoverMsGroup`, `RecoverSharePoint`, `ConvertToPst`, `RecoverSfdcRecords`, `RecoverAzureSQL`, `DownloadChats`, `RecoverRDSPostgres`, `RecoverMailboxCSM`, `RecoverOneDriveCSM`, `RecoverSharePointCSM`.
+    Allowable list items are: `RecoverVMs`, `RecoverFiles`, `InstantVolumeMount`, `RecoverVmDisks`, `MountVolumes`, `RecoverVApps`, `RecoverApps`, `RecoverNasVolume`, `RecoverPhysicalVolumes`, `RecoverSystem`, `RecoverSanVolumes`, `RecoverNamespaces`, `RecoverObjects`, `DownloadFilesAndFolders`, `RecoverPublicFolders`, `RecoverVAppTemplates`, `RecoverMailbox`, `RecoverOneDrive`, `RecoverMsTeam`, `RecoverMsGroup`, `RecoverSharePoint`, `ConvertToPst`, `RecoverSfdcRecords`, `DownloadChats`, `RecoverMailboxCSM`, `RecoverOneDriveCSM`, `RecoverSharePointCSM`.
 
 `--run-types` ([]string)
 :   Filter by run type. Only protection runs matching the specified types will be returned. By default, CDP hydration snapshots are not included unless explicitly queried by using this field.
@@ -3410,7 +3404,7 @@ ibmcloud backup-recovery object-snapshots-list --id ID --xibm-tenant-id XIBM-TEN
 `--object-action-keys` ([]string)
 :   Filter by ObjectActionKey, which uniquely represents the protection of an object. An object can be protected in multiple ways but at most once for a given combination of ObjectActionKey. When specified, only snapshots matching the given action keys are returned for the corresponding object.
 
-    Allowable list items are: `kVMware`, `kHyperV`, `kVCD`, `kAzure`, `kGCP`, `kKVM`, `kAcropolis`, `kAWS`, `kAWSNative`, `kAwsS3`, `kAWSSnapshotManager`, `kRDSSnapshotManager`, `kAuroraSnapshotManager`, `kAwsRDSPostgresBackup`, `kAwsRDSPostgres`, `kAwsAuroraPostgres`, `kAzureNative`, `kAzureSQL`, `kAzureSnapshotManager`, `kPhysical`, `kPhysicalFiles`, `kGPFS`, `kElastifile`, `kNetapp`, `kGenericNas`, `kIsilon`, `kFlashBlade`, `kPure`, `kIbmFlashSystem`, `kSQL`, `kExchange`, `kAD`, `kOracle`, `kView`, `kRemoteAdapter`, `kO365`, `kO365PublicFolders`, `kO365Teams`, `kO365Group`, `kO365Exchange`, `kO365OneDrive`, `kO365Sharepoint`, `kKubernetes`, `kCassandra`, `kMongoDB`, `kCouchbase`, `kHdfs`, `kHive`, `kHBase`, `kSAPHANA`, `kUDA`, `kSfdc`, `kO365ExchangeCSM`, `kO365OneDriveCSM`, `kO365SharepointCSM`.
+    Allowable list items are: `kVMware`, `kHyperV`, `kKVM`, `kAcropolis`, `kPhysical`, `kPhysicalFiles`, `kGPFS`, `kElastifile`, `kNetapp`, `kGenericNas`, `kIsilon`, `kFlashBlade`, `kPure`, `kIbmFlashSystem`, `kSQL`, `kExchange`, `kAD`, `kOracle`, `kView`, `kRemoteAdapter`, `kO365`, `kO365PublicFolders`, `kO365Teams`, `kO365Group`, `kO365Exchange`, `kO365OneDrive`, `kO365Sharepoint`, `kKubernetes`, `kCassandra`, `kMongoDB`, `kCouchbase`, `kHdfs`, `kHive`, `kHBase`, `kSAPHANA`, `kUDA`, `kSfdc`, `kO365ExchangeCSM`, `kO365OneDriveCSM`, `kO365SharepointCSM`.
 
 #### Example
 {: #backup-recovery-object-snapshots-list-examples}
@@ -3423,12 +3417,12 @@ ibmcloud backup-recovery object-snapshots-list \
     --to-time-usecs 26 \
     --run-start-from-time-usecs 26 \
     --run-start-to-time-usecs 26 \
-    --snapshot-actions RecoverVMs,RecoverFiles,InstantVolumeMount,RecoverVmDisks,MountVolumes,RecoverVApps,RecoverRDS,RecoverAurora,RecoverS3Buckets,RecoverApps,RecoverNasVolume,RecoverPhysicalVolumes,RecoverSystem,RecoverSanVolumes,RecoverNamespaces,RecoverObjects,DownloadFilesAndFolders,RecoverPublicFolders,RecoverVAppTemplates,RecoverMailbox,RecoverOneDrive,RecoverMsTeam,RecoverMsGroup,RecoverSharePoint,ConvertToPst,RecoverSfdcRecords,RecoverAzureSQL,DownloadChats,RecoverRDSPostgres,RecoverMailboxCSM,RecoverOneDriveCSM,RecoverSharePointCSM \
+    --snapshot-actions RecoverVMs,RecoverFiles,InstantVolumeMount,RecoverVmDisks,MountVolumes,RecoverVApps,RecoverApps,RecoverNasVolume,RecoverPhysicalVolumes,RecoverSystem,RecoverSanVolumes,RecoverNamespaces,RecoverObjects,DownloadFilesAndFolders,RecoverPublicFolders,RecoverVAppTemplates,RecoverMailbox,RecoverOneDrive,RecoverMsTeam,RecoverMsGroup,RecoverSharePoint,ConvertToPst,RecoverSfdcRecords,DownloadChats,RecoverMailboxCSM,RecoverOneDriveCSM,RecoverSharePointCSM \
     --run-types kRegular,kFull,kLog,kSystem,kHydrateCDP,kStorageArraySnapshot \
     --protection-group-ids protectionGroupId1 \
     --run-instance-ids 26,27 \
     --region-ids regionId1 \
-    --object-action-keys kVMware,kHyperV,kVCD,kAzure,kGCP,kKVM,kAcropolis,kAWS,kAWSNative,kAwsS3,kAWSSnapshotManager,kRDSSnapshotManager,kAuroraSnapshotManager,kAwsRDSPostgresBackup,kAwsRDSPostgres,kAwsAuroraPostgres,kAzureNative,kAzureSQL,kAzureSnapshotManager,kPhysical,kPhysicalFiles,kGPFS,kElastifile,kNetapp,kGenericNas,kIsilon,kFlashBlade,kPure,kIbmFlashSystem,kSQL,kExchange,kAD,kOracle,kView,kRemoteAdapter,kO365,kO365PublicFolders,kO365Teams,kO365Group,kO365Exchange,kO365OneDrive,kO365Sharepoint,kKubernetes,kCassandra,kMongoDB,kCouchbase,kHdfs,kHive,kHBase,kSAPHANA,kUDA,kSfdc,kO365ExchangeCSM,kO365OneDriveCSM,kO365SharepointCSM
+    --object-action-keys kVMware,kHyperV,kKVM,kAcropolis,kPhysical,kPhysicalFiles,kGPFS,kElastifile,kNetapp,kGenericNas,kIsilon,kFlashBlade,kPure,kIbmFlashSystem,kSQL,kExchange,kAD,kOracle,kView,kRemoteAdapter,kO365,kO365PublicFolders,kO365Teams,kO365Group,kO365Exchange,kO365OneDrive,kO365Sharepoint,kKubernetes,kCassandra,kMongoDB,kCouchbase,kHdfs,kHive,kHBase,kSAPHANA,kUDA,kSfdc,kO365ExchangeCSM,kO365OneDriveCSM,kO365SharepointCSM
 ```
 {: pre}
 
@@ -3552,7 +3546,7 @@ ibmcloud backup-recovery restore-points --xibm-tenant-id XIBM-TENANT-ID --end-ti
 `--environment` (string)
 :   Specifies the protection source environment type. Required.
 
-    Allowable values are: `kVMware`, `kHyperV`, `kAzure`, `kGCP`, `kKVM`, `kAcropolis`, `kAWS`, `kPhysical`, `kGPFS`, `kElastifile`, `kNetapp`, `kGenericNas`, `kIsilon`, `kFlashBlade`, `kPure`, `kIbmFlashSystem`, `kSQL`, `kExchange`, `kAD`, `kOracle`, `kView`, `kRemoteAdapter`, `kO365`, `kKubernetes`, `kCassandra`, `kMongoDB`, `kCouchbase`, `kHdfs`, `kHive`, `kSAPHANA`, `kHBase`, `kUDA`, `kSfdc`.
+    Allowable values are: `kVMware`, `kHyperV`, `kKVM`, `kAcropolis`, `kPhysical`, `kGPFS`, `kElastifile`, `kNetapp`, `kGenericNas`, `kIsilon`, `kFlashBlade`, `kPure`, `kIbmFlashSystem`, `kSQL`, `kExchange`, `kAD`, `kOracle`, `kView`, `kRemoteAdapter`, `kO365`, `kKubernetes`, `kCassandra`, `kMongoDB`, `kCouchbase`, `kHdfs`, `kHive`, `kSAPHANA`, `kHBase`, `kUDA`, `kSfdc`.
 
 `--protection-group-ids` ([]string)
 :   Specifies the jobs for which to get the full snapshot information. Required.
@@ -3898,7 +3892,7 @@ ibmcloud backup-recovery indexed-objects-search --xibm-tenant-id XIBM-TENANT-ID 
 `--file-params-source-environments` ([]string)
 :   Specifies a list of the source environments. Only files from these types of source will be returned. This option provides a value for a sub-field of the JSON option 'file-params'. It is mutually exclusive with that option.
 
-    Allowable list items are: `kVMware`, `kHyperV`, `kSQL`, `kView`, `kRemoteAdapter`, `kPhysical`, `kPhysicalFiles`, `kPure`, `kIbmFlashSystem`, `kAzure`, `kNetapp`, `kGenericNas`, `kAcropolis`, `kIsilon`, `kGPFS`, `kKVM`, `kAWS`, `kExchange`, `kOracle`, `kGCP`, `kFlashBlade`, `kO365`, `kHyperFlex`, `kKubernetes`, `kElastifile`, `kSAPHANA`, `kUDA`, `kSfdc`.
+    Allowable list items are: `kVMware`, `kHyperV`, `kSQL`, `kView`, `kRemoteAdapter`, `kPhysical`, `kPhysicalFiles`, `kPure`, `kIbmFlashSystem`, `kNetapp`, `kGenericNas`, `kAcropolis`, `kIsilon`, `kGPFS`, `kKVM`, `kExchange`, `kOracle`, `kFlashBlade`, `kO365`, `kHyperFlex`, `kKubernetes`, `kElastifile`, `kSAPHANA`, `kUDA`, `kSfdc`.
 
 `--file-params-source-ids` ([]int64)
 :   Specifies a list of source ids. Only files that are found in these sources will be returned. This option provides a value for a subfield of the JSON option 'file-params'. It is mutually exclusive with that option.
@@ -4163,7 +4157,7 @@ ibmcloud backup-recovery indexed-objects-search \
     --couchbase-params '{"couchbaseObjectTypes": ["CouchbaseBuckets"], "searchString": "searchString", "sourceIds": [26,27]}' \
     --email-params '{"attendeesAddresses": ["attendee1@domain.com"], "bccRecipientAddresses": ["bccrecipient@domain.com"], "ccRecipientAddresses": ["ccrecipient@domain.com"], "createdEndTimeSecs": 26, "createdStartTimeSecs": 26, "dueDateEndTimeSecs": 26, "dueDateStartTimeSecs": 26, "emailAddress": "email@domain.com", "emailSubject": "Email Subject", "firstName": "First Name", "folderNames": ["folder1"], "hasAttachment": true, "lastModifiedEndTimeSecs": 26, "lastModifiedStartTimeSecs": 26, "lastName": "Last Name", "middleName": "Middle Name", "organizerAddress": "organizer@domain.com", "receivedEndTimeSecs": 26, "receivedStartTimeSecs": 26, "recipientAddresses": ["recipient@domain.com"], "senderAddress": "sender@domain.com", "sourceEnvironment": "kO365", "taskStatusTypes": ["NotStarted","InProgress","Completed","WaitingOnOthers","Deferred"], "types": ["Email","Folder","Calendar","Contact","Task","Note"], "o365Params": {"domainIds": [26,27], "mailboxIds": [26,27]}}' \
     --exchange-params '{"searchString": "searchString"}' \
-    --file-params '{"searchString": "searchString", "types": ["File","Directory","Symlink"], "sourceEnvironments": ["kVMware","kHyperV","kSQL","kView","kRemoteAdapter","kPhysical","kPhysicalFiles","kPure","kIbmFlashSystem","kAzure","kNetapp","kGenericNas","kAcropolis","kIsilon","kGPFS","kKVM","kAWS","kExchange","kOracle","kGCP","kFlashBlade","kO365","kHyperFlex","kKubernetes","kElastifile","kSAPHANA","kUDA","kSfdc"], "sourceIds": [26,27], "objectIds": [26,27]}' \
+    --file-params '{"searchString": "searchString", "types": ["File","Directory","Symlink"], "sourceEnvironments": ["kVMware","kHyperV","kSQL","kView","kRemoteAdapter","kPhysical","kPhysicalFiles","kPure","kIbmFlashSystem","kNetapp","kGenericNas","kAcropolis","kIsilon","kGPFS","kKVM","kExchange","kOracle","kFlashBlade","kO365","kHyperFlex","kKubernetes","kElastifile","kSAPHANA","kUDA","kSfdc"], "sourceIds": [26,27], "objectIds": [26,27]}' \
     --hbase-params '{"hbaseObjectTypes": ["HbaseNamespaces","HbaseTables"], "searchString": "searchString", "sourceIds": [26,27]}' \
     --hdfs-params '{"hdfsTypes": ["HDFSFolders","HDFSFiles"], "searchString": "searchString", "sourceIds": [26,27]}' \
     --hive-params '{"hiveObjectTypes": ["HiveDatabases","HiveTables","HivePartitions"], "searchString": "searchString", "sourceIds": [26,27]}' \
@@ -4230,7 +4224,7 @@ ibmcloud backup-recovery indexed-objects-search \
     --exchange-params-search-string exampleString \
     --file-params-search-string exampleString \
     --file-params-types File,Directory,Symlink \
-    --file-params-source-environments kVMware,kHyperV,kSQL,kView,kRemoteAdapter,kPhysical,kPhysicalFiles,kPure,kIbmFlashSystem,kAzure,kNetapp,kGenericNas,kAcropolis,kIsilon,kGPFS,kKVM,kAWS,kExchange,kOracle,kGCP,kFlashBlade,kO365,kHyperFlex,kKubernetes,kElastifile,kSAPHANA,kUDA,kSfdc \
+    --file-params-source-environments kVMware,kHyperV,kSQL,kView,kRemoteAdapter,kPhysical,kPhysicalFiles,kPure,kIbmFlashSystem,kNetapp,kGenericNas,kAcropolis,kIsilon,kGPFS,kKVM,kExchange,kOracle,kFlashBlade,kO365,kHyperFlex,kKubernetes,kElastifile,kSAPHANA,kUDA,kSfdc \
     --file-params-source-ids 26,27 \
     --file-params-object-ids 26,27 \
     --hbase-params-hbase-object-types HbaseNamespaces,HbaseTables \
@@ -4329,7 +4323,7 @@ ibmcloud backup-recovery objects-search --xibm-tenant-id XIBM-TENANT-ID [--reque
 `--protection-types` ([]string)
 :   Specifies the protection type to filter objects.
 
-    Allowable list items are: `kAgent`, `kNative`, `kSnapshotManager`, `kRDSSnapshotManager`, `kAuroraSnapshotManager`, `kAwsS3`, `kAwsRDSPostgresBackup`, `kAwsAuroraPostgres`, `kAwsRDSPostgres`, `kAzureSQL`, `kFile`, `kVolume`.
+    Allowable list items are: `kAgent`, `kNative`, `kSnapshotManager`, `kFile`, `kVolume`.
 
 `--protection-group-ids` ([]string)
 :   Specifies a list of Protection Group ids to filter the objects. If specified, the objects protected by specified Protection Group ids will be returned.
@@ -4427,7 +4421,7 @@ ibmcloud backup-recovery objects-search \
     --request-initiator-type UIUser \
     --search-string searchString \
     --environments kPhysical,kSQL \
-    --protection-types kAgent,kNative,kSnapshotManager,kRDSSnapshotManager,kAuroraSnapshotManager,kAwsS3,kAwsRDSPostgresBackup,kAwsAuroraPostgres,kAwsRDSPostgres,kAzureSQL,kFile,kVolume \
+    --protection-types kAgent,kNative,kSnapshotManager,kFile,kVolume \
     --protection-group-ids protectionGroupId1 \
     --object-ids 26,27 \
     --os-types kLinux,kWindows \
@@ -4486,7 +4480,7 @@ ibmcloud backup-recovery protected-objects-search --xibm-tenant-id XIBM-TENANT-I
 `--snapshot-actions` ([]string)
 :   Specifies a list of recovery actions. Only snapshots that apply to these actions will be returned.
 
-    Allowable list items are: `RecoverVMs`, `RecoverFiles`, `InstantVolumeMount`, `RecoverVmDisks`, `MountVolumes`, `RecoverVApps`, `RecoverRDS`, `RecoverAurora`, `RecoverS3Buckets`, `RecoverApps`, `RecoverNasVolume`, `RecoverPhysicalVolumes`, `RecoverSystem`, `RecoverSanVolumes`, `RecoverNamespaces`, `RecoverObjects`, `DownloadFilesAndFolders`, `RecoverPublicFolders`, `RecoverVAppTemplates`, `RecoverMailbox`, `RecoverOneDrive`, `RecoverMsTeam`, `RecoverMsGroup`, `RecoverSharePoint`, `ConvertToPst`, `RecoverSfdcRecords`, `RecoverAzureSQL`, `DownloadChats`, `RecoverRDSPostgres`, `RecoverMailboxCSM`, `RecoverOneDriveCSM`, `RecoverSharePointCSM`.
+    Allowable list items are: `RecoverVMs`, `RecoverFiles`, `InstantVolumeMount`, `RecoverVmDisks`, `MountVolumes`, `RecoverVApps`, `RecoverApps`, `RecoverNasVolume`, `RecoverPhysicalVolumes`, `RecoverSystem`, `RecoverSanVolumes`, `RecoverNamespaces`, `RecoverObjects`, `DownloadFilesAndFolders`, `RecoverPublicFolders`, `RecoverVAppTemplates`, `RecoverMailbox`, `RecoverOneDrive`, `RecoverMsTeam`, `RecoverMsGroup`, `RecoverSharePoint`, `ConvertToPst`, `RecoverSfdcRecords`, `DownloadChats`, `RecoverMailboxCSM`, `RecoverOneDriveCSM`, `RecoverSharePointCSM`.
 
 `--object-action-key` (string)
 :   Filter by ObjectActionKey, which uniquely represents the protection of an object. An object can be protected in multiple ways but at most once for a given combination of ObjectActionKey. When specified, the latest snapshot info matching the objectActionKey is for corresponding object.
@@ -4534,7 +4528,7 @@ ibmcloud backup-recovery protected-objects-search \
     --request-initiator-type UIUser \
     --search-string searchString \
     --environments kPhysical,kSQL \
-    --snapshot-actions RecoverVMs,RecoverFiles,InstantVolumeMount,RecoverVmDisks,MountVolumes,RecoverVApps,RecoverRDS,RecoverAurora,RecoverS3Buckets,RecoverApps,RecoverNasVolume,RecoverPhysicalVolumes,RecoverSystem,RecoverSanVolumes,RecoverNamespaces,RecoverObjects,DownloadFilesAndFolders,RecoverPublicFolders,RecoverVAppTemplates,RecoverMailbox,RecoverOneDrive,RecoverMsTeam,RecoverMsGroup,RecoverSharePoint,ConvertToPst,RecoverSfdcRecords,RecoverAzureSQL,DownloadChats,RecoverRDSPostgres,RecoverMailboxCSM,RecoverOneDriveCSM,RecoverSharePointCSM \
+    --snapshot-actions RecoverVMs,RecoverFiles,InstantVolumeMount,RecoverVmDisks,MountVolumes,RecoverVApps,RecoverApps,RecoverNasVolume,RecoverPhysicalVolumes,RecoverSystem,RecoverSanVolumes,RecoverNamespaces,RecoverObjects,DownloadFilesAndFolders,RecoverPublicFolders,RecoverVAppTemplates,RecoverMailbox,RecoverOneDrive,RecoverMsTeam,RecoverMsGroup,RecoverSharePoint,ConvertToPst,RecoverSfdcRecords,DownloadChats,RecoverMailboxCSM,RecoverOneDriveCSM,RecoverSharePointCSM \
     --object-action-key kPhysical \
     --protection-group-ids protectionGroupId1 \
     --object-ids 26,27 \

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025, 2026
-lastupdated: "2026-04-06"
+lastupdated: "2026-04-07"
 
 keywords: data source connector, iks, roks, cluster
 
@@ -246,6 +246,8 @@ If you are registering a cluster that was previously registered, you must ensure
 
 ## Upgrading the Backup Agent Components
 {: #upgrade-brs-backup-agent}
+
+The {{site.data.keyword.baas_full_notm}} service releases updates on a monthly cadence. It is recommended to upgrade your Backup Agent Components when new releases become available to ensure you have the latest features, security patches, and bug fixes.
 
 Upgrades for the brs-backup-agent components are currently manual. When you register a Kubernetes/OpenShift source, the system creates a namespace `brs-backup-agent-<GUID>` that contains:
 - Datamover DaemonSet
