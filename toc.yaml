@@ -162,6 +162,11 @@ toc:
               topics:
               - data-protect/oracle-requirements.md
               - data-protect/register-oracle-sources.md
+          - topicgroup:
+              label: DB2
+              topics:
+              - data-protect/db2-requirements.md
+              - data-protect/db2-protect-recover.md
       - topicgroup:
           label: Physical servers
           topics:
