@@ -111,12 +111,27 @@ For more details, see [Service endpoints](/docs/backup-recovery?topic=backup-rec
 
 The `management-reporting-service-url` (also referred to as the Backup Recovery Management URL) is the endpoint for the {{site.data.keyword.baas_full_notm}} Manager's reporting and monitoring APIs. This URL provides access to centralized reporting, monitoring, and alert management capabilities across all your backup and recovery instances in a region.
 
-**Management Reporting Service URL format:**
+**Management Reporting Service URL format by region:**
 ```
-https://manager.backup-recovery.cloud.ibm.com/heliosreporting/api/v1
-```
+  https://manager.<region>.backup-recovery.cloud.ibm.com/heliosreporting/api/v1
+  ```
 
-This is a **fixed regional endpoint** that does not require an instance ID. It provides access to:
+- **US region:**
+  ```
+  https://manager.us.backup-recovery.cloud.ibm.com/heliosreporting/api/v1
+  ```
+
+- **EU region:**
+  ```
+  https://manager.eu.backup-recovery.cloud.ibm.com/heliosreporting/api/v1
+  ```
+
+- **AP region:**
+  ```
+  https://manager.ap.backup-recovery.cloud.ibm.com/heliosreporting/api/v1
+  ```
+
+These are **fixed regional endpoints** that do not require an instance ID. They provide access to:
 - Report components and report management
 - Centralized monitoring dashboards
 - Alert aggregation across instances
@@ -148,9 +163,23 @@ OK
 ```
 {: screen}
 
-Set the management-reporting-service-url:
+Set the management-reporting-service-url (choose the URL for your region):
+
+For US region:
 ```sh
 ibmcloud backup-recovery config set management-reporting-service-url 'https://manager.backup-recovery.cloud.ibm.com/heliosreporting/api/v1'
+```
+{: pre}
+
+For EU region:
+```sh
+ibmcloud backup-recovery config set management-reporting-service-url 'https://manager.eu.backup-recovery.cloud.ibm.com/heliosreporting/api/v1'
+```
+{: pre}
+
+For AP region:
+```sh
+ibmcloud backup-recovery config set management-reporting-service-url 'https://manager.ap.backup-recovery.cloud.ibm.com/heliosreporting/api/v1'
 ```
 {: pre}
 
@@ -270,7 +299,7 @@ ibmcloud backup-recovery protection-source list --xibm-tenant-id XIBM-TENANT-ID 
 {: #backup-recovery-protection-source-list-cli-options}
 
 `--xibm-tenant-id` (string)
-:   Specifies the key to be used to encrypt the source credential. If includeSourceCredentials is set to true, this key must be specified. Required.
+:   Specifies the tenant ID for the backup recovery service instance. Required.
 
 `--exclude-office365-types` ([]string)
 :   Specifies the Object types to be filtered out for Office 365 that match the passed in types such as 'kDomain', 'kOutlook', 'kMailbox', etc. For example, set this parameter to 'kMailbox' to exclude Mailbox Objects from being returned.
@@ -423,7 +452,7 @@ ibmcloud backup-recovery protection-source registrations-list --xibm-tenant-id X
 {: #backup-recovery-protection-source-registrations-list-cli-options}
 
 `--xibm-tenant-id` (string)
-:   Specifies the key to be used to encrypt the source credential. If includeSourceCredentials is set to true this key must be specified. Required.
+:   Specifies the tenant ID for the backup recovery service instance. Required.
 
 `--ids` ([]int64)
 :   Ids specifies the list of source registration ids to return. If left empty, every source registration will be returned by default.
@@ -472,7 +501,7 @@ ibmcloud backup-recovery protection-source register --xibm-tenant-id XIBM-TENANT
 {: #backup-recovery-protection-source-register-cli-options}
 
 `--xibm-tenant-id` (string)
-:   Specifies the key to be used to encrypt the source credential. If includeSourceCredentials is set to true this key must be specified. Required.
+:   Specifies the tenant ID for the backup recovery service instance. Required.
 
 `--environment` (string)
 :   Specifies the environment type of the Protection Source. Required.
@@ -659,7 +688,7 @@ ibmcloud backup-recovery protection-source registration-get --id ID --xibm-tenan
 :   Specifies the id of the Protection Source registration. Required.
 
 `--xibm-tenant-id` (string)
-:   Specifies the key to be used to encrypt the source credential. If includeSourceCredentials is set to true this key must be specified. Required.
+:   Specifies the tenant ID for the backup recovery service instance. Required.
 
 `--request-initiator-type` (string)
 :   Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
@@ -694,7 +723,7 @@ ibmcloud backup-recovery protection-source registration-update --id ID --xibm-te
 :   Specifies the id of the Protection Source registration. Required.
 
 `--xibm-tenant-id` (string)
-:   Specifies the key to be used to encrypt the source credential. If includeSourceCredentials is set to true this key must be specified. Required.
+:   Specifies the tenant ID for the backup recovery service instance. Required.
 
 `--environment` (string)
 :   Specifies the environment type of the Protection Source. Required.
@@ -888,7 +917,7 @@ ibmcloud backup-recovery protection-source registration-patch --id ID --xibm-ten
 :   Specifies the id of the Protection Source registration. Required.
 
 `--xibm-tenant-id` (string)
-:   Specifies the key to be used to encrypt the source credential. If includeSourceCredentials is set to true this key must be specified. Required.
+:   Specifies the tenant ID for the backup recovery service instance. Required.
 
 `--environment` (string)
 :   Specifies the environment type of the Protection Source to be patched. Currently, the only environment supported is kCassandra. Required.
@@ -923,7 +952,7 @@ ibmcloud backup-recovery protection-source registration-delete --id ID --xibm-te
 :   Specifies the ID of the Protection Source Registration. Required.
 
 `--xibm-tenant-id` (string)
-:   Specifies the key to be used to encrypt the source credential. If includeSourceCredentials is set to true this key must be specified. Required.
+:   Specifies the tenant ID for the backup recovery service instance. Required.
 
 `-f`, `--force` (bool)
 :   Force the command to execute without confirmation.
@@ -955,7 +984,7 @@ ibmcloud backup-recovery protection-source refresh --id ID --xibm-tenant-id XIBM
 :   Specifies the id of the Protection Source. Required.
 
 `--xibm-tenant-id` (string)
-:   Specifies the key to be used to encrypt the source credential. If includeSourceCredentials is set to true this key must be specified. Required.
+:   Specifies the tenant ID for the backup recovery service instance. Required.
 
 #### Example
 {: #backup-recovery-protection-source-refresh-examples}
@@ -991,7 +1020,7 @@ ibmcloud backup-recovery agent-upgrade-task list --xibm-tenant-id XIBM-TENANT-ID
 {: #backup-recovery-agent-upgrade-task-list-cli-options}
 
 `--xibm-tenant-id` (string)
-:   Specifies the key to be used to encrypt the source credential. If includeSourceCredentials is set to true this key must be specified. Required.
+:   Specifies the tenant ID for the backup recovery service instance. Required.
 
 `--ids` ([]int64)
 :   Specifies IDs of tasks to be fetched.
@@ -1020,7 +1049,7 @@ ibmcloud backup-recovery agent-upgrade-task create --xibm-tenant-id XIBM-TENANT-
 {: #backup-recovery-agent-upgrade-task-create-cli-options}
 
 `--xibm-tenant-id` (string)
-:   Specifies the key to be used to encrypt the source credential. If includeSourceCredentials is set to true this key must be specified. Required.
+:   Specifies the tenant ID for the backup recovery service instance. Required.
 
 `--agent-ids` ([]int64)
 :   Specifies agent IDs to be upgraded in the task.
@@ -1079,7 +1108,7 @@ ibmcloud backup-recovery protection-policy list --xibm-tenant-id XIBM-TENANT-ID 
 {: #backup-recovery-protection-policy-list-cli-options}
 
 `--xibm-tenant-id` (string)
-:   Specifies the key to be used to encrypt the source credential. If includeSourceCredentials is set to true this key must be specified. Required.
+:   Specifies the tenant ID for the backup recovery service instance. Required.
 
 `--request-initiator-type` (string)
 :   Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
@@ -1136,7 +1165,7 @@ ibmcloud backup-recovery protection-policy create --xibm-tenant-id XIBM-TENANT-I
 {: #backup-recovery-protection-policy-create-cli-options}
 
 `--xibm-tenant-id` (string)
-:   Specifies the key to be used to encrypt the source credential. If includeSourceCredentials is set to true this key must be specified. Required.
+:   Specifies the tenant ID for the backup recovery service instance. Required.
 
 `--name` (string)
 :   Specifies the name of the Protection Policy. Required.
@@ -1325,7 +1354,7 @@ ibmcloud backup-recovery protection-policy get --id ID --xibm-tenant-id XIBM-TEN
 :   Specifies a unique id of the Protection Policy to return. Required.
 
 `--xibm-tenant-id` (string)
-:   Specifies the key to be used to encrypt the source credential. If includeSourceCredentials is set to true this key must be specified. Required.
+:   Specifies the tenant ID for the backup recovery service instance. Required.
 
 `--request-initiator-type` (string)
 :   Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
@@ -1360,7 +1389,7 @@ ibmcloud backup-recovery protection-policy update --id ID --xibm-tenant-id XIBM-
 :   Specifies a unique id of the Protection Policy to update. Required.
 
 `--xibm-tenant-id` (string)
-:   Specifies the key to be used to encrypt the source credential. If includeSourceCredentials is set to true this key must be specified. Required.
+:   Specifies the tenant ID for the backup recovery service instance. Required.
 
 `--name` (string)
 :   Specifies the name of the Protection Policy. Required.
@@ -1551,7 +1580,7 @@ ibmcloud backup-recovery protection-policy delete --id ID --xibm-tenant-id XIBM-
 :   Specifies a unique id of the Protection Policy to delete. Required.
 
 `--xibm-tenant-id` (string)
-:   Specifies the key to be used to encrypt the source credential. If includeSourceCredentials is set to true this key must be specified. Required.
+:   Specifies the tenant ID for the backup recovery service instance. Required.
 
 `--force` (bool)
 :   Force the command to execute.
@@ -1590,7 +1619,7 @@ ibmcloud backup-recovery protection-group list --xibm-tenant-id XIBM-TENANT-ID [
 {: #backup-recovery-protection-group-list-cli-options}
 
 `--xibm-tenant-id` (string)
-:   Specifies the key to be used to encrypt the source credential. If includeSourceCredentials is set to true this key must be specified. Required.
+:   Specifies the tenant ID for the backup recovery service instance. Required.
 
 `--request-initiator-type` (string)
 :   Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
@@ -1709,7 +1738,7 @@ ibmcloud backup-recovery protection-group create --xibm-tenant-id XIBM-TENANT-ID
 {: #backup-recovery-protection-group-create-cli-options}
 
 `--kubernetes-params` (string)
-:   Specifies the parameters which are related to Kubernetes Protection Groups. It should be a JSON string or a path to aJSON file.
+:   Specifies the parameters which are related to Kubernetes Protection Groups. It should be a JSON string or a path to a JSON file.
 
 `--kubernetes-params-enable-indexing`
 :   Specifies whether indexing of files and folders is allowed or not while backing up namespace. If allowed files and folder can be recovered.
@@ -1745,7 +1774,7 @@ ibmcloud backup-recovery protection-group create --xibm-tenant-id XIBM-TENANT-ID
 :   Specifies whether to process with backup if volumes back up fails.
 
 `--xibm-tenant-id` (string)
-:   Specifies the key to be used to encrypt the source credential. If includeSourceCredentials is set to true this key must be specified. Required.
+:   Specifies the tenant ID for the backup recovery service instance. Required.
 
 `--name` (string)
 :   Specifies the name of the Protection Group. Required.
@@ -1964,7 +1993,7 @@ ibmcloud backup-recovery protection-group get --id ID --xibm-tenant-id XIBM-TENA
 :   Specifies a unique id of the Protection Group. Required.
 
 `--xibm-tenant-id` (string)
-:   Specifies the key to be used to encrypt the source credential. If includeSourceCredentials is set to true this key must be specified. Required.
+:   Specifies the tenant ID for the backup recovery service instance. Required.
 
 `--request-initiator-type` (string)
 :   Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
@@ -2001,7 +2030,7 @@ Update the specified Protection Group.
 
 ```sh
 ibmcloud backup-recovery protection-group update --id ID --xibm-tenant-id XIBM-TENANT-ID --name NAME --policy-id POLICY-ID --environment ENVIRONMENT [--priority PRIORITY] [--description DESCRIPTION] [--start-time START-TIME | --start-time-hour START-TIME-HOUR --start-time-minute START-TIME-MINUTE --start-time-time-zone START-TIME-TIME-ZONE] [--end-time-usecs END-TIME-USECS] [--last-modified-timestamp-usecs LAST-MODIFIED-TIMESTAMP-USECS] [--alert-policy ALERT-POLICY | --alert-policy-backup-run-status ALERT-POLICY-BACKUP-RUN-STATUS --alert-policy-alert-targets ALERT-POLICY-ALERT-TARGETS --alert-policy-raise-object-level-failure-alert=ALERT-POLICY-RAISE-OBJECT-LEVEL-FAILURE-ALERT --alert-policy-raise-object-level-failure-alert-after-last-attempt=ALERT-POLICY-RAISE-OBJECT-LEVEL-FAILURE-ALERT-AFTER-LAST-ATTEMPT --alert-policy-raise-object-level-failure-alert-after-each-attempt=ALERT-POLICY-RAISE-OBJECT-LEVEL-FAILURE-ALERT-AFTER-EACH-ATTEMPT] [--sla SLA] [--qos-policy QOS-POLICY] [--abort-in-blackouts=ABORT-IN-BLACKOUTS] [--pause-in-blackouts=PAUSE-IN-BLACKOUTS] [--is-paused=IS-PAUSED] [--advanced-configs ADVANCED-CONFIGS] [--physical-params PHYSICAL-PARAMS | --physical-params-protection-type PHYSICAL-PARAMS-PROTECTION-TYPE --physical-params-volume-protection-type-params PHYSICAL-PARAMS-VOLUME-PROTECTION-TYPE-PARAMS --physical-params-file-protection-type-params PHYSICAL-PARAMS-FILE-PROTECTION-TYPE-PARAMS] [--mssql-params MSSQL-PARAMS | --mssql-params-file-protection-type-params MSSQL-PARAMS-FILE-PROTECTION-TYPE-PARAMS --mssql-params-native-protection-type-params MSSQL-PARAMS-NATIVE-PROTECTION-TYPE-PARAMS --mssql-params-protection-type MSSQL-PARAMS-PROTECTION-TYPE --mssql-params-volume-protection-type-params MSSQL-PARAMS-VOLUME-PROTECTION-TYPE-PARAMS]
-  [--kubernetes-params KUBERNETES-PARAMS | --enableIndexing PHYSICALINDEXING --exclude-object-ids EXCLUDE-OBJECT-IDS --inlcude-object-ids INCLUDE-OBJECT-IDS]
+  [--kubernetes-params KUBERNETES-PARAMS | --enableIndexing PHYSICALINDEXING --exclude-object-ids EXCLUDE-OBJECT-IDS --include-object-ids INCLUDE-OBJECT-IDS]
 ```
 
 
@@ -2048,7 +2077,7 @@ ibmcloud backup-recovery protection-group update --id ID --xibm-tenant-id XIBM-T
 :   Specifies whether to process with backup if volumes back up fails.
 
 `--xibm-tenant-id` (string)
-:   Specifies the key to be used to encrypt the source credential. If includeSourceCredentials is set to true this key must be specified. Required.
+:   Specifies the tenant ID for the backup recovery service instance. Required.
 
 `--name` (string)
 :   Specifies the name of the Protection Group. Required.
@@ -2269,7 +2298,7 @@ ibmcloud backup-recovery protection-group delete --id ID --xibm-tenant-id XIBM-T
 :   Specifies a unique id of the Protection Group. Required.
 
 `--xibm-tenant-id` (string)
-:   Specifies the key to be used to encrypt the source credential. If includeSourceCredentials is set to true this key must be specified. Required.
+:   Specifies the tenant ID for the backup recovery service instance. Required.
 
 `--delete-snapshots` (bool)
 :   Specifies whether Snapshots generated by the Protection Group should also be deleted when the Protection Group is deleted.
@@ -2317,7 +2346,7 @@ ibmcloud backup-recovery protection-group-run list --id ID --xibm-tenant-id XIBM
     The value must match regular expression `/^\\d+:\\d+:\\d+$/`.
 
 `--xibm-tenant-id` (string)
-:   Specifies the key to be used to encrypt the source credential. If includeSourceCredentials is set to true this key must be specified. Required.
+:   Specifies the tenant ID for the backup recovery service instance. Required.
 
 `--request-initiator-type` (string)
 :   Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
@@ -2378,7 +2407,7 @@ ibmcloud backup-recovery protection-group-run list --id ID --xibm-tenant-id XIBM
 :   Specifies whether we can serve the GET request from the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.
 
 `--filter-by-end-time` (bool)
-:   If true, the runs with backup end time within the specified time range will be returned. Otherwise, the runs with start time in the time range are returned.
+:   If true, the runs with backup end time within the specified time range will be returned. Otherwise, the runs with start time in the time range are returned. Defaults to filtering by start time unless this flag is set. Only one of filterByEndTime and filterByCopyTaskEndTime can be set.
 
 `--snapshot-target-types` ([]string)
 :   Specifies the snapshot's target type which should be filtered.
@@ -2422,7 +2451,7 @@ ibmcloud backup-recovery protection-group-run list \
 ### `ibmcloud backup-recovery protection-group-run update`
 {: #backup-recovery-cli-protection-group-run-update-command}
 
-Update runs for a particular Protection Group. A user can perform the following actions: 1. Extend or reduce retention of a local, replication, and archival snapshots. 2. Can perform resync operation on failed copy snapshots attempts in this Run. 3. Add new replication and archival snapshot targets to the Run. 4. Add or remove legal hold on the snapshots. Only a user with DSO role can perform this operation. 5. Delete the snapshots that were created as a part of this Run. 6. Apply data lock on existing snapshots where a user cannot manually delete snapshots before the expiry time.
+Update runs for a particular Protection Group. A user can perform the following actions: 1. Extend or reduce retention of a local, replication and archival snapshots. 2. Can perform resync operation on failed copy snapshots attempts in this Run. 3. Add new replication and archival snapshot targets to the Run. 4. Add or remove legal hold on the snapshots. Only a user with DSO role can perform this operation. 5. Delete the snapshots that were created as a part of this Run. 6. Apply datalock on existing snapshots where a user cannot manually delete snapshots before the expiry time.
 
 ```sh
 ibmcloud backup-recovery protection-group-run update --id ID --xibm-tenant-id XIBM-TENANT-ID --update-protection-group-run-params UPDATE-PROTECTION-GROUP-RUN-PARAMS | @UPDATE-PROTECTION-GROUP-RUN-PARAMS-FILE
@@ -2436,12 +2465,12 @@ ibmcloud backup-recovery protection-group-run update --id ID --xibm-tenant-id XI
 :   Specifies a unique id of the Protection Group. Required.
 
 `--xibm-tenant-id` (string)
-:   Specifies the key to be used to encrypt the source credential. If includeSourceCredentials is set to true this key must be specified. Required.
+:   Specifies the tenant ID for the backup recovery service instance. Required.
 
-`--update-protection-group-run-params`
+`--update-protection-group-run-params` (string)
 :   &nbsp; Required.
 
-    The minimum length is `1` item.
+    It can also be a path to a JSON file. The minimum length is `1` item.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, for example `--update-protection-group-run-params=@path/to/file.json`.
 
@@ -2462,7 +2491,7 @@ ibmcloud backup-recovery protection-group-run update \
 Create a new protection run. This can be used to start a run for a Protection Group on demand, ignoring the schedule and retention specified in the protection policy.
 
 ```sh
-ibmcloud backup-recovery protection-group-run create --id ID --xibm-tenant-id XIBM-TENANT-ID --run-type RUN-TYPE [--objects OBJECTS] [--targets-config TARGETS-CONFIG | --targets-config-use-policy-defaults=TARGETS-CONFIG-USE-POLICY-DEFAULTS --targets-config-replications TARGETS-CONFIG-REPLICATIONS --targets-config-archivals TARGETS-CONFIG-ARCHIVALS --targets-config-cloud-replications TARGETS-CONFIG-CLOUD-REPLICATIONS]
+ibmcloud backup-recovery protection-group-run create --id ID --xibm-tenant-id XIBM-TENANT-ID --run-type RUN-TYPE [--objects OBJECTS | @OBJECTS-FILE] [--targets-config (TARGETS-CONFIG | @TARGETS-CONFIG-FILE) | --targets-config-use-policy-defaults=TARGETS-CONFIG-USE-POLICY-DEFAULTS --targets-config-replications TARGETS-CONFIG-REPLICATIONS --targets-config-archivals TARGETS-CONFIG-ARCHIVALS --targets-config-cloud-replications TARGETS-CONFIG-CLOUD-REPLICATIONS]
 ```
 
 
@@ -2473,40 +2502,40 @@ ibmcloud backup-recovery protection-group-run create --id ID --xibm-tenant-id XI
 :   Specifies a unique id of the Protection Group. Required.
 
 `--xibm-tenant-id` (string)
-:   Specifies the key to be used to encrypt the source credential. If includeSourceCredentials is set to true this key must be specified. Required.
+:   Specifies the tenant ID for the backup recovery service instance. Required.
 
 `--run-type` (string)
 :   Type of protection run. 'kRegular' indicates an incremental (CBT) backup. Incremental backups utilizing CBT (if supported) are captured of the target protection objects. The first run of a kRegular schedule captures all the blocks. 'kFull' indicates a full (no CBT) backup. A complete backup (all blocks) of the target protection objects are always captured and Change Block Tracking (CBT) is not utilized. 'kLog' indicates a Database Log backup. Capture the database transaction logs to allow rolling back to a specific point in time. 'kSystem' indicates system volume backup. It produces an image for bare metal recovery. Required.
 
     Allowable values are: `kRegular`, `kFull`, `kLog`, `kSystem`, `kHydrateCDP`, `kStorageArraySnapshot`.
 
-`--objects`
-:   Specifies the list of objects to be protected by this Protection Group run. These can be leaf objects or non-leaf objects in the protection hierarchy. This must be specified only if a subset of objects from the Protection Groups needs to be protected.
+`--objects` (string)
+:   Specifies the list of objects to be protected by this Protection Group run. These can be leaf objects or non-leaf objects in the protection hierarchy. This must be specified only if a subset of objects from the Protection Groups needs to be protected. It can also be a path to a JSON file.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, for example `--objects=@path/to/file.json`.
 
-`--targets-config`
-:   Specifies the replication and archival targets. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
+`--targets-config` (string)
+:   Specifies the replication and archival targets. It can also be a path to a JSON file. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, for example `--targets-config=@path/to/file.json`.
 
 `--targets-config-use-policy-defaults` (bool)
-:   Specifies whether to use default policy settings or not. If specified as true then 'replications' and 'arcihvals' should not be specified. In case of true value, replication targets that are congfigured in the policy will be added internally. This option provides a value for a subfield of the JSON option 'targets-config'. It is mutually exclusive with that option.
+:   Specifies whether to use default policy settings or not. If specified as true then 'replications' and 'archivals' should not be specified. In case of true value, replication targets that are configured in the policy will be added internally. This option provides a value for a subfield of the JSON option 'targets-config'. It is mutually exclusive with that option.
 
     The default value is `false`.
 
-`--targets-config-replications`
-:   Specifies a list of replication targets configurations. This option provides a value for a subfield of the JSON option 'targets-config'. It is mutually exclusive with that option.
+`--targets-config-replications` (string)
+:   Specifies a list of replication targets configurations. It can also be a path to a JSON file. This option provides a value for a subfield of the JSON option 'targets-config'. It is mutually exclusive with that option.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, for example `--targets-config-replications=@path/to/file.json`.
 
-`--targets-config-archivals`
-:   Specifies a list of archival targets configurations. This option provides a value for a subfield of the JSON option 'targets-config'. It is mutually exclusive with that option.
+`--targets-config-archivals` (string)
+:   Specifies a list of archival targets configurations. It can also be a path to a JSON file. This option provides a value for a subfield of the JSON option 'targets-config'. It is mutually exclusive with that option.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, for example `--targets-config-archivals=@path/to/file.json`.
 
-`--targets-config-cloud-replications`
-:   Specifies a list of cloud replication targets configurations. This option provides a value for a subfield of the JSON option 'targets-config'. It is mutually exclusive with that option.
+`--targets-config-cloud-replications` (string)
+:   Specifies a list of cloud replication targets configurations. It can also be a path to a JSON file. This option provides a value for a subfield of the JSON option 'targets-config'. It is mutually exclusive with that option.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, for example `--targets-config-cloud-replications=@path/to/file.json`.
 
@@ -2554,25 +2583,25 @@ ibmcloud backup-recovery protection-group-run perform-action --id ID --xibm-tena
 :   Specifies a unique id of the Protection Group. Required.
 
 `--xibm-tenant-id` (string)
-:   Specifies the key to be used to encrypt the source credential. If includeSourceCredentials is set to true this key must be specified. Required.
+:   Specifies the tenant ID for the backup recovery service instance. Required.
 
 `--action` (string)
-:   Specifies the type of the action, which will be performed on protection runs. Required.
+:   Specifies the type of the action which will be performed on protection runs. Required.
 
     Allowable values are: `Pause`, `Resume`, `Cancel`.
 
 `--pause-params`
-:   Specifies the pause action params for a protection run.
+:   Specifies the pause action params for a protection run. It can also be a path to a JSON file.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, for example `--pause-params=@path/to/file.json`.
 
 `--resume-params`
-:   Specifies the resume action params for a protection run.
+:   Specifies the resume action params for a protection run. It can also be a path to a JSON file.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, for example `--resume-params=@path/to/file.json`.
 
 `--cancel-params`
-:   Specifies the cancel action params for a protection run.
+:   Specifies the cancel action params for a protection run. It can also be a path to a JSON file.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, for example `--cancel-params=@path/to/file.json`.
 
@@ -2614,7 +2643,7 @@ ibmcloud backup-recovery recovery list --xibm-tenant-id XIBM-TENANT-ID [--ids ID
 {: #backup-recovery-recovery-list-cli-options}
 
 `--xibm-tenant-id` (string)
-:   Specifies the key to be used to encrypt the source credential. If includeSourceCredentials is set to true this key must be specified. Required.
+:   Specifies the tenant ID for the backup recovery service instance. Required.
 
 `--ids` ([]string)
 :   Filter Recoveries for given ids.
@@ -2679,21 +2708,32 @@ ibmcloud backup-recovery recovery list \
 Performs a Recovery.
 
 ```sh
-ibmcloud backup-recovery recovery create --xibm-tenant-id XIBM-TENANT-ID --name NAME --snapshot-environment SNAPSHOT-ENVIRONMENT [--physical-params PHYSICAL-PARAMS | --physical-params-objects PHYSICAL-PARAMS-OBJECTS --physical-params-recovery-action PHYSICAL-PARAMS-RECOVERY-ACTION --physical-params-recover-volume-params PHYSICAL-PARAMS-RECOVER-VOLUME-PARAMS --physical-params-mount-volume-params PHYSICAL-PARAMS-MOUNT-VOLUME-PARAMS --physical-params-recover-file-and-folder-params PHYSICAL-PARAMS-RECOVER-FILE-AND-FOLDER-PARAMS --physical-params-download-file-and-folder-params PHYSICAL-PARAMS-DOWNLOAD-FILE-AND-FOLDER-PARAMS --physical-params-system-recovery-params PHYSICAL-PARAMS-SYSTEM-RECOVERY-PARAMS] [--mssql-params MSSQL-PARAMS | --mssql-params-recover-app-params MSSQL-PARAMS-RECOVER-APP-PARAMS --mssql-params-recovery-action MSSQL-PARAMS-RECOVERY-ACTION --mssql-params-vlan-config MSSQL-PARAMS-VLAN-CONFIG] [--request-initiator-type REQUEST-INITIATOR-TYPE] [--kubernetes-params KUBERNETES-PARAMS]
+ibmcloud backup-recovery recovery create --xibm-tenant-id XIBM-TENANT-ID --name NAME --snapshot-environment SNAPSHOT-ENVIRONMENT [--physical-params PHYSICAL-PARAMS | --physical-params-objects PHYSICAL-PARAMS-OBJECTS --physical-params-recovery-action PHYSICAL-PARAMS-RECOVERY-ACTION --physical-params-recover-volume-params PHYSICAL-PARAMS-RECOVER-VOLUME-PARAMS --physical-params-mount-volume-params PHYSICAL-PARAMS-MOUNT-VOLUME-PARAMS --physical-params-recover-file-and-folder-params PHYSICAL-PARAMS-RECOVER-FILE-AND-FOLDER-PARAMS --physical-params-download-file-and-folder-params PHYSICAL-PARAMS-DOWNLOAD-FILE-AND-FOLDER-PARAMS --physical-params-system-recovery-params PHYSICAL-PARAMS-SYSTEM-RECOVERY-PARAMS] [--kubernetes-params KUBERNETES-PARAMS | --kubernetes-params-download-file-and-folder-params KUBERNETES-PARAMS-DOWNLOAD-FILE-AND-FOLDER-PARAMS --kubernetes-params-objects KUBERNETES-PARAMS-OBJECTS --kubernetes-params-recover-file-and-folder-params KUBERNETES-PARAMS-RECOVER-FILE-AND-FOLDER-PARAMS --kubernetes-params-recover-namespace-params KUBERNETES-PARAMS-RECOVER-NAMESPACE-PARAMS --kubernetes-params-recovery-action KUBERNETES-PARAMS-RECOVERY-ACTION] [--mssql-params MSSQL-PARAMS | --mssql-params-recover-app-params MSSQL-PARAMS-RECOVER-APP-PARAMS --mssql-params-recovery-action MSSQL-PARAMS-RECOVERY-ACTION --mssql-params-vlan-config MSSQL-PARAMS-VLAN-CONFIG] [--request-initiator-type REQUEST-INITIATOR-TYPE]
 ```
 
 
 #### Command options
 {: #backup-recovery-recovery-create-cli-options}
 
+`--xibm-tenant-id` (string)
+:   Specifies the tenant ID for the backup recovery service instance. Required.
+
+`--name` (string)
+:   Specifies the name of the Recovery. Required.
+
+`--snapshot-environment` (string)
+:   Specifies the type of environment of snapshots for which the Recovery has to be performed. Required.
+
+    Allowable values are: `kPhysical`, `kSQL`.
+
 `--kubernetes-params` (string)
-:   Specifies the recovery options specific to the Kubernetes environment. It should be a JSON string or a path to a JSON file.
+:   Specifies the recovery options specific to Kubernetes environment. It should be a JSON string or a path to a JSON file.
 
 `--kubernetes-params-download-file-and-folder-params` (string)
 :   Specifies the parameters to download files and folders. It should be a JSON string or a path to a JSON file.
 
 `--kubernetes-params-objects` (string)
-:   Specifies the list of objects, which need to be recovered. It should be a JSON string or a path to a JSON file.
+:   Specifies the list of objects which need to be recovered. It should be a JSON string or a path to a JSON file.
 
 `--kubernetes-params-recover-file-and-folder-params` (string)
 :   Specifies the parameters to perform a file and folder recovery. It should be a JSON string or a path to a JSON file.
@@ -2704,34 +2744,21 @@ ibmcloud backup-recovery recovery create --xibm-tenant-id XIBM-TENANT-ID --name 
 `--kubernetes-params-recovery-action` (string)
 :   Specifies the type of recover action to be performed. Allowable values are: RecoverNamespaces, RecoverFiles, DownloadFilesAndFolders.
 
-`--xibm-tenant-id` (string)
-:   Specifies the key to be used to encrypt the source credential. If includeSourceCredentials is set to true this key must be specified. Required.
-
-`--name` (string)
-:   Specifies the name of the Recovery. Required.
-
-`--snapshot-environment` (string)
-:   Specifies the type of environment of snapshots for which the Recovery has to be performed. Required.
-
-    Allowable values are: `kPhysical`, `kSQL`.
-
 `--physical-params`
-:   Specifies the recovery options specific to the Physical environment. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
+:   Specifies the recovery options specific to Physical environment. It can also be a path to a JSON file. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, for example `--physical-params=@path/to/file.json`.
 
 `--mssql-params`
-:   Specifies the recovery options specific to the Sql environment. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
+:   Specifies the recovery options specific to Sql environment. It can also be a path to a JSON file. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, for example `--mssql-params=@path/to/file.json`.
 
 `--request-initiator-type` (string)
-:   Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
+:   Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests. Allowable values are: UIUser, UIAuto, Helios.
 
-    Allowable values are: `UIUser`, `UIAuto`, `Helios`.
-
-`--physical-params-objects`
-:   Specifies the list of Recover Object parameters. For recovering files, specifies the object contains the file to recover. This option provides a value for a subfield of the JSON option 'physical-params'. It is mutually exclusive with that option.
+`--physical-params-objects` (string)
+:   Specifies the list of Recover Object parameters. For recovering files, specifies the object contains the file to recover. It can also be a path to a JSON file. This option provides a value for a subfield of the JSON option 'physical-params'. It is mutually exclusive with that option.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, for example `--physical-params-objects=@path/to/file.json`.
 
@@ -2740,45 +2767,41 @@ ibmcloud backup-recovery recovery create --xibm-tenant-id XIBM-TENANT-ID --name 
 
     Allowable values are: `RecoverPhysicalVolumes`, `InstantVolumeMount`, `RecoverFiles`, `RecoverSystem`.
 
-`--physical-params-recover-volume-params`
-:   Specifies the parameters to recover Physical Volumes. This option provides a value for a subfield of the JSON option 'physical-params'. It is mutually exclusive with that option.
+`--physical-params-recover-volume-params` (string)
+:   Specifies the parameters to recover Physical Volumes. It can also be a path to a JSON file. This option provides a value for a subfield of the JSON option 'physical-params'. It is mutually exclusive with that option.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, for example `--physical-params-recover-volume-params=@path/to/file.json`.
 
-`--physical-params-mount-volume-params`
-:   Specifies the parameters to mount Physical Volumes. This option provides a value for a subfield of the JSON option 'physical-params'. It is mutually exclusive with that option.
+`--physical-params-mount-volume-params` (string)
+:   Specifies the parameters to mount Physical Volumes. It can also be a path to a JSON file. This option provides a value for a subfield of the JSON option 'physical-params'. It is mutually exclusive with that option.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, for example `--physical-params-mount-volume-params=@path/to/file.json`.
 
-`--physical-params-recover-file-and-folder-params`
-:   Specifies the parameters to perform a file and folder recovery. This option provides a value for a subfield of the JSON option 'physical-params'. It is mutually exclusive with that option.
+`--physical-params-recover-file-and-folder-params` (string)
+:   Specifies the parameters to perform a file and folder recovery. It can also be a path to a JSON file. This option provides a value for a subfield of the JSON option 'physical-params'. It is mutually exclusive with that option.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, for example `--physical-params-recover-file-and-folder-params=@path/to/file.json`.
 
-`--physical-params-download-file-and-folder-params`
-:   Specifies the parameters to download files and folders. This option provides a value for a subfield of the JSON option 'physical-params'. It is mutually exclusive with that option.
+`--physical-params-download-file-and-folder-params` (string)
+:   Specifies the parameters to download files and folders. It can also be a path to a JSON file. This option provides a value for a subfield of the JSON option 'physical-params'. It is mutually exclusive with that option.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, for example `--physical-params-download-file-and-folder-params=@path/to/file.json`.
 
-`--physical-params-system-recovery-params`
-:   Specifies the parameters to perform a system recovery. This option provides a value for a subfield of the JSON option 'physical-params'. It is mutually exclusive with that option.
+`--physical-params-system-recovery-params` (string)
+:   Specifies the parameters to perform a system recovery. It can also be a path to a JSON file. This option provides a value for a subfield of the JSON option 'physical-params'. It is mutually exclusive with that option.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, for example `--physical-params-system-recovery-params=@path/to/file.json`.
 
-`--mssql-params-recover-app-params`
-:   Specifies the parameters to recover Sql databases. This option provides a value for a subfield of the JSON option 'mssql-params'. It is mutually exclusive with that option.
-
-    The minimum length is `1` item.
+`--mssql-params-recover-app-params` (string)
+:   Specifies the parameters to recover Sql databases. It can also be a path to a JSON file. The minimum length is 1 item. This option provides a value for a subfield of the JSON option 'mssql-params'. It is mutually exclusive with that option.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, for example `--mssql-params-recover-app-params=@path/to/file.json`.
 
 `--mssql-params-recovery-action` (string)
-:   Specifies the type of recover action to be performed. This option provides a value for a subfield of the JSON option 'mssql-params'. It is mutually exclusive with that option.
+:   Specifies the type of recover action to be performed. Allowable values are: RecoverApps, CloneApps. This option provides a value for a subfield of the JSON option 'mssql-params'. It is mutually exclusive with that option.
 
-    Allowable values are: `RecoverApps`, `CloneApps`.
-
-`--mssql-params-vlan-config`
-:   Specifies VLAN Params that is associated with the recovered. If this is not specified, then the VLAN settings will be automatically selected from one of the following options: a. If VLANs are configured on IBM, then the VLAN host/VIP will be automatically based on the client's (for example ESXI host) IP address. b. If VLANs are not configured on IBM, then the partition hostname or VIPs will be used for Recovery. This option provides a value for a subfield of the JSON option 'mssql-params'. It is mutually exclusive with that option.
+`--mssql-params-vlan-config` (string)
+:   Specifies VLAN Params associated with the recovered. If this is not specified, then the VLAN settings will be automatically selected from one of the below options: a. If VLANs are configured on IBM, then the VLAN host/VIP will be automatically based on the client's (e.g. ESXI host) IP address. b. If VLANs are not configured on IBM, then the partition hostname or VIPs will be used for Recovery. It can also be a path to a JSON file. This option provides a value for a subfield of the JSON option 'mssql-params'. It is mutually exclusive with that option.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, for example `--mssql-params-vlan-config=@path/to/file.json`.
 
@@ -2836,7 +2859,7 @@ ibmcloud backup-recovery recovery get --id ID --xibm-tenant-id XIBM-TENANT-ID
     The value must match regular expression `/^\\d+:\\d+:\\d+$/`.
 
 `--xibm-tenant-id` (string)
-:   Specifies the key to be used to encrypt the source credential. If includeSourceCredentials is set to true this key must be specified. Required.
+:   Specifies the tenant ID for the backup recovery service instance. Required.
 
 #### Example
 {: #backup-recovery-recovery-get-examples}
@@ -2867,13 +2890,13 @@ ibmcloud backup-recovery recovery files-download --id ID --xibm-tenant-id XIBM-T
     The value must match regular expression `/^\\d+:\\d+:\\d+$/`.
 
 `--xibm-tenant-id` (string)
-:   Specifies the key to be used to encrypt the source credential. If includeSourceCredentials is set to true this key must be specified. Required.
+:   Specifies the tenant ID for the backup recovery service instance. Required.
 
 `--start-offset` (int64)
-:   Specifies the start offset of the file chunk to be downloaded.
+:   Specifies the start offset of file chunk to be downloaded.
 
 `--length` (int64)
-:   Specifies the length of bytes to download. This can’t be greater than 8MB (8388608 byets).
+:   Specifies the length of bytes to download. This can not be greater than 8MB (8388608 byets).
 
 `--file-type` (string)
 :   Specifies the downloaded type, i.e.: error, success_files_list.
@@ -2927,7 +2950,7 @@ ibmcloud backup-recovery data-source-connection list --xibm-tenant-id XIBM-TENAN
 {: #backup-recovery-data-source-connection-list-cli-options}
 
 `--xibm-tenant-id` (string)
-:   Specifies the key to be used to encrypt the source credential. If includeSourceCredentials is set to true this key must be specified. Required.
+:   Specifies the tenant ID for the backup recovery service instance. Required.
 
 `--connection-ids` ([]string)
 :   Specifies the unique IDs of the connections, which are to be fetched.
@@ -2949,7 +2972,7 @@ ibmcloud backup-recovery data-source-connection list \
 ### `ibmcloud backup-recovery data-source-connection create`
 {: #backup-recovery-cli-data-source-connection-create-command}
 
-Creates a data-source connection, which can be used to register and protect sources, to access filer services, and so on.
+Creates a data-source connection which can be used to register and protect sources, to access filer services, etc.
 
 ```sh
 ibmcloud backup-recovery data-source-connection create --connection-name CONNECTION-NAME [--xibm-tenant-id XIBM-TENANT-ID]
@@ -2978,7 +3001,7 @@ ibmcloud backup-recovery data-source-connection create \
 ### `ibmcloud backup-recovery data-source-connection delete`
 {: #backup-recovery-cli-data-source-connection-delete-command}
 
-Delete a data-source connection by using its ID. After deleting a connection, any connectors within it won't be able to connect to the cluster. A connection should only be deleted after ensuring that no sources are using it.
+Delete a data-source connection using its ID. After deleting a connection, any connectors within it won't be able to connect to the cluster. A connection should only be deleted after ensuring that no sources are using it.
 
 ```sh
 ibmcloud backup-recovery data-source-connection delete --connection-id CONNECTION-ID --xibm-tenant-id XIBM-TENANT-ID [--force]
@@ -2992,10 +3015,10 @@ ibmcloud backup-recovery data-source-connection delete --connection-id CONNECTIO
 :   Specifies the ID of the connection, connectors belonging to which are to be fetched. Required.
 
 `--xibm-tenant-id` (string)
-:   Specifies the key to be used to encrypt the source credential. If includeSourceCredentials is set to true this key must be specified. Required.
+:   Specifies the tenant ID for the backup recovery service instance. Required.
 
 `-f`, `--force` (bool)
-:   Force the command to execute without confirmation.
+:   Force the command to execute.
 
 #### Example
 {: #backup-recovery-data-source-connection-delete-examples}
@@ -3024,10 +3047,10 @@ ibmcloud backup-recovery data-source-connection patch --connection-id CONNECTION
 :   Specifies the ID of the connection, connectors belonging to which are to be fetched. Required.
 
 `--xibm-tenant-id` (string)
-:   Specifies the key to be used to encrypt the source credential. If includeSourceCredentials is set to true this key must be specified. Required.
+:   Specifies the tenant ID for the backup recovery service instance. Required.
 
 `--connection-name` (string)
-:   A new name for the connection being patched. Required.
+:   New name for the connection being patched. Required.
 
 #### Example
 {: #backup-recovery-data-source-connection-patch-examples}
@@ -3057,7 +3080,7 @@ ibmcloud backup-recovery data-source-connection registration-token-generate --co
 :   Specifies the ID of the connection, connectors belonging to which are to be fetched. Required.
 
 `--xibm-tenant-id` (string)
-:   Specifies the key to be used to encrypt the source credential. If includeSourceCredentials is set to true this key must be specified. Required.
+:   Specifies the tenant ID for the backup recovery service instance. Required.
 
 #### Example
 {: #backup-recovery-data-source-connection-registration-token-generate-examples}
@@ -3093,7 +3116,7 @@ ibmcloud backup-recovery data-source-connector list --xibm-tenant-id XIBM-TENANT
 {: #backup-recovery-data-source-connector-list-cli-options}
 
 `--xibm-tenant-id` (string)
-:   Specifies the key to be used to encrypt the source credential. If includeSourceCredentials is set to true this key must be specified. Required.
+:   Specifies the tenant ID for the backup recovery service instance. Required.
 
 `--connector-ids` ([]string)
 :   Specifies the unique IDs of the connectors, which are to be fetched.
@@ -3130,10 +3153,10 @@ ibmcloud backup-recovery data-source-connector delete --connector-id CONNECTOR-I
 {: #backup-recovery-data-source-connector-delete-cli-options}
 
 `--connector-id` (string)
-:   Specifies the unique ID of the connector, which is to be deleted. Required.
+:   Specifies the unique ID of the connector which is to be deleted. Required.
 
 `--xibm-tenant-id` (string)
-:   Specifies the key to be used to encrypt the source credential. If includeSourceCredentials is set to true this key must be specified. Required.
+:   Specifies the tenant ID for the backup recovery service instance. Required.
 
 `-f`, `--force` (bool)
 :   Force the command to execute without confirmation.
@@ -3162,10 +3185,10 @@ ibmcloud backup-recovery data-source-connector patch --connector-id CONNECTOR-ID
 {: #backup-recovery-data-source-connector-patch-cli-options}
 
 `--connector-id` (string)
-:   Specifies the unique ID of the connector, which is to be deleted. Required.
+:   Specifies the unique ID of the connector which is to be patched. Required.
 
 `--xibm-tenant-id` (string)
-:   Specifies the key to be used to encrypt the source credential. If includeSourceCredentials is set to true this key must be specified. Required.
+:   Specifies the tenant ID for the backup recovery service instance. Required.
 
 `--connector-name` (string)
 :   Name of the connector.
@@ -3207,7 +3230,7 @@ ibmcloud backup-recovery data-source-connector-logs \
 ### `ibmcloud backup-recovery data-source-connector-register`
 {: #backup-recovery-cli-data-source-connector-register-command}
 
-Register a data source connector with a cluster by using the supplied registration token. The registration token for the data-source connection with which this connector is to be registered has to be obtained by the user by invoking the relevant '/data-source-connections' APIs.
+Register a data source connector with a cluster using the supplied registration token. The registration token for the data-source connection with which this connector is to be registered has to be obtained by the user by invoking the relevant '/data-source-connections' APIs.
 
 ```sh
 ibmcloud backup-recovery data-source-connector-register --registration-token REGISTRATION-TOKEN [--access-token ACCESS-TOKEN] [--connector-id CONNECTOR-ID]
@@ -3234,6 +3257,7 @@ ibmcloud backup-recovery data-source-connector-register \
     --access-token eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRoLXR5cGUiOiIxIiwiZG9tYWluIjoiTE9DQUwiLCJleHBpcmF0aW9uLXRpbWUiOiIxNzM4NjY0NTI2IiwiaW4tY2x1c3RlciI6dHJ1ZSwibG9jYWxlIjoiZW4tdXMiLCJyb2xlcyI6IkNPSEVTSVRZX0FETUlOIiwic2lkcy1oYXNoIjoidG9CT3FhSllHUVhOTEF6ZWN5TTh1S05vbXNMT1VnbFVQUjYwNTJkdmJIYyIsInVzZXItc2lkIjoiUy0xLTEwMC0yMS0xMDY3Mjc0Mi0zOTcxMDE1MS0xIiwidXNlcm5hbWUiOiJhZG1pbiJ9.CiW0yedyrx7GQeI9GxloKU-zcuHUDCt0jvcz6H2bGd0ABNUWxryX22xNzEzAYIjoU3qdaS1hF7ch9WzKU-Jnk3eh2wmn_Ezb8Qe_gmxmeXRxKqPGSnVYZdMREXQsPJYfbncyftr-iiOluPZ52UgzkcBS2MeRIur5UEYNCumZqoYDVXAxLbuEyBhIrWMPQMUAe2gym4QRd6U-zmtMoLwa6DlKyzJsV_75mR-B9Vg9Aq78_DjXTgX6Lbq_IJJHplL83Sd1vJhlMO92C1Zm8AF2n_PeyDeFbUtU6TfCS6BlqFAfFv1sxDjKLAoPqmNagvEB-w_HeW_dfjGLfNUzqc3JUQ \
     --registration-token exampleString \
     --connector-id 26
+```
 ### `ibmcloud backup-recovery data-source-connector-status`
 {: #backup-recovery-cli-data-source-connector-status-command}
 
@@ -3254,11 +3278,7 @@ ibmcloud backup-recovery data-source-connector-status --access-token ACCESS-TOKE
 {: #backup-recovery-data-source-connector-status-examples}
 
 ```sh
-ibmcloud backup-recovery data-source-connector-status \
-    --access-token eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRoLXR5cGUiOiIxIiwiZG9tYWluIjoiTE9DQUwiLCJleHBpcmF0aW9uLXRpbWUiOiIxNzM4NjY0NTI2IiwiaW4tY2x1c3RlciI6dHJ1ZSwibG9jYWxlIjoiZW4tdXMiLCJyb2xlcyI6IkNPSEVTSVRZX0FETUlOIiwic2lkcy1oYXNoIjoidG9CT3FhSllHUVhOTEF6ZWN5TTh1S05vbXNMT1VnbFVQUjYwNTJkdmJIYyIsInVzZXItc2lkIjoiUy0xLTEwMC0yMS0xMDY3Mjc0Mi0zOTcxMDE1MS0xIiwidXNlcm5hbWUiOiJhZG1pbiJ9.CiW0yedyrx7GQeI9GxloKU-zcuHUDCt0jvcz6H2bGd0ABNUWxryX22xNzEzAYIjoU3qdaS1hF7ch9WzKU-Jnk3eh2wmn_Ezb8Qe_gmxmeXRxKqPGSnVYZdMREXQsPJYfbncyftr-iiOluPZ52UgzkcBS2MeRIur5UEYNCumZqoYDVXAxLbuEyBhIrWMPQMUAe2gym4QRd6U-zmtMoLwa6DlKyzJsV_75mR-B9Vg9Aq78_DjXTgX6Lbq_IJJHplL83Sd1vJhlMO92C1Zm8AF2n_PeyDeFbUtU6TfCS6BlqFAfFv1sxDjKLAoPqmNagvEB-w_HeW_dfjGLfNUzqc3JUQ
-```
-{: pre}
-
+ibmcloud backup-recovery data-source-connector-status --access-token eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRoLXR5cGUiOiIxIiwiZG9tYWluIjoiTE9DQUwiLCJleHBpcmF0aW9uLXRpbWUiOiIxNzM4NjY0NTI2IiwiaW4tY2x1c3RlciI6dHJ1ZSwibG9jYWxlIjoiZW4tdXMiLCJyb2xlcyI6IkNPSEVTSVRZX0FETUlOIiwic2lkcy1oYXNoIjoidG9CT3FhSllHUVhOTEF6ZWN5TTh1S05vbXNMT1VnbFVQUjYwNTJkdmJIYyIsInVzZXItc2lkIjoiUy0xLTEwMC0yMS0xMDY3Mjc0Mi0zOTcxMDE1MS0xIiwidXNlcm5hbWUiOiJhZG1pbiJ9.CiW0yedyrx7GQeI9GxloKU-zcuHUDCt0jvcz6H2bGd0ABNUWxryX22xNzEzAYIjoU3qdaS1hF7ch9WzKU-Jnk3eh2wmn_Ezb8Qe_gmxmeXRxKqPGSnVYZdMREXQsPJYfbncyftr-iiOluPZ52UgzkcBS2MeRIur5UEYNCumZqoYDVXAxLbuEyBhIrWMPQMUAe2gym4QRd6U-zmtMoLwa6DlKyzJsV_75mR-B9Vg9Aq78_DjXTgX6Lbq_IJJHplL83Sd1vJhlMO92C1Zm8AF2n_PeyDeFbUtU6TfCS6BlqFAfFv1sxDjKLAoPqmNagvEB-w_HeW_dfjGLfNUzqc3JUQ
 ```
 {: pre}
 
@@ -3273,7 +3293,7 @@ ibmcloud backup-recovery data-source-connector-status \
 Download agent for different hosts.
 
 ```sh
-ibmcloud backup-recovery agent-download --xibm-tenant-id XIBM-TENANT-ID --platform PLATFORM [--linux-params LINUX-PARAMS | --linux-params-package-type LINUX-PARAMS-PACKAGE-TYPE]
+ibmcloud backup-recovery agent-download --xibm-tenant-id XIBM-TENANT-ID --platform PLATFORM [--linux-params (LINUX-PARAMS | @LINUX-PARAMS-FILE) | --linux-params-package-type LINUX-PARAMS-PACKAGE-TYPE]
 ```
 
 
@@ -3281,22 +3301,23 @@ ibmcloud backup-recovery agent-download --xibm-tenant-id XIBM-TENANT-ID --platfo
 {: #backup-recovery-agent-download-cli-options}
 
 `--xibm-tenant-id` (string)
-:   Specifies the key to be used to encrypt the source credential. If includeSourceCredentials is set to true this key must be specified. Required.
+:   Specifies the tenant ID for the backup recovery service instance. Required.
 
 `--platform` (string)
 :   Specifies the platform for which the agent needs to be downloaded. Required.
 
     Allowable values are: `kWindows`, `kLinux`.
 
-`--linux-params`
-:   Linux agent parameters. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
-
-    Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, for example `--linux-params=@path/to/file.json`.
+`--linux-params` (string)
+:   Linux agent parameters. It can also be a path to a JSON file.
 
 `--linux-params-package-type` (string)
-:   Specifies the type of installer. This option provides a value for a subfield of the JSON option 'linux-params'. It is mutually exclusive with that option.
+:   Specifies the type of installer.
 
     Allowable values are: `kScript`, `kRPM`, `kSuseRPM`, `kDEB`, `kPowerPCRPM`.
+
+`--output-file` (string)
+:   Filename/path to write the resulting output to.
 
 #### Examples
 {: #backup-recovery-agent-download-examples}
@@ -3337,7 +3358,7 @@ ibmcloud backup-recovery connector-metadata-get --xibm-tenant-id XIBM-TENANT-ID
 {: #backup-recovery-connector-metadata-get-cli-options}
 
 `--xibm-tenant-id` (string)
-:   Specifies the key to be used to encrypt the source credential. If includeSourceCredentials is set to true this key must be specified. Required.
+:   Specifies the tenant ID for the backup recovery service instance. Required.
 
 #### Example
 {: #backup-recovery-connector-metadata-get-examples}
@@ -3368,7 +3389,7 @@ ibmcloud backup-recovery object-snapshots-list --id ID --xibm-tenant-id XIBM-TEN
 :   Specifies the id of the Object. Required.
 
 `--xibm-tenant-id` (string)
-:   Specifies the key to be used to encrypt the source credential. If includeSourceCredentials is set to true this key must be specified. Required.
+:   Specifies the tenant ID for the backup recovery service instance. Required.
 
 `--from-time-usecs` (int64)
 :   Specifies the timestamp in the Unix time epoch in microseconds to filter Object's snapshots which were taken after this value.
@@ -3388,7 +3409,7 @@ ibmcloud backup-recovery object-snapshots-list --id ID --xibm-tenant-id XIBM-TEN
     Allowable list items are: `RecoverVMs`, `RecoverFiles`, `InstantVolumeMount`, `RecoverVmDisks`, `MountVolumes`, `RecoverVApps`, `RecoverApps`, `RecoverNasVolume`, `RecoverPhysicalVolumes`, `RecoverSystem`, `RecoverSanVolumes`, `RecoverNamespaces`, `RecoverObjects`, `DownloadFilesAndFolders`, `RecoverPublicFolders`, `RecoverVAppTemplates`, `RecoverMailbox`, `RecoverOneDrive`, `RecoverMsTeam`, `RecoverMsGroup`, `RecoverSharePoint`, `ConvertToPst`, `RecoverSfdcRecords`, `DownloadChats`, `RecoverMailboxCSM`, `RecoverOneDriveCSM`, `RecoverSharePointCSM`.
 
 `--run-types` ([]string)
-:   Filter by run type. Only protection runs matching the specified types will be returned. By default, CDP hydration snapshots are not included unless explicitly queried by using this field.
+:   Filter by run type. Only protection runs matching the specified types will be returned. By default, CDP hydration snapshots are not included unless explicitly queried using this field.
 
     Allowable list items are: `kRegular`, `kFull`, `kLog`, `kSystem`, `kHydrateCDP`, `kStorageArraySnapshot`.
 
@@ -3435,7 +3456,7 @@ ibmcloud backup-recovery object-snapshots-list \
 Creates a download files and folders recovery.
 
 ```sh
-ibmcloud backup-recovery download-recovery-create --xibm-tenant-id XIBM-TENANT-ID --name NAME [--object OBJECT | --object-snapshot-id OBJECT-SNAPSHOT-ID --object-point-in-time-usecs OBJECT-POINT-IN-TIME-USECS --object-protection-group-id OBJECT-PROTECTION-GROUP-ID --object-protection-group-name OBJECT-PROTECTION-GROUP-NAME --object-recover-from-standby=OBJECT-RECOVER-FROM-STANDBY] --files-and-folders FILES-AND-FOLDERS [--documents DOCUMENTS] [--parent-recovery-id PARENT-RECOVERY-ID] [--glacier-retrieval-type GLACIER-RETRIEVAL-TYPE]
+ibmcloud backup-recovery download-recovery-create --xibm-tenant-id XIBM-TENANT-ID --name NAME --files-and-folders FILES-AND-FOLDERS | @FILES-AND-FOLDERS-FILE [--object (OBJECT | @OBJECT-FILE) | --object-snapshot-id OBJECT-SNAPSHOT-ID --object-point-in-time-usecs OBJECT-POINT-IN-TIME-USECS --object-protection-group-id OBJECT-PROTECTION-GROUP-ID --object-protection-group-name OBJECT-PROTECTION-GROUP-NAME --object-recover-from-standby=OBJECT-RECOVER-FROM-STANDBY] [--documents DOCUMENTS | @DOCUMENTS-FILE] [--parent-recovery-id PARENT-RECOVERY-ID] [--glacier-retrieval-type GLACIER-RETRIEVAL-TYPE]
 ```
 
 
@@ -3443,7 +3464,7 @@ ibmcloud backup-recovery download-recovery-create --xibm-tenant-id XIBM-TENANT-I
 {: #backup-recovery-download-recovery-create-cli-options}
 
 `--xibm-tenant-id` (string)
-:   Specifies the key to be used to encrypt the source credential. If includeSourceCredentials is set to true this key must be specified. Required.
+:   Specifies the tenant ID for the backup recovery service instance. Required.
 
 `--name` (string)
 :   Specifies the name of the recovery task. This field must be set and must be a unique name. Required.
@@ -3473,7 +3494,7 @@ ibmcloud backup-recovery download-recovery-create --xibm-tenant-id XIBM-TENANT-I
     The value must match regular expression `/^\\d+:\\d+:\\d+$/`.
 
 `--glacier-retrieval-type` (string)
-:   Specifies the glacier retrieval type when restoring or downloding files or folders from a Glacier-based cloud snapshot.
+:   Specifies the glacier retrieval type when restoring or downloading files or folders from a Glacier-based cloud snapshot.
 
     Allowable values are: `kStandard`, `kExpeditedNoPCU`, `kExpeditedWithPCU`.
 
@@ -3481,7 +3502,7 @@ ibmcloud backup-recovery download-recovery-create --xibm-tenant-id XIBM-TENANT-I
 :   Specifies the snapshot id. This option provides a value for a subfield of the JSON option 'object'. It is mutually exclusive with that option.
 
 `--object-point-in-time-usecs` (int64)
-:   Specifies the timestamp (in microseconds. from epoch) for recovering to a point-in-time in the past. This option provides a value for a subfield of the JSON option 'object'. It is mutually exclusive with that option.
+:   Specifies the timestamp (in microseconds from epoch) for recovering to a point-in-time in the past. This option provides a value for a subfield of the JSON option 'object'. It is mutually exclusive with that option.
 
 `--object-protection-group-id` (string)
 :   Specifies the protection group ID of the object snapshot. This option provides a value for a subfield of the JSON option 'object'. It is mutually exclusive with that option.
@@ -3538,7 +3559,7 @@ ibmcloud backup-recovery restore-points --xibm-tenant-id XIBM-TENANT-ID --end-ti
 {: #backup-recovery-restore-points-cli-options}
 
 `--xibm-tenant-id` (string)
-:   Specifies the key to be used to encrypt the source credential. If includeSourceCredentials is set to true this key must be specified. Required.
+:   Specifies the tenant ID for the backup recovery service instance. Required.
 
 `--end-time-usecs` (int64)
 :   Specifies the end time specified as a Unix epoch Timestamp in microseconds. Required.
@@ -3588,7 +3609,7 @@ ibmcloud backup-recovery indexed-file-download --snapshots-id SNAPSHOTS-ID --xib
 :   Specifies the snapshot id to download from. Required.
 
 `--xibm-tenant-id` (string)
-:   Specifies the key to be used to encrypt the source credential. If includeSourceCredentials is set to true this key must be specified. Required.
+:   Specifies the tenant ID for the backup recovery service instance. Required.
 
 `--file-path` (string)
 :   Specifies the path to the file to download. If no path is specified and snapshot environment is kVMWare, VMX file for VMware will be downloaded. For other snapshot environments, this field must be specified.
@@ -3603,7 +3624,7 @@ ibmcloud backup-recovery indexed-file-download --snapshots-id SNAPSHOTS-ID --xib
 :   Specifies the start offset of file chunk to be downloaded.
 
 `--length` (int64)
-:   Specifies the length of bytes to download. This can’t be greater than 8MB (8388608 byets).
+:   Specifies the length of bytes to download. This can not be greater than 8MB (8388608 byets).
 
 #### Example
 {: #backup-recovery-indexed-file-download-examples}
@@ -3637,7 +3658,7 @@ ibmcloud backup-recovery indexed-objects-search --xibm-tenant-id XIBM-TENANT-ID 
 {: #backup-recovery-indexed-objects-search-cli-options}
 
 `--xibm-tenant-id` (string)
-:   Specifies the tenant ID for multi-tenant environments. This identifies which tenant's resources should be accessed. Required.
+:   Specifies the tenant ID for the backup recovery service instance. Required.
 
 `--object-type` (string)
 :   Specifies the object type to be searched for. Required.
@@ -4305,7 +4326,7 @@ ibmcloud backup-recovery objects-search --xibm-tenant-id XIBM-TENANT-ID [--reque
 {: #backup-recovery-objects-search-cli-options}
 
 `--xibm-tenant-id` (string)
-:   Specifies the key to be used to encrypt the source credential. If includeSourceCredentials is set to true this key must be specified. Required.
+:   Specifies the tenant ID for the backup recovery service instance. Required.
 
 `--request-initiator-type` (string)
 :   Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
@@ -4407,7 +4428,7 @@ ibmcloud backup-recovery objects-search --xibm-tenant-id XIBM-TENANT-ID [--reque
     Allowable list items are: `Classification`, `Threats`, `Anomalies`, `Dspm`.
 
 `--include-helios-tag-info-for-objects` (bool)
-:   specifies whether to include helios tags information for objects in response. The default value is false.
+:   Specifies whether to include helios tags information for objects in response. Default value is false.
 
 `--external-filters` ([]string)
 :   Specifies the key-value pairs to filter the results for the search. Each filter is of the form 'key:value'. The filter 'externalFilters:k1:v1&externalFilters:k2:v2&externalFilters:k2:v3' returns the documents where each document matches the query (k1=v1) AND (k2=v2 OR k2 = v3). Allowed keys: - vmBiosUuid - graphUuid - arn - instanceId - bucketName - azureId.
@@ -4462,7 +4483,7 @@ ibmcloud backup-recovery protected-objects-search --xibm-tenant-id XIBM-TENANT-I
 {: #backup-recovery-protected-objects-search-cli-options}
 
 `--xibm-tenant-id` (string)
-:   Specifies the key to be used to encrypt the source credential. If includeSourceCredentials is set to true this key must be specified. Required.
+:   Specifies the tenant ID for the backup recovery service instance. Required.
 
 `--request-initiator-type` (string)
 :   Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
@@ -4511,7 +4532,7 @@ ibmcloud backup-recovery protected-objects-search --xibm-tenant-id XIBM-TENANT-I
 :   Specifies a list of Protection Source object ids to filter the objects. If specified, the object which are present in those Sources will be returned.
 
 `--run-instance-ids` ([]int64)
-:   Specifies a list of run instance ids. If specified only objects belonging to the provided run id will be retunrned.
+:   Specifies a list of run instance ids. If specified only objects belonging to the provided run id will be returned.
 
 `--cdp-protected-only` (bool)
 :   Specifies whether to only return the CDP protected objects.
@@ -4576,22 +4597,22 @@ ibmcloud backup-recovery provider-instances \
 ```
 {: pre}
 
-## Ibmcloud backup-recovery management-console-resources
+## Ibmcloud backup-recovery management-console
 {: #backup-recovery-console-resources-cli}
 
 Commands for Management Console resources.
 
 ```sh
-ibmcloud backup-recovery management-console-resources --help
+ibmcloud backup-recovery management-console --help
 ```
 
-### `ibmcloud br management-console-resources list`
+### `ibmcloud backup-recovery management-console resources-list`
 {: #backup-recovery-cli-console-resources-list-command}
 
-Get different kinds of resources available, which are discovered on Management Console. These values can be used for filtering options.
+Get different kinds of resources available which are discovered on Management Console. These values can be used for filtering options.
 
 ```sh
-  ibmcloud backup-recovery management-console resources-list --resource-type RESOURCE-TYPE
+ibmcloud backup-recovery management-console resources-list --resource-type RESOURCE-TYPE
 ```
 
 #### Command options
@@ -4660,7 +4681,7 @@ ibmcloud backup-recovery management-console components-list \
 ### `ibmcloud backup-recovery management-console components-preview`
 {: #backup-recovery-cli-console-components-get-preview-command}
 
-Get a preview for a component specified by Id.
+Get preview for a component specified by Id.
 
 ```sh
 ibmcloud backup-recovery management-console components-preview --id ID [--filters FILTERS | @FILTERS-FILE] [--limit (LIMIT | @LIMIT-FILE) | --limit-from LIMIT-FROM --limit-size LIMIT-SIZE] [--sort SORT | @SORT-FILE] [--timezone TIMEZONE]
@@ -4679,7 +4700,7 @@ ibmcloud backup-recovery management-console components-preview --id ID [--filter
 :   Specifies the parameters to limit the resulting dataset. It should be a JSON string or a path to a JSON file.
 
 `--limit-from` (int)
-:   Specifies the offset to which resulting data will be skipped before applying the size parameter. For example, if dataset size is 10 objects, from=2 and size=5, then from 10 objects only 5 objects are returned starting from offset 2 that is, 2 to 7. If not specified, then none of the objects are skipped.
+:   Specifies the offset to which resulting data will be skipped before applying the size parameter. For example if dataset size is 10 objects, from=2 and size=5, then from 10 objects only 5 objects are returned starting from offset 2 i.e., 2 to 7. If not specified, then none of the objects are skipped.
 
 `--limit-size` (int)
 :   Specifies the number of objects to be returned from the offset specified. The minimum value is 1.
@@ -4688,7 +4709,7 @@ ibmcloud backup-recovery management-console components-preview --id ID [--filter
 :   Specifies the sorting (ordering) parameters to be applied to the resulting data. It should be a JSON string or a path to a JSON file.
 
 `--timezone` (string)
-:   Specifies the timezone of the user. If nil, it defaults to UTC. The time that is specified should be a location name in the IANA Time Zone database, for example, 'America/Los_Angeles'.
+:   Specifies timezone of the user. If nil, defaults to UTC. The time specified should be a location name in the IANA Time Zone database, for example, 'America/Los_Angeles'.
 
 #### Example
 {: #backup-recovery-console-components-get-preview-examples}
@@ -4749,7 +4770,7 @@ Export a configured report.
 :   Required. Specifies the id of the report.
 
 `--layout` (string)
-:   The layout of the report, which needs to be exported.
+:   The layout of the report which needs to be exported.
 
 `--output-file` (string)
 :   Filename/path to write the resulting output to.
@@ -4758,7 +4779,7 @@ Export a configured report.
 :   The format in which the report needs to be exported. Allowable values are: XLS, CSV.
 
 `--timezone` (string)
-:   Specifies the time zone of the user. If nil, it defaults to UTC. The time that is specified should be a location name in the IANA time zone database, for example, 'America/Los_Angeles'.
+:   Specifies timezone of the user. If nil, defaults to UTC. The time specified should be a location name in the IANA Time Zone database, for example, 'America/Los_Angeles'.
 
 #### Example
 {: #backup-recovery-management-console-export-report-examples}
@@ -4797,7 +4818,7 @@ Get preview of a configured report.
 :   Required. Specifies the id of the report.
 
 `--timezone` (string)
-:   Specifies the time zone of the user. If nil, defaults to UTC. The time that is specified should be a location name in the IANA time zone database, for example, 'America/Los_Angeles'.
+:   Specifies timezone of the user. If nil, defaults to UTC. The time specified should be a location name in the IANA Time Zone database, for example, 'America/Los_Angeles'.
 
 #### Example
 {: #backup-recovery-management-console-reports-preview-examples}
@@ -4848,7 +4869,7 @@ Fetches list of all reports accessible by logged in user.
 {: #backup-recovery-management-console-reports-list-cli-options}
 
 `--ids` (string)
-:   Specifies the id of the report.
+:   Specifies the ids of reports to fetch.
 
 `--user-context` (string)
 :   Specifies the user context to filter reports. Allowable values are: IBMBaaS.

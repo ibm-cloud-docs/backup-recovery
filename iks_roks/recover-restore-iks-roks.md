@@ -55,6 +55,9 @@ For example, if a namespace that you want to recover contains a deployment resou
         2. In the recovery point selection view, select the snapshot that you want from the list.
         3. Click **Select Recovery Point**.
 
+    When recovering an entire Protection Group (by selecting the blue K8 icon), advanced registration options are not available in the recovery workflow.
+    {: note}
+
     
 
 10. Click **Next: Recover Options**.
@@ -94,7 +97,7 @@ For example, if a namespace that you want to recover contains a deployment resou
                 *   Select **Include** or **Exclude** radio buttons.
                 *   Use the search bar or click **+ Add** to filter by resource type (for example, `Deployment`, `ReplicaSet`).
         *   **Storage Class** Tab:
-            *   Toggle **Unbind the PVCs from their original PV mapping** if needed.
+            *   Toggle **Unbind the PVCs from their original PV mapping** if needed. This option is useful when recovering "retain" type storage classes and statically created PVCs, as it allows the PVCs to be bound to new PVs in the target cluster.
             *   Map **Old Storage Class** to **New Storage Class** by using the dropdowns.
             *   Use **Clear All** to reset mappings.
 
