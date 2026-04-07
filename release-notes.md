@@ -3,7 +3,7 @@
 copyright:
   years: 2024, 2026
 
-lastupdated: "2026-04-03"
+lastupdated: "2026-04-07"
 
 
 keywords: updates, releases, news, backup and recovery
@@ -22,6 +22,12 @@ content-type: release-note
 News on the latest releases from IBM's Backup and Recovery provide the updates you need on all things related to Backup and Recovery.
 {: shortdesc}
 
+## 06 April 2026
+{: #baas-April0626}
+{: release-note}
+
+Release update
+:  {{site.data.keyword.cloud_notm}} Backup and Recovery supports Db2 {{site.data.keyword.cloud_notm}} VSI adapter with Entity Hierarchy (EH). In this release, the {{site.data.keyword.baas_full_notm}} service can protect Db2 workloads that use the {{site.data.keyword.cloud_notm}} VSI adapter. This enhancement enables backup and restore of either the entire Db2 instance, or selected individual databases through integration with {{site.data.keyword.cloud_notm}} VSI.  To complete the protection workflow, users need an {{site.data.keyword.cloud_notm}} VSI cluster, an active Rigel connection, and the respective Db2 virtual machines.  See [Requirements for registering your Db2 database on an {{site.data.keyword.cloud_notm}} VSI cluster](/docs/backup-recovery?topic=backup-recovery-db2_requirements) for more information.
 
 
 ## 12 December 2025

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2026
-lastupdated: "2026-04-06"
+lastupdated: "2026-04-07"
 
 keywords: backup and recovery, data source connectors,
 
@@ -141,9 +141,7 @@ To create a Data Source Connection:
       - In the `Virtual machine name` field, enter a unique name for your Data Source Connector.
       - In the `Select a location for the Virtual Machine` field, select where your VM should reside from the displayed list of inventory locations.
 
-   5. On the `Compute Resources` page, select a compute resource for the Data Source Connector VM and click
-
-#### Next
+   5. On the `Compute Resources` page, select a compute resource for the Data Source Connector VM and click `Next`.
 
    6. On the `Review details` page, verify the Data Source Connector information and click `Next`.
 
@@ -426,6 +424,8 @@ Ensure that your cluster has sufficient CPU and memory resources. The Data Sourc
 
 ## Upgrading the Data Source Connector
 {: #upgrade-data-source-connector}
+
+The {{site.data.keyword.baas_full_notm}} service releases updates on a monthly cadence. It is recommended to upgrade your Data Source Connector when new releases become available to ensure you have the latest features, security patches, and bug fixes.
 
 Upgrades for the Data Source Connector are currently manual. Follow these steps to check your current version and upgrade to a newer version:
 
