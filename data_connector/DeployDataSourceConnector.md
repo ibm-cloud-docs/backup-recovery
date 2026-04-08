@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2026
-lastupdated: "2026-04-07"
+lastupdated: "2026-04-08"
 
 keywords: backup and recovery, data source connectors,
 
@@ -399,7 +399,7 @@ Ensure that your cluster has sufficient CPU and memory resources. The Data Sourc
       ibmcloud ks worker-pool taint set \
           --cluster "${CLUSTER_NAME_ID}" \
           --worker-pool "${WORKER_POOL_NAME}" \
-          --taint "${TAINT_KEY}=${TAINT_VALUE}:${TAINT_EFFECT}" -f
+          --taint "dedicated=data-source-connector:NoSchedule" -f
       ```
       {: codeblock}
 
@@ -453,10 +453,24 @@ This command shows the container image tag, which includes the version number.
 ### Check for available versions
 {: #check-available-versions}
 
-To view all available versions of the Data Source Connector chart:
+To view all available versions of the Data Source Connector chart, first log in to your IBM Cloud account:
 
 ```sh
-helm search repo oci://icr.io/ext/brs/brs-ds-connector-chart --versions
+ibmcloud login -a cloud.ibm.com --apikey "${API_KEY}"
+```
+{: codeblock}
+
+Then, log in to the IBM Container Registry:
+
+```sh
+ibmcloud cr login
+```
+{: codeblock}
+
+After logging in, list the available images:
+
+```sh
+ibmcloud cr images --restrict ext/brs/brs-ds-connector
 ```
 {: codeblock}
 
@@ -473,6 +487,19 @@ helm upgrade --install <k8-app-name> oci://icr.io/ext/brs/brs-ds-connector-chart
 {: codeblock}
 
 Replace `<k8-app-name>` with your release name and `<new-version>` with the target version number.
+
+**To obtain the registration token:**
+
+1. Log in to your {{site.data.keyword.baas_full_notm}} instance in the IBM Cloud console.
+2. Navigate to `System` > `Data Source Connections`.
+3. Locate the Data Source Connection that corresponds to your cluster.
+4. Click on the three dots (⋮) menu corresponding to the connection.
+5. Select `Connection Token` from the menu options.
+6. Copy the displayed connection token (also referred to as the registration token).
+7. Replace `xxx` in the `secrets.registrationToken` parameter with the copied token value.
+
+If you need to create a new Data Source Connection, see [Create a data source connection for Kubernetes/OpenShift](#create_data_source_connection_iks_roks).
+{: note}
 
 The `--reuse-values` flag preserves your existing configuration settings during the upgrade.
 {: tip}
