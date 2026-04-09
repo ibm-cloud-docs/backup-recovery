@@ -202,10 +202,10 @@ toc:
           links:
           - link:
               label: Backup and Recovery API
-              href: https://cloud.ibm.com/apidocs/backup-recovery
+              href: https://cloud.ibm.com/apidocs/baas/backup-recovery
           - link:
               label: Reporting Service API
-              href: https://cloud.ibm.com/apidocs/ibm_reporting_api
+              href: https://cloud.ibm.com/apidocs/baas/ibm_reporting_api
           topics:
           - global_mgmt_console/reporting_service_apis.md
       - topicgroup:
