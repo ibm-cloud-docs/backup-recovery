@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2026
-lastupdated: "2026-04-07"
+lastupdated: "2026-04-10"
 
 
 keywords: faq, frequently asked questions, object storage, S3, HMAC, general
@@ -55,7 +55,7 @@ A Data Source Connector (formerly called SaaS connector) establishes the connect
 {: #baas-terminology-sla}
 {: faq}
 
-SLA (Service Level Agreement) in the context of {{site.data.keyword.baas_full_notm}} refers to the Backup Completion Objective (BCO), which defines the target time frame within which backup operations should complete successfully. This helps organizations meet their data protection requirements and ensures that backups are completed within acceptable time windows to minimize the risk of data loss.
+For information about Service Level Agreements (SLA) for {{site.data.keyword.baas_full_notm}}, see [SLAs](/docs/overview?topic=overview-slas).
 
 ## What factors affect the performance of {{site.data.keyword.baas_full}} service?
 {: #baas-terminology-performance-factors}
@@ -67,7 +67,7 @@ Several factors can impact the performance of {{site.data.keyword.baas_full_notm
 {: #baas-release-cadence}
 {: faq}
 
-The {{site.data.keyword.baas_full_notm}} service releases updates on a monthly cadence. These updates include new features, security patches, bug fixes, and performance improvements. It is recommended to upgrade your Data Source Connectors and Backup Agent Components when new releases become available to ensure you have the latest capabilities and security enhancements.
+The {{site.data.keyword.baas_full_notm}} service typically releases updates on a monthly cadence. These updates include new features, security patches, bug fixes, and performance improvements. It is recommended to upgrade your Data Source Connectors and Backup Agent Components when new releases become available to ensure you have the latest capabilities and security enhancements.
 
 ## What data sources are supported for backup?
 {: #baas-supported-sources}

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025, 2026
-lastupdated: "2026-04-07"
+lastupdated: "2026-04-10"
 
 keywords: data source connector, iks, roks, cluster
 
@@ -118,6 +118,9 @@ The Datamover is installed by default on all worker nodes as a DaemonSet and not
 
 You can either create a new data source connection or use an existing one. If you already have a connection for the same deployment platform, you can skip to [Install and configure the data source connector](#data-source-connector-iks-roks-install-configure).
 
+The current release of the `ibmcloud backup-recovery data-source-connection create` CLI command does not support the `--connection-env-type` parameter, which is required for creating connections that can be used to protect IBM Kubernetes Service and Red Hat OpenShift clusters. Until this limitation is resolved, use the UI-based workflow described below to create data source connections for backing up IBM Kubernetes Service and Red Hat OpenShift clusters.
+{: important}
+
 #### Choosing the deployment platform
 {: #data-source-connector-iks-roks-deployment-platform}
 
@@ -197,7 +200,7 @@ If you are registering a cluster that was previously registered as a source, you
          HostPort is the default and recommended communication method for the backup and recovery agent. Users can optionally specify a custom port; if not specified, the default port (33769) is used.
          | **Source**             | **Destination** | **Port** | **Protocol** | **Purpose**                               |
          |------------------------|-----------------|----------|--------------|--------------------------------------------|
-         | Data Source Connector  | HOST            | 33769    | TCP          | Reserved for Kubernetes/OpenShift clusters             |
+         | Data Source Connector  | HOST            | 33769    | TCP          | Communication with backup and recovery agent             |
 
         ![HostPort](Images_datasource_connection/HostPort43crop.png){: caption="Register Kubernetes source"}
 
@@ -211,7 +214,12 @@ If you are registering a cluster that was previously registered as a source, you
 ## How to create a bearer token for a Kubernetes or OpenShift cluster
 {: #data-source-connector-iks-roks-create-bearer-token-cluster}
 
-1. Open [IBM Cloud Shell](https://cloud.ibm.com/shell) and configure `kubectl` or `oc` CLI by getting the kube config:
+**For clusters with private endpoints only:** You must run `ibmcloud`, `kubectl` and `helm` commands from [IBM Cloud Shell](https://cloud.ibm.com/shell).
+
+**For clusters with public endpoints:** You can run `ibmcloud`, `kubectl`, and `helm` commands from either [IBM Cloud Shell](https://cloud.ibm.com/shell) or your local workspace.
+{: note}
+
+1. Open [IBM Cloud Shell](https://cloud.ibm.com/shell) (or use your local workspace if your cluster has a public endpoint) and configure `kubectl` or `helm` CLI by getting the kube config:
 
     ```sh
     ibmcloud ks cluster config --cluster <cluster> --admin
@@ -253,30 +261,41 @@ If you are registering a cluster that was previously registered as a source, you
 ## Upgrading the Backup Agent Components
 {: #upgrade-brs-backup-agent}
 
-The {{site.data.keyword.baas_full_notm}} service releases updates on a monthly cadence. It is recommended to upgrade your Backup Agent Components when new releases become available to ensure you have the latest features, security patches, and bug fixes.
+When new releases of the {{site.data.keyword.baas_full_notm}} service become available, there is a possibility that new Backup Agent Component versions are also available. It is recommended to upgrade your Backup Agent Components when new releases become available to ensure you have the latest features, security patches, and bug fixes.
+
+To check for new service releases, see the [{{site.data.keyword.baas_full_notm}} release notes](https://cloud.ibm.com/docs/backup-recovery?topic=backup-recovery-updates){: external}.
 
 Upgrades for the brs-backup-agent components are currently manual. When you register a Kubernetes/OpenShift source, the system creates a namespace `brs-backup-agent-<GUID>` that contains:
-- Datamover DaemonSet (named `cohesity-dm`)
-- Velero Deployment (named `velero`)
+- Datamover DaemonSet
+- Velero Deployment
 
 Each release of {{site.data.keyword.baas_full_notm}} includes default image versions for these components. To upgrade an existing source registration:
 
-1. Delete the existing backup agent components from your cluster:
+1. Get the exact namespace name with the `brs-backup-agent` prefix:
    
    ```sh
-   kubectl delete daemonset -n brs-backup-agent-<GUID> cohesity-dm
+   kubectl get namespaces | grep brs-backup-agent
+   ```
+   {: codeblock}
+
+   Note the full namespace name (e.g., `brs-backup-agent-<GUID>`).
+
+2. Delete the existing backup agent components from your cluster:
+   
+   ```sh
+   kubectl delete daemonset -n brs-backup-agent-<GUID> --all
    kubectl delete deployment -n brs-backup-agent-<GUID> velero
    ```
    {: codeblock}
 
-   Replace `<GUID>` with your actual namespace GUID.
+   Replace `<GUID>` with your actual namespace GUID from step 1.
 
-2. Trigger a refresh on the source registration:
+3. Trigger a refresh on the source registration:
    - Go to: `Dashboard` \> `Data Protection` \> `Sources`.
    - Locate your Kubernetes/OpenShift source.
    - Click the menu `⋮` and select `Refresh`.
 
-3. The system will automatically redeploy the datamover DaemonSet and Velero Deployment with the latest image versions associated with your {{site.data.keyword.baas_full_notm}} version.
+4. The system will automatically redeploy the datamover DaemonSet and Velero Deployment with the latest image versions associated with your {{site.data.keyword.baas_full_notm}} version.
 
 The `Edit Registration` option does not update the datamover and Velero images. You must delete the existing components and trigger a refresh to apply the upgrade.
 {: important}
