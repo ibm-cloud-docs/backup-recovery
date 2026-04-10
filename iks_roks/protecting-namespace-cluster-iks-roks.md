@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025, 2026
-lastupdated: "2026-04-07"
+lastupdated: "2026-04-10"
 
 keywords: data source connector, iks, roks, cluster, protection
 
@@ -43,7 +43,7 @@ Follow these steps to quickly protect your Kubernetes resources:
 
       | Option | Description |
       |------|-------------|
-      | **Use an Existing Protection Group** | All settings are prefilled from the existing group and are read only at this stage. |
+      | **Use an Existing Protection Group** | All settings are prefilled from the existing group and are read-only at this stage. |
       | **Create a New Protection Group** | When creating a new group, configure the following settings: <ul><li>**Protection Group Name**</li><li>**Protection Policy**</li><li>**Start Time and Time Zone** </li><li>**Leverage CSI Snapshot** (toggle) - Recommended for crash-consistent backups</li><li>**Pause Future Runs**</li><li>**Alerts and Email Recipients**</li><li>**Priority** (High / Medium / Low)</li><li>**Include or Exclude Labels**</li><li>**Description**</li></ul> |
       {: caption="Protection Group options" caption-side="bottom"}
 
@@ -91,7 +91,7 @@ When creating a new protection group, you find these under the collapsible **Add
 | **BCO (Backup Completion Objective)** | <ul><li>**Full**: Default 1 day.</li><li>**Incremental**: Default 12 hours.</li></ul> <br> _Backup Completion Objective (BCO) will be met if Full Backups complete within 1 day and Incremental Backups complete within 12 hours._ |
 | **Description** | Enter a brief description for the Protection Group. |
 | **Include or Exclude Labels** | Toggle **Persistent Volume Claim(PVC) Inclusion/Exclusion** to filter PVCs by labels.  <br> <ul><li>**Logical Rule**: Select "Match Any of the following labels" or "Match All of the following labels".</li><li>Select **Include** or **Exclude** radio button.</li><li>Enter the **key** and **value** for the existing resource label.</li><li>Click **+ Add**.</li></ul> |
-| **Snapshot Timeout** | Snapshot Timeout specifies the maximum time (in seconds) to wait for each PVC snapshot to reach the Ready state when CSI Snapshot is enabled. This setting is configured per protection job and applies to all subsequent runs. You can set a timeout value between 60 seconds and 43200 seconds. <br> <ol><li>Make sure that **Leverage CSI snapshot** is enabled.</li><li>Scroll down to locate the **Snapshot Timeout** field.</li><li>Enter the desired timeout value (in seconds) within the supported range (60-43200 seconds).</li><li>Click **Save** to apply the changes.</li></ol>|
+| **Snapshot Timeout** | Snapshot Timeout specifies the maximum time (in seconds) to wait for each PVC snapshot to reach the Ready state when CSI Snapshot is enabled. This setting is configured per protection job and applies to all subsequent runs. You can set a timeout value between 60 seconds and 43200 seconds. <br> <ol><li>Make sure that **Leverage CSI snapshot** is enabled.</li><li>Scroll down to locate the **Snapshot Timeout** field.</li><li>Enter the wanted timeout value (in seconds) within the supported range (60-43200 seconds).</li><li>Click **Save** to apply the changes.</li></ol>|
 {: caption="Additional settings" caption-side="bottom"}
 
 
@@ -110,7 +110,7 @@ When Auto Protect is enabled:
 - **New Namespaces**: Automatically added to the protection group if they match the criteria.
 - **Deleted Namespaces**: Automatically excluded from future backups.
 - **Existing Backups**: Preserved until retention expires.
-- Existing namespaces can be updated and have their own inclusion/exclusion rules and pre/post hook scripts (Application Quiescing).
+- Existing namespaces can be updated and have their own inclusion/exclusion rules and pre or post hook scripts (Application Quiescing).
 
 
 
@@ -125,14 +125,14 @@ Label-based filtering works alongside Auto Protect, enabling you to exclude spec
 {: note}
 
 - **Exclude namespaces by a label**:
-  1. Click the **Tags icon** (upper right) to switch to the label view.
-  2. In the **Select Labels** dropdown, choose the labels that you want to filter by (for example, `kubernetes.io/metadata.name:my-label`). The list updates to show resources matching the selected labels.
-  3. Click the **Exclude icon** (circle with slash) on the label row. The status changes to **Excluded** with a red icon, and all resources with that label are excluded from protection.
-  4. Namespaces **not** excluded by these label rules remain in the list. Click `Protect` to proceed.
+   1. Click the **Tags icon** (upper right) to switch to the label view.
+   2. In the **Select Labels** dropdown, choose the labels that you want to filter by (for example, `kubernetes.io/metadata.name:my-label`). The list updates to show resources matching the selected labels.
+   3. Click the **Exclude icon** (circle with slash) on the label row. The status changes to **Excluded** with a red icon, and all resources with that label are excluded from protection.
+   4. Namespaces **not** excluded by these label rules remain in the list. Click `Protect` to proceed.
 
 - **Customize individual namespaces**:
-  1. Click the **pencil icon** next to a namespace to edit its settings.
-  1. In the **Options for [namespace]** modal:
+   1. Click the **pencil icon** next to a namespace to edit its settings.
+   1. In the **Options for [namespace]** modal:
         - Toggle **Persistent Volume Claim(PVC) Inclusion/Exclusion** to enable customized filtering.
 
           This overrides the inclusion or exclusion settings that are made for Protection Group level in the Additional Settings.
@@ -144,13 +144,13 @@ Label-based filtering works alongside Auto Protect, enabling you to exclude spec
           - Select **Include** or **Exclude** radio button.
           - **Specific Resources**: Use the dropdown to select resources like `Daemon set`, `Deployment`, `Pod`, `Secret`, `Service`, etc.
           - **Custom Resources**: Click `+ Add Custom Resources` to specify custom resource definitions.
-        - Pre/post hook scripts (Application Quiescing)
+        - Pre or post hook scripts (Application Quiescing)
 
           
 
            
 
-  1. Click `Save` to apply the changes.
+   1. Click `Save` to apply the changes.
 
 ### 5. Application quiescing
 {: #application-quiescing}
@@ -168,7 +168,7 @@ Label-based filtering works alongside Auto Protect, enabling you to exclude spec
 
 **Configure quiescing:**
 1. Select the target namespace and click the **pencil icon** to edit.
-2. Navigate to the **Scripts** tab.
+2. Go to the **Scripts** tab.
 3. Toggle **Fail Backups on Hook Failure** to control backup behavior on script errors.
 4. Select a **Quiesce Mode**:
    - **Apply the following rules together** (Parallel execution within volume group)
@@ -215,7 +215,7 @@ For detailed instructions on managing your backups, see [Managing Protection Gro
 There is a known UI issue that affects the **Snapshot Timeout** field in a Protection Group:
 
 - When the **Leverage CSI Snapshot** option is toggled **OFF** and then **ON** again,
-  the **Snapshot Timeout value resets to the default `300` seconds**, even if a different value was previously configured.
+   the **Snapshot Timeout value resets to the default `300` seconds**, even if a different value was previously configured.
 
 #### How to reproduce
 1. Open the Protection Group settings.
@@ -230,4 +230,4 @@ The Snapshot Timeout resets to **300 seconds**.
 - After enabling **Leverage CSI Snapshot**, **re-enter the desired Snapshot Timeout** (60–43200 seconds) before clicking **Save**.
 
 This issue affects only the UI.
-The backend uses the correct value once saved
+The backend uses the correct value when saved

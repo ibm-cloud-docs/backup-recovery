@@ -53,7 +53,7 @@ You need the following to get started with {{site.data.keyword.baas_full_notm}} 
 - An [{{site.data.keyword.cloud}} Platform account](https://cloud.ibm.com)
 - An active instance of [{{site.data.keyword.baas_full_notm}} service](https://cloud.ibm.com/catalog/services/backup-and-recovery?catalog_query=aHR0cHM6Ly9jbG91ZC5pYm0uY29tL2NhdGFsb2cjaGlnaGxpZ2h0cw%3D%3D)
 
-Alternatively, you can use the pre-built, open-source and enterprise-ready [Terraform IBM modules](/docs/ibm-cloud-provider-for-terraform?topic=ibm-cloud-provider-for-terraform-about-tim) with {{site.data.keyword.baas_full_notm}} service. These modules provide best practices for provisioning {{site.data.keyword.cloud_notm}} resources and can be referenced directly in your Terraform configurations.
+Alternatively, you can use the pre-built, open-source, and enterprise-ready [Terraform IBM modules](/docs/ibm-cloud-provider-for-terraform?topic=ibm-cloud-provider-for-terraform-about-tim) with {{site.data.keyword.baas_full_notm}} service. These modules provide best practices for provisioning {{site.data.keyword.cloud_notm}} resources and can be referenced directly in your Terraform configurations.
 
 ## Accessing your {{site.data.keyword.baas_full_notm}} instances
 {: #data-source-connector-iks-roks-access-instance}
@@ -91,14 +91,14 @@ Clusters must be compatible, especially in terms of storage and network configur
 To back up and restore Kubernetes or OpenShift clusters, you must set up a data source connector. This process involves two main steps:
 
 1. **Create a data source connection** in the {{site.data.keyword.baas_full_notm}} dashboard (or use an existing connection if available)
-2. **Install the Data Source Connector** on your Kubernetes or OpenShift cluster using Helm
+2. **Install the Data Source Connector** on your Kubernetes or OpenShift cluster by using Helm
 
 The data source connection establishes the communication channel between your {{site.data.keyword.baas_full_notm}} instance and your cluster. You can reuse an existing connection for multiple clusters if they are on the same deployment platform, or create a new connection for different platforms.
 
 ### Resource requirements for backup components
 {: #data-source-connector-iks-roks-resource-reqs}
 
-Ensure that the node has sufficient CPU and memory to run the {{site.data.keyword.baas_full_notm}} components. The Data Source Connector is installed first to establish connectivity. During source registration, additional backup agent components (Datamover and Velero) are deployed to the cluster. The following table lists their resource requirements.
+Help ensure that the node has sufficient CPU and memory to run the {{site.data.keyword.baas_full_notm}} components. The Data Source Connector is installed first to establish connectivity. During source registration, more backup agent components (Datamover and Velero) are deployed to the cluster. The following table lists their resource requirements.
 
 The Datamover is installed by default on all worker nodes as a DaemonSet (not on control plane nodes) after the source registration is complete.
 {: note}
@@ -139,7 +139,7 @@ The deployment platform must match your cluster's actual infrastructure type. Yo
 
 1. Access the [{{site.data.keyword.baas_full_notm}} instance dashboard](#data-source-connector-iks-roks-access-instance).
 2. Go to `Dashboard` > `System` > `Data Source Connections`.
-3. Check if an existing connection is available for your deployment platform. If yes, you can use it and skip to [Install and configure the data source connector](#data-source-connector-iks-roks-install-configure).
+3. Check whether an existing connection is available for your deployment platform. If yes, you can use it and skip to [Install and configure the data source connector](#data-source-connector-iks-roks-install-configure).
 4. To create a new connection, click `New Connection`.
 5. In the **Create data source connection** wizard:
    - **Step 1: Create data source connection**:
@@ -152,14 +152,14 @@ The deployment platform must match your cluster's actual infrastructure type. Yo
    - **Rename Connection**: Change the connection name for easier identification.
    - **Add Connector**: Retrieve the `helm install` command again if needed to deploy connectors on additional clusters.
 
-    ![Data source connection](Images_datasource_connection/create43crop.png){: caption="Data source connections"}
+    ![Data source connection](Images_datasource_connection/create_updated43crop.png){: caption="Data source connections"}
 
    
 
 ### Install and configure the data source connector
 {: #data-source-connector-iks-roks-install-configure}
 
-After you create a data source connection, you must install and configure the Data Source Connector on your Kubernetes or OpenShift cluster. For detailed instructions, including resource requirements, Helm install commands, and customization options, see [Install Data Source Connector for Kubernetes/OpenShift](/docs/backup-recovery?topic=backup-recovery-deploy_data_source_connector#install_data_source_connector_iks_roks).
+After you create a data source connection, you must install and configure the Data Source Connector on your Kubernetes or OpenShift cluster. For detailed instructions, including resource requirements, Helm install commands, and customization options, see [Install Data Source Connector for Kubernetes or OpenShift](/docs/backup-recovery?topic=backup-recovery-deploy_data_source_connector#install_data_source_connector_iks_roks).
 
 ## How to get the Kubernetes or OpenShift cluster endpoint
 {: #how-to-get-iks-roks-endpoint}
@@ -172,7 +172,7 @@ After you create a data source connection, you must install and configure the Da
 ## How to register a Kubernetes or OpenShift cluster with {{site.data.keyword.baas_full_notm}}
 {: #data-source-connector-iks-roks-register}
 
-If you are registering a cluster that was previously registered as a source, you must ensure that any remnant `brs-backup-agent-<uuid>` namespaces are deleted from the cluster before proceeding. The presence of these namespaces will cause the new source registration to fail.
+If you are registering a cluster that was previously registered as a source, you must help ensure that any remnant `brs-backup-agent-<uuid>` namespaces are deleted from the cluster before proceeding. The presence of these namespaces cause the new source registration to fail.
 {: important}
 
 1. Access the [{{site.data.keyword.baas_full_notm}} instance dashboard](#data-source-connector-iks-roks-access-instance).
@@ -198,6 +198,7 @@ If you are registering a cluster that was previously registered as a source, you
     *   (Optional) Configure Optional settings (for example, Service Type, Images) by expanding the **Optional** section.
 
          HostPort is the default and recommended communication method for the backup and recovery agent. Users can optionally specify a custom port; if not specified, the default port (33769) is used.
+
          | **Source**             | **Destination** | **Port** | **Protocol** | **Purpose**                               |
          |------------------------|-----------------|----------|--------------|--------------------------------------------|
          | Data Source Connector  | HOST            | 33769    | TCP          | Communication with backup and recovery agent             |
@@ -281,7 +282,8 @@ Each release of {{site.data.keyword.baas_full_notm}} includes default image vers
    Note the full namespace name (e.g., `brs-backup-agent-<GUID>`).
 
 2. Delete the existing backup agent components from your cluster:
-   
+
+
    ```sh
    kubectl delete daemonset -n brs-backup-agent-<GUID> --all
    kubectl delete deployment -n brs-backup-agent-<GUID> velero
@@ -292,10 +294,11 @@ Each release of {{site.data.keyword.baas_full_notm}} includes default image vers
 
 3. Trigger a refresh on the source registration:
    - Go to: `Dashboard` \> `Data Protection` \> `Sources`.
-   - Locate your Kubernetes/OpenShift source.
+   - Locate your Kubernetes or OpenShift source.
    - Click the menu `⋮` and select `Refresh`.
 
-4. The system will automatically redeploy the datamover DaemonSet and Velero Deployment with the latest image versions associated with your {{site.data.keyword.baas_full_notm}} version.
+3. The system automatically redeploys the datamover DaemonSet and Velero Deployment with the latest image versions that are associated with your {{site.data.keyword.baas_full_notm}} version.
+
 
 The `Edit Registration` option does not update the datamover and Velero images. You must delete the existing components and trigger a refresh to apply the upgrade.
 {: important}
@@ -307,7 +310,7 @@ After registering your cluster as a data source, you can proceed to create Prote
 
 1. **Protect a Namespace**: See [Protecting a namespace or cluster](/docs/backup-recovery?topic=backup-recovery-protecting-namespace-iks-roks).
 2. **Configure Policies**: See [Creating and configuring protection policies](/docs/backup-recovery?topic=backup-recovery-create-edit-standard-policy).
-3. **Run Backups**: You can schedule backups via policies or trigger a backup immediately by using [Run Now](/docs/backup-recovery?topic=backup-recovery-protection-group-run-now).
+3. **Run Backups**: You can schedule backups using policies or trigger a backup immediately by using [Run Now](/docs/backup-recovery?topic=backup-recovery-protection-group-run-now).
 4. **Restore Data**: To recover data, follow the instructions in [Recovering or restoring backup](/docs/backup-recovery?topic=backup-recovery-recovering-restoring-backup).
 
 ## Troubleshooting

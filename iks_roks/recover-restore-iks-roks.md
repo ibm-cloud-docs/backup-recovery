@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025, 2026
-lastupdated: "2026-04-07"
+lastupdated: "2026-04-10"
 
 keywords: data source connector, iks, roks, cluster, recover
 
@@ -35,7 +35,7 @@ For example, if a namespace that you want to recover contains a deployment resou
 4. Identify the instance with **Active** status and click the instance name.
 5. On the instance details page, click `Launch dashboard`.
 6. Go to `Dashboard` \> `Data Protection` \> `Recoveries`.
-7. Click `Recover` in the upper-right corner and select `Kubernetes Cluster` \> `Namespace`.
+7. Click `Recover` on the upper-right side of the page, then select `Kubernetes Cluster` \> `Namespace`.
 
     
 
@@ -71,14 +71,14 @@ For example, if a namespace that you want to recover contains a deployment resou
     *   **New Location** - Select **New Location** to recover the namespace to a different Kubernetes or OpenShift cluster. Under
     **Registered Source**, select the destination Kubernetes or OpenShift cluster (or click **Register Source** to add a new one).
 
-    If one or more namespaces being recovered already exist in the target location, a warning is displayed: _"This action will overwrite the existing namespaces."_ This warning might not appear if the namespace was created less than 8 hours ago, because the source periodic sync runs every 8 hours. Until the next sync completes, {{site.data.keyword.baas_full_notm}} might not detect the newly created namespace.
+    If one or more namespaces being recovered already exist in the target location, a warning is displayed: _"This action will overwrite the existing namespaces."_ This warning might not appear if the namespace was created less than 8 hours ago because the source periodic sync runs every 8 hours. Until the next sync completes, {{site.data.keyword.baas_full_notm}} might not detect the newly created namespace.
     {: important}
 
     
 12. Configure the **Recovery Options** as needed:
     *   **Rename**: Add a **Prefix** or **Suffix** to the names of recovered namespaces. By default, the prefix `copy-` is added to the original namespace name.
     *   **Task Name**: View or customize the name of this recovery task.
-    *   **Skip cluster compatibility check**: Toggle to enable or disable skipping the compatibility check for the target cluster. Compatibility is determined on the basis of the availability of Custom Resource Definitions (CRDs) in the target cluster. If the target cluster does not have the required CRDs, the recovery might fail or produce incomplete results.
+    *   **Skip cluster compatibility check**: Toggle to enable or disable skipping the compatibility check for the target cluster. Compatibility is determined based on the availability of Custom Resource Definitions (CRDs) in the target cluster. If the target cluster does not have the required CRDs, the recovery might fail or produce incomplete results.
     *   **Include or Exclude Labels**: Filter **Persistent Volume Claim(PVC)** based on labels.
         *   **Logical Rule**: Select **Match Any of the following labels** or **Match All of the following labels**.
         *   Choose to **Include** or **Exclude** matched labels.
@@ -123,17 +123,17 @@ For example, if a namespace that you want to recover contains a deployment resou
 You can track the status of your recovery tasks on the **Recoveries** page.
 
 *   **Recovery list details**: The list displays key information for each task, including:
-    *   **Recovery Task**: Name of the task.
-    *   **Start Time**: When the task was initiated.
-    *   **Status**: Current state of the recovery.
-    *   **Duration**: How long the task took to complete.
+    *   **Recovery Task**: Name of the task
+    *   **Start Time**: When the task was initiated
+    *   **Status**: Current state of the recovery
+    *   **Duration**: How long the task took to complete
 
 *   **Dashboard overview**: View a summary of recovery tasks by status:
-    *   **Succeeded**: The recovery task completed successfully.
-    *   **Warning**: The task completed with warnings.
-    *   **Failed**: The task failed to complete.
-    *   **Running**: The task is currently in progress.
-    *   **Canceled**: The task was manually canceled.
+    *   **Succeeded**: The recovery task completed successfully
+    *   **Warning**: The task completed with warnings
+    *   **Failed**: The task failed to complete
+    *   **Running**: The task is currently in progress
+    *   **Canceled**: The task was manually canceled
 
 *   **Filtering**: Use the available filters to narrow down the list of recoveries:
     *   **Recovered From**: Filter by source type (for example, **Cloud Archive**, **Local**, **Tape Archive**).
@@ -152,7 +152,7 @@ You can track the status of your recovery tasks on the **Recoveries** page.
 | **Task Name** | Assigns a custom name to the recovery task for easier identification and tracking in the workflow. |
 | **Cluster Resources** | Specifies which cluster-scoped resources to include in the migration. These are recovered at the cluster level in the destination. |
 | **Namespace Resources** | Limits recovery to specific resources existing in the source namespace. You can also filter PVCs and related resources for inclusion/exclusion. |
-| **Skip cluster compatibility check** | Bypasses version validation between source and destination clusters. Useful when restoring between different cluster types (for example, ROKS to IKS). |
+| **Skip cluster compatibility check** | Bypasses version validation between source and destination clusters. Useful when restoring between different cluster types (for example, OpenShift to Kubernetes). |
 | **Region Mapping** | Updates region parameters in custom StorageClasses during recover, creating them with new region values in the destination. |
 | **Zone Mapping** | Updates zone parameters in custom StorageClasses during recover, applying new zone values in the destination. |
 | **Include/Exclude Labels** | Filters PersistentVolumeClaims (PVCs) by label, allowing you to include or exclude specific PVCs from the migration. |

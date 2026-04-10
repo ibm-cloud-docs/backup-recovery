@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025, 2026
-lastupdated: "2026-04-07"
+lastupdated: "2026-04-10"
 
 keywords: data source connector, iks, roks, cluster, troubleshooting
 
@@ -52,7 +52,7 @@ The fastest way to restore service is to bring the cluster back to the state it 
 
 If you must move to a new zonal configuration and do not need to persist the existing data, a fresh installation is required.
 1. Completely uninstall the Data Source Connector deployment.
-2. Ensure that the Persistent Volume Claims (PVCs) and PVs associated with the old zones are deleted.
+2. Help ensure that the Persistent Volume Claims (PVCs) and PVs associated with the old zones are deleted.
 3. Reinstall Data Source Connector. This allows the CSI driver to provision new volumes in the currently active zones.
 
 ### Data Source Connector Not Appearing After Installation
@@ -77,7 +77,7 @@ If the Data Source Connector does not show up in the {{site.data.keyword.baas_fu
 4. **Install the Latest Version of the Connector**: Make sure that you are deploying the most recent version available:
    - Older versions might have compatibility issues or bugs that prevent proper registration.
 
-5. **Check the Data Source Connector Pod for Issues**: Inspect the connector pod in your Kubernetes/OpenShift cluster for problems during startup:
+5. **Check the Data Source Connector Pod for Issues**: Inspect the connector pod in your Kubernetes or OpenShift cluster for problems during startup:
    - Run `kubectl describe pod <pod-name>` (or equivalent oc command) and review the Events section.
    - Look specifically for:
       - Readiness probe failures
@@ -156,7 +156,7 @@ If you see an alert in the **System** \> **Health** dashboard, follow these st
 
 **Pre-check: Verify Environment Integrity**
 
-Before diving into detailed logs, perform a quick high-level check to help ensure that the foundational integration is still valid:
+Before diving into detailed logs, do a quick high-level check to help ensure that the foundational integration is still valid:
 - **Source Registration**: Navigate to the **Data Protection** > **Sources** page to confirm the source registration is still intact and has not been accidentally removed.
 - **Resource Availability**: Verify that the underlying Kubernetes or OpenShift cluster resources are active and have not been deleted or scaled down, as this will cause all associated jobs to fail.
 
@@ -172,7 +172,7 @@ When a job fails, a health alert is generated with a description that helps pinp
 {: #protection-job-failure}
 
 When a protection job fails with a "Timed out while waiting for temporary pod to start" error, it typically indicates that the Kubernetes scheduler cannot find a suitable place to run the required backup or restore pod.
-Follow the steps below to diagnose and resolve this resource constraint.
+Follow the steps after this to diagnose and resolve this resource constraint.
 
 **Step 1: Identify the Failing Job**
 
@@ -253,7 +253,7 @@ The `k8s-info-fetcher.sh` script collects detailed information about your Kubern
 ./k8s-info-fetcher.sh [-u|--user_ns <ns-name>] [-p|--prefix <prefix>]
 ```
 
-*   `-u, --user_ns`: (Optional) Specify an additional user namespace to fetch information from.
+*   `-u, --user_ns`: (Optional) Specify an extra user namespace to fetch information from.
 *   `-p, --prefix`: (Optional) Prefix for the backup namespace (default: `brs-backup-agent-`).
 
 ### What the Script Collects
@@ -342,23 +342,23 @@ chmod +x k8s-info-fetcher.sh
 ## PartiallyFailed Recovery Errors
 {: #partially-failed-recovery}
 
-During recovery operations, you may encounter a "PartiallyFailed" status. This occurs when certain resources fail to recover, but the recovery task continues and completes with a partial failure message.
+During recovery operations, you might encounter a "PartiallyFailed" status. This occurs when certain resources fail to recover, but the recovery task continues and completes with a partial failure message.
 
 ### Understanding PartiallyFailed Errors
 {: #understanding-partially-failed}
 
 A PartiallyFailed error indicates that:
-- The recovery operation completed, but some resources could not be restored
+- The recovery operation completed, but some resources might not be restored
 - The recovery shows a failure status with the message "PartiallyFailed"
-- The majority of the namespace resources were successfully recovered
+- Most of the namespace resources were successfully recovered
 
 ### Common Causes
 {: #partially-failed-causes}
 
 PartiallyFailed errors typically occur due to:
-- **Resource conflicts**: Resources that already exist in the target namespace
+- **Resource conflicts**: Resources that exist in the target namespace
 - **Permission issues**: Insufficient permissions to create certain resource types
-- **API version mismatches**: Resources using deprecated or unavailable API versions in the target cluster
+- **API version mismatches**: Resources that use deprecated or unavailable API versions in the target cluster
 - **Custom Resource Definitions (CRDs)**: Missing CRDs in the target cluster that are required by certain resources
 
 ### Impact and Resolution
@@ -374,6 +374,6 @@ In most cases, PartiallyFailed errors are benign and do not affect the correctne
 **If action is needed:**
 - Review the failed resources in the recovery logs
 - Manually create any critical resources that failed to restore
-- Ensure all required CRDs are installed in the target cluster before attempting recovery
+- Help ensure all required CRDs are installed in the target cluster before attempting recovery
 - Check for resource naming conflicts in the target namespace
     {: codeblock}
