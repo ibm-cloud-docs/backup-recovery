@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025, 2026
-lastupdated: "2026-03-25"
+lastupdated: "2026-04-10"
 
 keywords: data source connector, iks, roks, cluster, run now
 
@@ -35,7 +35,7 @@ You can manually start a protection that is run for the Kubernetes namespaces (o
 
 1. In the {{site.data.keyword.baas_full_notm}} instance dashboard, navigate to `Data Protection` \> `Protection`.
 1. On the **Protection** page, locate the protection group that you want to run the backup for.
-1. Click the **Actions** icon `⋮` and select `Run Now`. In the **Run Protection Now** modal configure the following options:
+1. Click the **Actions** icon `⋮` and select `Run Now`. In the **Run Protection Now** modal, configure the following options:
 
       | Setting | Option | Description |
       |---|---|---|
@@ -103,7 +103,7 @@ To delete a protection group:
 1. In the {{site.data.keyword.baas_full_notm}} instance dashboard, navigate to `Data Protection` \> `Protection`.
 2. On the **Protection** page, locate the protection group that you want to delete.
 3. Click the **Actions** icon `⋮` and select `Delete`. (Note: The protection group is deleted only if the backup is paused).
-4. In the **Delete Protection Group?** dialog box, perform the following:
+4. In the **Delete Protection Group?** dialog box, do the following:
    - **Delete Snapshots**: Toggle to enable if you want to delete all snapshots associated with this protection group. If disabled, only the protection group is removed, and existing snapshots are retained until they expire.
    - **Confirm**: Type `YES` in the text box to confirm the action.
 5. Click `Delete Group`.
