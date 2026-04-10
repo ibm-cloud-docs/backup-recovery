@@ -152,7 +152,7 @@ The deployment platform must match your cluster's actual infrastructure type. Yo
    - **Rename Connection**: Change the connection name for easier identification.
    - **Add Connector**: Retrieve the `helm install` command again if needed to deploy connectors on additional clusters.
 
-    ![Data source connection](Images_datasource_connection/create_updated43crop.png){: caption="Data source connections"}
+    ![Data source connection](Images_datasource_connection/create43crop.png){: caption="Data source connections"}
 
    
 
