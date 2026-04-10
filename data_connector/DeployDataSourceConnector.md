@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2026
-lastupdated: "2026-04-08"
+lastupdated: "2026-04-10"
 
 keywords: backup and recovery, data source connectors,
 
@@ -260,6 +260,11 @@ You can reuse an existing connection for multiple clusters on the same deploymen
 
 The Data Source Connector is deployed as a StatefulSet with 2 replicas (by default) on your Kubernetes or OpenShift cluster. This establishes the communication channel between your cluster and the {{site.data.keyword.baas_full_notm}} service.
 
+**For clusters with private endpoints only:** You must run `ibmcloud`, `kubectl` and `helm` commands from [IBM Cloud Shell](https://cloud.ibm.com/shell).
+
+**For clusters with public endpoints:** You can run `ibmcloud`, `kubectl`, and `helm` commands from either [IBM Cloud Shell](https://cloud.ibm.com/shell) or your local workspace.
+{: note}
+
 ### Resource requirements
 {: #install_data_source_connector_resource_requirements}
 
@@ -273,7 +278,7 @@ Ensure that your cluster has sufficient CPU and memory resources. The Data Sourc
 
 **Note:** Datamover (DaemonSet) and Velero components are deployed automatically during source registration and are not part of the initial Data Source Connector installation.
 
-1. Open [IBM Cloud Shell](https://cloud.ibm.com/shell).
+1. Open [IBM Cloud Shell](https://cloud.ibm.com/shell) (or use your local workspace if your cluster has a public endpoint).
 2. Identify the source cluster where you want to install the Data Source Connector. This should be the Kubernetes or OpenShift cluster that you want to back up and protect. You must have admin access to this cluster to install the Data Source Connector.
 
    List the available clusters:
@@ -309,7 +314,7 @@ Ensure that your cluster has sufficient CPU and memory resources. The Data Sourc
    You must specify a storage class that is available on Classic clusters and disable SCC (Security Context Constraints) as it's specific to OpenShift:
 
    ```sh
-   helm install <k8-app-name> oci://icr.io/ext/brs/brs-ds-connector-chart --version 7.2.18-release-20260226-49768040 --set secrets.registrationToken=<your-registration-token> --set deploymentPlatform.rocp.sccEnabled=false --set volumeClaimTemplate.storageClass=ibmc-block-bronze --namespace ibm-brs-data-source-connector --create-namespace
+   helm upgrade --install <k8-app-name> oci://icr.io/ext/brs/brs-ds-connector-chart --version 7.2.18-release-20260226-49768040 --set secrets.registrationToken=<your-registration-token> --set deploymentPlatform.rocp.sccEnabled=false --set volumeClaimTemplate.storageClass=ibmc-block-bronze --namespace ibm-brs-data-source-connector --create-namespace
    ```
    {: codeblock}
 
@@ -318,7 +323,7 @@ Ensure that your cluster has sufficient CPU and memory resources. The Data Sourc
    The default storage class `ibmc-vpc-block-metro-5iops-tier` is used automatically. Disable SCC as it's specific to OpenShift:
 
    ```sh
-   helm install <k8-app-name> oci://icr.io/ext/brs/brs-ds-connector-chart --version 7.2.18-release-20260226-49768040 --set secrets.registrationToken=<your-registration-token> --set deploymentPlatform.rocp.sccEnabled=false --namespace ibm-brs-data-source-connector --create-namespace
+   helm upgrade --install <k8-app-name> oci://icr.io/ext/brs/brs-ds-connector-chart --version 7.2.18-release-20260226-49768040 --set secrets.registrationToken=<your-registration-token> --set deploymentPlatform.rocp.sccEnabled=false --namespace ibm-brs-data-source-connector --create-namespace
    ```
    {: codeblock}
 
@@ -327,7 +332,7 @@ Ensure that your cluster has sufficient CPU and memory resources. The Data Sourc
    You must specify a storage class that is available on Classic clusters. SCC is enabled by default for OpenShift:
 
    ```sh
-   helm install <k8-app-name> oci://icr.io/ext/brs/brs-ds-connector-chart --version 7.2.18-release-20260226-49768040 --set secrets.registrationToken=<your-registration-token> --set volumeClaimTemplate.storageClass=ibmc-block-bronze --namespace ibm-brs-data-source-connector --create-namespace
+   helm upgrade --install <k8-app-name> oci://icr.io/ext/brs/brs-ds-connector-chart --version 7.2.18-release-20260226-49768040 --set secrets.registrationToken=<your-registration-token> --set volumeClaimTemplate.storageClass=ibmc-block-bronze --namespace ibm-brs-data-source-connector --create-namespace
    ```
    {: codeblock}
 
@@ -336,7 +341,7 @@ Ensure that your cluster has sufficient CPU and memory resources. The Data Sourc
    The default storage class `ibmc-vpc-block-metro-5iops-tier` is used automatically. SCC is enabled by default for OpenShift:
 
    ```sh
-   helm install <k8-app-name> oci://icr.io/ext/brs/brs-ds-connector-chart --version 7.2.18-release-20260226-49768040 --set secrets.registrationToken=<your-registration-token> --namespace ibm-brs-data-source-connector --create-namespace
+   helm upgrade --install <k8-app-name> oci://icr.io/ext/brs/brs-ds-connector-chart --version 7.2.18-release-20260226-49768040 --set secrets.registrationToken=<your-registration-token> --namespace ibm-brs-data-source-connector --create-namespace
    ```
    {: codeblock}
 
@@ -368,7 +373,7 @@ Ensure that your cluster has sufficient CPU and memory resources. The Data Sourc
 
    - **`--create-namespace`**: Creates the specified namespace if it doesn't exist. This flag is useful when deploying to a new namespace.
 
-   - **`--set volumeClaimTemplate.storageClass=<storage-class-name>`**: Specifies the StorageClass to use for provisioning the persistent volume for the Data Source Connector. This parameter sets the storage class specifically for the Data Source Connector's persistent volume. This is required for Classic clusters as the default VPC storage class (`ibmc-vpc-block-metro-5iops-tier`) cannot be used on Classic clusters.
+   - **`--set volumeClaimTemplate.storageClass=<storage-class-name>`**: Specifies the StorageClass to use for provisioning the persistent volume for the Data Source Connector. This parameter sets the storage class specifically for the Data Source Connector's persistent volume. This is required for Classic clusters as the default VPC storage class (`ibmc-vpc-block-metro-5iops-tier`) cannot be used on Classic clusters. If you want to use VPC File CSI driver storage classes, you need to create a custom storage class with `GID:1000` and `UID:1000` because the Data Source Connector runs as non-root app. For reference on creating storage classes, see [Deploying an app that runs as non-root](https://cloud.ibm.com/docs/containers?topic=containers-storage-file-vpc-apps#vpc-file-non-root-app){: external}.
 
    - **`--set replicaCount=<number>`**: Sets the number of Data Source Connector pod replicas. The default value is 3. Adjust this based on your high availability and workload requirements.
 
@@ -376,7 +381,7 @@ Ensure that your cluster has sufficient CPU and memory resources. The Data Sourc
 
    - **`--set deploymentPlatform.rocp.sccEnabled=false`**: Disables Security Context Constraints (SCC) for the deployment. This flag should be used for IBM Kubernetes Service clusters, as SCC is specific to OpenShift clusters.
 
-   - **`--set nodeSelector.<key>="<value>"`**: Schedules Data Source Connector pods on nodes with the specified label. This is useful when you want to run the connector on dedicated worker nodes.
+   - **`--set nodeSelector.<key>="<value>"`**: Schedules Data Source Connector pods on nodes with the specified label. This is useful when you want to run the connector on dedicated worker nodes. Use the default worker pool label `ibm-cloud.kubernetes.io/worker-pool-name=<worker-pool-name>` to target a specific worker pool.
 
    - **`--set "tolerations[<index>].key=<key>"`**: Sets the toleration key for node taints. Tolerations allow pods to be scheduled on nodes with matching taints.
 
@@ -391,9 +396,8 @@ Ensure that your cluster has sufficient CPU and memory resources. The Data Sourc
 
    It's recommended to create a dedicated worker pool for the Data Source Connector. This helps ensure that the connector pods run on a dedicated worker pool with appropriate taints to ensure workload isolation and performance.
 
-   1. [Deploy a dedicated worker pool](https://cloud.ibm.com/docs/containers?topic=containers-add-workers-vpc#vpc_add_pool){: external}.
-   2. (Optional) [Add labels to the worker pool](https://cloud.ibm.com/docs/containers?topic=containers-worker-tag-label&interface=ui#worker_pool_labels){: external} if you want to use node selectors for scheduling.
-   3. Add taints to the worker pool:
+   1. [Deploy a dedicated worker pool](https://cloud.ibm.com/docs/containers?topic=containers-add-workers-vpc#vpc_add_pool){: external}. All worker pools automatically have the label `ibm-cloud.kubernetes.io/worker-pool-name=<worker-pool-name>` which can be used for node selection.
+   2. Add taints to the worker pool:
 
       ```sh
       ibmcloud ks worker-pool taint set \
@@ -408,24 +412,29 @@ Ensure that your cluster has sufficient CPU and memory resources. The Data Sourc
    **Example Helm install command:**
 
    ```sh
-   helm install dsc-test oci://icr.io/ext/brs/brs-ds-connector-chart \
+   helm upgrade --install dsc-test oci://icr.io/ext/brs/brs-ds-connector-chart \
       --version 7.2.18-release-20260226-49768040 \
       --namespace ibm-brs-data-source-connector \
       --create-namespace \
       --set secrets.registrationToken=xxx \
       --set fullnameOverride=dsc \
       --set replicaCount=2 \
-      --set nodeSelector.dedicated="data-source-connector" \
+      --set nodeSelector.ibm-cloud\\.kubernetes\\.io/worker-pool-name="my-worker-pool" \
       --set "tolerations[0].key=dedicated" \
       --set "tolerations[0].operator=Equal" \
       --set "tolerations[0].value=data-source-connector" \
       --set "tolerations[0].effect=NoSchedule"
    ```
+   {: codeblock}
+
+   Replace `my-worker-pool` with your actual worker pool name.
 
 ## Upgrading the Data Source Connector
 {: #upgrade-data-source-connector}
 
-The {{site.data.keyword.baas_full_notm}} service releases updates on a monthly cadence. It is recommended to upgrade your Data Source Connector when new releases become available to ensure you have the latest features, security patches, and bug fixes.
+When new releases of the {{site.data.keyword.baas_full_notm}} service become available, there is a possibility that a new Data Source Connector version is also available. It is recommended to upgrade your Data Source Connector when new releases become available to ensure you have the latest features, security patches, and bug fixes.
+
+To check for new service releases, see the [{{site.data.keyword.baas_full_notm}} release notes](https://cloud.ibm.com/docs/backup-recovery?topic=backup-recovery-updates){: external}.
 
 Upgrades for the Data Source Connector are currently manual. Follow these steps to check your current version and upgrade to a newer version:
 
@@ -467,26 +476,26 @@ ibmcloud cr login
 ```
 {: codeblock}
 
-After logging in, list the available images:
+After logging in, list the available Data Source Connector images:
 
 ```sh
 ibmcloud cr images --restrict ext/brs/brs-ds-connector
 ```
 {: codeblock}
 
-You can also check the {{site.data.keyword.baas_full_notm}} service dashboard for version update notifications and release notes.
+This command displays all available Data Source Connector versions. Compare the output with your currently installed version to determine if an upgrade is available.
 
 ### Upgrade to a newer version
 {: #upgrade-to-newer-version}
 
-Once you've identified the target version, use the Helm upgrade command:
+Once you've identified the target version, use the Helm upgrade command. You must provide the registration token because the old token may have expired.
 
 ```sh
-helm upgrade --install <k8-app-name> oci://icr.io/ext/brs/brs-ds-connector-chart --version <new-version> --reuse-values --set secrets.registrationToken=xxx -n ibm-brs-data-source-connector
+helm upgrade --install <release-name> oci://icr.io/ext/brs/brs-ds-connector-chart --version <new-version> --reuse-values --set secrets.registrationToken=<token> -n ibm-brs-data-source-connector
 ```
 {: codeblock}
 
-Replace `<k8-app-name>` with your release name and `<new-version>` with the target version number.
+Replace `<release-name>` with your actual Helm release name (use `helm list -n ibm-brs-data-source-connector` to find it), `<new-version>` with the target version number, and `<token>` with the registration token obtained from the Data Source Connection.
 
 **To obtain the registration token:**
 
@@ -496,7 +505,10 @@ Replace `<k8-app-name>` with your release name and `<new-version>` with the targ
 4. Click on the three dots (⋮) menu corresponding to the connection.
 5. Select `Connection Token` from the menu options.
 6. Copy the displayed connection token (also referred to as the registration token).
-7. Replace `xxx` in the `secrets.registrationToken` parameter with the copied token value.
+7. Use this token in the `secrets.registrationToken` parameter of the upgrade command.
+
+You must provide the registration token in the upgrade command because the previous token may have expired.
+{: important}
 
 If you need to create a new Data Source Connection, see [Create a data source connection for Kubernetes/OpenShift](#create_data_source_connection_iks_roks).
 {: note}
@@ -507,7 +519,7 @@ The `--reuse-values` flag preserves your existing configuration settings during 
 **Example upgrade command:**
 
 ```sh
-helm upgrade --install my-dsc oci://icr.io/ext/brs/brs-ds-connector-chart --version 7.2.19-release-20260301-12345678 --reuse-values --set secrets.registrationToken=xxx -n ibm-brs-data-source-connector
+helm upgrade --install dsc-test oci://icr.io/ext/brs/brs-ds-connector-chart --version 7.2.19-release-20260301-12345678 --reuse-values --set secrets.registrationToken=<new-token> -n ibm-brs-data-source-connector
 ```
 {: codeblock}
 
@@ -535,8 +547,11 @@ kubectl get pods -n ibm-brs-data-source-connector
    1. Create a `custom-values.yaml` file with the following content:
 
       ```yaml
+      secrets:
+        registrationToken: "<your-registration-token>"
+
       nodeSelector:
-        dedicated: data-source-connector
+        ibm-cloud.kubernetes.io/worker-pool-name: "<your-worker-pool-name>"
 
       tolerations:
         - key: "dedicated"
@@ -549,11 +564,10 @@ kubectl get pods -n ibm-brs-data-source-connector
    2. Run the Helm install command using the values file:
 
       ```sh
-      helm install dsc oci://icr.io/ext/brs/brs-ds-connector-chart \
+      helm upgrade --install dsc oci://icr.io/ext/brs/brs-ds-connector-chart \
         --version 7.2.18-release-20260226-49768040 \
         --namespace ibm-brs-data-source-connector \
         --create-namespace \
-        -f custom-values.yaml \
-        --set secrets.registrationToken=*******
+        -f custom-values.yaml
       ```
       {: codeblock}

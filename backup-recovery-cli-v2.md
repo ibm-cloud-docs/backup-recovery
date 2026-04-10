@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024
-lastupdated: "2026-04-07"
+lastupdated: "2026-04-10"
 
 keywords: backup recovery, cli, guide
 
@@ -4883,3 +4883,692 @@ Fetches list of all reports accessible by logged in user.
     --user-context IBMBaaS
 ```
 {: pre}
+
+
+## End-to-end example: Kubernetes backup and recovery
+{: #backup-recovery-k8s-end-to-end-example}
+
+This section demonstrates a complete, end-to-end workflow for protecting a Kubernetes (IKS/ROKS) cluster by using the {{site.data.keyword.baas_full_notm}} CLI.
+The example covers cluster registration, policy creation, backup execution, recovery, and cleanup.
+{: .shortdesc}
+
+### Prerequisites
+{: #backup-recovery-k8s-example-prereqs}
+
+Before you begin, ensure you have the following:
+
+* {{site.data.keyword.cloud_notm}} CLI installed - verify with:
+  ```sh
+  ibmcloud --version
+  ```
+  {: pre}
+
+* `backup-recovery` CLI plug-in installed - verify with:
+  ```sh
+  ibmcloud plugin list | grep backup-recovery
+  ```
+  {: pre}
+  
+  If not installed, run:
+  ```sh
+  ibmcloud plugin install backup-recovery
+  ```
+  {: pre}
+
+* `kubectl` configured for the source/target Kubernetes cluster - verify with:
+  ```sh
+  kubectl version --client
+  kubectl get nodes
+  ```
+  {: pre}
+
+* Access to a Backup & Recovery tenant.
+* Tenant ID (example abc123xyz/ obtain from your Backup & Recovery instance).
+* IAM API key for authentication.
+
+### Step 1: Log in to IBM Cloud
+{: #backup-recovery-k8s-example-step1}
+
+Log in to {{site.data.keyword.cloud_notm}} using Single Sign-On (SSO).
+
+```sh
+ibmcloud login --sso
+```
+{: pre}
+
+### Step 2: Configure the service URL
+{: #backup-recovery-k8s-example-step2}
+
+Set the service URL for your Backup & Recovery instance. For more information about service URLs and how to retrieve them, see [Understanding service-url](#backup-recovery-service-url-explained).
+
+```sh
+ibmcloud backup-recovery config set service-url 'https://<instance-id>.<region>.backup-recovery.cloud.ibm.com/v2'
+```
+{: pre}
+
+Replace `<instance-id>` with your Backup & Recovery instance ID and `<region>` with your IBM Cloud region (for example, `us-east`, `eu-de`, `eu-gb`).
+
+### Step 3: Set the IAM API key
+{: #backup-recovery-k8s-example-step3}
+
+Export your IAM API key as an environment variable for authentication.
+
+```sh
+export BACKUP_RECOVERY_APIKEY=<iam-api-key>
+```
+{: pre}
+
+Replace `<api-key>` with your actual IAM API key.
+
+### Step 4: Create a data source connection
+{: #backup-recovery-k8s-example-step4}
+
+Create a data source connection for your Kubernetes cluster deployment platform. This connection is required to access your Kubernetes cluster and its resources.
+
+**Using CLI:**
+
+```sh
+ibmcloud backup-recovery data-source-connection create \
+  --connection-name "data-source-connection-cli" \
+  --xibm-tenant-id "8x7y9z2a3b/"
+```
+{: pre}
+
+#### Sample output
+{: #backup-recovery-k8s-example-step4-output}
+
+```text
+connectionId        4521789036542187520
+connectionName      data-source-connection-cli
+registrationToken   eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbHVzdGVyX2VuZHBv....
+tenantId            8x7y9z2a3b/
+```
+{: codeblock}
+
+**Important:** Save the `registrationToken` from the output. This token will be used in Step 5 when installing the data source connector with the helm command.
+
+**Using Console (Alternative):**
+
+For detailed instructions, see [Creating a data source connection](/docs/backup-recovery?topic=backup-recovery-data-source-connector-iks-roks#data-source-connector-iks-roks-create-data-source-connection).
+
+1. Access the {{site.data.keyword.baas_full_notm}} instance dashboard
+2. Go to **Dashboard** > **System** > **Data Source Connections**
+3. Check if an existing connection is available for your deployment platform. If yes, you can use it and skip to Step 5
+4. To create a new connection, click **New Connection**
+5. In the **Create data source connection** wizard:
+   - Select the **Deployment Platform** that matches your cluster (for example, ROKS VPC, IKS VPC, ROKS classic, IKS classic)
+   - Click **Create**
+
+After creating the connection, record the `connectionId` for use in Step 7 and the `registrationToken` for use in Step 5.
+
+### Step 5: Install the data source connector
+{: #backup-recovery-k8s-example-step5}
+
+Install the data source connector on your Kubernetes cluster.For detailed instructions, see [Creating a data source connection](/docs/backup-recovery?topic=backup-recovery-data-source-connector-iks-roks#data-source-connector-iks-roks-create-data-source-connection) .
+
+1. In the **Install Data Source Connectors** section, copy the provided `helm install` command
+2. Save the command securely, as you will need it to deploy the connector
+3. Run the helm command in your cluster to install the connector
+4. Click **Done**
+
+### Step 6: Create a bearer token for Kubernetes cluster
+{: #backup-recovery-k8s-example-step6}
+
+Create a bearer token that will be used as the `clientPrivateKey` value during cluster registration.
+
+Open IBM Cloud Shell and configure kubectl or oc CLI by getting the kube config:
+
+```sh
+ibmcloud ks cluster config --cluster <cluster> --admin
+```
+{: pre}
+
+Create the service account and cluster role binding:
+
+```sh
+kubectl create serviceaccount brs-sa -n default
+kubectl create clusterrolebinding brs-cl-role --clusterrole=cluster-admin --serviceaccount=default:brs-sa
+```
+{: pre}
+
+Create the secret and retrieve the bearer token:
+
+```sh
+cat <<EOF > brs-sa-token.yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: brs-sa-token
+  namespace: default
+  annotations:
+    kubernetes.io/service-account.name: brs-sa
+type: kubernetes.io/service-account-token
+EOF
+kubectl apply -f brs-sa-token.yaml
+```
+{: pre}
+
+Wait a moment for the token to populate, then retrieve and decode it:
+
+```sh
+kubectl get secret brs-sa-token -n default -o jsonpath='{.data.token}' | base64 --decode && echo ""
+```
+{: pre}
+
+Save the output token value. This will be used as the `clientPrivateKey` parameter in Step 8 when registering the Kubernetes cluster.
+
+### Step 7: Identify the data source connection
+{: #backup-recovery-k8s-example-step7}
+
+Retrieve the data source connection details by filtering by connection name. This connection will be used for Kubernetes cluster registration.
+
+```sh
+ibmcloud backup-recovery data-source-connection list \
+  --connection-names "<your_connection_name>" \
+  --xibm-tenant-id '<your_tenant_id>' \
+  --output json
+```
+{: pre}
+
+#### Sample output
+{: #backup-recovery-k8s-example-step7-output}
+
+```json
+{
+  "connections": [
+    {
+      "connectionId": "9876543210987654321",
+      "connectionName": "roks-vpc-connection",
+      "connectionEnvType": "kRoksVpc",
+      "connectorIds": ["5432109876543210"],
+      "tenantId": "abc123xyz/",
+      "connectivityStatus": {
+        "isConnected": true
+      }
+    }
+  ]
+}
+```
+{: codeblock}
+
+From the output, locate and record the `connectionId` value. This ID will be used in Step 8 when registering the Kubernetes cluster. In this example, the connection ID is:
+
+* **Connection ID:** `9876543210987654321`
+
+### Step 8: Register the Kubernetes cluster
+{: #backup-recovery-k8s-example-step8}
+
+Register the Kubernetes (ROKS) cluster as a protection source. This step deploys the Velero components and Cohesity data mover into the cluster.
+
+Before running the registration command, retrieve your cluster's API endpoint from the IBM Cloud Console:
+
+**Get the Kubernetes cluster endpoint:**
+
+1. Log in to the [IBM Cloud Console](https://cloud.ibm.com/)
+2. Go to **Navigation Menu** > **Kubernetes** > **Clusters**
+3. Select your cluster (filter by location if needed)
+4. On the **Overview** page, scroll to the **Networking** section
+5. Copy the **Private** service endpoint (recommended) or **Public** service endpoint
+
+**Example endpoint format:**
+- Private: `https://c102.private.eu-es.containers.cloud.ibm.com:30339`
+- Public: `https://c102.eu-es.containers.cloud.ibm.com:30339`
+
+Now register the cluster using the connection ID from Step 7, the bearer token from Step 6, and the cluster endpoint:
+
+```sh
+ibmcloud backup-recovery protection-source register \
+  --xibm-tenant-id "<your_tenant_id>" \
+  --environment "kKubernetes" \
+  --name "test-registration-new" \
+  --data-source-connection-id "connectionId_from_step_5" \
+  --kubernetes-params '{
+    "endpoint": "cluster_endpoint_from_ibm_cloud_console",
+    "clientPrivateKey": "<bearer_token_from_step_4>",
+    "kubernetesDistribution": "kROKS",
+    "datamoverServiceType": "kHostPort"
+  }' \
+  --output json
+```
+{: pre}
+
+Replace `<bearer_token_from_step_6>` with the actual bearer token value you retrieved in Step 6.
+
+#### Sample output
+{: #backup-recovery-k8s-example-step8-output}
+
+```json
+{
+  "id": 67565,
+  "environment": "kKubernetes",
+  "authenticationStatus": "Pending",
+  "registrationTimeMsecs": 1775647251544,
+  "sourceInfo": {
+    "name": "https://c102.private.eu-es.containers.cloud.ibm.com:30339",
+    "objectType": "kCluster",
+    "uuid": "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+  }
+}
+```
+{: codeblock}
+
+### Step 9: (Optional) Verify agent deployment in the cluster
+{: #backup-recovery-k8s-example-step9}
+
+Confirm that the backup agents are running.
+
+```sh
+kubectl get ns | grep brs
+```
+{: pre}
+
+#### Sample output
+{: #backup-recovery-k8s-example-step9-output1}
+
+```text
+brs-backup-agent-6b094462-26aa-4346-95bf-09d2409520d5   Active   2m
+ibm-brs-dsc                                           Active   6d
+```
+{: codeblock}
+
+```sh
+kubectl get all -n brs-backup-agent-6b094462-26aa-4346-95bf-09d2409520d5
+```
+{: pre}
+
+#### Sample output
+{: #backup-recovery-k8s-example-step9-output2}
+
+```text
+pod/cohesity-dm-26mlb       1/1 Running
+pod/cohesity-dm-5c9r8       1/1 Running
+pod/velero-7b5b677f7c-qfphn 1/1 Running
+daemonset.apps/cohesity-dm  3/3 Ready
+deployment.apps/velero     1/1 Ready
+```
+{: codeblock}
+
+Expected components include:
+
+* DaemonSet pods
+* Deployment
+
+### Step 10: Create a protection policy
+{: #backup-recovery-k8s-example-step10}
+
+Create a backup policy with a daily incremental schedule and a two-week retention period.
+
+```sh
+ibmcloud backup-recovery protection-policy create \
+  --xibm-tenant-id "<your_tenant_id>" \
+  --name "test-backup-policy-2" \
+  --backup-policy \
+'{
+  "regular": {
+    "incremental": {
+      "schedule": {
+        "daySchedule": {
+          "frequency": 1
+        },
+        "unit": "Days"
+      }
+    },
+    "retention": {
+      "duration": 2,
+      "unit": "Weeks"
+    },
+    "primaryBackupTarget": {
+      "useDefaultBackupTarget": true
+    }
+  }
+}' \
+  --retry-options \
+'{
+  "retries": 3,
+  "retryIntervalMins": 5
+}' \
+  --output json
+```
+{: pre}
+
+#### Sample output
+{: #backup-recovery-k8s-example-step10-output}
+
+```json
+{
+  "id": "1234567890123456:9876543210987:7654321",
+  "name": "test-backup-policy-2",
+  "backupPolicy": {
+    "regular": {
+      "incremental": {
+        "schedule": {
+          "unit": "Days",
+          "daySchedule": { "frequency": 1 }
+        }
+      },
+      "retention": {
+        "unit": "Weeks",
+        "duration": 2
+      }
+    }
+  }
+}
+```
+{: codeblock}
+
+From the output, locate and record the policy `id` value. This ID will be used in Step 13 when creating the protection group. In this example, the policy ID is:
+
+* **Policy ID:** `1234567890123456:9876543210987:7654321`
+
+### Step 11: Verify protection policies
+{: #backup-recovery-k8s-example-step11}
+
+```sh
+ibmcloud backup-recovery protection-policy list \
+  --xibm-tenant-id "<your_tenant_id>" \
+  --output json
+```
+{: pre}
+
+#### Sample output
+{: #backup-recovery-k8s-example-step11-output}
+
+```json
+{
+  "policies": [
+    {
+      "id": "1234567890123456:9876543210987:7654321",
+      "name": "test-backup-policy-2"
+    },
+    {
+      "id": "1234567890123456:9876543210987:1111111",
+      "name": "Basic"
+    }
+  ]
+}
+```
+{: codeblock}
+
+### Step 12: List protection sources
+{: #backup-recovery-k8s-example-step12}
+
+List Kubernetes objects (namespaces, PVCs, labels) available for protection.
+
+```sh
+ibmcloud backup-recovery protection-source list \
+  --xibm-tenant-id "<your_tenant_id>" \
+  --output json
+```
+{: pre}
+
+#### Sample output
+{: #backup-recovery-k8s-example-step12-output}
+
+```json
+{
+  "protectionSources": [
+    {
+      "protectionSource": {
+        "id": 67598,
+        "name": "roks-419-reg",
+        "environment": "kKubernetes",
+        "type": "kNamespace"
+      }
+    }
+  ]
+}
+```
+{: codeblock}
+
+From the output, identify the Kubernetes objects (namespaces, PVCs, etc.) you want to protect and record their `id` values. These IDs will be used in Step 13 when creating the protection group. In this example, the namespace object ID is:
+
+* **Object ID:** `67598`
+
+### Step 13: Create a protection group
+{: #backup-recovery-k8s-example-step13}
+
+Associate Kubernetes objects with the protection policy.
+
+```sh
+ibmcloud backup-recovery protection-group create \
+  --xibm-tenant-id "<your_tenant_id>" \
+  --name "test2-protection-group" \
+  --description "Protection group for test-registration cluster" \
+  --policy-id "1234567890123456:9876543210987:7654321" \
+  --environment "kKubernetes" \
+  --priority "kMedium" \
+  --qos-policy "kBackupHDD" \
+  --kubernetes-params '{
+    "objects": [
+      { "id": 67598, "backupOnlyPvc": false }
+    ],
+    "leverageCSISnapshot": false,
+    "nonSnapshotBackup": true
+  }' \
+  --output json
+```
+{: pre}
+
+#### Sample output
+{: #backup-recovery-k8s-example-step13-output}
+
+```json
+{
+  "id": "5555666677778888:1122334455667:8899000",
+  "name": "test2-protection-group",
+  "policyId": "1234567890123456:9876543210987:7654321",
+  "environment": "kKubernetes",
+  "priority": "kMedium"
+}
+```
+{: codeblock}
+
+From the output, locate and record the protection group `id` value. This ID will be used in Step 14 to trigger backup runs and in Step 15 to monitor them. In this example, the protection group ID is:
+
+* **Protection Group ID:** `5555666677778888:1122334455667:8899000`
+
+### Step 14: Trigger a backup run
+{: #backup-recovery-k8s-example-step14}
+
+Start an on-demand full backup.
+
+```sh
+ibmcloud backup-recovery protection-group-run create \
+  --id "5555666677778888:1122334455667:8899000" \
+  --xibm-tenant-id "<your_tenant_id>" \
+  --run-type "kFull" \
+  --output json
+```
+{: pre}
+
+#### Sample output
+{: #backup-recovery-k8s-example-step14-output}
+
+```json
+{
+  "protectionGroupId": "5555666677778888:1122334455667:8899000",
+  "runType": "kFull",
+  "status": "Accepted"
+}
+```
+{: codeblock}
+
+### Step 15: Monitor backup runs
+{: #backup-recovery-k8s-example-step15}
+
+```sh
+ibmcloud backup-recovery protection-group-run list \
+  --id "5555666677778888:1122334455667:8899000" \
+  --xibm-tenant-id "<your_tenant_id>" \
+  --output json
+```
+{: pre}
+
+#### Sample output
+{: #backup-recovery-k8s-example-step15-output}
+
+```json
+{
+  "runs": [
+    {
+      "runType": "kFull",
+      "status": "kSuccess",
+      "startTimeUsecs": 1775642489148017
+    }
+  ]
+}
+```
+{: codeblock}
+
+Detailed view including object-level status:
+
+```sh
+ibmcloud backup-recovery protection-group-run list \
+  --id "5555666677778888:1122334455667:8899000" \
+  --xibm-tenant-id "<your_tenant_id>" \
+  --include-object-details=true \
+  --exclude-non-restorable-runs=true \
+  --num-runs 10 \
+  --output json
+```
+{: pre}
+
+### Step 16: Recover namespaces to the same cluster
+{: #backup-recovery-k8s-example-step16}
+
+```sh
+ibmcloud backup-recovery recovery create \
+  --xibm-tenant-id "<your_tenant_id>" \
+  --name "cli-test-recovery" \
+  --snapshot-environment "kKubernetes" \
+  --kubernetes-params '{
+    "recoveryAction": "RecoverNamespaces",
+    "recoverNamespaceParams": {
+      "targetEnvironment": "kKubernetes",
+      "kubernetesTargetParams": {
+        "objects": [
+          { "snapshotId": "<snapshotId>" }
+        ],
+        "renameRecoveredNamespacesParams": {
+          "prefix": "copy2"
+        },
+        "recoveryTargetConfig": {
+          "recoverToNewSource": false
+        }
+      }
+    }
+  }' \
+  --output json
+```
+{: pre}
+
+#### Sample output
+{: #backup-recovery-k8s-example-step16-output}
+
+```json
+{
+  "id": 2238894,
+  "name": "cli-test-recovery",
+  "status": "Accepted",
+  "recoveryAction": "RecoverNamespaces"
+}
+```
+{: codeblock}
+
+### Step 17: Recover namespaces to a different cluster
+{: #backup-recovery-k8s-example-step17}
+
+```sh
+ibmcloud backup-recovery recovery create \
+  --xibm-tenant-id "<your_tenant_id>" \
+  --name "cli-test-recovery-new-source" \
+  --snapshot-environment "kKubernetes" \
+  --kubernetes-params '{
+    "recoveryAction": "RecoverNamespaces",
+    "recoverNamespaceParams": {
+      "targetEnvironment": "kKubernetes",
+      "kubernetesTargetParams": {
+        "objects": [
+          { "snapshotId": "<snapshotId>" }
+        ],
+        "skipClusterCompatibilityCheck": true,
+        "renameRecoveredNamespacesParams": {
+          "prefix": "copy2"
+        },
+        "recoveryTargetConfig": {
+          "recoverToNewSource": true,
+          "newSourceConfig": {
+            "source": {
+              "id": 66974,
+              "name": "https://c106.private.useast.containers.cloud.ibm.com:31561"
+            }
+          }
+        }
+      }
+    }
+  }' \
+  --output json
+```
+{: pre}
+
+#### Sample output
+{: #backup-recovery-k8s-example-step17-output}
+
+```json
+{
+  "id": 2238942,
+  "name": "cli-test-recovery-new-source",
+  "status": "Accepted"
+}
+```
+{: codeblock}
+
+### Step 18: Cleanup (unregister the protection source)
+{: #backup-recovery-k8s-example-step18}
+
+Before unregistering the cluster, clean up resources in the following order:
+
+**1. Delete the protection group:**
+
+```sh
+ibmcloud backup-recovery protection-group delete \
+  --id "5555666677778888:1122334455667:8899000" \
+  --xibm-tenant-id "<your_tenant_id>"
+```
+{: pre}
+
+**2. Delete the protection policy (optional):**
+
+```sh
+ibmcloud backup-recovery protection-policy delete \
+  --id "1234567890123456:9876543210987:7654321" \
+  --xibm-tenant-id "<your_tenant_id>"
+```
+{: pre}
+
+**3. Unregister the cluster:**
+
+```sh
+ibmcloud backup-recovery protection-source registration-delete \
+  --id 67565 \
+  --xibm-tenant-id "<your_tenant_id>"
+```
+{: pre}
+
+#### Sample output
+{: #backup-recovery-k8s-example-step18-output}
+
+```text
+Are you sure you want to delete this registration? [y/N]: y
+Registration deleted successfully
+```
+{: codeblock}
+
+**4. (Optional) Delete the data source connection:**
+
+If you no longer need the data source connection, you can delete it from the IBM Cloud Console:
+1. Navigate to your Backup & Recovery instance
+2. Go to **Data Protection** > **Data Source Connections**
+3. Select the connection and delete it
+
+This completes the cleanup process. All backup data and snapshots associated with the protection group will be retained according to the retention policy unless explicitly deleted.
