@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025, 2026
-lastupdated: "2026-04-10"
+lastupdated: "2026-04-13"
 
 keywords: data source connector, iks, roks, cluster
 
@@ -85,6 +85,21 @@ You can back up and restore data on:
 Clusters must be compatible, especially in terms of storage and network configuration.
 {: note}
 
+## Kubernetes and OpenShift Architecture Overview
+{: #data-source-connector-iks-roks-architecture}
+
+The {{site.data.keyword.baas_full_notm}} service for Kubernetes and OpenShift uses a distributed architecture with the following key components:
+
+- **Data Source Connector**: Deployed in your cluster as a Helm chart, it establishes secure communication between your cluster and the {{site.data.keyword.baas_full_notm}} service. The connector acts as a bridge, enabling the service to discover and manage backup operations.
+
+- **Backup Agent Components**: After source registration, additional components are automatically deployed:
+  - **Datamover**: Deployed as a DaemonSet on all worker nodes, it handles data transfer operations during backup and restore. The Datamover reads data from persistent volumes and streams it to the backup storage.
+  - **Velero**: An open-source Kubernetes backup tool that manages the backup and restore of Kubernetes resources (deployments, services, config maps, etc.) and coordinates with the Datamover for persistent volume data.
+
+- **CSI Snapshots**: When available, the service leverages Container Storage Interface (CSI) snapshots for efficient, storage-level backups. If CSI snapshots are not supported by your storage provider, the system automatically falls back to filesystem-based backups using the Datamover.
+
+This architecture ensures that both Kubernetes metadata and persistent volume data are protected, enabling complete cluster recovery when needed.
+
 ## Create or configure a data source connector
 {: #data-source-connector-iks-roks-create-configure}
 
@@ -98,12 +113,9 @@ The data source connection establishes the communication channel between your {{
 ### Resource requirements for backup components
 {: #data-source-connector-iks-roks-resource-reqs}
 
-Help ensure that the node has sufficient CPU and memory to run the {{site.data.keyword.baas_full_notm}} components. The Data Source Connector is installed first to establish connectivity. During source registration, more backup agent components (Datamover and Velero) are deployed to the cluster. The following table lists their resource requirements.
+Ensure that the node has sufficient CPU and memory to run the {{site.data.keyword.baas_full_notm}} components. The Data Source Connector is installed first to establish connectivity. During source registration, additional backup agent components (Datamover and Velero) are deployed to the cluster. The following table lists their resource requirements.
 
 The Datamover is installed by default on all worker nodes as a DaemonSet (not on control plane nodes) after the source registration is complete.
-{: note}
-
-The Datamover is installed by default on all worker nodes as a DaemonSet and not on control plane nodes.
 {: note}
 
 | Pod Name                                   | CPU Requests | Memory Requests |
@@ -168,6 +180,10 @@ After you create a data source connection, you must install and configure the Da
 2. Go to `Navigation Menu` \> `Containers` \> `Clusters`.
 3. Select your cluster. You might need to filter by location (for example, _Washington DC_).
 4. On the **Overview** page, scroll to the **Networking** section to find the **Private** and **Public** service endpoints.
+
+**Example endpoint format:**
+- Private: `https://c102.private.eu-es.containers.cloud.ibm.com:30339`
+- Public: `https://c102.eu-es.containers.cloud.ibm.com:30339`
 
 ## How to register a Kubernetes or OpenShift cluster with {{site.data.keyword.baas_full_notm}}
 {: #data-source-connector-iks-roks-register}
@@ -282,8 +298,7 @@ Each release of {{site.data.keyword.baas_full_notm}} includes default image vers
    Note the full namespace name (e.g., `brs-backup-agent-<GUID>`).
 
 2. Delete the existing backup agent components from your cluster:
-
-
+   
    ```sh
    kubectl delete daemonset -n brs-backup-agent-<GUID> --all
    kubectl delete deployment -n brs-backup-agent-<GUID> velero
@@ -297,11 +312,48 @@ Each release of {{site.data.keyword.baas_full_notm}} includes default image vers
    - Locate your Kubernetes or OpenShift source.
    - Click the menu `⋮` and select `Refresh`.
 
-3. The system automatically redeploys the datamover DaemonSet and Velero Deployment with the latest image versions that are associated with your {{site.data.keyword.baas_full_notm}} version.
+4. The system automatically redeploys the datamover DaemonSet and Velero Deployment with the latest image versions that are associated with your {{site.data.keyword.baas_full_notm}} version.
 
 
 The `Edit Registration` option does not update the datamover and Velero images. You must delete the existing components and trigger a refresh to apply the upgrade.
 {: important}
+
+## Kubernetes and OpenShift Limitations
+{: #kubernetes-openshift-limitations}
+
+Be aware of the following limitations when using {{site.data.keyword.baas_full_notm}} with Kubernetes and OpenShift clusters:
+
+### Supported Namespaces
+{: #limitations-namespaces}
+
+- {{site.data.keyword.baas_full_notm}} supports backup of user-created application namespaces only
+- Default and infrastructure namespaces (such as `kube-node-lease`, `kube-public`, `kube-system`) are not supported for backup
+
+### Cluster Compatibility
+{: #limitations-compatibility}
+
+- Restore operations between different clusters require matching storage classes
+- {{site.data.keyword.baas_full_notm}} does not support Tanzu Kubernetes Grid Integrated Edition (TKGI)
+- Clusters in private networks behind NAT gateways (Dynamic/Static NAT, Port Address Translation PAT) are not supported
+
+### Velero Version Requirements
+{: #limitations-velero}
+
+- For Kubernetes clusters earlier than version 1.16, use Velero 1.4
+- For Kubernetes clusters version 1.16 or later, use Velero 1.12
+- For upgrade instructions, see [Upgrade Velero and Datamover](/docs/backup-recovery?topic=backup-recovery-upgrade-velero)
+
+### CLI Limitations
+{: #limitations-cli}
+
+- The current release of the `ibmcloud backup-recovery data-source-connection create` CLI command does not support the `--connection-env-type` parameter
+- Use the UI-based workflow to create data source connections for IBM Kubernetes Service and Red Hat OpenShift clusters
+
+### Network and Registry Access
+{: #limitations-network}
+
+- If Kubernetes is not accessed through the internet, you must provide the path to the registry from which Velero should be pulled
+- Ensure proper network connectivity for the Data Source Connector to communicate with the {{site.data.keyword.baas_full_notm}} service
 
 ## Protecting and Restoring Data
 {: #protect-restore-data-iks-roks}

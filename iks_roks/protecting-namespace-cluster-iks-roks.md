@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025, 2026
-lastupdated: "2026-04-10"
+lastupdated: "2026-04-13"
 
 keywords: data source connector, iks, roks, cluster, protection
 
@@ -29,12 +29,8 @@ subcollection: backup-recovery
 
 Follow these steps to quickly protect your Kubernetes resources:
 
-1. Log in to the [IBM Cloud Console](https://cloud.ibm.com/){: external}.
-2. Go to `Navigation Menu` \> `Backup and Recovery`.
-3. On the **Backup service instances** page, use the search bar to find your instance by name.
-4. Identify the instance with **Active** status and click its name.
-5. On the instance details page, click `Launch dashboard`.
-6. Go to: `Dashboard` \> `Data Protection` \> `Sources`.
+1. [Access your {{site.data.keyword.baas_full_notm}} instance](/docs/backup-recovery?topic=backup-recovery-data-source-connector-iks-roks#data-source-connector-iks-roks-access-instance).
+2. Go to: `Dashboard` \> `Data Protection` \> `Sources`.
 7. Locate your Kubernetes source cluster by using the cluster endpoint.
 8. Click the cluster endpoint. A list of available namespaces appears.
 9. Choose the namespaces that you want to protect (or select the entire cluster).
@@ -73,6 +69,29 @@ After you set up protection, you can customize the configuration to better suit 
 - **Start Time**: Defines when the protection job runs. (Time zone can also be selected here).
 - **Leverage CSI Snapshot**: **Recommended** - Enable this option to protect PVC data by capturing a crash-consistent state of the volume by using CSI driver snapshots.
 
+    #### When CSI Snapshots Are Used
+    {: #csi-snapshot-usage}
+    
+    CSI (Container Storage Interface) snapshots provide efficient, storage-level backups when the following conditions are met:
+    
+    - The **Leverage CSI Snapshot** toggle is enabled in the Protection Group settings
+    - The PVC's storage class supports CSI snapshot functionality
+    - A valid VolumeSnapshotClass is configured in the cluster
+    
+    When these conditions are satisfied, the backup process uses CSI snapshots to capture a crash-consistent point-in-time copy of the volume data directly at the storage layer. This method is faster and more efficient than filesystem-based backups.
+    
+    #### Filesystem-Based Backup Fallback
+    {: #filesystem-backup-fallback}
+    
+    If CSI snapshots are not available or fail, the system automatically falls back to filesystem-based backups using the Datamover component. This fallback occurs when:
+    
+    - The storage driver does not support CSI snapshots
+    - The **Leverage CSI Snapshot** toggle is disabled
+    - CSI snapshot creation fails or times out
+    - No VolumeSnapshotClass is configured
+    
+    In filesystem-based backup mode, the Datamover reads data directly from the mounted volume and streams it to the backup storage. While this method is more resource-intensive and slower than CSI snapshots, it ensures that all PVCs can be protected regardless of storage driver capabilities.
+    
     This mode applies only to PVCs whose storage driver supports CSI snapshots. PVCs with drivers that do not support CSI snapshots continue to be backed up by using file system backup.
     {: note}
 
@@ -90,8 +109,8 @@ When creating a new protection group, you find these under the collapsible **Add
 | **Priority** | Sets execution priority: <ul><li>High</li><li>Medium</li><li>Low</li></ul> |
 | **BCO (Backup Completion Objective)** | <ul><li>**Full**: Default 1 day.</li><li>**Incremental**: Default 12 hours.</li></ul> <br> _Backup Completion Objective (BCO) will be met if Full Backups complete within 1 day and Incremental Backups complete within 12 hours._ |
 | **Description** | Enter a brief description for the Protection Group. |
-| **Include or Exclude Labels** | Toggle **Persistent Volume Claim(PVC) Inclusion/Exclusion** to filter PVCs by labels.  <br> <ul><li>**Logical Rule**: Select "Match Any of the following labels" or "Match All of the following labels".</li><li>Select **Include** or **Exclude** radio button.</li><li>Enter the **key** and **value** for the existing resource label.</li><li>Click **+ Add**.</li></ul> |
-| **Snapshot Timeout** | Snapshot Timeout specifies the maximum time (in seconds) to wait for each PVC snapshot to reach the Ready state when CSI Snapshot is enabled. This setting is configured per protection job and applies to all subsequent runs. You can set a timeout value between 60 seconds and 43200 seconds. <br> <ol><li>Make sure that **Leverage CSI snapshot** is enabled.</li><li>Scroll down to locate the **Snapshot Timeout** field.</li><li>Enter the wanted timeout value (in seconds) within the supported range (60-43200 seconds).</li><li>Click **Save** to apply the changes.</li></ol>|
+| **Include or Exclude Labels** | Toggle **Persistent Volume Claim (PVC) Inclusion/Exclusion** to filter PVCs by labels.  <br> <ul><li>**Logical Rule**: Select "Match Any of the following labels" or "Match All of the following labels".</li><li>Select **Include** or **Exclude** radio button.</li><li>Enter the **key** and **value** for the existing resource label.</li><li>Click **+ Add**.</li></ul> |
+| **Snapshot Timeout** | Snapshot Timeout specifies the maximum time (in seconds) to wait for each PVC snapshot to reach the Ready state when CSI Snapshot is enabled. This setting is configured per protection job and applies to all subsequent runs. You can set a timeout value between 60 seconds and 43200 seconds. <br> <ol><li>Make sure that **Leverage CSI snapshot** is enabled.</li><li>Scroll down to locate the **Snapshot Timeout** field.</li><li>Enter the desired timeout value (in seconds) within the supported range (60-43200 seconds).</li><li>Click **Save** to apply the changes.</li></ol>|
 {: caption="Additional settings" caption-side="bottom"}
 
 
@@ -131,9 +150,9 @@ Label-based filtering works alongside Auto Protect, enabling you to exclude spec
    4. Namespaces **not** excluded by these label rules remain in the list. Click `Protect` to proceed.
 
 - **Customize individual namespaces**:
-   1. Click the **pencil icon** next to a namespace to edit its settings.
-   1. In the **Options for [namespace]** modal:
-        - Toggle **Persistent Volume Claim(PVC) Inclusion/Exclusion** to enable customized filtering.
+  1. Click the **pencil icon** next to a namespace to edit its settings.
+  1. In the **Options for [namespace]** modal:
+        - Toggle **Persistent Volume Claim (PVC) Inclusion/Exclusion** to enable customized filtering.
 
           This overrides the inclusion or exclusion settings that are made for Protection Group level in the Additional Settings.
           {: note}
@@ -168,7 +187,7 @@ Label-based filtering works alongside Auto Protect, enabling you to exclude spec
 
 **Configure quiescing:**
 1. Select the target namespace and click the **pencil icon** to edit.
-2. Go to the **Scripts** tab.
+2. Navigate to the **Scripts** tab.
 3. Toggle **Fail Backups on Hook Failure** to control backup behavior on script errors.
 4. Select a **Quiesce Mode**:
    - **Apply the following rules together** (Parallel execution within volume group)
@@ -215,7 +234,7 @@ For detailed instructions on managing your backups, see [Managing Protection Gro
 There is a known UI issue that affects the **Snapshot Timeout** field in a Protection Group:
 
 - When the **Leverage CSI Snapshot** option is toggled **OFF** and then **ON** again,
-   the **Snapshot Timeout value resets to the default `300` seconds**, even if a different value was previously configured.
+  the **Snapshot Timeout value resets to the default `300` seconds**, even if a different value was previously configured.
 
 #### How to reproduce
 1. Open the Protection Group settings.
@@ -229,5 +248,4 @@ The Snapshot Timeout resets to **300 seconds**.
 #### Workaround
 - After enabling **Leverage CSI Snapshot**, **re-enter the desired Snapshot Timeout** (60–43200 seconds) before clicking **Save**.
 
-This issue affects only the UI.
-The backend uses the correct value when saved
+This issue affects only the UI. The backend uses the correct value once saved.

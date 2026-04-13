@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025, 2026
-lastupdated: "2026-04-10"
+lastupdated: "2026-04-13"
 
 keywords: data source connector, iks, roks, cluster, recover
 
@@ -29,12 +29,8 @@ For example, if a namespace that you want to recover contains a deployment resou
 ## Steps to recover namespaces
 {: #recovering-restoring-same-location}
 
-1. Log in to the [IBM Cloud Console](https://cloud.ibm.com/){: external}.
-2. Go to `Navigation Menu` \> `Backup and Recovery`.
-3. On the **Backup service instances** page, use the search bar to find your instance by name.
-4. Identify the instance with **Active** status and click the instance name.
-5. On the instance details page, click `Launch dashboard`.
-6. Go to `Dashboard` \> `Data Protection` \> `Recoveries`.
+1. [Access your {{site.data.keyword.baas_full_notm}} instance](/docs/backup-recovery?topic=backup-recovery-data-source-connector-iks-roks#data-source-connector-iks-roks-access-instance).
+2. Go to `Dashboard` \> `Data Protection` \> `Recoveries`.
 7. Click `Recover` on the upper-right side of the page, then select `Kubernetes Cluster` \> `Namespace`.
 
     
@@ -78,8 +74,8 @@ For example, if a namespace that you want to recover contains a deployment resou
 12. Configure the **Recovery Options** as needed:
     *   **Rename**: Add a **Prefix** or **Suffix** to the names of recovered namespaces. By default, the prefix `copy-` is added to the original namespace name.
     *   **Task Name**: View or customize the name of this recovery task.
-    *   **Skip cluster compatibility check**: Toggle to enable or disable skipping the compatibility check for the target cluster. Compatibility is determined based on the availability of Custom Resource Definitions (CRDs) in the target cluster. If the target cluster does not have the required CRDs, the recovery might fail or produce incomplete results.
-    *   **Include or Exclude Labels**: Filter **Persistent Volume Claim(PVC)** based on labels.
+    *   **Skip cluster compatibility check**: Toggle to enable or disable skipping the compatibility check for the target cluster. Compatibility is determined on the basis of the availability of Custom Resource Definitions (CRDs) in the target cluster. If the target cluster does not have the required CRDs, the recovery might fail or produce incomplete results.
+    *   **Include or Exclude Labels**: Filter **Persistent Volume Claim (PVC)** based on labels.
         *   **Logical Rule**: Select **Match Any of the following labels** or **Match All of the following labels**.
         *   Choose to **Include** or **Exclude** matched labels.
         *   Enter the label **key** and **value**, then click **+ Add**.
@@ -89,7 +85,7 @@ For example, if a namespace that you want to recover contains a deployment resou
         *   Select the **Snapshot with Cluster Resource** from the dropdown if multiple are available.
     *   **Namespace Resources**: Choose specific resources to recover. Click the **edit** icon to customize:
         *   **Resources** Tab:
-            *   Toggle **Persistent Volume Claim(PVC) Inclusion/Exclusion** to filter PVCs at the namespace level.
+            *   Toggle **Persistent Volume Claim (PVC) Inclusion/Exclusion** to filter PVCs at the namespace level.
                 *   Select **Include** or **Exclude** radio button.
                 *   Use the **Include PVCs** or **Exclude PVCs** dropdown to search and select specific PVCs.
                 *   (Optional) Select **Recover only PVC and related resources** to limit the recovery to only the selected PVCs and their related resources.
