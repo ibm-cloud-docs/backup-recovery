@@ -318,42 +318,7 @@ Each release of {{site.data.keyword.baas_full_notm}} includes default image vers
 The `Edit Registration` option does not update the datamover and Velero images. You must delete the existing components and trigger a refresh to apply the upgrade.
 {: important}
 
-## Kubernetes and OpenShift Limitations
-{: #kubernetes-openshift-limitations}
 
-Be aware of the following limitations when using {{site.data.keyword.baas_full_notm}} with Kubernetes and OpenShift clusters:
-
-### Supported Namespaces
-{: #limitations-namespaces}
-
-- {{site.data.keyword.baas_full_notm}} supports backup of user-created application namespaces only
-- Default and infrastructure namespaces (such as `kube-node-lease`, `kube-public`, `kube-system`) are not supported for backup
-
-### Cluster Compatibility
-{: #limitations-compatibility}
-
-- Restore operations between different clusters require matching storage classes
-- {{site.data.keyword.baas_full_notm}} does not support Tanzu Kubernetes Grid Integrated Edition (TKGI)
-- Clusters in private networks behind NAT gateways (Dynamic/Static NAT, Port Address Translation PAT) are not supported
-
-### Velero Version Requirements
-{: #limitations-velero}
-
-- For Kubernetes clusters earlier than version 1.16, use Velero 1.4
-- For Kubernetes clusters version 1.16 or later, use Velero 1.12
-- For upgrade instructions, see [Upgrade Velero and Datamover](/docs/backup-recovery?topic=backup-recovery-upgrade-velero)
-
-### CLI Limitations
-{: #limitations-cli}
-
-- The current release of the `ibmcloud backup-recovery data-source-connection create` CLI command does not support the `--connection-env-type` parameter
-- Use the UI-based workflow to create data source connections for IBM Kubernetes Service and Red Hat OpenShift clusters
-
-### Network and Registry Access
-{: #limitations-network}
-
-- If Kubernetes is not accessed through the internet, you must provide the path to the registry from which Velero should be pulled
-- Ensure proper network connectivity for the Data Source Connector to communicate with the {{site.data.keyword.baas_full_notm}} service
 
 ## Protecting and Restoring Data
 {: #protect-restore-data-iks-roks}
