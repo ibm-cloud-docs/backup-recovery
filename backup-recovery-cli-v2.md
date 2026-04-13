@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024
-lastupdated: "2026-04-10"
+lastupdated: "2026-04-13"
 
 keywords: backup recovery, cli, guide
 
@@ -4922,8 +4922,7 @@ Before you begin, ensure you have the following:
   ```
   {: pre}
 
-* Access to a Backup & Recovery tenant.
-* Tenant ID (example abc123xyz/ obtain from your Backup & Recovery instance).
+* Access to {{site.data.keyword.cloud_notm}} instance.
 * IAM API key for authentication.
 
 ### Step 1: Log in to IBM Cloud
@@ -4958,7 +4957,7 @@ export BACKUP_RECOVERY_APIKEY=<iam-api-key>
 ```
 {: pre}
 
-Replace `<api-key>` with your actual IAM API key.
+Replace `<iam-api-key>` with your actual IAM API key.
 
 ### Step 4: Create a data source connection
 {: #backup-recovery-k8s-example-step4}
@@ -4987,6 +4986,8 @@ tenantId            8x7y9z2a3b/
 
 **Important:** Save the `registrationToken` from the output. This token will be used in Step 5 when installing the data source connector with the helm command.
 
+**Note:** The `--connection-env-type` parameter is currently not supported to create connection for Kubernetes or OpenShift clusters. We recommend using the console (see "Using Console (Alternative)" below) for connection creation for now.
+
 **Using Console (Alternative):**
 
 For detailed instructions, see [Creating a data source connection](/docs/backup-recovery?topic=backup-recovery-data-source-connector-iks-roks#data-source-connector-iks-roks-create-data-source-connection).
@@ -5004,56 +5005,12 @@ After creating the connection, record the `connectionId` for use in Step 7 and t
 ### Step 5: Install the data source connector
 {: #backup-recovery-k8s-example-step5}
 
-Install the data source connector on your Kubernetes cluster.For detailed instructions, see [Creating a data source connection](/docs/backup-recovery?topic=backup-recovery-data-source-connector-iks-roks#data-source-connector-iks-roks-create-data-source-connection) .
-
-1. In the **Install Data Source Connectors** section, copy the provided `helm install` command
-2. Save the command securely, as you will need it to deploy the connector
-3. Run the helm command in your cluster to install the connector
-4. Click **Done**
+Install the data source connector on your Kubernetes cluster. For detailed instructions, see [Creating a data source connection](/docs/backup-recovery?topic=backup-recovery-data-source-connector-iks-roks#data-source-connector-iks-roks-create-data-source-connection).
 
 ### Step 6: Create a bearer token for Kubernetes cluster
 {: #backup-recovery-k8s-example-step6}
 
-Create a bearer token that will be used as the `clientPrivateKey` value during cluster registration.
-
-Open IBM Cloud Shell and configure kubectl or oc CLI by getting the kube config:
-
-```sh
-ibmcloud ks cluster config --cluster <cluster> --admin
-```
-{: pre}
-
-Create the service account and cluster role binding:
-
-```sh
-kubectl create serviceaccount brs-sa -n default
-kubectl create clusterrolebinding brs-cl-role --clusterrole=cluster-admin --serviceaccount=default:brs-sa
-```
-{: pre}
-
-Create the secret and retrieve the bearer token:
-
-```sh
-cat <<EOF > brs-sa-token.yaml
-apiVersion: v1
-kind: Secret
-metadata:
-  name: brs-sa-token
-  namespace: default
-  annotations:
-    kubernetes.io/service-account.name: brs-sa
-type: kubernetes.io/service-account-token
-EOF
-kubectl apply -f brs-sa-token.yaml
-```
-{: pre}
-
-Wait a moment for the token to populate, then retrieve and decode it:
-
-```sh
-kubectl get secret brs-sa-token -n default -o jsonpath='{.data.token}' | base64 --decode && echo ""
-```
-{: pre}
+Create a bearer token that will be used as the `clientPrivateKey` value during cluster registration. For detailed instructions, see [How to create a bearer token for a Kubernetes or OpenShift cluster](/docs/backup-recovery?topic=backup-recovery-data-source-connector-iks-roks#data-source-connector-iks-roks-create-bearer-token-cluster).
 
 Save the output token value. This will be used as the `clientPrivateKey` parameter in Step 8 when registering the Kubernetes cluster.
 
@@ -5100,19 +5057,7 @@ From the output, locate and record the `connectionId` value. This ID will be use
 
 Register the Kubernetes (ROKS) cluster as a protection source. This step deploys the Velero components and Cohesity data mover into the cluster.
 
-Before running the registration command, retrieve your cluster's API endpoint from the IBM Cloud Console:
-
-**Get the Kubernetes cluster endpoint:**
-
-1. Log in to the [IBM Cloud Console](https://cloud.ibm.com/)
-2. Go to **Navigation Menu** > **Kubernetes** > **Clusters**
-3. Select your cluster (filter by location if needed)
-4. On the **Overview** page, scroll to the **Networking** section
-5. Copy the **Private** service endpoint (recommended) or **Public** service endpoint
-
-**Example endpoint format:**
-- Private: `https://c102.private.eu-es.containers.cloud.ibm.com:30339`
-- Public: `https://c102.eu-es.containers.cloud.ibm.com:30339`
+Before running the registration command, retrieve your cluster's API endpoint. For detailed instructions, see [How to get the Kubernetes or OpenShift cluster endpoint](/docs/backup-recovery?topic=backup-recovery-data-source-connector-iks-roks#how-to-get-iks-roks-endpoint).
 
 Now register the cluster using the connection ID from Step 7, the bearer token from Step 6, and the cluster endpoint:
 
@@ -5523,10 +5468,10 @@ ibmcloud backup-recovery recovery create \
 ```
 {: codeblock}
 
-### Step 18: Cleanup (unregister the protection source)
+### Step 18: Cleanup (unregister the protection source) - Optional
 {: #backup-recovery-k8s-example-step18}
 
-Before unregistering the cluster, clean up resources in the following order:
+If you want to clean up and remove the protection source, follow these steps in order:
 
 **1. Delete the protection group:**
 
@@ -5564,9 +5509,19 @@ Registration deleted successfully
 ```
 {: codeblock}
 
-**4. (Optional) Delete the data source connection:**
+**4. Delete the data source connection:**
 
-If you no longer need the data source connection, you can delete it from the IBM Cloud Console:
+```sh
+ibmcloud backup-recovery data-source-connection delete \
+  --connection-id "4521789036542187520" \
+  --xibm-tenant-id "<your_tenant_id>"
+  --force
+```
+{: pre}
+
+**Alternative - Using Console:**
+
+If you prefer to use the console:
 1. Navigate to your Backup & Recovery instance
 2. Go to **Data Protection** > **Data Source Connections**
 3. Select the connection and delete it
