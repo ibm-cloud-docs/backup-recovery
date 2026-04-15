@@ -31,7 +31,7 @@ Alternatively, you can also refer to the terraform [IBM Backup & Recovery for IK
 Before deploying the Data Source Connector, review and understand the following requirements that are needed for the VM(s) that you need to provision:
 
 ### Supported Sources
-{: #supported_sources}
+{: #supported-sources}
 
 You can deploy Data Source Connectors for the following sources:
 
@@ -41,7 +41,7 @@ You can deploy Data Source Connectors for the following sources:
 - Kubernetes/OpenShift
 
 ### Data Source Connector System Prerequisites
-{: #data_source_connector_system_prerequisites}
+{: #data-source-connector-system-prerequisites}
 
 Make sure that the Data Source Connector VM that you deploy for your Data Source Connection meets the following system requirements:
 
@@ -51,7 +51,7 @@ Make sure that the Data Source Connector VM that you deploy for your Data Source
 - Outbound Internet connection
 
 ### Port Requirements
-{: #port_requirements}
+{: #port-requirements}
 
 Ensure that the following ports are open to allow communication between the Data Source Connector(s) and the data sources.
 
@@ -109,7 +109,7 @@ Others
 
 
 ## Create a Data Source Connection in VMware
-{: #create_a_data_source_connection_in_vmware}
+{: #create-a-data-source-connection-in-vmware}
 
 To create a Data Source Connection:
 
@@ -184,7 +184,7 @@ On the next screen, you are prompted to change your password. Change your defaul
 It can take another few minutes for the Data Source Connector to authenticate to the IBM Cloud Backup and Recovery Service. Click `Data Source Connection` to list one or more Data Source Connectors that are claimed.
 
 ## Create a Data Source Connection in VPC
-{: #create_a_data_source_connection_in_vpc}
+{: #create-a-data-source-connection-in-vpc}
 
 To create a Data Source Connection:
 
@@ -231,7 +231,7 @@ On the next screen, you are prompted to change your password. Change your defaul
 It can take another few minutes for the Data Source Connector to authenticate to the IBM Cloud Backup and Recovery Service. Click `Data Source Connection` to list one or more Data Source Connectors that are claimed.
 
 ### VPE Gateways
-{: #vpe_gateways}
+{: #vpe-gateways}
 
 While the VSI can connect to the Backup and Recovery instance, a VPE gateway provides a better performance, To create a VPE gateway, follow these steps.
 
@@ -243,7 +243,7 @@ While the VSI can connect to the Backup and Recovery instance, a VPE gateway pro
 6. Configure the `Reserved IP` as required and create the VPE Gateway.
 
 ## Create a data source connection for Kubernetes/OpenShift
-{: #create_data_source_connection_iks_roks}
+{: #create-data-source-connection-iks-roks}
 
 To create a data source connection for Kubernetes or OpenShift clusters, including detailed guidance on choosing the correct deployment platform and managing connections, see [Create a data source connection](/docs/backup-recovery?topic=backup-recovery-data-source-connector-iks-roks#data-source-connector-iks-roks-create-data-source-connection) in the Kubernetes/OpenShift getting started guide.
 
@@ -255,7 +255,7 @@ The process involves:
 You can reuse an existing connection for multiple clusters on the same deployment platform.
 
 ## Install Data Source Connector on Kubernetes and OpenShift
-{: #install_data_source_connector_iks_roks}
+{: #install-data-source-connector-iks-roks}
 
 The Data Source Connector is deployed as a StatefulSet with 2 replicas (by default) on your Kubernetes or OpenShift cluster. This establishes the communication channel between your cluster and the {{site.data.keyword.baas_full_notm}} service.
 
@@ -265,7 +265,7 @@ The Data Source Connector is deployed as a StatefulSet with 2 replicas (by defau
 {: note}
 
 ### Resource requirements
-{: #install_data_source_connector_resource_requirements}
+{: #install-data-source-connector-resource-requirements}
 
 Help ensure that your cluster has sufficient CPU and memory resources. The Data Source Connector consumes resources from your cluster nodes. More backup agent components (Datamover and Velero) will be deployed later during source registration.
 

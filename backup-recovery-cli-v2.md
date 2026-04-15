@@ -792,13 +792,13 @@ ibmcloud backup-recovery protection-source registration-update --id ID --xibm-te
     Allowable values are: `kCluster`, `kNamespace`, `kService`, `kPVC`, `kPersistentVolumeClaim`, `kPersistentVolume`, `kLabel`.
 
 `--kubernetes-params-priority-class-name` (string)
-:   Specifies the priority class name for cohesity resources. This option provides a value for a subfield of the JSON option 'kubernetes-params'. It is mutually exclusive with that option.
+:   Specifies the priority class name for {{site.data.keyword.baas_full}} resources. This option provides a value for a subfield of the JSON option 'kubernetes-params'. It is mutually exclusive with that option.
 
 `--kubernetes-params-resource-annotations` (string)
-:   Specifies resource annotations to be applied on cohesity resources. It should be a JSON string or a path to a JSON file. This option provides a value for a subfield of the JSON option 'kubernetes-params'. It is mutually exclusive with that option.
+:   Specifies resource annotations to be applied on {{site.data.keyword.baas_full}} resources. It should be a JSON string or a path to a JSON file. This option provides a value for a subfield of the JSON option 'kubernetes-params'. It is mutually exclusive with that option.
 
 `--kubernetes-params-resource-labels` (string)
-:   Specifies a resource label to be applied on cohesity resources. It should be a JSON string or a path to a JSON file. This option provides a value for a subfield of the JSON option 'kubernetes-params'. It is mutually exclusive with that option.
+:   Specifies a resource label to be applied on {{site.data.keyword.baas_full}} resources. It should be a JSON string or a path to a JSON file. This option provides a value for a subfield of the JSON option 'kubernetes-params'. It is mutually exclusive with that option.
 
 `--kubernetes-params-san-fields` (string)
 :   Specifies the SAN field for agent certificate. This option provides a value for a subfield of the JSON option 'kubernetes-params'. It is mutually exclusive with that option.
