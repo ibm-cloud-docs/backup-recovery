@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025, 2026
-lastupdated: "2026-04-10"
+lastupdated: "2026-04-15"
 
 keywords: data source connector, iks, roks, cluster, troubleshooting
 
@@ -144,7 +144,7 @@ If you encounter an HTTP connection error on the **Data Protection** > **Sources
 3. **Verify Data Source Connector Status**:
    1. Verify that the Data source connector is healthy. See [Check the Health of the Connector](#connector-health).
    2. Verify that the Data Source Connector (DSC) pods are running correctly within the `ibm-brs-data-source-connector` namespace. Check for any deployment failures, such as restart loops or `ImagePullBackOff` errors, to help ensure that the connector is in a healthy state.
-4. **Review Network Security Rules**: Inspect your VPC and cluster-level security groups or Network ACLs to help ensure that no recent firewall rules or security policies are blocking the connector's traffic. While the required communication on ports **443** (communication to Cloud Object Storage) and **29991** (communication to backup recovery service cluster) is typically enabled by default and does not require manual configuration, you should verify that no custom outbound or inbound restrictions have been implemented that might inadvertently disrupt connectivity on these specific ports.
+4. **Review Network Security Rules**: Inspect your VPC and cluster-level security groups or Network ACLs to help ensure that no recent firewall rules or security policies are blocking the connector's traffic. While the required communication on ports **443** (communication to Cloud Object Storage) and **29991** (communication to backup recovery service cluster) is typically enabled by default and does not require manual configuration, you must verify that no custom outbound or inbound restrictions have been implemented that might inadvertently disrupt connectivity on these specific ports.
 
 ## Troubleshooting alerts
 {: #alert-troubleshooting}

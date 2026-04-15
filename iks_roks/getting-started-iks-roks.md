@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025, 2026
-lastupdated: "2026-04-13"
+lastupdated: "2026-04-15"
 
 keywords: data source connector, iks, roks, cluster
 
@@ -188,7 +188,7 @@ After you create a data source connection, you must install and configure the Da
 ## How to register a Kubernetes or OpenShift cluster with {{site.data.keyword.baas_full_notm}}
 {: #data-source-connector-iks-roks-register}
 
-If you are registering a cluster that was previously registered as a source, you must help ensure that any remnant `brs-backup-agent-<uuid>` namespaces are deleted from the cluster before proceeding. The presence of these namespaces cause the new source registration to fail.
+If you are registering a cluster that was previously registered as a source, you must help ensure that any remnant `brs-backup-agent-<uuid>` namespaces are deleted from the cluster before proceeding. The presence of these namespaces causes the new source registration to fail.
 {: important}
 
 1. Access the [{{site.data.keyword.baas_full_notm}} instance dashboard](#data-source-connector-iks-roks-access-instance).
@@ -231,7 +231,7 @@ If you are registering a cluster that was previously registered as a source, you
 ## How to create a bearer token for a Kubernetes or OpenShift cluster
 {: #data-source-connector-iks-roks-create-bearer-token-cluster}
 
-**For clusters with private endpoints only:** You must run `ibmcloud`, `kubectl` and `helm` commands from [IBM Cloud Shell](https://cloud.ibm.com/shell).
+**For clusters with private endpoints only:** You must run `ibmcloud`, `kubectl`, and `helm` commands from [IBM Cloud Shell](https://cloud.ibm.com/shell).
 
 **For clusters with public endpoints:** You can run `ibmcloud`, `kubectl`, and `helm` commands from either [IBM Cloud Shell](https://cloud.ibm.com/shell) or your local workspace.
 {: note}
@@ -278,7 +278,7 @@ If you are registering a cluster that was previously registered as a source, you
 ## Upgrading the Backup Agent Components
 {: #upgrade-brs-backup-agent}
 
-When new releases of the {{site.data.keyword.baas_full_notm}} service become available, there is a possibility that new Backup Agent Component versions are also available. It is recommended to upgrade your Backup Agent Components when new releases become available to ensure you have the latest features, security patches, and bug fixes.
+When new releases of the {{site.data.keyword.baas_full_notm}} service become available, there is a possibility that new Backup Agent Component versions are also available. It is recommended to upgrade your Backup Agent Components when new releases become available to ensure that you have the latest features, security patches, and bug fixes.
 
 To check for new service releases, see the [{{site.data.keyword.baas_full_notm}} release notes](https://cloud.ibm.com/docs/backup-recovery?topic=backup-recovery-updates){: external}.
 
@@ -289,13 +289,13 @@ Upgrades for the brs-backup-agent components are currently manual. When you regi
 Each release of {{site.data.keyword.baas_full_notm}} includes default image versions for these components. To upgrade an existing source registration:
 
 1. Get the exact namespace name with the `brs-backup-agent` prefix:
-   
+
    ```sh
    kubectl get namespaces | grep brs-backup-agent
    ```
    {: codeblock}
 
-   Note the full namespace name (e.g., `brs-backup-agent-<GUID>`).
+   Note the full namespace name (for example, `brs-backup-agent-<GUID>`).
 
 2. Delete the existing backup agent components from your cluster:
    
@@ -323,7 +323,7 @@ The `Edit Registration` option does not update the datamover and Velero images. 
 ## Protecting and Restoring Data
 {: #protect-restore-data-iks-roks}
 
-After registering your cluster as a data source, you can proceed to create Protection Groups and Policies to start backing up your data.
+After registering your cluster as a data source, you can proceed to create Protection Groups and policies to start backing up your data.
 
 1. **Protect a Namespace**: See [Protecting a namespace or cluster](/docs/backup-recovery?topic=backup-recovery-protecting-namespace-iks-roks).
 2. **Configure Policies**: See [Creating and configuring protection policies](/docs/backup-recovery?topic=backup-recovery-create-edit-standard-policy).
