@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025, 2026
-lastupdated: "2026-04-10"
+lastupdated: "2026-04-15"
 
 keywords: data source connector, iks, roks, cluster, run now
 
@@ -57,7 +57,7 @@ You can manually start a protection that is run for the Kubernetes namespaces (o
 ## Pause future runs
 {: #iks-roks-pause-run}
 
-You can pause future scheduled runs for the objects in a protection group. If a protection run is currently executing, it continues to completion, and only subsequent scheduled runs are paused.
+You can pause future scheduled runs for the objects in a protection group. If a protection run is currently running, it continues to completion, and only subsequent scheduled runs are paused.
 
 To pause future runs:
 

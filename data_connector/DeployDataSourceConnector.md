@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2026
-lastupdated: "2026-04-10"
+lastupdated: "2026-04-15"
 
 keywords: backup and recovery, data source connectors,
 
@@ -19,9 +19,9 @@ To register your data sources with the IBM Cloud Backup and Recovery service, yo
 
 The deployment method for Data Source Connectors varies based on your source type:
 
-- **For VM-based sources** (Physical Servers, Microsoft SQL Server, Oracle Server): Deploy the Data Source Connector as a virtual machine (VM) using an installer OVA in your VMware environment, on a vCenter or ESXi host that has access to your data sources and meets the system and firewall requirements.
+- **For VM-based sources** (Physical Servers, Microsoft SQL Server, Oracle Server): Deploy the Data Source Connector as a virtual machine (VM) by using an installer OVA in your VMware environment, on a vCenter or ESXi host that has access to your data sources and meets the system and firewall requirements.
 
-- **For Kubernetes/OpenShift clusters**: Deploy the Data Source Connector using Helm charts directly on your cluster. See [Install Data Source Connector for Kubernetes/OpenShift](#install_data_source_connector_iks_roks) for detailed instructions.
+- **For Kubernetes/OpenShift clusters**: Deploy the Data Source Connector by using Helm charts directly on your cluster. See [Install Data Source Connector for Kubernetes/OpenShift](#install_data_source_connector_iks_roks) for detailed instructions.
 
 Alternatively, you can also refer to the terraform [IBM Backup & Recovery for IKS/ROKS with Data Source Connector](https://registry.terraform.io/modules/terraform-ibm-modules/iks-ocp-backup-recovery/ibm/latest){: external} module that offers ready-to-use code and examples for integrating the Data Source connector.
 
@@ -163,9 +163,8 @@ To create a Data Source Connection:
    10.  On the `Customize template` page, enter the network settings: `Network IP Address`, `Network Netmask`, and `Default Gateway`. If you have selected a different VLAN for the secondary network, enter the `Network IP Address`, `Network Netmask`, and `Default Gateway` for the secondary network, as well. Click `Next`.
 
 - To set the network settings using static IP addresses, manually enter the details in the respective fields for both DataNetwork and SecondaryNetwork.
-- To set the network settings using DHCP, leave the fields blank in both the DataNetwork and
-SecondaryNetwork sections.
-- Data Network and Secondary Network must be configured using the same network configuration method. That is static IP addresses or DHCP.
+- To set the network settings using DHCP, leave the fields blank in both the DataNetwork and SecondaryNetwork sections.
+- Data Network and Secondary Network must be configured by using the same network configuration method. That is static IP addresses or DHCP.
 
 
    11. Review the summary on the `Ready to complete` page and click `Finish`.
@@ -182,7 +181,7 @@ On the next screen, you are prompted to change your password. Change your defaul
 
 8. On the `Data` `Source` `Connector` `Conﬁguration` page, paste the `Connection` `token` in the `Connection` `Claim` `Token` ﬁeld and click `Save`.
 
-It can take another few minutes for the Data Source Connector to authenticate to the IBM Cloud Backup and Recovery Service. Click `Data Source Connection` to list the Data Source Connector(s) that are claimed.
+It can take another few minutes for the Data Source Connector to authenticate to the IBM Cloud Backup and Recovery Service. Click `Data Source Connection` to list one or more Data Source Connectors that are claimed.
 
 ## Create a Data Source Connection in VPC
 {: #create_a_data_source_connection_in_vpc}
@@ -199,7 +198,7 @@ To create a Data Source Connection:
 
     - **NOTE:** The VPC option will not be available at launch. It is ok to leave the Deployment Platform as VMware
 
-   b. Copy the `Connection token` and click `Create`. The Connection token is utilized to link or claim the Data Source Connector with the created connection.
+   b. Copy the `Connection token` and click `Create`. The Connection token is used to link or claim the Data Source Connector with the created connection.
 
    c. To deploy the Data Source Connector in your VPC, Go to the IBM Cloud Catalog
 
@@ -229,7 +228,7 @@ On the next screen, you are prompted to change your password. Change your defaul
 
 7. On the `Data` `Source` `Connector` `Conﬁguration` page, paste the `Connection` `token` in the `Connection` `Claim` `Token` field and click `Save`.
 
-It can take another few minutes for the Data Source Connector to authenticate to the IBM Cloud Backup and Recovery Service. Click `Data Source Connection` to list the Data Source Connector(s) that are claimed.
+It can take another few minutes for the Data Source Connector to authenticate to the IBM Cloud Backup and Recovery Service. Click `Data Source Connection` to list one or more Data Source Connectors that are claimed.
 
 ### VPE Gateways
 {: #vpe_gateways}
@@ -260,7 +259,7 @@ You can reuse an existing connection for multiple clusters on the same deploymen
 
 The Data Source Connector is deployed as a StatefulSet with 2 replicas (by default) on your Kubernetes or OpenShift cluster. This establishes the communication channel between your cluster and the {{site.data.keyword.baas_full_notm}} service.
 
-**For clusters with private endpoints only:** You must run `ibmcloud`, `kubectl` and `helm` commands from [IBM Cloud Shell](https://cloud.ibm.com/shell).
+**For clusters with private endpoints only:** You must run `ibmcloud`, `kubectl`, and `helm` commands from [IBM Cloud Shell](https://cloud.ibm.com/shell).
 
 **For clusters with public endpoints:** You can run `ibmcloud`, `kubectl`, and `helm` commands from either [IBM Cloud Shell](https://cloud.ibm.com/shell) or your local workspace.
 {: note}
@@ -268,7 +267,7 @@ The Data Source Connector is deployed as a StatefulSet with 2 replicas (by defau
 ### Resource requirements
 {: #install_data_source_connector_resource_requirements}
 
-Ensure that your cluster has sufficient CPU and memory resources. The Data Source Connector will consume resources from your cluster nodes. Additional backup agent components (Datamover and Velero) will be deployed later during source registration.
+Help ensure that your cluster has sufficient CPU and memory resources. The Data Source Connector consumes resources from your cluster nodes. More backup agent components (Datamover and Velero) will be deployed later during source registration.
 
 **Data Source Connector resource consumption:**
 
@@ -288,7 +287,7 @@ Ensure that your cluster has sufficient CPU and memory resources. The Data Sourc
    ```
    {: codeblock}
 
-   From the output, note the cluster name where the Data Source Connector should be deployed. Ensure you have admin privileges for this cluster.
+   From the output, note the cluster name where the Data Source Connector should be deployed. Ensure that you have admin privileges for this cluster.
 
 3. Download and configure the `KUBECONFIG` for the selected cluster with admin privileges:
 
@@ -310,7 +309,7 @@ Ensure that your cluster has sufficient CPU and memory resources. The Data Sourc
 5. Retrieve the Helm install command that you copied earlier in the [Create a data source connection](/docs/backup-recovery?topic=backup-recovery-data-source-connector-iks-roks#data-source-connector-iks-roks-create-data-source-connection) section and update it based on your cluster type.
 
    **For IKS Classic clusters:**
-   
+
    You must specify a storage class that is available on Classic clusters and disable SCC (Security Context Constraints) as it's specific to OpenShift:
 
    ```sh
@@ -319,7 +318,7 @@ Ensure that your cluster has sufficient CPU and memory resources. The Data Sourc
    {: codeblock}
 
    **For IKS VPC clusters:**
-   
+
    The default storage class `ibmc-vpc-block-metro-5iops-tier` is used automatically. Disable SCC as it's specific to OpenShift:
 
    ```sh
@@ -328,7 +327,7 @@ Ensure that your cluster has sufficient CPU and memory resources. The Data Sourc
    {: codeblock}
 
    **For ROKS Classic clusters:**
-   
+
    You must specify a storage class that is available on Classic clusters. SCC is enabled by default for OpenShift:
 
    ```sh
@@ -337,7 +336,7 @@ Ensure that your cluster has sufficient CPU and memory resources. The Data Sourc
    {: codeblock}
 
    **For ROKS VPC clusters:**
-   
+
    The default storage class `ibmc-vpc-block-metro-5iops-tier` is used automatically. SCC is enabled by default for OpenShift:
 
    ```sh
@@ -488,7 +487,7 @@ This command displays all available Data Source Connector versions. Compare the 
 ### Upgrade to a newer version
 {: #upgrade-to-newer-version}
 
-Once you've identified the target version, use the Helm upgrade command. You must provide the registration token because the old token may have expired.
+Once you've identified the target version, use the Helm upgrade command. You must provide the registration token because the old token might have expired.
 
 ```sh
 helm upgrade --install <release-name> oci://icr.io/ext/brs/brs-ds-connector-chart --version <new-version> --reuse-values --set secrets.registrationToken=<token> -n ibm-brs-data-source-connector
@@ -502,12 +501,12 @@ Replace `<release-name>` with your actual Helm release name (use `helm list -n i
 1. Log in to your {{site.data.keyword.baas_full_notm}} instance in the IBM Cloud console.
 2. Navigate to `System` > `Data Source Connections`.
 3. Locate the Data Source Connection that corresponds to your cluster.
-4. Click on the three dots (⋮) menu corresponding to the connection.
+4. Click the three dots (⋮) menu corresponding to the connection.
 5. Select `Connection Token` from the menu options.
 6. Copy the displayed connection token (also referred to as the registration token).
 7. Use this token in the `secrets.registrationToken` parameter of the upgrade command.
 
-You must provide the registration token in the upgrade command because the previous token may have expired.
+You must provide the registration token in the upgrade command because the previous token might have expired.
 {: important}
 
 If you need to create a new Data Source Connection, see [Create a data source connection for Kubernetes/OpenShift](#create_data_source_connection_iks_roks).
@@ -533,7 +532,7 @@ helm list -n ibm-brs-data-source-connector
 ```
 {: codeblock}
 
-Check the pod status to ensure all pods are running with the new version:
+Check the pod status to ensure that all pods are running with the new version:
 
 ```sh
 kubectl get pods -n ibm-brs-data-source-connector
@@ -561,7 +560,7 @@ kubectl get pods -n ibm-brs-data-source-connector
       ```
       {: codeblock}
 
-   2. Run the Helm install command using the values file:
+   2. Run the Helm install command by using the values file:
 
       ```sh
       helm upgrade --install dsc oci://icr.io/ext/brs/brs-ds-connector-chart \
