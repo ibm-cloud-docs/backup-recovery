@@ -153,7 +153,8 @@ To create a Data Source Connection:
 
       - To deploy the Data Source Connector on a single network, select the same VLAN in both
 
-#### DataNetwork and SecondaryNetwork
+### DataNetwork and SecondaryNetwork
+{: #create-a-data-source-connection-in-vmware-datanetwork-secondarynetwork}
 
 - To deploy the Data Source Connector on a dual network, select different VLANs in `DataNetwork` and `SecondaryNetwork`, respectively.
 - The Data Source Connector must have dual IP addresses if your data sources are in a private non-routable VLAN.
@@ -274,8 +275,10 @@ Help ensure that your cluster has sufficient CPU and memory resources. The Data 
 | Component                                   | Deployment Type | CPU Requests | Memory Requests | Total (default 2 replicas) |
 |--------------------------------------------|-----------------|--------------|-----------------|----------------------------|
 | Data Source Connector        | StatefulSet (2 replicas) | 2 per replica | 5Gi per replica | 4 CPU, 10Gi Memory |
+{: caption="Resource consumption" caption-side="bottom"}
 
-**Note:** Datamover (DaemonSet) and Velero components are deployed automatically during source registration and are not part of the initial Data Source Connector installation.
+Datamover (DaemonSet) and Velero components are deployed automatically during source registration and are not part of the initial Data Source Connector installation.
+{: note}
 
 1. Open [IBM Cloud Shell](https://cloud.ibm.com/shell) (or use your local workspace if your cluster has a public endpoint).
 2. Identify the source cluster where you want to install the Data Source Connector. This should be the Kubernetes or OpenShift cluster that you want to back up and protect. You must have admin access to this cluster to install the Data Source Connector.
@@ -303,7 +306,7 @@ Help ensure that your cluster has sufficient CPU and memory resources. The Data 
    ```
    {: codeblock}
 
-   See [Creating an API_KEY](https://cloud.ibm.com/docs/account?topic=account-userapikey&interface=ui#create_user_key) to create a new API_KEY if you don't have an existing one.
+   See [Creating an API_KEY](/docs/account?topic=account-userapikey&interface=ui#create_user_key) to create a new API_KEY if you don't have an existing one.
 
 
 5. Retrieve the Helm install command that you copied earlier in the [Create a data source connection](/docs/backup-recovery?topic=backup-recovery-data-source-connector-iks-roks#data-source-connector-iks-roks-create-data-source-connection) section and update it based on your cluster type.
@@ -372,7 +375,7 @@ Help ensure that your cluster has sufficient CPU and memory resources. The Data 
 
    - **`--create-namespace`**: Creates the specified namespace if it doesn't exist. This flag is useful when deploying to a new namespace.
 
-   - **`--set volumeClaimTemplate.storageClass=<storage-class-name>`**: Specifies the StorageClass to use for provisioning the persistent volume for the Data Source Connector. This parameter sets the storage class specifically for the Data Source Connector's persistent volume. This is required for Classic clusters as the default VPC storage class (`ibmc-vpc-block-metro-5iops-tier`) cannot be used on Classic clusters. If you want to use VPC File CSI driver storage classes, you need to create a custom storage class with `GID:1000` and `UID:1000` because the Data Source Connector runs as non-root app. For reference on creating storage classes, see [Deploying an app that runs as non-root](https://cloud.ibm.com/docs/containers?topic=containers-storage-file-vpc-apps#vpc-file-non-root-app){: external}.
+   - **`--set volumeClaimTemplate.storageClass=<storage-class-name>`**: Specifies the StorageClass to use for provisioning the persistent volume for the Data Source Connector. This parameter sets the storage class specifically for the Data Source Connector's persistent volume. This is required for Classic clusters as the default VPC storage class (`ibmc-vpc-block-metro-5iops-tier`) cannot be used on Classic clusters. If you want to use VPC File CSI driver storage classes, you need to create a custom storage class with `GID:1000` and `UID:1000` because the Data Source Connector runs as non-root app. For reference on creating storage classes, see [Deploying an app that runs as non-root](/docs/containers?topic=containers-storage-file-vpc-apps#vpc-file-non-root-app){: external}.
 
    - **`--set replicaCount=<number>`**: Sets the number of Data Source Connector pod replicas. The default value is 3. Adjust this based on your high availability and workload requirements.
 
@@ -391,7 +394,7 @@ Help ensure that your cluster has sufficient CPU and memory resources. The Data 
    - **`--set "tolerations[<index>].effect=<effect>"`**: Specifies the taint effect. Common values are `NoSchedule` (prevents scheduling), `PreferNoSchedule` (tries to avoid scheduling), or `NoExecute` (evicts existing pods).
 
    ### Adding a dedicated worker pool for Data Source Connector
-   {: #add-dedicated-worker-pool}
+   {: #adding-dedicated-worker-pool}
 
    It's recommended to create a dedicated worker pool for the Data Source Connector. This helps ensure that the connector pods run on a dedicated worker pool with appropriate taints to ensure workload isolation and performance.
 
