@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024
-lastupdated: "2026-04-15"
+lastupdated: "2026-04-16"
 
 keywords: backup recovery, cli, guide
 
@@ -385,7 +385,7 @@ ibmcloud backup-recovery protection-source list --xibm-tenant-id XIBM-TENANT-ID 
 :   If specified, the object protection of entities(if any) will be returned.
 
 `--prune-non-critical-info` (bool)
-:   Specifies whether to prune noncritical information within entities. In case of VMs, virtual disk information will be pruned. In case of Office365, metadata about user entities will be pruned. This can be used to limit the size of the response by caller.
+:   Specifies whether to prune noncritical information within entities. In case of VMs, virtual disk information is pruned. In case of Office365, metadata about user entities is pruned. This can be used to limit the size of the response by caller.
 
 `--prune-aggregation-info` (bool)
 :   Specifies whether to prune the aggregation information about the number of entities protected/unprotected.
@@ -455,7 +455,7 @@ ibmcloud backup-recovery protection-source registrations-list --xibm-tenant-id X
 :   Specifies the tenant ID for the backup recovery service instance. Required.
 
 `--ids` ([]int64)
-:   Ids specify the list of source registration ids to return. If left empty, every source registration will be returned by default.
+:   Ids specify the list of source registration ids to return. If left empty, every source registration is returned by default.
 
 `--include-source-credentials` (bool)
 :   If true, the encrypted credential for the registered sources will be included. The credential is first encrypted with internal key and then reencrypted with user-supplied encryption key.
@@ -512,7 +512,7 @@ ibmcloud backup-recovery protection-source register --xibm-tenant-id XIBM-TENANT
 :   A user specified name for this source.
 
 `--is-internal-encrypted` (bool)
-:   Specifies if credentials are encrypted by an internal key.
+:   Specifies whether credentials are encrypted by an internal key.
 
 `--encryption-key` (string)
 :   Specifies the key that the user has encrypted the credential with.
@@ -1067,7 +1067,7 @@ ibmcloud backup-recovery agent-upgrade-task create --xibm-tenant-id XIBM-TENANT-
 :   Specifies the time before which the upgrade task should start execution as a Unix epoch Timestamp (in microseconds). If this is not specified the task will start anytime after scheduleTimeUsecs.
 
 `--schedule-time-usecs` (int64)
-:   Specifies the start time of the task specified by the user as a Unix epoch Timestamp (in microseconds). If no schedule is specified, the agents will be upgraded immediately.
+:   Specifies the start time of the task specified by the user as a Unix epoch Timestamp (in microseconds). If no schedule is specified, the agents are upgraded immediately.
 
 #### Example
 {: #backup-recovery-agent-upgrade-task-create-examples}
@@ -1127,10 +1127,10 @@ ibmcloud backup-recovery protection-policy list --xibm-tenant-id XIBM-TENANT-ID 
     Allowable list items are: `Regular`, `Internal`.
 
 `--exclude-linked-policies` (bool)
-:   If excludeLinkedPolicies is set to true, then only local policies that are created on the cluster will be returned. The result will exclude all linked policies that are created from policy templates.
+:   If excludeLinkedPolicies is set to true, then only local policies that are created on the cluster will be returned. The result excludes all linked policies that are created from policy templates.
 
 `--include-replicated-policies` (bool)
-:   If includeReplicatedPolicies is set to true, then response will also contain replicated policies. By default, replication policies are not included in the response.
+:   If includeReplicatedPolicies is set to true, then response also contains replicated policies. By default, replication policies are not included in the response.
 
 `--include-stats` (bool)
 :   If includeStats is set to true, then response returns a number of protection groups and objects. By default, the protection stats are not included in the response.
@@ -1184,7 +1184,7 @@ ibmcloud backup-recovery protection-policy create --xibm-tenant-id XIBM-TENANT-I
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, for example `--blackout-window=@path/to/file.json`.
 
 `--extended-retention`
-:   Specifies more retention policies that should be applied to the backup snapshots. A backup snapshot will be retained up to a time that is the maximum of all retention policies that are applicable to it.
+:   Specifies more retention policies that should be applied to the backup snapshots. A backup snapshot is retained up to a time that is the maximum of all retention policies that are applicable to it.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, for example `--extended-retention=@path/to/file.json`.
 
@@ -1194,7 +1194,7 @@ ibmcloud backup-recovery protection-policy create --xibm-tenant-id XIBM-TENANT-I
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, for example `--remote-target-policy=@path/to/file.json`.
 
 `--cascaded-targets-config`
-:   Specifies the configuration for cascaded replications. Using cascaded replication, replication cluster(Rx) can further replicate and archive the snapshot copies to further targets. It's recommended creating cascaded configuration where protection group will be created.
+:   Specifies the configuration for cascaded replications. Using cascaded replication, replication cluster(Rx) can further replicate and archive the snapshot copies to further targets. It's recommended creating cascaded configuration where protection group is created.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, for example `--cascaded-targets-config=@path/to/file.json`.
 
@@ -1215,7 +1215,7 @@ ibmcloud backup-recovery protection-policy create --xibm-tenant-id XIBM-TENANT-I
 :   Specifies true if Calender Based Schedule is supported by the client. The default value is assumed as false for this feature.
 
 `--last-modification-time-usecs` (int64)
-:   Specifies the last time this Policy was updated. If this is passed into a PUT request, then the backend validates that the timestamp passed in matches the time that the policy was actually last modified. If the two timestamps do not match, then the request will be rejected with a stale error.
+:   Specifies the last time this Policy was updated. If this is passed into a PUT request, then the backend validates that the timestamp passed in matches the time that the policy was actually last modified. If the two timestamps do not match, then the request is rejected with a stale error.
 
 `--template-id` (string)
 :   Specifies the parent policy template id to which the policy is linked to.
@@ -1408,7 +1408,7 @@ ibmcloud backup-recovery protection-policy update --id ID --xibm-tenant-id XIBM-
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, for example `--blackout-window=@path/to/file.json`.
 
 `--extended-retention`
-:   Specifies more retention policies that should be applied to the backup snapshots. A backup snapshot will be retained up to a time that is the maximum of all retention policies that are applicable to it.
+:   Specifies more retention policies that should be applied to the backup snapshots. A backup snapshot is retained up to a time that is the maximum of all retention policies that are applicable to it.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, for example `--extended-retention=@path/to/file.json`.
 
@@ -1418,7 +1418,7 @@ ibmcloud backup-recovery protection-policy update --id ID --xibm-tenant-id XIBM-
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, for example `--remote-target-policy=@path/to/file.json`.
 
 `--cascaded-targets-config`
-:   Specifies the configuration for cascaded replications. Using cascaded replication, replication cluster(Rx) can further replicate and archive the snapshot copies to further targets. It's recommended creating cascaded configuration where protection group will be created.
+:   Specifies the configuration for cascaded replications. Using cascaded replication, replication cluster(Rx) can further replicate and archive the snapshot copies to further targets. It's recommended creating cascaded configuration where protection group is created.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, for example `--cascaded-targets-config=@path/to/file.json`.
 
@@ -1439,7 +1439,7 @@ ibmcloud backup-recovery protection-policy update --id ID --xibm-tenant-id XIBM-
 :   Specifies true if Calender Based Schedule is supported by the client. The default value is assumed as false for this feature.
 
 `--last-modification-time-usecs` (int64)
-:   Specifies the last time this Policy was updated. If this is passed into a PUT request, then the backend validates that the timestamp passed in matches the time that the policy was actually last modified. If the two timestamps do not match, then the request will be rejected with a stale error.
+:   Specifies the last time this Policy was updated. If this is passed into a PUT request, then the backend validates that the timestamp passed in matches the time that the policy was actually last modified. If the two timestamps do not match, then the request is rejected with a stale error.
 
 `--template-id` (string)
 :   Specifies the parent policy template id to which the policy is linked to.
@@ -1633,7 +1633,7 @@ ibmcloud backup-recovery protection-group list --xibm-tenant-id XIBM-TENANT-ID [
 :   Filter by a list of Protection Group names.
 
 `--policy-ids` ([]string)
-:   Filter by Policy ids that are associated with Protection Groups. Only Protection Groups associated with the specified Policy ids are returned.
+:   Filter by Policy ids that are associated with Protection Groups. Only Protection Groups that are associated with the specified Policy ids are returned.
 
 `--include-groups-with-datalock-only` (bool)
 :   Whether to only return Protection Groups with a datalock.
@@ -1681,7 +1681,7 @@ ibmcloud backup-recovery protection-group list --xibm-tenant-id XIBM-TENANT-ID [
 :   If true, return Protection Groups for which last run SLA was violated.
 
 `--include-last-run-info` (bool)
-:   If true, the response will include last run information. If it is false or not specified, the last run information won't be returned.
+:   If true, the response includes last run information. If it is false or not specified, the last run information won't be returned.
 
 `--prune-excluded-source-ids` (bool)
 :   If true, the response will not include the list of excluded source IDs in groups that contain this field. This can be set to true in order to improve performance if excluded source IDs are not needed by the user.
@@ -1804,7 +1804,7 @@ ibmcloud backup-recovery protection-group create --xibm-tenant-id XIBM-TENANT-ID
 :   Specifies the end time in micro seconds for this Protection Group. If this is not specified, the Protection Group won't be ended.
 
 `--last-modified-timestamp-usecs` (int64)
-:   Specifies the last time that this protection group was updated. If this is passed into a PUT request, then the backend validates that the timestamp passed in matches the time that the protection group was actually last modified. If the two timestamps do not match, then the request will be rejected with a stale error.
+:   Specifies the last time that this protection group was updated. If this is passed into a PUT request, then the backend validates that the timestamp passed in matches the time that the protection group was actually last modified. If the two timestamps do not match, then the request is rejected with a stale error.
 
 `--alert-policy`
 :   Specifies a policy for alerting users of the status of a Protection Group. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
@@ -2062,10 +2062,10 @@ ibmcloud backup-recovery protection-group update --id ID --xibm-tenant-id XIBM-T
 :   Array of array of label IDs that specify labels to protect. Optionally specify a list of labels to protect by listing protection source ids of labels in this two-dimensional array. Using this two-dimensional array of label IDs, the cluster generates a list of namespaces to protect, which are derived from intersections of the inner arrays and union of the outer array. It should be a JSON string or a path to a JSON file.
 
 `--kubernetes-params-leverage-csi-snapshot`
-:   Specifies if CSI snapshots should be used for backup of namespaces.
+:   Specifies whether CSI snapshots should be used for backup of namespaces.
 
 `--kubernetes-params-non-snapshot-backup`
-:   Specifies whether snapshot backup fails, nonsnapshot backup will be proceeded.
+:   Specifies whether snapshot backup fails, nonsnapshot backup is proceeded.
 
 `--kubernetes-params-objects` (string)
 :   Specifies the objects included in the Protection Group. It should be a JSON string or a path to a JSON file.
@@ -2107,7 +2107,7 @@ ibmcloud backup-recovery protection-group update --id ID --xibm-tenant-id XIBM-T
 :   Specifies the end time in micro seconds for this Protection Group. If this is not specified, the Protection Group won't be ended.
 
 `--last-modified-timestamp-usecs` (int64)
-:   Specifies the last time that this protection group was updated. If this is passed into a PUT request, then the backend validates that the timestamp passed in matches the time that the protection group was actually last modified. If the two timestamps do not match, then the request will be rejected with a stale error.
+:   Specifies the last time that this protection group was updated. If this is passed into a PUT request, then the backend validates that the timestamp passed in matches the time that the protection group was actually last modified. If the two timestamps do not match, then the request is rejected with a stale error.
 
 `--alert-policy`
 :   Specifies a policy for alerting users of the status of a Protection Group. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
@@ -2373,22 +2373,22 @@ ibmcloud backup-recovery protection-group-run list --id ID --xibm-tenant-id XIBM
 :   Specifies whether the result includes the object details for each protection run. If set to true, details of the protected object will be returned. If set to false or not specified, details will not be returned.
 
 `--local-backup-run-status` ([]string)
-:   Specifies a list of local backup status, runs matching the status will be returned.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused.<br> 'Skipped' indicates that the run was skipped.
+:   Specifies a list of local backup status, runs matching the status is returned.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused.<br> 'Skipped' indicates that the run was skipped.
 
     Allowable list items are: `Accepted`, `Running`, `Canceled`, `Canceling`, `Failed`, `Missed`, `Succeeded`, `SucceededWithWarning`, `OnHold`, `Finalizing`, `Skipped`, `Paused`.
 
 `--replication-run-status` ([]string)
-:   Specifies a list of replication status, runs matching the status will be returned.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused.<br> 'Skipped' indicates that the run was skipped.
+:   Specifies a list of replication status, runs matching the status is returned.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused.<br> 'Skipped' indicates that the run was skipped.
 
     Allowable list items are: `Accepted`, `Running`, `Canceled`, `Canceling`, `Failed`, `Missed`, `Succeeded`, `SucceededWithWarning`, `OnHold`, `Finalizing`, `Skipped`, `Paused`.
 
 `--archival-run-status` ([]string)
-:   Specifies a list of archival status, runs matching the status will be returned.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused.<br> 'Skipped' indicates that the run was skipped.
+:   Specifies a list of archival status, runs matching the status is returned.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused.<br> 'Skipped' indicates that the run was skipped.
 
     Allowable list items are: `Accepted`, `Running`, `Canceled`, `Canceling`, `Failed`, `Missed`, `Succeeded`, `SucceededWithWarning`, `OnHold`, `Finalizing`, `Skipped`, `Paused`.
 
 `--cloud-spin-run-status` ([]string)
-:   Specifies a list of cloud spin status, runs matching the status will be returned.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused.<br> 'Skipped' indicates that the run was skipped.
+:   Specifies a list of cloud spin status, runs matching the status is returned.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused.<br> 'Skipped' indicates that the run was skipped.
 
     Allowable list items are: `Accepted`, `Running`, `Canceled`, `Canceling`, `Failed`, `Missed`, `Succeeded`, `SucceededWithWarning`, `OnHold`, `Finalizing`, `Skipped`, `Paused`.
 
@@ -2404,7 +2404,7 @@ ibmcloud backup-recovery protection-group-run list --id ID --xibm-tenant-id XIBM
 :   Specifies a list of tags for protection runs. If this is specified, only the runs that match these tags will be returned.
 
 `--use-cached-data` (bool)
-:   Specifies whether we can serve the GET request from the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.
+:   Specifies whether we can serve the GET request from the read replica cache. There is a lag of 15 seconds between the read replica and the primary data source.
 
 `--filter-by-end-time` (bool)
 :   If true, the runs with backup end time within the specified time range will be returned. Otherwise, the runs with start time in the time range are returned. Defaults to filtering by start time unless this flag is set. Only one of filterByEndTime and filterByCopyTaskEndTime can be set.
@@ -2727,7 +2727,7 @@ ibmcloud backup-recovery recovery create --xibm-tenant-id XIBM-TENANT-ID --name 
     Allowable values are: `kPhysical`, `kSQL`.
 
 `--kubernetes-params` (string)
-:   Specifies the recovery options specific to Kubernetes environment. It should be a JSON string or a path to a JSON file.
+:   Specifies the recovery options specific to the Kubernetes environment. It should be a JSON string or a path to a JSON file.
 
 `--kubernetes-params-download-file-and-folder-params` (string)
 :   Specifies the parameters to download files and folders. It should be a JSON string or a path to a JSON file.
@@ -2745,12 +2745,12 @@ ibmcloud backup-recovery recovery create --xibm-tenant-id XIBM-TENANT-ID --name 
 :   Specifies the type of recover action to be performed. Allowable values are: RecoverNamespaces, RecoverFiles, DownloadFilesAndFolders.
 
 `--physical-params`
-:   Specifies the recovery options specific to Physical environment. It can also be a path to a JSON file. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
+:   Specifies the recovery options specific to the Physical environment. It can also be a path to a JSON file. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, for example `--physical-params=@path/to/file.json`.
 
 `--mssql-params`
-:   Specifies the recovery options specific to Sql environment. It can also be a path to a JSON file. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
+:   Specifies the recovery options specific to the Sql environment. It can also be a path to a JSON file. This JSON option can instead be provided by setting individual fields with other options. It is mutually exclusive with those options.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, for example `--mssql-params=@path/to/file.json`.
 
@@ -2801,7 +2801,7 @@ ibmcloud backup-recovery recovery create --xibm-tenant-id XIBM-TENANT-ID --name 
 :   Specifies the type of recover action to be performed. Allowable values are: RecoverApps, CloneApps. This option provides a value for a subfield of the JSON option 'mssql-params'. It is mutually exclusive with that option.
 
 `--mssql-params-vlan-config` (string)
-:   Specifies VLAN Params associated with the recovered. If this is not specified, then the VLAN settings will be automatically selected from one of the below options: a. If VLANs are configured on IBM, then the VLAN host/VIP will be automatically based on the client's (e.g. ESXI host) IP address. b. If VLANs are not configured on IBM, then the partition hostname or VIPs will be used for Recovery. It can also be a path to a JSON file. This option provides a value for a subfield of the JSON option 'mssql-params'. It is mutually exclusive with that option.
+:   Specifies VLAN Params associated with the recovered. If this is not specified, then the VLAN settings are automatically selected from one of the below options: a. If VLANs are configured on IBM, then the VLAN host/VIP will be automatically based on the client's (for example ESXI host) IP address. b. If VLANs are not configured on IBM, then the partition hostname or VIPs are used for Recovery. It can also be a path to a JSON file. This option provides a value for a subfield of the JSON option 'mssql-params'. It is mutually exclusive with that option.
 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, for example `--mssql-params-vlan-config=@path/to/file.json`.
 
@@ -2905,7 +2905,7 @@ ibmcloud backup-recovery recovery files-download --id ID --xibm-tenant-id XIBM-T
 :   Specifies the name of the source on which restore is done.
 
 `--start-time` (string)
-:   Specifies the start time of restore task.
+:   Specifies the start time of the restore task.
 
 `--include-tenants` (bool)
 :   Specifies whether objects of all the organizations under the hierarchy of the logged in user's organization should be returned.
@@ -3409,7 +3409,7 @@ ibmcloud backup-recovery object-snapshots-list --id ID --xibm-tenant-id XIBM-TEN
     Allowable list items are: `RecoverVMs`, `RecoverFiles`, `InstantVolumeMount`, `RecoverVmDisks`, `MountVolumes`, `RecoverVApps`, `RecoverApps`, `RecoverNasVolume`, `RecoverPhysicalVolumes`, `RecoverSystem`, `RecoverSanVolumes`, `RecoverNamespaces`, `RecoverObjects`, `DownloadFilesAndFolders`, `RecoverPublicFolders`, `RecoverVAppTemplates`, `RecoverMailbox`, `RecoverOneDrive`, `RecoverMsTeam`, `RecoverMsGroup`, `RecoverSharePoint`, `ConvertToPst`, `RecoverSfdcRecords`, `DownloadChats`, `RecoverMailboxCSM`, `RecoverOneDriveCSM`, `RecoverSharePointCSM`.
 
 `--run-types` ([]string)
-:   Filter by run type. Only protection runs matching the specified types will be returned. By default, CDP hydration snapshots are not included unless explicitly queried using this field.
+:   Filter by run type. Only protection runs matching the specified types will be returned. By default, CDP hydration snapshots are not included unless explicitly queried by using this field.
 
     Allowable list items are: `kRegular`, `kFull`, `kLog`, `kSystem`, `kHydrateCDP`, `kStorageArraySnapshot`.
 
@@ -3489,7 +3489,7 @@ ibmcloud backup-recovery download-recovery-create --xibm-tenant-id XIBM-TENANT-I
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, for example `--documents=@path/to/file.json`.
 
 `--parent-recovery-id` (string)
-:   If current recovery is a child task that is triggered through another parent recovery operation, then this field will specify the id of the parent recovery.
+:   If current recovery is a child task that is triggered through another parent recovery operation, then this field specifies the id of the parent recovery.
 
     The value must match regular expression `/^\\d+:\\d+:\\d+$/`.
 
@@ -3548,7 +3548,7 @@ ibmcloud backup-recovery download-recovery-create \
 ### `ibmcloud backup-recovery restore-points`
 {: #backup-recovery-cli-restore-points-command}
 
-List Restore Points, i.e., returns the snapshots in a given time range.
+List Restore Points, that is, returns the snapshots in a given time range.
 
 ```sh
 ibmcloud backup-recovery restore-points --xibm-tenant-id XIBM-TENANT-ID --end-time-usecs END-TIME-USECS --environment ENVIRONMENT --protection-group-ids PROTECTION-GROUP-IDS --start-time-usecs START-TIME-USECS [--source-id SOURCE-ID]
@@ -3615,13 +3615,13 @@ ibmcloud backup-recovery indexed-file-download --snapshots-id SNAPSHOTS-ID --xib
 :   Specifies the path to the file to download. If no path is specified and the snapshot environment is kVMWare, a VMX file for VMware will be downloaded. For other snapshot environments, this field must be specified.
 
 `--nvram-file` (bool)
-:   Specifies if NVRAM file for VMware should be downloaded.
+:   Specifies whether NVRAM file for VMware should be downloaded.
 
 `--retry-attempt` (int64)
 :   Specifies the number of attempts the protection run took to create this file.
 
 `--start-offset` (int64)
-:   Specifies the start offset of file chunk to be downloaded.
+:   Specifies the start offset of the file chunk to be downloaded.
 
 `--length` (int64)
 :   Specifies the length of bytes to download. This can’t be greater than 8MB (8388608 byets).
@@ -3672,10 +3672,10 @@ ibmcloud backup-recovery indexed-objects-search --xibm-tenant-id XIBM-TENANT-ID 
 :   Specifies the Storage Domain ids to filter indexed objects for which Protection Groups are writing data to {{site.data.keyword.baas_full_notm}} Views on the specified Storage Domains.
 
 `--tenant-id` (string)
-:   TenantId contains id of the tenant for which objects are to be returned.
+:   TenantId contains the id of the tenant for which objects are to be returned.
 
 `--include-tenants` (bool)
-:   If true, the response will include objects, which belongs to all tenants that the current user has permission to see. Default value is false.
+:   If true, the response includes objects, which belong to all tenants that the current user has permission to see. The default value is false.
 
     The default value is `false`.
 
@@ -3906,12 +3906,12 @@ ibmcloud backup-recovery indexed-objects-search --xibm-tenant-id XIBM-TENANT-ID 
 :   Specifies the search string to filter the files. User can specify a wildcard character '*' as a suffix to a string where all files name are matched with the prefix string. This option provides a value for a subfield of the JSON option 'file-params'. It is mutually exclusive with that option.
 
 `--file-params-types` ([]string)
-:   Specifies a list of file types. Only files within the given types will be returned. This option provides a value for a sub-field of the JSON option 'file-params'. It is mutually exclusive with that option.
+:   Specifies a list of file types. Only files within the given types will be returned. This option provides a value for a subfield of the JSON option 'file-params'. It is mutually exclusive with that option.
 
     Allowable list items are: `File`, `Directory`, `Symlink`.
 
 `--file-params-source-environments` ([]string)
-:   Specifies a list of the source environments. Only files from these types of source will be returned. This option provides a value for a sub-field of the JSON option 'file-params'. It is mutually exclusive with that option.
+:   Specifies a list of the source environments. Only files from these types of source will be returned. This option provides a value for a subfield of the JSON option 'file-params'. It is mutually exclusive with that option.
 
     Allowable list items are: `kVMware`, `kHyperV`, `kSQL`, `kView`, `kRemoteAdapter`, `kPhysical`, `kPhysicalFiles`, `kPure`, `kIbmFlashSystem`, `kNetapp`, `kGenericNas`, `kAcropolis`, `kIsilon`, `kGPFS`, `kKVM`, `kExchange`, `kOracle`, `kFlashBlade`, `kO365`, `kHyperFlex`, `kKubernetes`, `kElastifile`, `kSAPHANA`, `kUDA`, `kSfdc`.
 
@@ -3952,7 +3952,7 @@ ibmcloud backup-recovery indexed-objects-search --xibm-tenant-id XIBM-TENANT-ID 
 :   Specifies the search string to search the Hive Objects. This option provides a value for a subfield of the JSON option 'hive-params'. It is mutually exclusive with that option.
 
 `--hive-params-source-ids` ([]int64)
-:   Specifies a list of source ids. Only files found in these sources will be returned. This option provides a value for a subfield of the JSON option 'hive-params'. It is mutually exclusive with that option.
+:   Specifies a list of source ids. Only files that are found in these sources will be returned. This option provides a value for a subfield of the JSON option 'hive-params'. It is mutually exclusive with that option.
 
 `--mongodb-params-mongo-db-object-types` ([]string)
 :   Specifies one or more MongoDB object types be searched. This option provides a value for a subfield of the JSON option 'mongodb-params'. It is mutually exclusive with that option.
@@ -4005,7 +4005,7 @@ ibmcloud backup-recovery indexed-objects-search --xibm-tenant-id XIBM-TENANT-ID 
     Provide a JSON string option or specify a JSON file to read from by providing a filepath option that begins with a `@`, for example `--ms-teams-params-o365-params=@path/to/file.json`.
 
 `--ms-teams-params-owner-names` ([]string)
-:   Specifies the list of owner email ids to filter on owner of the item. This option provides a value for a sub-field of the JSON option 'ms-teams-params'. It is mutually exclusive with that option.
+:   Specifies the list of owner email ids to filter on owner of the item. This option provides a value for a subfield of the JSON option 'ms-teams-params'. It is mutually exclusive with that option.
 
 `--ms-teams-params-search-string` (string)
 :   Specifies the search string to filter the items. User can specify a wildcard character '*' as a suffix to a string where all item names are matched with the prefix string. This option provides a value for a subfield of the JSON option 'ms-teams-params'. It is mutually exclusive with that option.
@@ -4334,7 +4334,7 @@ ibmcloud backup-recovery objects-search --xibm-tenant-id XIBM-TENANT-ID [--reque
     Allowable values are: `UIUser`, `UIAuto`, `Helios`.
 
 `--search-string` (string)
-:   Specifies the search string to filter the objects. This search string will be applicable for objectnames. User can specify a wildcard character '*' as a suffix to a string where all object names are matched with the prefix string. For example, if vm1 and vm2 are the names of objects, the user can specify vm* to list the objects. If not specified, then all the objects will be returned which will match other filtering criteria.
+:   Specifies the search string to filter the objects. This search string will be applicable for objectnames. User can specify a wildcard character '*' as a suffix to a string where all object names are matched with the prefix string. For example, if vm1 and vm2 are the names of objects, the user can specify vm* to list the objects. If not specified, then all the objects are returned which will match other filtering criteria.
 
 `--environments` ([]string)
 :   Specifies the environment type to filter objects.
@@ -4364,13 +4364,13 @@ ibmcloud backup-recovery objects-search --xibm-tenant-id XIBM-TENANT-ID [--reque
 :   Specifies a list of Protection Source object uuids to filter the objects. If specified, the object, which are present in those Sources will be returned.
 
 `--is-protected` (bool)
-:   Specifies the protection status of objects. If set to true, only protected objects will be returned. If set to false, only unprotected objects will be returned. If not specified, all objects will be returned.
+:   Specifies the protection status of objects. If set to true, only protected objects are returned. If set to false, only unprotected objects are returned. If not specified, all objects are returned.
 
 `--is-deleted` (bool)
-:   If set to true, then objects that are deleted on at least one cluster will be returned. If not set or set to false then objects that are registered on at least one cluster are returned.
+:   If set to true, then objects that are deleted on at least one cluster are returned. If not set or set to false then objects that are registered on at least one cluster are returned.
 
 `--last-run-status-list` ([]string)
-:   Specifies a list of status of the object's last protection run. Only objects with last run status of these will be returned.
+:   Specifies a list of the status of the object's last protection run. Only objects with last run status of these will be returned.
 
     Allowable list items are: `Accepted`, `Running`, `Canceled`, `Canceling`, `Failed`, `Missed`, `Succeeded`, `SucceededWithWarning`, `OnHold`, `Finalizing`, `Skipped`, `LegalHold`.
 
@@ -4779,7 +4779,7 @@ Export a configured report.
 :   The format in which the report needs to be exported. Allowable values are: XLS, CSV.
 
 `--timezone` (string)
-:   Specifies the time zone of the user. If nil, defaults to UTC. The time specified should be a location name in the IANA time zone database, for example, 'America/Los_Angeles'.
+:   Specifies the time zone of the user. If nil, defaults to UTC. The time that is specified should be a location name in the IANA time zone database, for example, 'America/Los_Angeles'.
 
 #### Example
 {: #backup-recovery-management-console-export-report-examples}
@@ -4984,7 +4984,7 @@ tenantId            8x7y9z2a3b/
 ```
 {: codeblock}
 
-**Important:** Save the `registrationToken` from the output. This token will be used in Step 5 when installing the data source connector with the helm command.
+**Important:** Save the `registrationToken` from the output. This token is used in Step 5 when installing the data source connector with the helm command.
 
 **Note:** The `--connection-env-type` parameter is currently not supported to create connection for Kubernetes or OpenShift clusters. We recommend using the console (see "Using Console (Alternative)" below) for connection creation for now.
 
@@ -5012,12 +5012,12 @@ Install the data source connector on your Kubernetes cluster. For detailed instr
 
 Create a bearer token that will be used as the `clientPrivateKey` value during cluster registration. For detailed instructions, see [How to create a bearer token for a Kubernetes or OpenShift cluster](/docs/backup-recovery?topic=backup-recovery-data-source-connector-iks-roks#data-source-connector-iks-roks-create-bearer-token-cluster).
 
-Save the output token value. This will be used as the `clientPrivateKey` parameter in Step 8 when registering the Kubernetes cluster.
+Save the output token value. This is used as the `clientPrivateKey` parameter in Step 8 when registering the Kubernetes cluster.
 
 ### Step 7: Identify the data source connection
 {: #backup-recovery-k8s-example-step7}
 
-Retrieve the data source connection details by filtering by connection name. This connection will be used for Kubernetes cluster registration.
+Retrieve the data source connection details by filtering by connection name. This connection is used for Kubernetes cluster registration.
 
 ```sh
 ibmcloud backup-recovery data-source-connection list \
@@ -5048,7 +5048,7 @@ ibmcloud backup-recovery data-source-connection list \
 ```
 {: codeblock}
 
-From the output, locate and record the `connectionId` value. This ID will be used in Step 8 when registering the Kubernetes cluster. In this example, the connection ID is:
+From the output, locate and record the `connectionId` value. This ID is used in Step 8 when registering the Kubernetes cluster. In this example, the connection ID is:
 
 * **Connection ID:** `9876543210987654321`
 
@@ -5201,7 +5201,7 @@ ibmcloud backup-recovery protection-policy create \
 ```
 {: codeblock}
 
-From the output, locate and record the policy `id` value. This ID will be used in Step 13 when creating the protection group. In this example, the policy ID is:
+From the output, locate and record the policy `id` value. This ID is used in Step 13 when creating the protection group. In this example, the policy ID is:
 
 * **Policy ID:** `1234567890123456:9876543210987:7654321`
 
@@ -5265,7 +5265,7 @@ ibmcloud backup-recovery protection-source list \
 ```
 {: codeblock}
 
-From the output, identify the Kubernetes objects (namespaces, PVCs, and so on) you want to protect and record their `id` values. These IDs will be used in Step 13 when creating the protection group. In this example, the namespace object ID is:
+From the output, identify the Kubernetes objects (namespaces, PVCs, and so on) you want to protect and record their `id` values. These IDs are used in Step 13 when creating the protection group. In this example, the namespace object ID is:
 
 * **Object ID:** `67598`
 
@@ -5308,7 +5308,7 @@ ibmcloud backup-recovery protection-group create \
 ```
 {: codeblock}
 
-From the output, locate and record the protection group `id` value. This ID will be used in Step 14 to trigger backup runs and in Step 15 to monitor them. In this example, the protection group ID is:
+From the output, locate and record the protection group `id` value. This ID is used in Step 14 to trigger backup runs and in Step 15 to monitor them. In this example, the protection group ID is:
 
 * **Protection Group ID:** `5555666677778888:1122334455667:8899000`
 
