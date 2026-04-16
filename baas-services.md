@@ -2,7 +2,7 @@
 
 copyright:
   years:  2025, 2026
-lastupdated: "2026-04-08"
+lastupdated: "2026-04-16"
 
 keywords: aspera, key protect, archive, worm
 
@@ -34,14 +34,14 @@ For more information about the following services, be sure to check out the resp
 
 | Region     | File systems | MS SQL  | SAP HANA | Oracle | Kubernetes/Openshift | Db2 |
 |------------|--------------|---------|----------|--------|----------------------|-----|
-| `au-syd`   | Yes          | Yes     | Yes      |  Yes   | No                   | Yes |
-| `br-sao`   | Yes          | Yes     | Yes      |  Yes   | No                   | Yes |
-| `ca-tor`   | Yes          | Yes     | Yes      |  Yes   | No                   | Yes |
-| `eu-gb`    | Yes          | Yes     | Yes      |  Yes   | No                   | Yes |
-| `eu-de`    | Yes          | Yes     | Yes      |  Yes   | No                   | Yes |
+| `au-syd`   | Yes          | Yes     | Yes      |  Yes   | Yes                  | Yes |
+| `br-sao`   | Yes          | Yes     | Yes      |  Yes   | Yes                  | Yes |
+| `ca-tor`   | Yes          | Yes     | Yes      |  Yes   | Yes                  | Yes |
+| `eu-gb`    | Yes          | Yes     | Yes      |  Yes   | Yes                  | Yes |
+| `eu-de`    | Yes          | Yes     | Yes      |  Yes   | Yes                  | Yes |
 | `eu-es`    | Yes          | Yes     | Yes      |  Yes   | Yes                  | Yes |
-| `jp-tok`   | Yes          | Yes     | Yes      |  Yes   | No                   | Yes |
-| `jp-osa`   | Yes          | Yes     | Yes      |  Yes   | No                   | Yes |
+| `jp-tok`   | Yes          | Yes     | Yes      |  Yes   | Yes                  | Yes |
+| `jp-osa`   | Yes          | Yes     | Yes      |  Yes   | Yes                  | Yes |
 | `us-south` | Yes          | Yes     | Yes      |  Yes   | Yes                  | Yes |
 | `us-east`  | Yes          | Yes     | Yes      |  Yes   | Yes                  | Yes |
 {: caption="Regions supported" caption-side="bottom"}
