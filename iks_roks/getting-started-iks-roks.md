@@ -16,6 +16,9 @@ subcollection: backup-recovery
 # Register Kubernetes or OpenShift as a data source
 {: #data-source-connector-iks-roks}
 
+This information is provided for beta use only and is subject to change. Only the regions us-east, us-south, and eu-es are available now for this feature.
+{: beta}
+
 
 
 Located to the right of this page is a summary of key topics that are found on this page.

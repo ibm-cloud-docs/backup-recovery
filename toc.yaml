@@ -73,7 +73,7 @@ toc:
           topics:
           - data_connector/DeployDataSourceConnector.md
       - topicgroup:
-          label: Kubernetes/OpenShift
+          label: Kubernetes/OpenShift (beta)
           topics:
           - iks_roks/getting-started-iks-roks.md
           - iks_roks/protecting-namespace-cluster-iks-roks.md
