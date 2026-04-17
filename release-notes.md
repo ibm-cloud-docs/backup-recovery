@@ -3,7 +3,7 @@
 copyright:
   years: 2024, 2026
 
-lastupdated: "2026-04-07"
+lastupdated: "2026-04-17"
 
 
 keywords: updates, releases, news, backup and recovery
@@ -21,6 +21,13 @@ content-type: release-note
 
 News on the latest releases from IBM's Backup and Recovery provide the updates you need on all things related to Backup and Recovery.
 {: shortdesc}
+
+## 17 April 2026
+{: #baas-April1726}
+{: release-note}
+
+Release update
+:  {{site.data.keyword.cloud_notm}} Backup and Recovery is now generally available in multiple regions for [Kubernetes/OpenShift](/docs/backup-recovery?group=kubernetesopenshift) customers. For more information, see [Workload Availability](/docs/backup-recovery?topic=backup-recovery-getting-started-backup-recovery#baas-compare-workload-availability) and [Regions](/docs/backup-recovery?topic=backup-recovery-service-availability&interface=cli#service-availability-region).
 
 ## 06 April 2026
 {: #baas-April0626}

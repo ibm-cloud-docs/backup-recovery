@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2026
-lastupdated: "2026-03-30"
+lastupdated: "2026-04-17"
 
 keywords: IBM cloud backup and recovery, VPC, VSI, new user, workload availability, deployment
 
@@ -33,7 +33,7 @@ You need the following to get started with {{site.data.keyword.baas_full_notm}}:
 - An active instance of {{site.data.keyword.baas_full_notm}} that is covered in [Set up a {{site.data.keyword.baas_full_notm}} deployment](#baas-setting-up-deployment)
 - You need to start the dashboard of your backup service instance to create, manage, and monitor backup policies
 
-## Comparison of workload availability
+## Workload availability
 {: #baas-compare-workload-availability}
 
 | Workload | VPC VSI | VMware | Regions supported |
@@ -42,6 +42,7 @@ You need the following to get started with {{site.data.keyword.baas_full_notm}}:
 | MS SQL | Yes  | Yes | - North America:  United States - Washington DC `us-east`, Dallas `us-south`, Canada - Toronto `ca-tor`<br> - South America:  Brazil - São Paulo `br-sao`<br> - Europe:  Europe - Frankfurt `eu-de`, Europe - London `eu-gb`, Europe - Madrid `eu-es`<br> - Asia: Japan - Tokyo`jp-tok`, Osako`jp-osa`<br> - Australia - Sydney`au-syd` |
 | SAP HANA | Yes  | Yes |  - North America:  United States - Washington DC `us-east`, Dallas `us-south`, Canada - Toronto `ca-tor`<br> - South America:  Brazil - São Paulo `br-sao`<br> - Europe:  Europe - Frankfurt `eu-de`, Europe - London `eu-gb`, Europe - Madrid `eu-es`<br> - Asia: Japan - Tokyo`jp-tok`, Osako`jp-osa`<br> - Australia - Sydney`au-syd` |
 | Oracle | No  | Yes |  - North America:  United States - Washington DC `us-east`, Dallas `us-south`, Canada - Toronto `ca-tor`<br> - South America:  Brazil - São Paulo `br-sao`<br> - Europe:  Europe - Frankfurt `eu-de`, Europe - London `eu-gb`, Europe - Madrid `eu-es`<br> - Asia: Japan - Tokyo`jp-tok`, Osako`jp-osa`<br> - Australia - Sydney`au-syd` |
+| Kubernetes/OpenShift | No  | Yes |  - North America:  United States - Washington DC `us-east`, Dallas `us-south`, Canada - Toronto `ca-tor`<br> - South America:  Brazil - São Paulo `br-sao`<br> - Europe:  Europe - Frankfurt `eu-de`, Europe - London `eu-gb`, Europe - Madrid `eu-es`<br> - Asia: Japan - Tokyo`jp-tok`, Osako`jp-osa`<br> - Australia - Sydney`au-syd` |
 {: caption="Workload availability " caption-side="bottom"}
 
 

@@ -15,18 +15,7 @@ toc:
       topics:
       - getting-started.md
       - about-baas.md
-      - topicgroup:
-          label: Getting organized
-          topics:
-          - administrators.md
-          - developers.md
-      - topicgroup:
-          label: Optimizing performance
-          topics:
-          - topology.md
-          - data-io.md
-          - bottlenecks.md
-      - cos-responsibilities.md
+      - iks_roks/getting-started-iks-roks.md
       - baas-comp-chart.md
       - topic: release-notes.md
         navtitle: Release notes
@@ -73,9 +62,8 @@ toc:
           topics:
           - data_connector/DeployDataSourceConnector.md
       - topicgroup:
-          label: Kubernetes/OpenShift (beta)
+          label: Kubernetes/OpenShift
           topics:
-          - iks_roks/getting-started-iks-roks.md
           - iks_roks/protecting-namespace-cluster-iks-roks.md
           - iks_roks/recover-restore-iks-roks.md
           - iks_roks/run-now-iks-roks.md

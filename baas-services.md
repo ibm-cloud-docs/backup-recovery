@@ -2,7 +2,7 @@
 
 copyright:
   years:  2025, 2026
-lastupdated: "2026-04-16"
+lastupdated: "2026-04-17"
 
 keywords: aspera, key protect, archive, worm
 
@@ -25,26 +25,26 @@ For more information about the following services, be sure to check out the resp
 * [MS SQL](/docs/backup-recovery?group=ms-sql)
 * [SAP HANA](/docs/backup-recovery?group=sap-hana)
 * [Oracle](/docs/backup-recovery?group=protect-a-oracle-server)
-* [Kubernetes/Openshift](/docs/backup-recovery?group=kubernetesopenshift-beta)
+* [Kubernetes/Openshift](/docs/backup-recovery?group=kubernetesopenshift)
+* [Db2]([/docs/backup-recovery?group=db)
 
 ## Regional
 {: #service-availability-region}
 
-| Region     | File systems | MS SQL  | SAP HANA | Oracle | Kubernetes/Openshift |
-|------------|--------------|---------|----------|--------|----------------------|
-| `au-syd`   | Yes          | Yes     | Yes      |  Yes   | No                   |
-| `br-sao`   | Yes          | Yes     | Yes      |  Yes   | No                   |
-| `ca-tor`   | Yes          | Yes     | Yes      |  Yes   | No                   |
-| `eu-gb`    | Yes          | Yes     | Yes      |  Yes   | No                   |
-| `eu-de`    | Yes          | Yes     | Yes      |  Yes   | No                   |
-| `eu-es`    | Yes          | Yes     | Yes      |  Yes   | Yes                  |
-| `jp-tok`   | Yes          | Yes     | Yes      |  Yes   | No                   |
-| `jp-osa`   | Yes          | Yes     | Yes      |  Yes   | No                   |
-| `us-south` | Yes          | Yes     | Yes      |  Yes   | Yes                  |
-| `us-east`  | Yes          | Yes     | Yes      |  Yes   | Yes                  |
 
-
-
+| Region     | File systems | MS SQL  | SAP HANA | Oracle | Kubernetes/Openshift | Db2 |
+|------------|--------------|---------|----------|--------|----------------------|-----|
+| `au-syd`   | Yes          | Yes     | Yes      |  Yes   | Yes                  | Yes |
+| `br-sao`   | Yes          | Yes     | Yes      |  Yes   | Yes                  | Yes |
+| `ca-tor`   | Yes          | Yes     | Yes      |  Yes   | Yes                  | Yes |
+| `eu-gb`    | Yes          | Yes     | Yes      |  Yes   | Yes                  | Yes |
+| `eu-de`    | Yes          | Yes     | Yes      |  Yes   | Yes                  | Yes |
+| `eu-es`    | Yes          | Yes     | Yes      |  Yes   | Yes                  | Yes |
+| `jp-tok`   | Yes          | Yes     | Yes      |  Yes   | Yes                  | Yes |
+| `jp-osa`   | Yes          | Yes     | Yes      |  Yes   | Yes                  | Yes |
+| `us-south` | Yes          | Yes     | Yes      |  Yes   | Yes                  | Yes |
+| `us-east`  | Yes          | Yes     | Yes      |  Yes   | Yes                  | Yes |
+{: caption="Regions supported" caption-side="bottom"}
 
 
 
