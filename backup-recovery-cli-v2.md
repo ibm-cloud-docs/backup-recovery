@@ -4988,6 +4988,9 @@ tenantId            8x7y9z2a3b/
 
 **Note:** The `--connection-env-type` parameter is currently not supported to create connection for Kubernetes or OpenShift clusters. We recommend using the console (see "Using Console (Alternative)" below) for connection creation for now.
 
+Data source connections for Kubernetes and OpenShift clusters must be created from the {{site.data.keyword.baas_full_notm}} instance dashboard. The Deployment Platform options (**ROKS VPC**, **IKS VPC**, **ROKS classic**, **IKS classic**) are not available when creating data source connections from the Backup Recovery Manager.
+{: important}
+
 **Using Console (Alternative):**
 
 For detailed instructions, see [Creating a data source connection](/docs/backup-recovery?topic=backup-recovery-data-source-connector-iks-roks#data-source-connector-iks-roks-create-data-source-connection).
