@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-12-15"
+lastupdated: "2026-04-17"
 
 keywords: reporting, single instance, data protection, download report
 
@@ -193,6 +193,9 @@ The System lists the Data Source Connections where you can create new connection
 {: #report-data-source-connection-mc}
 
 Create data source connections to establish connectivity between your sources and this data source. A connection consists of one or more virtual servers that move data between your data sources and IBM Cloud Backup. For more information, see [Deploy data source connector](/docs/backup-recovery?topic=backup-recovery-deploy_data_source_connector).
+
+For Kubernetes and OpenShift clusters, data source connections with Deployment Platform options (**ROKS VPC**, **IKS VPC**, **ROKS classic**, **IKS classic**) must be created from this instance dashboard. These options are not available when creating connections from the Backup Recovery Manager. For detailed instructions, see [Register Kubernetes or OpenShift as a data source](/docs/backup-recovery?topic=backup-recovery-data-source-connector-iks-roks).
+{: note}
 
 
 ### System health

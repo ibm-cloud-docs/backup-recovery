@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2026-02-04"
+lastupdated: "2026-04-17"
 
 keywords: global, management, console, tutorial
 subcollection: backup-recovery
@@ -34,6 +34,9 @@ Ensure that you have what you need to start:
 
 Maintain access to the Backup and Recovery Manager to see the reports and alerts that are discussed in this tutorial.
 {: note}
+
+Data source connections for Kubernetes and OpenShift clusters cannot be created from the Backup and Recovery Manager. To set up backup and recovery for Kubernetes and OpenShift clusters, you must create data source connections from your {{site.data.keyword.baas_full_notm}} instance dashboard. The Deployment Platform options (**ROKS VPC**, **IKS VPC**, **ROKS classic**, **IKS classic**) are only available when creating connections through the instance dashboard. For detailed instructions, see [Register Kubernetes or OpenShift as a data source](/docs/backup-recovery?topic=backup-recovery-data-source-connector-iks-roks).
+{: important}
 
 ## Access Backup and Recovery Manager for the {{site.data.keyword.baas_full_notm}} service
 {: #baas-gmc-instance-ui}
