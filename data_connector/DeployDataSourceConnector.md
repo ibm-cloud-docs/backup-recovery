@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2026
-lastupdated: "2026-04-15"
+lastupdated: "2026-04-17"
 
 keywords: backup and recovery, data source connectors,
 
@@ -248,9 +248,12 @@ While the VSI can connect to the Backup and Recovery instance, a VPE gateway pro
 
 To create a data source connection for Kubernetes or OpenShift clusters, including detailed guidance on choosing the correct deployment platform and managing connections, see [Create a data source connection](/docs/backup-recovery?topic=backup-recovery-data-source-connector-iks-roks#data-source-connector-iks-roks-create-data-source-connection) in the Kubernetes/OpenShift getting started guide.
 
+Data source connections for Kubernetes and OpenShift clusters must be created from the {{site.data.keyword.baas_full_notm}} instance dashboard. The Deployment Platform options (**ROKS VPC**, **IKS VPC**, **ROKS classic**, **IKS classic**) are not available when creating data source connections from the Backup Recovery Manager.
+{: important}
+
 The process involves:
 1. Selecting the appropriate deployment platform (ROKS VPC, IKS VPC, ROKS classic, or IKS classic) that matches your cluster infrastructure
-2. Creating the connection in the {{site.data.keyword.baas_full_notm}} dashboard
+2. Creating the connection in the {{site.data.keyword.baas_full_notm}} instance dashboard
 3. Copying the provided Helm install command for use in the next step
 
 You can reuse an existing connection for multiple clusters on the same deployment platform.
