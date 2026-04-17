@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025, 2026
-lastupdated: "2026-04-16"
+lastupdated: "2026-04-17"
 
 keywords: data source connector, iks, roks, cluster
 
@@ -15,9 +15,6 @@ subcollection: backup-recovery
 
 # Register Kubernetes or OpenShift as a data source
 {: #data-source-connector-iks-roks}
-
-This information is provided for beta use only and is subject to change. Only the regions us-east, us-south, and eu-es are available now for this feature.
-{: beta}
 
 
 
@@ -300,7 +297,7 @@ Each release of {{site.data.keyword.baas_full_notm}} includes default image vers
    Note the full namespace name (for example, `brs-backup-agent-<GUID>`).
 
 2. Delete the existing backup agent components from your cluster:
-   
+
    ```sh
    kubectl delete daemonset -n brs-backup-agent-<GUID> --all
    kubectl delete deployment -n brs-backup-agent-<GUID> velero
@@ -336,3 +333,8 @@ After registering your cluster as a data source, you can proceed to create Prote
 {: #troubleshooting}
 
 For issues related to Data Source Connector installation, registration failures, or pod scheduling, refer to the [Troubleshooting Guide](/docs/backup-recovery?topic=backup-recovery-data-source-connector-iks-roks-troubleshooting).
+
+## Next steps
+{: #iks-roks-getting-started-next-steps}
+
+Learn how to [Protect and Recover Kubernetes/OpenShift]([/docs/backup-recovery?group=kubernetesopenshift).
