@@ -129,7 +129,7 @@ The Datamover is installed by default on all worker nodes as a DaemonSet (not on
 
 You can either create a new data source connection or use an existing one. If you already have a connection for the same deployment platform, you can skip to [Install and configure the data source connector](#data-source-connector-iks-roks-install-configure).
 
-The current release of the `ibmcloud backup-recovery data-source-connection create` CLI command does not support the `--connection-env-type` parameter, which is required for creating connections that can be used to protect IBM Kubernetes Service and Red Hat OpenShift clusters. Until this limitation is resolved, use the UI-based workflow described below to create data source connections for backing up IBM Kubernetes Service and Red Hat OpenShift clusters.
+Data source connections for Kubernetes and OpenShift clusters must be created from the {{site.data.keyword.baas_full_notm}} instance dashboard. The Deployment Platform options (**ROKS VPC**, **IKS VPC**, **ROKS classic**, **IKS classic**) are not available when creating data source connections from the Backup Recovery Manager. Additionally, the current release of the `ibmcloud backup-recovery data-source-connection create` CLI command does not support the `--connection-env-type` parameter, which is required for creating connections that can be used to protect IBM Kubernetes Service and Red Hat OpenShift clusters.
 {: important}
 
 #### Choosing the deployment platform
