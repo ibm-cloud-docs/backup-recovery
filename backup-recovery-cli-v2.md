@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2024
-lastupdated: "2026-04-16"
+  years: 2024, 2026
+lastupdated: "2026-04-17"
 
 keywords: backup recovery, cli, guide
 
@@ -540,7 +540,7 @@ ibmcloud backup-recovery protection-source register --xibm-tenant-id XIBM-TENANT
 :   Specifies the bearer token or private key of the Kubernetes source. This option provides a value for a subfield of the JSON option 'kubernetes-params'. It is mutually exclusive with that option.
 
 `--kubernetes-params-cohesity-dataprotect-plugin-image-location` (string)
-:   Specifies the custom Cohesity Data protect plug-in image location of the Kubernetes source. This option provides a value for a subfield of the JSON option 'kubernetes-params'. It is mutually exclusive with that option.
+:   Specifies the custom {{site.data.keyword.baas_full}} Data protect plug-in image location of the Kubernetes source. This option provides a value for a subfield of the JSON option 'kubernetes-params'. It is mutually exclusive with that option.
 
 `--kubernetes-params-data-mover-image-location` (string)
 :   Specifies the datamover image location of the Kubernetes source. This option provides a value for a subfield of the JSON option 'kubernetes-params'. It is mutually exclusive with that option.
@@ -762,7 +762,7 @@ ibmcloud backup-recovery protection-source registration-update --id ID --xibm-te
 :   Specifies the bearer token or private key of the Kubernetes source. This option provides a value for a subfield of the JSON option 'kubernetes-params'. It is mutually exclusive with that option.
 
 `--kubernetes-params-cohesity-dataprotect-plugin-image-location` (string)
-:   Specifies the custom Cohesity Dataprotect plug-in image location of the Kubernetes source. This option provides a value for a subfield of the JSON option 'kubernetes-params'. It is mutually exclusive with that option.
+:   Specifies the custom {{site.data.keyword.baas_full}} Dataprotect plug-in image location of the Kubernetes source. This option provides a value for a subfield of the JSON option 'kubernetes-params'. It is mutually exclusive with that option.
 
 `--kubernetes-params-data-mover-image-location` (string)
 :   Specifies the datamover image location of the Kubernetes source. This option provides a value for a subfield of the JSON option 'kubernetes-params'. It is mutually exclusive with that option.
@@ -5055,7 +5055,7 @@ From the output, locate and record the `connectionId` value. This ID is used in 
 ### Step 8: Register the Kubernetes cluster
 {: #backup-recovery-k8s-example-step8}
 
-Register the Kubernetes (ROKS) cluster as a protection source. This step deploys the Velero components and Cohesity data mover into the cluster.
+Register the Kubernetes (ROKS) cluster as a protection source. This step deploys the Velero components and {{site.data.keyword.baas_full}} data mover into the cluster.
 
 Before running the registration command, retrieve your cluster's API endpoint. For detailed instructions, see [How to get the Kubernetes or OpenShift cluster endpoint](/docs/backup-recovery?topic=backup-recovery-data-source-connector-iks-roks#how-to-get-iks-roks-endpoint).
 
