@@ -2,11 +2,13 @@
 
 copyright:
   years: 2024, 2026
-lastupdated: "2026-04-17"
+lastupdated: "2026-05-01"
 
 keywords: backup recovery, cli, guide
 
 subcollection: backup-recovery
+
+content-type: cli-docs
 
 ---
 {:new_window: target="_blank"}
