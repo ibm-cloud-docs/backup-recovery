@@ -52,6 +52,7 @@ toc:
           topics:
           - global_mgmt_console/tutorial-gmc.md
       - registration.md
+      - registration.md
       - cbr-tutorial.md
   - navgroup:
       id: howto
