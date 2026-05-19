@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2026
-lastupdated: "2026-05-01"
+lastupdated: "2026-05-19"
 
 keywords: backup recovery, cli, guide
 
@@ -508,7 +508,7 @@ ibmcloud backup-recovery protection-source register --xibm-tenant-id XIBM-TENANT
 `--environment` (string)
 :   Specifies the environment type of the Protection Source. Required.
 
-    Allowable values are: `kPhysical`, `kSQL`.
+    Allowable values are: `kPhysical`, `kSQL`, `kKubernetes`.
 
 `--name` (string)
 :   A user specified name for this source.
@@ -730,7 +730,7 @@ ibmcloud backup-recovery protection-source registration-update --id ID --xibm-te
 `--environment` (string)
 :   Specifies the environment type of the Protection Source. Required.
 
-    Allowable values are: `kPhysical`, `kSQL`.
+    Allowable values are: `kPhysical`, `kSQL`, `kKubernetes`.
 
 `--name` (string)
 :   A user specified name for this source.
@@ -924,7 +924,7 @@ ibmcloud backup-recovery protection-source registration-patch --id ID --xibm-ten
 `--environment` (string)
 :   Specifies the environment type of the Protection Source to be patched. Currently, the only environment that is supported is kCassandra. Required.
 
-    Allowable values are: `kPhysical`, `kSQL`.
+    Allowable values are: `kPhysical`, `kSQL`, `kKubernetes`.
 
 #### Example
 {: #backup-recovery-protection-source-registration-patch-examples}
@@ -1643,7 +1643,7 @@ ibmcloud backup-recovery protection-group list --xibm-tenant-id XIBM-TENANT-ID [
 `--environments` ([]string)
 :   Filter by environment types such as 'kVMware', 'kView'. Only Protection Groups protecting the specified environment types are returned.
 
-    Allowable list items are: `kPhysical`, `kSQL`.
+    Allowable list items are: `kPhysical`, `kSQL`, `kKubernetes`.
 
 `--is-active` (bool)
 :   Filter by Inactive or Active Protection Groups. If not set, all Inactive and Active Protection Groups are returned. If true, only Active Protection Groups are returned. If false, only Inactive Protection Groups are returned. When you create a Protection Group on a Primary Cluster with a replication schedule, the Cluster creates an Inactive copy of the Protection Group on the Remote Cluster. In addition, when an Active and running Protection Group is deactivated, the Protection Group becomes Inactive.
@@ -1708,7 +1708,7 @@ ibmcloud backup-recovery protection-group list \
     --names policyName1 \
     --policy-ids policyId1 \
     --include-groups-with-datalock-only=true \
-    --environments kPhysical,kSQL \
+    --environments kPhysical,kSQL,kKubernetes \
     --is-active=true \
     --is-deleted=true \
     --is-paused=true \
@@ -1787,7 +1787,7 @@ ibmcloud backup-recovery protection-group create --xibm-tenant-id XIBM-TENANT-ID
 `--environment` (string)
 :   Specifies the environment type of the Protection Group. Required.
 
-    Allowable values are: `kPhysical`, `kSQL`.
+    Allowable values are: `kPhysical`, `kSQL`, `kKubernetes`.
 
 `--priority` (string)
 :   Specifies the priority of the Protection Group.
@@ -2090,7 +2090,7 @@ ibmcloud backup-recovery protection-group update --id ID --xibm-tenant-id XIBM-T
 `--environment` (string)
 :   Specifies the environment type of the Protection Group. Required.
 
-    Allowable values are: `kPhysical`, `kSQL`.
+    Allowable values are: `kPhysical`, `kSQL`, `kKubernetes`.
 
 `--priority` (string)
 :   Specifies the priority of the Protection Group.
@@ -2698,7 +2698,7 @@ ibmcloud backup-recovery recovery list \
     --end-time-usecs 26 \
     --snapshot-target-type Local,Archival,RpaasArchival,StorageArraySnapshot,Remote \
     --archival-target-type Tape,Cloud,Nas \
-    --snapshot-environments kPhysical,kSQL \
+    --snapshot-environments kPhysical,kSQL,kKubernetes \
     --status Accepted,Running,Canceled,Canceling,Failed,Missed,Succeeded,SucceededWithWarning,OnHold,Finalizing,Skipped,LegalHold \
     --recovery-actions RecoverVMs,RecoverFiles,InstantVolumeMount,RecoverVmDisks,RecoverVApps,RecoverVAppTemplates,UptierSnapshot,RecoverApps,CloneApps,RecoverNasVolume,RecoverPhysicalVolumes,RecoverSystem,RecoverExchangeDbs,CloneAppView,RecoverSanVolumes,RecoverSanGroup,RecoverMailbox,RecoverOneDrive,RecoverSharePoint,RecoverPublicFolders,RecoverMsGroup,RecoverMsTeam,ConvertToPst,DownloadChats,RecoverMailboxCSM,RecoverOneDriveCSM,RecoverSharePointCSM,RecoverNamespaces,RecoverObjects,RecoverSfdcObjects,RecoverSfdcOrg,RecoverSfdcRecords,DownloadFilesAndFolders,CloneVMs,CloneView,CloneRefreshApp,CloneVMsToView,ConvertAndDeployVMs,DeployVMs
 ```
@@ -2726,7 +2726,7 @@ ibmcloud backup-recovery recovery create --xibm-tenant-id XIBM-TENANT-ID --name 
 `--snapshot-environment` (string)
 :   Specifies the type of environment of snapshots for which the Recovery has to be performed. Required.
 
-    Allowable values are: `kPhysical`, `kSQL`.
+    Allowable values are: `kPhysical`, `kSQL`, `kKubernetes`.
 
 `--kubernetes-params` (string)
 :   Specifies the recovery options specific to the Kubernetes environment. It should be a JSON string or a path to a JSON file.
@@ -4341,7 +4341,7 @@ ibmcloud backup-recovery objects-search --xibm-tenant-id XIBM-TENANT-ID [--reque
 `--environments` ([]string)
 :   Specifies the environment type to filter objects.
 
-    Allowable list items are: `kPhysical`, `kSQL`.
+    Allowable list items are: `kPhysical`, `kSQL`, `kKubernetes`.
 
 `--protection-types` ([]string)
 :   Specifies the protection type to filter objects.
@@ -4443,7 +4443,7 @@ ibmcloud backup-recovery objects-search \
     --xibm-tenant-id tenantId \
     --request-initiator-type UIUser \
     --search-string searchString \
-    --environments kPhysical,kSQL \
+    --environments kPhysical,kSQL,kKubernetes \
     --protection-types kAgent,kNative,kSnapshotManager,kFile,kVolume \
     --protection-group-ids protectionGroupId1 \
     --object-ids 26,27 \
@@ -4498,7 +4498,7 @@ ibmcloud backup-recovery protected-objects-search --xibm-tenant-id XIBM-TENANT-I
 `--environments` ([]string)
 :   Specifies the environment type to filter objects.
 
-    Allowable list items are: `kPhysical`, `kSQL`.
+    Allowable list items are: `kPhysical`, `kSQL`, `kKubernetes`.
 
 `--snapshot-actions` ([]string)
 :   Specifies a list of recovery actions. Only snapshots that apply to these actions will be returned.
@@ -4508,7 +4508,7 @@ ibmcloud backup-recovery protected-objects-search --xibm-tenant-id XIBM-TENANT-I
 `--object-action-key` (string)
 :   Filter by ObjectActionKey, which uniquely represents the protection of an object. An object can be protected in multiple ways but at most once for a given combination of ObjectActionKey. When specified, the latest snapshot information matching the objectActionKey is for corresponding object.
 
-    Allowable values are: `kPhysical`, `kSQL`.
+    Allowable values are: `kPhysical`, `kSQL`, `kKubernetes`.
 
 `--protection-group-ids` ([]string)
 :   Specifies a list of Protection Group ids to filter the objects. If specified, the objects that are protected by specified Protection Group ids will be returned.
@@ -4550,7 +4550,7 @@ ibmcloud backup-recovery protected-objects-search \
     --xibm-tenant-id tenantId \
     --request-initiator-type UIUser \
     --search-string searchString \
-    --environments kPhysical,kSQL \
+    --environments kPhysical,kSQL,kKubernetes \
     --snapshot-actions RecoverVMs,RecoverFiles,InstantVolumeMount,RecoverVmDisks,MountVolumes,RecoverVApps,RecoverApps,RecoverNasVolume,RecoverPhysicalVolumes,RecoverSystem,RecoverSanVolumes,RecoverNamespaces,RecoverObjects,DownloadFilesAndFolders,RecoverPublicFolders,RecoverVAppTemplates,RecoverMailbox,RecoverOneDrive,RecoverMsTeam,RecoverMsGroup,RecoverSharePoint,ConvertToPst,RecoverSfdcRecords,DownloadChats,RecoverMailboxCSM,RecoverOneDriveCSM,RecoverSharePointCSM \
     --object-action-key kPhysical \
     --protection-group-ids protectionGroupId1 \
