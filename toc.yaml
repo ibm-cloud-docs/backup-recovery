@@ -67,7 +67,6 @@ toc:
           - iks_roks/protecting-namespace-cluster-iks-roks.md
           - iks_roks/recover-restore-iks-roks.md
           - iks_roks/run-now-iks-roks.md
-          - iks_roks/cross-account-backup-vpeg.md
           - iks_roks/troubleshoot-iks-roks.md
       - topicgroup:
           label: Setting up access control
