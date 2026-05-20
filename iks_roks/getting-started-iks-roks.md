@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025, 2026
-lastupdated: "2026-04-17"
+lastupdated: "2026-05-20"
 
 keywords: data source connector, iks, roks, cluster
 
@@ -192,7 +192,7 @@ If you are registering a cluster that was previously registered as a source, you
 
 1. Access the [{{site.data.keyword.baas_full_notm}} instance dashboard](#data-source-connector-iks-roks-access-instance).
 2. Go to: `Dashboard` \> `Data Protection` \> `Sources` \> click `Register Source`.
-3. In the **Select Source** page, select the `Kubernetes Cluster (Beta)` tile and click `Start Registration`.
+3. In the **Select Source** page, select the `Kubernetes Cluster` tile and click `Start Registration`.
 4. In the **Register Kubernetes Source** wizard:
 
     **Step 1: Data Source Connection**
