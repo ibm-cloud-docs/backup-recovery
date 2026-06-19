@@ -8,6 +8,8 @@ keywords: backup recovery, cli, guide
 
 subcollection: backup-recovery
 
+content-type: cli-docs
+
 ---
 {:new_window: target="_blank"}
 {:external: target="_blank" .external}
