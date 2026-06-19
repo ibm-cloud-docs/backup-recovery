@@ -2,9 +2,9 @@
 
 copyright:
   years: 2024, 2026
-lastupdated: "2026-04-17"
+lastupdated: "2026-06-19"
 
-keywords: backup and recovery, data source connectors,
+keywords: backup and recovery, data source connectors, kubernetes, openshift, sap hana, db2, connector agent
 
 subcollection: backup-recovery
 
@@ -28,7 +28,7 @@ Alternatively, you can also refer to the terraform [IBM Backup & Recovery for IK
 ## Data Source Connector Requirements
 {: #data_source_connector_requirements}
 
-Before deploying the Data Source Connector, review and understand the following requirements that are needed for the VM(s) that you need to provision:
+Before deploying the Data Source Connector, review and understand the following requirements that are needed for one or more VMs that you need to provision:
 
 ### Supported Sources
 {: #supported-sources}
@@ -39,6 +39,8 @@ You can deploy Data Source Connectors for the following sources:
 - Microsoft SQL Server
 - Oracle Server
 - Kubernetes/OpenShift
+- SAP Hana
+- Db2
 
 ### Data Source Connector System Prerequisites
 {: #data-source-connector-system-prerequisites}
@@ -53,7 +55,7 @@ Make sure that the Data Source Connector VM that you deploy for your Data Source
 ### Port Requirements
 {: #port-requirements}
 
-Ensure that the following ports are open to allow communication between the Data Source Connector(s) and the data sources.
+Ensure that the following ports are open to allow communication between one or more Data Source Connectors and the data sources.
 
 Physical Servers
 
@@ -75,7 +77,7 @@ Microsoft SQL Servers
 
 Oracle Servers
 
-Ensure that the following ports are open to allow communication between the Data Source Connector(s) and Oracle Server:
+Ensure that the following ports are open to allow communication between one or more Data Source Connectors and Oracle Server:
 
 | Source | Destination | Port | Protocol | Purpose |
 | --- | --- | --- | --- | --- |
@@ -163,8 +165,8 @@ To create a Data Source Connection:
 
    10.  On the `Customize template` page, enter the network settings: `Network IP Address`, `Network Netmask`, and `Default Gateway`. If you have selected a different VLAN for the secondary network, enter the `Network IP Address`, `Network Netmask`, and `Default Gateway` for the secondary network, as well. Click `Next`.
 
-- To set the network settings using static IP addresses, manually enter the details in the respective fields for both DataNetwork and SecondaryNetwork.
-- To set the network settings using DHCP, leave the fields blank in both the DataNetwork and SecondaryNetwork sections.
+- To set the network settings by using static IP addresses, manually enter the details in the respective fields for both DataNetwork and SecondaryNetwork.
+- To set the network settings by using DHCP, leave the fields blank in both the DataNetwork and SecondaryNetwork sections.
 - Data Network and Secondary Network must be configured by using the same network configuration method. That is static IP addresses or DHCP.
 
 
@@ -174,7 +176,7 @@ To create a Data Source Connection:
 
 5. Enter the IP address of the Data Source Connector VM in the address bar of your browser and click `Enter`.
 
-6. On the Data Source Connector's User Interface, enter `admin` in the `Username` and `Password` ﬁelds to log in to the Data Source Connector.
+6. On the Data Source Connector's User Interface, enter `admin` in the `Username` and `Password` fields to log in to the Data Source Connector.
 
 On the next screen, you are prompted to change your password. Change your default password and log in again with your new password.
 
