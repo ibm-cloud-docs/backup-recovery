@@ -52,6 +52,7 @@ toc:
           topics:
           - global_mgmt_console/tutorial-gmc.md
       - registration.md
+      - connector-agent-setup-tutorial.md
       - cbr-tutorial.md
   - navgroup:
       id: howto
@@ -66,6 +67,8 @@ toc:
           label: Data source connector
           topics:
           - data_connector/DeployDataSourceConnector.md
+          - data_connector/migrate-dsc-to-connector-agent.md
+          - data_connector/migrate-classic-to-vpc-connector-agent.md
       - topicgroup:
           label: Kubernetes/OpenShift
           topics:
@@ -201,6 +204,7 @@ toc:
               href: https://cloud.ibm.com/apidocs/baas/ibm_reporting_api
           topics:
           - global_mgmt_console/reporting_service_apis.md
+          - connector_agent/connector-agent-api-operations.md
       - topicgroup:
           label: Libraries
           topics:

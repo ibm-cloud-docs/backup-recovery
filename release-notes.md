@@ -32,6 +32,14 @@ Release update
 :  {{site.data.keyword.baas_full_notm}} now supports protecting and recovering Red Hat OpenShift Virtualization virtual machines (VMs) that run on Red Hat OpenShift on IBM Cloud (ROKS). You can protect all VMs in a namespace or select specific VMs by name or label. Backed-up VMs can be restored to the original ROKS cluster or to a different registered ROKS cluster. When a VM is selected for restore, its associated DataVolumes and PVCs are restored together with the VM. For more information, see [Protecting OpenShift Virtualization VMs and scheduling a backup](/docs/backup-recovery?topic=backup-recovery-protecting-namespace-ocpvirt-vm) and [Recover OpenShift Virtualization VMs](/docs/backup-recovery?topic=backup-recovery-recover-restore-ocpvirt-vm).
 
 
+## 26 June 2026
+{: #baas-June2626}
+{: release-note}
+
+Release update
+:  The Connector Agent enables direct connectivity between your data sources and the backup cluster, which provides an alternative to the Data Source Connector for certain workloads.
+
+: The Connector Agent is a lightweight software component that runs on your source host and establishes a direct connection to the IBM Cloud Backup and Recovery cluster. This architecture is particularly useful for Oracle RAC environments and other scenarios where direct agent-to-cluster communication is preferred. For more information, see the tutorials on [Set up and register a Connector Agent]([/docs/backup-recovery?topic=backup-recovery-connector-agent-setup-tutorial).
 
 
 
