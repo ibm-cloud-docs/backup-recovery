@@ -3,7 +3,7 @@
 copyright:
   years: 2024, 2026
 
-lastupdated: "2026-04-17"
+lastupdated: "2026-06-26"
 
 
 keywords: updates, releases, news, backup and recovery
@@ -19,8 +19,22 @@ content-type: release-note
 # Release notes for Backup and Recovery
 {: #updates}
 
-News on the latest releases from IBM's Backup and Recovery provide the updates you need on all things related to Backup and Recovery.
+News on the latest releases from IBM's Backup and Recovery provide the updates that you need on all things that are related to Backup and Recovery.
 {: shortdesc}
+
+## 26 June 2026
+{: #baas-June2626}
+{: release-note}
+
+Release update
+:  OpenShift Virtualization VM protection and recovery
+
+:  {{site.data.keyword.baas_full_notm}} now supports protecting and recovering Red Hat OpenShift Virtualization virtual machines (VMs) that run on Red Hat OpenShift on IBM Cloud (ROKS). You can protect all VMs in a namespace or select specific VMs by name or label. Backed-up VMs can be restored to the original ROKS cluster or to a different registered ROKS cluster. When a VM is selected for restore, its associated DataVolumes and PVCs are restored together with the VM. For more information, see [Protecting OpenShift Virtualization VMs and scheduling a backup](/docs/backup-recovery?topic=backup-recovery-protecting-namespace-ocpvirt-vm) and [Recover OpenShift Virtualization VMs](/docs/backup-recovery?topic=backup-recovery-recover-restore-ocpvirt-vm).
+
+
+
+
+
 
 ## 17 April 2026
 {: #baas-April1726}

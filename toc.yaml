@@ -58,6 +58,11 @@ toc:
       topics:
       - agent-download-install.md
       - topicgroup:
+          label: Protect OpenShift Virtualization VMs
+          topics:
+          - ocp-virt/protecting-namespace-ocpvirt-vm.md
+          - ocp-virt/recover-restore-ocpvirt-vm.md
+      - topicgroup:
           label: Data source connector
           topics:
           - data_connector/DeployDataSourceConnector.md

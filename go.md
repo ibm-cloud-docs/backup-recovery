@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024
-lastupdated: "2025-12-12"
+lastupdated: "2026-06-05"
 
 keywords: backup recovery, go, sdk
 
@@ -910,6 +910,287 @@ func main() {
         ID:           core.StringPtr(protectionPolicyId),
     }
     result, err := service.DeleteProtectionPolicy(deleteProtectionPolicyOptions)
+    if err != nil {
+        t.Fatalf("Expected no error, got %v", err)
+    }
+    fmt.Println(result)
+}
+```
+{: codeblock}
+
+### List Report Components
+{: #go-list-report-component}
+
+```Go
+func main() {
+	getComponentsOptions := &baas.GetComponentsOptions{}
+	result, response, err := managementReportingClient.GetComponents(getComponentsOptions)
+	if err != nil {
+		log.Fatalf("Failed to fetch components list: %v", err)
+	}
+	fmt.Println(result)
+	fmt.Println(response)
+}
+```
+{: codeblock}
+
+### Fetch a Report Component
+{: #go-fetch-report-component}
+
+```Go
+func main() {
+	getComponentByIdOptions := &baas.GetComponentByIdOptions{ID: core.StringPtr("600")}
+	result, response, err := managementReportingClient.GetComponentByID(getComponentByIdOptions)
+
+	if err != nil {
+		log.Fatalf("Failed to fetch component by Id: %v", err)
+	}
+	fmt.Println(result)
+	fmt.Println(response)
+}
+```
+{: codeblock}
+
+### Fetch Preview of a Component
+{: #go-fetch-preview-component}
+
+```Go
+func main() {
+	getComponentPreviewOptions := &baas.GetComponentPreviewOptions{ID: core.StringPtr("600")}
+	result, response, err := managementReportingClient.GetComponentPreview(getComponentPreviewOptions)
+	if err != nil {
+		log.Fatalf("Failed to fetch component preview: %v", err)
+	}
+	fmt.Println(result)
+	fmt.Println(response)
+}
+```
+{: codeblock}
+
+### Get Resources
+{: #go-get-resource}
+
+```Go
+func main() {
+	getResourcesOptions := &baas.GetResourcesOptions{ResourceType: core.StringPtr("MessageCodeMappings")}
+	result, response, err := managementReportingClient.GetResources(getResourcesOptions)
+	if err != nil {
+		log.Fatalf("Failed to fetch resources: %v", err)
+	}
+	fmt.Println(result)
+	fmt.Println(response)
+}
+```
+{: codeblock}
+
+### List Properties of a Report Type
+{: #go-list-properties-report-type}
+
+```Go
+func main() {
+	getReportTypeOptions := &baas.GetReportTypeOptions{ReportType: core.StringPtr("Failures")}
+	result, response, err := managementReportingClient.GetReportType(getReportTypeOptions)
+	if err != nil {
+		log.Fatalf("Failed to fetch report type: %v", err)
+	}
+	fmt.Println(result)
+	fmt.Println(response)
+}
+```
+{: codeblock}
+
+### List Reports
+{: #go-list-reports}
+
+```Go
+func main() {
+	getReportsOptions := &baas.GetReportsOptions{}
+	result, response, err := managementReportingClient.GetReports(getReportsOptions)
+	if err != nil {
+		log.Fatalf("Failed to fetch reports: %v", err)
+	}
+	fmt.Println(result)
+	fmt.Println(response)
+}
+```
+{: codeblock}
+
+### Fetch a Report
+{: #go-fetch-report}
+
+```Go
+func main() {
+	getReportByIdOptions := &baas.GetReportByIdOptions{ID: core.StringPtr("failures")}
+	result, response, err := managementReportingClient.GetReportByID(getReportByIdOptions)
+	if err != nil {
+		log.Fatalf("Failed to fetch report by id: %v", err)
+	}
+	fmt.Println(result)
+	fmt.Println(response)
+}
+```
+{: codeblock}
+
+### Fetch a Report Preview
+{: #go-fetch-report-preview}
+
+```Go
+func main() {
+	getReportPreviewOptions := &baas.GetReportPreviewOptions{ID: core.StringPtr("recovery"), ComponentIds: []string{900}}
+	result, response, err := managementReportingClient.GetReportPreview(getReportPreviewOptions)
+	if err != nil {
+		log.Fatalf("Failed to fetch report preview: %v", err)
+	}
+	fmt.Println(result)
+	fmt.Println(response)
+}
+```
+{: codeblock}
+
+### Export a Report
+{: #go-export-report}
+
+```Go
+func main() {
+	exportReportOptions := &baas.ExportReportOptions{ID: core.StringPtr("protected")}
+	result, response, err := managementReportingClient.ExportReport(exportReportOptions)
+	if err != nil {
+		log.Fatalf("Failed to export report: %v", err)
+	}
+	fmt.Println(result)
+	fmt.Println(response)
+}
+```
+{: codeblock}
+
+### List Provider Instances
+{: #go-list-provider-instances}
+
+```Go
+func main() {
+	getProviderInstancesOptions := &baas.GetProviderInstancesOptions{}
+	result, response, err := managementReportingClient.GetProviderInstances(getProviderInstancesOptions)
+	if err != nil {
+		log.Fatalf("Failed to get provider instances: %v", err)
+	}
+	fmt.Println(result)
+	fmt.Println(response)
+}
+```
+{: codeblock}
+
+### Create Source Registration for Kubernetes Cluster
+{: #go-create-source-registration-kubernetes}
+
+```Go
+func main() {
+    k8sClusterParams := &baas.KubernetesSourceRegistrationParams{
+        Endpoint:                           core.StringPtr("https://c104-e.us-east.containers.cloud.ibm.com:31410"),
+        ClientPrivateKey:                   core.StringPtr(""),
+        DataMoverImageLocation:             core.StringPtr("icr.io/ext/brs/cohesity-datamover:7.2.15-p2"),
+        VeleroImageLocation:                core.StringPtr("icr.io/ext/brs/velero:7.2.15-p2"),
+        VeleroOpenshiftPluginImageLocation: core.StringPtr("icr.io/ext/brs/velero-plugin-for-openshift:7.2.15-p2"),
+        VeleroAwsPluginImageLocation:       core.StringPtr("icr.io/ext/brs/velero-plugin-for-aws:7.2.15-p2"),
+        KubernetesDistribution:             core.StringPtr("kROKS"),
+    }
+    connectionIdInt, _ := strconv.ParseInt("932952619841170816", 10, 64)
+    registerSourceRegistrationOptions := &baas.RegisterProtectionSourceOptions{
+        XIBMTenantID:     core.StringPtr("wkk1yqrdce/"),
+        Environment:      core.StringPtr("kKubernetes"),
+        Name:             core.StringPtr("sdk-iks-registration"),
+        KubernetesParams: k8sClusterParams,
+        ConnectionID:     core.Int64Ptr(connectionIdInt),
+    }
+    result, _, err := service.RegisterProtectionSource(registerSourceRegistrationOptions)
+    if err != nil {
+        t.Fatalf("Expected no error, got %v", err)
+    }
+    fmt.Println(result)
+}
+```
+{: codeblock}
+
+### Create Protection Group for Kubernetes Namespace
+{: #go-create-protection-group-kubernetes}
+
+```Go
+func main() {
+    kk8sEnv := "kKubernetes"
+    createProtectionGroupOptions := &baas.CreateProtectionGroupOptions{
+        XIBMTenantID: core.StringPtr("wkk1yqrdce/"),
+        Name:         core.StringPtr("sdk-brs-protection-group"),
+        PolicyID:     core.StringPtr("8305184241232842:1757331781254:65366"),
+        Environment:  core.StringPtr(kk8sEnv),
+        KubernetesParams: &baas.KubernetesProtectionGroupParams{
+
+            Objects: []baas.KubernetesProtectionGroupObjectParams{
+                {
+                    ID: core.Int64Ptr(3120),
+                },
+            },
+        },
+        Priority:  core.StringPtr("kMedium"),
+        QosPolicy: core.StringPtr("kBackupHDD"),
+    }
+    groupresult, _, err := service.CreateProtectionGroup(createProtectionGroupOptions)
+    if err != nil {
+        t.Fatalf("Expected no error, got %v", err)
+    }
+    fmt.Println("Group Id:", *groupresult.ID)
+    fmt.Println(result)
+}
+```
+{: codeblock}
+
+### Create Recovery for Kubernetes Snapshot
+{: #go-create-recovery-kubernetes}
+
+```Go
+func main() {
+    recoverKubernetesParamsRecoverNamespaceParams := &baas.RecoverKubernetesParamsRecoverNamespaceParams{
+        TargetEnvironment: core.StringPtr("kKubernetes"),
+        KubernetesTargetParams: &baas.RecoverKubernetesNamespaceParamsKubernetesTargetParams{
+            Objects: []baas.CommonRecoverObjectSnapshotParams{{
+                SnapshotID: core.StringPtr("eyJhX2NsdXN0ZXJJZCI6ODMwNTE4NDI0MTIzMjg0MiwiYl9jbHVzdGVySW5jYXJuYXRpb25JZCI6MTc1NzMzMTc4MTI1NCwiY19qb2JJZCI6MjQ4MDM2LCJlX2pvYkluc3RhbmNlSWQiOjI0ODA1MywiZl9ydW5TdGFydFRpbWVVc2VjcyI6MTc2MDI3MDk2NjI2ODg4MywiZ19vYmplY3RJZCI6MzEyMCwiaF92YXVsdElkIjoxMjQzNDU3fQ=="),
+            },
+            },
+            RenameRecoveredNamespacesParams: &baas.KubernetesTargetParamsForRecoverKubernetesNamespaceRenameRecoveredNamespacesParams{
+                Prefix: core.StringPtr("0-copy-sdk-workload"),
+            },
+            RecoveryTargetConfig: &baas.KubernetesTargetParamsForRecoverKubernetesNamespaceRecoveryTargetConfig{
+                RecoverToNewSource: core.BoolPtr(false),
+            },
+        },
+    }
+
+    k8sparams := &baas.RecoveryRequestParamsKubernetesParams{
+        RecoverNamespaceParams: recoverKubernetesParamsRecoverNamespaceParams,
+        RecoveryAction:         core.StringPtr("RecoverNamespaces"),
+    }
+    createRecoveryOptions := &baas.CreateRecoveryOptions{
+        XIBMTenantID:        core.StringPtr("wkk1yqrdce/"),
+        Name:                core.StringPtr("sdk-test-backup-recovery-create-recovery"),
+        SnapshotEnvironment: core.StringPtr("kKubernetes"),
+        KubernetesParams:    k8sparams,
+    }
+    result, _, err := service.CreateRecovery(createRecoveryOptions)
+    if err != nil {
+        t.Fatalf("Expected no error, got %v", err)
+    }
+    fmt.Println(result)
+}
+```
+{: codeblock}
+
+### Get Registration Information
+{: #go-get-registration}
+
+```Go
+func main() {
+    listProtectionSourcesOptions := &baas.ListProtectionSourcesRegistrationInfoOptions{
+        XIBMTenantID: core.StringPtr("wkk1yqrdce/"),
+    }
+    result, _, err := service.ListProtectionSourcesRegistrationInfo(listProtectionSourcesOptions)
     if err != nil {
         t.Fatalf("Expected no error, got %v", err)
     }
