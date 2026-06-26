@@ -3,7 +3,7 @@
 copyright:
   years: 2024, 2026
 
-lastupdated: "2026-06-08"
+lastupdated: "2026-06-26"
 
 
 keywords: updates, releases, news, backup and recovery
@@ -19,8 +19,10 @@ content-type: release-note
 # Release notes for Backup and Recovery
 {: #updates}
 
-News on the latest releases from IBM's Backup and Recovery provide the updates you need on all things related to Backup and Recovery.
+News on the latest releases from IBM's Backup and Recovery provide the updates that you need on all things that are related to Backup and Recovery.
 {: shortdesc}
+
+
 
 
 

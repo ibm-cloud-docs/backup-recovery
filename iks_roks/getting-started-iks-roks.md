@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025, 2026
-lastupdated: "2026-05-20"
+lastupdated: "2026-06-26"
 
 keywords: data source connector, iks, roks, cluster
 
@@ -36,12 +36,14 @@ C. Take a backup of the Kubernetes or OpenShift cluster:
    - [Create and configure data source connector](#data-source-connector-iks-roks-create-configure)
    - [Register source Kubernetes or OpenShift cluster](#data-source-connector-iks-roks-register)
    - [Create or schedule a backup](/docs/backup-recovery?topic=backup-recovery-protecting-namespace-iks-roks)
+   - [Protect OpenShift Virtualization VMs and schedule a backup](/docs/backup-recovery?topic=backup-recovery-protecting-namespace-ocpvirt-vm)
 
 D. Restore backup to Kubernetes or OpenShift cluster:
    - [Access {{site.data.keyword.baas_full_notm}} instance](#data-source-connector-iks-roks-access-instance)
    - [Create and configure data source connector](#data-source-connector-iks-roks-create-configure)
    - [Register source Kubernetes or OpenShift cluster](#data-source-connector-iks-roks-register)
    - [Restore backup](/docs/backup-recovery?topic=backup-recovery-recovering-restoring-backup)
+   - [Recover OpenShift Virtualization VMs](/docs/backup-recovery?topic=backup-recovery-recover-restore-ocpvirt-vm)
 
 E. [Troubleshooting](/docs/backup-recovery?topic=backup-recovery-data-source-connector-iks-roks-troubleshooting)
 
@@ -319,15 +321,23 @@ The `Edit Registration` option does not update the datamover and Velero images. 
 
 
 
-## Protecting and Restoring Data
-{: #protect-restore-data-iks-roks}
+## Protecting and recovering container workloads
+{: #protect-recover-container-workloads-iks-roks}
 
-After registering your cluster as a data source, you can proceed to create Protection Groups and policies to start backing up your data.
+After registering your cluster as a data source, you can protect and recover Kubernetes or OpenShift container workloads.
 
-1. **Protect a Namespace**: See [Protecting a namespace or cluster](/docs/backup-recovery?topic=backup-recovery-protecting-namespace-iks-roks).
-2. **Configure Policies**: See [Creating and configuring protection policies](/docs/backup-recovery?topic=backup-recovery-create-edit-standard-policy).
-3. **Run Backups**: You can schedule backups using policies or trigger a backup immediately by using [Run Now](/docs/backup-recovery?topic=backup-recovery-protection-group-run-now).
-4. **Restore Data**: To recover data, follow the instructions in [Recovering or restoring backup](/docs/backup-recovery?topic=backup-recovery-recovering-restoring-backup).
+1. **Protect a namespace**: See [Protecting a namespace or cluster](/docs/backup-recovery?topic=backup-recovery-protecting-namespace-iks-roks).
+2. **Configure policies**: See [Creating and configuring protection policies](/docs/backup-recovery?topic=backup-recovery-create-edit-standard-policy).
+3. **Run backups**: You can schedule backups using policies or trigger a backup immediately by using [Run Now](/docs/backup-recovery?topic=backup-recovery-protection-group-run-now).
+4. **Recover container workloads**: To recover data, follow the instructions in [Recovering or restoring backup](/docs/backup-recovery?topic=backup-recovery-recovering-restoring-backup).
+
+## Protecting and recovering virtual machines
+{: #protect-recover-vms-iks-roks}
+
+If your ROKS cluster is configured with OpenShift Virtualization, you can also protect and recover virtual machines.
+
+1. **Protect OpenShift Virtualization VMs**: See [Protecting OpenShift Virtualization VMs and scheduling a backup](/docs/backup-recovery?topic=backup-recovery-protecting-namespace-ocpvirt-vm).
+2. **Recover OpenShift Virtualization VMs**: See [Recover OpenShift Virtualization VMs](/docs/backup-recovery?topic=backup-recovery-recover-restore-ocpvirt-vm).
 
 ## Troubleshooting
 {: #troubleshooting}
