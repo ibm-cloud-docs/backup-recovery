@@ -3,7 +3,7 @@
 copyright:
   years: 2024, 2026
 
-lastupdated: "2026-06-26"
+lastupdated: "2026-06-30"
 
 
 keywords: updates, releases, news, backup and recovery
@@ -39,7 +39,7 @@ Release update
 Release update
 :  The Connector Agent enables direct connectivity between your data sources and the backup cluster, which provides an alternative to the Data Source Connector for certain workloads.
 
-: The Connector Agent is a lightweight software component that runs on your source host and establishes a direct connection to the IBM Cloud Backup and Recovery cluster. This architecture is particularly useful for Oracle RAC environments and other scenarios where direct agent-to-cluster communication is preferred. For more information, see the tutorials on [Set up and register a Connector Agent]([/docs/backup-recovery?topic=backup-recovery-connector-agent-setup-tutorial).
+: The Connector Agent is a lightweight software component that runs on your source host and establishes a direct connection to the IBM Cloud Backup and Recovery cluster. This architecture is particularly useful for Oracle RAC environments and other scenarios where direct agent-to-cluster communication is preferred. For more information, see the tutorials on [Set up and register a Connector Agent](/docs/backup-recovery?topic=backup-recovery-connector-agent-setup-tutorial).
 
 
 
