@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025, 2026
-lastupdated: "2026-04-15"
+lastupdated: "2026-06-30"
 
 keywords: data source connector, iks, roks, cluster, troubleshooting
 
@@ -377,3 +377,47 @@ In most cases, PartiallyFailed errors are benign and do not affect the correctne
 - Help ensure all required CRDs are installed in the target cluster before attempting recovery
 - Check for resource naming conflicts in the target namespace
     {: codeblock}
+
+## Known Issues
+{: #known-issues}
+
+The following are known issues with {{site.data.keyword.baas_full_notm}} for IKS and ROKS clusters:
+
+### Warning Inconsistency During Recovery
+{: #warning-inconsistency}
+
+Warning messages displayed during recovery to the original location and recovery to a new location are inconsistent. The warnings may differ in content or format depending on the recovery destination.
+
+### OpenShift RoleBindings Recovery Issue
+{: #openshift-rolebindings}
+
+When recovering from a ROKS cluster to an IKS cluster, Velero attempts to recover OpenShift-specific rolebindings (`rolebinding.authorization.openshift.io/system:deployers`, `rolebinding.authorization.openshift.io/system:image-builders`, `rolebinding.authorization.openshift.io/system:image-pullers`). This causes the recovery to partially fail. However, the resources and data are still successfully recovered to the destination cluster.
+
+**Resolution**: To exclude OpenShift rolebindings from the backup and prevent this issue, run the following command:
+
+```bash
+kubectl label rolebindings.authorization.openshift.io \
+  -n <namespace> \
+  --all \
+  velero.io/exclude-from-backup=true
+```
+{: codeblock}
+
+Replace `<namespace>` with your target namespace. This command labels all OpenShift rolebindings in the specified namespace to be excluded from Velero backups.
+
+### Source Registration from Protection and Recovery Page
+{: #source-registration-issue}
+
+Source registration from the Protection and Recovery page is currently not working. We can register the cluster from Data Prtection > Sources > Register Source.
+
+### Data Source Connection 404 Error
+{: #data-source-connection-error}
+
+You may encounter a 404 error with the message "data source connection does not exist" when accessing data source connections or attempting source registration. This issue occurs when a cluster connection is deleted from the {{site.data.keyword.baas_full_notm}} instance before removing its associated connectors.
+
+**Resolution**: To avoid this issue, always delete the connectors first before deleting the cluster connection.
+
+### Backend Service Restart
+{: #backend-service-restart}
+
+A backend service is restarting intermittently, which may cause issues in the backup and recovery performance. If you experience unexpected delays, this service restart might be the cause.
