@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2026
-lastupdated: "2026-06-19"
+lastupdated: "2026-07-02"
 
 keywords: backup and recovery, data source connectors, kubernetes, openshift, sap hana, db2, connector agent
 
@@ -265,10 +265,35 @@ You can reuse an existing connection for multiple clusters on the same deploymen
 
 The Data Source Connector is deployed as a StatefulSet with 2 replicas (by default) on your Kubernetes or OpenShift cluster. This establishes the communication channel between your cluster and the {{site.data.keyword.baas_full_notm}} service.
 
-**For clusters with private endpoints only:** You must run `ibmcloud`, `kubectl`, and `helm` commands from [IBM Cloud Shell](https://cloud.ibm.com/shell).
+### Prerequisites
+{: #install-data-source-connector-cli-prerequisites}
 
-**For clusters with public endpoints:** You can run `ibmcloud`, `kubectl`, and `helm` commands from either [IBM Cloud Shell](https://cloud.ibm.com/shell) or your local workspace.
-{: note}
+Before you begin, install and configure the following CLI tools on your local workstation:
+
+- **IBM Cloud CLI (`ibmcloud`)**: [Install the IBM Cloud CLI](https://cloud.ibm.com/docs/cli?topic=cli-getting-started){: external}. After installing, log in to your IBM Cloud account:
+
+   ```sh
+   ibmcloud login -a cloud.ibm.com --apikey "${API_KEY}"
+   ```
+   {: codeblock}
+
+   See [Creating an API key](https://cloud.ibm.com/docs/iam?topic=iam-userapikey&interface=ui#create_user_key){: external} if you don't already have an API key.
+
+- **IBM Cloud Kubernetes Service plug-in (`ibmcloud ks`)**: Install the IKS CLI plug-in:
+
+   ```sh
+   ibmcloud plugin install kubernetes-service
+   ```
+   {: codeblock}
+
+- **Kubernetes CLI (`kubectl`)**: [Install kubectl](https://kubernetes.io/docs/tasks/tools/){: external}.
+
+- **OpenShift CLI (`oc`)**: Required only for OpenShift (ROKS) clusters. [Install the OpenShift CLI](https://docs.openshift.com/container-platform/latest/cli_reference/openshift_cli/getting-started-cli.html){: external}.
+
+- **Helm CLI (`helm`)**: [Install Helm](https://helm.sh/docs/intro/install/){: external}.
+
+For clusters with **private endpoints only**, all commands must be run from a host that has network access to the cluster's private endpoint. You can connect from your local workstation by [setting up a client-to-site VPN](https://cloud.ibm.com/docs/containers?topic=containers-cluster-access-wireguard){: external}, use a jump host or bastion within the same VPC, or use IBM Cloud Shell if it is available in your account.
+{: important}
 
 ### Resource requirements
 {: #install-data-source-connector-resource-requirements}
@@ -285,8 +310,7 @@ Help ensure that your cluster has sufficient CPU and memory resources. The Data 
 Datamover (DaemonSet) and Velero components are deployed automatically during source registration and are not part of the initial Data Source Connector installation.
 {: note}
 
-1. Open [IBM Cloud Shell](https://cloud.ibm.com/shell) (or use your local workspace if your cluster has a public endpoint).
-2. Identify the source cluster where you want to install the Data Source Connector. This should be the Kubernetes or OpenShift cluster that you want to back up and protect. You must have admin access to this cluster to install the Data Source Connector.
+1. Identify the source cluster where you want to install the Data Source Connector. This should be the Kubernetes or OpenShift cluster that you want to back up and protect. You must have admin access to this cluster to install the Data Source Connector.
 
    List the available clusters:
 
@@ -297,24 +321,24 @@ Datamover (DaemonSet) and Velero components are deployed automatically during so
 
    From the output, note the cluster name where the Data Source Connector should be deployed. Ensure that you have admin privileges for this cluster.
 
-3. Download and configure the `KUBECONFIG` for the selected cluster with admin privileges:
+2. Download and configure the `KUBECONFIG` for the selected cluster with admin privileges:
 
    ```sh
    ibmcloud ks cluster config --cluster <cluster-name> --admin
    ```
    {: codeblock}
 
-4. The Helm chart is hosted in the IBM Container Registry (ICR). Log in to the Helm/OCI registry by using the following command:
+3. The Helm chart is hosted in the IBM Container Registry (ICR). Log in to the Helm/OCI registry by using the following command:
 
    ```sh
    helm registry login icr.io --username iamapikey --password "${API_KEY}"
    ```
    {: codeblock}
 
-   See [Creating an API_KEY](/docs/account?topic=account-userapikey&interface=ui#create_user_key) to create a new API_KEY if you don't have an existing one.
+   See [Creating an API key](https://cloud.ibm.com/docs/iam?topic=iam-userapikey&interface=ui#create_user_key){: external} if you don't already have an API key.
 
 
-5. Retrieve the Helm install command that you copied earlier in the [Create a data source connection](/docs/backup-recovery?topic=backup-recovery-data-source-connector-iks-roks#data-source-connector-iks-roks-create-data-source-connection) section and update it based on your cluster type.
+4. Retrieve the Helm install command that you copied earlier in the [Create a data source connection](/docs/backup-recovery?topic=backup-recovery-data-source-connector-iks-roks#data-source-connector-iks-roks-create-data-source-connection) section and update it based on your cluster type.
 
    **For IKS Classic clusters:**
 
@@ -355,9 +379,9 @@ Datamover (DaemonSet) and Velero components are deployed automatically during so
    The default storage class `ibmc-vpc-block-metro-5iops-tier` is only available on VPC clusters and will not work on Classic clusters. For Classic clusters, use `ibmc-block-bronze`, `ibmc-block-silver`, or `ibmc-block-gold`.
    {: important}
 
-6. Run the appropriate Helm install command in the IBM Cloud Shell based on your cluster type.
+5. Run the appropriate Helm install command based on your cluster type.
 
-7. Check that the Helm release is installed:
+6. Check that the Helm release is installed:
 
    ```sh
    helm list -n ibm-brs-data-source-connector
