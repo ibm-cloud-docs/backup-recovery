@@ -3,7 +3,7 @@
 copyright:
   years: 2024, 2026
 
-lastupdated: "2026-06-30"
+lastupdated: "2026-07-24"
 
 
 keywords: updates, releases, news, backup and recovery
@@ -21,6 +21,13 @@ content-type: release-note
 
 News on the latest releases from IBM's Backup and Recovery provide the updates that you need on all things that are related to Backup and Recovery.
 {: shortdesc}
+
+## 24 July 2026
+{: #baas-July2426}
+{: release-note}
+
+Support availability update
+:  The Connector Agent is now available for use in all regions.
 
 ## 26 June 2026
 {: #baas-June2626}
