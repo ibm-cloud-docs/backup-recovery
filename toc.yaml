@@ -130,7 +130,7 @@ toc:
           topics:
           - mgmt_console/overviewSingleInstanceReportMc.md
           - topicgroup:
-              label: Reports (Work-in-Progress)
+              label: Reports
               topics:
               - mgmt_console/backupSummaryReportMc.md
               - mgmt_console/failuresReportMc.md
@@ -139,7 +139,7 @@ toc:
               - mgmt_console/protectionSummaryObjectTypeMc.md
               - mgmt_console/protectedUnprotectObjsReportMc.md
           - topicgroup:
-              label: Alerts (Work-in-Progress)
+              label: Alerts
               topics:
               - mgmt_console/alertsMC.
               - alerts/BackupRestoreAlerts.md
