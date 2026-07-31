@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2026
-lastupdated: "2026-07-02"
+lastupdated: "2026-07-31"
 
 keywords: backup and recovery, data source connectors, kubernetes, openshift, sap hana, db2, connector agent
 
@@ -328,15 +328,7 @@ Datamover (DaemonSet) and Velero components are deployed automatically during so
    ```
    {: codeblock}
 
-3. The Helm chart is hosted in the IBM Container Registry (ICR). Log in to the Helm/OCI registry by using the following command:
-
-   ```sh
-   helm registry login icr.io --username iamapikey --password "${API_KEY}"
-   ```
-   {: codeblock}
-
-   See [Creating an API key](https://cloud.ibm.com/docs/iam?topic=iam-userapikey&interface=ui#create_user_key){: external} if you don't already have an API key.
-
+3. The Helm chart is hosted in the IBM Container Registry (ICR) and does not require `helm registry login`.
 
 4. Retrieve the Helm install command that you copied earlier in the [Create a data source connection](/docs/backup-recovery?topic=backup-recovery-data-source-connector-iks-roks#data-source-connector-iks-roks-create-data-source-connection) section and update it based on your cluster type.
 
@@ -345,7 +337,7 @@ Datamover (DaemonSet) and Velero components are deployed automatically during so
    You must specify a storage class that is available on Classic clusters and disable SCC (Security Context Constraints) as it's specific to OpenShift:
 
    ```sh
-   helm upgrade --install <k8-app-name> oci://icr.io/ext/brs/brs-ds-connector-chart --version 7.2.18-release-20260226-49768040 --set secrets.registrationToken=<your-registration-token> --set deploymentPlatform.rocp.sccEnabled=false --set volumeClaimTemplate.storageClass=ibmc-block-bronze --namespace ibm-brs-data-source-connector --create-namespace
+   helm upgrade --install <k8-app-name> oci://icr.io/brs-charts/brs-ds-connector-chart --version 7.3.12-release-20260713-2e7241a2 --set secrets.registrationToken=<your-registration-token> --set deploymentPlatform.rocp.sccEnabled=false --set volumeClaimTemplate.storageClass=ibmc-block-bronze --namespace ibm-brs-data-source-connector --create-namespace
    ```
    {: codeblock}
 
@@ -354,7 +346,7 @@ Datamover (DaemonSet) and Velero components are deployed automatically during so
    The default storage class `ibmc-vpc-block-metro-5iops-tier` is used automatically. Disable SCC as it's specific to OpenShift:
 
    ```sh
-   helm upgrade --install <k8-app-name> oci://icr.io/ext/brs/brs-ds-connector-chart --version 7.2.18-release-20260226-49768040 --set secrets.registrationToken=<your-registration-token> --set deploymentPlatform.rocp.sccEnabled=false --namespace ibm-brs-data-source-connector --create-namespace
+   helm upgrade --install <k8-app-name> oci://icr.io/brs-charts/brs-ds-connector-chart --version 7.3.12-release-20260713-2e7241a2 --set secrets.registrationToken=<your-registration-token> --set deploymentPlatform.rocp.sccEnabled=false --namespace ibm-brs-data-source-connector --create-namespace
    ```
    {: codeblock}
 
@@ -363,7 +355,7 @@ Datamover (DaemonSet) and Velero components are deployed automatically during so
    You must specify a storage class that is available on Classic clusters. SCC is enabled by default for OpenShift:
 
    ```sh
-   helm upgrade --install <k8-app-name> oci://icr.io/ext/brs/brs-ds-connector-chart --version 7.2.18-release-20260226-49768040 --set secrets.registrationToken=<your-registration-token> --set volumeClaimTemplate.storageClass=ibmc-block-bronze --namespace ibm-brs-data-source-connector --create-namespace
+   helm upgrade --install <k8-app-name> oci://icr.io/brs-charts/brs-ds-connector-chart --version 7.3.12-release-20260713-2e7241a2 --set secrets.registrationToken=<your-registration-token> --set volumeClaimTemplate.storageClass=ibmc-block-bronze --namespace ibm-brs-data-source-connector --create-namespace
    ```
    {: codeblock}
 
@@ -372,7 +364,7 @@ Datamover (DaemonSet) and Velero components are deployed automatically during so
    The default storage class `ibmc-vpc-block-metro-5iops-tier` is used automatically. SCC is enabled by default for OpenShift:
 
    ```sh
-   helm upgrade --install <k8-app-name> oci://icr.io/ext/brs/brs-ds-connector-chart --version 7.2.18-release-20260226-49768040 --set secrets.registrationToken=<your-registration-token> --namespace ibm-brs-data-source-connector --create-namespace
+   helm upgrade --install <k8-app-name> oci://icr.io/brs-charts/brs-ds-connector-chart --version 7.3.12-release-20260713-2e7241a2 --set secrets.registrationToken=<your-registration-token> --namespace ibm-brs-data-source-connector --create-namespace
    ```
    {: codeblock}
 
@@ -443,8 +435,8 @@ Datamover (DaemonSet) and Velero components are deployed automatically during so
    **Example Helm install command:**
 
    ```sh
-   helm upgrade --install dsc-test oci://icr.io/ext/brs/brs-ds-connector-chart \
-      --version 7.2.18-release-20260226-49768040 \
+   helm upgrade --install dsc-test oci://icr.io/brs-charts/brs-ds-connector-chart \
+      --version 7.3.12-release-20260713-2e7241a2 \
       --namespace ibm-brs-data-source-connector \
       --create-namespace \
       --set secrets.registrationToken=xxx \
@@ -522,7 +514,7 @@ This command displays all available Data Source Connector versions. Compare the 
 Once you've identified the target version, use the Helm upgrade command. You must provide the registration token because the old token might have expired.
 
 ```sh
-helm upgrade --install <release-name> oci://icr.io/ext/brs/brs-ds-connector-chart --version <new-version> --reuse-values --set secrets.registrationToken=<token> -n ibm-brs-data-source-connector
+helm upgrade --install <release-name> oci://icr.io/brs-charts/brs-ds-connector-chart --version <new-version> --reuse-values --set secrets.registrationToken=<token> -n ibm-brs-data-source-connector
 ```
 {: codeblock}
 
@@ -550,7 +542,7 @@ The `--reuse-values` flag preserves your existing configuration settings during 
 **Example upgrade command:**
 
 ```sh
-helm upgrade --install dsc-test oci://icr.io/ext/brs/brs-ds-connector-chart --version 7.2.19-release-20260301-12345678 --reuse-values --set secrets.registrationToken=<new-token> -n ibm-brs-data-source-connector
+helm upgrade --install dsc-test oci://icr.io/brs-charts/brs-ds-connector-chart --version 7.3.12-release-20260713-2e7241a2 --reuse-values --set secrets.registrationToken=<new-token> -n ibm-brs-data-source-connector
 ```
 {: codeblock}
 
@@ -595,8 +587,8 @@ kubectl get pods -n ibm-brs-data-source-connector
    2. Run the Helm install command by using the values file:
 
       ```sh
-      helm upgrade --install dsc oci://icr.io/ext/brs/brs-ds-connector-chart \
-        --version 7.2.18-release-20260226-49768040 \
+      helm upgrade --install dsc oci://icr.io/brs-charts/brs-ds-connector-chart \
+        --version 7.3.12-release-20260713-2e7241a2 \
         --namespace ibm-brs-data-source-connector \
         --create-namespace \
         -f custom-values.yaml
