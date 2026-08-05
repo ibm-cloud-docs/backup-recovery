@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024
-lastupdated: "2026-06-05"
+lastupdated: "2026-08-05"
 
 keywords: backup recovery, go, sdk
 
@@ -1195,6 +1195,127 @@ func main() {
         t.Fatalf("Expected no error, got %v", err)
     }
     fmt.Println(result)
+}
+```
+{: codeblock}
+
+### List Connector Agents
+{: #go-list-connector-agent}
+
+```Go
+func ListConnectorAgents() {
+    apiKey := "<api_key>"
+    // Replace with your IBM Cloud API key
+    serviceURL := “https://<BRS_Endpoint>/v2”
+    // Replace with your BRS service URL (e.g. https://193c8f4f-89b3-4f4f-9079-8b707dd1fdd4.us-east.backup-recovery-tests.cloud.ibm.com)
+    // Create authenticator
+    authenticator := &core.IamAuthenticator{
+        ApiKey: apiKey,
+    }
+
+    // Create service client
+    backupRecoveryService, err := backuprecoveryv1.NewBackupRecoveryV1(&backuprecoveryv1.BackupRecoveryV1Options{
+        URL:           serviceURL,
+        Authenticator: authenticator,
+    })
+
+    // Construct the ListConnectorAgentsOptions options
+    ListConnectorAgentsOptions := &backuprecoveryv1.ListConnectorAgentsOptions{
+        XIBMTenantID: core.StringPtr("4ugtn5idq2/"),
+        TenantID:     core.StringPtr("4ugtn5idq2/"),
+    }
+
+    // Invoke the ListConnectorAgents operation
+    result, _, err := backupRecoveryService.ListConnectorAgents(ListConnectorAgentsOptions)
+
+    // Verify the response
+    if err != nil {
+        fmt.Printf("Error: %v\n", err)
+        os.Exit(1)
+    }
+    fmt.Println("=== list connector agents completed successfully:")
+    fmt.Println(*result.ConnectorAgents[0].ConnectionName)
+    fmt.Println(*result.ConnectorAgents[0].ConnectionID)
+}
+```
+{: codeblock}
+
+### Get Connector Agent Configuration
+{: #go-get-connector-agent}
+
+```Go
+func GetConnectorAgentConfig() {
+    apiKey := "<api_key>"
+    // Replace with your IBM Cloud API key
+    serviceURL := “https://<BRS_Endpoint>/v2”
+    // Replace with your BRS service URL (e.g. https://193c8f4f-89b3-4f4f-9079-8b707dd1fdd4.us-east.backup-recovery-tests.cloud.ibm.com)
+    // Create authenticator
+    authenticator := &core.IamAuthenticator{
+        ApiKey: apiKey,
+    }
+
+    // Create service client
+    backupRecoveryService, err := backuprecoveryv1.NewBackupRecoveryV1(&backuprecoveryv1.BackupRecoveryV1Options{
+        URL:           serviceURL,
+        Authenticator: authenticator,
+    })
+    // Construct the GetConnectorAgentConfigOptions options
+    GetConnectorAgentConfigOptions := &backuprecoveryv1.GetConnectorAgentConfigOptions{
+        XIBMTenantID: core.StringPtr("4ugtn5idq2/"),
+    }
+
+    // Invoke the GetConnectorAgentConfig
+    GetConnectorAgentConfig, _, err := backupRecoveryService.GetConnectorAgentConfig(GetConnectorAgentConfigOptions)
+
+    // Verify the response
+    if err != nil {
+        fmt.Printf("Error : %v\n", err)
+        os.Exit(1)
+    }
+    fmt.Println("get connector agent config completed successfully:", *GetConnectorAgentConfig.RegistrationToken)
+
+}
+```
+{: codeblock}
+
+### Register Connector Agent
+{: #go-create-connector-agent}
+
+This API requires localhost access (http://localhost:8080). The application must run on the same VSI/container as the connector agent. Build your Go binary for Linux and deploy it to the target environment before execution of RegisterConnectorAgent method.
+{: note}
+
+```Go
+func RegisterConnectorAgent() {
+    apiKey := "<api_key>"
+    // Replace with your IBM Cloud API key
+    serviceURL := “http://localhost:8080”
+    // Create authenticator
+    authenticator := &core.IamAuthenticator{
+        ApiKey: apiKey,
+    }
+
+    // Create service client
+    backupRecoveryService, err := backuprecoveryv1.NewBackupRecoveryV1(&backuprecoveryv1.BackupRecoveryV1Options{
+        URL:           serviceURL,
+        Authenticator: authenticator,
+    })
+
+    RegisterConnectorAgentOptions := &backuprecoveryv1.RegisterConnectorAgentOptions{
+        RegistrationToken:      core.StringPtr("RegistrationToken"),
+        ConnectionName:         core.StringPtr("sdk-connection-test-1"), // new connection name
+        JoinExistingConnection: core.BoolPtr(false),
+    }
+
+    // Invoke the RegisterConnectorAgent operation
+    res, err := backupRecoveryService.RegisterConnectorAgent(RegisterConnectorAgentOptions)
+
+    // Verify the response
+    if err != nil {
+        fmt.Printf("Error : %v\n", err)
+        os.Exit(1)
+    }
+    fmt.Println("Register Connector Agent completed successfully:", res)
+
 }
 ```
 {: codeblock}
