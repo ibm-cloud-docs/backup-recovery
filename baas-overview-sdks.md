@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2025-12-12"
+lastupdated: "2026-08-05"
 
 keywords: object storage, sdk, overview
 
@@ -40,6 +40,7 @@ These SDKs are based on the official AWS S3 API SDKs, but are modified to use {{
 |-----------------------------------------------------|---------------------------------------------------|---------------------------------------------------|---------------------------------------------------|---------------------------------------------------|---------------------------------------------------|---------------------------------------------------|
 | [Data protect](#sdk-data-protect)               |  |  |  | ![Checkmark icon](../../icons/checkmark-icon.svg) | ![Checkmark icon](../../icons/checkmark-icon.svg) |![Checkmark icon](../../icons/checkmark-icon.svg)|
 | [SAAS connector](#sdk-saas-connector)        |  |  |  | ![Checkmark icon](../../icons/checkmark-icon.svg) | ![Checkmark icon](../../icons/checkmark-icon.svg) | ![Checkmark icon](../../icons/checkmark-icon.svg) |
+| [Connector agent](#sdk-connector-agent)      |  |  |  | ![Checkmark icon](../../icons/checkmark-icon.svg) | ![Checkmark icon](../../icons/checkmark-icon.svg) | ![Checkmark icon](../../icons/checkmark-icon.svg) |
 {: caption="Features supported per SDK"}
 
 ## Data protect
@@ -51,3 +52,8 @@ DataProtect leverage a comprehensive set of APIs to enable programmatic access a
 {: #sdk-saas-connector}
 
 Allows connector configuration and registration along with logs and status retrieval.
+
+## Connector agent
+{: #sdk-connector-agent}
+
+Allows connector agent installation, registration, and management, along with status and logs retrieval.
