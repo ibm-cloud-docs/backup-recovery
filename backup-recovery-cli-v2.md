@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2026
-lastupdated: "2026-08-05"
+lastupdated: "2026-08-06"
 
 keywords: backup recovery, cli, guide
 
@@ -489,6 +489,90 @@ ibmcloud backup-recovery protection-source registrations-list \
 ```
 {: pre}
 
+### `ibmcloud backup-recovery protection-source registration-info`
+{: #backup-recovery-cli-protection-source-registration-info-command}
+
+Returns the registration and protection information of the registered Protection Sources.
+
+```sh
+ibmcloud backup-recovery protection-source registration-info --xibm-tenant-id XIBM-TENANT-ID [--environments ENVIRONMENTS] [--ids IDS] [--include-entity-permission-info=INCLUDE-ENTITY-PERMISSION-INFO] [--sids SIDS] [--include-source-credentials=INCLUDE-SOURCE-CREDENTIALS] [--encryption-key ENCRYPTION-KEY] [--include-applications-tree-info=INCLUDE-APPLICATIONS-TREE-INFO] [--prune-non-critical-info=PRUNE-NON-CRITICAL-INFO] [--request-initiator-type REQUEST-INITIATOR-TYPE] [--use-cached-data=USE-CACHED-DATA] [--include-external-metadata=INCLUDE-EXTERNAL-METADATA] [--maintenance-status MAINTENANCE-STATUS] [--tenant-ids TENANT-IDS] [--all-under-hierarchy=ALL-UNDER-HIERARCHY]
+```
+
+#### Command options
+{: #backup-recovery-protection-source-registration-info-cli-options}
+
+`--xibm-tenant-id` (string)
+:   Specifies the unique id of the tenant. Required.
+
+`--environments` ([]string)
+:   Return only Protection Sources that match the passed in environment type such as 'kVMware', 'kSQL', 'kView' 'kPhysical', 'kPuppeteer', 'kPure', 'kNetapp', 'kGenericNas', 'kHyperV', 'kAcropolis', or 'kAzure'.
+
+    Allowable list items are: `kVMware`, `kSQL`, `kView`, `kPuppeteer`, `kPhysical`, `kPure`, `kNetapp`, `kGenericNas`, `kHyperV`, `kAcropolis`, `kAzure`, `kPhysicalFiles`, `kIsilon`, `kGPFS`, `kKVM`, `kAWS`, `kExchange`, `kHyperVVSS`, `kOracle`, `kGCP`, `kFlashBlade`, `kAWSNative`, `kVCD`, `kO365`, `kO365Outlook`, `kHyperFlex`, `kGCPNative`, `kKubernetes`, `kCassandra`, `kMongoDB`, `kCouchbase`, `kHdfs`, `kHive`, `kHBase`, `kUDA`, `kAwsS3`.
+
+`--ids` ([]int64)
+:   Return only the registered root nodes whose IDs are given in the list.
+
+`--include-entity-permission-info` (bool)
+:   If specified, then a list of entities with permissions assigned to them are returned.
+
+`--sids` ([]string)
+:   Filter the registered root nodes for the sids given in the list.
+
+`--include-source-credentials` (bool)
+:   If specified, then credential for the registered sources will be included. The credential is first encrypted with internal key and then reencrypted with user supplied 'encryption_key'.
+
+`--encryption-key` (string)
+:   Key to be used to encrypt the source credential. If include_source_credentials is set to true this key must be specified.
+
+`--include-applications-tree-info` (bool)
+:   Specifies whether to return applications tree info or not.
+
+`--prune-non-critical-info` (bool)
+:   Specifies whether to prune non critical info within entities. In case of VMs, virtual disk information will be pruned. In case of Office365, metadata about user entities will be pruned. This can be used to limit the size of the response by caller.
+
+`--request-initiator-type` (string)
+:   Specifies the type of the request. Possible values are UIUser and UIAuto, which means the request is triggered by user or is an auto refresh request. Services like magneto will use this to determine the priority of the requests.
+
+`--use-cached-data` (bool)
+:   Specifies whether we can serve the GET request to the read replica cache. Setting this to true ensures that the API request is served to the read replica. Setting this to false will serve the request to the master.
+
+`--include-external-metadata` (bool)
+:   Specifies if entity external metadata should be included within the response.
+
+`--maintenance-status` (string)
+:   Specifies the maintenance status of a source. 'UnderMaintenance' indicates the source is currently under maintenance. 'ScheduledMaintenance' indicates the source is scheduled for maintenance. 'NotConfigured' indicates maintenance is not configured on the source.
+
+    Allowable values are: `UnderMaintenance`, `ScheduledMaintenance`, `NotConfigured`.
+
+`--tenant-ids` ([]string)
+:   TenantIds contains ids of the tenants for which objects are to be returned.
+
+`--all-under-hierarchy` (bool)
+:   AllUnderHierarchy specifies if objects of all the tenants under the hierarchy of the logged in user's organization should be returned.
+
+#### Example
+{: #backup-recovery-protection-source-registration-info-examples}
+
+```sh
+ibmcloud backup-recovery protection-source registration-info \
+    --xibm-tenant-id tenantId \
+    --environments kVMware,kSQL,kPhysical,kKubernetes \
+    --ids 26,27 \
+    --include-entity-permission-info=true \
+    --sids exampleString,anotherTestString \
+    --include-source-credentials=true \
+    --encryption-key exampleString \
+    --include-applications-tree-info=true \
+    --prune-non-critical-info=true \
+    --request-initiator-type UIUser \
+    --use-cached-data=true \
+    --include-external-metadata=true \
+    --maintenance-status UnderMaintenance \
+    --tenant-ids exampleString,anotherTestString \
+    --all-under-hierarchy=true
+```
+{: pre}
+
 ### `ibmcloud backup-recovery protection-source register`
 {: #backup-recovery-cli-protection-source-register-command}
 
@@ -550,7 +634,10 @@ ibmcloud backup-recovery protection-source register --xibm-tenant-id XIBM-TENANT
 `--kubernetes-params-datamover-service-type` (string)
 :   Specifies the data mover service type of Kubernetes source. This option provides a value for a subfield of the JSON option 'kubernetes-params'. It is mutually exclusive with that option.
 
-    Allowable values are: `kNodePort`, `kLoadBalancer`, `kClusterIp`.
+    Allowable values are: `kNodePort`, `kLoadBalancer`, `kClusterIp`, `kHostPort`.
+
+`--kubernetes-params-datamover-hostport-number` (int32)
+:   Specifies the datamover host port number of the Kubernetes source. This option provides a value for a subfield of the JSON option 'kubernetes-params'. It is mutually exclusive with that option.
 
 `--kubernetes-params-default-vlan-params` (string)
 :   Specifies VLAN params that is associated with the backup/restore operation. It should be a JSON string or a path to a JSON file. This option provides a value for a subfield of the JSON option 'kubernetes-params'. It is mutually exclusive with that option.
@@ -591,6 +678,9 @@ ibmcloud backup-recovery protection-source register --xibm-tenant-id XIBM-TENANT
 
 `--kubernetes-params-velero-image-location` (string)
 :   Specifies the velero image location of the Kubernetes source. This option provides a value for a subfield of the JSON option 'kubernetes-params'. It is mutually exclusive with that option.
+
+`--kubernetes-params-velero-kubevirt-plugin-image-location` (string)
+:   Specifies the velero kubevirt plug-in image location of the Kubernetes source. This option provides a value for a subfield of the JSON option 'kubernetes-params'. It is mutually exclusive with that option.
 
 `--kubernetes-params-velero-openshift-plugin-image-location` (string)
 :   Specifies the velero open shift plug-in image for the Kubernetes source. This option provides a value for a subfield of the JSON option 'kubernetes-params'. It is mutually exclusive with that option.
@@ -772,7 +862,10 @@ ibmcloud backup-recovery protection-source registration-update --id ID --xibm-te
 `--kubernetes-params-datamover-service-type` (string)
 :   Specifies the data mover service type of Kubernetes source. This option provides a value for a subfield of the JSON option 'kubernetes-params'. It is mutually exclusive with that option.
 
-    Allowable values are: `kNodePort`, `kLoadBalancer`, `kClusterIp`.
+    Allowable values are: `kNodePort`, `kLoadBalancer`, `kClusterIp`, `kHostPort`.
+
+`--kubernetes-params-datamover-hostport-number` (int32)
+:   Specifies the datamover host port number of the Kubernetes source. This option provides a value for a subfield of the JSON option 'kubernetes-params'. It is mutually exclusive with that option.
 
 `--kubernetes-params-default-vlan-params` (string)
 :   Specifies VLAN params that is associated with the backup/restore operation. It should be a JSON string or a path to a JSON file. This option provides a value for a subfield of the JSON option 'kubernetes-params'. It is mutually exclusive with that option.
@@ -813,6 +906,9 @@ ibmcloud backup-recovery protection-source registration-update --id ID --xibm-te
 
 `--kubernetes-params-velero-image-location` (string)
 :   Specifies the velero image location of the Kubernetes source. This option provides a value for a subfield of the JSON option 'kubernetes-params'. It is mutually exclusive with that option.
+
+`--kubernetes-params-velero-kubevirt-plugin-image-location` (string)
+:   Specifies the velero kubevirt plug-in image location of the Kubernetes source. This option provides a value for a subfield of the JSON option 'kubernetes-params'. It is mutually exclusive with that option.
 
 `--kubernetes-params-velero-openshift-plugin-image-location` (string)
 :   Specifies the velero open shift plug-in image for the Kubernetes source. This option provides a value for a subfield of the JSON option 'kubernetes-params'. It is mutually exclusive with that option.
@@ -2440,6 +2536,128 @@ ibmcloud backup-recovery protection-group-run list \
 ```
 {: pre}
 
+### `ibmcloud backup-recovery protection-group-run get`
+{: #backup-recovery-cli-protection-group-run-get-command}
+
+Get a run for a Protection Group.
+
+```sh
+ibmcloud backup-recovery protection-group-run get --id ID --run-id RUN-ID [--request-initiator-type REQUEST-INITIATOR-TYPE] [--tenant-ids TENANT-IDS] [--include-tenants=INCLUDE-TENANTS] [--include-object-details=INCLUDE-OBJECT-DETAILS] [--use-cached-data=USE-CACHED-DATA]
+```
+
+#### Command options
+{: #backup-recovery-protection-group-run-get-cli-options}
+
+`--id` (string)
+:   Specifies a unique id of the Protection Group. Required.
+
+`--run-id` (string)
+:   Specifies a unique run id of the Protection Group run. Required.
+
+`--request-initiator-type` (string)
+:   Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
+
+    Allowable values are: `UIUser`, `UIAuto`, `Helios`.
+
+`--tenant-ids` ([]string)
+:   TenantIds contains ids of the tenants for which the run is to be returned.
+
+`--include-tenants` (bool)
+:   If true, the response will include Protection Group Runs which were created by all tenants which the current user has permission to see. If false, then only Protection Groups created by the current user will be returned. If it's not specified, it is true by default.
+
+`--include-object-details` (bool)
+:   Specifies if the result includes the object details for a protection run. If set to true, details of the protected object will be returned. If set to false or not specified, details will not be returned.
+
+`--use-cached-data` (bool)
+:   Specifies whether we can serve the GET request from the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.
+
+#### Example
+{: #backup-recovery-protection-group-run-get-examples}
+
+```sh
+ibmcloud backup-recovery protection-group-run get \
+    --id exampleString \
+    --run-id exampleString \
+    --request-initiator-type UIUser \
+    --tenant-ids exampleString,anotherTestString \
+    --include-tenants=true \
+    --include-object-details=true \
+    --use-cached-data=true
+```
+{: pre}
+
+### `ibmcloud backup-recovery protection-group-run progress`
+{: #backup-recovery-cli-protection-group-run-progress-command}
+
+Get the progress of a run.
+
+```sh
+ibmcloud backup-recovery protection-group-run progress --run-id RUN-ID [--objects OBJECTS] [--tenant-ids TENANT-IDS] [--include-tenants=INCLUDE-TENANTS] [--include-finished-tasks=INCLUDE-FINISHED-TASKS] [--start-time-usecs START-TIME-USECS] [--end-time-usecs END-TIME-USECS] [--max-tasks-num MAX-TASKS-NUM] [--exclude-object-details=EXCLUDE-OBJECT-DETAILS] [--include-event-logs=INCLUDE-EVENT-LOGS] [--max-log-level MAX-LOG-LEVEL] [--run-task-path RUN-TASK-PATH] [--object-task-paths OBJECT-TASK-PATHS]
+```
+
+#### Command options
+{: #backup-recovery-protection-group-run-progress-cli-options}
+
+`--run-id` (string)
+:   Specifies a unique run id of the Protection Run. Required.
+
+`--objects` ([]int64)
+:   Specifies the objects whose progress will be returned. This only applies to protection group runs and will be ignored for object runs. If the objects are specified, the run progress will not be returned and only the progress of the specified objects will be returned.
+
+`--tenant-ids` ([]string)
+:   TenantIds contains ids of the tenants for which the run is to be returned.
+
+`--include-tenants` (bool)
+:   If true, the response will include Protection Group Runs which were created by all tenants which the current user has permission to see. If false, then only Protection Groups created by the current user will be returned. If it's not specified, it is true by default.
+
+`--include-finished-tasks` (bool)
+:   Specifies whether to return finished tasks. By default only active tasks are returned.
+
+`--start-time-usecs` (int64)
+:   Specifies the time after which the progress task starts in Unix epoch Timestamp (in microseconds).
+
+`--end-time-usecs` (int64)
+:   Specifies the time before which the progress task ends in Unix epoch Timestamp (in microseconds).
+
+`--max-tasks-num` (int32)
+:   Specifies the maximum number of tasks to return.
+
+`--exclude-object-details` (bool)
+:   Specifies whether to return objects. By default all the task tree are returned.
+
+`--include-event-logs` (bool)
+:   Specifies whether to include event logs.
+
+`--max-log-level` (int32)
+:   Specifies the number of levels till which to fetch the event logs. This is applicable only when includeEventLogs is true.
+
+`--run-task-path` (string)
+:   Specifies the task path of the run or object run. This is applicable only if progress of a protection group with one or more object is required. If provided this will be used to fetch progress details directly without looking at the actual task path of the object. The objects field is still expected, otherwise it changes the response format.
+
+`--object-task-paths` ([]string)
+:   Specifies the object level task path. This relates to the objectID. If provided this will take precedence over the objects, and will be used to fetch progress details directly without looking at the actual task path of the object.
+
+#### Example
+{: #backup-recovery-protection-group-run-progress-examples}
+
+```sh
+ibmcloud backup-recovery protection-group-run progress \
+    --run-id exampleString \
+    --objects 26,27 \
+    --tenant-ids exampleString,anotherTestString \
+    --include-tenants=true \
+    --include-finished-tasks=true \
+    --start-time-usecs 26 \
+    --end-time-usecs 26 \
+    --max-tasks-num 38 \
+    --exclude-object-details=true \
+    --include-event-logs=true \
+    --max-log-level 38 \
+    --run-task-path exampleString \
+    --object-task-paths exampleString,anotherTestString
+```
+{: pre}
+
 ### `ibmcloud backup-recovery protection-group-run update`
 {: #backup-recovery-cli-protection-group-run-update-command}
 
@@ -2860,6 +3078,30 @@ ibmcloud backup-recovery recovery get --id ID --xibm-tenant-id XIBM-TENANT-ID
 ibmcloud backup-recovery recovery get \
     --id exampleString \
     --xibm-tenant-id tenantId
+```
+{: pre}
+
+### `ibmcloud backup-recovery recovery cancel`
+{: #backup-recovery-cli-recovery-cancel-command}
+
+Cancel Recovery for a given id.
+
+```sh
+ibmcloud backup-recovery recovery cancel --id ID
+```
+
+#### Command options
+{: #backup-recovery-recovery-cancel-cli-options}
+
+`--id` (string)
+:   Specifies the id of a Recovery. Required.
+
+#### Example
+{: #backup-recovery-recovery-cancel-examples}
+
+```sh
+ibmcloud backup-recovery recovery cancel \
+    --id exampleString
 ```
 {: pre}
 
@@ -4876,85 +5118,38 @@ Fetches list of all reports accessible by logged in user.
 ```
 {: pre}
 
-### `ibmcloud backup-recovery connector-agent register  help`
-{: #backup-recovery-cli-connector-agent-register-help-command}
+## Connector-agent commands
+{: #backup-recovery-connector-agent-cli}
 
-Register - Register a connector agent with a backup instance using the supplied registration token. The registration token for the connector agent with which this is to be registered has to be obtained by the user by invoking the relevant `/connector-agents` APIs on the backup instance. When a duplicate registration is attempted, this API returns success with header indicating that it was already registered.
+Commands for ConnectorAgent resource.
 
 ```sh
-  ibmcloud backup-recovery connector-agent register [--connection-name CONNECTION_NAME] [--help] [--join-existing-connection] [--quiet] [--registration-token REGISTRATION_TOKEN]
+ibmcloud backup-recovery connector-agent [action]
 ```
 
-#### Command options
-{: #backup-recovery-connector-agent-register-cli-options}
+### `ibmcloud backup-recovery connector-agent list`
+{: #backup-recovery-cli-connector-agent-list-command}
 
-`--connection-name` (string)
-:   Specifies the name to be associated with the connector agent. This must be unique within the tenant to which this connector agent is registered. Required.
-
-`--join-existing-connection` (boolean)
-:   Whether this agent is joining a connection that was already claimed by a previous registration (e.g. another agent in the same cluster for clustered sources). When true, the server adds this agent to the existing connection instead of rejecting the request as a duplicate. If the connection does not yet exist, a new one is created regardless of this flag. The default value is false.
-
-`--registration-token` (string)
-:   The JWT registration token. A single token can be used to register multiple connector agents in that tenant. By default, the token is valid for 24 hours. Required.
-
-#### Example
-{: #backup-recovery-connector-agent-register-examples}
+List the connector agents for a given tenant based on filters on connection names or connection IDs (not both). If no filters are provided, it lists all agents for that tenant. Upon errors, partial results are not populated.
 
 ```sh
-ibmcloud backup-recovery connector-agent register \
-    --registration-token exampleString \
-    --connection-name exampleString \
-    --join-existing-connection=false
-```
-{: pre}
-
-### `ibmcloud backup-recovery connector-agent config-get  help`
-{: #backup-recovery-cli-connector-agent-config-get-help-command}
-
-config-get - Get the configuration, containing JWT registration token, for claiming a connector agent to the DataProtect cluster.
-
-```sh
-ibmcloud backup-recovery connector-agent config-get [--help] [--quiet] [--xibm-tenant-id XIBM_TENANT_ID]
-```
-
-#### Command options
-{: #backup-recovery-connector-agent-config-cli-options}
-
-`--xibm-tenant-id` (string)
-:   Specifies the unique id of the tenant. Required.
-
-#### Example
-{: #backup-recovery-connector-agent-config-examples}
-
-```sh
- ibmcloud backup-recovery connector-agent config-get \
-    --xibm-tenant-id tenantId
-```
-{: pre}
-
-### `ibmcloud backup-recovery connector-agent list  help`
-{: #backup-recovery-cli-connector-agent-list-help-command}
-
-list - List the connector agents for a given tenant based on filters on connection names or connection IDs (not both). If no filters are provided, it lists all agents for that tenant. Upon errors, partial results are not populated.
-
-```sh
-ibmcloud backup-recovery connector-agent list [--connection-ids CONNECTION_IDS] [--connection-names CONNECTION_NAMES] [--help] [--quiet] [--tenant-id TENANT_ID] [--xibm-tenant-id XIBM_TENANT_ID]
+ibmcloud backup-recovery connector-agent list --xibm-tenant-id XIBM-TENANT-ID --tenant-id TENANT-ID [--connection-names CONNECTION-NAMES] [--connection-ids CONNECTION-IDS]
 ```
 
 #### Command options
 {: #backup-recovery-connector-agent-list-cli-options}
 
-`--connection-ids` (string)
-:   Specifies the connection IDs whose connector agents are to be fetched.
-
-`--connection-names` (string)
-:   Specifies the connection names whose connector agents are to be fetched.
+`--xibm-tenant-id` (string)
+:   Specifies the unique id of the tenant. Required.
 
 `--tenant-id` (string)
-:   Specifies the ID of the tenant for which the connector agents are to be fetched.
+:   Specifies the ID of the tenant for which the connector agents are to be fetched. Required.
 
-`--xibm-tenant-id` (string)
-:   Specifies the unique id of the tenant.
+`--connection-names` ([]string)
+:   Specifies the connection names whose connector agents are to be fetched.
+
+`--connection-ids` ([]int64)
+:   Specifies the connection IDs whose connector agents are to be fetched.
 
 #### Example
 {: #backup-recovery-connector-agent-list-examples}
@@ -4965,6 +5160,62 @@ ibmcloud backup-recovery connector-agent list \
     --tenant-id exampleString \
     --connection-names exampleString,anotherTestString \
     --connection-ids 26,27
+```
+{: pre}
+
+### `ibmcloud backup-recovery connector-agent config-get`
+{: #backup-recovery-cli-connector-agent-config-get-command}
+
+Get the configuration, containing JWT registration token, for claiming a connector agent to the DataProtect cluster.
+
+```sh
+ibmcloud backup-recovery connector-agent config-get --xibm-tenant-id XIBM-TENANT-ID
+```
+
+#### Command options
+{: #backup-recovery-connector-agent-config-get-cli-options}
+
+`--xibm-tenant-id` (string)
+:   Specifies the unique id of the tenant. Required.
+
+#### Example
+{: #backup-recovery-connector-agent-config-get-examples}
+
+```sh
+ibmcloud backup-recovery connector-agent config-get \
+    --xibm-tenant-id tenantId
+```
+{: pre}
+
+### `ibmcloud backup-recovery connector-agent register`
+{: #backup-recovery-cli-connector-agent-register-command}
+
+Register a connector agent with a backup instance using the supplied registration token. The registration token for the connector agent with which this is to be registered has to be obtained by invoking the relevant `/connector-agents` APIs on the backup instance. When a duplicate registration is attempted, this API returns success with a header indicating that it was already registered.
+
+```sh
+ibmcloud backup-recovery connector-agent register --registration-token REGISTRATION-TOKEN --connection-name CONNECTION-NAME [--join-existing-connection=JOIN-EXISTING-CONNECTION]
+```
+
+#### Command options
+{: #backup-recovery-connector-agent-register-cli-options}
+
+`--registration-token` (string)
+:   The JWT registration token. A single token can be used to register multiple connector agents in that tenant. By default, the token is valid for 24 hours. Required.
+
+`--connection-name` (string)
+:   Specifies the name to be associated with the connector agent. This must be unique within the tenant to which this connector agent is registered. Required.
+
+`--join-existing-connection` (bool)
+:   Whether this agent is joining a connection that was already claimed by a previous registration (for example, another agent in the same cluster for clustered sources). When true, the server adds this agent to the existing connection instead of rejecting the request as a duplicate. If the connection does not yet exist, a new one is created regardless of this flag. The default value is false.
+
+#### Example
+{: #backup-recovery-connector-agent-register-examples}
+
+```sh
+ibmcloud backup-recovery connector-agent register \
+    --registration-token exampleString \
+    --connection-name exampleString \
+    --join-existing-connection=false
 ```
 {: pre}
 
