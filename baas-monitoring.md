@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2025
-lastupdated: "2025-08-27"
+  years: 2026
+lastupdated: "2026-08-10"
 
 keywords: backup-recovery observability
 
@@ -34,7 +34,7 @@ The backup-recovery service sends metrics in the regions that are indicated in t
 
 | Dallas (`us-south`) | Washington (`us-east`)  | Toronto (`ca-tor`) | Sao Paulo (`br-sao`) |
 |---------------------|-------------------------|-------------------|----------------------|
-| [No]{: tag-red} | [No]{: tag-red} | [No]{: tag-red} | [No]{: tag-red} |
+| [Yes]{: tag-green} | [Yes]{: tag-green} | [Yes]{: tag-green} | [Yes]{: tag-green} |
 {: caption="Regions where metrics are sent in Americas locations" caption-side="top"}
 {: #mon-table-1}
 {: tab-title="Americas"}
@@ -44,7 +44,7 @@ The backup-recovery service sends metrics in the regions that are indicated in t
 
 | Tokyo (`jp-tok`)    | Sydney (`au-syd`) |  Osaka (`jp-osa`) | Chennai (`in-che`) |
 |---------------------|------------------|------------------|--------------------|
-| [No]{: tag-red} | [No]{: tag-red} | [No]{: tag-red} | [No]{: tag-red} |
+| [Yes]{: tag-green} | [Yes]{: tag-green} | [Yes]{: tag-green} | [Yes]{: tag-green} |
 {: caption="Regions where metrics are sent in Asia Pacific locations" caption-side="top"}
 {: #mon-table-2}
 {: tab-title="Asia Pacific"}
@@ -54,7 +54,7 @@ The backup-recovery service sends metrics in the regions that are indicated in t
 
 | Frankfurt (`eu-de`)  | London (`eu-gb`) | Madrid (`eu-es`) |
 |---------------------------------------------------------------|---------------------|------------------|
-| [No]{: tag-red} | [No]{: tag-red} | [No]{: tag-red} |
+| [Yes]{: tag-green} | [Yes]{: tag-green} | [Yes]{: tag-green} |
 {: caption="Regions where metrics are sent in Europe locations" caption-side="top"}
 {: #mon-table-3}
 {: tab-title="Europe"}
