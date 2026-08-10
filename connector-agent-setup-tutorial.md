@@ -2,7 +2,7 @@
 
 copyright:
   years: 2026
-lastupdated: "2026-06-26"
+lastupdated: "2026-08-10"
 
 keywords: connector agent, backup agent, direct connection, agent registration, backup and recovery
 
@@ -231,7 +231,7 @@ Obtain a time-limited registration token (JWT) that is used to claim the agent.
 2. Copy the `registrationToken` value from the response JSON. This token is time-limited and must be used promptly. Replace `<access-token>` with the token that is obtained in the previous step and `<tenant-id>` with your tenant ID.
 
    ```curl
-   curl -k -X GET "https://<your-instance-url>/v2/connector-agents/configs" \
+   curl -k -X GET "https://<your-instance-url>/v2/connector-agents/config" \
    -H "Content-Type: application/json" \
    -H "Accept: application/json" \
    -H "X-IBM-Tenant-ID: <tenant-id>" \
