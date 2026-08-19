@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025, 2026
-lastupdated: "2026-06-26"
+lastupdated: "2026-08-19"
 
 keywords: data source connector, iks, roks, cluster
 
@@ -52,18 +52,24 @@ E. [Troubleshooting](/docs/backup-recovery?topic=backup-recovery-data-source-con
 
 You need the following to get started with {{site.data.keyword.baas_full_notm}} with Kubernetes or OpenShift:
 - An [{{site.data.keyword.cloud}} Platform account](https://cloud.ibm.com)
-- An active instance of [{{site.data.keyword.baas_full_notm}} service](https://cloud.ibm.com/catalog/services/backup-and-recovery?catalog_query=aHR0cHM6Ly9jbG91ZC5pYm0uY29tL2NhdGFsb2cjaGlnaGxpZ2h0cw%3D%3D)
+- A {{site.data.keyword.baas_full_notm}} service instance. If you haven't created one yet, see [Creating a Backup and Recovery service instance](/docs/backup-recovery?topic=backup-recovery-instance-creation).
+- A Kubernetes or OpenShift cluster deployed in IBM Cloud
 
 Alternatively, you can use the pre-built, open-source, and enterprise-ready [Terraform IBM modules](/docs/ibm-cloud-provider-for-terraform?topic=ibm-cloud-provider-for-terraform-about-tim) with {{site.data.keyword.baas_full_notm}} service. These modules provide best practices for provisioning {{site.data.keyword.cloud_notm}} resources and can be referenced directly in your Terraform configurations.
 
-## Accessing your {{site.data.keyword.baas_full_notm}} instances
+## Accessing your {{site.data.keyword.baas_full_notm}} instance
 {: #data-source-connector-iks-roks-access-instance}
 
-1. Verify that your [IBM Cloud Platform account](https://cloud.ibm.com/){: external} has access to the required {{site.data.keyword.baas_full_notm}} service.
-    1. Go to `Navigation Menu` \> `Backup and Recovery`.
-    2. On the **Backup service instances** page, use the search bar to find your instance by name.
-    3. Identify the instance with **Active** status and click its name.
-    4. On the instance details page, click `Launch dashboard`.
+If you haven't created a {{site.data.keyword.baas_full_notm}} instance yet, see [Creating a Backup and Recovery service instance](/docs/backup-recovery?topic=backup-recovery-instance-creation).
+{: tip}
+
+To access your existing {{site.data.keyword.baas_full_notm}} instance:
+
+1. Log in to your [IBM Cloud Platform account](https://cloud.ibm.com/){: external}.
+2. Go to `Navigation Menu` \> `Backup and Recovery`.
+3. On the **Backup service instances** page, use the search bar to find your instance by name.
+4. Identify the instance with **Active** status and click its name.
+5. On the instance details page, click `Launch dashboard`.
 
 
 ## Backup requirements for Kubernetes or OpenShift clusters

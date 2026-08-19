@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2025
-lastupdated: "2025-12-12"
+  years: 2026
+lastupdated: "2026-08-19"
 
 keywords: oracle, tutorial
 
@@ -34,7 +34,7 @@ This tutorial shows how to recover Oracle server data stored on your {{site.data
 Ensure that you have what you need to start:
 
 - An account for the [{{site.data.keyword.cloud}} Platform](https://cloud.ibm.com).
-- An [instance](/docs/backup-recovery?topic=backup-recovery-getting-started-backup-recovery#baas-provision-instance) of {{site.data.keyword.baas_full_notm}} service is deployed.
+- A {{site.data.keyword.baas_full_notm}} service instance. If you haven't created one yet, see [Creating a Backup and Recovery service instance](/docs/backup-recovery?topic=backup-recovery-instance-creation).
 - A Data Source Connection that has been created on your instance.
 - A [Data Source Connector](/docs/backup-recovery?topic=backup-recovery-deploy_data_source_connector) (VM or VSI) that is registered with your instance.
   - VM-based sources must use a VM-based data source connector.

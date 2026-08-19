@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2026
-lastupdated: "2026-06-08"
+lastupdated: "2026-08-19"
 
 keywords: IBM cloud backup and recovery, VPC, VSI, new user, workload availability, deployment
 
@@ -12,12 +12,15 @@ subcollection: backup-recovery
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Getting started with Backup and Recovery for VPC (VSIs) workloads
+# Getting started: Backing up a Linux VSI
 {: #getting-started-backup-recovery}
-{{site.data.keyword.baas_full}} is a managed service that provides backup solutions for various {{site.data.keyword.cloud}} services and customer workloads running on IBM Cloud.
-{: shortdesc}
 
-This topic shows you how to get started with {{site.data.keyword.baas_full_notm}} to protect data in a Virtual Server Instance that is running Ubuntu Linux. The intended audience is first-time users of the service where you learn to deploy and configure a {{site.data.keyword.baas_full_notm}} instance, and create a [Data Source Connector](/docs-draft/backup-recovery?group=data-source-connector) or [Connector Agent](/docs-draft/backup-recovery?topic=backup-recovery-connector-agent-setup-tutorial) that links your Virtual Server and the instance. Then you can create a new protection group and apply a custom policy that defines backup schedules and retention. Once the policy is applied to the protection group, your data is protected.
+{{site.data.keyword.baas_full}} is a managed service that provides backup solutions for various {{site.data.keyword.cloud}} services and customer workloads running on IBM Cloud.
+
+This topic shows you how to get started with {{site.data.keyword.baas_full_notm}} to protect data in a Virtual Server Instance running Ubuntu Linux. You learn to set up a source VSI, install the backup agent, register the source, and create a protection group with a backup policy.
+
+Before you begin, you must have a {{site.data.keyword.baas_full_notm}} instance created and set up with a Data Source Connector. If you haven't already done so, see [Creating a Backup and Recovery service instance](/docs/backup-recovery?topic=backup-recovery-instance-creation) and [Setting up a Backup and Recovery instance](/docs/backup-recovery?topic=backup-recovery-instance-setup).
+{: important}
 
 Use code **VPC1000** and get **USD 1,000** in no-charge credits to use toward different offerings on IBM Cloud VPC, including: Confidential computing with Intel® SGX®, Bare Metal for VPC, {{site.data.keyword.baas_full_notm}}, or any Block and File storage or networking components. **Valid until 31 December 2026**.
 {: important}
@@ -30,121 +33,49 @@ Use code **VPC1000** and get **USD 1,000** in no-charge credits to use toward di
 
 You need the following to get started with {{site.data.keyword.baas_full_notm}}:
 - An [{{site.data.keyword.cloud}} Platform account](https://cloud.ibm.com)
-- An active instance of {{site.data.keyword.baas_full_notm}} that is covered in [Set up a {{site.data.keyword.baas_full_notm}} deployment](#baas-setting-up-deployment)
-- You need to start the dashboard of your backup service instance to create, manage, and monitor backup policies
+- A {{site.data.keyword.baas_full_notm}} service instance. If you haven't created one yet, see [Creating a Backup and Recovery service instance](/docs/backup-recovery?topic=backup-recovery-instance-creation).
+- A Data Source Connector configured for your VPC. See [Setting up a Backup and Recovery instance](/docs/backup-recovery?topic=backup-recovery-instance-setup).
+- Access to the {{site.data.keyword.baas_full_notm}} dashboard to create, manage, and monitor backup policies
 
 ## Workload availability
 {: #baas-compare-workload-availability}
 
 | Workload | VPC VSI | VMware | Regions supported |
 | --- | --- | --- | --- |
-| File system | Yes  | Yes | - North America:  United States - Washington DC `us-east`, Dallas `us-south`, Canada - Toronto `ca-tor`<br> - South America:  Brazil - São Paulo `br-sao`<br> - Europe:  Europe - Frankfurt `eu-de`, Europe - London `eu-gb`, Europe - Madrid `eu-es`<br> - Asia: Japan - Tokyo`jp-tok`, Osako`jp-osa`<br> - Australia - Sydney`au-syd`|
-| MS SQL | Yes  | Yes | - North America:  United States - Washington DC `us-east`, Dallas `us-south`, Canada - Toronto `ca-tor`<br> - South America:  Brazil - São Paulo `br-sao`<br> - Europe:  Europe - Frankfurt `eu-de`, Europe - London `eu-gb`, Europe - Madrid `eu-es`<br> - Asia: Japan - Tokyo`jp-tok`, Osako`jp-osa`<br> - Australia - Sydney`au-syd` |
-| SAP HANA | Yes  | Yes |  - North America:  United States - Washington DC `us-east`, Dallas `us-south`, Canada - Toronto `ca-tor`<br> - South America:  Brazil - São Paulo `br-sao`<br> - Europe:  Europe - Frankfurt `eu-de`, Europe - London `eu-gb`, Europe - Madrid `eu-es`<br> - Asia: Japan - Tokyo`jp-tok`, Osako`jp-osa`<br> - Australia - Sydney`au-syd` |
-| Oracle | No  | Yes |  - North America:  United States - Washington DC `us-east`, Dallas `us-south`, Canada - Toronto `ca-tor`<br> - South America:  Brazil - São Paulo `br-sao`<br> - Europe:  Europe - Frankfurt `eu-de`, Europe - London `eu-gb`, Europe - Madrid `eu-es`<br> - Asia: Japan - Tokyo`jp-tok`, Osako`jp-osa`<br> - Australia - Sydney`au-syd` |
-| Kubernetes/OpenShift | Yes  | No |  - North America:  United States - Washington DC `us-east`, Dallas `us-south`, Canada - Toronto `ca-tor`<br> - South America:  Brazil - São Paulo `br-sao`<br> - Europe:  Europe - Frankfurt `eu-de`, Europe - London `eu-gb`, Europe - Madrid `eu-es`<br> - Asia: Japan - Tokyo`jp-tok`, Osako`jp-osa`<br> - Australia - Sydney`au-syd` |
-| Db2 | Yes (Linux only)  | No |  - North America:  United States - Washington DC `us-east`, Dallas `us-south`, Canada - Toronto `ca-tor`<br> - South America:  Brazil - São Paulo `br-sao`<br> - Europe:  Europe - Frankfurt `eu-de`, Europe - London `eu-gb`, Europe - Madrid `eu-es`<br> - Asia: Japan - Tokyo`jp-tok`, Osako`jp-osa`<br> - Australia - Sydney`au-syd` |
+| File system | Yes  | Yes | - North America:  United States - Washington DC `us-east`, Dallas `us-south`, Canada - Toronto `ca-tor`<br> - South America:  Brazil - São Paulo `br-sao`<br> - Europe:  Europe - Frankfurt `eu-de`, Europe - London `eu-gb`, Europe - Madrid `eu-es`<br> - Asia: Japan - Tokyo`jp-tok`, Osaka`jp-osa`<br> - Australia - Sydney`au-syd`|
+| MS SQL | Yes  | Yes | - North America:  United States - Washington DC `us-east`, Dallas `us-south`, Canada - Toronto `ca-tor`<br> - South America:  Brazil - São Paulo `br-sao`<br> - Europe:  Europe - Frankfurt `eu-de`, Europe - London `eu-gb`, Europe - Madrid `eu-es`<br> - Asia: Japan - Tokyo`jp-tok`, Osaka`jp-osa`<br> - Australia - Sydney`au-syd` |
+| SAP HANA | Yes  | Yes |  - North America:  United States - Washington DC `us-east`, Dallas `us-south`, Canada - Toronto `ca-tor`<br> - South America:  Brazil - São Paulo `br-sao`<br> - Europe:  Europe - Frankfurt `eu-de`, Europe - London `eu-gb`, Europe - Madrid `eu-es`<br> - Asia: Japan - Tokyo`jp-tok`, Osaka`jp-osa`<br> - Australia - Sydney`au-syd` |
+| Oracle | No  | Yes |  - North America:  United States - Washington DC `us-east`, Dallas `us-south`, Canada - Toronto `ca-tor`<br> - South America:  Brazil - São Paulo `br-sao`<br> - Europe:  Europe - Frankfurt `eu-de`, Europe - London `eu-gb`, Europe - Madrid `eu-es`<br> - Asia: Japan - Tokyo`jp-tok`, Osaka`jp-osa`<br> - Australia - Sydney`au-syd` |
+| Kubernetes/OpenShift | Yes  | No |  - North America:  United States - Washington DC `us-east`, Dallas `us-south`, Canada - Toronto `ca-tor`<br> - South America:  Brazil - São Paulo `br-sao`<br> - Europe:  Europe - Frankfurt `eu-de`, Europe - London `eu-gb`, Europe - Madrid `eu-es`<br> - Asia: Japan - Tokyo`jp-tok`, Osaka`jp-osa`<br> - Australia - Sydney`au-syd` |
+| Db2 | Yes (Linux only)  | No |  - North America:  United States - Washington DC `us-east`, Dallas `us-south`, Canada - Toronto `ca-tor`<br> - South America:  Brazil - São Paulo `br-sao`<br> - Europe:  Europe - Frankfurt `eu-de`, Europe - London `eu-gb`, Europe - Madrid `eu-es`<br> - Asia: Japan - Tokyo`jp-tok`, Osaka`jp-osa`<br> - Australia - Sydney`au-syd` |
 {: caption="Workload availability " caption-side="bottom"}
 
 
 ## High-level overview of getting started
 {: #baas-backup-linux-basic-user-overview}
 
-This section assumes you’re starting from scratch without any existing resources. It guides you through creating new instances; however, you can choose to use your existing resources instead if you have them. If you create new instances, note that this increases your monthly costs. To avoid additional charges, be sure to stop your VSI at the end of the getting started steps.
+This section assumes you're starting from scratch without any existing resources. It guides you through creating new instances; however, you can choose to use your existing resources instead if you have them. If you create new instances, note that this increases your monthly costs. To avoid additional charges, be sure to stop your VSI at the end of the getting started steps.
 
 |Step|Environment|Task|Note|
 |---|---|---|---|
-|**Step 1:** [Set up a {{site.data.keyword.baas_full_notm}} instance](#baas-setting-up-deployment)| | | |
-| | UI | Deploy your {{site.data.keyword.baas_full_notm}} instance. | |
-| | UI | Create a Data Source Connection (for a VPC) in {{site.data.keyword.baas_full_notm}}. | Data source connection is a tunnel between the {{site.data.keyword.baas_full_notm}} instance and the source server. The Data Source Connector is the component that forms that tunnel. |
-| | UI | Create the Data Source Connector instance for the VSI. | Connector VSI instance. |
-| | UI or CLI | Reserve (or bind) Floating IP for the Connector VSI. | |
-| | UI | Configure the Connector VSI in the {{site.data.keyword.baas_full_notm}} UI. | Set up password and token: First, add the domain: ‘cloud.ibm.com’ works as a default. Then, paste the claim token from the **Create source connection** modal. |
-| | UI or CLI | Deploy (or identify) a Virtual Private Endpoint gateway instance. | |
-|**Step 2:** [Set up a Source Virtual Server Instance (VSI)](#baas-setting-up-source-vsi)| | | |
+|**Step 1:** [Set up a Source Virtual Server Instance (VSI)](#baas-setting-up-source-vsi)| | | |
 | Optional | UI or CLI |Set up (or identify) the Source Virtual Server Instance.|Source Virtual Server Instance|
 | | UI or CLI |Reserve (or bind) Floating IP| |
-|**Step 3:** [Set up a {{site.data.keyword.baas_full_notm}} agent to Source VSI](#baas-setting-up-agent-source-vsi)| | | |
+|**Step 2:** [Set up a {{site.data.keyword.baas_full_notm}} agent to Source VSI](#baas-setting-up-agent-source-vsi)| | | |
 | | UI |Download and install the Linux-based {{site.data.keyword.baas_full_notm}} script installer from the {{site.data.keyword.baas_full_notm}} > Sources page. | Securely copy the agent installer from your local environment to the Source VSI. |
 |Optional| Terminal|Verify copying|Note: The installer is not yet executable. |
 | |Terminal| Configure the Source Server to manage NFS (minimum requirement). | Install NFS (file handler) |
 | |Terminal| Install agent to Source VSI | |
-|**Step 4:** [Register a Source VSI into {{site.data.keyword.baas_full_notm}}](#baas-register-source-vsi)| | | |
-| |UI|Register the Source VSI in {{site.data.keyword.baas_full_notm}} UI (Source page).|Add Source VSI’s Reserved IP address|
-|**Step 5:** [Set up a Protection group in {{site.data.keyword.baas_full_notm}}](#baas-set-up-data-protection)| | | |
-| |UI - need to check plug-in|Create and configure a new Protection group in {{site.data.keyword.baas_full_notm}} UI (Protection page)|Physical server > File - Add object.|
-|Optional|UI - need to check plugin|Verify backup up creation and progress on the {{site.data.keyword.baas_full_notm}} instance subpage.| |
+|**Step 3:** [Register a Source VSI into {{site.data.keyword.baas_full_notm}}](#baas-register-source-vsi)| | | |
+| |UI|Register the Source VSI in {{site.data.keyword.baas_full_notm}} UI (Source page).|Add Source VSI's Reserved IP address|
+|**Step 4:** [Set up a Protection group in {{site.data.keyword.baas_full_notm}}](#baas-set-up-data-protection)| | | |
+| |UI|Create and configure a new Protection group in {{site.data.keyword.baas_full_notm}} UI (Protection page)|Physical server > File - Add object.|
+|Optional|UI|Verify backup creation and progress on the {{site.data.keyword.baas_full_notm}} instance subpage.| |
 {: caption="High-level overview of getting started" caption-side="bottom"}
-
-
-## Set up a {{site.data.keyword.baas_full_notm}} deployment
-{: #baas-setting-up-deployment}
-{: step}
-
-1. Deploy a Backup and Recovery instance.
-
-   1. Create a {{site.data.keyword.baas_full_notm}} [instance](/docs/backup-recovery?topic=backup-recovery-getting-started-backup-recovery#baas-provision-instance).
-      1. Information: By default your instance is automatically encrypted. Optionally, you can bring your own key by supplying the key CRN.
-      1. Information: When following best practices, it is recommended that you create your {{site.data.keyword.baas_full_notm}} instance in the same location as your source server.
-   2. Open your {{site.data.keyword.baas_full_notm}} instance and **Launch Dashboard**.
-
-
-1. Create a Data Source Connection in {{site.data.keyword.baas_full_notm}}
-
-   For this step, you are setting up a Data Source Connection from inside your {{site.data.keyword.baas_full_notm}} instance.
-
-   1. In the {{site.data.keyword.baas_full_notm}} Dashboard, navigate to **System > Data Source Connections** and click **New Connection**.
-   2. Select VPC in the **Deployment Platform** dropdown.
-   3. Copy or download the token as you need this later.
-   4. Then click **Create a VPC Data Source Connector**, which opens the IBM Cloud catalog in a new tab.
-
-
-1. Deploy a {{site.data.keyword.baas_full_notm}} Data Source Connector (Connector VSI)
-
-   In this step, you to need to create a Data Source Connector instance (Connector VSI) for the previous step’s Data Source Connection.
-
-   1. The Data source connector is a Virtual Server deployed that uses a custom image, which contains the connector software. The first catalog page shows the details about this image. Click **Continue** to progress to the Virtual Server provisioning page.
-   2. On the VSI provisioning page:
-      1. Set the same location as you set for the {{site.data.keyword.baas_full_notm}} instance.
-      2. Enter details and Server configs (you can leave it on the default).
-      3. Create or select an SSH key.
-      4. Create or select a VPC, which contains the workload that you are backing up.
-      5. Click **Create virtual server**.
-
-
-1. Make the connector for VSI accessible from your local machine [Non production only]
-
-   1. [Reserve or bind an existing Floating IP address](https://cloud.ibm.com/infrastructure/network/floatingIPs) to the Connector VSI to allow public access to the Connector configuration UI.
-   2. Create a new security group rule to open the following ports to the VSI connector:
-      1. On the VSI instance, navigate to the Networking tab,
-      2. Open Security group link and change the inbound rule to **Any**.
-   3. Copy and paste the Floating IP in a new browser tab to open the UI. This can take up to five minutes to be ready.
-   4. It is possible that your browser flags the IP being insecure due to not using https, continue through this.
-
-
-1. Access and configure Connector VSI in {{site.data.keyword.baas_full_notm}} UI
-
-   1. From the login page, use **username: admin**, **password: admin** to start, then set up a new username and password. Password requirements are: must be at least 8 characters long and cannot include the word **admin**.
-   2. From the Connector Configuration view, enter a Domain name (for example, cloud.ibm.com).
-   3. Paste the connection claim token from the modal in a previous step into the connection claim text input.
-   4. You should not need to change any other configuration parameters.
-   5. Click **Save**.
-
-
-1. Create a Virtual Private Endpoint gateway (VPE) instance for the {{site.data.keyword.baas_full_notm}} instance
-
-   While the Connector VSI can connect to the Backup and Recovery instance, a VPE gateway provides a better performance. To create a VPE gateway, follow these steps.
-
-   1. Create a [VPE instance](https://cloud.ibm.com/infrastructure/provision/endpointGateway).
-   2. Give a service name, select the correct VPC.
-   3. In the Cloud Service Offering dropdown, select **Backup and Recovery**.
-   4. Select the previously created {{site.data.keyword.baas_full_notm}} instance from the list.
-   5. Click **Create**.
 
 
 ## Set up the Source VSI
 {: #baas-setting-up-source-vsi}
-{: step}
 
 1. Create a Virtual Server Instance for VPC
    For this step, you are creating a new Ubuntu VSI.
@@ -158,22 +89,21 @@ This section assumes you’re starting from scratch without any existing resourc
       6. Click **Create**.
 
 
-Next, make the Source VSI accessible from your local machine by [reserve or bind an existing Floating IP address](https://cloud.ibm.com/infrastructure/network/floatingIPs) to the Source VSI.
+Next, make the Source VSI accessible from your local machine by [reserving or binding an existing Floating IP address](https://cloud.ibm.com/infrastructure/network/floatingIPs) to the Source VSI.
 
 ## Set up a {{site.data.keyword.baas_full_notm}} agent to the source VSI
 {: #baas-setting-up-agent-source-vsi}
-{: step}
 
 1. Download and install the {{site.data.keyword.baas_full_notm}} agent
 
-   1. Now that you have configured the Connector with the token you can close the dialog in the Backup and Recovery Dashboard. Navigate to the Data Protection > Sources page.
+   1. Now that you have configured the Connector with the token you can close the dialog in the Backup and Recovery Dashboard. Navigate to the `Data Protection` \> `Sources` page.
    2. Click the **Download Agent** button and in the dialog select the Linux - Script installer. This will download the agent to your local machine but we will copy it to your source Virtual Server in the next step.
 
 
 1. Install the {{site.data.keyword.baas_full_notm}} agent to Source VSI
 
-   1. From the terminal, go to the Downloads folder (cd/Downloads) or wherever the agent installer from the previous step was downloaded.
-   2. Copy the agent installer from your local environment to your source VSI using scp. For example:(Substitute necessary information in the commands.)
+   1. From the terminal, go to the Downloads folder (`cd ~/Downloads`) or wherever the agent installer from the previous step was downloaded.
+   2. Copy the agent installer from your local environment to your source VSI using scp. For example: (Substitute necessary information in the commands.)
 
       ```sh
       scp -i .ssh/SOURCE_SSH_KEY_NAME Downloads/AGENT_FILE_NAME root@FLOATING_IP_ADDRESS_OF_SOURCE_VSI:/
@@ -192,7 +122,7 @@ Next, make the Source VSI accessible from your local machine by [reserve or bind
 
       ```
 
-      Make sure to update the VERSION placeholder with the correct version of your installer file:(Substitute necessary information in the commands.)
+      Make sure to update the VERSION placeholder with the correct version of your installer file. For example, if your file is `cohesity_agent_7.0.1__linux_x64_installer`, use that exact file name.
       {: note}
 
    2. Installing the agent requires the use of NFS. Install it on your Source VSI by running the command:
@@ -209,12 +139,14 @@ Next, make the Source VSI accessible from your local machine by [reserve or bind
 
       ```
 
+      Replace VERSION with your actual version number (for example, `sudo ./cohesity_agent_7.0.1__linux_x64_installer -- --install`).
+      {: note}
+
    When the installation has been completed successfully, you should see a confirmation in your Terminal window.
    {: note}
 
 ## Register the source VSI to {{site.data.keyword.baas_full_notm}}
 {: #baas-register-source-vsi}
-{: step}
 
 1. Select type and register Source VSI
 
@@ -229,7 +161,6 @@ Next, make the Source VSI accessible from your local machine by [reserve or bind
 
 ## Set up Data Protection in {{site.data.keyword.baas_full_notm}}
 {: #baas-set-up-data-protection}
-{: step}
 
 1. Set up a new Protection group
 
@@ -239,7 +170,7 @@ Next, make the Source VSI accessible from your local machine by [reserve or bind
    4. Click **Continue**.
    5. Add a name for the Protection Group.
    6. Select the **Bronze** protection policy.
-   7. Bronze policy includes: taking a backup every day, retains it for 30 days and a 90 days DataLock. Learn more about [policies](/docs/backup-recovery?topic=backup-recovery-individual-instance-view#policy-mc).
+   7. Bronze policy includes: taking a backup every day, retains it for 30 days and a 90-day DataLock. Learn more about [policies](/docs/backup-recovery?topic=backup-recovery-individual-instance-view#policy-mc).
    8. Click **Protect**
 
 1. Verify protection group by navigating to the subpage.

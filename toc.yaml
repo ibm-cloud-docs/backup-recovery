@@ -13,8 +13,10 @@ toc:
   - navgroup:
       id: learn
       topics:
-      - getting-started.md
       - about-baas.md
+      - instance-creation.md
+      - instance-setup.md
+      - getting-started.md
       - iks_roks/getting-started-iks-roks.md
       - baas-comp-chart.md
       - topic: release-notes.md
