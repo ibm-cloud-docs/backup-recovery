@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2024, 2025
-lastupdated: "2025-09-30"
+  years: 2024, 2026
+lastupdated: "2026-08-19"
 
 keywords:  virtual machine
 
@@ -24,7 +24,7 @@ An agent is {{site.data.keyword.baas_full}} software installed on physical appli
 Ensure that you have what you need to start:
 
 - An account for the [{{site.data.keyword.cloud}} Platform](https://cloud.ibm.com).
-- An [instance](/docs/backup-recovery?topic=backup-recovery-getting-started-backup-recovery#baas-provision-instance) of {{site.data.keyword.baas_full_notm}} service is deployed.
+- A {{site.data.keyword.baas_full_notm}} service instance. If you haven't created one yet, see [Creating a Backup and Recovery service instance](/docs/backup-recovery?topic=backup-recovery-instance-creation).
 - A physical host or VM or VSI that agent will be installed on
 - Verify that you have proper access to your {{site.data.keyword.baas_full_notm}} instance.
   - Writer (backup-recovery.dashboard.edit) or Manager (backup-recovery.dashboard.edit) privileges to the {{site.data.keyword.baas_full_notm}} Service are needed to create and manage Protection Jobs (i.e. Backup Jobs) in your instance. These privileges can be assigned by your {{site.data.keyword.cloud_notm}} Platform account owner using an Access Group (multiple users) or Access Policy (specific user) tied to your IAM profile. Details on this are included [here](/docs/backup-recovery?topic=backup-recovery-iam&interface=ui).
