@@ -2,7 +2,7 @@
 
 copyright:
   years: 2026
-lastupdated: "2026-08-10"
+lastupdated: "2026-08-19"
 
 keywords: connector agent, backup agent, direct connection, agent registration, backup and recovery
 
@@ -527,3 +527,6 @@ If the agent does not appear in the cluster after claiming:
 - Confirm that you are using the correct registration token for the agent you are registering
 - Check that the tenant ID in the API calls matches the tenant where the agent should be registered
 - Review the agent logs for any error messages
+
+The Linux Agent must be restarted manually each time the source is rebooted. The Windows Agent will restart automatically on source reboot.
+{: note}
