@@ -2,7 +2,7 @@
 
 copyright:
   years: 2024, 2026
-lastupdated: "2026-08-06"
+lastupdated: "2026-09-08"
 
 keywords: backup recovery, cli, guide
 
@@ -301,7 +301,7 @@ ibmcloud backup-recovery protection-source list --xibm-tenant-id XIBM-TENANT-ID 
 {: #backup-recovery-protection-source-list-cli-options}
 
 `--xibm-tenant-id` (string)
-:   Specifies the tenant ID for the backup recovery service instance. Required.
+:   Specifies the unique id of the tenant. Required.
 
 `--exclude-office365-types` ([]string)
 :   Specifies the Object types to be filtered out for Office 365 that match the passed in types such as 'kDomain', 'kOutlook', 'kMailbox', etc. For example, set this parameter to 'kMailbox' to exclude Mailbox Objects from being returned.
@@ -454,7 +454,7 @@ ibmcloud backup-recovery protection-source registrations-list --xibm-tenant-id X
 {: #backup-recovery-protection-source-registrations-list-cli-options}
 
 `--xibm-tenant-id` (string)
-:   Specifies the tenant ID for the backup recovery service instance. Required.
+:   Specifies the unique id of the tenant. Required.
 
 `--ids` ([]int64)
 :   Ids specify the list of source registration ids to return. If left empty, every source registration is returned by default.
@@ -587,7 +587,7 @@ ibmcloud backup-recovery protection-source register --xibm-tenant-id XIBM-TENANT
 {: #backup-recovery-protection-source-register-cli-options}
 
 `--xibm-tenant-id` (string)
-:   Specifies the tenant ID for the backup recovery service instance. Required.
+:   Specifies the unique id of the tenant. Required.
 
 `--environment` (string)
 :   Specifies the environment type of the Protection Source. Required.
@@ -780,7 +780,7 @@ ibmcloud backup-recovery protection-source registration-get --id ID --xibm-tenan
 :   Specifies the id of the Protection Source registration. Required.
 
 `--xibm-tenant-id` (string)
-:   Specifies the tenant ID for the backup recovery service instance. Required.
+:   Specifies the unique id of the tenant. Required.
 
 `--request-initiator-type` (string)
 :   Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
@@ -815,7 +815,7 @@ ibmcloud backup-recovery protection-source registration-update --id ID --xibm-te
 :   Specifies the id of the Protection Source registration. Required.
 
 `--xibm-tenant-id` (string)
-:   Specifies the tenant ID for the backup recovery service instance. Required.
+:   Specifies the unique id of the tenant. Required.
 
 `--environment` (string)
 :   Specifies the environment type of the Protection Source. Required.
@@ -1015,7 +1015,7 @@ ibmcloud backup-recovery protection-source registration-patch --id ID --xibm-ten
 :   Specifies the id of the Protection Source registration. Required.
 
 `--xibm-tenant-id` (string)
-:   Specifies the tenant ID for the backup recovery service instance. Required.
+:   Specifies the unique id of the tenant. Required.
 
 `--environment` (string)
 :   Specifies the environment type of the Protection Source to be patched. Currently, the only environment that is supported is kCassandra. Required.
@@ -1050,7 +1050,7 @@ ibmcloud backup-recovery protection-source registration-delete --id ID --xibm-te
 :   Specifies the ID of the Protection Source Registration. Required.
 
 `--xibm-tenant-id` (string)
-:   Specifies the tenant ID for the backup recovery service instance. Required.
+:   Specifies the unique id of the tenant. Required.
 
 `-f`, `--force` (bool)
 :   Force the command to execute without confirmation.
@@ -1082,7 +1082,7 @@ ibmcloud backup-recovery protection-source refresh --id ID --xibm-tenant-id XIBM
 :   Specifies the id of the Protection Source. Required.
 
 `--xibm-tenant-id` (string)
-:   Specifies the tenant ID for the backup recovery service instance. Required.
+:   Specifies the unique id of the tenant. Required.
 
 #### Example
 {: #backup-recovery-protection-source-refresh-examples}
@@ -1118,7 +1118,7 @@ ibmcloud backup-recovery agent-upgrade-task list --xibm-tenant-id XIBM-TENANT-ID
 {: #backup-recovery-agent-upgrade-task-list-cli-options}
 
 `--xibm-tenant-id` (string)
-:   Specifies the tenant ID for the backup recovery service instance. Required.
+:   Specifies the unique id of the tenant. Required.
 
 `--ids` ([]int64)
 :   Specifies IDs of tasks to be fetched.
@@ -1147,7 +1147,7 @@ ibmcloud backup-recovery agent-upgrade-task create --xibm-tenant-id XIBM-TENANT-
 {: #backup-recovery-agent-upgrade-task-create-cli-options}
 
 `--xibm-tenant-id` (string)
-:   Specifies the tenant ID for the backup recovery service instance. Required.
+:   Specifies the unique id of the tenant. Required.
 
 `--agent-ids` ([]int64)
 :   Specifies agent IDs to be upgraded in the task.
@@ -1198,7 +1198,7 @@ ibmcloud backup-recovery protection-policy --help
 Lists protection policies based on filtering query parameters.
 
 ```sh
-ibmcloud backup-recovery protection-policy list --xibm-tenant-id XIBM-TENANT-ID [--request-initiator-type REQUEST-INITIATOR-TYPE] [--ids IDS] [--policy-names POLICY-NAMES] [--types TYPES] [--exclude-linked-policies=EXCLUDE-LINKED-POLICIES] [--include-replicated-policies=INCLUDE-REPLICATED-POLICIES] [--include-stats=INCLUDE-STATS]
+ibmcloud backup-recovery protection-policy list --xibm-tenant-id XIBM-TENANT-ID [--request-initiator-type REQUEST-INITIATOR-TYPE] [--ids IDS] [--policy-names POLICY-NAMES] [--types TYPES] [--exclude-linked-policies=EXCLUDE-LINKED-POLICIES] [--include-replicated-policies=INCLUDE-REPLICATED-POLICIES] [--include-stats=INCLUDE-STATS] [--vault-ids VAULT-IDS]
 ```
 
 
@@ -1206,7 +1206,7 @@ ibmcloud backup-recovery protection-policy list --xibm-tenant-id XIBM-TENANT-ID 
 {: #backup-recovery-protection-policy-list-cli-options}
 
 `--xibm-tenant-id` (string)
-:   Specifies the tenant ID for the backup recovery service instance. Required.
+:   Specifies the unique id of the tenant. Required.
 
 `--request-initiator-type` (string)
 :   Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
@@ -1233,17 +1233,23 @@ ibmcloud backup-recovery protection-policy list --xibm-tenant-id XIBM-TENANT-ID 
 `--include-stats` (bool)
 :   If includeStats is set to true, then response returns a number of protection groups and objects. By default, the protection stats are not included in the response.
 
+`--vault-ids` ([]int64)
+:   Filter by a list of Vault ids. Policies archiving to any of the specified vaults will be returned.
+
 #### Example
 {: #backup-recovery-protection-policy-list-examples}
-
-
 
 ```sh
 ibmcloud backup-recovery protection-policy list \
     --xibm-tenant-id tenantId \
     --request-initiator-type UIUser \
     --ids policyId1 \
-    --policy-names policyName1
+    --policy-names policyName1 \
+    --types Regular,Internal \
+    --exclude-linked-policies=true \
+    --include-replicated-policies=true \
+    --include-stats=true
+    --vault-ids 26,27
 ```
 {: pre}
 
@@ -1261,7 +1267,7 @@ ibmcloud backup-recovery protection-policy create --xibm-tenant-id XIBM-TENANT-I
 {: #backup-recovery-protection-policy-create-cli-options}
 
 `--xibm-tenant-id` (string)
-:   Specifies the tenant ID for the backup recovery service instance. Required.
+:   Specifies the unique id of the tenant. Required.
 
 `--name` (string)
 :   Specifies the name of the Protection Policy. Required.
@@ -1442,7 +1448,7 @@ ibmcloud backup-recovery protection-policy get --id ID --xibm-tenant-id XIBM-TEN
 :   Specifies a unique id of the Protection Policy to return. Required.
 
 `--xibm-tenant-id` (string)
-:   Specifies the tenant ID for the backup recovery service instance. Required.
+:   Specifies the unique id of the tenant. Required.
 
 `--request-initiator-type` (string)
 :   Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
@@ -1477,7 +1483,7 @@ ibmcloud backup-recovery protection-policy update --id ID --xibm-tenant-id XIBM-
 :   Specifies a unique id of the Protection Policy to update. Required.
 
 `--xibm-tenant-id` (string)
-:   Specifies the tenant ID for the backup recovery service instance. Required.
+:   Specifies the unique id of the tenant. Required.
 
 `--name` (string)
 :   Specifies the name of the Protection Policy. Required.
@@ -1668,7 +1674,7 @@ ibmcloud backup-recovery protection-policy delete --id ID --xibm-tenant-id XIBM-
 :   Specifies a unique id of the Protection Policy to delete. Required.
 
 `--xibm-tenant-id` (string)
-:   Specifies the tenant ID for the backup recovery service instance. Required.
+:   Specifies the unique id of the tenant. Required.
 
 `--force` (bool)
 :   Force the command to execute.
@@ -1707,7 +1713,7 @@ ibmcloud backup-recovery protection-group list --xibm-tenant-id XIBM-TENANT-ID [
 {: #backup-recovery-protection-group-list-cli-options}
 
 `--xibm-tenant-id` (string)
-:   Specifies the tenant ID for the backup recovery service instance. Required.
+:   Specifies the unique id of the tenant. Required.
 
 `--request-initiator-type` (string)
 :   Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
@@ -1862,7 +1868,7 @@ ibmcloud backup-recovery protection-group create --xibm-tenant-id XIBM-TENANT-ID
 :   Specifies whether to process with backup if volumes back up fails.
 
 `--xibm-tenant-id` (string)
-:   Specifies the tenant ID for the backup recovery service instance. Required.
+:   Specifies the unique id of the tenant. Required.
 
 `--name` (string)
 :   Specifies the name of the Protection Group. Required.
@@ -2081,7 +2087,7 @@ ibmcloud backup-recovery protection-group get --id ID --xibm-tenant-id XIBM-TENA
 :   Specifies a unique id of the Protection Group. Required.
 
 `--xibm-tenant-id` (string)
-:   Specifies the tenant ID for the backup recovery service instance. Required.
+:   Specifies the unique id of the tenant. Required.
 
 `--request-initiator-type` (string)
 :   Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
@@ -2165,7 +2171,7 @@ ibmcloud backup-recovery protection-group update --id ID --xibm-tenant-id XIBM-T
 :   Specifies whether to process with backup if volumes back up fails.
 
 `--xibm-tenant-id` (string)
-:   Specifies the tenant ID for the backup recovery service instance. Required.
+:   Specifies the unique id of the tenant. Required.
 
 `--name` (string)
 :   Specifies the name of the Protection Group. Required.
@@ -2386,7 +2392,7 @@ ibmcloud backup-recovery protection-group delete --id ID --xibm-tenant-id XIBM-T
 :   Specifies a unique id of the Protection Group. Required.
 
 `--xibm-tenant-id` (string)
-:   Specifies the tenant ID for the backup recovery service instance. Required.
+:   Specifies the unique id of the tenant. Required.
 
 `--delete-snapshots` (bool)
 :   Specifies whether Snapshots that are generated by the Protection Group should also be deleted when the Protection Group is deleted.
@@ -2434,7 +2440,7 @@ ibmcloud backup-recovery protection-group-run list --id ID --xibm-tenant-id XIBM
     The value must match regular expression `/^\\d+:\\d+:\\d+$/`.
 
 `--xibm-tenant-id` (string)
-:   Specifies the tenant ID for the backup recovery service instance. Required.
+:   Specifies the unique id of the tenant. Required.
 
 `--request-initiator-type` (string)
 :   Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
@@ -2675,7 +2681,7 @@ ibmcloud backup-recovery protection-group-run update --id ID --xibm-tenant-id XI
 :   Specifies a unique id of the Protection Group. Required.
 
 `--xibm-tenant-id` (string)
-:   Specifies the tenant ID for the backup recovery service instance. Required.
+:   Specifies the unique id of the tenant. Required.
 
 `--update-protection-group-run-params` (string)
 :   &nbsp; Required.
@@ -2712,7 +2718,7 @@ ibmcloud backup-recovery protection-group-run create --id ID --xibm-tenant-id XI
 :   Specifies a unique id of the Protection Group. Required.
 
 `--xibm-tenant-id` (string)
-:   Specifies the tenant ID for the backup recovery service instance. Required.
+:   Specifies the unique id of the tenant. Required.
 
 `--run-type` (string)
 :   Type of protection run. 'kRegular' indicates an incremental (CBT) backup. Incremental backups utilizing CBT (if supported) are captured of the target protection objects. The first run of a kRegular schedule captures all the blocks. 'kFull' indicates a full (no CBT) backup. A complete backup (all blocks) of the target protection objects are always captured and Change Block Tracking (CBT) is not utilized. 'kLog' indicates a Database Log backup. Capture the database transaction logs to allow rolling back to a specific point in time. 'kSystem' indicates system volume backup. It produces an image for bare metal recovery. Required.
@@ -2793,7 +2799,7 @@ ibmcloud backup-recovery protection-group-run perform-action --id ID --xibm-tena
 :   Specifies a unique id of the Protection Group. Required.
 
 `--xibm-tenant-id` (string)
-:   Specifies the tenant ID for the backup recovery service instance. Required.
+:   Specifies the unique id of the tenant. Required.
 
 `--action` (string)
 :   Specifies the type of the action that will be performed on protection runs. Required.
@@ -2853,7 +2859,7 @@ ibmcloud backup-recovery recovery list --xibm-tenant-id XIBM-TENANT-ID [--ids ID
 {: #backup-recovery-recovery-list-cli-options}
 
 `--xibm-tenant-id` (string)
-:   Specifies the tenant ID for the backup recovery service instance. Required.
+:   Specifies the unique id of the tenant. Required.
 
 `--ids` ([]string)
 :   Filter Recoveries for given ids.
@@ -2926,7 +2932,7 @@ ibmcloud backup-recovery recovery create --xibm-tenant-id XIBM-TENANT-ID --name 
 {: #backup-recovery-recovery-create-cli-options}
 
 `--xibm-tenant-id` (string)
-:   Specifies the tenant ID for the backup recovery service instance. Required.
+:   Specifies the unique id of the tenant. Required.
 
 `--name` (string)
 :   Specifies the name of the Recovery. Required.
@@ -3069,7 +3075,7 @@ ibmcloud backup-recovery recovery get --id ID --xibm-tenant-id XIBM-TENANT-ID
     The value must match regular expression `/^\\d+:\\d+:\\d+$/`.
 
 `--xibm-tenant-id` (string)
-:   Specifies the tenant ID for the backup recovery service instance. Required.
+:   Specifies the unique id of the tenant. Required.
 
 #### Example
 {: #backup-recovery-recovery-get-examples}
@@ -3124,7 +3130,7 @@ ibmcloud backup-recovery recovery files-download --id ID --xibm-tenant-id XIBM-T
     The value must match regular expression `/^\\d+:\\d+:\\d+$/`.
 
 `--xibm-tenant-id` (string)
-:   Specifies the tenant ID for the backup recovery service instance. Required.
+:   Specifies the unique id of the tenant. Required.
 
 `--start-offset` (int64)
 :   Specifies the start offset of the file chunk to be downloaded.
@@ -3184,7 +3190,7 @@ ibmcloud backup-recovery data-source-connection list --xibm-tenant-id XIBM-TENAN
 {: #backup-recovery-data-source-connection-list-cli-options}
 
 `--xibm-tenant-id` (string)
-:   Specifies the tenant ID for the backup recovery service instance. Required.
+:   Specifies the unique id of the tenant. Required.
 
 `--connection-ids` ([]string)
 :   Specifies the unique IDs of the connections, which are to be fetched.
@@ -3209,18 +3215,21 @@ ibmcloud backup-recovery data-source-connection list \
 Creates a data-source connection that can be used to register and protect sources, to access filer services, and so on.
 
 ```sh
-ibmcloud backup-recovery data-source-connection create --connection-name CONNECTION-NAME [--xibm-tenant-id XIBM-TENANT-ID]
+ibmcloud backup-recovery data-source-connection create --xibm-tenant-id XIBM-TENANT-ID --connection-name CONNECTION-NAME [--connection-env-type CONNECTION-ENV-TYPE]
 ```
 
 
 #### Command options
 {: #backup-recovery-data-source-connection-create-cli-options}
 
+`--xibm-tenant-id` (string)
+:   Specifies the unique id of the tenant. Required.
+
 `--connection-name` (string)
 :   Specifies the name of the connection being created. For a given tenant, different connections can't have the same name. However, two (or more) different tenants can each have a connection with the same name. Required.
 
-`--xibm-tenant-id` (string)
-:   Id of the tenant accessing the cluster.
+`--connection-env-type` (string)
+:   Specifies the environment type of the connection being created. Once specified, the connection environment type cannot be changed, and it will only allow the same environment type for connectors in the connection. Allowable values are: `kRoksVpc`, `kRoksClassic`, `kIksVpc`, `kIksClassic`.
 
 #### Example
 {: #backup-recovery-data-source-connection-create-examples}
@@ -3228,7 +3237,8 @@ ibmcloud backup-recovery data-source-connection create --connection-name CONNECT
 ```sh
 ibmcloud backup-recovery data-source-connection create \
     --connection-name data-source-connection \
-    --xibm-tenant-id tenantId
+    --xibm-tenant-id tenantId \
+    --connection-env-type kRoksVpc
 ```
 {: pre}
 
@@ -3249,7 +3259,7 @@ ibmcloud backup-recovery data-source-connection delete --connection-id CONNECTIO
 :   Specifies the ID of the connection, connectors belonging to which are to be fetched. Required.
 
 `--xibm-tenant-id` (string)
-:   Specifies the tenant ID for the backup recovery service instance. Required.
+:   Specifies the unique id of the tenant. Required.
 
 `-f`, `--force` (bool)
 :   Force the command to execute.
@@ -3281,7 +3291,7 @@ ibmcloud backup-recovery data-source-connection patch --connection-id CONNECTION
 :   Specifies the ID of the connection, connectors belonging to which are to be fetched. Required.
 
 `--xibm-tenant-id` (string)
-:   Specifies the tenant ID for the backup recovery service instance. Required.
+:   Specifies the unique id of the tenant. Required.
 
 `--connection-name` (string)
 :   A new name for the connection being patched. Required.
@@ -3314,7 +3324,7 @@ ibmcloud backup-recovery data-source-connection registration-token-generate --co
 :   Specifies the ID of the connection, connectors belonging to which are to be fetched. Required.
 
 `--xibm-tenant-id` (string)
-:   Specifies the tenant ID for the backup recovery service instance. Required.
+:   Specifies the unique id of the tenant. Required.
 
 #### Example
 {: #backup-recovery-data-source-connection-registration-token-generate-examples}
@@ -3350,7 +3360,7 @@ ibmcloud backup-recovery data-source-connector list --xibm-tenant-id XIBM-TENANT
 {: #backup-recovery-data-source-connector-list-cli-options}
 
 `--xibm-tenant-id` (string)
-:   Specifies the tenant ID for the backup recovery service instance. Required.
+:   Specifies the unique id of the tenant. Required.
 
 `--connector-ids` ([]string)
 :   Specifies the unique IDs of the connectors, which are to be fetched.
@@ -3390,7 +3400,7 @@ ibmcloud backup-recovery data-source-connector delete --connector-id CONNECTOR-I
 :   Specifies the unique ID of the connector that is to be deleted. Required.
 
 `--xibm-tenant-id` (string)
-:   Specifies the tenant ID for the backup recovery service instance. Required.
+:   Specifies the unique id of the tenant. Required.
 
 `-f`, `--force` (bool)
 :   Force the command to execute without confirmation.
@@ -3422,7 +3432,7 @@ ibmcloud backup-recovery data-source-connector patch --connector-id CONNECTOR-ID
 :   Specifies the unique ID of the connector that is to be patched. Required.
 
 `--xibm-tenant-id` (string)
-:   Specifies the tenant ID for the backup recovery service instance. Required.
+:   Specifies the unique id of the tenant. Required.
 
 `--connector-name` (string)
 :   Name of the connector.
@@ -3535,7 +3545,7 @@ ibmcloud backup-recovery agent-download --xibm-tenant-id XIBM-TENANT-ID --platfo
 {: #backup-recovery-agent-download-cli-options}
 
 `--xibm-tenant-id` (string)
-:   Specifies the tenant ID for the backup recovery service instance. Required.
+:   Specifies the unique id of the tenant. Required.
 
 `--platform` (string)
 :   Specifies the platform for which the agent needs to be downloaded. Required.
@@ -3592,7 +3602,7 @@ ibmcloud backup-recovery connector-metadata-get --xibm-tenant-id XIBM-TENANT-ID
 {: #backup-recovery-connector-metadata-get-cli-options}
 
 `--xibm-tenant-id` (string)
-:   Specifies the tenant ID for the backup recovery service instance. Required.
+:   Specifies the unique id of the tenant. Required.
 
 #### Example
 {: #backup-recovery-connector-metadata-get-examples}
@@ -3623,7 +3633,7 @@ ibmcloud backup-recovery object-snapshots-list --id ID --xibm-tenant-id XIBM-TEN
 :   Specifies the id of the Object. Required.
 
 `--xibm-tenant-id` (string)
-:   Specifies the tenant ID for the backup recovery service instance. Required.
+:   Specifies the unique id of the tenant. Required.
 
 `--from-time-usecs` (int64)
 :   Specifies the timestamp in the Unix time epoch in microseconds to filter Object's snapshots that were taken after this value.
@@ -3698,7 +3708,7 @@ ibmcloud backup-recovery download-recovery-create --xibm-tenant-id XIBM-TENANT-I
 {: #backup-recovery-download-recovery-create-cli-options}
 
 `--xibm-tenant-id` (string)
-:   Specifies the tenant ID for the backup recovery service instance. Required.
+:   Specifies the unique id of the tenant. Required.
 
 `--name` (string)
 :   Specifies the name of the recovery task. This field must be set and must be a unique name. Required.
@@ -3793,7 +3803,7 @@ ibmcloud backup-recovery restore-points --xibm-tenant-id XIBM-TENANT-ID --end-ti
 {: #backup-recovery-restore-points-cli-options}
 
 `--xibm-tenant-id` (string)
-:   Specifies the tenant ID for the backup recovery service instance. Required.
+:   Specifies the unique id of the tenant. Required.
 
 `--end-time-usecs` (int64)
 :   Specifies the end time specified as a Unix epoch Timestamp in microseconds. Required.
@@ -3843,7 +3853,7 @@ ibmcloud backup-recovery indexed-file-download --snapshots-id SNAPSHOTS-ID --xib
 :   Specifies the snapshot id to download from. Required.
 
 `--xibm-tenant-id` (string)
-:   Specifies the tenant ID for the backup recovery service instance. Required.
+:   Specifies the unique id of the tenant. Required.
 
 `--file-path` (string)
 :   Specifies the path to the file to download. If no path is specified and the snapshot environment is kVMWare, a VMX file for VMware will be downloaded. For other snapshot environments, this field must be specified.
@@ -3892,7 +3902,7 @@ ibmcloud backup-recovery indexed-objects-search --xibm-tenant-id XIBM-TENANT-ID 
 {: #backup-recovery-indexed-objects-search-cli-options}
 
 `--xibm-tenant-id` (string)
-:   Specifies the tenant ID for the backup recovery service instance. Required.
+:   Specifies the unique id of the tenant. Required.
 
 `--object-type` (string)
 :   Specifies the object type to be searched for. Required.
@@ -4560,7 +4570,7 @@ ibmcloud backup-recovery objects-search --xibm-tenant-id XIBM-TENANT-ID [--reque
 {: #backup-recovery-objects-search-cli-options}
 
 `--xibm-tenant-id` (string)
-:   Specifies the tenant ID for the backup recovery service instance. Required.
+:   Specifies the unique id of the tenant. Required.
 
 `--request-initiator-type` (string)
 :   Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
@@ -4717,7 +4727,7 @@ ibmcloud backup-recovery protected-objects-search --xibm-tenant-id XIBM-TENANT-I
 {: #backup-recovery-protected-objects-search-cli-options}
 
 `--xibm-tenant-id` (string)
-:   Specifies the tenant ID for the backup recovery service instance. Required.
+:   Specifies the unique id of the tenant. Required.
 
 `--request-initiator-type` (string)
 :   Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.
@@ -5229,7 +5239,7 @@ The POST request returns an access token and type in the response that is genera
 
 
 ```sh
-ibmcloud backup-recovery access-token-generate [--certificate CERTIFICATE] [--domain DOMAIN] [--help] [--jmes-query JMES_QUERY] [--otp-code OTP_CODE] [--otp-type OTP_TYPE] [--output OUTPUT] [--password PASSWORD] [--private-key PRIVATE_KEY] [--quiet] [--username USERNAME]
+ibmcloud backup-recovery access-token-generate [--certificate CERTIFICATE] [--domain DOMAIN] [--otp-code OTP-CODE] [--otp-type OTP-TYPE] [--password PASSWORD] [--private-key PRIVATE-KEY] [--username USERNAME]
 ```
 
 #### Command options
@@ -5356,9 +5366,12 @@ Create a data source connection for your Kubernetes cluster deployment platform.
 ```sh
 ibmcloud backup-recovery data-source-connection create \
   --connection-name "data-source-connection-cli" \
-  --xibm-tenant-id "8x7y9z2a3b/"
+  --xibm-tenant-id "8x7y9z2a3b/" \
+  --connection-env-type kRoksVpc
 ```
 {: pre}
+
+Replace `kRoksVpc` with the appropriate environment type for your cluster (`kRoksVpc`, `kRoksClassic`, `kIksVpc`, or `kIksClassic`).
 
 #### Sample output
 {: #backup-recovery-k8s-example-step4-output}
@@ -5372,11 +5385,6 @@ tenantId            8x7y9z2a3b/
 {: codeblock}
 
 **Important:** Save the `registrationToken` from the output. This token is used in Step 5 when installing the data source connector with the helm command.
-
-**Note:** The `--connection-env-type` parameter is currently not supported to create connection for Kubernetes or OpenShift clusters. We recommend using the console (see "Using Console (Alternative)" below) for connection creation for now.
-
-Data source connections for Kubernetes and OpenShift clusters must be created from the {{site.data.keyword.baas_full_notm}} instance dashboard. The Deployment Platform options (**ROKS VPC**, **IKS VPC**, **ROKS classic**, **IKS classic**) are not available when creating data source connections from the Backup Recovery Manager.
-{: important}
 
 **Using Console (Alternative):**
 
