@@ -230,7 +230,6 @@ toc:
           label: High availability and disaster recovery
           topics:
           - ha.md
-          - bc-dr.md
       - topicgroup:
           label: Security and compliance
           topics:
