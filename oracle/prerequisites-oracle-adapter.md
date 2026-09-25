@@ -15,7 +15,7 @@ content-type: prereq
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Prerequisites for Oracle Database
+# Prerequisites for Oracle adapter
 {: #prerequisites-oracle-adapter}
 
 Make sure the following prerequisites are met before using the {{site.data.keyword.baas_full_notm}} Oracle Adapter.
