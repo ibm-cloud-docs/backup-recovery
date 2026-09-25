@@ -306,3 +306,7 @@ toc:
       topics:
       - support.md
       - faq.md
+      - topicgroup:
+          label: Troubleshooting
+          topics:
+          - troubleshoot-known-issues.md
