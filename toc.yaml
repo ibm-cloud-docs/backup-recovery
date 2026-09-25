@@ -168,6 +168,8 @@ toc:
               topics:
               - data-protect/oracle-requirements.md
               - data-protect/register-oracle-sources.md
+              - oracle/installing-oracle-adapter.md
+              - oracle/prerequisites-oracle-adapter.md
           - topicgroup:
               label: DB2
               topics:
@@ -310,3 +312,4 @@ toc:
           label: Troubleshooting
           topics:
           - troubleshoot-known-issues.md
+          - oracle/troubleshoot-oracle-adapter.md
