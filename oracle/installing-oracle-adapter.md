@@ -364,5 +364,5 @@ If there is an issue with the agent itself, the agent logs reveal errors and mes
 
 For more details, see the topics:
 
-- [Prerequisites for an Oracle adapter](/docs/backup-recovery?topic=backup-recovery-prerequisites-oracle-adapter)
+- [Prerequisites for the Oracle adapter](/docs/backup-recovery?topic=backup-recovery-prerequisites-oracle-adapter)
 - [Troubleshooting the Oracle adapter](/docs/backup-recovery?topic=backup-recovery-troubleshoot-oracle-adapter)
