@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025, 2026
-lastupdated: "2026-04-13"
+lastupdated: "2026-10-09"
 
 keywords: data source connector, iks, roks, cluster, protection
 
@@ -171,7 +171,36 @@ Label-based filtering works alongside Auto Protect, enabling you to exclude spec
 
    1. Click `Save` to apply the changes.
 
-### 5. Application quiescing
+### 5. Cluster-scoped resource inclusion policy
+{: #cluster-scoped-resource-policy}
+
+You can control which cluster-scoped Kubernetes resource types are included in a namespace backup by setting the **cluster-scoped resource inclusion policy**. This setting applies at the Protection Group level via the API field `clusterScopedResourceInclusionPolicy`.
+
+| Policy value | Behavior |
+|---|---|
+| `kIncludeAll` | Include all cluster-scoped resource types found during backup. |
+| `kExcludeAll` | Exclude all cluster-scoped resource types. Only namespace-scoped resources are backed up. |
+| `kDependentOnly` | Include only cluster-scoped resources that have a dependency relationship with the namespace-scoped resources being backed up. |
+| `kGranularSelection` | Apply an explicit include or exclude list of resource types supplied in the request. Use `includeParams.selectedResources` or `excludeParams.selectedResources` (mutually exclusive). |
+{: caption="Cluster-scoped resource inclusion policies" caption-side="bottom"}
+
+Even when specific resources are selected, Velero automatically includes certain dependent cluster-scoped resources:
+
+| If you back up... | Velero also includes... | Condition |
+|---|---|---|
+| `PersistentVolumeClaim` | `PersistentVolume` | PVC is `Bound` and `spec.volumeName` is set |
+| `PersistentVolumeClaim` | Running `Pod`(s) | Pods in the same namespace mount this PVC |
+| `Pod` | `PersistentVolumeClaim`(s) | Pod has `persistentVolumeClaim.claimName` volumes |
+| `Pod` | `PriorityClass` | `pod.spec.priorityClassName` is non-empty |
+| `ServiceAccount` | `ClusterRoleBinding`(s) | CRB lists this SA as a subject |
+| `ServiceAccount` | `ClusterRole`(s) | ClusterRoles referenced by those CRBs |
+| Any custom resource instance | `CustomResourceDefinition` | At least one instance of that CR type was backed up |
+{: caption="Velero automatic cluster-scoped dependency inclusion" caption-side="bottom"}
+
+Dependent cluster-scoped types are only excluded if explicitly listed in `excludedResources`. Cluster-scoped selection cannot be combined with PVC-only backup or with label-based VM selection.
+{: note}
+
+### 6. Application quiescing
 {: #application-quiescing}
 
 {{site.data.keyword.baas_full_notm}} supports quiescing for consistent backups of stateful workloads.

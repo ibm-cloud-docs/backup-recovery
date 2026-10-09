@@ -2,7 +2,7 @@
 
 copyright:
   years: 2026
-lastupdated: "2026-08-19"
+lastupdated: "2026-10-09"
 
 keywords: connector agent, backup agent, direct connection, agent registration, backup and recovery
 
@@ -26,7 +26,10 @@ completion-time: 45m
 In this tutorial, you learn how to set up and register a Connector Agent on {{site.data.keyword.baas_full}}. The Connector Agent enables direct connectivity between your data sources and the backup cluster, providing an alternative to the Data Source Connector for certain workloads.
 {: shortdesc}
 
-The Connector Agent is a lightweight software component that runs on your source host and establishes a direct connection to the {{site.data.keyword.baas_full_notm}} cluster. This architecture is useful for Oracle RAC environments and other scenarios where direct agent-to-cluster communication is preferred.
+The Connector Agent is a lightweight software component that runs on your source host and establishes a direct connection to the {{site.data.keyword.baas_full_notm}} cluster. This architecture is useful for Oracle RAC environments, SAP HANA, Db2, and other scenarios where direct agent-to-cluster communication is preferred.
+
+SAP HANA and Db2 protection through the Connector Agent requires enabling the feature for your instance. Contact your {{site.data.keyword.baas_full_notm}} account team to enable this feature.
+{: note}
 
 ## Objectives
 {: #connector-agent-objectives}
@@ -35,7 +38,7 @@ The Connector Agent is a lightweight software component that runs on your source
 - Obtain a registration token from the {{site.data.keyword.baas_full_notm}} instance dashboard
 - Claim and register the agent with your {{site.data.keyword.baas_full_notm}} instance
 - Verify successful agent registration
-- Register a data source by using the Connector Agent
+- Register a data source (Oracle RAC, SAP HANA, Db2, or physical server) by using the Connector Agent
 
 ## Before you begin
 {: #connector-agent-prereqs}
@@ -456,6 +459,30 @@ The data source is now registered and ready for backup operations by using the C
 
 This dual listing occurs because SQL Server is both a database application and runs on a physical server. You can manage backups for the SQL databases separately from the physical server backups.
 {: tip}
+
+## Connector Agent lifecycle
+{: #connector-agent-lifecycle}
+
+### Automatic unregistration when a source is deleted
+{: #connector-agent-unregister}
+
+When you unregister a source from {{site.data.keyword.baas_full_notm}}, the Connector Agent associated with that source is automatically unregistered as well. You do not need to manually remove the agent after deleting a source.
+
+### Cluster-driven component upgrades
+{: #connector-agent-upgrades}
+
+The {{site.data.keyword.baas_full_notm}} cluster now manages Connector Agent component upgrades automatically. When a new compatible version is available, the cluster coordinates the upgrade with any active backup or recovery operations — ongoing jobs are not interrupted.
+
+### Migrating from Data Source Connector to Connector Agent
+{: #connector-agent-migration}
+
+If you have a source currently registered via a Data Source Connector and want to migrate it to use a Connector Agent instead:
+
+1. Install and register a new Connector Agent on the source host (follow the steps in this tutorial).
+2. Unregister the existing source registration that uses the Data Source Connector.
+3. Re-register the source, selecting the Connector Agent connection when prompted for the connection type.
+
+Contact your {{site.data.keyword.baas_full_notm}} account team if you need assistance with the migration.
 
 ## Next steps
 {: #connector-agent-next-steps}
