@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025, 2026
-lastupdated: "2026-06-30"
+lastupdated: "2026-10-09"
 
 keywords: data source connector, iks, roks, cluster, troubleshooting
 
@@ -54,6 +54,34 @@ If you must move to a new zonal configuration and do not need to persist the exi
 1. Completely uninstall the Data Source Connector deployment.
 2. Help ensure that the Persistent Volume Claims (PVCs) and PVs associated with the old zones are deleted.
 3. Reinstall Data Source Connector. This allows the CSI driver to provision new volumes in the currently active zones.
+
+### Admission Controllers or Network Policies Blocking Data Source Connector Installation
+{: #dsc-admission-network-policies}
+
+In restricted Kubernetes or OpenShift environments, Admission Controllers (such as OPA Gatekeeper, Kyverno, or Pod Security Standards) and Kubernetes Network Policies can block the deployment or interpod communication of Data Source Connector components.
+
+**1. Verify Pod Deployment After Helm Installation**
+
+After completing the Helm installation of the Data Source Connector, verify that the connector pods are running in the `ibm-brs-data-source-connector` namespace:
+
+```bash
+kubectl get pods -n ibm-brs-data-source-connector
+```
+{: codeblock}
+
+If pods are not created or fail to reach the `Running` state:
+- Check for Admission Controller rejections or webhook denials by inspecting namespace events:
+  ```bash
+  kubectl get events -n ibm-brs-data-source-connector --sort-by='.metadata.creationTimestamp'
+  ```
+  {: codeblock}
+- Describe the StatefulSet or failing pods to inspect blocking admission webhook errors or pod security constraint violations:
+  ```bash
+  kubectl describe statefulset brs-ds-connector -n ibm-brs-data-source-connector
+  kubectl describe pod <dsc-pod-name> -n ibm-brs-data-source-connector
+  ```
+  {: codeblock}
+- Verify that your cluster admission controllers allow the required service account privileges, volume mounts, and security contexts configured by the connector Helm chart.
 
 ### Data Source Connector Not Appearing After Installation
 {: #dsc-not-appearing}
@@ -133,6 +161,63 @@ kubectl describe pod cohesity-dm-* -n `kubectl get ns | grep brs-backup-agent | 
 To verify the status of your connection and help ensure that the connector is operating correctly, follow these steps in the console:
 1. **Navigate to the Health Status**: Go to **System** \> **Data Source Connection**.
 2. **Verify Connectivity**: Locate your specific Data Source Connection and confirm that both the `Connection` and the `Connector` are showing a `Healthy` status.
+
+### Admission Controllers, Network Policies, and Interpod Connectivity During Source Registration
+{: #admission-network-policies-registration}
+
+During source registration, {{site.data.keyword.baas_full_notm}} deploys backup agent components (Velero deployment and Datamover daemonset) into the cluster. In hardened environments, Kubernetes Admission Controllers and Network Policies can block the deployment of these pods or prevent interpod communication between the Data Source Connector (DSC) and the Datamover daemonset.
+
+**1. Verify Velero and Datamover Pod Status**
+
+Check if the Velero and Datamover pods are running in the `brs-backup-agent-<uuid>` namespace:
+
+```bash
+kubectl get pods -n `kubectl get ns | grep brs-backup-agent | awk '{print $1}'` -o wide
+```
+{: codeblock}
+
+If pods fail to deploy or stay in `Pending` / `CrashLoopBackOff` state:
+- Check for Admission Controller denials (for example, Gatekeeper, Kyverno, or Pod Security Admission) by inspecting namespace events:
+  ```bash
+  kubectl get events -n `kubectl get ns | grep brs-backup-agent | awk '{print $1}'` --sort-by='.metadata.creationTimestamp'
+  ```
+  {: codeblock}
+- Describe the Velero deployment and Datamover daemonset to identify why pods are not being scheduled or created:
+  ```bash
+  kubectl describe deployment velero -n `kubectl get ns | grep brs-backup-agent | awk '{print $1}'`
+  kubectl describe daemonset cohesity-dm -n `kubectl get ns | grep brs-backup-agent | awk '{print $1}'`
+  ```
+  {: codeblock}
+- Verify that your cluster admission policies allow:
+  - HostPort binding for the Datamover daemonset (default port `33769` or your configured custom port).
+  - Privileged/root security contexts and host path mounts required by the backup agent components.
+
+**2. Verify Interpod Connectivity Between Data Source Connector and Datamover**
+
+The Datamover is deployed as a DaemonSet exposed on a `hostPort` (default port `33769`). The Data Source Connector pod must be able to communicate with the Datamover on this host port across worker nodes. If Kubernetes Network Policies or node firewalls block ingress/egress between namespaces or on the host port, source registration and backup jobs will fail.
+
+To validate connectivity from the Data Source Connector pod to the Datamover:
+
+1. Retrieve the node IP addresses where the Datamover pods are running:
+   ```bash
+   kubectl get pods -n `kubectl get ns | grep brs-backup-agent | awk '{print $1}'` -o wide
+   ```
+   {: codeblock}
+   Note the `NODE` and `IP` (node IP) associated with each `cohesity-dm-*` pod.
+
+2. Test TCP connectivity to the Datamover host port from inside the Data Source Connector pod:
+   ```bash
+   kubectl exec -it brs-ds-connector-0 -n ibm-brs-data-source-connector -- curl -vvv <node-ip>:<datamover-port>
+   ```
+   {: codeblock}
+
+   - Replace `<node-ip>` with the worker node IP running the Datamover pod.
+   - Replace `<datamover-port>` with `33769` (the default host port) or the custom host port specified during source registration.
+
+3. **Resolution if connectivity fails (`Connection refused`, `Connection timed out`, or packet drop):**
+   - **Network Policies**: Check if any Kubernetes Network Policy in `ibm-brs-data-source-connector`, `brs-backup-agent-<uuid>`, or cluster-wide is restricting egress from DSC pods or ingress to host ports/Datamover pods. Configure Network Policy rules to allow traffic on port `33769` (or the configured custom port).
+   - **Node Firewalls / Security Groups**: Verify that worker node security groups and firewall rules allow intra-cluster communication on host port `33769` (or the configured custom port).
+   - **Custom Port Alignment**: If a custom port was configured during source registration, confirm that the port used in the connectivity check and firewall/network policies matches the registered port.
 
 ### HTTP Connection Errors
 {: #http-connection-error}
@@ -421,3 +506,47 @@ You may encounter a 404 error with the message "data source connection does not 
 {: #backend-service-restart}
 
 A backend service is restarting intermittently, which may cause issues in the backup and recovery performance. If you experience unexpected delays, this service restart might be the cause.
+
+### Auto-upgrade state cleared when source enters maintenance mode
+{: #auto-upgrade-maintenance-mode}
+
+When a Kubernetes source is registered with an automatic upgrade mode (`kAlwaysAllow` or `kAlwaysAsk`), placing that source into maintenance mode can inadvertently clear all component version information. No deployed components are deleted, but the recorded upgrade state (installed versions, available upgrades, and approval status) is lost.
+
+**Symptoms**: After maintenance mode is turned off, the source shows no upgrade state, and automatic upgrade discovery does not resume on its own.
+
+**Resolution**: After turning maintenance mode off, recover the source to a healthy state by completing the following steps:
+
+1. Delete the `brs-backup-agent` namespace from the source cluster:
+
+   ```sh
+   kubectl delete ns $(kubectl get ns | grep brs-backup-agent | awk '{print $1}')
+   ```
+   {: codeblock}
+
+2. Trigger a source refresh in the {{site.data.keyword.baas_full_notm}} dashboard:
+   - Go to `Data Protection` \> `Sources`.
+   - Locate your Kubernetes or OpenShift source.
+   - Click the menu `⋮` and select `Refresh`.
+
+After the refresh completes, automatic upgrade discovery re-initializes and the source returns to steady state.
+
+### Edit source — Data Source Connection not pre-populated
+{: #edit-source-dsc-not-shown}
+
+When you edit an existing Kubernetes or OpenShift source registration, the **Data Source Connection** field may appear empty or not pre-populated in the registration wizard. This is a known UI issue.
+
+**Workaround**: Manually reselect your Data Source Connection from the dropdown before saving the updated registration. The connection itself is still valid — only the UI display is affected.
+
+### Secondary cluster: restore points not visible after Az failover
+{: #az-failover-restore-points}
+
+After an Azure availability zone failover, the restore points API on the secondary cluster does not show restore points from snapshots taken on the primary cluster. This is a known issue.
+
+**Workaround**: Use the primary cluster to access restore points until this issue is resolved in a future release.
+
+### IBM Tenant Activation not working with secondary copy
+{: #tenant-activation-secondary-copy}
+
+IBM Tenant Activation is not working when using a secondary copy. This is a known issue.
+
+**Workaround**: Perform tenant activation against the primary copy. Contact IBM Support if you require secondary-copy activation.

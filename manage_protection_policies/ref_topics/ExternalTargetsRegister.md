@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-12-12"
+lastupdated: "2026-10-09"
 
 keywords: <KEYWORDS>
 
@@ -108,7 +108,7 @@ The following table provides the list of S3-Compatible Object Storage - Standard
 | Hitachi Vantara | Hitachi Content Platform | <fqdn-or-IP> | Not Required | HTTPS | AWS Sign ver4 | Both v4 and v2 are supported for HTTPS. |
 | <fqdn-or-IP>:8080 | 8080 | HTTP | AWS Sign ver2 | \-  |
 | Huawei Software Technologies Company | Object Storage Service | obs.ap-southeast-3.myhuaweicloud. <br>com | Not required | HTTPS | AWS Sign ver2 | \-  |
-| IBM | Cloud Object Storage | s3.private.<region>-  <br><site>.cloud-object-storage.appdomain. <br>cloud | Not required | HTTPS | AWS Sign ver4 | Both v4 and v2 work; v4 is the preferred version. |
+| IBM | Cloud Object Storage | s3.private.<region>-  <br><site>.cloud-object-storage.appdomain. <br>cloud | Not required | HTTPS | AWS Sign ver4 | Both v4 and v2 work; v4 is the preferred version. Virtual hosted-style endpoints in the format `<bucket-name>.<cos-endpoint>` (for example, `my-bucket.s3.us-south.cloud-object-storage.appdomain.cloud`) are also supported. |
 | 11:11 Systems | 11:11 Cloud Object Storage | us-central-1a.object.ilandcloud.com | Not required | HTTPS | AWS Sign ver4 | \-  |
 | us-central-1b.object.ilandcloud.com |
 | eu-west-1a.object.ilandcloud.com |

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025, 2026
-lastupdated: "2026-08-19"
+lastupdated: "2026-10-09"
 
 keywords: data source connector, iks, roks, cluster
 
@@ -218,7 +218,12 @@ If you are registering a cluster that was previously registered as a source, you
 
         Make sure that **Kubernetes Distribution** matches the **Deployment Platform** of the selected Data Source Connection.
 
-    *   (Optional) Configure Optional settings (for example, Service Type, Images) by expanding the **Optional** section.
+    *   (Optional) Configure **Component Upgrade Mode** by expanding the **Optional** section. This controls how {{site.data.keyword.baas_full_notm}} manages future upgrades of Velero, DataMover, and the DataProtect plug-in for this source:
+        - The **UI defaults to `kAlwaysAllow`** (fully automatic upgrades).
+        - The **API defaults to `kManual`** when `kubernetesParams.upgradeMode` is omitted — set it explicitly in API requests if you want automatic upgrades.
+        - See [Automatic component upgrades](#auto-upgrade-modes) for a description of each mode.
+
+    *   (Optional) Configure other Optional settings (for example, Service Type, Images) by expanding the **Optional** section.
 
          HostPort is the default and recommended communication method for the backup and recovery agent. Users can optionally specify a custom port; if not specified, the default port (33769) is used.
 
@@ -285,15 +290,51 @@ If you are registering a cluster that was previously registered as a source, you
 ## Upgrading the Backup Agent Components
 {: #upgrade-brs-backup-agent}
 
-When new releases of the {{site.data.keyword.baas_full_notm}} service become available, there is a possibility that new Backup Agent Component versions are also available. It is recommended to upgrade your Backup Agent Components when new releases become available to ensure that you have the latest features, security patches, and bug fixes.
+When new releases of the {{site.data.keyword.baas_full_notm}} service become available, new Backup Agent Component versions (Velero, DataMover, and the DataProtect plug-in) may also be available. Keeping these components current ensures you have the latest features, security patches, and bug fixes.
 
 To check for new service releases, see the [{{site.data.keyword.baas_full_notm}} release notes](https://cloud.ibm.com/docs/backup-recovery?topic=backup-recovery-updates){: external}.
 
-Upgrades for the brs-backup-agent components are currently manual. When you register a Kubernetes/OpenShift source, the system creates a namespace `brs-backup-agent-<GUID>` that contains:
-- Datamover DaemonSet
-- Velero Deployment
+### Automatic component upgrades
+{: #auto-upgrade-modes}
 
-Each release of {{site.data.keyword.baas_full_notm}} includes default image versions for these components. To upgrade an existing source registration:
+{{site.data.keyword.baas_full_notm}} can manage Velero, DataMover, and DataProtect plug-in upgrades automatically. You control this behavior by setting an **upgrade mode** when you register or update a Kubernetes or OpenShift source.
+
+| Upgrade mode | Behavior |
+|---|---|
+| `kAlwaysAllow` | **Fully automatic.** {{site.data.keyword.baas_full_notm}} discovers and installs compatible upgrades without requiring approval. Use this mode to keep components current with no manual steps. This is the **UI default** for new source registrations. |
+| `kAlwaysAsk` | **Discovery automatic, rollout requires approval.** {{site.data.keyword.baas_full_notm}} reports available upgrades, but installation begins only after you approve all pending upgrades. Use this mode when an administrator must review target versions or choose the rollout time. |
+| `kManual` | **Fully manual.** {{site.data.keyword.baas_full_notm}} does not discover or install upgrades automatically. Use this mode when upgrades must be planned outside this feature. This is the **API default** when `upgradeMode` is omitted. |
+{: caption="Kubernetes component upgrade modes" caption-side="bottom"}
+
+In both automatic modes, a transient Kubernetes Job called the **update indexer** is deployed during each source refresh to discover available versions. Its Job, pod, and ConfigMap are cleaned up automatically after discovery completes — seeing the update-indexer pod during a source refresh is expected and does not mean a rollout has started. The update indexer is not deployed for sources in `kManual` mode.
+
+Component upgrades do not interrupt running backups or recoveries. If a backup or recovery is active when an upgrade is ready, the rollout waits for it to finish.
+
+Do not set `kubernetesParams.registryBaseUrl` or custom image paths for DataMover, Velero, or the DataProtect plug-in when using `kAlwaysAllow` or `kAlwaysAsk`. {{site.data.keyword.baas_full_notm}} selects compatible image sets automatically and rejects requests that combine an automatic mode with custom image locations.
+{: important}
+
+#### Approving upgrades (kAlwaysAsk mode only)
+{: #approve-component-upgrades}
+
+When the source's upgrade mode is `kAlwaysAsk` and a newer component stream is available, the source status shows `kUpgradeAvailable`. To approve the upgrade, use the following API call:
+
+```sh
+POST /v2/data-protect/sources/kubernetes/{sourceId}/component-upgrades/actions
+Content-Type: application/json
+
+{ "action": "Approve" }
+```
+{: codeblock}
+
+This approves all components that are currently awaiting approval. Individual component approval is not supported. Installation starts during the next source refresh — poll the source status until each component shows `kUpToDate`.
+
+Before approving, verify that source configuration is not in progress by checking `registrationInfo.userMessages[]` in the GET response for a `Source configuration is in progress` message. Wait for the message to clear before submitting the approval.
+{: note}
+
+### Manual upgrade procedure (kManual mode)
+{: #manual-upgrade-procedure}
+
+If your source is configured with `kManual` mode, or was registered before automatic upgrade modes were available (those sources are treated as `kManual` by default), use the following procedure to upgrade components:
 
 1. Get the exact namespace name with the `brs-backup-agent` prefix:
 
@@ -319,11 +360,13 @@ Each release of {{site.data.keyword.baas_full_notm}} includes default image vers
    - Locate your Kubernetes or OpenShift source.
    - Click the menu `⋮` and select `Refresh`.
 
-4. The system automatically redeploys the datamover DaemonSet and Velero Deployment with the latest image versions that are associated with your {{site.data.keyword.baas_full_notm}} version.
+4. The system automatically redeploys the DataMover DaemonSet and Velero Deployment with the latest image versions associated with your {{site.data.keyword.baas_full_notm}} version.
 
-
-The `Edit Registration` option does not update the datamover and Velero images. You must delete the existing components and trigger a refresh to apply the upgrade.
+The `Edit Registration` option does not update the DataMover and Velero images. You must delete the existing components and trigger a refresh to apply the upgrade.
 {: important}
+
+Sources registered before automatic upgrade modes were introduced have no `upgradeMode` configured and are treated as `kManual`. To switch to automatic upgrades, update the source registration and set `kubernetesParams.upgradeMode` to `kAlwaysAllow` or `kAlwaysAsk`.
+{: tip}
 
 
 

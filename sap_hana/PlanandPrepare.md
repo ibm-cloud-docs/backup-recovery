@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-12-12"
+lastupdated: "2026-10-09"
 
 keywords: plan, prepare, supported versions, port requirements, traffic, considerations, user store
 
@@ -16,6 +16,23 @@ subcollection: backup-recovery
 {: #plan_and_prepare_for_sap_hana_protection}
 
 Before you register your SAP HANA deployment as a source with {{site.data.keyword.cloud_notm}} Backup and Recovery and protect SAP HANA databases, ensure the following prerequisites:
+
+## Connection methods
+{: #sap-hana-connection-methods}
+
+{{site.data.keyword.cloud_notm}} Backup and Recovery supports two connection methods for SAP HANA:
+
+| Method | Description | When to use |
+|---|---|---|
+| **SAP HANA Connector (UDA-based)** | The traditional connector installed on the SAP HANA host. Documented in this section. | Existing deployments; environments where direct agent connectivity is not available. |
+| **Connector Agent** | A lightweight agent that runs on the SAP HANA host and establishes a direct connection to the backup cluster without requiring a Data Source Connector. | New deployments; environments where direct agent-to-cluster communication is preferred. |
+{: caption="SAP HANA connection methods" caption-side="bottom"}
+
+Connector Agent support for SAP HANA requires enabling the feature for your instance. Contact your {{site.data.keyword.baas_full_notm}} account team to enable this feature. For setup instructions, see [Set up and register a Connector Agent](/docs/backup-recovery?topic=backup-recovery-connector-agent-setup-tutorial).
+{: note}
+
+The remainder of this page covers prerequisites for the **SAP HANA Connector (UDA-based)** method.
+
 
 - Identify the node(s) in your SAP HANA cluster with adequate resources to execute the SAP HANA connector.
 - Ensure that the fully qualified domain name (FQDN) of the {{site.data.keyword.cloud_notm}} Backup and Recovery cluster is resolvable from all the nodes in the SAP HANA cluster.
