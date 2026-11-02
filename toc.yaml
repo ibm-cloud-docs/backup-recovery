@@ -28,6 +28,14 @@ toc:
           label: Tutorials library for Backup and Recovery
           href: https://cloud.ibm.com/docs?tab=tutorials&page=1&pageSize=20&tags=backup-recovery
       - topicgroup:
+          label: Protect a Db2 Server
+          topics:
+          - db2/ibm-db2-backup-overview.md
+          - db2/backup-ibm-db2-database-tutorial.md
+          - db2/protect-ibm-db2-deployments-tutorial.md
+          - db2/register-ibm-db2-source-tutorial.md
+          - db2/restore-ibm-db2-database-tutorial.md
+      - topicgroup:
           label: Protect a Physical Server (File-based)
           topics:
           - backup-linux.md
@@ -175,6 +183,8 @@ toc:
               topics:
               - data-protect/db2-requirements.md
               - data-protect/db2-protect-recover.md
+              - db2/manage-ibm-db2-backup-configuration-howto.md
+              - db2/plan-and-prepare-howto.md
       - topicgroup:
           label: Physical servers
           topics:
