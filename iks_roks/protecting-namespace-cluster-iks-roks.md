@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025, 2026
-lastupdated: "2026-10-09"
+lastupdated: "2026-11-03"
 
 keywords: data source connector, iks, roks, cluster, protection
 
@@ -15,7 +15,7 @@ subcollection: backup-recovery
 # Protecting a namespace or cluster and scheduling a backup
 {: #protecting-namespace-iks-roks}
 
-{{site.data.keyword.baas_full}} protects Kubernetes namespaces by assigning them to a policy‑driven Protection Group. This allows you to configure options like CSI snapshots, Auto Protect, label-based selection, and quiescing (pre and post-hooks) to help ensure consistent backups.
+{{site.data.keyword.baas_full}} protects Kubernetes namespaces by assigning them to a policy‑driven Protection Group. This allows the user to configure options like CSI snapshots, Auto Protect, label-based selection, and quiescing (pre and post-hooks) to help ensure consistent backups.
 
 ## Prerequisites for scheduling backups
 {: #data-source-connector-iks-roks-prereq-schedule-bak}
@@ -39,7 +39,7 @@ Follow these steps to quickly protect your Kubernetes resources:
 
       | Option | Description |
       |------|-------------|
-      | **Use an Existing Protection Group** | All settings are prefilled from the existing group and are read-only at this stage. |
+      | **Use an Existing Protection Group** | All settings are prefilled from the existing group and are read only at this stage. |
       | **Create a New Protection Group** | When creating a new group, configure the following settings: <ul><li>**Protection Group Name**</li><li>**Protection Policy**</li><li>**Start Time and Time Zone** </li><li>**Leverage CSI Snapshot** (toggle) - Recommended for crash-consistent backups</li><li>**Pause Future Runs**</li><li>**Alerts and Email Recipients**</li><li>**Priority** (High / Medium / Low)</li><li>**Include or Exclude Labels**</li><li>**Description**</li></ul> |
       {: caption="Protection Group options" caption-side="bottom"}
 
@@ -71,27 +71,27 @@ After you set up protection, you can customize the configuration to better suit 
 
     #### When CSI Snapshots Are Used
     {: #csi-snapshot-usage}
-    
+
     CSI (Container Storage Interface) snapshots provide efficient, storage-level backups when the following conditions are met:
-    
+
     - The **Leverage CSI Snapshot** toggle is enabled in the Protection Group settings
     - The PVC's storage class supports CSI snapshot functionality
     - A valid VolumeSnapshotClass is configured in the cluster
-    
+
     When these conditions are satisfied, the backup process uses CSI snapshots to capture a crash-consistent point-in-time copy of the volume data directly at the storage layer. This method is faster and more efficient than filesystem-based backups.
-    
+
     #### Filesystem-Based Backup Fallback
     {: #filesystem-backup-fallback}
-    
-    If CSI snapshots are not available or fail, the system automatically falls back to filesystem-based backups using the Datamover component. This fallback occurs when:
-    
+
+    If CSI snapshots are not available or fail, the system automatically falls back to filesystem-based backups by using the Datamover component. This fallback occurs when:
+
     - The storage driver does not support CSI snapshots
     - The **Leverage CSI Snapshot** toggle is disabled
     - CSI snapshot creation fails or times out
     - No VolumeSnapshotClass is configured
-    
+
     In filesystem-based backup mode, the Datamover reads data directly from the mounted volume and streams it to the backup storage. While this method is more resource-intensive and slower than CSI snapshots, it ensures that all PVCs can be protected regardless of storage driver capabilities.
-    
+
     This mode applies only to PVCs whose storage driver supports CSI snapshots. PVCs with drivers that do not support CSI snapshots continue to be backed up by using file system backup.
     {: note}
 
@@ -150,8 +150,8 @@ Label-based filtering works alongside Auto Protect, enabling you to exclude spec
    4. Namespaces **not** excluded by these label rules remain in the list. Click `Protect` to proceed.
 
 - **Customize individual namespaces**:
-  1. Click the **pencil icon** next to a namespace to edit its settings.
-  1. In the **Options for [namespace]** modal:
+   1. Click the **pencil icon** next to a namespace to edit its settings.
+   1. In the **Options for [namespace]** modal:
         - Toggle **Persistent Volume Claim (PVC) Inclusion/Exclusion** to enable customized filtering.
 
           This overrides the inclusion or exclusion settings that are made for Protection Group level in the Additional Settings.
@@ -178,10 +178,10 @@ You can control which cluster-scoped Kubernetes resource types are included in a
 
 | Policy value | Behavior |
 |---|---|
-| `kIncludeAll` | Include all cluster-scoped resource types found during backup. |
+| `kIncludeAll` | Include all cluster-scoped resource types that are found during backup. |
 | `kExcludeAll` | Exclude all cluster-scoped resource types. Only namespace-scoped resources are backed up. |
 | `kDependentOnly` | Include only cluster-scoped resources that have a dependency relationship with the namespace-scoped resources being backed up. |
-| `kGranularSelection` | Apply an explicit include or exclude list of resource types supplied in the request. Use `includeParams.selectedResources` or `excludeParams.selectedResources` (mutually exclusive). |
+| `kGranularSelection` | Apply an explicit include or exclude list of resource types that are supplied in the request. Use `includeParams.selectedResources` or `excludeParams.selectedResources` (mutually exclusive). |
 {: caption="Cluster-scoped resource inclusion policies" caption-side="bottom"}
 
 Even when specific resources are selected, Velero automatically includes certain dependent cluster-scoped resources:
@@ -262,10 +262,11 @@ For detailed instructions on managing your backups, see [Managing Protection Gro
 
 There is a known UI issue that affects the **Snapshot Timeout** field in a Protection Group:
 
-- When the **Leverage CSI Snapshot** option is toggled **OFF** and then **ON** again,
-  the **Snapshot Timeout value resets to the default `300` seconds**, even if a different value was previously configured.
+- When the **Leverage CSI Snapshot** option is toggled **OFF** and then **ON** again, the **Snapshot Timeout value resets to the default `300` seconds**, even if a different value was previously configured.
 
 #### How to reproduce
+{: #known-issue-snapshot-timeout-reset-reproduce}
+
 1. Open the Protection Group settings.
 2. Enter a custom Snapshot Timeout value (for example, 1200 seconds).
 3. Toggle **Leverage CSI Snapshot** OFF.
@@ -275,6 +276,8 @@ There is a known UI issue that affects the **Snapshot Timeout** field in a Prote
 The Snapshot Timeout resets to **300 seconds**.
 
 #### Workaround
+{: #known-issue-snapshot-timeout-reset-workaround}
+
 - After enabling **Leverage CSI Snapshot**, **re-enter the desired Snapshot Timeout** (60–43200 seconds) before clicking **Save**.
 
 This issue affects only the UI. The backend uses the correct value once saved.

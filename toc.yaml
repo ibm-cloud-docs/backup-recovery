@@ -58,6 +58,10 @@ toc:
           - sap_hana/BackupSAPHANASource.md
           - sap_hana/RestoreSAPHANADB.md
       - topicgroup:
+          label: Protect a Kubernetes/OpenShift Server
+          topics:
+          - iks_roks/cross-account-backup-vpeg.md
+      - topicgroup:
           label: Backup and Recovery Manager
           topics:
           - global_mgmt_console/tutorial-gmc.md
@@ -86,6 +90,7 @@ toc:
           - iks_roks/recover-restore-iks-roks.md
           - iks_roks/run-now-iks-roks.md
           - iks_roks/troubleshoot-iks-roks.md
+          - iks_roks/restore-resource-filter.md
       - topicgroup:
           label: Setting up access control
           topics:
