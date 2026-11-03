@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025, 2026
-lastupdated: "2026-10-09"
+lastupdated: "2026-11-03"
 
 keywords: data source connector, iks, roks, cluster
 
@@ -53,9 +53,9 @@ E. [Troubleshooting](/docs/backup-recovery?topic=backup-recovery-data-source-con
 You need the following to get started with {{site.data.keyword.baas_full_notm}} with Kubernetes or OpenShift:
 - An [{{site.data.keyword.cloud}} Platform account](https://cloud.ibm.com)
 - A {{site.data.keyword.baas_full_notm}} service instance. If you haven't created one yet, see [Creating a Backup and Recovery service instance](/docs/backup-recovery?topic=backup-recovery-instance-creation).
-- A Kubernetes or OpenShift cluster deployed in IBM Cloud
+- A Kubernetes or OpenShift cluster that is deployed in IBM Cloud
 
-Alternatively, you can use the pre-built, open-source, and enterprise-ready [Terraform IBM modules](/docs/ibm-cloud-provider-for-terraform?topic=ibm-cloud-provider-for-terraform-about-tim) with {{site.data.keyword.baas_full_notm}} service. These modules provide best practices for provisioning {{site.data.keyword.cloud_notm}} resources and can be referenced directly in your Terraform configurations.
+Alternatively, you can use the pre-built, open source, and enterprise-ready [Terraform IBM modules](/docs/ibm-cloud-provider-for-terraform?topic=ibm-cloud-provider-for-terraform-about-tim) with {{site.data.keyword.baas_full_notm}} service. These modules provide best practices for provisioning {{site.data.keyword.cloud_notm}} resources and can be referenced directly in your Terraform configurations.
 
 ## Accessing your {{site.data.keyword.baas_full_notm}} instance
 {: #data-source-connector-iks-roks-access-instance}
@@ -101,11 +101,11 @@ The {{site.data.keyword.baas_full_notm}} service for Kubernetes and OpenShift us
 
 - **Backup Agent Components**: After source registration, additional components are automatically deployed:
   - **Datamover**: Deployed as a DaemonSet on all worker nodes, it handles data transfer operations during backup and restore. The Datamover reads data from persistent volumes and streams it to the backup storage.
-  - **Velero**: An open-source Kubernetes backup tool that manages the backup and restore of Kubernetes resources (deployments, services, config maps, etc.) and coordinates with the Datamover for persistent volume data.
+  - **Velero**: An open-source Kubernetes backup tool that manages the backup and restore of Kubernetes resources (deployments, services, config maps, and so on) and coordinates with the Datamover for persistent volume data.
 
-- **CSI Snapshots**: When available, the service leverages Container Storage Interface (CSI) snapshots for efficient, storage-level backups. If CSI snapshots are not supported by your storage provider, the system automatically falls back to filesystem-based backups using the Datamover.
+- **CSI Snapshots**: When available, the service leverages Container Storage Interface (CSI) snapshots for efficient, storage-level backups. If CSI snapshots are not supported by your storage provider, the system automatically falls back to filesystem-based backups that use the Datamover.
 
-This architecture ensures that both Kubernetes metadata and persistent volume data are protected, enabling complete cluster recovery when needed.
+This architecture helps ensure that both Kubernetes metadata and persistent volume data are protected, enabling complete cluster recovery when needed.
 
 ## Create or configure a data source connector
 {: #data-source-connector-iks-roks-create-configure}
@@ -120,7 +120,7 @@ The data source connection establishes the communication channel between your {{
 ### Resource requirements for backup components
 {: #data-source-connector-iks-roks-resource-reqs}
 
-Ensure that the node has sufficient CPU and memory to run the {{site.data.keyword.baas_full_notm}} components. The Data Source Connector is installed first to establish connectivity. During source registration, additional backup agent components (Datamover and Velero) are deployed to the cluster. The following table lists their resource requirements.
+Help ensure that the node has sufficient CPU and memory to run the {{site.data.keyword.baas_full_notm}} components. The Data Source Connector is installed first to establish connectivity. During source registration, additional backup agent components (Datamover and Velero) are deployed to the cluster. The following table lists their resource requirements.
 
 The Datamover is installed by default on all worker nodes as a DaemonSet (not on control plane nodes) after the source registration is complete.
 {: note}
@@ -137,7 +137,7 @@ The Datamover is installed by default on all worker nodes as a DaemonSet (not on
 
 You can either create a new data source connection or use an existing one. If you already have a connection for the same deployment platform, you can skip to [Install and configure the data source connector](#data-source-connector-iks-roks-install-configure).
 
-Data source connections for Kubernetes and OpenShift clusters must be created from the {{site.data.keyword.baas_full_notm}} instance dashboard. The Deployment Platform options (**ROKS VPC**, **IKS VPC**, **ROKS classic**, **IKS classic**) are not available when creating data source connections from the Backup Recovery Manager. Additionally, the current release of the `ibmcloud backup-recovery data-source-connection create` CLI command does not support the `--connection-env-type` parameter, which is required for creating connections that can be used to protect IBM Kubernetes Service and Red Hat OpenShift clusters.
+Data source connections for Kubernetes and OpenShift clusters must be created from the {{site.data.keyword.baas_full_notm}} instance dashboard. The Deployment Platform options (**ROKS VPC**, **IKS VPC**, **ROKS classic**, **IKS classic**) are not available when creating data source connections from the Backup Recovery Manager. Also, the current release of the `ibmcloud backup-recovery data-source-connection create` CLI command does not support the `--connection-env-type` parameter, which is required for creating connections that can be used to protect IBM Kubernetes Service and Red Hat OpenShift clusters.
 {: important}
 
 #### Choosing the deployment platform
@@ -306,7 +306,7 @@ To check for new service releases, see the [{{site.data.keyword.baas_full_notm}}
 | `kManual` | **Fully manual.** {{site.data.keyword.baas_full_notm}} does not discover or install upgrades automatically. Use this mode when upgrades must be planned outside this feature. This is the **API default** when `upgradeMode` is omitted. |
 {: caption="Kubernetes component upgrade modes" caption-side="bottom"}
 
-In both automatic modes, a transient Kubernetes Job called the **update indexer** is deployed during each source refresh to discover available versions. Its Job, pod, and ConfigMap are cleaned up automatically after discovery completes — seeing the update-indexer pod during a source refresh is expected and does not mean a rollout has started. The update indexer is not deployed for sources in `kManual` mode.
+In both automatic modes, a transient Kubernetes Job that is called the **update indexer** is deployed during each source refresh to discover available versions. Its Job, pod, and ConfigMap are cleaned up automatically after discovery completes — seeing the update-indexer pod during a source refresh is expected and does not mean that a rollout has started. The update indexer is not deployed for sources in `kManual` mode.
 
 Component upgrades do not interrupt running backups or recoveries. If a backup or recovery is active when an upgrade is ready, the rollout waits for it to finish.
 
@@ -360,7 +360,7 @@ If your source is configured with `kManual` mode, or was registered before autom
    - Locate your Kubernetes or OpenShift source.
    - Click the menu `⋮` and select `Refresh`.
 
-4. The system automatically redeploys the DataMover DaemonSet and Velero Deployment with the latest image versions associated with your {{site.data.keyword.baas_full_notm}} version.
+4. The system automatically redeploys the DataMover DaemonSet and Velero Deployment with the latest image versions that are associated with your {{site.data.keyword.baas_full_notm}} version.
 
 The `Edit Registration` option does not update the DataMover and Velero images. You must delete the existing components and trigger a refresh to apply the upgrade.
 {: important}
@@ -377,7 +377,7 @@ After registering your cluster as a data source, you can protect and recover Kub
 
 1. **Protect a namespace**: See [Protecting a namespace or cluster](/docs/backup-recovery?topic=backup-recovery-protecting-namespace-iks-roks).
 2. **Configure policies**: See [Creating and configuring protection policies](/docs/backup-recovery?topic=backup-recovery-create-edit-standard-policy).
-3. **Run backups**: You can schedule backups using policies or trigger a backup immediately by using [Run Now](/docs/backup-recovery?topic=backup-recovery-protection-group-run-now).
+3. **Run backups**: You can schedule backups by using policies or trigger a backup immediately by using [Run Now](/docs/backup-recovery?topic=backup-recovery-protection-group-run-now).
 4. **Recover container workloads**: To recover data, follow the instructions in [Recovering or restoring backup](/docs/backup-recovery?topic=backup-recovery-recovering-restoring-backup).
 
 ## Protecting and recovering virtual machines

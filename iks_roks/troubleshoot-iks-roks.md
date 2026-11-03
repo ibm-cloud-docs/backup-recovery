@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025, 2026
-lastupdated: "2026-10-09"
+lastupdated: "2026-11-03"
 
 keywords: data source connector, iks, roks, cluster, troubleshooting
 
@@ -212,7 +212,7 @@ To validate connectivity from the Data Source Connector pod to the Datamover:
    {: codeblock}
 
    - Replace `<node-ip>` with the worker node IP running the Datamover pod.
-   - Replace `<datamover-port>` with `33769` (the default host port) or the custom host port specified during source registration.
+   - Replace `<datamover-port>` with `33769` (the default host port) or the custom host port that is specified during source registration.
 
 3. **Resolution if connectivity fails (`Connection refused`, `Connection timed out`, or packet drop):**
    - **Network Policies**: Check if any Kubernetes Network Policy in `ibm-brs-data-source-connector`, `brs-backup-agent-<uuid>`, or cluster-wide is restricting egress from DSC pods or ingress to host ports/Datamover pods. Configure Network Policy rules to allow traffic on port `33769` (or the configured custom port).
@@ -290,6 +290,7 @@ If you see a `Warning FailedScheduling` message similar to the one below, you ar
 - **Volume Node Affinity Conflict**: The pod needs to access a specific volume that is physically located on a different node, but that node is already at its capacity or otherwise unavailable.
 
 ### Recommended Solutions
+{: #protection-job-failure-solutions}
 
 If your environment has reached its volume capacity, use one of the following methods to resolve the bottleneck:
 

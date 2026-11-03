@@ -3,7 +3,7 @@
 copyright:
   years: 2024, 2026
 
-lastupdated: "2026-10-09"
+lastupdated: "2026-11-03"
 
 
 keywords: updates, releases, news, backup and recovery
@@ -22,6 +22,28 @@ content-type: release-note
 News on the latest releases from IBM's Backup and Recovery provide the updates that you need on all things that are related to Backup and Recovery.
 {: shortdesc}
 
+## 5 October 2026
+{: #baas-Oct0526}
+{: release-note}
+
+Release update
+:  {{site.data.keyword.baas_full_notm}} includes the following improvements for Kubernetes and OpenShift workloads on IKS/ROKS, database workloads, and storage targets:
+
+:  **Granular cluster-scoped resource recovery**: You can now back up and recover specific cluster-scoped Kubernetes resource types (for example, ClusterRoles, StorageClasses) independently from namespace-scoped resources.
+
+:  **Restore hooks**: Pre-recovery and post-recovery hooks are now supported for namespace recoveries, aligned with Velero/OADP-Velero hook semantics.
+
+:  **Automatic component image upgrades**: Velero, DataMover, and the DataProtect plug-in can now be upgraded automatically by the service. Configure the upgrade mode (`kAlwaysAllow`, `kAlwaysAsk`, or `kManual`) when registering or updating a Kubernetes source.
+
+:  **Restore resource filter plugin**: A new ConfigMap-driven plugin lets you exclude specific resource types (for example, LoadBalancer Services) from a namespace restore without modifying the source configuration.
+
+:  **Restoring over existing namespaces — important behavior change**: When recovering a namespace that already exists in the target cluster, {{site.data.keyword.baas_full_notm}} can now write backed-up volume data into PersistentVolumeClaims (PVCs) that are already present. Files with matching names are **overwritten** with backed-up content; files not in the backup are left in place. **If live applications are actively using these PVCs, the running workload can be corrupted.** Stop or scale down all workloads that own the affected PVCs before initiating recovery, or recover to a renamed namespace instead. For more information, see [Restoring data into existing PersistentVolumeClaims](/docs/backup-recovery?topic=backup-recovery-recovering-restoring-backup#recovering-existing-pvc-data).
+
+
+
+
+
+:  **Red Hat OpenShift Virtualization enhancements**: Recovery validation, File Level Recovery (browse and download) for RHOV VMs on ROKS with ODF, retry behavior correction, and more space-efficient ODF restore behavior.
 
 
 ## 24 July 2026

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025, 2026
-lastupdated: "2026-10-09"
+lastupdated: "2026-11-03"
 
 keywords: data source connector, iks, roks, cluster, recover
 
@@ -15,7 +15,7 @@ subcollection: backup-recovery
 # Recover Kubernetes namespaces
 {: #recovering-restoring-backup}
 
-After protecting your Kubernetes namespaces, you can use {{site.data.keyword.baas_full_notm}} to recover them to:
+After protecting your Kubernetes namespaces, you can use {{site.data.keyword.baas_full}} to recover them to:
 - The original (same) Kubernetes or OpenShift cluster
 - A different Kubernetes or OpenShift cluster that is registered with {{site.data.keyword.baas_full_notm}}
 
@@ -90,12 +90,12 @@ This PVC overwrite behavior applies when recovering to a namespace that already 
 12. Configure the **Recovery Options** as needed. For information on filtering specific resource types (such as LoadBalancer Services) from the restore, see [Excluding resources during namespace restore](/docs/backup-recovery?topic=backup-recovery-restore-resource-filter).
     *   **Rename**: Add a **Prefix** or **Suffix** to the names of recovered namespaces. By default, the prefix `copy-` is added to the original namespace name.
     *   **Task Name**: View or customize the name of this recovery task.
-    *   **Skip cluster compatibility check**: Toggle to enable or disable skipping the compatibility check for the target cluster. Compatibility is determined on the basis of the availability of Custom Resource Definitions (CRDs) in the target cluster. If the target cluster does not have the required CRDs, the recovery might fail or produce incomplete results.
+    *   **Skip cluster compatibility check**: Toggle to enable or disable skipping the compatibility check for the target cluster. Compatibility is determined based on the availability of Custom Resource Definitions (CRDs) in the target cluster. If the target cluster does not have the required CRDs, the recovery might fail or produce incomplete results.
     *   **Include or Exclude Labels**: Filter **Persistent Volume Claim (PVC)** based on labels.
         *   **Logical Rule**: Select **Match Any of the following labels** or **Match All of the following labels**.
         *   Choose to **Include** or **Exclude** matched labels.
         *   Enter the label **key** and **value**, then click **+ Add**.
-    *   **Cluster Resources**: Control which cluster-scoped Kubernetes resource types are recovered alongside namespace resources.
+    *   **Cluster Resources**: Control, which cluster-scoped Kubernetes resource types are recovered alongside namespace resources.
         *   Toggle **Include Cluster Level Resources** to recover cluster-scoped resources. Recovering cluster resources can create conflicts if matching resources already exist in the target cluster — proceed with caution.
         *   Select the **Snapshot with Cluster Resource** from the dropdown if multiple are available.
         *   For granular control over which cluster-scoped resource types to include or exclude, use the recovery API. Set `recoverClusterScopedResources` under `recoverNamespaceParams.kubernetesTargetParams` with either `includedClusterScopedResources` or `excludedClusterScopedResources` (mutually exclusive). Before specifying resource types, call `POST /data-protect/snapshots/{snapshotId}/meta-info` to retrieve the exact `backedUpResources` list for the snapshot, then pass the entries from that response without modification.
@@ -148,7 +148,7 @@ Restore hooks are supported for namespace recovery when pods are included in the
 ### How restore hooks work
 {: #how-restore-hooks-work}
 
-- **Pre-recovery hooks** inject init containers into each matching restored pod. The init containers run setup commands before the pod's application containers start. They can mount volumes already defined in the pod.
+- **Pre-recovery hooks** inject init containers into each matching restored pod. The init containers run setup commands before the pod's application containers start. They can mount volumes that are already defined in the pod.
 - **Post-recovery hooks** execute commands inside containers of matching restored pods. By default, a command runs only after its target container is `Ready`.
 
 Hooks apply only to pods whose labels match every key-value pair in the hook's `labelSelector`. A hook rule whose selector matches no restored pods is a no-op — the recovery does not fail for that reason.
@@ -216,7 +216,7 @@ Set `restoreHooks` on each namespace recovery object in the recovery request:
 | Field | Required | Description |
 |---|---|---|
 | `name` | No | Descriptive rule name. Generated automatically if omitted. |
-| `labelSelector` | Yes | Non-empty list of pod label key-value pairs. Every pair must match. |
+| `labelSelector` | Yes | Nonempty list of pod label key-value pairs. Every pair must match. |
 | `preRecoveryHooks` | Conditional | Init containers to inject. At least one pre- or post-recovery hook is required. |
 | `preRecoveryHookTimeoutSecs` | No | Maximum init time per matching pod. Default: 600 s. Range: 31–10800 s. |
 | `postRecoveryHooks` | Conditional | Commands to run in matching restored pods. At least one pre- or post-recovery hook is required. |
@@ -259,8 +259,8 @@ You can track the status of your recovery tasks on the **Recoveries** page.
     *   **Duration**: How long the task took to complete
 
 *   **Dashboard overview**: View a summary of recovery tasks by status:
-    *   **Succeeded**: The recovery task completed successfully
-    *   **Warning**: The task completed with warnings
+    *   **Succeeded**: The recovery task was completed successfully
+    *   **Warning**: The task was completed with warnings
     *   **Failed**: The task failed to complete
     *   **Running**: The task is currently in progress
     *   **Canceled**: The task was manually canceled
